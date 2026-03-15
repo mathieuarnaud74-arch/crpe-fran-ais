@@ -3,13 +3,20 @@ node_modules
 out
 coverage
 .turbo
+.generated
 .env
 .env.local
 .env.development.local
 .env.production.local
 .vercel
 dist
+*.tsbuildinfo
 *.log
+*.zip
+*.code-workspace
+supabase/.temp
+supabase/.branches
+Nouveau Document texte.txt
 
 
 *storybook.log
