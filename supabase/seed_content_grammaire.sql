@@ -1,0 +1,702 @@
+-- CRPE Français — Lot 1 : Grammaire (10 séries × 10 questions)
+-- topic_key unique par série garantit le regroupement en session de 10 questions
+-- Appliquer APRÈS les migrations 20260311–20260314 et le seed initial
+
+insert into public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, validation_status, source, access_tier, is_published
+)
+values
+
+-- ================================================================
+-- SÉRIE 01 — Classes grammaticales — Facile — free
+-- ================================================================
+('01000000-0000-0000-0000-000000000001','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
+'Quelle est la nature du mot "lentement" dans "Il marche lentement" ?',null,
+'[{"id":"a","label":"Un adjectif qualificatif"},{"id":"b","label":"Un adverbe"},{"id":"c","label":"Un nom commun"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Lentement" modifie le verbe "marche" en indiquant la manière. C''est un adverbe de manière, formé sur l''adjectif "lent" avec le suffixe "-ment".',
+'valide','CRPE Français V2','free',true),
+
+('01000000-0000-0000-0000-000000000002','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
+'Quelle est la nature du mot "grand" dans "Un grand arbre pousse devant la maison" ?',null,
+'[{"id":"a","label":"Un adverbe"},{"id":"b","label":"Un nom commun"},{"id":"c","label":"Un adjectif qualificatif"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Grand" qualifie le nom "arbre" en lui attribuant une propriété. C''est un adjectif qualificatif épithète, placé avant le nom qu''il détermine.',
+'valide','CRPE Français V2','free',true),
+
+('01000000-0000-0000-0000-000000000003','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
+'Quelle est la nature du mot "France" dans "Nous visitons la France cet été" ?',null,
+'[{"id":"a","label":"Un nom commun"},{"id":"b","label":"Un nom propre"},{"id":"c","label":"Un adjectif"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"France" désigne un lieu géographique unique et prend une majuscule. C''est un nom propre. Il se distingue du nom commun qui désigne une catégorie d''êtres ou d''objets.',
+'valide','CRPE Français V2','free',true),
+
+('01000000-0000-0000-0000-000000000004','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
+'Quelle est la nature du mot "une" dans "Une écolière lève la main" ?',null,
+'[{"id":"a","label":"Un pronom personnel"},{"id":"b","label":"Un déterminant article indéfini"},{"id":"c","label":"Un adjectif numéral"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Une" introduit le nom "écolière" sans le définir précisément. C''est un déterminant article indéfini. Il s''oppose à "la" (défini) et se distingue du numéral "un" utilisé pour compter.',
+'valide','CRPE Français V2','free',true),
+
+('01000000-0000-0000-0000-000000000005','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
+'Quelle est la nature du mot "et" dans "Marie et Paul travaillent ensemble" ?',null,
+'[{"id":"a","label":"Une préposition"},{"id":"b","label":"Une conjonction de coordination"},{"id":"c","label":"Un adverbe"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Et" relie deux groupes nominaux de même fonction syntaxique (sujets coordonnés). C''est une conjonction de coordination. Les sept conjonctions de coordination sont : mais, ou, et, donc, or, ni, car.',
+'valide','CRPE Français V2','free',true),
+
+('01000000-0000-0000-0000-000000000006','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
+'Quelle est la nature du mot "dans" dans "Il range ses affaires dans son sac" ?',null,
+'[{"id":"a","label":"Un adverbe"},{"id":"b","label":"Une conjonction de coordination"},{"id":"c","label":"Une préposition"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Dans" établit un rapport de lieu entre le verbe "range" et son complément "son sac". C''est une préposition. Elle introduit un groupe prépositionnel complément circonstanciel de lieu.',
+'valide','CRPE Français V2','free',true),
+
+('01000000-0000-0000-0000-000000000007','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
+'Quelle est la nature du mot "elle" dans "Elle répond à la question avec assurance" ?',null,
+'[{"id":"a","label":"Un nom propre"},{"id":"b","label":"Un déterminant"},{"id":"c","label":"Un pronom personnel"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Elle" remplace un groupe nominal désignant une personne féminine déjà mentionnée. C''est un pronom personnel sujet de 3e personne du singulier. Il assure la reprise anaphorique dans le discours.',
+'valide','CRPE Français V2','free',true),
+
+('01000000-0000-0000-0000-000000000008','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
+'Quelle est la nature du mot "chanter" dans "Il aime chanter le soir" ?',null,
+'[{"id":"a","label":"Un nom commun"},{"id":"b","label":"Un verbe à l''infinitif"},{"id":"c","label":"Un adjectif verbal"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Chanter" est à la forme non conjuguée de l''infinitif. Il fonctionne ici comme COD du verbe "aime". Ne pas confondre avec le nom verbal (le chant) ou le participe présent (chantant).',
+'valide','CRPE Français V2','free',true),
+
+('01000000-0000-0000-0000-000000000009','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
+'Quelle est la nature du mot "très" dans "Il est très attentif pendant le cours" ?',null,
+'[{"id":"a","label":"Un adjectif qualificatif"},{"id":"b","label":"Un déterminant"},{"id":"c","label":"Un adverbe"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Très" modifie l''adjectif "attentif" en indiquant l''intensité. C''est un adverbe d''intensité. Les adverbes peuvent modifier un verbe, un adjectif ou un autre adverbe.',
+'valide','CRPE Français V2','free',true),
+
+('01000000-0000-0000-0000-000000000010','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
+'Quelle est la nature du mot "car" dans "Il reste à la maison car il est fatigué" ?',null,
+'[{"id":"a","label":"Une conjonction de subordination"},{"id":"b","label":"Une préposition"},{"id":"c","label":"Une conjonction de coordination"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Car" relie deux propositions indépendantes en exprimant la cause. C''est une conjonction de coordination. Erreur fréquente : confondre "car" (coordination) avec "parce que" (subordination), qui introduit une proposition subordonnée.',
+'valide','CRPE Français V2','free',true),
+
+-- ================================================================
+-- SÉRIE 02 — Classes grammaticales — Intermédiaire — free
+-- ================================================================
+('02000000-0000-0000-0000-000000000001','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','qcm',
+'Quelle est la nature du mot "dont" dans "Le livre dont je parle est remarquable" ?',null,
+'[{"id":"a","label":"Une conjonction de subordination"},{"id":"b","label":"Un pronom interrogatif"},{"id":"c","label":"Un pronom relatif"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Dont" introduit une proposition subordonnée relative et reprend l''antécédent "livre". C''est un pronom relatif équivalent à "de lequel". Il est COI de "parle" (parler de quelque chose).',
+'valide','CRPE Français V2','free',true),
+
+('02000000-0000-0000-0000-000000000002','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','qcm',
+'Quelle est la nature du mot "leur" dans "Je leur explique la règle" ?',null,
+'[{"id":"a","label":"Un déterminant possessif"},{"id":"b","label":"Un pronom personnel COI"},{"id":"c","label":"Un adjectif indéfini"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Leur" remplace un GN pluriel animé et est COI du verbe "expliquer" (expliquer à eux). C''est un pronom personnel. À distinguer du déterminant possessif "leur/leurs" (leur livre / leurs livres).',
+'valide','CRPE Français V2','free',true),
+
+('02000000-0000-0000-0000-000000000003','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','qcm',
+'Quelle est la nature du mot "y" dans "Il y pense souvent" ?',null,
+'[{"id":"a","label":"Une préposition"},{"id":"b","label":"Un adverbe de lieu"},{"id":"c","label":"Un pronom adverbial"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Y" reprend un complément introduit par "à" désignant une chose ou un lieu (ex. : "à ce problème"). C''est un pronom adverbial. Il ne peut remplacer une personne dans ce contexte (on dit "je pense à lui", pas "j''y pense").',
+'valide','CRPE Français V2','free',true),
+
+('02000000-0000-0000-0000-000000000004','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','qcm',
+'Quelle est la nature du mot "en" dans "Il en parle à ses élèves" ?',null,
+'[{"id":"a","label":"Une préposition"},{"id":"b","label":"Un déterminant partitif"},{"id":"c","label":"Un pronom adverbial"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"En" reprend un complément introduit par "de" (parler de quelque chose). C''est un pronom adverbial. Erreur fréquente : le confondre avec la préposition "en" (il est en retard) ou le déterminant partitif "du/de la".',
+'valide','CRPE Français V2','free',true),
+
+('02000000-0000-0000-0000-000000000005','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','qcm',
+'Quelle est la nature de "aucun" dans "Aucun élève n''est absent aujourd''hui" ?',null,
+'[{"id":"a","label":"Un adjectif qualificatif"},{"id":"b","label":"Un pronom indéfini"},{"id":"c","label":"Un déterminant indéfini"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Aucun" est placé devant le nom "élève" qu''il détermine. C''est un déterminant indéfini à valeur négative (il requiert "ne" dans la proposition). S''il était seul sans nom, ce serait un pronom : "Aucun n''est absent".',
+'valide','CRPE Français V2','free',true),
+
+('02000000-0000-0000-0000-000000000006','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','identification_grammaticale',
+'Donnez la nature du mot "lequel" dans la phrase : "L''outil avec lequel il travaille est très précis."',null,null,
+'{"mode":"text","acceptableAnswers":["pronom relatif","un pronom relatif"]}'::jsonb,
+'"Lequel" reprend l''antécédent "outil" et introduit une proposition subordonnée relative. C''est un pronom relatif composé. Il est ici précédé de la préposition "avec", ce qui impose la forme composée (lequel) plutôt que "qui".',
+'valide','CRPE Français V2','free',true),
+
+('02000000-0000-0000-0000-000000000007','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','qcm',
+'Quelle est la nature de "tout" dans "Tout le monde a bien compris" ?',null,
+'[{"id":"a","label":"Un pronom indéfini"},{"id":"b","label":"Un adverbe"},{"id":"c","label":"Un déterminant indéfini"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Tout" est suivi du déterminant "le" et du nom "monde" qu''il précède. C''est un déterminant indéfini. Quand il est seul sujet ou COD ("Tout est prêt"), c''est un pronom indéfini.',
+'valide','CRPE Français V2','free',true),
+
+('02000000-0000-0000-0000-000000000008','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','identification_grammaticale',
+'Donnez la nature de "quoique" dans : "Quoiqu''il soit tard, il continue de corriger ses copies."',null,null,
+'{"mode":"text","acceptableAnswers":["conjonction de subordination","une conjonction de subordination"]}'::jsonb,
+'"Quoique" (en un mot) introduit une proposition subordonnée circonstancielle de concession et impose le subjonctif. C''est une conjonction de subordination. Ne pas confondre avec "quoi que" (deux mots) qui est un pronom relatif indéfini.',
+'valide','CRPE Français V2','free',true),
+
+('02000000-0000-0000-0000-000000000009','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','qcm',
+'Quelle est la nature de "même" dans "Les élèves eux-mêmes ont proposé cette solution" ?',null,
+'[{"id":"a","label":"Un adverbe d''intensité"},{"id":"b","label":"Un adjectif indéfini renforcatif"},{"id":"c","label":"Une conjonction de coordination"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Même" renforce le pronom "eux" et souligne la participation personnelle des élèves. C''est un adjectif indéfini à valeur renforcative. Dans "même fatigué, il travaille", "même" serait adverbe (invariable).',
+'valide','CRPE Français V2','free',true),
+
+('02000000-0000-0000-0000-000000000010','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','identification_grammaticale',
+'Donnez la nature du mot "si" dans : "Je ne sais pas si elle viendra demain."',null,null,
+'{"mode":"text","acceptableAnswers":["conjonction de subordination","une conjonction de subordination"]}'::jsonb,
+'"Si" introduit une proposition subordonnée interrogative indirecte, COD de "sais". C''est une conjonction de subordination. À distinguer du "si" conditionnel ("si elle vient...") et de l''adverbe "si" d''intensité ("il est si grand").',
+'valide','CRPE Français V2','free',true),
+
+-- ================================================================
+-- SÉRIE 03 — Fonctions syntaxiques — Intermédiaire — premium
+-- ================================================================
+('03000000-0000-0000-0000-000000000001','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
+'Identifiez la fonction du groupe nominal souligné : "Les élèves écoutent attentivement."  → [Les élèves]',null,null,
+'{"mode":"text","acceptableAnswers":["sujet","sujet du verbe","sujet du verbe écoutent"]}'::jsonb,
+'"Les élèves" commande l''accord du verbe "écoutent" (3e personne du pluriel). C''est le sujet du verbe. Pour l''identifier, on pose la question "Qui est-ce qui écoute ?" → les élèves.',
+'valide','CRPE Français V2','premium',true),
+
+('03000000-0000-0000-0000-000000000002','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
+'Identifiez la fonction du groupe nominal souligné : "Le professeur explique [la leçon] avec clarté."',null,null,
+'{"mode":"text","acceptableAnswers":["COD","complément d''objet direct","complément d''objet direct du verbe explique"]}'::jsonb,
+'"La leçon" complète directement le verbe "explique" sans préposition. C''est un COD. On vérifie : "Le professeur explique quoi ?" → la leçon. On peut le pronominaliser : "Il l''explique".',
+'valide','CRPE Français V2','premium',true),
+
+('03000000-0000-0000-0000-000000000003','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
+'Identifiez la fonction du groupe souligné : "Il téléphone [à ses parents] chaque soir."',null,null,
+'{"mode":"text","acceptableAnswers":["COI","complément d''objet indirect","complément d''objet indirect du verbe téléphone"]}'::jsonb,
+'"À ses parents" complète le verbe "téléphone" par l''intermédiaire de la préposition "à". C''est un COI. On pose la question "Il téléphone à qui ?" → à ses parents. On peut le pronominaliser : "Il leur téléphone".',
+'valide','CRPE Français V2','premium',true),
+
+('03000000-0000-0000-0000-000000000004','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
+'Identifiez la fonction du groupe souligné : "Les enfants jouent [dans la cour] depuis ce matin."',null,null,
+'{"mode":"text","acceptableAnswers":["CC de lieu","complément circonstanciel de lieu","complément circonstanciel de lieu du verbe jouent"]}'::jsonb,
+'"Dans la cour" indique le lieu où se déroule l''action. C''est un complément circonstanciel de lieu. Il est généralement mobile (on peut le déplacer en tête de phrase) et supprimable sans changer le sens fondamental de la phrase.',
+'valide','CRPE Français V2','premium',true),
+
+('03000000-0000-0000-0000-000000000005','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
+'Identifiez la fonction du mot souligné : "Cet élève paraît [intelligent]."',null,null,
+'{"mode":"text","acceptableAnswers":["attribut du sujet","attribut du sujet du verbe paraît"]}'::jsonb,
+'"Intelligent" est relié au sujet "cet élève" par le verbe d''état "paraître". C''est un attribut du sujet. Les verbes d''état courants sont : être, paraître, sembler, devenir, rester, demeurer, avoir l''air.',
+'valide','CRPE Français V2','premium',true),
+
+('03000000-0000-0000-0000-000000000006','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
+'Identifiez la fonction du mot souligné : "Elle parle [rapidement] devant la classe."',null,null,
+'{"mode":"text","acceptableAnswers":["CC de manière","complément circonstanciel de manière","complément circonstanciel de manière du verbe parle"]}'::jsonb,
+'"Rapidement" indique la manière dont elle parle. C''est un complément circonstanciel de manière. On pose la question "Comment parle-t-elle ?" → rapidement. C''est un adverbe, donc non pronominalizable.',
+'valide','CRPE Français V2','premium',true),
+
+('03000000-0000-0000-0000-000000000007','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
+'Identifiez la fonction du groupe souligné : "Il attend [depuis ce matin] sans nouvelles."',null,null,
+'{"mode":"text","acceptableAnswers":["CC de temps","complément circonstanciel de temps","complément circonstanciel de temps du verbe attend"]}'::jsonb,
+'"Depuis ce matin" situe l''action dans le temps (début de l''action). C''est un complément circonstanciel de temps. Il répond à la question "depuis quand ?" et est déplaçable en tête de phrase.',
+'valide','CRPE Français V2','premium',true),
+
+('03000000-0000-0000-0000-000000000008','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
+'Identifiez la fonction du groupe souligné : "Il est certain [de sa réponse]."',null,null,
+'{"mode":"text","acceptableAnswers":["complément de l''adjectif","complément de l''adjectif certain"]}'::jsonb,
+'"De sa réponse" complète l''adjectif "certain" par l''intermédiaire de la préposition "de". C''est un complément de l''adjectif. Cette fonction est souvent confondue avec le COI, mais elle dépend d''un adjectif et non d''un verbe.',
+'valide','CRPE Français V2','premium',true),
+
+('03000000-0000-0000-0000-000000000009','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
+'Identifiez la fonction du mot souligné : "Les enfants rentrent [épuisés] après la récréation."',null,null,
+'{"mode":"text","acceptableAnswers":["attribut du sujet","attribut du sujet du verbe rentrent"]}'::jsonb,
+'"Épuisés" qualifie le sujet "les enfants" via le verbe "rentrer" employé de façon semi-copulative. C''est un attribut du sujet. Erreur fréquente : l''analyser comme épithète ou CC de manière — mais il qualifie le sujet, pas l''action.',
+'valide','CRPE Français V2','premium',true),
+
+('03000000-0000-0000-0000-000000000010','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
+'Identifiez la fonction du groupe souligné : "Il ressemble [à sa mère] en tous points."',null,null,
+'{"mode":"text","acceptableAnswers":["COI","complément d''objet indirect","complément d''objet indirect du verbe ressemble"]}'::jsonb,
+'"À sa mère" complète le verbe "ressembler" par la préposition "à". C''est un COI. Erreur fréquente : "ressembler" est un verbe transitif indirect — son complément est toujours un COI, jamais un COD.',
+'valide','CRPE Français V2','premium',true),
+
+-- ================================================================
+-- SÉRIE 04 — Fonctions syntaxiques avancées — Avancé — premium
+-- ================================================================
+('04000000-0000-0000-0000-000000000001','Francais','grammaire','grm_fonctions_avance','Fonctions syntaxiques avancées','Avance','identification_grammaticale',
+'Identifiez la nature et la fonction de "que tu réussiras" dans : "Il espère que tu réussiras."',null,null,
+'{"mode":"text","acceptableAnswers":["proposition subordonnée conjonctive COD","subordonnée conjonctive complétive COD","subordonnée complétive COD"]}'::jsonb,
+'"Que tu réussiras" est une proposition subordonnée introduite par "que", COD du verbe "espère". On peut la remplacer par un GN ("Il espère ton succès") ou un pronom ("Il l''espère").',
+'valide','CRPE Français V2','premium',true),
+
+('04000000-0000-0000-0000-000000000002','Francais','grammaire','grm_fonctions_avance','Fonctions syntaxiques avancées','Avance','identification_grammaticale',
+'Identifiez la nature et la fonction de "dont il est fier" dans : "C''est un résultat dont il est fier."',null,null,
+'{"mode":"text","acceptableAnswers":["proposition subordonnée relative complément du nom résultat","subordonnée relative épithète de résultat"]}'::jsonb,
+'"Dont il est fier" est une proposition subordonnée relative introduite par le pronom relatif "dont" (= de lequel). Elle est épithète du nom "résultat". "Dont" est ici complément de l''adjectif "fier" (être fier de).',
+'valide','CRPE Français V2','premium',true),
+
+('04000000-0000-0000-0000-000000000003','Francais','grammaire','grm_fonctions_avance','Fonctions syntaxiques avancées','Avance','vrai_faux',
+'Vrai ou faux : Dans "Il travaille pour réussir", "pour réussir" est un COD du verbe "travailler".',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":false}'::jsonb,
+'Faux. "Pour réussir" exprime le but de l''action. C''est un complément circonstanciel de but (ou proposition infinitive circonstancielle de but). "Travailler" est intransitif dans cet emploi : il n''a pas de COD.',
+'valide','CRPE Français V2','premium',true),
+
+('04000000-0000-0000-0000-000000000004','Francais','grammaire','grm_fonctions_avance','Fonctions syntaxiques avancées','Avance','identification_grammaticale',
+'Identifiez la nature et la fonction de "qu''elle soit absente" dans : "Je suis étonné qu''elle soit absente."',null,null,
+'{"mode":"text","acceptableAnswers":["proposition subordonnée conjonctive complément de l''adjectif étonné","subordonnée complétive complément de l''adjectif","complément de l''adjectif étonné"]}'::jsonb,
+'"Qu''elle soit absente" complète l''adjectif "étonné". C''est une subordonnée conjonctive complétive, complément de l''adjectif. Le subjonctif est requis car l''adjectif exprime une réaction subjective.',
+'valide','CRPE Français V2','premium',true),
+
+('04000000-0000-0000-0000-000000000005','Francais','grammaire','grm_fonctions_avance','Fonctions syntaxiques avancées','Avance','vrai_faux',
+'Vrai ou faux : Dans "Le livre que je lis est passionnant", "que" est pronom relatif COD du verbe "lis".',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. "Que" reprend l''antécédent "livre" et est COD de "lis" (je lis quoi ? → que = le livre). La relative est épithète de "livre". Cette construction explique l''accord du participe passé avec "avoir" quand le COD précède.',
+'valide','CRPE Français V2','premium',true),
+
+('04000000-0000-0000-0000-000000000006','Francais','grammaire','grm_fonctions_avance','Fonctions syntaxiques avancées','Avance','identification_grammaticale',
+'Identifiez la fonction de "malgré la pluie" dans : "Ils sortent malgré la pluie."',null,null,
+'{"mode":"text","acceptableAnswers":["CC de concession","complément circonstanciel de concession","CC d''opposition"]}'::jsonb,
+'"Malgré la pluie" exprime une opposition entre la condition attendue (rester par mauvais temps) et l''action réalisée (sortir). C''est un CC de concession. La concession est aussi appelée opposition ou restriction.',
+'valide','CRPE Français V2','premium',true),
+
+('04000000-0000-0000-0000-000000000007','Francais','grammaire','grm_fonctions_avance','Fonctions syntaxiques avancées','Avance','vrai_faux',
+'Vrai ou faux : Dans "Je lui ai donné ce livre", le pronom "lui" est COD.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":false}'::jsonb,
+'Faux. "Lui" est COI (donner à quelqu''un). "Ce livre" est le COD (donner quoi ?). Erreur très fréquente au CRPE : confondre COD et COI quand les deux sont présents. "Lui" = à lui/à elle, c''est bien un COI.',
+'valide','CRPE Français V2','premium',true),
+
+('04000000-0000-0000-0000-000000000008','Francais','grammaire','grm_fonctions_avance','Fonctions syntaxiques avancées','Avance','identification_grammaticale',
+'Identifiez la nature et la fonction de "de partir" dans : "Il lui a conseillé de partir."',null,null,
+'{"mode":"text","acceptableAnswers":["proposition infinitive COD","proposition infinitive complément d''objet direct","COD infinitif"]}'::jsonb,
+'"De partir" est une proposition infinitive introduite par "de". Elle est COD de "conseillé" (il a conseillé quoi ?). Elle équivaut à une subordonnée : "Il lui a conseillé qu''il partirait". Le verbe à l''infinitif a son propre sujet implicite.',
+'valide','CRPE Français V2','premium',true),
+
+('04000000-0000-0000-0000-000000000009','Francais','grammaire','grm_fonctions_avance','Fonctions syntaxiques avancées','Avance','qcm',
+'Dans "Que vous soyez présents me rassure", quelle est la fonction de la proposition "Que vous soyez présents" ?',null,
+'[{"id":"a","label":"COD du verbe rassure"},{"id":"b","label":"Sujet du verbe rassure"},{"id":"c","label":"Attribut du sujet"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Que vous soyez présents" est une proposition subordonnée conjonctive qui occupe la fonction de sujet du verbe "rassure". Les propositions subordonnées peuvent remplir toutes les fonctions du GN, y compris le sujet.',
+'valide','CRPE Français V2','premium',true),
+
+('04000000-0000-0000-0000-000000000010','Francais','grammaire','grm_fonctions_avance','Fonctions syntaxiques avancées','Avance','vrai_faux',
+'Vrai ou faux : Dans "Ayant fini son travail, il est sorti", "Ayant fini son travail" est une proposition participiale à valeur de circonstancielle de temps ou de cause.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. "Ayant fini son travail" est une proposition participiale (participé passé composé). Elle peut exprimer le temps (après avoir fini) ou la cause (parce qu''il avait fini). Son sujet implicite doit être identique au sujet de la principale.',
+'valide','CRPE Français V2','premium',true),
+
+-- ================================================================
+-- SÉRIE 05 — Types et formes de phrases — Facile — free
+-- ================================================================
+('05000000-0000-0000-0000-000000000001','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','qcm',
+'Quel est le type de la phrase "Quelle heure est-il ?" ?',null,
+'[{"id":"a","label":"Déclaratif"},{"id":"b","label":"Interrogatif"},{"id":"c","label":"Impératif"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'Cette phrase pose une question directe. C''est une phrase de type interrogatif. Les quatre types de phrases sont : déclaratif, interrogatif, impératif et exclamatif. Le type correspond à l''intention de communication.',
+'valide','CRPE Français V2','free',true),
+
+('05000000-0000-0000-0000-000000000002','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','qcm',
+'Quel est le type de la phrase "Rangez vos affaires maintenant !" ?',null,
+'[{"id":"a","label":"Exclamatif"},{"id":"b","label":"Interrogatif"},{"id":"c","label":"Impératif"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'Cette phrase exprime un ordre. C''est une phrase de type impératif. Elle se reconnaît à l''absence de sujet exprimé et à l''emploi du verbe à l''impératif. Le point d''exclamation ne définit pas le type (une exclamative peut aussi en avoir un).',
+'valide','CRPE Français V2','free',true),
+
+('05000000-0000-0000-0000-000000000003','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','qcm',
+'Quelle est la forme de la phrase "Il ne travaille pas le soir" ?',null,
+'[{"id":"a","label":"Forme affirmative"},{"id":"b","label":"Forme négative"},{"id":"c","label":"Forme passive"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'La présence de "ne...pas" marque la négation. C''est une phrase à la forme négative. La forme (affirmative/négative, active/passive, personnelle/impersonnelle) est distincte du type (déclaratif, interrogatif, etc.).',
+'valide','CRPE Français V2','free',true),
+
+('05000000-0000-0000-0000-000000000004','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','qcm',
+'Quel est le type de la phrase "Comme il fait beau aujourd''hui !" ?',null,
+'[{"id":"a","label":"Déclaratif"},{"id":"b","label":"Impératif"},{"id":"c","label":"Exclamatif"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'Cette phrase exprime une émotion, un sentiment vif. C''est une phrase de type exclamatif. Elle se reconnaît souvent à l''emploi d''un mot exclamatif (comme, que, quel) et se termine par un point d''exclamation.',
+'valide','CRPE Français V2','free',true),
+
+('05000000-0000-0000-0000-000000000005','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','vrai_faux',
+'Vrai ou faux : La phrase "Ne faites pas de bruit pendant l''exercice" est une phrase impérative.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. C''est bien une phrase impérative (elle exprime un ordre ou une consigne), à la forme négative. Le type (impératif) et la forme (négative) sont deux caractéristiques indépendantes qui se combinent.',
+'valide','CRPE Français V2','free',true),
+
+('05000000-0000-0000-0000-000000000006','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','qcm',
+'Quelle est la forme de la phrase "Les copies sont corrigées par le professeur" ?',null,
+'[{"id":"a","label":"Forme active"},{"id":"b","label":"Forme passive"},{"id":"c","label":"Forme emphatique"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'Le sujet "les copies" subit l''action réalisée par l''agent "le professeur". C''est la forme passive. Elle se construit avec l''auxiliaire "être" + participe passé + complément d''agent (introduit par "par" ou "de").',
+'valide','CRPE Français V2','free',true),
+
+('05000000-0000-0000-0000-000000000007','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','qcm',
+'Quelle est la forme de la phrase "C''est la règle qu''il faut appliquer" ?',null,
+'[{"id":"a","label":"Forme passive"},{"id":"b","label":"Forme emphatique"},{"id":"c","label":"Forme négative"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'La construction "c''est...que" met en relief le groupe "la règle". C''est la forme emphatique (ou forme de mise en relief). Elle permet d''insister sur un élément de la phrase en le détachant.',
+'valide','CRPE Français V2','free',true),
+
+('05000000-0000-0000-0000-000000000008','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','vrai_faux',
+'Vrai ou faux : La phrase "Il ne mange que des légumes" est à la forme négative.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. "Ne...que" est une tournure restrictive qui constitue une forme de négation partielle. Elle est grammaticalement à la forme négative, même si son sens est proche de l''affirmation ("seulement des légumes").',
+'valide','CRPE Français V2','free',true),
+
+('05000000-0000-0000-0000-000000000009','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','qcm',
+'Transformez à la forme passive : "Le directeur a signé les bulletins." Quelle est la forme correcte ?',null,
+'[{"id":"a","label":"Les bulletins ont été signés par le directeur."},{"id":"b","label":"Les bulletins étaient signés du directeur."},{"id":"c","label":"Les bulletins se sont signés par le directeur."}]'::jsonb,
+'{"mode":"single_choice","value":"a"}'::jsonb,
+'Le COD "les bulletins" devient sujet, "a signé" devient "ont été signés" (passé composé passif), et le sujet "le directeur" devient complément d''agent introduit par "par". Le participe s''accorde avec le nouveau sujet.',
+'valide','CRPE Français V2','free',true),
+
+('05000000-0000-0000-0000-000000000010','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','qcm',
+'Quelle est la forme emphatique (mise en relief par c''est...qui) de la phrase "Elle a trouvé la solution" ?',null,
+'[{"id":"a","label":"C''est la solution qu''elle a trouvée."},{"id":"b","label":"C''est elle qui a trouvé la solution."},{"id":"c","label":"C''est elle que la solution a été trouvée."}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'Pour mettre en relief le sujet, on utilise "c''est...qui". Pour mettre en relief un COD ou CC, on utilise "c''est...que". Ici, le sujet "elle" est mis en valeur : "C''est elle qui a trouvé la solution."',
+'valide','CRPE Français V2','free',true),
+
+-- ================================================================
+-- SÉRIE 06 — Types et formes de phrases — Intermédiaire — free
+-- ================================================================
+('06000000-0000-0000-0000-000000000001','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','correction_orthographique',
+'Transformez à la forme négative : "Tous les élèves ont compris la consigne." Quelle est la forme correcte ?',null,null,
+'{"mode":"text","acceptableAnswers":["Tous les élèves n''ont pas compris la consigne.","Aucun élève n''a compris la consigne."]}'::jsonb,
+'La négation standard donne : "Tous les élèves n''ont pas compris la consigne." On peut aussi utiliser "Aucun élève n''a compris la consigne" (négation totale). Attention : "tous...ne...pas" = négation partielle ; "aucun...ne" = négation totale.',
+'valide','CRPE Français V2','free',true),
+
+('06000000-0000-0000-0000-000000000002','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','correction_orthographique',
+'Transformez en interrogation par inversion du sujet : "Tu viens à la réunion demain."',null,null,
+'{"mode":"text","acceptableAnswers":["Viens-tu à la réunion demain ?","Viens-tu à la réunion demain"]}'::jsonb,
+'L''inversion du sujet consiste à placer le pronom sujet après le verbe, relié par un trait d''union. "Tu viens" → "Viens-tu". Attention : si le verbe se termine par une voyelle devant "il/elle/on", on ajoute "-t-" : "Va-t-il ?".',
+'valide','CRPE Français V2','free',true),
+
+('06000000-0000-0000-0000-000000000003','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','qcm',
+'Dans "Que de talent dans cette classe !", quel est le type de la phrase ?',null,
+'[{"id":"a","label":"Déclaratif"},{"id":"b","label":"Interrogatif"},{"id":"c","label":"Exclamatif"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Que de" est un déterminant exclamatif qui introduit une phrase exclamative. Le type exclamatif exprime une réaction émotionnelle. Cette phrase est nominale (sans verbe conjugué), ce qui est possible pour les exclamatives.',
+'valide','CRPE Français V2','free',true),
+
+('06000000-0000-0000-0000-000000000004','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','vrai_faux',
+'Vrai ou faux : La transformation passive est possible pour tous les verbes transitifs directs.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":false}'::jsonb,
+'Faux. Certains verbes transitifs directs ne se mettent pas au passif, notamment les verbes de mesure (peser, coûter, mesurer) et certains verbes pronominaux. Ex. : "Il pèse 80 kg" → *"80 kg sont pesés par lui" est impossible.',
+'valide','CRPE Français V2','free',true),
+
+('06000000-0000-0000-0000-000000000005','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','correction_orthographique',
+'Mettez à la forme passive : "Un enseignant expérimenté anime cet atelier."',null,null,
+'{"mode":"text","acceptableAnswers":["Cet atelier est animé par un enseignant expérimenté."]}'::jsonb,
+'Le COD "cet atelier" devient sujet, "anime" devient "est animé" (présent passif), le sujet "un enseignant expérimenté" devient complément d''agent introduit par "par". Le participe "animé" s''accorde avec le nouveau sujet masculin singulier.',
+'valide','CRPE Français V2','free',true),
+
+('06000000-0000-0000-0000-000000000006','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','qcm',
+'Dans "Ce n''est pas lui qui a répondu", quelles formes sont combinées ?',null,
+'[{"id":"a","label":"Négative et impérative"},{"id":"b","label":"Négative et emphatique"},{"id":"c","label":"Passive et emphatique"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'La phrase combine la mise en relief "c''est...qui" (forme emphatique) et la négation "ne...pas" (forme négative). Les formes ne s''excluent pas : une phrase peut simultanément être négative, emphatique et passive.',
+'valide','CRPE Français V2','free',true),
+
+('06000000-0000-0000-0000-000000000007','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','vrai_faux',
+'Vrai ou faux : Une phrase impérative peut être à la forme négative.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. Le type et la forme sont indépendants. "Ne cours pas !" est une phrase impérative négative. Le type (impératif) indique l''intention (donner un ordre/conseil), la forme (négative) précise la polarité de l''énoncé.',
+'valide','CRPE Français V2','free',true),
+
+('06000000-0000-0000-0000-000000000008','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','identification_grammaticale',
+'Donnez le type et la forme de la phrase : "N''avez-vous pas fini cet exercice ?"',null,null,
+'{"mode":"text","acceptableAnswers":["interrogatif, forme négative","type interrogatif, forme négative","interrogatif négatif"]}'::jsonb,
+'La phrase pose une question (type interrogatif) et contient "ne...pas" (forme négative). L''inversion du sujet "vous" confirme l''interrogation directe formelle. Type et forme se combinent toujours pour une description complète.',
+'valide','CRPE Français V2','free',true),
+
+('06000000-0000-0000-0000-000000000009','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','qcm',
+'Laquelle de ces transformations constitue une mise en relief correcte du COD dans "Elle a rédigé ce rapport" ?',null,
+'[{"id":"a","label":"C''est elle qui a rédigé ce rapport."},{"id":"b","label":"C''est ce rapport qu''elle a rédigé."},{"id":"c","label":"C''est ce rapport qui elle a rédigé."}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'Pour mettre en relief un COD, on utilise "c''est...que" (et non "c''est...qui" réservé au sujet). "C''est ce rapport qu''elle a rédigé" est correct. Notez l''accord du participe "rédigé" — le COD "ce rapport" est masculin singulier.',
+'valide','CRPE Français V2','free',true),
+
+('06000000-0000-0000-0000-000000000010','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','vrai_faux',
+'Vrai ou faux : "Il ne parle qu''à ses proches" est à la fois une forme négative et une forme emphatique.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":false}'::jsonb,
+'Faux. "Ne...que" est une forme restrictive (négation partielle), mais ce n''est pas une forme emphatique. L''emphase désigne la mise en relief par extraction ("c''est...qui/que"). "Ne...que" restreint sans extraire d''élément.',
+'valide','CRPE Français V2','free',true),
+
+-- ================================================================
+-- SÉRIE 07 — Propositions subordonnées — Intermédiaire — premium
+-- ================================================================
+('07000000-0000-0000-0000-000000000001','Francais','grammaire','grm_propositions_inter','Propositions subordonnées','Intermediaire','identification_grammaticale',
+'Identifiez la nature et la fonction de "que tu viennes" dans : "Je veux que tu viennes demain."',null,null,
+'{"mode":"text","acceptableAnswers":["proposition subordonnée conjonctive COD","subordonnée conjonctive complétive COD","subordonnée complétive COD"]}'::jsonb,
+'"Que tu viennes" est introduite par "que" et est COD du verbe "veux". C''est une subordonnée conjonctive complétive. Le subjonctif est requis car "vouloir" exprime une volonté. On peut la remplacer par un GN : "Je veux ta venue".',
+'valide','CRPE Français V2','premium',true),
+
+('07000000-0000-0000-0000-000000000002','Francais','grammaire','grm_propositions_inter','Propositions subordonnées','Intermediaire','identification_grammaticale',
+'Identifiez la nature et la fonction de "qui écoute" dans : "L''élève qui écoute progresse rapidement."',null,null,
+'{"mode":"text","acceptableAnswers":["proposition subordonnée relative épithète de élève","subordonnée relative épithète","proposition relative complément du nom élève"]}'::jsonb,
+'"Qui écoute" est introduite par le pronom relatif "qui" et a "l''élève" pour antécédent. C''est une subordonnée relative déterminative (restrictive) : elle précise de quel élève on parle. Elle est épithète du nom "élève".',
+'valide','CRPE Français V2','premium',true),
+
+('07000000-0000-0000-0000-000000000003','Francais','grammaire','grm_propositions_inter','Propositions subordonnées','Intermediaire','qcm',
+'Dans "Il reste parce qu''il pleut", quelle est la nature de la subordonnée "parce qu''il pleut" ?',null,
+'[{"id":"a","label":"Subordonnée circonstancielle de but"},{"id":"b","label":"Subordonnée circonstancielle de cause"},{"id":"c","label":"Subordonnée circonstancielle de conséquence"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Parce qu''il pleut" indique la raison pour laquelle il reste. C''est une subordonnée circonstancielle de cause. Elle répond à la question "pourquoi ?". Erreur fréquente : confondre cause ("parce que") et but ("pour que", "afin que").',
+'valide','CRPE Français V2','premium',true),
+
+('07000000-0000-0000-0000-000000000004','Francais','grammaire','grm_propositions_inter','Propositions subordonnées','Intermediaire','identification_grammaticale',
+'Identifiez la nature et la fonction de "quand il arrivera" dans : "Je serai prêt quand il arrivera."',null,null,
+'{"mode":"text","acceptableAnswers":["proposition subordonnée circonstancielle de temps","subordonnée circonstancielle de temps","CC de temps"]}'::jsonb,
+'"Quand il arrivera" indique à quel moment l''action principale se produira. C''est une subordonnée circonstancielle de temps. Notez l''emploi du futur (et non du présent) dans la subordonnée après "quand" quand la principale est au futur.',
+'valide','CRPE Français V2','premium',true),
+
+('07000000-0000-0000-0000-000000000005','Francais','grammaire','grm_propositions_inter','Propositions subordonnées','Intermediaire','qcm',
+'Dans "J''explique lentement pour que vous compreniez", quelle est la valeur de la subordonnée ?',null,
+'[{"id":"a","label":"Cause"},{"id":"b","label":"Conséquence"},{"id":"c","label":"But"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Pour que vous compreniez" exprime l''objectif visé par l''action d''expliquer. C''est une subordonnée circonstancielle de but. Elle est toujours au subjonctif. À distinguer de la conséquence ("si bien que") qui décrit un résultat réel.',
+'valide','CRPE Français V2','premium',true),
+
+('07000000-0000-0000-0000-000000000006','Francais','grammaire','grm_propositions_inter','Propositions subordonnées','Intermediaire','vrai_faux',
+'Vrai ou faux : La subordonnée relative est toujours introduite par un pronom relatif.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. Les pronoms relatifs sont : qui, que, quoi, dont, où, lequel (et ses formes composées : auquel, duquel...). La relative introduite par "que" ou "qui" est la plus fréquente. Chaque pronom relatif correspond à une fonction précise dans la subordonnée.',
+'valide','CRPE Français V2','premium',true),
+
+('07000000-0000-0000-0000-000000000007','Francais','grammaire','grm_propositions_inter','Propositions subordonnées','Intermediaire','identification_grammaticale',
+'Identifiez la nature et la valeur de "bien qu''il soit fatigué" dans : "Bien qu''il soit fatigué, il continue."',null,null,
+'{"mode":"text","acceptableAnswers":["proposition subordonnée circonstancielle de concession","subordonnée circonstancielle de concession","subordonnée de concession","subordonnée d''opposition"]}'::jsonb,
+'"Bien qu''il soit fatigué" exprime un obstacle qui ne suffit pas à empêcher l''action principale. C''est une subordonnée circonstancielle de concession. Elle requiert le subjonctif et répond à la question "malgré quoi ?".',
+'valide','CRPE Français V2','premium',true),
+
+('07000000-0000-0000-0000-000000000008','Francais','grammaire','grm_propositions_inter','Propositions subordonnées','Intermediaire','qcm',
+'Dans "Je doute qu''il vienne à la réunion", quelle est la nature de "qu''il vienne" ?',null,
+'[{"id":"a","label":"Subordonnée relative"},{"id":"b","label":"Subordonnée circonstancielle de temps"},{"id":"c","label":"Subordonnée conjonctive complétive COD"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Qu''il vienne" est COD du verbe "doute". C''est une subordonnée conjonctive complétive. Le subjonctif est requis car "douter" exprime l''incertitude. À l''affirmative, "je pense qu''il vient" prend l''indicatif.',
+'valide','CRPE Français V2','premium',true),
+
+('07000000-0000-0000-0000-000000000009','Francais','grammaire','grm_propositions_inter','Propositions subordonnées','Intermediaire','identification_grammaticale',
+'Identifiez la nature et la valeur de "si tu travailles" dans : "Tu réussiras si tu travailles."',null,null,
+'{"mode":"text","acceptableAnswers":["proposition subordonnée circonstancielle de condition","subordonnée circonstancielle de condition","subordonnée conditionnelle","subordonnée de condition"]}'::jsonb,
+'"Si tu travailles" pose une condition pour que l''action principale se réalise. C''est une subordonnée circonstancielle de condition (ou hypothétique). Après "si" conditionnel, on emploie le présent (non le futur) si la principale est au futur.',
+'valide','CRPE Français V2','premium',true),
+
+('07000000-0000-0000-0000-000000000010','Francais','grammaire','grm_propositions_inter','Propositions subordonnées','Intermediaire','vrai_faux',
+'Vrai ou faux : Une subordonnée conjonctive complétive COD peut être remplacée par un pronom COD (le, la, les).',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. "Je veux que tu viennes" → "Je le veux". "Il croit qu''elle a raison" → "Il le croit". La pronominalisation par "le" (neutre) confirme la fonction COD de la subordonnée complétive. C''est un test de vérification utile.',
+'valide','CRPE Français V2','premium',true),
+
+-- ================================================================
+-- SÉRIE 08 — Subordination avancée — Avancé — premium
+-- ================================================================
+('08000000-0000-0000-0000-000000000001','Francais','grammaire','grm_propositions_avance','Subordination et syntaxe avancée','Avance','qcm',
+'Dans "Les élèves qui travaillent réussissent", la relative est déterminative. Quelle en est la conséquence ?',null,
+'[{"id":"a","label":"Elle peut être supprimée sans changer le sens fondamental."},{"id":"b","label":"Elle restreint la référence du nom et ne peut être supprimée sans changer le sens."},{"id":"c","label":"Elle est équivalente à un adjectif épithète détaché."}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'La relative déterminative restreint l''ensemble désigné par le nom : parmi tous les élèves, seulement ceux qui travaillent. Sa suppression changerait le sens (on parlerait de tous les élèves). La relative explicative (entre virgules) peut être supprimée.',
+'valide','CRPE Français V2','premium',true),
+
+('08000000-0000-0000-0000-000000000002','Francais','grammaire','grm_propositions_avance','Subordination et syntaxe avancée','Avance','qcm',
+'Dans "Je suis content qu''il soit là", quelle est la fonction de "qu''il soit là" ?',null,
+'[{"id":"a","label":"Sujet du verbe suis"},{"id":"b","label":"COD du verbe suis"},{"id":"c","label":"Complément de l''adjectif content"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Qu''il soit là" complète l''adjectif "content". C''est une subordonnée conjonctive complétive, complément de l''adjectif. Le subjonctif est requis car l''adjectif exprime une réaction émotionnelle. Elle répond à "content de quoi ?".',
+'valide','CRPE Français V2','premium',true),
+
+('08000000-0000-0000-0000-000000000003','Francais','grammaire','grm_propositions_avance','Subordination et syntaxe avancée','Avance','qcm',
+'Dans "Que tu aies réussi me réjouit", quelle est la fonction de la proposition "Que tu aies réussi" ?',null,
+'[{"id":"a","label":"COD du verbe réjouit"},{"id":"b","label":"Attribut du sujet"},{"id":"c","label":"Sujet du verbe réjouit"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Que tu aies réussi" est la proposition qui réjouit : elle est sujet du verbe "réjouit". Les propositions subordonnées peuvent remplir la fonction sujet. Le subjonctif passé marque l''antériorité par rapport au présent.',
+'valide','CRPE Français V2','premium',true),
+
+('08000000-0000-0000-0000-000000000004','Francais','grammaire','grm_propositions_avance','Subordination et syntaxe avancée','Avance','identification_grammaticale',
+'Dans "Il ignore où elle est allée", identifiez la nature et la fonction de "où elle est allée".',null,null,
+'{"mode":"text","acceptableAnswers":["subordonnée interrogative indirecte COD","proposition subordonnée interrogative indirecte COD de ignore"]}'::jsonb,
+'"Où elle est allée" est une subordonnée interrogative indirecte (elle transpose une question directe : "Où est-elle allée ?"). Elle est COD du verbe "ignore". Elle se distingue de la relative par l''absence d''antécédent nominal.',
+'valide','CRPE Français V2','premium',true),
+
+('08000000-0000-0000-0000-000000000005','Francais','grammaire','grm_propositions_avance','Subordination et syntaxe avancée','Avance','vrai_faux',
+'Vrai ou faux : Dans "Plus il travaille, plus il progresse", la construction est une corrélative comparative.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. La construction "plus...plus" est une corrélative comparative exprimant la proportionnalité. Elle est formée de deux propositions liées par la corrélation. C''est une structure caractéristique du français qui n''admet pas de virgule entre les deux.',
+'valide','CRPE Français V2','premium',true),
+
+('08000000-0000-0000-0000-000000000006','Francais','grammaire','grm_propositions_avance','Subordination et syntaxe avancée','Avance','qcm',
+'Dans "Il a dit avoir compris la règle", quelle est la nature de "avoir compris la règle" ?',null,
+'[{"id":"a","label":"Un groupe nominal COD"},{"id":"b","label":"Une proposition infinitive COD"},{"id":"c","label":"Un attribut du sujet"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Avoir compris la règle" est une proposition infinitive (le sujet implicite "il" est le même que celui de "a dit"). Elle est COD de "a dit" et équivaut à "qu''il avait compris la règle". Cette construction évite la répétition du même sujet dans une subordonnée.',
+'valide','CRPE Français V2','premium',true),
+
+('08000000-0000-0000-0000-000000000007','Francais','grammaire','grm_propositions_avance','Subordination et syntaxe avancée','Avance','vrai_faux',
+'Vrai ou faux : Dans "Il a travaillé tellement qu''il en est épuisé", la subordonnée exprime la conséquence.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. "Tellement que" introduit une subordonnée circonstancielle de conséquence : l''intensité du travail a pour résultat l''épuisement. Les conjonctions de conséquence courantes : si bien que, de sorte que, tellement que, au point que.',
+'valide','CRPE Français V2','premium',true),
+
+('08000000-0000-0000-0000-000000000008','Francais','grammaire','grm_propositions_avance','Subordination et syntaxe avancée','Avance','vrai_faux',
+'Vrai ou faux : La proposition participiale "Ayant terminé l''exercice, il rendit sa copie" a un sujet différent de celui de la principale.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":false}'::jsonb,
+'Faux. En proposition participiale non détachée, le sujet implicite doit être identique au sujet de la principale ("il"). Si les sujets différaient, il faudrait une proposition participiale absolue avec sujet propre ("La cloche ayant sonné, il rendit sa copie").',
+'valide','CRPE Français V2','premium',true),
+
+('08000000-0000-0000-0000-000000000009','Francais','grammaire','grm_propositions_avance','Subordination et syntaxe avancée','Avance','qcm',
+'Dans "Il croit que la Terre est ronde", le verbe de la subordonnée est à l''indicatif. Pourquoi ?',null,
+'[{"id":"a","label":"Parce que la subordonnée est au style indirect."},{"id":"b","label":"Parce que croire à l''affirmatif exprime une certitude et appelle l''indicatif."},{"id":"c","label":"Parce qu''il n''existe pas de subjonctif pour ce verbe."}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Croire" à la forme affirmative exprime une opinion présentée comme certaine → indicatif. "Je ne crois pas qu''il vienne" (négatif) ou "Crois-tu qu''il vienne ?" (interrogatif) → subjonctif, car le doute est instillé.',
+'valide','CRPE Français V2','premium',true),
+
+('08000000-0000-0000-0000-000000000010','Francais','grammaire','grm_propositions_avance','Subordination et syntaxe avancée','Avance','identification_grammaticale',
+'Dans "À peine était-il entré qu''il aperçut la lumière", identifiez la construction syntaxique remarquable.',null,null,
+'{"mode":"text","acceptableAnswers":["inversion du sujet après un adverbe en tête de phrase","inversion du sujet","construction avec inversion après à peine"]}'::jsonb,
+'Quand un adverbe de temps ou de restriction ("à peine", "aussi", "encore", "peut-être") est placé en tête de proposition, le sujet est inversé. C''est une inversion stylistique qui donne un effet de relief narratif, fréquente dans les textes littéraires.',
+'valide','CRPE Français V2','premium',true),
+
+-- ================================================================
+-- SÉRIE 09 — Groupes fonctionnels — Intermédiaire — free
+-- ================================================================
+('09000000-0000-0000-0000-000000000001','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','identification_grammaticale',
+'Délimitez le groupe nominal sujet dans : "Le jeune professeur de mathématiques arrive en retard."',null,null,
+'{"mode":"text","acceptableAnswers":["Le jeune professeur de mathématiques","le jeune professeur de mathématiques"]}'::jsonb,
+'"Le jeune professeur de mathématiques" est le GN sujet. Il est formé du déterminant "Le", du nom noyau "professeur", de l''épithète "jeune" et du complément du nom "de mathématiques". Le GN peut être étendu par des expansions sans que son noyau change.',
+'valide','CRPE Français V2','free',true),
+
+('09000000-0000-0000-0000-000000000002','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','qcm',
+'Quel élément est obligatoirement le noyau d''un groupe nominal ?',null,
+'[{"id":"a","label":"Un déterminant"},{"id":"b","label":"Un nom"},{"id":"c","label":"Un adjectif qualificatif"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'Le noyau du GN est toujours un nom (ou un pronom). Le déterminant et les expansions (adjectifs, compléments du nom, relatives) sont des éléments facultatifs ou variables. Sans nom noyau, il n''y a pas de GN au sens strict.',
+'valide','CRPE Français V2','free',true),
+
+('09000000-0000-0000-0000-000000000003','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','identification_grammaticale',
+'Identifiez le noyau du GN dans : "la magnifique robe de soirée brodée".',null,null,
+'{"mode":"text","acceptableAnswers":["robe"]}'::jsonb,
+'Le noyau est "robe" : c''est le nom autour duquel sont organisées toutes les expansions. "Magnifique" et "brodée" sont des épithètes (adjectifs qualificatifs) ; "de soirée" est un complément du nom (groupe prépositionnel).',
+'valide','CRPE Français V2','free',true),
+
+('09000000-0000-0000-0000-000000000004','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','vrai_faux',
+'Vrai ou faux : Un groupe prépositionnel commence obligatoirement par une préposition.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. Le groupe prépositionnel (GP) est toujours introduit par une préposition (à, de, dans, pour, avec, sur, etc.) suivie d''un GN, d''un infinitif ou d''un adverbe. Ex. : "avec enthousiasme", "de partir", "pour demain".',
+'valide','CRPE Français V2','free',true),
+
+('09000000-0000-0000-0000-000000000005','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','identification_grammaticale',
+'Délimitez le groupe verbal dans : "Les élèves révisent attentivement leurs leçons depuis ce matin."',null,null,
+'{"mode":"text","acceptableAnswers":["révisent attentivement leurs leçons depuis ce matin"]}'::jsonb,
+'Le GV commence après le GN sujet "Les élèves" et comprend tout ce qui suit : le verbe noyau "révisent", le COD "leurs leçons", le CC de manière "attentivement" et le CC de temps "depuis ce matin".',
+'valide','CRPE Français V2','free',true),
+
+('09000000-0000-0000-0000-000000000006','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','qcm',
+'Dans "Il parle avec enthousiasme", comment analyser "avec enthousiasme" ?',null,
+'[{"id":"a","label":"Groupe adjectival CC de manière"},{"id":"b","label":"Groupe prépositionnel CC de manière"},{"id":"c","label":"Groupe verbal"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'"Avec enthousiasme" est un groupe prépositionnel (préposition "avec" + GN "enthousiasme") qui indique la manière. C''est un GP à fonction de CC de manière. Un groupe adjectival serait formé autour d''un adjectif ("très animé").',
+'valide','CRPE Français V2','free',true),
+
+('09000000-0000-0000-0000-000000000007','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','identification_grammaticale',
+'Dans "une maison avec un grand jardin", identifiez le type d''expansion du nom "maison".',null,null,
+'{"mode":"text","acceptableAnswers":["groupe prépositionnel complément du nom","complément du nom","GP complément du nom"]}'::jsonb,
+'"Avec un grand jardin" est un groupe prépositionnel complément du nom "maison". C''est une expansion nominale : elle apporte une information sur le référent du nom. Autres types d''expansions possibles : adjectif épithète, proposition relative.',
+'valide','CRPE Français V2','free',true),
+
+('09000000-0000-0000-0000-000000000008','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','vrai_faux',
+'Vrai ou faux : Le noyau du groupe verbal est toujours le verbe conjugué.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. Dans la phrase verbale, le noyau du GV est le verbe conjugué. Les compléments (COD, COI, CC, attribut) sont des expansions du GV. Dans une phrase nominale (sans verbe), il n''y a pas de GV au sens strict.',
+'valide','CRPE Français V2','free',true),
+
+('09000000-0000-0000-0000-000000000009','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','qcm',
+'Quel est le constituant obligatoire d''une phrase verbale minimale ?',null,
+'[{"id":"a","label":"Un GN sujet et un GV"},{"id":"b","label":"Un GN sujet, un GV et un CC"},{"id":"c","label":"Un GN sujet, un GV et un COD"}]'::jsonb,
+'{"mode":"single_choice","value":"a"}'::jsonb,
+'Une phrase verbale minimale contient un GN sujet et un GV (avec le verbe conjugué). Les compléments (CC, COD) sont des expansions facultatives selon la valence du verbe. "Il dort" est une phrase verbale minimale complète.',
+'valide','CRPE Français V2','free',true),
+
+('09000000-0000-0000-0000-000000000010','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','qcm',
+'"Très intelligemment" est un exemple de quel type de groupe ?',null,
+'[{"id":"a","label":"Groupe nominal"},{"id":"b","label":"Groupe verbal"},{"id":"c","label":"Groupe adverbial"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Très intelligemment" est un groupe adverbial : il est formé d''un adverbe noyau ("intelligemment") modifié par un autre adverbe ("très"). Les groupes adverbiaux fonctionnent comme CC ou comme modificateurs d''adjectifs.',
+'valide','CRPE Français V2','free',true),
+
+-- ================================================================
+-- SÉRIE 10 — Analyse syntaxique complète — Avancé — premium
+-- ================================================================
+('10000000-0000-0000-0000-000000000001','Francais','grammaire','grm_analyse_complete','Analyse syntaxique complète','Avance','reponse_courte',
+'Dans "Les enfants qui jouent dans la cour font beaucoup de bruit", combien y a-t-il de propositions ?',null,null,
+'{"mode":"text","acceptableAnswers":["2","deux","2 propositions","deux propositions"]}'::jsonb,
+'Il y a 2 propositions : la proposition principale "Les enfants [...] font beaucoup de bruit" et la proposition subordonnée relative "qui jouent dans la cour". Identifier les verbes conjugués ("jouent" et "font") permet de compter les propositions.',
+'valide','CRPE Français V2','premium',true),
+
+('10000000-0000-0000-0000-000000000002','Francais','grammaire','grm_analyse_complete','Analyse syntaxique complète','Avance','identification_grammaticale',
+'Dans "Bien qu''il soit compétent, il n''a pas été retenu", identifiez la nature et la valeur de la première proposition.',null,null,
+'{"mode":"text","acceptableAnswers":["proposition subordonnée circonstancielle de concession","subordonnée de concession","subordonnée circonstancielle de concession"]}'::jsonb,
+'"Bien qu''il soit compétent" est une subordonnée circonstancielle de concession : sa compétence ne suffit pas à expliquer sa sélection. Elle requiert le subjonctif. La principale est à la forme négative passive : "il n''a pas été retenu".',
+'valide','CRPE Français V2','premium',true),
+
+('10000000-0000-0000-0000-000000000003','Francais','grammaire','grm_analyse_complete','Analyse syntaxique complète','Avance','vrai_faux',
+'Vrai ou faux : Dans "Je pense qu''il a raison et qu''il faut le dire", il y a deux subordonnées conjonctives coordonnées.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. Les deux subordonnées "qu''il a raison" et "qu''il faut le dire" sont coordonnées par "et" et partagent la même fonction (COD de "pense"). Cette coordination de subordonnées est fréquente et économique : on n''a pas besoin de répéter le verbe principal.',
+'valide','CRPE Français V2','premium',true),
+
+('10000000-0000-0000-0000-000000000004','Francais','grammaire','grm_analyse_complete','Analyse syntaxique complète','Avance','qcm',
+'Dans "Travailler régulièrement est la clé du succès", quelle est la fonction de "Travailler régulièrement" ?',null,
+'[{"id":"a","label":"COD du verbe est"},{"id":"b","label":"Attribut du sujet"},{"id":"c","label":"Sujet du verbe est"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'"Travailler régulièrement" est une proposition infinitive sujet du verbe "est". Les infinitives peuvent remplir toutes les fonctions du GN. On pourrait substituer : "Le travail régulier est la clé du succès" (GN sujet).',
+'valide','CRPE Français V2','premium',true),
+
+('10000000-0000-0000-0000-000000000005','Francais','grammaire','grm_analyse_complete','Analyse syntaxique complète','Avance','identification_grammaticale',
+'Dans "Il est parti avant que je n''arrive", identifiez la nature et la valeur de "avant que je n''arrive".',null,null,
+'{"mode":"text","acceptableAnswers":["proposition subordonnée circonstancielle de temps","subordonnée circonstancielle de temps","subordonnée de temps exprimant l''antériorité"]}'::jsonb,
+'"Avant que je n''arrive" exprime un rapport de temps : son départ est antérieur à mon arrivée. C''est une subordonnée circonstancielle de temps (antériorité). "Avant que" requiert le subjonctif. Le "ne" explétif (non négatif) est facultatif.',
+'valide','CRPE Français V2','premium',true),
+
+('10000000-0000-0000-0000-000000000006','Francais','grammaire','grm_analyse_complete','Analyse syntaxique complète','Avance','reponse_courte',
+'Quel mode verbal est obligatoire après la conjonction "avant que" ?',null,null,
+'{"mode":"text","acceptableAnswers":["subjonctif","le subjonctif","mode subjonctif"]}'::jsonb,
+'Le subjonctif est obligatoire après "avant que", "bien que", "pour que", "quoique", "afin que", "à moins que". Ces conjonctions de subordination expriment toutes une nuance d''incertitude, de but ou de concession qui justifie le subjonctif.',
+'valide','CRPE Français V2','premium',true),
+
+('10000000-0000-0000-0000-000000000007','Francais','grammaire','grm_analyse_complete','Analyse syntaxique complète','Avance','vrai_faux',
+'Vrai ou faux : Dans "Ayant fini son travail, il est sorti", la participiale exprime une valeur de temps ou de cause.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. "Ayant fini son travail" peut signifier "après avoir fini" (temps, antériorité) ou "parce qu''il avait fini" (cause). Les propositions participiales sont polysémiques : leur valeur est précisée par le contexte. Le sujet implicite est "il".',
+'valide','CRPE Français V2','premium',true),
+
+('10000000-0000-0000-0000-000000000008','Francais','grammaire','grm_analyse_complete','Analyse syntaxique complète','Avance','reponse_courte',
+'Dans "Il lui a conseillé de partir immédiatement", quelle est la nature et la fonction de "de partir immédiatement" ?',null,null,
+'{"mode":"text","acceptableAnswers":["proposition infinitive COD","proposition infinitive complément d''objet direct","COD infinitif de conseiller"]}'::jsonb,
+'"De partir immédiatement" est une proposition infinitive, COD du verbe "conseillé" (il a conseillé quoi ?). Son sujet implicite est distinct du sujet de la principale ("lui"). Elle peut être substituée par une complétive : "qu''il parte immédiatement".',
+'valide','CRPE Français V2','premium',true),
+
+('10000000-0000-0000-0000-000000000009','Francais','grammaire','grm_analyse_complete','Analyse syntaxique complète','Avance','qcm',
+'Combien de propositions contient la phrase : "Je sais que tu travailles, mais je doute que tu réussisses si tu ne révises pas" ?',null,
+'[{"id":"a","label":"3 propositions"},{"id":"b","label":"4 propositions"},{"id":"c","label":"5 propositions"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'Il y a 5 propositions, car on relève 5 verbes conjugués : "sais", "travailles", "doute", "réussisses" et "révises". On compte donc la principale, une subordonnée complétive, une proposition coordonnée, une seconde complétive et une subordonnée conditionnelle.',
+'valide','CRPE Français V2','premium',true),
+
+('10000000-0000-0000-0000-000000000010','Francais','grammaire','grm_analyse_complete','Analyse syntaxique complète','Avance','vrai_faux',
+'Vrai ou faux : Dans "C''est parce qu''il a travaillé qu''il a réussi", il y a une mise en relief d''une subordonnée de cause.',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai. La construction "c''est...que" extrait et met en relief la subordonnée de cause "parce qu''il a travaillé". C''est une structure d''emphase appliquée à un circonstanciel. Elle montre que même des subordonnées circonstancielles peuvent être focalisées.',
+'valide','CRPE Français V2','premium',true);

@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": ".generated",
+    "module": "commonjs",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "scripts/generate-french-module-seed.ts",
+    "content/french-crpe-module.ts",
+    "types/domain.ts"
+  ]
+}

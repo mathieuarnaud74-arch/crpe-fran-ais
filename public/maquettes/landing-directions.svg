@@ -1,0 +1,41 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" fill="#F5F1E8"/>
+  <text x="80" y="76" fill="#24352F" font-family="Georgia, serif" font-size="34" font-weight="700">Variantes de direction visuelle</text>
+  <text x="80" y="112" fill="#556B63" font-family="Arial, sans-serif" font-size="18">Trois pistes cohérentes avec le positionnement éditorial et haut de gamme</text>
+
+  <rect x="70" y="160" width="390" height="650" rx="30" fill="#FCFAF6" stroke="#D8D2C6"/>
+  <text x="102" y="212" fill="#24352F" font-family="Georgia, serif" font-size="26" font-weight="700">A. Éditorial cuivre</text>
+  <rect x="102" y="246" width="120" height="16" rx="8" fill="#F1E0D5"/>
+  <rect x="102" y="284" width="230" height="24" rx="12" fill="#24352F"/>
+  <rect x="102" y="324" width="300" height="14" rx="7" fill="#556B63" opacity="0.25"/>
+  <rect x="102" y="360" width="165" height="46" rx="23" fill="#476257"/>
+  <rect x="102" y="438" width="326" height="180" rx="24" fill="#24352F"/>
+  <rect x="126" y="468" width="132" height="58" rx="18" fill="#30453D"/>
+  <rect x="272" y="468" width="132" height="58" rx="18" fill="#30453D"/>
+  <rect x="126" y="546" width="210" height="14" rx="7" fill="#A46849"/>
+  <text x="102" y="690" fill="#556B63" font-family="Arial, sans-serif" font-size="16">Vert de confiance + cuivre discret</text>
+  <text x="102" y="718" fill="#556B63" font-family="Arial, sans-serif" font-size="16">Mockup central, contrastes mesurés</text>
+
+  <rect x="505" y="160" width="390" height="650" rx="30" fill="#FCFAF6" stroke="#D8D2C6"/>
+  <text x="537" y="212" fill="#24352F" font-family="Georgia, serif" font-size="26" font-weight="700">B. Revue académique</text>
+  <rect x="537" y="246" width="110" height="16" rx="8" fill="#EAE4D8"/>
+  <rect x="537" y="284" width="250" height="24" rx="12" fill="#24352F"/>
+  <rect x="537" y="324" width="280" height="14" rx="7" fill="#556B63" opacity="0.25"/>
+  <rect x="537" y="364" width="320" height="120" rx="22" fill="#FCFAF6" stroke="#D8D2C6"/>
+  <rect x="537" y="506" width="150" height="46" rx="23" fill="#24352F"/>
+  <rect x="537" y="588" width="320" height="170" rx="22" fill="#EAE4D8"/>
+  <text x="537" y="690" fill="#556B63" font-family="Arial, sans-serif" font-size="16">Plus institutionnel, plus typographique</text>
+  <text x="537" y="718" fill="#556B63" font-family="Arial, sans-serif" font-size="16">Très crédible, mais moins mémorable</text>
+
+  <rect x="940" y="160" width="390" height="650" rx="30" fill="#FCFAF6" stroke="#D8D2C6"/>
+  <text x="972" y="212" fill="#24352F" font-family="Georgia, serif" font-size="26" font-weight="700">C. Tableau pédagogique</text>
+  <rect x="972" y="246" width="128" height="16" rx="8" fill="#E3ECE8"/>
+  <rect x="972" y="284" width="210" height="24" rx="12" fill="#24352F"/>
+  <rect x="972" y="324" width="300" height="14" rx="7" fill="#556B63" opacity="0.25"/>
+  <rect x="972" y="366" width="120" height="46" rx="23" fill="#476257"/>
+  <rect x="972" y="440" width="150" height="110" rx="22" fill="#F1E0D5"/>
+  <rect x="1140" y="440" width="150" height="110" rx="22" fill="#EAE4D8"/>
+  <rect x="972" y="572" width="318" height="160" rx="22" fill="#24352F"/>
+  <text x="972" y="690" fill="#556B63" font-family="Arial, sans-serif" font-size="16">Plus modulaire et démonstratif</text>
+  <text x="972" y="718" fill="#556B63" font-family="Arial, sans-serif" font-size="16">Bon pour montrer le produit rapidement</text>
+</svg>
