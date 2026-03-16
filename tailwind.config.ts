@@ -14,8 +14,8 @@ const config: Config = {
         secondary: "#EAE4D8",
         ink: "#2C2420",
         muted: "#6B534A",
-        accent: "#476257",
-        accentDark: "#394E45",
+        accent: "#4A6E8F",
+        accentDark: "#3A5A7A",
         accentSecondary: "#A46849",
         accentSecondaryDark: "#7E4E36",
         accentSecondarySoft: "#F1E0D5",
@@ -47,7 +47,7 @@ const config: Config = {
       backgroundImage: {
         "gradient-panel": "linear-gradient(135deg, rgba(241,224,213,0.75), rgba(252,250,246,1) 52%, rgba(234,228,216,0.7))",
         "gradient-panel-light": "linear-gradient(135deg, rgba(241,224,213,0.4), rgba(252,250,246,1) 60%)",
-        "gradient-progress": "linear-gradient(90deg, #476257, #A46849)",
+        "gradient-progress": "linear-gradient(90deg, #4A6E8F, #A46849)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", '"Avenir Next"', '"Segoe UI"', "sans-serif"],
