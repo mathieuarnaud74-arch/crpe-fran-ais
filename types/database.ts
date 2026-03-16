@@ -29,6 +29,7 @@ export interface Database {
           role?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       pages: {
         Row: {
@@ -56,6 +57,7 @@ export interface Database {
           last_published_at?: string | null;
           updated_at?: string;
         };
+        Relationships: [];
       };
       page_sections: {
         Row: {
@@ -88,6 +90,7 @@ export interface Database {
           props_json?: Json;
           updated_at?: string;
         };
+        Relationships: [];
       };
       subscriptions: {
         Row: {
@@ -123,6 +126,7 @@ export interface Database {
           cancel_at_period_end?: boolean;
           updated_at?: string;
         };
+        Relationships: [];
       };
       exercises: {
         Row: {
@@ -183,6 +187,7 @@ export interface Database {
           is_published?: boolean;
           updated_at?: string;
         };
+        Relationships: [];
       };
       attempts: {
         Row: {
@@ -208,6 +213,7 @@ export interface Database {
           is_correct?: boolean;
           score?: number;
         };
+        Relationships: [];
       };
     };
     Views: Record<string, never>;

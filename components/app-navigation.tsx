@@ -2,7 +2,6 @@
 
 import {
   BarChart3,
-  BookOpen,
   BookText,
   ClipboardList,
   CreditCard,
@@ -32,10 +31,10 @@ type NavigationGroup = {
 
 const navigationGroups: NavigationGroup[] = [
   {
-    title: "Mon espace",
+    title: "Mon parcours",
     links: [
       { href: "/tableau-de-bord", label: "Tableau de bord", exact: true, icon: LayoutDashboard },
-      { href: "/diagnostic", label: "Diagnostic de niveau", exact: true, icon: Stethoscope },
+      { href: "/diagnostic", label: "Diagnostic", exact: true, icon: Stethoscope },
       { href: "/revisions-ciblees", label: "Révisions ciblées", exact: true, icon: Repeat2 },
       { href: "/progression", label: "Progression", exact: true, icon: BarChart3 },
     ],
@@ -43,17 +42,11 @@ const navigationGroups: NavigationGroup[] = [
   {
     title: "Français",
     links: [
-      { href: "/francais", label: "Vue d'ensemble", exact: true, icon: BookOpen },
-      { href: "/francais/grammaire", label: "Grammaire · Conjugaison · Lexique", exact: true, icon: BookText },
+      { href: "/francais/grammaire", label: "Grammaire & Lexique", exact: true, icon: BookText },
       { href: "/francais/orthographe", label: "Orthographe", exact: true, icon: BookText },
       { href: "/francais/analyse-de-la-langue", label: "Analyse & Didactique", exact: true, icon: BookText },
-    ],
-  },
-  {
-    title: "Catalogue",
-    links: [
-      { href: "/exercices", label: "Toutes les séries", exact: false, icon: Library },
-      { href: "/ressources", label: "Fiches de cours", exact: false, icon: ClipboardList },
+      { href: "/exercices", label: "Recherche d'exercices", exact: false, icon: Library },
+      { href: "/ressources/glossaire", label: "Glossaire", exact: false, icon: ClipboardList },
     ],
   },
   {

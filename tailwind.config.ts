@@ -44,6 +44,11 @@ const config: Config = {
         subtle: "0 2px 10px rgba(44, 36, 32, 0.06)",
         elevated: "0 24px 56px rgba(44, 36, 32, 0.13), 0 4px 12px rgba(44, 36, 32, 0.06)",
       },
+      backgroundImage: {
+        "gradient-panel": "linear-gradient(135deg, rgba(241,224,213,0.75), rgba(252,250,246,1) 52%, rgba(234,228,216,0.7))",
+        "gradient-panel-light": "linear-gradient(135deg, rgba(241,224,213,0.4), rgba(252,250,246,1) 60%)",
+        "gradient-progress": "linear-gradient(90deg, #476257, #A46849)",
+      },
       fontFamily: {
         sans: ["var(--font-sans)", '"Avenir Next"', '"Segoe UI"', "sans-serif"],
         serif: ["var(--font-serif)", '"Iowan Old Style"', '"Palatino Linotype"', "serif"],

@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import {
   EXERCISE_TYPE_LABELS,
@@ -127,6 +129,61 @@ function getTopicMetadata(exercise: ExerciseRecord) {
   };
 }
 
+const SUBDOMAIN_INTRO: Record<string, string> = {
+  grammaire:
+    "Cette série porte sur les mécanismes grammaticaux fondamentaux. Analysez chaque phrase avec méthode avant de répondre.",
+  orthographe:
+    "Cette série teste l'orthographe grammaticale et lexicale. Appliquez les règles d'accord avec précision.",
+  conjugaison:
+    "Cette série porte sur les formes verbales. Conjuguez en vérifiant le temps, le mode et les accords.",
+  lexique:
+    "Cette série porte sur le vocabulaire et la formation des mots. Mobilisez vos connaissances morphologiques et sémantiques.",
+  analyse_langue:
+    "Cette série entraîne l'analyse syntaxique et grammaticale. Identifiez les fonctions et les propositions avec méthode.",
+  comprehension_texte:
+    "Cette série développe la compréhension de textes variés. Lisez attentivement avant de répondre et repérez les indices du texte.",
+  didactique_francais:
+    "Cette série porte sur la didactique de l'enseignement du français. Mobilisez vos connaissances pédagogiques et institutionnelles.",
+};
+
+const SUBDOMAIN_KEYPOINTS: Record<string, string[]> = {
+  grammaire: [
+    "Analysez la phrase en commençant par le verbe, puis le sujet.",
+    "Vérifiez la nature et la fonction de chaque mot avant de répondre.",
+    "Relisez les corrections pour identifier vos automatismes fragiles.",
+  ],
+  orthographe: [
+    "Appliquez la chaîne d'accord : déterminant → nom → adjectif.",
+    "Vérifiez chaque accord verbal : personne, nombre, temps.",
+    "Relisez les homophones dans leur contexte pour les distinguer.",
+  ],
+  conjugaison: [
+    "Identifiez le temps et le mode demandés avant de conjuguer.",
+    "Vérifiez les terminaisons selon le groupe du verbe.",
+    "Relisez les valeurs des temps pour ne pas confondre leurs emplois.",
+  ],
+  lexique: [
+    "Identifiez le radical, le préfixe et le suffixe pour déduire le sens.",
+    "En contexte, cherchez les indices sémantiques autour du mot inconnu.",
+    "Relisez les distinctions synonymes/paronymes pour éviter les confusions.",
+  ],
+  analyse_langue: [
+    "Délimitez d'abord les propositions, puis analysez les fonctions.",
+    "Pour chaque subordonnée, identifiez son type et sa fonction.",
+    "Relisez les erreurs de transposition pour consolider la méthode.",
+  ],
+  comprehension_texte: [
+    "Repérez les informations explicites avant de traiter l'implicite.",
+    "Identifiez les connecteurs pour comprendre la progression du texte.",
+    "Relisez les explications pour enrichir votre vocabulaire analytique.",
+  ],
+  didactique_francais: [
+    "Reliez chaque notion didactique à son ancrage dans les programmes officiels.",
+    "Distinguez les approches pédagogiques recommandées des approches déconseillées.",
+    "Relisez les corrections en pensant à leur application en classe.",
+  ],
+};
+
 function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSession[] {
   const groups = new Map<string, ExerciseRecord[]>();
 
@@ -152,9 +209,10 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
         id: `session-${topicKey}-${level}-${chunkNumber}`,
         title: `Série ${groupIndex + 1}.${chunkNumber} - ${topicLabel}`,
         summary: "Série construite automatiquement à partir des questions disponibles.",
-        objective: `Consolider la notion "${topicLabel}" sur une série de questions regroupées.`,
+        objective: `Maîtriser ${topicLabel} — compétence attendue au CRPE de français.`,
         introduction:
-          "Cette série est générée automatiquement à partir des questions disponibles pour ce sous-domaine.",
+          SUBDOMAIN_INTRO[firstQuestion.subdomain] ??
+          `Cette série porte sur la notion « ${topicLabel} ». Répondez avec méthode.`,
         subdomain: firstQuestion.subdomain as ExerciseSubdomain,
         topicKey,
         topicLabel,
@@ -168,12 +226,13 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
         recommendedOrder: groupIndex * 10 + chunkNumber,
         questions,
         completionSummary: {
-          skill: "Revoir les notions ciblées par la série.",
-          keyPoints: [
-            "Relire la consigne avant de répondre.",
-            "Comparer les erreurs pour détecter les automatismes fragiles.",
-            "Refaire la série pour consolider la logique des corrections.",
-          ],
+          skill: `Consolider ${topicLabel} par la relecture attentive des corrections.`,
+          keyPoints:
+            SUBDOMAIN_KEYPOINTS[firstQuestion.subdomain] ?? [
+              "Relire la consigne avant de répondre.",
+              "Comparer les erreurs pour détecter les automatismes fragiles.",
+              "Refaire la série pour consolider la logique des corrections.",
+            ],
           retryAdvice:
             "Reprenez les questions ratées en explicitant à voix haute la règle ou le raisonnement attendu.",
         },
@@ -184,7 +243,7 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
   });
 }
 
-export async function getExercises(filters: ExerciseFilters = {}) {
+const fetchExercisesCached = cache(async (filters: ExerciseFilters) => {
   const supabase = await createSupabaseServerClient();
   const subject = filters.subject ?? DEFAULT_SUBJECT;
   let query = supabase
@@ -209,6 +268,10 @@ export async function getExercises(filters: ExerciseFilters = {}) {
 
   const { data } = await query;
   return buildSessionsFromExercises(((data ?? []) as ExerciseRecord[]).map(normalizeExerciseRecord));
+});
+
+export async function getExercises(filters: ExerciseFilters = {}) {
+  return fetchExercisesCached(filters);
 }
 
 export async function getExerciseById(id: string) {

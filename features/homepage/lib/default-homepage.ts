@@ -25,43 +25,21 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     type: "hero",
     visible: true,
     props: {
-      badgeText: "Diagnostic gratuit · Conforme programme 2026",
-      title:
-        "Commencez par un diagnostic. Révisez ensuite ce qui vous fera vraiment gagner des points.",
+      badgeText: "CRPE Français Oral & Écrit 2026-2027",
+      title: "Révisez les épreuves de français en vous exerçant.",
       description:
-        `En ${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions, identifiez vos lacunes sur les ${subdomainCount} sous-domaines du ${SUBJECT_LABEL} CRPE. Vous obtenez un ordre de révision clair, des séries ciblées et des corrections qui expliquent la règle.`,
-      primaryCtaLabel: "Faire mon diagnostic gratuit",
+        "Retrouvez de nombreux contenus gratuits pour revoir les notions essentielles du programme 2026, faire le point sur vos besoins et avancer pas à pas avec des exercices ciblés et des corrections claires.",
+      primaryCtaLabel: "Découvrir gratuitement",
       primaryCtaHrefGuest: "/inscription",
       primaryCtaHrefAuth: "/diagnostic",
       secondaryCtaLabel: "Voir l'offre complète",
       secondaryCtaHref: "/offre",
-      metaItems: ["Gratuit", "Aucune carte requise", "Paiement sécurisé Stripe"],
-      previewBadgeText: "Profil de révision",
-      previewTitle: "Votre prochain plan d'action",
-      previewDescription:
-        "Le diagnostic classe les notions à reprendre, puis vous guide vers les bonnes séries.",
-      previewStats: [
-        { value: `${subdomainCount}`, label: "sous-domaines suivis" },
-        { value: "2", label: "priorités immédiates" },
-        { value: "1", label: "prochaine séance conseillée" },
-      ],
-      previewResults: [
-        { label: "Accord du participe passé", level: "Prioritaire" },
-        { label: "Analyse grammaticale", level: "Prioritaire" },
-        { label: "Homophones grammaticaux", level: "À renforcer" },
-        { label: "Fonctions syntaxiques", level: "À renforcer" },
-        { label: "Lexique et sens", level: "À renforcer" },
-        { label: "Classes de mots", level: "Maîtrisé" },
-        { label: "Conjugaison", level: "Maîtrisé" },
-      ],
-      previewRecommendationEyebrow: "Prochaine étape recommandée",
-      previewRecommendationText:
-        "Commencer par les accords du participe passé, puis sécuriser l'analyse grammaticale avant d'élargir vers les sous-domaines déjà solides.",
+      metaItems: ["Aucune carte requise", "Conforme au programme 2026"],
     },
   },
   {
     type: "trust_bar",
-    visible: true,
+    visible: false,
     props: {
       eyebrow: "Repères immédiats",
       items: [
@@ -71,7 +49,7 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
           detail: `${subdomainCount} sous-domaines couverts sans surcharge`,
         },
         {
-          label: "Gratuit et sans carte",
+          label: "Gratuit",
           detail: "vous testez la méthode avant d'aller plus loin",
         },
       ],
@@ -81,45 +59,45 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     type: "benefits",
     visible: true,
     props: {
-      eyebrow: "Ce que le diagnostic débloque immédiatement",
-      title: "Une révision plus nette, plus persuasive, moins dispersée.",
+      eyebrow: "Comment ça marche",
+      title: "Trois étapes. Un point de départ clair. Des révisions qui servent.",
       description:
-        "La homepage actuelle avait déjà les bons arguments. L'amélioration consiste à mieux les hiérarchiser, à clarifier la promesse et à rendre les appels à l'action plus lisibles dès les premières secondes.",
+        "Le CRPE teste des règles précises. Les premières questions identifient les lacunes. Les séries les travaillent dans l'ordre.",
       cards: [
         {
-          eyebrow: "Priorités nettes",
-          title: "Vous savez quoi travailler d'abord, sans deviner.",
+          eyebrow: "01 — Point de départ",
+          title: "Vous savez ce qui vous manque — en 8 minutes.",
           description:
-            "Le diagnostic fait ressortir les notions fragiles en premier, pour éviter les révisions dispersées ou répétitives.",
+            `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions sur les ${subdomainCount} sous-domaines identifient vos fragilités. Pas une note globale — un profil avec les priorités en premier.`,
         },
         {
-          eyebrow: `${FRENCH_DIAGNOSTIC_BANK_SIZE} questions dans la banque`,
-          title: "Une couverture assez large pour refléter le programme.",
+          eyebrow: "02 — Séries ciblées",
+          title: "Vous révisez ce qui compte, pas ce que vous savez déjà.",
           description:
-            "Les séries couvrent les domaines clés du français CRPE avec une logique de progression plutôt qu'un simple empilement d'exercices.",
+            "Les séries prioritaires remontent selon votre profil. Vous progressez sur vos points faibles, pas sur vos acquis.",
         },
         {
-          eyebrow: `${subdomainCount} sous-domaines analysés`,
-          title: "Chaque erreur devient une règle réutilisable.",
+          eyebrow: "03 — Corrections",
+          title: "Chaque erreur devient une règle que vous ne referez plus.",
           description:
-            "Les corrections expliquent le pourquoi, pour transformer un résultat ponctuel en apprentissage durable.",
+            "Les corrections expliquent le raisonnement derrière la bonne réponse. Vous comprenez avant de passer à la suite.",
         },
       ],
       steps: [
         {
-          title: "Diagnostic rapide",
+          title: "Point de départ en 8 minutes",
           description:
-            "Une entrée courte et lisible pour cerner votre niveau sans vous épuiser dès la première séance.",
+            "Un bref passage qui identifie les fragilités avant de débloquer les révisions.",
         },
         {
-          title: "Révisions dans le bon ordre",
+          title: "Séries dans le bon ordre",
           description:
-            "Le profil obtenu met en avant les thèmes les plus rentables à reprendre immédiatement.",
+            "Le profil obtenu met en avant les thèmes les plus rentables à reprendre en premier.",
         },
         {
           title: "Corrections qui enseignent",
           description:
-            "Chaque réponse vous laisse avec une règle, une justification et un repère pour la suite.",
+            "Chaque réponse laisse une règle, une justification et un repère pour la suite.",
         },
       ],
     },
@@ -128,20 +106,20 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     type: "features",
     visible: true,
     props: {
-      eyebrow: "Exemples interactifs",
-      title: "Chaque erreur devient une règle apprise, pas juste une croix rouge.",
+      eyebrow: "La qualité des corrections",
+      title: "Pas un simple « faux ». Une explication qui vaut une révision.",
       description:
-        "Les corrections ont un vrai rôle pédagogique. Elles servent à expliquer la bonne réponse, à nommer la règle et à orienter la suite des révisions.",
+        "Les exercices expliquent la règle et l'appliquent. Vous quittez chaque question avec quelque chose en plus.",
       bulletItems: [
         "QCM et analyses de langue avec feedback immédiat.",
-        "Formulation lisible, pensée pour le concours plutôt que pour l'effet gadget.",
-        "Règles et justifications réutilisables dans les séances suivantes.",
+        "Règle nommée et justification réutilisable pour les séances suivantes.",
+        "Formulation pensée pour le concours, pas pour l'effet gadget.",
       ],
     },
   },
   {
     type: "domains",
-    visible: true,
+    visible: false,
     props: {
       eyebrow: "Domaines couverts",
       title: "Trois domaines, sept sous-domaines, un parcours de révision cohérent.",
@@ -154,37 +132,35 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     visible: true,
     props: {
       eyebrow: "FAQ",
-      title: "Les questions qui comptent avant de commencer.",
-      description:
-        "L'objectif de cette section est de lever les hésitations les plus fréquentes sans allonger inutilement la page.",
-      noteTitle: "Toujours le même point d'entrée",
-      noteDescription:
-        "Le CTA principal reste le diagnostic gratuit pour garder un parcours simple et rassurant sur desktop comme sur mobile.",
+      title: "Ce que les candidats demandent avant de commencer.",
+      description: "Réponses directes. Pas d'engagement caché.",
+      noteTitle: "Une question non listée ?",
+      noteDescription: "Écrivez à contact@crpe-prep.fr",
       items: [
         {
-          question: "Le diagnostic est-il vraiment gratuit ?",
+          question: "C'est vraiment gratuit ?",
           answer:
-            "Oui. Le diagnostic de départ est accessible sans paiement et sans carte bancaire. Il sert à découvrir votre niveau et la logique de la plateforme avant tout engagement.",
+            "Oui — sans paiement ni carte bancaire. Accessible à tous avant tout engagement.",
         },
         {
-          question: "Que reçoit-on à la fin du diagnostic ?",
+          question: "Que reçoit-on à la fin de la session de départ ?",
           answer:
-            "Un profil de révision par sous-domaine, avec les priorités à reprendre en premier. L'objectif n'est pas seulement de noter, mais d'ordonner la suite de votre préparation.",
+            "Un profil détaillé sous-domaine par sous-domaine, avec les priorités à travailler en premier.",
         },
         {
-          question: "Les corrections sont-elles détaillées ?",
+          question: "Les corrections sont-elles vraiment utiles ?",
           answer:
-            "Oui. Les exercices sont pensés pour expliquer la règle ou le raisonnement derrière la bonne réponse, afin de rendre chaque erreur exploitable pour les révisions suivantes.",
+            "C'est le point central du site. Chaque exercice est corrigé avec la règle qui s'applique — pas seulement la bonne réponse.",
         },
         {
-          question: "La plateforme couvre-t-elle uniquement l'orthographe ?",
+          question: "Quels domaines sont couverts ?",
           answer:
-            `Non. Le parcours couvre ${FRENCH_DOMAIN_ORDER.length} grands domaines et ${subdomainCount} sous-domaines du ${SUBJECT_LABEL} : grammaire, orthographe, analyse de la langue, compréhension et didactique.`,
+            `Grammaire, orthographe, conjugaison, lexique, analyse de la langue, compréhension de texte et didactique — les ${subdomainCount} sous-domaines testés au CRPE.`,
         },
         {
-          question: "L'offre complète est-elle sans engagement ?",
+          question: "Peut-on arrêter l'abonnement facilement ?",
           answer:
-            "Oui. Les accès proposés sont simples, avec un paiement sécurisé via Stripe et une résiliation possible à tout moment.",
+            "Oui. Résiliation sans condition via Stripe. Les accès journalier et hebdomadaire ne se renouvellent pas automatiquement.",
         },
       ],
     },
@@ -193,27 +169,22 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     type: "final_cta",
     visible: true,
     props: {
-      eyebrow: "Après le diagnostic gratuit",
-      title: "Accès complet pour continuer avec une vraie cadence de révision.",
+      eyebrow: "Prêt à commencer ?",
+      title: "Gratuit pour commencer. 8 minutes. Un profil de révision en sortie.",
       description:
-        "Une fois votre point de départ clarifié, vous pouvez poursuivre avec des séries ciblées, des corrections détaillées et un abonnement simple à activer ou à arrêter selon votre rythme.",
+        "Pas de carte bancaire. Pas d'engagement. Juste un point de départ clair.",
       bulletItems: [
-        "Diagnostic gratuit pour commencer.",
-        "Révisions ciblées par domaine.",
-        "Corrections détaillées et lisibles.",
+        "Accès gratuit pour commencer.",
+        "Séries ciblées selon vos résultats.",
         "Résiliable à tout moment.",
       ],
-      pricingTiers: [
-        { label: "Journalier", price: "0,99 €", highlight: false },
-        { label: "Semainier", price: "2,99 €", highlight: false },
-        { label: "Mensuel", price: "6,99 €/mois", highlight: true },
-      ],
-      primaryCtaLabel: "Voir l'offre complète",
-      primaryCtaHref: "/offre",
-      secondaryCtaLabelGuest: "Créer un compte gratuit",
-      secondaryCtaHrefGuest: "/inscription",
-      secondaryCtaLabelAuth: "Revenir au diagnostic",
-      secondaryCtaHrefAuth: "/diagnostic",
+      pricingTiers: [],
+      primaryCtaLabel: "Commencer — c'est gratuit",
+      primaryCtaHref: "/inscription",
+      secondaryCtaLabelGuest: "Voir l'offre complète",
+      secondaryCtaHrefGuest: "/offre",
+      secondaryCtaLabelAuth: "Voir l'offre complète",
+      secondaryCtaHrefAuth: "/offre",
     },
   },
 ];

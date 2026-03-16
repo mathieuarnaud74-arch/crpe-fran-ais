@@ -19,15 +19,11 @@ export default async function FrenchPage() {
 
   return (
     <div className="space-y-8">
-      <Panel className="border-border bg-[linear-gradient(135deg,rgba(241,224,213,0.75),rgba(252,250,246,1)_46%,rgba(234,228,216,0.65))]">
+      <Panel className="border-border bg-gradient-panel">
         <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
           <div>
             <Badge tone="accentSecondary">{data.subjectLabel}</Badge>
             <h1 className="mt-4 font-serif text-4xl font-semibold text-ink">Français</h1>
-            <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
-              Une organisation par domaine pour éviter l’inventaire brut. Chaque page domaine
-              regroupe les sous-domaines, les notions et les séries utiles.
-            </p>
           </div>
           <div className="flex flex-wrap gap-3">
             <ButtonLink href="/revisions-ciblees" variant="secondary">
@@ -59,14 +55,7 @@ export default async function FrenchPage() {
 
       <section className="space-y-4">
         <div>
-          <Badge tone="accentSecondary" size="sm">
-            Hiérarchie
-          </Badge>
-          <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">Domaines</h2>
-          <p className="mt-2 text-sm leading-7 text-muted">
-            Le détail est réparti domaine par domaine pour réduire le scroll et clarifier la
-            hiérarchie matière → domaine → sous-domaine → série.
-          </p>
+          <h2 className="font-serif text-3xl font-semibold text-ink">Domaines</h2>
         </div>
         <div className="grid gap-4 xl:grid-cols-3">
           {data.domainDirectory.map((domain) => (
@@ -79,9 +68,6 @@ export default async function FrenchPage() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h2 className="font-serif text-2xl font-semibold text-ink">En ce moment</h2>
-            <p className="mt-2 text-sm leading-7 text-muted">
-              Quelques séries actives ou déjà travaillées, sans liste exhaustive.
-            </p>
           </div>
           <ButtonLink href="/progression" variant="secondary">
             Voir toute la progression

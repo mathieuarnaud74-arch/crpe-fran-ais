@@ -58,6 +58,8 @@ type DomainStats = {
   lastAnsweredAt: string | null;
 };
 
+export const MASTERY_THRESHOLD = 85;
+
 const STATUS_ORDER: Record<ProgressStatus, number> = {
   prioritaire: 0,
   fragile: 1,
@@ -89,7 +91,7 @@ function getStatus(
 
   const accuracy = (correct / attempts) * 100;
 
-  if (completedSeries === totalSeries && accuracy >= 85) {
+  if (completedSeries === totalSeries && accuracy >= MASTERY_THRESHOLD) {
     return "acquis";
   }
 
@@ -147,7 +149,7 @@ function getSessionStatus(
     return "en_cours";
   }
 
-  if ((correctRate ?? 0) >= 85) {
+  if ((correctRate ?? 0) >= MASTERY_THRESHOLD) {
     return "maitrisee";
   }
 

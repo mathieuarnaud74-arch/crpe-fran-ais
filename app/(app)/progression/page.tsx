@@ -5,7 +5,8 @@ import { requireUser } from "@/features/auth/server/guards";
 import { isPremiumUser } from "@/features/billing/server/queries";
 import { ProgressStatusBadge } from "@/features/dashboard/components/learning-status-badge";
 import { getDashboardData } from "@/features/dashboard/server/queries";
-import { formatDate } from "@/lib/utils";
+import { MASTERY_THRESHOLD } from "@/lib/dashboard";
+import { cn, formatDate } from "@/lib/utils";
 
 function StatCard({
   label,
@@ -20,13 +21,11 @@ function StatCard({
 }) {
   return (
     <div
-      className={[
+      className={cn(
         "rounded-[1.5rem] border px-5 py-5",
         tone === "default" && "border-border bg-paper",
         tone === "warm" && "border-accentSecondary/20 bg-accentSecondarySoft",
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      )}
     >
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">{label}</p>
       <p className="mt-3 font-serif text-3xl font-semibold text-ink">{value}</p>
@@ -42,17 +41,11 @@ export default async function ProgressPage() {
 
   return (
     <div className="space-y-8">
-      <Panel className="border-border bg-[linear-gradient(135deg,rgba(241,224,213,0.75),rgba(252,250,246,1)_52%,rgba(234,228,216,0.7))]">
+      <Panel className="border-border bg-gradient-panel">
         <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
           <div className="space-y-3">
             <Badge tone="accentSecondary">Progression</Badge>
-            <div>
-              <h1 className="font-serif text-4xl font-semibold text-ink">Statistiques et progression</h1>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
-                Le tableau de bord reste bref. Les indicateurs détaillés, l’activité et les points de
-                friction sont regroupés ici.
-              </p>
-            </div>
+            <h1 className="font-serif text-4xl font-semibold text-ink">Statistiques et progression</h1>
           </div>
           <div className="flex flex-wrap gap-3">
             <ButtonLink href="/tableau-de-bord" variant="secondary">
@@ -97,7 +90,7 @@ export default async function ProgressPage() {
           </h2>
           <div className="mt-4 h-3 w-full overflow-hidden rounded-full bg-secondary">
             <div
-              className="h-3 rounded-full bg-[linear-gradient(90deg,#476257,#A46849)] transition-all duration-500"
+              className="h-3 rounded-full bg-gradient-progress transition-all duration-500"
               style={{
                 width: `${data.totalSeries === 0 ? 0 : Math.round((data.masteredSessions / data.totalSeries) * 100)}%`,
               }}
@@ -106,7 +99,7 @@ export default async function ProgressPage() {
           </div>
           <p className="mt-3 text-sm leading-7 text-muted">
             {data.masteredSessions === 0
-              ? "Terminez vos premières séries avec un score solide (≥ 85 %) pour les voir apparaître ici."
+              ? `Terminez vos premières séries avec un score solide (≥ ${MASTERY_THRESHOLD} %) pour les voir apparaître ici.`
               : data.masteredSessions === data.totalSeries
                 ? "Toutes les séries disponibles sont maîtrisées. De nouvelles séries seront ajoutées régulièrement."
                 : `Il vous reste ${data.totalSeries - data.masteredSessions} série${data.totalSeries - data.masteredSessions > 1 ? "s" : ""} à maîtriser. Continuez à un rythme régulier pour couvrir l'ensemble du programme.`}

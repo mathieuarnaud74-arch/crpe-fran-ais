@@ -42,10 +42,15 @@ export async function POST() {
   }
 
   const stripe = getStripeServerClient();
-  const session = await stripe.billingPortal.sessions.create({
-    customer: subscription.stripe_customer_id,
-    return_url: `${env.appUrl}/abonnement`,
-  });
+  try {
+    const session = await stripe.billingPortal.sessions.create({
+      customer: subscription.stripe_customer_id,
+      return_url: `${env.appUrl}/abonnement`,
+    });
 
-  return NextResponse.json({ url: session.url });
+    return NextResponse.json({ url: session.url });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Erreur Stripe inattendue.";
+    return NextResponse.json({ error: message }, { status: 502 });
+  }
 }

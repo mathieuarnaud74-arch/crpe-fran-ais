@@ -46,11 +46,19 @@ export function ExercisePlayer({
   const answeredCount = Object.keys(results).length;
   const completed = answeredCount === session.questions.length;
   const score = Object.values(results).filter((result) => result.isCorrect).length;
-  const progressPercent = (answeredCount / session.questionCount) * 100;
+  const incorrectCount = answeredCount - score;
+  const remainingCount = session.questionCount - answeredCount;
+  const correctPercent = (score / session.questionCount) * 100;
+  const incorrectPercent = (incorrectCount / session.questionCount) * 100;
 
   const weakAreas = useMemo(() => {
     const incorrectQuestions = session.questions.filter((question) => !results[question.id]?.isCorrect);
-    return incorrectQuestions.map((question) => question.instruction);
+    const groups = new Map<string, number>();
+    for (const question of incorrectQuestions) {
+      const label = SUBDOMAIN_LABELS[question.subdomain] ?? question.subdomain;
+      groups.set(label, (groups.get(label) ?? 0) + 1);
+    }
+    return Array.from(groups.entries()).map(([label, count]) => ({ label, count }));
   }, [results, session.questions]);
 
   if (!currentQuestion) {
@@ -138,8 +146,14 @@ export function ExercisePlayer({
   }
 
   function renderFeedbackBody() {
-    if (!currentResult || currentResult.isCorrect) {
+    if (!currentResult) {
       return null;
+    }
+
+    if (currentResult.isCorrect) {
+      return (
+        <p className="mt-2">{currentQuestion.detailed_explanation}</p>
+      );
     }
 
     if (currentResult.reason === "accent_only") {
@@ -196,22 +210,41 @@ export function ExercisePlayer({
               aria-valuenow={answeredCount}
               aria-valuemin={0}
               aria-valuemax={session.questionCount}
-              className="mt-4 h-3 overflow-hidden rounded-full bg-secondary"
+              className="mt-4 flex h-3 overflow-hidden rounded-full bg-secondary"
             >
               <div
-                className={cn(
-                  "h-3 rounded-full bg-accent transition-[width,filter,transform] duration-300 ease-out",
-                  currentResult?.isCorrect && "animate-progress-success",
-                  currentResult?.reason === "accent_only" && "animate-progress-soft",
-                )}
-                style={{ width: `${progressPercent}%` }}
+                className="h-3 rounded-l-full bg-accent transition-[width] duration-300 ease-out"
+                style={{ width: `${correctPercent}%` }}
+              />
+              <div
+                className="h-3 bg-error/70 transition-[width] duration-300 ease-out"
+                style={{ width: `${incorrectPercent}%` }}
               />
             </div>
-            <div className="mt-4 flex items-center justify-between text-sm text-muted">
-              <span>
+            <div className="mt-4 flex items-center justify-between gap-2">
+              <span className="text-sm text-muted">
                 Question {Math.min(currentIndex + 1, session.questionCount)} / {session.questionCount}
               </span>
-              <span>{session.estimatedMinutes} min</span>
+              <div className="flex items-center gap-3 text-xs text-muted">
+                {score > 0 && (
+                  <span className="flex items-center gap-1">
+                    <span className="inline-block h-2 w-2 rounded-full bg-accent" />
+                    {score}
+                  </span>
+                )}
+                {incorrectCount > 0 && (
+                  <span className="flex items-center gap-1">
+                    <span className="inline-block h-2 w-2 rounded-full bg-error/70" />
+                    {incorrectCount}
+                  </span>
+                )}
+                {remainingCount > 0 && (
+                  <span className="flex items-center gap-1">
+                    <span className="inline-block h-2 w-2 rounded-full bg-secondary" />
+                    {remainingCount}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -267,9 +300,12 @@ export function ExercisePlayer({
                     </p>
                   ) : (
                     <ul className="mt-4 space-y-3 text-sm leading-7 text-muted">
-                      {weakAreas.map((item) => (
-                        <li key={item} className="rounded-xl border border-border bg-card px-4 py-3">
-                          {item}
+                      {weakAreas.map(({ label, count }) => (
+                        <li key={label} className="rounded-xl border border-border bg-card px-4 py-3">
+                          <span className="font-semibold text-ink">{label}</span>
+                          <span className="ml-2 text-xs text-muted">
+                            — {count} question{count > 1 ? "s" : ""} à retravailler
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -428,35 +464,35 @@ export function ExercisePlayer({
               {currentResult ? (
                 <div
                   className={cn(
-                    "relative overflow-hidden rounded-[1.5rem] border px-5 py-5 text-sm leading-7 transition-colors duration-200",
+                    "relative overflow-hidden rounded-[1.5rem] border-2 px-6 py-6 text-sm leading-7 transition-colors duration-200",
                     currentResult.isCorrect
-                      ? "animate-feedback-success border-successBorder bg-successBg text-ink shadow-subtle"
+                      ? "animate-feedback-success border-successBorder bg-successBg text-ink shadow-panel"
                       : currentResult.reason === "accent_only"
-                        ? "animate-feedback-soft border-warningBorder bg-warningBg text-ink"
-                        : "animate-feedback-soft border-errorBorder bg-errorBg text-ink",
+                        ? "animate-feedback-soft border-warningBorder bg-warningBg text-ink shadow-panel"
+                        : "animate-feedback-soft border-errorBorder bg-errorBg text-ink shadow-panel",
                   )}
                 >
                   <div
                     aria-hidden="true"
                     className={cn(
-                      "absolute inset-y-4 left-0 w-1 rounded-r-full",
+                      "absolute inset-y-0 left-0 w-1.5",
                       currentResult.isCorrect
-                        ? "bg-successBorder"
+                        ? "bg-accent"
                         : currentResult.reason === "accent_only"
-                          ? "bg-warningBorder"
-                          : "bg-errorBorder",
+                          ? "bg-warning"
+                          : "bg-error",
                     )}
                   />
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-4">
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-card",
+                        "mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full",
                         currentResult.isCorrect
-                          ? "animate-feedback-icon text-pine"
+                          ? "animate-feedback-icon bg-accent/15 text-pine"
                           : currentResult.reason === "accent_only"
-                            ? "animate-feedback-icon text-warning"
-                            : "animate-feedback-icon text-error",
+                            ? "animate-feedback-icon bg-warning/15 text-warning"
+                            : "animate-feedback-icon bg-error/15 text-error",
                       )}
                     >
                       <StatusGlyph
@@ -467,12 +503,13 @@ export function ExercisePlayer({
                               ? "warning"
                               : "error"
                         }
+                        size="lg"
                       />
                     </span>
                     <div className="min-w-0 flex-1">
                       <p
                         className={cn(
-                          "font-semibold",
+                          "text-base font-bold",
                           currentResult.isCorrect
                             ? "text-pine"
                             : currentResult.reason === "accent_only"
@@ -483,15 +520,18 @@ export function ExercisePlayer({
                         {renderFeedbackTitle()}
                       </p>
                       {renderFeedbackBody()}
-                      <p className="mt-3">{currentQuestion.detailed_explanation}</p>
+                      <div className="mt-4 rounded-[1rem] border border-border/50 bg-card/60 px-4 py-3">
+                        <p className="font-semibold text-ink">Explication</p>
+                        <p className="mt-1">{currentQuestion.detailed_explanation}</p>
+                      </div>
                       {currentResult.validationRule ? (
-                        <p className="mt-2">
+                        <p className="mt-3">
                           <span className="font-semibold">R&egrave;gle de validation :</span>{" "}
                           {currentResult.validationRule}
                         </p>
                       ) : null}
                       {currentQuestion.common_mistake ? (
-                        <p className="mt-2">
+                        <p className="mt-3">
                           <span className="font-semibold">Erreur fr&eacute;quente :</span>{" "}
                           {currentQuestion.common_mistake}
                         </p>
@@ -559,10 +599,12 @@ function getExpectedChoiceId(expectedAnswer: RevisionSession["questions"][number
   return null;
 }
 
-function StatusGlyph({ tone }: { tone: "success" | "warning" | "error" }) {
+function StatusGlyph({ tone, size = "md" }: { tone: "success" | "warning" | "error"; size?: "md" | "lg" }) {
+  const sizeClass = size === "lg" ? "h-5 w-5" : "h-4 w-4";
+
   if (tone === "success") {
     return (
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-4 w-4">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className={sizeClass}>
         <path d="M4.75 10.25 8.25 13.75 15.25 6.75" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     );
@@ -570,7 +612,7 @@ function StatusGlyph({ tone }: { tone: "success" | "warning" | "error" }) {
 
   if (tone === "warning") {
     return (
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-4 w-4">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className={sizeClass}>
         <path d="M10 6.25v4.5" strokeLinecap="round" />
         <circle cx="10" cy="13.75" r="0.8" fill="currentColor" stroke="none" />
       </svg>
@@ -578,7 +620,7 @@ function StatusGlyph({ tone }: { tone: "success" | "warning" | "error" }) {
   }
 
   return (
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-4 w-4">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className={sizeClass}>
       <path d="m6.5 6.5 7 7" strokeLinecap="round" />
       <path d="m13.5 6.5-7 7" strokeLinecap="round" />
     </svg>

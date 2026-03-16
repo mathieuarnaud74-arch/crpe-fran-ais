@@ -1,6 +1,4 @@
-import { SiteHeader } from "@/components/site-header";
 import { ButtonLink } from "@/components/ui/button";
-import { Panel } from "@/components/ui/panel";
 import { getOptionalUser } from "@/features/auth/server/guards";
 import { isPremiumUser } from "@/features/billing/server/queries";
 import { CheckoutButton } from "@/features/billing/components/checkout-button";
@@ -65,8 +63,6 @@ export default async function OfferPage() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <SiteHeader authenticated={Boolean(user)} />
-
       <div className="mx-auto max-w-6xl px-6 py-16">
         {/* Header */}
         <div className="max-w-2xl">
@@ -82,27 +78,30 @@ export default async function OfferPage() {
           </p>
         </div>
 
-        {/* Free tier */}
-        <div className="mt-12">
-          <Panel className="max-w-sm">
+        {/* All tiers */}
+        <div className="mt-12 grid gap-5 lg:grid-cols-4">
+          {/* Free */}
+          <div className="rounded-[2rem] border border-border bg-card p-6 shadow-panel">
             <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">Gratuit</p>
-            <p className="mt-2 font-serif text-3xl font-semibold text-ink">0 €</p>
-            <p className="mt-1 text-sm text-muted">Inscription gratuite · aucune carte requise</p>
-            <ul className="mt-5 space-y-2 text-sm leading-7 text-muted">
-              <li>20 questions corrigées par jour</li>
-              <li>Corrections et explications immédiates</li>
-              <li>Accès aux 3 domaines du programme</li>
+            <p className="mt-3 font-serif text-4xl font-semibold text-ink">0 €</p>
+            <p className="mt-1 text-xs text-muted">Inscription gratuite · aucune carte requise</p>
+            <p className="mt-4 text-sm leading-7 text-muted">
+              Pour découvrir la plateforme et s&apos;entraîner chaque jour sans engagement.
+            </p>
+            <ul className="mt-5 space-y-2">
+              {["20 questions corrigées par jour", "Corrections et explications immédiates", "Accès aux 3 domaines du programme"].map((feature) => (
+                <li key={feature} className="flex items-start gap-2 text-sm text-muted">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accentSecondaryDark" />
+                  {feature}
+                </li>
+              ))}
             </ul>
-            <div className="mt-6">
+            <div className="mt-8">
               <ButtonLink href={user ? "/tableau-de-bord" : "/inscription"} variant="secondary">
                 {user ? "Accéder au tableau de bord" : "Commencer gratuitement"}
               </ButtonLink>
             </div>
-          </Panel>
-        </div>
-
-        {/* Paid tiers */}
-        <div className="mt-6 grid gap-5 lg:grid-cols-3">
+          </div>
           {plans.map((plan) => (
             <div
               key={plan.key}

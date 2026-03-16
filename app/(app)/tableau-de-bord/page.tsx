@@ -3,7 +3,9 @@ import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";
 import { isPremiumUser } from "@/features/billing/server/queries";
+import { cn } from "@/lib/utils";
 import { DomainSummaryCard } from "@/features/dashboard/components/domain-summary-card";
+import { OnboardingBanner } from "@/features/dashboard/components/onboarding-banner";
 import { getDashboardData } from "@/features/dashboard/server/queries";
 import { env } from "@/lib/env";
 import { formatDate } from "@/lib/utils";
@@ -21,14 +23,12 @@ function SummaryMetric({
 }) {
   return (
     <div
-      className={[
+      className={cn(
         "rounded-[1.5rem] border p-5 shadow-panel",
         tone === "default" && "border-border bg-card",
         tone === "warm" && "border-accentSecondary/25 bg-card",
         tone === "soft" && "border-border bg-secondary",
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      )}
     >
       <p className="text-xs font-semibold tracking-[0.10em] text-muted">{label}</p>
       <p className="mt-3 font-serif text-4xl font-semibold text-ink">{value}</p>
@@ -58,9 +58,6 @@ function FocusList({
       <div className="flex items-start justify-between gap-4">
         <div>
           <h2 className="font-serif text-2xl font-semibold text-ink">{title}</h2>
-          <p className="mt-2 text-sm leading-7 text-muted">
-            Vue courte : le détail complet est déplacé vers la page dédiée.
-          </p>
         </div>
         <ButtonLink href={href} variant="secondary">
           Voir tout
@@ -86,74 +83,6 @@ function FocusList({
   );
 }
 
-function OnboardingBanner({
-  firstSeriesId,
-}: {
-  firstSeriesId: string | null;
-}) {
-  return (
-    <Panel className="border-accentSecondary/30 bg-[linear-gradient(135deg,rgba(241,224,213,0.6),rgba(252,250,246,1)_50%,rgba(234,228,216,0.5))]">
-      <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
-        <div className="max-w-2xl space-y-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accentSecondary">
-              Première visite
-            </p>
-            <h2 className="mt-2 font-serif text-3xl font-semibold text-ink">Par où commencer ?</h2>
-            <p className="mt-3 text-sm leading-7 text-muted">
-              Commencez par le diagnostic : il repère vos zones solides et vos fragilités en{" "}
-              <strong className="text-ink">environ 30 minutes</strong>, puis vous oriente vers les
-              séries les plus utiles pour vous. C&apos;est la porte d&apos;entrée recommandée.
-            </p>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-[1.25rem] border border-accentSecondary/25 bg-card px-4 py-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accentSecondary">
-                Étape 1
-              </p>
-              <p className="mt-2 text-sm font-semibold text-ink">Faire le diagnostic</p>
-              <p className="mt-1 text-xs leading-5 text-muted">
-                40 questions, profil par sous-domaine, priorités identifiées. ~30 min.
-              </p>
-            </div>
-            <div className="rounded-[1.25rem] border border-border bg-card px-4 py-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accentSecondary">
-                Étape 2
-              </p>
-              <p className="mt-2 text-sm font-semibold text-ink">Travailler vos priorités</p>
-              <p className="mt-1 text-xs leading-5 text-muted">
-                Commencez par les sous-domaines signalés prioritaires. Séries de 10 min.
-              </p>
-            </div>
-            <div className="rounded-[1.25rem] border border-border bg-card px-4 py-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accentSecondary">
-                Étape 3
-              </p>
-              <p className="mt-2 text-sm font-semibold text-ink">Revenir consolider</p>
-              <p className="mt-1 text-xs leading-5 text-muted">
-                Ce tableau de bord trace vos acquis et fragilités au fil des séries.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex shrink-0 flex-col gap-3">
-          <ButtonLink href="/diagnostic">Lancer le diagnostic</ButtonLink>
-          {firstSeriesId ? (
-            <ButtonLink href={`/exercices/${firstSeriesId}`} variant="secondary">
-              Commencer directement
-            </ButtonLink>
-          ) : (
-            <ButtonLink href="/francais" variant="secondary">
-              Explorer les domaines
-            </ButtonLink>
-          )}
-        </div>
-      </div>
-    </Panel>
-  );
-}
 
 export default async function DashboardPage() {
   const user = await requireUser();
@@ -163,16 +92,16 @@ export default async function DashboardPage() {
   const completionRate =
     data.totalSeries === 0 ? 0 : Math.round((data.completedSeries / data.totalSeries) * 100);
 
-  const isNewUser = data.totalAttempts === 0;
   const firstFreeSeries = data.sessionProgress
     .filter((s) => s.access_tier === "free")
     .sort((a, b) => a.recommendedOrder - b.recommendedOrder)[0] ?? null;
 
   return (
     <div className="space-y-8">
-      {isNewUser && (
-        <OnboardingBanner firstSeriesId={firstFreeSeries?.id ?? null} />
-      )}
+      <OnboardingBanner
+        firstSeriesId={firstFreeSeries?.id ?? null}
+        hasAttempts={data.totalAttempts > 0}
+      />
 
       <Panel className="border-border bg-card">
         <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
@@ -180,13 +109,7 @@ export default async function DashboardPage() {
             <Badge tone={premium ? "accentSecondary" : "neutral"}>
               {premium ? "Accès premium" : "Accès gratuit"}
             </Badge>
-            <div>
-              <h1 className="font-serif text-4xl font-semibold text-ink">Tableau de bord</h1>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
-                Une page courte pour savoir où vous en êtes, ce qu&apos;il faut reprendre et vers quel
-                domaine aller ensuite.
-              </p>
-            </div>
+            <h1 className="font-serif text-4xl font-semibold text-ink">Tableau de bord</h1>
           </div>
           <div className="flex flex-wrap gap-3">
             <ButtonLink href="/francais" variant="secondary">
@@ -243,10 +166,6 @@ export default async function DashboardPage() {
               Français
             </Badge>
             <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">Domaines</h2>
-            <p className="mt-2 text-sm leading-7 text-muted">
-              Trois portes d&apos;entrée claires. Le détail des notions et des séries est déplacé dans
-              chaque domaine.
-            </p>
           </div>
           <ButtonLink href="/francais" variant="secondary">
             Vue matière
@@ -330,9 +249,6 @@ export default async function DashboardPage() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h2 className="font-serif text-2xl font-semibold text-ink">Activité récente</h2>
-            <p className="mt-2 text-sm leading-7 text-muted">
-              Un historique court pour garder le fil sans rallonger le dashboard.
-            </p>
           </div>
           <ButtonLink href="/progression" variant="secondary">
             Voir les statistiques

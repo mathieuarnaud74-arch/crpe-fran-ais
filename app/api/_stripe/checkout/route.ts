@@ -62,23 +62,29 @@ export async function POST(request: Request) {
     },
   } as unknown as Stripe.Checkout.SessionCreateParams.SubscriptionData;
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "subscription",
-    customer: customerId ?? undefined,
-    customer_email: customerId ? undefined : user.email,
-    line_items: [
-      {
-        price: priceId,
-        quantity: 1,
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: "subscription",
+      customer: customerId ?? undefined,
+      customer_email: customerId ? undefined : user.email,
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
+        },
+      ],
+      metadata: {
+        user_id: user.id,
+        price_id: priceId,
       },
-    ],
-    metadata: {
-      user_id: user.id,
-    },
-    subscription_data: subscriptionData,
-    success_url: `${env.appUrl}/abonnement?checkout=success`,
-    cancel_url: `${env.appUrl}/abonnement?checkout=cancelled`,
-  });
+      subscription_data: subscriptionData,
+      success_url: `${env.appUrl}/abonnement?checkout=success`,
+      cancel_url: `${env.appUrl}/abonnement?checkout=cancelled`,
+    });
 
-  return NextResponse.json({ url: session.url });
+    return NextResponse.json({ url: session.url });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Erreur Stripe inattendue.";
+    return NextResponse.json({ error: message }, { status: 502 });
+  }
 }

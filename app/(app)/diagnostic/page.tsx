@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   buildBalancedFrenchDiagnosticSession,
@@ -13,7 +13,12 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
-import { cn } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
+import {
+  saveDiagnosticResult,
+  loadDiagnosticHistory,
+  type DiagnosticResult,
+} from "@/lib/diagnostic-storage";
 
 type SubdomainSummary = {
   key: FrenchDiagnosticSubdomainKey;
@@ -93,6 +98,12 @@ export default function DiagnosticPage() {
     () => Array(FRENCH_DIAGNOSTIC_SESSION_SIZE).fill(null),
   );
   const [completed, setCompleted] = useState(false);
+  const [previousResults, setPreviousResults] = useState<DiagnosticResult[]>([]);
+  const [showingPrevious, setShowingPrevious] = useState(false);
+
+  useEffect(() => {
+    setPreviousResults(loadDiagnosticHistory());
+  }, []);
 
   const question = questions[currentQuestion];
   const selectedIndex = answers[currentQuestion];
@@ -168,6 +179,26 @@ export default function DiagnosticPage() {
   function handleNext() {
     if (isLast) {
       setCompleted(true);
+
+      const finalSummaries = subdomainSummaries;
+      const finalProfile = getProfileLabel(score, questions.length);
+      saveDiagnosticResult({
+        completedAt: new Date().toISOString(),
+        score,
+        total: questions.length,
+        profileLabel: finalProfile.label,
+        profileDetail: finalProfile.detail,
+        subdomains: finalSummaries.map((item) => ({
+          key: item.key,
+          label: item.label,
+          href: item.href,
+          correct: item.correct,
+          total: item.total,
+          mastery: item.mastery,
+          recommendation: item.recommendation,
+        })),
+      });
+      setPreviousResults(loadDiagnosticHistory());
       return;
     }
 
@@ -193,10 +224,10 @@ export default function DiagnosticPage() {
                 {profile.label}
               </Badge>
               <Badge tone="neutral" size="sm">
-                {Math.round((score / questions.length) * 100)} % de reussite
+                {Math.round((score / questions.length) * 100)} % de réussite
               </Badge>
               <Badge tone="neutral" size="sm">
-                {questions.length} questions tirees d&apos;une banque de {FRENCH_DIAGNOSTIC_BANK_SIZE}
+                {questions.length} questions tirées d&apos;une banque de {FRENCH_DIAGNOSTIC_BANK_SIZE}
               </Badge>
             </div>
           </div>
@@ -297,27 +328,106 @@ export default function DiagnosticPage() {
             <ButtonLink href="/francais" variant="secondary">
               Explorer le module Français
             </ButtonLink>
+            <Button variant="ghost" onClick={() => { setCompleted(false); setShowingPrevious(true); }}>
+              Historique des diagnostics
+            </Button>
           </div>
         </Panel>
       </div>
     );
   }
 
+  if (showingPrevious && previousResults.length > 0) {
+    return (
+      <div className="space-y-8">
+        <Panel>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <Badge tone="accentSecondary">Historique</Badge>
+              <h1 className="mt-2 font-serif text-4xl font-semibold text-ink">
+                Diagnostics précédents
+              </h1>
+              <p className="mt-3 text-sm leading-7 text-muted">
+                Vos {previousResults.length} dernier(s) diagnostic(s) conservé(s). Comparez votre progression.
+              </p>
+            </div>
+            <Button onClick={() => setShowingPrevious(false)}>
+              Nouveau diagnostic
+            </Button>
+          </div>
+        </Panel>
+
+        {previousResults.map((result, resultIndex) => {
+          const rate = Math.round((result.score / result.total) * 100);
+          const strengths = result.subdomains.filter((s) => s.mastery === "solide");
+          const weaknesses = result.subdomains.filter((s) => s.mastery !== "solide");
+
+          return (
+            <Panel key={result.completedAt}>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                    {resultIndex === 0 ? "Dernier diagnostic" : `Diagnostic ${resultIndex + 1}`}
+                  </p>
+                  <p className="mt-1 text-sm text-muted">{formatDate(result.completedAt)}</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Badge tone="neutral" size="sm">{result.profileLabel}</Badge>
+                  <Badge tone={rate >= 75 ? "success" : rate >= 50 ? "accentSecondary" : "warning"} size="sm">
+                    {result.score}/{result.total} — {rate} %
+                  </Badge>
+                </div>
+              </div>
+
+              <p className="mt-4 text-sm leading-7 text-muted">{result.profileDetail}</p>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-pine">
+                    Points d&apos;appui ({strengths.length})
+                  </p>
+                  {strengths.length > 0 ? (
+                    strengths.map((s) => (
+                      <div
+                        key={s.key}
+                        className="rounded-[1rem] border border-successBorder bg-successBg px-3 py-2"
+                      >
+                        <p className="text-sm font-medium text-ink">{s.label}</p>
+                        <p className="text-xs text-muted">{s.correct}/{s.total}</p>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-sm text-muted">Aucun sous-domaine sécurisé.</p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accentSecondary">
+                    À travailler ({weaknesses.length})
+                  </p>
+                  {weaknesses.map((s) => (
+                    <Link
+                      key={s.key}
+                      href={s.href}
+                      className="block rounded-[1rem] border border-warningBorder bg-warningBg px-3 py-2 transition-colors hover:border-accent"
+                    >
+                      <p className="text-sm font-medium text-ink">{s.label}</p>
+                      <p className="text-xs text-muted">
+                        {s.correct}/{s.total} —{" "}
+                        {s.mastery === "prioritaire" ? "Prioritaire" : "À consolider"}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </Panel>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8">
-      <Panel>
-        <div className="space-y-3">
-          <Badge tone="accentSecondary">Positionnement</Badge>
-          <h1 className="font-serif text-4xl font-semibold text-ink">Diagnostic de niveau</h1>
-          <p className="max-w-3xl text-sm leading-7 text-muted">
-            {questions.length} questions ciblées, tirées d&apos;une banque de {FRENCH_DIAGNOSTIC_BANK_SIZE}, pour repérer vos automatismes solides, vos fragilités et les sous-domaines à prioriser avant de lancer les révisions.
-          </p>
-          <p className="text-sm text-muted">
-            Durée estimée : environ {Math.ceil(questions.length * 0.75)} minutes · Résultats détaillés par sous-domaine à la fin.
-          </p>
-        </div>
-      </Panel>
-
       <Panel>
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>

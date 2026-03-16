@@ -31,9 +31,9 @@ export const heroSectionPropsSchema = z.object({
   secondaryCtaLabel: shortTextSchema,
   secondaryCtaHref: urlSchema,
   metaItems: z.array(shortTextSchema).min(1).max(4),
-  previewBadgeText: shortTextSchema,
-  previewTitle: shortTextSchema,
-  previewDescription: richTextSchema,
+  previewBadgeText: shortTextSchema.optional(),
+  previewTitle: shortTextSchema.optional(),
+  previewDescription: richTextSchema.optional(),
   previewStats: z
     .array(
       z.object({
@@ -42,7 +42,8 @@ export const heroSectionPropsSchema = z.object({
       }),
     )
     .min(1)
-    .max(4),
+    .max(4)
+    .optional(),
   previewResults: z
     .array(
       z.object({
@@ -51,9 +52,10 @@ export const heroSectionPropsSchema = z.object({
       }),
     )
     .min(1)
-    .max(8),
-  previewRecommendationEyebrow: shortTextSchema,
-  previewRecommendationText: richTextSchema,
+    .max(8)
+    .optional(),
+  previewRecommendationEyebrow: shortTextSchema.optional(),
+  previewRecommendationText: richTextSchema.optional(),
 });
 
 export type HeroSectionProps = z.infer<typeof heroSectionPropsSchema>;
@@ -149,7 +151,7 @@ export const finalCtaSectionPropsSchema = z.object({
         highlight: z.boolean(),
       }),
     )
-    .min(1)
+    .min(0)
     .max(4),
   primaryCtaLabel: shortTextSchema,
   primaryCtaHref: urlSchema,

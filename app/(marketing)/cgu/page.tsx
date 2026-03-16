@@ -1,13 +1,8 @@
-import { SiteHeader } from "@/components/site-header";
 import { Panel } from "@/components/ui/panel";
-import { getOptionalUser } from "@/features/auth/server/guards";
 
-export default async function CguPage() {
-  const user = await getOptionalUser();
-
+export default function CguPage() {
   return (
     <div className="min-h-screen">
-      <SiteHeader authenticated={Boolean(user)} />
       <div className="mx-auto max-w-4xl px-6 py-16">
         <Panel>
           <h1 className="font-serif text-4xl font-semibold text-ink">

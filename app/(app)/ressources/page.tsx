@@ -14,7 +14,7 @@ export default function RessourcesPage() {
                 Ressources &amp; Fiches de cours
               </h1>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
-                Reperes fiables et syntheses de cours pour reviser le Francais du CRPE
+                Repères fiables et synthèses de cours pour réviser le Français du CRPE
                 sans se disperser.
               </p>
             </div>
@@ -102,9 +102,9 @@ export default function RessourcesPage() {
       <section id="comprehension" className="scroll-mt-6 space-y-6">
         <Panel>
           <div className="space-y-2">
-            <Badge tone="accent">Comprehension</Badge>
+            <Badge tone="accent">Compréhension</Badge>
             <h2 className="font-serif text-3xl font-semibold text-ink">
-              Comprehension et analyse de texte
+              Compréhension et analyse de texte
             </h2>
           </div>
           <p className="mt-6 text-sm leading-7 text-muted">
@@ -129,7 +129,7 @@ export default function RessourcesPage() {
         <Panel>
           <div className="space-y-2">
             <Badge tone="accentSecondary">Didactique</Badge>
-            <h2 className="font-serif text-3xl font-semibold text-ink">Didactique du francais</h2>
+            <h2 className="font-serif text-3xl font-semibold text-ink">Didactique du français</h2>
           </div>
           <p className="mt-6 text-sm leading-7 text-muted">
             Fiche en cours de reconstruction.
@@ -144,7 +144,7 @@ export default function RessourcesPage() {
               Besoin d&apos;aller plus loin ?
             </h2>
             <p className="mt-2 text-sm leading-7 text-muted">
-              Le glossaire rassemble les definitions grammaticales et didactiques
+              Le glossaire rassemble les définitions grammaticales et didactiques
               indispensables pour le CRPE.
             </p>
           </div>

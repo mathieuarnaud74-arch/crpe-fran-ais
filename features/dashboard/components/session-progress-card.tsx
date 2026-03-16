@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
+import { MASTERY_THRESHOLD } from "@/lib/dashboard";
 import { DashboardSessionProgress } from "@/types/domain";
 
 import { LearningStatusBadge } from "./learning-status-badge";
@@ -54,6 +55,11 @@ export function SessionProgressCard({ session, compact = false }: SessionProgres
             {session.answeredQuestions}/{session.questionCount} question
             {session.questionCount > 1 ? "s" : ""} traitée
             {session.answeredQuestions > 1 ? "s" : ""}
+          </p>
+        ) : null}
+        {session.status === "a_revoir" && session.correctRate !== null ? (
+          <p className="text-xs text-muted">
+            Objectif maîtrise : {MASTERY_THRESHOLD} % — actuellement {session.correctRate} %
           </p>
         ) : null}
       </div>

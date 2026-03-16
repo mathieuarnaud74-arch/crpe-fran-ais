@@ -10,8 +10,6 @@ import {
   Sparkles,
   Target,
 } from "lucide-react";
-import Balancer from "react-wrap-balancer";
-
 import { FadeIn } from "@/components/marketing/reveal";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
@@ -117,14 +115,14 @@ function HeroSection({
       <div className="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-paper/50 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-6 pb-14 pt-10 sm:pb-16 lg:pb-24 lg:pt-16">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.03fr,0.97fr]">
+        <div className="mx-auto max-w-3xl">
           <FadeIn className="relative z-10">
             <Badge tone="accentSecondary" className="border-white/60 bg-card/90">
               {props.badgeText}
             </Badge>
 
-            <h1 className="mt-6 max-w-3xl font-serif text-5xl font-semibold leading-[0.96] text-ink sm:text-6xl lg:text-[4.8rem]">
-              <Balancer>{props.title}</Balancer>
+            <h1 className="mt-6 max-w-3xl text-balance font-serif text-5xl font-semibold leading-[0.96] text-ink sm:text-6xl lg:text-[4.8rem]">
+              {props.title}
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-muted sm:text-xl">
@@ -151,8 +149,6 @@ function HeroSection({
               ))}
             </div>
           </FadeIn>
-
-          <HeroPreviewCard props={props} authenticated={authenticated} />
         </div>
       </div>
     </section>
@@ -288,8 +284,8 @@ function BenefitsSection({ props }: { props: BenefitsSectionProps }) {
       <FadeIn>
         <SectionEyebrow>{props.eyebrow}</SectionEyebrow>
         <div className="mt-4 max-w-3xl">
-          <h2 className="font-serif text-4xl font-semibold text-ink sm:text-[2.85rem]">
-            <Balancer>{props.title}</Balancer>
+          <h2 className="text-balance font-serif text-4xl font-semibold text-ink sm:text-[2.85rem]">
+            {props.title}
           </h2>
           <p className="mt-4 text-base leading-8 text-muted sm:text-lg">{props.description}</p>
         </div>
@@ -345,8 +341,8 @@ function FeaturesSection({ props }: { props: FeaturesSectionProps }) {
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 lg:grid-cols-[0.78fr,1.22fr] lg:py-20">
         <FadeIn>
           <SectionEyebrow>{props.eyebrow}</SectionEyebrow>
-          <h2 className="mt-4 font-serif text-4xl font-semibold text-ink sm:text-[2.8rem]">
-            <Balancer>{props.title}</Balancer>
+          <h2 className="mt-4 text-balance font-serif text-4xl font-semibold text-ink sm:text-[2.8rem]">
+            {props.title}
           </h2>
           <p className="mt-4 text-base leading-8 text-muted">{props.description}</p>
 
@@ -382,8 +378,8 @@ function DomainsSection({ props }: { props: DomainsSectionProps }) {
       <FadeIn>
         <SectionEyebrow>{props.eyebrow}</SectionEyebrow>
         <div className="mt-4 max-w-3xl">
-          <h2 className="font-serif text-4xl font-semibold text-ink sm:text-[2.85rem]">
-            <Balancer>{props.title}</Balancer>
+          <h2 className="text-balance font-serif text-4xl font-semibold text-ink sm:text-[2.85rem]">
+            {props.title}
           </h2>
           <p className="mt-4 text-base leading-8 text-muted sm:text-lg">{props.description}</p>
         </div>
@@ -445,8 +441,8 @@ function FaqSection({ props }: { props: FaqSectionProps }) {
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 lg:grid-cols-[0.82fr,1.18fr] lg:py-20">
         <FadeIn>
           <SectionEyebrow>{props.eyebrow}</SectionEyebrow>
-          <h2 className="mt-4 font-serif text-4xl font-semibold text-ink sm:text-[2.8rem]">
-            <Balancer>{props.title}</Balancer>
+          <h2 className="mt-4 text-balance font-serif text-4xl font-semibold text-ink sm:text-[2.8rem]">
+            {props.title}
           </h2>
           <p className="mt-4 text-base leading-8 text-muted">{props.description}</p>
           <div className="mt-8 rounded-[1.75rem] border border-border bg-card p-5 shadow-subtle">
@@ -504,8 +500,8 @@ function FinalCtaSection({
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/65">
                 {props.eyebrow}
               </p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold leading-tight text-paper sm:text-[2.9rem]">
-                <Balancer>{props.title}</Balancer>
+              <h2 className="mt-4 text-balance font-serif text-4xl font-semibold leading-tight text-paper sm:text-[2.9rem]">
+                {props.title}
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-8 text-paper/75">
                 {props.description}

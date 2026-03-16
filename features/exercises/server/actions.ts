@@ -87,7 +87,6 @@ export async function submitAttemptAction(
 
   revalidatePath("/tableau-de-bord");
   revalidatePath("/historique");
-  revalidatePath("/abonnement");
   if (sessionId) {
     revalidatePath(`/exercices/${sessionId}`);
   }

@@ -41,9 +41,6 @@ export default async function ProfilePage() {
               Adresse e-mail : <span className="font-semibold text-ink">{user.email ?? "Non renseignée"}</span>
             </p>
             <p>
-              Identifiant : <span className="font-semibold text-ink">{user.id}</span>
-            </p>
-            <p>
               Dernière connexion :{" "}
               <span className="font-semibold text-ink">
                 {user.last_sign_in_at ? formatDate(user.last_sign_in_at) : "Non disponible"}

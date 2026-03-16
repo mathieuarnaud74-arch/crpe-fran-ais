@@ -1,10 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 
 import { env, isSupabaseAdminConfigured } from "@/lib/env";
+import { Database } from "@/types/database";
 
-let adminClient: any = null;
+let adminClient: ReturnType<typeof createClient<Database>> | null = null;
 
-export function createSupabaseAdminClient(): any {
+export function createSupabaseAdminClient() {
   if (!isSupabaseAdminConfigured()) {
     throw new Error(
       "SUPABASE_SERVICE_ROLE_KEY manquante. Configurez la variable d'environnement avant d'utiliser les routes Stripe.",
@@ -12,7 +13,7 @@ export function createSupabaseAdminClient(): any {
   }
 
   if (!adminClient) {
-    adminClient = createClient(env.supabaseUrl, env.supabaseServiceRoleKey, {
+    adminClient = createClient<Database>(env.supabaseUrl, env.supabaseServiceRoleKey, {
       auth: {
         autoRefreshToken: false,
         persistSession: false,

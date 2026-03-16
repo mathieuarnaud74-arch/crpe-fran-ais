@@ -1,6 +1,8 @@
+import { cache } from "react";
+
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-export async function getUserSubscription(userId: string) {
+export const getUserSubscription = cache(async function getUserSubscription(userId: string) {
   const supabase = await createSupabaseServerClient();
   const { data } = await supabase
     .from("subscriptions")
@@ -11,7 +13,7 @@ export async function getUserSubscription(userId: string) {
     .maybeSingle();
 
   return data;
-}
+});
 
 export async function isPremiumUser(userId: string) {
   const subscription = await getUserSubscription(userId);

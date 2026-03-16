@@ -192,7 +192,7 @@ export default async function ExercisesPage({
       </div>
 
       {nextSeries.length > 0 && (
-        <Panel className="border-accentSecondary/25 bg-[linear-gradient(135deg,rgba(241,224,213,0.4),rgba(252,250,246,1)_60%)]">
+        <Panel className="border-accentSecondary/25 bg-gradient-panel-light">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accentSecondary">

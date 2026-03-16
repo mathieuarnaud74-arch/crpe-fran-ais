@@ -1,27 +1,24 @@
+import { cache } from "react";
 import { redirect } from "next/navigation";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-export async function requireUser() {
+const getAuthUser = cache(async () => {
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  return user;
+});
 
-  if (!user) {
-    redirect("/connexion");
-  }
-
+export async function requireUser() {
+  const user = await getAuthUser();
+  if (!user) redirect("/connexion");
   return user;
 }
 
 export async function getOptionalUser() {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  return user;
+  return getAuthUser();
 }
 
 export async function requireAdmin() {

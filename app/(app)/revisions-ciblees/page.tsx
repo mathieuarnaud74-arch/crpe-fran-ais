@@ -7,7 +7,7 @@ import { requireUser } from "@/features/auth/server/guards";
 import { isPremiumUser } from "@/features/billing/server/queries";
 import { SessionProgressCard } from "@/features/dashboard/components/session-progress-card";
 import { getDashboardData } from "@/features/dashboard/server/queries";
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import { DashboardData, DashboardSessionProgress } from "@/types/domain";
 
 function FocusMetric({
@@ -23,13 +23,11 @@ function FocusMetric({
 }) {
   return (
     <div
-      className={[
+      className={cn(
         "rounded-[1.5rem] border px-5 py-5",
         tone === "default" && "border-border bg-paper",
         tone === "warm" && "border-accentSecondary/20 bg-accentSecondarySoft",
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      )}
     >
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">{label}</p>
       <p className="mt-3 font-serif text-3xl font-semibold text-ink">{value}</p>
@@ -60,7 +58,7 @@ function TopicFocusSection({
     <Panel>
       <div>
         <h2 className="font-serif text-2xl font-semibold text-ink">{title}</h2>
-        <p className="mt-2 text-sm leading-7 text-muted">{description}</p>
+        {description ? <p className="mt-2 text-sm leading-7 text-muted">{description}</p> : null}
       </div>
 
       {items.length === 0 ? (
@@ -96,6 +94,7 @@ type PlanItem = {
   tag: string;
   tone: "warm" | "warning" | "neutral";
   step: number;
+  estimatedMinutes: number;
 };
 
 function buildPlanDuJour(data: DashboardData): PlanItem[] {
@@ -110,6 +109,7 @@ function buildPlanDuJour(data: DashboardData): PlanItem[] {
       tag: "À reprendre",
       tone: "warm",
       step: plan.length + 1,
+      estimatedMinutes: session.estimatedMinutes,
     });
   }
 
@@ -127,6 +127,7 @@ function buildPlanDuJour(data: DashboardData): PlanItem[] {
         tag: "Prioritaire",
         tone: "warning",
         step: plan.length + 1,
+        estimatedMinutes: targetSession.estimatedMinutes,
       });
     }
   }
@@ -145,6 +146,7 @@ function buildPlanDuJour(data: DashboardData): PlanItem[] {
         tag: "À consolider",
         tone: "neutral",
         step: plan.length + 1,
+        estimatedMinutes: targetSession.estimatedMinutes,
       });
     }
   }
@@ -160,17 +162,11 @@ export default async function TargetedRevisionPage() {
 
   return (
     <div className="space-y-8">
-      <Panel className="border-border bg-[linear-gradient(135deg,rgba(241,224,213,0.75),rgba(252,250,246,1)_52%,rgba(234,228,216,0.7))]">
+      <Panel className="border-border bg-gradient-panel">
         <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
           <div className="space-y-3">
             <Badge tone="accentSecondary">Révisions ciblées</Badge>
-            <div>
-              <h1 className="font-serif text-4xl font-semibold text-ink">À reprendre en priorité</h1>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
-                Cette page concentre les reprises utiles et génère un plan d&apos;action du jour. Notions
-                fragiles, priorités fortes et séries entamées regroupées en un seul endroit.
-              </p>
-            </div>
+            <h1 className="font-serif text-4xl font-semibold text-ink">À reprendre en priorité</h1>
           </div>
           <div className="flex flex-wrap gap-3">
             <ButtonLink href="/tableau-de-bord" variant="secondary">
@@ -185,14 +181,11 @@ export default async function TargetedRevisionPage() {
       <Panel className="border-accentSecondary/25 bg-card">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accentSecondary">
-              Généré automatiquement
-            </p>
-            <h2 className="mt-2 font-serif text-2xl font-semibold text-ink">Plan du jour</h2>
+            <h2 className="font-serif text-2xl font-semibold text-ink">Plan du jour</h2>
             <p className="mt-2 text-sm leading-7 text-muted">
               {plan.length === 0
                 ? "Aucune action ciblée pour le moment. Explorez les domaines pour commencer de nouvelles séries."
-                : `${plan.length} action${plan.length > 1 ? "s" : ""} recommandée${plan.length > 1 ? "s" : ""} pour cette session — environ ${plan.length * 12} minutes.`}
+                : `${plan.length} action${plan.length > 1 ? "s" : ""} recommandée${plan.length > 1 ? "s" : ""} pour cette session — environ ${plan.reduce((acc, item) => acc + item.estimatedMinutes, 0)} minutes.`}
             </p>
           </div>
           <ButtonLink href="/exercices" variant="secondary">
@@ -223,15 +216,13 @@ export default async function TargetedRevisionPage() {
                     Tâche {item.step}
                   </span>
                   <span
-                    className={[
+                    className={cn(
                       "shrink-0 rounded-full border px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.10em]",
                       item.tone === "warm" &&
                         "border-accentSecondary/30 bg-accentSecondarySoft text-accentSecondary",
                       item.tone === "warning" && "border-warningBorder bg-warningBg text-warning",
                       item.tone === "neutral" && "border-border bg-secondary text-muted",
-                    ]
-                      .filter(Boolean)
-                      .join(" ")}
+                    )}
                   >
                     {item.tag}
                   </span>
@@ -247,42 +238,18 @@ export default async function TargetedRevisionPage() {
         )}
       </Panel>
 
-      <div className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-4">
-        <FocusMetric
-          label="Priorités"
-          value={data.priorityItems.length}
-          detail="Notions avec erreurs récurrentes ou taux de réussite trop faible."
-          tone="warm"
-        />
-        <FocusMetric
-          label="Fragilités"
-          value={data.fragileItems.length}
-          detail="Notions déjà travaillées mais encore peu stables."
-        />
-        <FocusMetric
-          label="Séries à reprendre"
-          value={data.resumeSessions.length}
-          detail="Une seule entrée par série entamée pour éviter les répétitions."
-        />
-        <FocusMetric
-          label="Erreurs fréquentes"
-          value={data.frequentMistakes.length}
-          detail="Points de friction qui reviennent le plus souvent dans vos réponses."
-        />
-      </div>
-
-      <div className="grid gap-6 2xl:grid-cols-2">
+<div className="grid gap-6 2xl:grid-cols-2">
         <TopicFocusSection
           title="Priorités"
-          description="À retravailler d'abord : ce sont les zones où le risque d'erreur est le plus élevé."
+          description=""
           items={data.priorityItems}
-          emptyText="Aucune priorité forte détectée. Continuez à travailler régulièrement pour maintenir ce niveau."
+          emptyText="Aucune priorité forte détectée."
         />
         <TopicFocusSection
           title="Fragilités"
-          description="Travail déjà engagé, mais la règle n'est pas encore suffisamment solide."
+          description=""
           items={data.fragileItems}
-          emptyText="Aucune fragilité notable. Vos notions travaillées sont stables."
+          emptyText="Aucune fragilité notable."
         />
       </div>
 

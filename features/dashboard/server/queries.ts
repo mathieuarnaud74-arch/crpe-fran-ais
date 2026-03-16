@@ -16,7 +16,8 @@ export async function getDashboardData(userId: string, isPremium: boolean) {
     .from("attempts")
     .select("id, exercise_id, is_correct, answered_at")
     .eq("user_id", userId)
-    .order("answered_at", { ascending: false });
+    .order("answered_at", { ascending: false })
+    .limit(500);
 
   const attempts = (data ?? []) as AttemptRow[];
 
