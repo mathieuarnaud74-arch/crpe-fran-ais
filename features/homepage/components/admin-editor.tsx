@@ -307,7 +307,7 @@ function HeroFields({ section }: { section: HomepageSectionRecord<"hero"> }) {
     <div className="space-y-8">
       <div className="grid gap-4 lg:grid-cols-2">
         <TextField name="badgeText" label="Badge" defaultValue={props.badgeText} />
-        <TextField name="previewBadgeText" label="Badge aperçu" defaultValue={props.previewBadgeText} />
+        <TextField name="previewBadgeText" label="Badge aperçu" defaultValue={props.previewBadgeText ?? ""} />
       </div>
       <TextareaField name="title" label="Titre principal" defaultValue={props.title} rows={3} />
       <TextareaField name="description" label="Description" defaultValue={props.description} rows={4} />
@@ -335,11 +335,11 @@ function HeroFields({ section }: { section: HomepageSectionRecord<"hero"> }) {
 
       <FieldBlock title="Carte d’aperçu">
         <div className="grid gap-4 lg:grid-cols-2">
-          <TextField name="previewTitle" label="Titre aperçu" defaultValue={props.previewTitle} />
+          <TextField name="previewTitle" label="Titre aperçu" defaultValue={props.previewTitle ?? ""} />
           <TextareaField
             name="previewDescription"
             label="Description aperçu"
-            defaultValue={props.previewDescription}
+            defaultValue={props.previewDescription ?? ""}
             rows={3}
           />
         </div>
@@ -350,12 +350,12 @@ function HeroFields({ section }: { section: HomepageSectionRecord<"hero"> }) {
               <TextField
                 name={`previewStats-value-${index}`}
                 label={`Stat ${index + 1} · valeur`}
-                defaultValue={props.previewStats[index]?.value ?? ""}
+                defaultValue={props.previewStats?.[index]?.value ?? ""}
               />
               <TextField
                 name={`previewStats-label-${index}`}
                 label={`Stat ${index + 1} · libellé`}
-                defaultValue={props.previewStats[index]?.label ?? ""}
+                defaultValue={props.previewStats?.[index]?.label ?? ""}
               />
             </div>
           ))}
@@ -367,12 +367,12 @@ function HeroFields({ section }: { section: HomepageSectionRecord<"hero"> }) {
               <TextField
                 name={`previewResults-label-${index}`}
                 label={`Résultat ${index + 1} · libellé`}
-                defaultValue={props.previewResults[index]?.label ?? ""}
+                defaultValue={props.previewResults?.[index]?.label ?? ""}
               />
               <SelectField
                 name={`previewResults-level-${index}`}
                 label={`Résultat ${index + 1} · niveau`}
-                defaultValue={props.previewResults[index]?.level ?? "À renforcer"}
+                defaultValue={props.previewResults?.[index]?.level ?? "À renforcer"}
                 options={["Prioritaire", "À renforcer", "Maîtrisé"]}
               />
             </div>
@@ -383,12 +383,12 @@ function HeroFields({ section }: { section: HomepageSectionRecord<"hero"> }) {
           <TextField
             name="previewRecommendationEyebrow"
             label="Eyebrow recommandation"
-            defaultValue={props.previewRecommendationEyebrow}
+            defaultValue={props.previewRecommendationEyebrow ?? ""}
           />
           <TextareaField
             name="previewRecommendationText"
             label="Texte de recommandation"
-            defaultValue={props.previewRecommendationText}
+            defaultValue={props.previewRecommendationText ?? ""}
             rows={4}
           />
         </div>
