@@ -18,7 +18,7 @@ values
   null,
   '[{"id":"a","label":"Déclarative"},{"id":"b","label":"Interrogative"},{"id":"c","label":"Exclamative"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'La phrase « Le soleil brille sur la mer. » énonce un fait ou une information : c''est donc une phrase déclarative. Elle se termine par un point simple. La phrase interrogative se termine par un point d''interrogation, et la phrase exclamative par un point d''exclamation. Reconnaître le type d''une phrase repose avant tout sur la ponctuation et l''intention de communication.',
+  '« Le soleil brille sur la mer. » énonce un fait, c''est tout — c''est donc une phrase déclarative ! Elle se termine par un point simple, le signe le plus discret. La règle est simple : point simple = déclarative, point d''interrogation = interrogative, point d''exclamation = exclamative. Reconnaître le type d''une phrase, c''est avant tout observer la ponctuation et l''intention de communication. Commence toujours par là !',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -30,7 +30,7 @@ values
   null,
   '[{"id":"a","label":"Déclarative"},{"id":"b","label":"Interrogative"},{"id":"c","label":"Impérative"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La phrase « Est-ce que tu viens au parc ? » pose une question : c''est une phrase interrogative. Elle se reconnaît à sa tournure interrogative (est-ce que) et au point d''interrogation final. La phrase déclarative fait une affirmation, et la phrase impérative donne un ordre. L''interrogative totale porte sur l''ensemble de la phrase et appelle une réponse par oui ou non.',
+  'Deux signaux clairs ici : la tournure « est-ce que » ET le point d''interrogation final — c''est une phrase interrogative ! Elle pose une question totale (on répond par oui ou non). La déclarative fait une affirmation, l''impérative donne un ordre. L''interrogative totale avec « est-ce que » est la forme la plus courante à l''écrit pour poser une question directe sans inversion du sujet. Facile à repérer !',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -42,7 +42,7 @@ values
   null,
   '[{"id":"a","label":"Exclamative"},{"id":"b","label":"Déclarative"},{"id":"c","label":"Interrogative"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'La phrase « Quel beau tableau ! » exprime une émotion (admiration, surprise) et se termine par un point d''exclamation : c''est une phrase exclamative. Elle se construit souvent avec un mot exclamatif comme « quel », « que » ou « comme ». La phrase déclarative énonce un fait, et l''interrogative pose une question. Le point d''exclamation est le marqueur principal de ce type de phrase.',
+  'Admiration ou surprise — et un point d''exclamation à la fin : c''est une phrase exclamative ! « Quel beau tableau ! » se construit avec le mot exclamatif « quel », qui est l''un des trois marqueurs classiques de l''exclamative avec « que » et « comme ». Retiens-les : quel/quelle + nom, comme + verbe, que de + nom. La phrase déclarative énonce, l''interrogative questionne — l''exclamative, elle, exprime. C''est tout à fait autre chose !',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -54,7 +54,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'La phrase impérative exprime un ordre, une consigne ou une demande. Elle se caractérise par l''emploi du verbe à l''impératif, sans pronom sujet exprimé. « Ferme la porte. » utilise bien l''impératif présent de « fermer » à la 2ᵉ personne du singulier. Elle se termine généralement par un point simple, parfois un point d''exclamation selon l''intensité de l''ordre.',
+  'Vrai, et c''est un exemple parfait de la phrase impérative ! Elle exprime un ordre ou une consigne, et son signe distinctif c''est l''impératif sans pronom sujet exprimé. « Ferme la porte » — pas de « tu » devant, verbe à l''impératif présent 2e pers. du singulier. Elle se termine par un point simple ou un point d''exclamation selon l''intensité. Méfie-toi : le point d''exclamation ne DÉFINIT pas le type — une exclamative ou une impérative peuvent toutes deux en avoir un !',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -66,7 +66,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":false}'::jsonb,
-  'La forme négative se reconnaît à la présence des adverbes de négation « ne… pas », « ne… plus », « ne… jamais », etc. La phrase « Il ne mange pas de viande. » est donc à la forme négative, et non affirmative. La forme affirmative serait « Il mange de la viande. ». La distinction forme affirmative / négative est indépendante du type de la phrase (déclarative, interrogative, etc.).',
+  'Faux ! Le « ne… pas » est là, bien visible — c''est la forme négative, pas affirmative. La forme affirmative, ça donnerait : « Il mange de la viande. » Retiens la distinction type / forme : le TYPE (déclaratif, interrogatif…) dit quelle est l''intention de communication, la FORME (affirmative/négative, active/passive) dit comment la phrase est construite. Les deux sont indépendants — une phrase interrogative peut très bien être à la forme négative !',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -78,7 +78,7 @@ values
   null,
   '[{"id":"a","label":"Active"},{"id":"b","label":"Passive"},{"id":"c","label":"Négative"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La phrase passive se reconnaît à la construction : sujet + auxiliaire « être » conjugué + participe passé + (complément d''agent introduit par « par » ou « de »). Ici, « Ce roman a été écrit par Victor Hugo » correspond exactement à ce schéma. À la voix active, la phrase serait : « Victor Hugo a écrit ce roman. » La transformation passive inverse les rôles grammaticaux du sujet et du complément d''agent.',
+  'Forme passive — reconnaissable à coup sûr ! La structure : sujet + auxiliaire « être » conjugué + participe passé + complément d''agent introduit par « par » (ou « de »). Ici : « Ce roman » (sujet) + « a été écrit » (être + participe) + « par Victor Hugo » (agent). À la voix active, ça donnerait : « Victor Hugo a écrit ce roman. » La transformation passive INVERSE les rôles : le COD actif devient sujet, le sujet actif devient agent.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -90,7 +90,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'À la voix active, le sujet est l''agent de l''action : il accomplit lui-même l''action exprimée par le verbe. Dans la phrase « Les enfants jouent dans le jardin », les enfants sont bien les acteurs de l''action jouer. Il n''y a pas d''auxiliaire « être » suivi d''un participe passé, ce qui confirme la voix active. La voix passive renverserait la relation : un autre sujet subirait l''action.',
+  'Vrai ! À la voix active, le sujet accomplit lui-même l''action. Ici, les enfants jouent — ils sont les acteurs, pas les patients de l''action. Pas d''auxiliaire « être » suivi d''un participe passé → voix active confirmée. La voix passive renverserait la situation : un autre sujet subirait l''action. Retiens le réflexe : cherche l''auxiliaire « être » + participe passé pour identifier le passif. Sans ça, tu es à l''actif.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -102,7 +102,7 @@ values
   null,
   '[{"id":"a","label":"Elle ne comprend pas la leçon."},{"id":"b","label":"Elle n''a pas compris la leçon."},{"id":"c","label":"Elle ne comprend jamais la leçon."}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'La forme négative simple d''une phrase au présent s''obtient en encadrant le verbe conjugué par « ne… pas ». La réponse a) « Elle ne comprend pas la leçon » est la transformation directe à la forme négative du présent. La réponse b) change le temps (passé composé), et la réponse c) ajoute une nuance de fréquence (« jamais »), qui n''est pas une simple négation. Dans la langue parlée, le « ne » est souvent omis, mais il est obligatoire à l''écrit soigné.',
+  'La négation simple d''un présent, c''est « ne… pas » autour du verbe conjugué — et c''est la réponse a) ! La réponse b) change le temps (passé composé) : on ne te demandait pas ça. La réponse c) ajoute une nuance de fréquence avec « jamais » : c''est une négation, mais pas la transformation directe demandée. En langue parlée, le « ne » disparaît souvent, mais à l''écrit soigné — et au CRPE — il est OBLIGATOIRE. Ne l''oublie jamais !',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -114,7 +114,7 @@ values
   null,
   '[{"id":"a","label":"Déclarative"},{"id":"b","label":"Subjective"},{"id":"c","label":"Impérative"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Les quatre types de phrases reconnus en grammaire française sont : la phrase déclarative, la phrase interrogative, la phrase exclamative et la phrase impérative. Il n''existe pas de type appelé « phrase subjective ». Le subjonctif est un mode verbal, non un type de phrase. Cette classification repose sur l''intention de communication du locuteur : énoncer, questionner, exprimer une émotion ou donner un ordre.',
+  '« Phrase subjective » — ça n''existe pas ! Les quatre types reconnus en grammaire française sont : déclarative, interrogative, exclamative et impérative. Le subjonctif est un MODE VERBAL, pas un type de phrase. Cette classification repose sur l''intention du locuteur : énoncer un fait, poser une question, exprimer une émotion, ou donner un ordre. Ces quatre types, tu dois les connaître sur le bout des doigts — ils reviennent régulièrement au CRPE.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -126,7 +126,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Le type et la forme d''une phrase sont deux dimensions indépendantes. Une phrase peut donc cumuler un type (impératif) et une forme (négative). L''exemple « Ne fais pas de bruit ! » est à la fois impérative (ordre) et négative (ne… pas). De même, une phrase interrogative peut être négative : « N''as-tu pas encore fini ? ». Il est important de distinguer ces deux notions pour l''analyse grammaticale.',
+  'Vrai — et c''est un point fondamental à retenir ! Le type et la forme d''une phrase sont deux dimensions INDÉPENDANTES. On peut donc cumuler : impérative (ordre) + négative (ne… pas). Exemple parfait : « Ne fais pas de bruit ! » Même chose pour interrogative + négative : « N''as-tu pas encore fini ? » Toujours analyser séparément le type ET la forme — ne les confonds jamais, ce sont deux questions différentes.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -142,7 +142,7 @@ values
   'La maîtresse entra dans la classe et posa son sac. Elle regarda les élèves et dit : **« Ouvrez vos cahiers de brouillon. »** Les enfants obéirent aussitôt.',
   '[{"id":"a","label":"Discours indirect"},{"id":"b","label":"Discours direct"},{"id":"c","label":"Discours indirect libre"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Le discours direct reproduit les paroles telles qu''elles ont été prononcées, en les encadrant entre guillemets et en les introduisant par un verbe de parole (ici « dit »). Les deux-points avant les guillemets sont une marque typographique caractéristique du discours direct. Le discours indirect transforerait la phrase en subordonnée : « Elle leur dit d''ouvrir leurs cahiers de brouillon. » Le discours indirect libre, lui, n''utilise ni guillemets ni subordonnée.',
+  'Discours direct — les signaux sont là : verbe de parole (« dit »), deux-points, guillemets. C''est la reproduction fidèle des paroles telles qu''elles ont été prononcées. Au discours indirect, ce serait une subordonnée : « Elle leur dit d''ouvrir leurs cahiers. » Au discours indirect libre, ni guillemets ni subordonnée — les paroles se fondent dans le récit. Ces trois procédés sont à connaître parfaitement, ils tombent dans les analyses de texte au CRPE.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -154,7 +154,7 @@ values
   null,
   '[{"id":"a","label":"Il dit qu''il viendrait le lendemain."},{"id":"b","label":"Il dit qu''il vient demain."},{"id":"c","label":"Il dit : « Je viendrai demain. »"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Au discours indirect, plusieurs changements s''opèrent : le pronom « je » devient « il » (concordance des personnes), le futur « viendrai » devient conditionnel « viendrait » (concordance des temps avec un verbe introducteur au passé), et le déictique temporel « demain » devient « le lendemain » (changement de repère temporel). La réponse b) ne respecte pas la concordance des temps ni le changement de déictique. La réponse c) reste au discours direct.',
+  'Trois changements à réaliser en une seule transformation — retiens-les bien ! 1) La personne : « je » → « il ». 2) Le temps : futur « viendrai » → conditionnel « viendrait » (concordance avec verbe introducteur au passé). 3) Le déictique temporel : « demain » → « le lendemain » (le repère temporel change avec le point de vue). La réponse b) rate la concordance des temps ET le déictique. La réponse c) reste au discours direct. Ces trois règles ensemble, c''est LE cœur du passage DD → DI.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -166,7 +166,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'La règle de la concordance des temps impose que, lorsque le verbe introducteur est au passé (dit, affirma, répondit…), le présent du discours direct se transforme en imparfait au discours indirect. Exemple : « Il fait beau » → Il dit qu''il faisait beau. De même, le futur devient conditionnel présent, et le passé composé devient plus-que-parfait. Cette règle est fondamentale pour maîtriser la transformation discours direct → indirect.',
+  'Vrai — c''est LA règle de concordance des temps à connaître par cœur ! Verbe introducteur au passé → tout change dans la subordonnée : présent → imparfait (« Il fait beau » → il dit qu''il faisait beau), futur → conditionnel présent, passé composé → plus-que-parfait. C''est un tableau à visualiser et à mémoriser. Cette règle est fondamentale pour maîtriser la transformation discours direct → indirect, et elle est régulièrement testée au CRPE.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -178,7 +178,7 @@ values
   null,
   '[{"id":"a","label":"affirmer"},{"id":"b","label":"demander"},{"id":"c","label":"s''exclamer"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Le verbe introducteur doit refléter l''acte de parole rapporté. Pour rapporter une question, on utilise « demander » (ou « s''interroger », « vouloir savoir »). « Affirmer » sert à rapporter une assertion, et « s''exclamer » exprime une exclamation. Le choix du verbe introducteur est donc crucial pour restituer fidèlement l''intention du locuteur. Exemples : « Où vas-tu ? » → Il lui demanda où il allait.',
+  'Le verbe introducteur doit correspondre à l''ACTE DE PAROLE rapporté — et ici c''est une question ! On utilise donc « demander » (ou « s''interroger », « vouloir savoir »). « Affirmer » rapporte une assertion, « s''exclamer » exprime une exclamation. Ce choix est crucial pour restituer fidèlement l''intention du locuteur. Exemple en action : « Où vas-tu ? » → Il lui demanda où il allait. Le verbe introducteur n''est pas là par hasard : il porte tout le sens de l''acte de parole.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -190,7 +190,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Les guillemets sont une marque typographique du discours direct, pas du discours indirect. Au discours indirect, les paroles sont intégrées à la phrase principale sous forme de proposition subordonnée, introduite par « que » (pour les énoncés assertifs) ou par un mot interrogatif (pour les questions). Il n''y a donc pas de guillemets au discours indirect. C''est précisément l''absence de guillemets et de deux-points qui distingue les deux modes de rapportage des paroles.',
+  'Faux ! Les guillemets appartiennent au discours DIRECT, pas au discours indirect. Au discours indirect, les paroles s''intègrent à la phrase principale sous forme de subordonnée — pas de guillemets, pas de deux-points. C''est précisément l''absence de guillemets et de deux-points qui distingue les deux procédés. Retiens ce contraste : discours direct = guillemets + deux-points + paroles telles quelles ; discours indirect = subordonnée introduite par « que » ou un mot interrogatif.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -202,7 +202,7 @@ values
   null,
   '[{"id":"a","label":"Elle cria qu''il venait ici tout de suite."},{"id":"b","label":"Elle lui cria de venir là tout de suite."},{"id":"c","label":"Elle cria : « Viens ici tout de suite ! »"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Pour transformer un ordre ou un impératif au discours indirect, on utilise la construction « verbe introducteur + de + infinitif ». L''impératif « viens » devient donc « de venir ». De plus, le déictique spatial « ici » devient « là » (changement de repère), et les points d''exclamation disparaissent. La réponse a) utilise incorrectement la structure « que + indicatif » qui ne convient pas pour un ordre. La réponse c) reste au discours direct.',
+  'Pour transformer un ordre au discours indirect, la règle c''est : verbe introducteur + « de » + infinitif. L''impératif « viens » devient « de venir ». Et deux autres changements obligatoires : le déictique spatial « ici » → « là » (changement de repère), et les points d''exclamation disparaissent. La réponse a) utilise incorrectement « que + indicatif » — ça ne fonctionne pas pour un ordre. La réponse c) reste au discours direct. La structure « de + infinitif » pour les ordres, c''est vraiment à retenir !',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -214,7 +214,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Au discours indirect, les questions totales (auxquelles on répond par oui ou non) sont introduites par « si ». Ici, « il se demanda si… » rapporte une question de type oui/non : « Ai-je bien fermé la porte ? » Les questions partielles (portant sur un élément de la phrase) utilisent un mot interrogatif : « il demanda où, quand, comment, pourquoi… ». L''emploi de « si » est donc le marqueur du discours indirect pour les interrogatives totales.',
+  'Vrai ! « Si » introduit les questions totales au discours indirect — celles qui appellent une réponse oui/non. Ici, la question d''origine était : « Ai-je bien fermé la porte ? » → totale → discours indirect avec « si ». Pour les questions partielles (qui portent sur un élément spécifique), on utilise un mot interrogatif : « il demanda où, quand, comment, pourquoi… » Le « si » du discours indirect est ton marqueur pour les interrogatives totales rapportées. Simple et efficace !',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -226,7 +226,7 @@ values
   'La journée avait été longue. Je suis fatiguée, pensait-elle, et je voudrais rentrer chez moi. Elle regarda l''heure et soupira.',
   '[{"id":"a","label":"Discours direct"},{"id":"b","label":"Discours indirect"},{"id":"c","label":"Discours indirect libre"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  'Le discours indirect libre est un procédé intermédiaire qui emprunte au discours direct la vivacité et les marques d''énonciation (ici « je »), et au discours indirect l''absence de guillemets et la concordance des temps. Il se fond dans le récit sans deux-points ni guillemets obligatoires, mais on peut identifier un verbe de pensée (« pensait-elle ») en incise. Ce procédé est fréquent en littérature pour exprimer le flux de conscience d''un personnage.',
+  'Discours indirect libre — le plus subtil des trois procédés ! Il emprunte au discours direct la vivacité et les marques d''énonciation (le « je » du personnage), et au discours indirect l''absence de guillemets et la concordance des temps. Il se fond dans le récit sans deux-points ni guillemets obligatoires. Ici, le verbe de pensée « pensait-elle » est en incise, discret. Ce procédé est très fréquent en littérature pour entrer dans la tête d''un personnage — à reconnaître sans hésiter au CRPE.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -238,7 +238,7 @@ values
   null,
   '[{"id":"a","label":"Elle répondit qu''elle ne savait pas."},{"id":"b","label":"Elle demanda qu''elle ne savait pas."},{"id":"c","label":"Elle affirma si elle ne savait pas."}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  '« Répondre que » introduit correctement une assertion au discours indirect. La réponse b) est incorrecte car « demander » introduit une question et ne peut pas être suivi de « que » pour rapporter une assertion. La réponse c) mélange « affirmer » (assertion) avec « si » (marqueur d''interrogative indirecte totale), ce qui est agrammatical. Le choix du verbe introducteur et de sa construction syntaxique est donc déterminant pour la grammaticalité de la phrase.',
+  'La réponse a) est correcte : « répondre que » + assertion = construction parfaite pour le discours indirect d''une réponse. La réponse b) est incorrecte : « demander » introduit une question et ne se construit pas avec « que » pour rapporter une assertion. La réponse c) mélange « affirmer » (assertion) avec « si » (marqueur d''interrogative indirecte totale) — c''est agrammatical. Le verbe introducteur et sa construction syntaxique forment un tout : ils doivent correspondre à l''acte de parole rapporté.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -250,7 +250,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette phrase est bien au discours indirect : un ordre a été rapporté à l''aide de la construction « dire de + infinitif ». Le discours direct correspondant serait : « Il lui dit : "Tais-toi." » Les marques du discours indirect sont présentes : pas de guillemets, pas de deux-points, transformation de l''impératif en infinitif précédé de « de ». C''est la structure canonique pour rapporter un ordre au discours indirect en français.',
+  'Vrai ! C''est un exemple parfait de discours indirect pour un ordre. La structure canonique : « dire de + infinitif ». Le discours direct correspondant aurait été : « Il lui dit : "Tais-toi." » Les signaux du discours indirect sont tous présents : pas de guillemets, pas de deux-points, impératif transformé en infinitif précédé de « de ». Cette structure « dire de + infinitif » pour rapporter un ordre, c''est à retenir absolument — c''est différent de « dire que + subordonnée » pour rapporter une assertion.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -266,7 +266,7 @@ values
   'Le ciel était d''un gris uniforme ; de lourds nuages s''amoncelaient à l''horizon. Les passants pressaient le pas, les uns regardant le sol, les autres scrutant le ciel avec inquiétude.',
   '[{"id":"a","label":"Il sépare deux éléments d''une liste courte."},{"id":"b","label":"Il marque une pause forte entre deux propositions liées par le sens."},{"id":"c","label":"Il introduit une explication ou une citation."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Le point-virgule marque une pause plus forte que la virgule mais moins forte que le point. Il unit deux propositions indépendantes qui sont liées thématiquement : ici la description du ciel et celle des nuages forment un tout cohérent sur la météo. Il ne sépare pas une liste (rôle de la virgule) et n''introduit pas une explication (rôle des deux-points). Maîtriser le point-virgule permet d''articuler les idées avec nuance dans un écrit élaboré.',
+  'Le point-virgule, c''est le signe de ponctuation « entre-deux » : plus fort que la virgule, moins fort que le point. Il unit deux propositions indépendantes liées thématiquement — ici la description du ciel et celle des nuages forment un tout cohérent sur la météo. Pas de liste (rôle de la virgule), pas d''explication annoncée (rôle des deux-points). Maîtriser le point-virgule, c''est montrer qu''on articule ses idées avec finesse dans un écrit élaboré — exactement ce que le CRPE valorise.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -278,7 +278,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Les guillemets ont plusieurs fonctions en français : encadrer le discours direct (« Il dit : "Viens !" »), signaler une citation, indiquer qu''un mot est employé avec distance ou ironie (un soi-disant "expert"), ou désigner un terme technique ou argotique. En français, les titres d''œuvres s''écrivent en italique et/ou avec une majuscule initiale, sans guillemets obligatoires. Il ne faut donc pas réduire les guillemets à une seule fonction.',
+  'Faux — les guillemets ont bien d''autres rôles ! Ils encadrent le discours direct, signalent une citation, indiquent qu''un mot est employé avec distance ou ironie (un soi-disant "expert"), ou désignent un terme technique ou argotique. En français, les titres d''œuvres s''écrivent en italique et/ou avec une majuscule initiale — pas forcément entre guillemets. Ne réduis donc pas les guillemets à une seule fonction : leur usage est riche et varié, et bien le connaître te sera utile pour analyser des textes au CRPE.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -290,7 +290,7 @@ values
   null,
   '[{"id":"a","label":"Des virgules entre les éléments de la liste"},{"id":"b","label":"Un point d''exclamation à la fin"},{"id":"c","label":"Des guillemets autour des aliments"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Lorsqu''on énumère plusieurs éléments, la virgule sépare chacun d''eux, sauf le dernier qui est généralement précédé de « et ». La phrase correcte serait : « Il avait apporté tout ce qu''il fallait : du pain, du beurre et du fromage. » Les deux-points jouent ici leur rôle d''annonce, mais les éléments de la liste doivent être séparés par des virgules. L''absence de ces virgules nuit à la lisibilité et peut créer une ambiguïté sur le nombre d''éléments.',
+  'Les virgules ! Quand on énumère plusieurs éléments, chacun est séparé par une virgule — sauf le dernier, précédé de « et ». La phrase correcte : « Il avait apporté tout ce qu''il fallait : du pain, du beurre et du fromage. » Les deux-points font bien leur travail d''annonce, mais les virgules dans la liste sont indispensables. Sans elles, on a du mal à distinguer les éléments et ça nuit à la lisibilité. La virgule dans les listes, c''est un geste d''écriture de base — ne la néglige pas.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -302,7 +302,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Dans la mise en page d''un dialogue, chaque réplique d''un nouveau locuteur commence par un tiret cadratin (—), souvent en début de ligne. Ce tiret est distinct du tiret demi-cadratin (–) utilisé pour les incises ou les parenthèses. Il permet au lecteur d''identifier clairement qui prend la parole sans avoir à répéter « dit-il » à chaque réplique. C''est une convention typographique propre au dialogue littéraire en français.',
+  'Vrai ! Dans un dialogue littéraire, chaque réplique d''un nouveau locuteur commence par un tiret cadratin (—) en début de ligne. C''est une convention typographique propre au dialogue en français. Attention à ne pas le confondre avec le tiret demi-cadratin (–) utilisé pour les incises ou les parenthèses. Le tiret cadratin permet au lecteur de repérer immédiatement qui prend la parole, sans avoir à répéter « dit-il » à chaque fois. C''est aussi un élément à observer lors de l''analyse d''un texte dialogué.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -314,7 +314,7 @@ values
   null,
   '[{"id":"a","label":"Ils séparent deux propositions indépendantes."},{"id":"b","label":"Ils annoncent une explication ou une précision."},{"id":"c","label":"Ils introduisent un discours direct."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Les deux-points ont plusieurs rôles : annoncer une liste, introduire une explication ou une précision, ou introduire un discours direct. Dans cette phrase, les deux-points annoncent la précision de l''ambition, c''est-à-dire une explication de ce que voulait dire « une seule ambition ». Ce n''est ni une liste ni un discours direct. Cette fonction d''explication ou de précision est très fréquente dans les textes argumentatifs et explicatifs.',
+  'Ici, les deux-points annoncent UNE PRÉCISION — ils développent ce que signifie « une seule ambition ». C''est leur rôle le plus fin : pas une liste, pas un discours direct, mais une explication. Les trois rôles des deux-points à retenir : annoncer une liste, introduire une explication/précision, introduire un discours direct. Cette fonction d''explication est très fréquente dans les textes argumentatifs et explicatifs que tu rencontreras au CRPE. Observe toujours ce qui suit les deux-points pour déterminer leur rôle.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -326,7 +326,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Les points de suspension ont plusieurs valeurs : inachèvement ou interruption d''un énoncé, hésitation, suggestion d''une suite sous-entendue, émotion ou silence. Ils peuvent marquer une liste incomplète (« Il a visité Paris, Lyon, Marseille… »), mais aussi une pause, une hésitation (« Je… je ne sais pas ») ou un sous-entendu. Les confondre avec un simple signe d''énumération serait réducteur. Ils sont toujours au nombre de trois et ne sont pas suivis d''un autre point final.',
+  'Faux — les points de suspension sont bien plus riches que ça ! Ils peuvent marquer : une liste incomplète (« Paris, Lyon, Marseille… »), une interruption ou une hésitation (« Je… je ne sais pas »), un sous-entendu ou une suggestion (quand on laisse le lecteur compléter), une émotion ou un silence. Ce n''est pas un simple signe d''énumération. Et petite règle technique : ils sont TOUJOURS au nombre de trois et ne sont pas suivis d''un autre point final. La richesse de leur emploi en fait un beau sujet d''analyse stylistique.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -338,7 +338,7 @@ values
   null,
   '[{"id":"a","label":"Avant « et » dans une énumération à deux éléments"},{"id":"b","label":"Pour isoler une proposition incise ou une apposition"},{"id":"c","label":"Après le verbe conjugué"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La virgule est obligatoire pour isoler une proposition incise (« dit-il », « pensait-elle ») ou une apposition (« Marie, ma meilleure amie, est venue »). Elle est aussi nécessaire pour séparer des éléments d''une liste de trois éléments ou plus. En revanche, on ne met généralement pas de virgule avant « et » dans une simple coordination à deux éléments, ni après un verbe. L''incise et l''apposition doivent toujours être encadrées de virgules (ou d''un tiret).',
+  'La virgule est obligatoire pour isoler une incise (« dit-il », « pensait-elle ») ou une apposition (« Marie, ma meilleure amie, est venue »). Ces éléments intercalés doivent TOUJOURS être encadrés de virgules — ou de tirets pour un effet plus marqué. En revanche, pas de virgule avant « et » dans une simple coordination à deux éléments, et jamais après un verbe. Retiens : incise et apposition = virgules obligatoires, c''est une règle sans exception dans l''écrit soigné.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -350,7 +350,7 @@ values
   'La vie, affirma-t-il avec conviction, vaut la peine d''être vécue.',
   '[{"id":"a","label":"Les guillemets"},{"id":"b","label":"Les virgules"},{"id":"c","label":"Les tirets"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Dans cette phrase, les virgules encadrent la proposition incise « affirma-t-il avec conviction » pour la détacher du reste de la phrase. L''incise est un segment intercalé qui commente ou attribue les paroles. Elle peut aussi être encadrée de tirets (« La vie — affirma-t-il — vaut… ») pour un effet de mise en relief plus marqué. Les guillemets, eux, sont réservés au discours direct ou aux citations. Les deux solutions (virgules ou tirets) sont donc acceptées selon les choix stylistiques.',
+  'Ce sont les virgules qui encadrent l''incise « affirma-t-il avec conviction » — elles la détachent du reste de la phrase. L''incise est un segment intercalé qui attribue les paroles ou les pensées. Elle peut aussi être encadrée de tirets (« La vie — affirma-t-il — vaut… ») pour un effet de mise en relief plus marqué. Les guillemets, eux, sont réservés au discours direct ou aux citations. Les deux solutions (virgules ou tirets) sont acceptées selon les choix stylistiques, mais les virgules restent la convention la plus courante.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -362,7 +362,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'La tournure « est-ce que » est un marqueur de l''interrogation directe totale, et toute phrase interrogative directe se termine par un point d''interrogation. « Est-ce que tu viens ? » est bien une question directe. En revanche, si « est-ce que » apparaît dans une interrogative indirecte, il se transforme : « Je me demande si tu viens. » Il n''y a alors plus de point d''interrogation. La distinction directe/indirecte est donc essentielle pour l''emploi du point d''interrogation.',
+  'Vrai — dans le cas de l''interrogation DIRECTE ! « Est-ce que tu viens ? » → question directe → point d''interrogation. Mais attention au piège : si « est-ce que » apparaît dans une interrogative INDIRECTE, il se transforme et le point d''interrogation disparaît : « Je me demande si tu viens. » La distinction directe/indirecte est donc la clé. Interrogation directe = tu poses vraiment la question → point d''interrogation. Interrogation indirecte = tu rapportes la question → pas de point d''interrogation.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -374,7 +374,7 @@ values
   null,
   '[{"id":"a","label":"Il répondit, qu''il ne savait pas."},{"id":"b","label":"Il répondit : « Je ne sais pas. »"},{"id":"c","label":"Il répondit — Je ne sais pas."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La structure canonique du discours direct en français est : verbe de parole + deux-points + guillemets + paroles. La réponse b) respecte cette convention typographique. La réponse a) emploie une virgule à la place des deux-points et transforme la phrase en discours indirect. La réponse c) manque les guillemets et n''emploie pas le tiret correctement (le tiret sert à changer de locuteur dans un dialogue, pas à introduire une première réplique). Ces conventions sont normées en français standard.',
+  'La structure canonique du discours direct : verbe de parole + deux-points + guillemets + paroles — et c''est exactement la réponse b) ! La réponse a) remplace les deux-points par une virgule et transforme la phrase en discours indirect : erreur de procédé. La réponse c) manque les guillemets et emploie mal le tiret — le tiret sert à changer de locuteur dans un dialogue, pas à introduire une première réplique. Ces conventions sont normées en français standard : apprends-les une bonne fois pour toutes !',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -390,7 +390,7 @@ values
   null,
   '[{"id":"a","label":"Épithète liée"},{"id":"b","label":"Attribut du sujet"},{"id":"c","label":"Apposition"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'L''épithète liée est un adjectif qualificatif directement rattaché au nom qu''il qualifie, sans verbe attributif. Ici, « petite » est placé avant le nom « fille » et en est inséparable dans le groupe nominal. L''attribut du sujet, en revanche, est séparé du sujet par un verbe d''état (« La fille est petite »). L''apposition est un nom ou groupe nominal ajouté pour préciser le nom. La distinction épithète liée/épithète détachée/attribut est fondamentale en analyse grammaticale.',
+  'Épithète liée — « petite » est directement accolé au nom « fille » sans verbe intermédiaire. C''est la définition même de l''épithète liée : inséparable du nom dans le GN. L''attribut du sujet, lui, est séparé par un verbe d''état (« La fille est petite »). L''apposition est un nom ou GN ajouté pour préciser le nom. La distinction épithète liée / épithète détachée / attribut est fondamentale en analyse grammaticale — et elle revient souvent au CRPE. Retiens : lié = dans le GN, pas de verbe entre les deux.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -402,7 +402,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'L''apposition est une expansion du nom qui consiste à placer à côté d''un nom un autre nom (ou groupe nominal) ayant le même référent. Elle est généralement encadrée de virgules et entretient une relation d''équivalence avec le nom qu''elle précise. Ici, « mon voisin » désigne la même personne que « Paul » et précise son identité. On la distingue du complément du nom, qui est introduit par une préposition, et de l''épithète, qui est un adjectif.',
+  'Vrai ! L''apposition, c''est un nom (ou GN) qu''on place à côté d''un autre nom pour désigner la même réalité. Ici, « mon voisin » = Paul → même référent, encadré de virgules. C''est la définition même de l''apposition : équivalence référentielle + virgules. On la distingue du complément du nom (introduit par une préposition : « le jardin de Paul ») et de l''épithète (un adjectif directement accolé). Les virgules sont le signal visuel de l''apposition — vois-les, et tu sais que tu as une apposition.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -414,7 +414,7 @@ values
   null,
   '[{"id":"a","label":"Épithète"},{"id":"b","label":"Complément du nom"},{"id":"c","label":"Apposition"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Le complément du nom est une expansion du groupe nominal introduite par une préposition (le plus souvent « de », mais aussi « à », « en », « pour »…). Il précise le nom noyau. Dans « un livre de recettes », « de recettes » complète et précise « livre » en indiquant son contenu. Il ne s''agit pas d''une épithète (qui serait un adjectif) ni d''une apposition (qui supposerait une équivalence référentielle). Le complément du nom est invariable et peut souvent être paraphrasé par une relative.',
+  'Complément du nom — la préposition « de » t''indique que tu as bien un GP expansion du nom. Il précise le nom noyau « livre » en indiquant son contenu. Ce n''est pas une épithète (qui serait un adjectif) ni une apposition (qui supposerait une équivalence référentielle et des virgules). Astuce : le complément du nom peut souvent être paraphrasé par une proposition relative → « un livre qui contient des recettes ». Invariable, introduit par une préposition — voilà les deux caractéristiques à retenir.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -426,7 +426,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Dans « Le chat est noir », « noir » est attribut du sujet, pas épithète liée. L''attribut du sujet est relié au sujet par un verbe d''état (être, paraître, sembler, devenir…). L''épithète liée, elle, est directement accolée au nom sans verbe intermédiaire : « Le chat noir dort. » La distinction est cruciale : l''attribut est une fonction syntaxique liée au prédicat, alors que l''épithète est une fonction interne au groupe nominal. Les deux peuvent être des adjectifs qualificatifs, mais leur rôle est différent.',
+  'Faux ! « Noir » est ici ATTRIBUT DU SUJET, pas épithète liée. La différence fondamentale : l''attribut est séparé du nom par un verbe d''état (être, paraître, sembler, devenir…). Ici, « est » est ce verbe d''état — il relie le sujet « le chat » à l''attribut « noir ». L''épithète liée, elle, est directement accolée au nom : « Le chat noir dort. » Cette distinction est cruciale parce qu''elle change la fonction syntaxique : attribut = lié au prédicat, épithète = interne au GN. Les deux peuvent être des adjectifs, mais leurs rôles sont complètement différents.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -438,7 +438,7 @@ values
   null,
   '[{"id":"a","label":"Déterminant + nom noyau"},{"id":"b","label":"Déterminant + adjectif + nom noyau"},{"id":"c","label":"Nom noyau + complément du nom"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'La structure minimale (ou noyau) du groupe nominal est : déterminant + nom. Le déterminant (article, déterminant possessif, démonstratif, etc.) est indispensable pour actualiser le nom commun en contexte. Les expansions (épithète, apposition, complément du nom, proposition relative) sont facultatives et viennent enrichir ce noyau. Exemple minimal : « la maison ». Exemple étendu : « la belle maison de mes grands-parents qui surplombe la vallée ».',
+  'Déterminant + nom noyau — c''est tout ce qu''il faut ! L''adjectif et toutes les expansions (épithète, apposition, complément du nom, relative) sont facultatifs. Le déterminant est indispensable pour actualiser le nom commun en contexte. Exemple minimal : « la maison ». Exemple maximal : « la belle maison de mes grands-parents qui surplombe la vallée ». Même avec toutes ces expansions, le noyau reste « maison » et le déterminant reste « la ». La structure de base, c''est toujours là.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -450,7 +450,7 @@ values
   null,
   '[{"id":"a","label":"Complément du nom"},{"id":"b","label":"Proposition subordonnée relative"},{"id":"c","label":"Apposition"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La proposition subordonnée relative est introduite par un pronom relatif (que, qui, dont, où, lequel…) et complète un nom ou un pronom antécédent. Dans « la maison que nous avons visitée », « que nous avons visitée » est une proposition relative dont l''antécédent est « maison ». Elle développe et précise l''identité de la maison. Elle est à distinguer du complément du nom (groupe prépositionnel sans verbe conjugué) et de l''apposition (groupe nominal co-référent).',
+  'Proposition subordonnée relative ! Le signal : le pronom relatif « que » reprend l''antécédent « maison » et introduit la subordonnée. « Que nous avons visitée » développe et précise quelle maison — c''est son rôle d''expansion. À distinguer du complément du nom (GP sans verbe conjugué) et de l''apposition (GN co-référent encadré de virgules). Et retiens l''accord ici : le participe « visitée » s''accorde avec le COD « que » (= la maison, féminin singulier) placé avant — règle de l''accord du participe passé avec « avoir » !',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -462,7 +462,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'L''épithète détachée (ou épithète détachée de l''adjectif) est une expansion facultative placée à distance du nom et séparée par une virgule. Exemple : « Épuisé, il s''endormit aussitôt. » L''adjectif « épuisé » est détaché du nom sujet « il ». On peut la supprimer sans que la phrase devienne agrammaticale : « Il s''endormit aussitôt. » En revanche, l''épithète liée est directement accolée au nom et ne peut en général pas être aussi facilement supprimée si elle est déterminante pour le sens.',
+  'Vrai — c''est là toute la différence avec l''épithète liée ! L''épithète détachée est à distance du nom, séparée par une virgule, et facultative. Exemple : « Épuisé, il s''endormit aussitôt. » On peut supprimer « épuisé » : « Il s''endormit aussitôt. » ✓ La phrase reste correcte. L''épithète liée, elle, est directement accolée au nom et souvent plus difficile à supprimer si elle est déterminante pour le sens. Virgule + à distance = détachée, sans virgule + accolée = liée. C''est aussi simple que ça.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -474,7 +474,7 @@ values
   null,
   '[{"id":"a","label":"Deux"},{"id":"b","label":"Trois"},{"id":"c","label":"Quatre"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Le groupe nominal « ce grand château médiéval en ruine que j''admire » contient trois expansions autour du nom noyau « château » : 1) l''épithète liée « grand » (adjectif antéposé) ; 2) l''épithète liée « médiéval » (adjectif postposé) ; 3) le complément du nom « en ruine » (groupe prépositionnel) ; 4) la proposition subordonnée relative « que j''admire ». En comptant précisément, on obtient quatre expansions. Cela illustre la richesse que peut atteindre un groupe nominal en français.',
+  'Comptons ensemble ! Nom noyau : « château ». Expansions : 1) « grand » (épithète liée antéposée), 2) « médiéval » (épithète liée postposée), 3) « en ruine » (complément du nom), 4) « que j''admire » (proposition subordonnée relative). Ça fait quatre expansions — et la réponse proposée « trois » est en réalité incorrecte si l''on compte rigoureusement. Cet exemple illustre bien la récursivité du GN en français : un nom peut accumuler un grand nombre d''expansions de natures différentes. Analyse-les toutes !',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -486,7 +486,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Le complément du nom peut être introduit par diverses prépositions : « de » (une tasse de café), « à » (une tasse à café), « en » (un bracelet en argent), « pour » (une salle pour réunions)… Dans « une tasse à café », « à café » est bien un complément du nom introduit par la préposition « à ». Il précise la destination ou l''usage de la tasse. Notez la nuance avec « une tasse de café » : le premier désigne le contenant prévu pour le café, le second son contenu.',
+  'Vrai ! Le complément du nom peut être introduit par des prépositions variées, pas seulement « de » : « à » (une tasse à café), « en » (un bracelet en argent), « pour » (une salle pour réunions)… Ici, « à café » précise la destination ou l''usage de la tasse. Et note la nuance savoureuse avec « une tasse de café » : la tasse À café désigne le contenant prévu pour, la tasse DE café désigne son contenu actuel. La préposition choisie change le sens — c''est la richesse du français !',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -498,7 +498,7 @@ values
   null,
   '[{"id":"a","label":"Le directeur, homme sévère, prit la parole."},{"id":"b","label":"Le directeur sévère prit la parole."},{"id":"c","label":"Le directeur prit sévèrement la parole."}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Dans la réponse a), « homme sévère » est un groupe nominal apposé au nom « directeur » : il est encadré de virgules, co-référent au nom noyau (désigne la même personne), et apporte une précision descriptive. C''est l''emploi canonique de l''apposition. Dans b), « sévère » est une épithète liée directement accolée au nom. Dans c), « sévèrement » est un adverbe qui modifie le verbe. Les trois réponses sont grammaticalement correctes, mais seule a) illustre l''apposition.',
+  'La réponse a) illustre parfaitement l''apposition : « homme sévère » est un GN encadré de virgules, co-référent au nom « directeur » (même personne), qui apporte une précision descriptive. C''est l''emploi canonique. Dans b), « sévère » est une épithète liée directement accolée au nom. Dans c), « sévèrement » est un adverbe qui modifie le verbe. Les trois phrases sont grammaticalement correctes, mais seule la réponse a) illustre l''apposition. Retiens les deux signaux visuels de l''apposition : virgules + GN co-référent.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -514,7 +514,7 @@ values
   null,
   '[{"id":"a","label":"Juxtaposition"},{"id":"b","label":"Coordination"},{"id":"c","label":"Subordination"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  '« Car » est une conjonction de coordination qui exprime la cause. Les sept conjonctions de coordination en français sont : mais, ou, et, donc, or, ni, car — mémorisables par le moyen mnémotechnique « MOEDONNIC » ou « mais ou est donc or ni car ». La coordination unit deux propositions de même niveau syntaxique. La subordination, elle, implique une dépendance hiérarchique (proposition principale / subordonnée). La juxtaposition, enfin, se fait par la seule ponctuation.',
+  '« Car » — coordination ! Et tu la connais, la liste des sept conjonctions de coordination : mais, ou, et, donc, or, ni, car. Le moyen mnémotechnique : « mais ou est donc or ni car ». La coordination unit deux propositions de même niveau syntaxique. La subordination, elle, crée une dépendance hiérarchique (principale → subordonnée). La juxtaposition se fait par la seule ponctuation, sans mot de liaison. Ici, « car » est présent et c''est bien une conjonction de coordination → coordination, pas de doute.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -526,7 +526,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'La juxtaposition consiste à mettre côte à côte deux propositions sans aucun mot de liaison (ni conjonction de coordination, ni conjonction de subordination) : le lien est assuré uniquement par la ponctuation (point, virgule, point-virgule, deux-points). Ici, les deux phrases indépendantes sont simplement juxtaposées par un point. Le lecteur déduit le lien logique (cause / conséquence) sans qu''il soit explicitement formulé. La juxtaposition est ainsi le procédé le plus implicite des trois modes de liaison.',
+  'Vrai ! La juxtaposition, c''est le procédé le plus implicite des trois. Deux propositions côte à côte, séparées uniquement par un point — aucun mot de liaison. Le lecteur déduit lui-même le rapport logique (ici cause/conséquence) sans qu''il soit formulé. C''est l''élégance de la juxtaposition : elle fait confiance au lecteur. Retiens le trio : juxtaposition (ponctuation seule) / coordination (conjonction de coordination) / subordination (dépendance hiérarchique). Ces trois modes de liaison sont les outils de base de la structure des phrases complexes.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -538,7 +538,7 @@ values
   null,
   '[{"id":"a","label":"Coordination par « donc »"},{"id":"b","label":"Subordination conditionnelle"},{"id":"c","label":"Juxtaposition"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  '« Si » est une conjonction de subordination qui introduit une proposition subordonnée circonstancielle de condition. La proposition « si tu m''invites » dépend syntaxiquement de la proposition principale « Je viendrai ». La subordination crée une relation hiérarchique : la subordonnée ne peut pas fonctionner seule comme phrase autonome. Le « si » conditionnel se distingue du « si » interrogatif indirect (« Je me demande si tu viendras ») par son rôle syntaxique et son mode verbal (indicatif, jamais conditionnel dans la subordonnée conditionnelle).',
+  'Subordination conditionnelle — « si » est une conjonction de subordination qui introduit une circonstancielle de condition. La proposition « si tu m''invites » DÉPEND de la principale « Je viendrai » — elle ne peut pas fonctionner seule comme phrase autonome. C''est la marque de la subordination : relation hiérarchique. Et retiens la règle de concordance avec « si » conditionnel : jamais de conditionnel dans la subordonnée introduite par « si » ! Si + présent → futur. Si + imparfait → conditionnel présent.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -550,7 +550,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'On distingue : la phrase simple (un seul verbe conjugué, une seule proposition), la phrase composée (plusieurs propositions indépendantes coordonnées ou juxtaposées), et la phrase complexe (au moins une proposition principale et au moins une proposition subordonnée). Dans la phrase complexe, la subordonnée dépend syntaxiquement de la principale : elle ne peut pas fonctionner de façon autonome. « Je pense que tu as raison » est complexe : « que tu as raison » est une subordonnée complétive.',
+  'Vrai — et c''est la définition même de la phrase complexe ! Retiens le trio : phrase simple (un seul verbe conjugué), phrase composée (propositions indépendantes coordonnées ou juxtaposées), phrase complexe (au moins une principale + une subordonnée). Dans la phrase complexe, la subordonnée dépend syntaxiquement de la principale : elle ne peut pas fonctionner seule. Exemple : « Je pense que tu as raison » — « que tu as raison » est une subordonnée complétive. Ces trois catégories, tu dois les distinguer sans hésiter.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -562,7 +562,7 @@ values
   null,
   '[{"id":"a","label":"Opposition"},{"id":"b","label":"Conséquence"},{"id":"c","label":"Addition"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  '« Donc » exprime la conséquence : la deuxième proposition découle logiquement de la première. Exemples : « Il a bien révisé, donc il a réussi. » Parmi les sept conjonctions de coordination, les liens logiques sont variés : « et » (addition), « ou » (alternative), « mais » (opposition), « or » (transition/opposition), « ni » (négation additive), « car » (cause), « donc » (conséquence). Connaître ces valeurs sémantiques est essentiel pour analyser la structure argumentative d''un texte.',
+  '« Donc » exprime la conséquence : la deuxième proposition DÉCOULE logiquement de la première. Retiens les valeurs des sept conjonctions : et = addition, ou = alternative, mais = opposition, or = transition/opposition, ni = négation additive, car = cause, donc = conséquence. Connaître ces valeurs sémantiques est essentiel pour analyser la structure argumentative d''un texte. Au CRPE, on te demande souvent de repérer les connecteurs logiques — commence par les conjonctions de coordination, c''est la base.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -574,7 +574,7 @@ values
   null,
   '[{"id":"a","label":"Cause"},{"id":"b","label":"Condition"},{"id":"c","label":"Concession"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  '« Bien que » est une conjonction de subordination qui introduit une proposition subordonnée circonstancielle de concession (ou d''opposition). La concession indique que le fait exprimé dans la subordonnée ne suffit pas à empêcher celui de la principale. Ici : malgré la fatigue, le travail continue. Elle se construit avec le subjonctif. Les conjonctions de concession usuelles sont : bien que, quoique, encore que, même si (avec l''indicatif). Ne pas confondre avec la cause (parce que, puisque) ni la condition (si, à condition que).',
+  '« Bien que » + subjonctif = concession, à retenir absolument ! La concession, c''est : l''obstacle existe, mais il ne suffit pas à empêcher l''action principale. Ici : malgré la fatigue, le travail continue. C''est l''idée du « quand même ». Attention à ne pas confondre : la cause (parce que, puisque) EXPLIQUE, la condition (si, à condition que) POSE une hypothèse, la concession CONCÈDE un obstacle sans le laisser gagner. Les conjonctions de concession : bien que, quoique, encore que (toutes avec le subjonctif), même si (avec l''indicatif).',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -586,7 +586,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'La coordination et la juxtaposition unissent des propositions de même niveau syntaxique, c''est-à-dire des propositions indépendantes qui pourraient chacune former une phrase complète. C''est ce qui les distingue de la subordination, où la proposition subordonnée dépend de la principale. Dans « Il chante et elle danse », les deux propositions sont de même statut : elles sont coordonnées par « et ». Aucune n''est hiérarchiquement inférieure à l''autre, contrairement à une subordonnée.',
+  'Vrai — et c''est précisément ce qui distingue la coordination de la subordination ! Dans « Il chante et elle danse », les deux propositions sont de MÊME niveau : aucune ne dépend de l''autre, elles pourraient chacune former une phrase complète. La coordination (et la juxtaposition) unissent des éléments de même statut. La subordination, elle, crée une hiérarchie : la subordonnée dépend de la principale. C''est la différence fondamentale entre les deux types de liens syntaxiques.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -598,7 +598,7 @@ values
   null,
   '[{"id":"a","label":"Le vent souffle et les feuilles tombent."},{"id":"b","label":"Le vent qui souffle fort fait tomber les feuilles."},{"id":"c","label":"Le vent souffle fort ; les feuilles tombent."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La phrase b) est complexe car elle contient une proposition principale (« Le vent fait tomber les feuilles ») et une proposition subordonnée relative (« qui souffle fort ») qui dépend du nom « vent ». La phrase a) est composée (deux indépendantes coordonnées par « et »). La phrase c) est composée par juxtaposition (deux indépendantes séparées par un point-virgule). La présence d''une proposition subordonnée (relative, conjonctive ou interrogative indirecte) est le critère définitoire de la phrase complexe.',
+  'La phrase b) est complexe : elle contient une principale (« Le vent fait tomber les feuilles ») et une subordonnée relative (« qui souffle fort ») qui dépend du nom « vent ». La phrase a) est composée : deux indépendantes coordonnées par « et ». La phrase c) est composée par juxtaposition : deux indépendantes séparées par un point-virgule. Le critère définitoire de la phrase complexe : la présence d''une proposition subordonnée (relative, conjonctive, interrogative indirecte). Sans subordonnée → phrase simple ou composée.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -610,7 +610,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":false}'::jsonb,
-  '« Or » est une conjonction de coordination qui exprime une transition argumentative ou une opposition logique, notamment dans un raisonnement. Exemple : « Tous les hommes sont mortels ; or Socrate est un homme ; donc Socrate est mortel. » Ce n''est pas une conjonction de cause (rôle de « car », « parce que »). « Or » introduit souvent une information nouvelle qui contraste avec ou nuance ce qui précède, et est fréquente dans les syllogismes et la dissertation. La confondre avec « car » est une erreur courante.',
+  'Faux — et confondre « or » avec « car » est une erreur classique ! « Or » exprime une transition argumentative ou une opposition logique, pas la cause. Exemple du syllogisme : « Tous les hommes sont mortels ; or Socrate est un homme ; donc Socrate est mortel. » Le « or » introduit une information nouvelle qui contraste avec ou nuance ce qui précède. « Car », lui, introduit la cause. Dans une dissertation ou un texte argumentatif, « or » est un outil de progression logique très précieux — mais il faut savoir qu''il n''exprime pas la cause.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -622,6 +622,6 @@ values
   null,
   '[{"id":"a","label":"parce que"},{"id":"b","label":"afin que"},{"id":"c","label":"bien que"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  '« Afin que » est une conjonction de subordination qui exprime le but ou la finalité : « Il parle lentement afin que tout le monde comprenne. » Elle se construit avec le subjonctif. Les autres conjonctions de but sont : pour que, de peur que (but négatif), de crainte que. « Parce que » exprime la cause (avec l''indicatif), et « bien que » exprime la concession (avec le subjonctif). Distinguer ces valeurs logiques est essentiel pour analyser et produire des textes argumentatifs.',
+  '« Afin que » + subjonctif = but ! Retiens la famille du but : pour que, afin que, de peur que / de crainte que (but négatif, pour éviter que quelque chose se produise). « Parce que » exprime la cause avec l''indicatif. « Bien que » exprime la concession avec le subjonctif. Ces valeurs logiques + les modes qui les accompagnent, c''est un duo inséparable à mémoriser. Pour analyser et produire des textes argumentatifs, distinguer cause / but / concession / conséquence est absolument indispensable.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 );

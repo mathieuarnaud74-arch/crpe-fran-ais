@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useTransition } from "react";
 
+import { Mocca } from "@/components/mascot/mocca";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
@@ -254,17 +255,37 @@ export function ExercisePlayer({
         <Panel className="border-border bg-card">
           <div className="space-y-6">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <Badge tone={score === session.questionCount ? "success" : "accent"}>
-                  S&eacute;rie termin&eacute;e
-                </Badge>
-                <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">
-                  Score final : {score} / {session.questionCount}
-                </h2>
-                <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
-                  Retrouvez ci-dessous les corrections compl&egrave;tes, les erreurs
-                  fr&eacute;quentes et les points essentiels &agrave; retenir.
-                </p>
+              <div className="flex items-start gap-5">
+                <Mocca
+                  variant={
+                    correctPercent >= 80
+                      ? "happy"
+                      : correctPercent >= 50
+                        ? "neutral"
+                        : "grumpy"
+                  }
+                  size="lg"
+                  className="hidden shrink-0 rounded-full sm:block"
+                />
+                <div>
+                  <Badge tone={score === session.questionCount ? "success" : "accent"}>
+                    S&eacute;rie termin&eacute;e
+                  </Badge>
+                  <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">
+                    Score final : {score} / {session.questionCount}
+                  </h2>
+                  <p className="mt-2 text-sm font-medium text-muted">
+                    {correctPercent >= 80
+                      ? "Excellent travail ! Mocca est fier."
+                      : correctPercent >= 50
+                        ? "Pas mal. Continuez sur cette lanc\u00e9e."
+                        : "Il faudra retravailler \u00e7a. Mocca y croit."}
+                  </p>
+                  <p className="mt-2 max-w-2xl text-sm leading-7 text-muted">
+                    Retrouvez ci-dessous les corrections compl&egrave;tes, les erreurs
+                    fr&eacute;quentes et les points essentiels &agrave; retenir.
+                  </p>
+                </div>
               </div>
               <Button type="button" onClick={resetSession} variant="secondary">
                 Recommencer la s&eacute;rie
@@ -483,7 +504,7 @@ export function ExercisePlayer({
                           : "bg-error",
                     )}
                   />
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-end gap-4">
                     <span
                       aria-hidden="true"
                       className={cn(
@@ -520,22 +541,36 @@ export function ExercisePlayer({
                         {renderFeedbackTitle()}
                       </p>
                       {renderFeedbackBody()}
-                      <div className="mt-4 rounded-[1rem] border border-border/50 bg-card/60 px-4 py-3">
-                        <p className="font-semibold text-ink">Explication</p>
-                        <p className="mt-1">{currentQuestion.detailed_explanation}</p>
+                      <div className="mt-4 flex items-start gap-3">
+                        <Mocca
+                          variant={
+                            currentResult.isCorrect
+                              ? "happy"
+                              : currentResult.reason === "accent_only"
+                                ? "neutral"
+                                : "grumpy"
+                          }
+                          size="portrait"
+                          className="hidden shrink-0 sm:block"
+                        />
+                        <div className="relative flex-1 rounded-[1rem] border border-border/50 bg-card/60 px-4 py-3">
+                          <div className="absolute -left-2.5 top-5 hidden h-0 w-0 border-y-[8px] border-r-[10px] border-y-transparent border-r-card/60 sm:block" />
+                          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Mocca t&apos;explique</p>
+                          <p className="mt-1">{currentQuestion.detailed_explanation}</p>
+                          {currentResult.validationRule ? (
+                            <p className="mt-3 text-sm">
+                              <span className="font-semibold">R&egrave;gle :</span>{" "}
+                              {currentResult.validationRule}
+                            </p>
+                          ) : null}
+                          {currentQuestion.common_mistake ? (
+                            <p className="mt-2 text-sm">
+                              <span className="font-semibold">Erreur fr&eacute;quente :</span>{" "}
+                              {currentQuestion.common_mistake}
+                            </p>
+                          ) : null}
+                        </div>
                       </div>
-                      {currentResult.validationRule ? (
-                        <p className="mt-3">
-                          <span className="font-semibold">R&egrave;gle de validation :</span>{" "}
-                          {currentResult.validationRule}
-                        </p>
-                      ) : null}
-                      {currentQuestion.common_mistake ? (
-                        <p className="mt-3">
-                          <span className="font-semibold">Erreur fr&eacute;quente :</span>{" "}
-                          {currentQuestion.common_mistake}
-                        </p>
-                      ) : null}
                     </div>
                   </div>
                 </div>

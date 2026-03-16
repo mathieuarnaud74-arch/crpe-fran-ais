@@ -20,7 +20,7 @@ values
   null,
   '[{"id":"a","label":"Comme ce paysage est magnifique !"},{"id":"b","label":"Le soleil se couche derrière les montagnes."},{"id":"c","label":"Ferme la fenêtre, s''il te plaît."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Une phrase déclarative énonce un fait, une opinion ou une information. Elle se termine par un point simple. La phrase b) est bien déclarative : elle affirme un fait sans exclamation, interrogation ni injonction. La phrase a) est exclamative (ton affectif renforcé, point d''exclamation) et la phrase c) est impérative (ordre donné à l''interlocuteur).',
+  'La phrase déclarative énonce un fait, une opinion ou une information — elle se termine par un point simple. La phrase b) est bien déclarative : elle affirme un fait sans exclamation, interrogation ni injonction. La phrase a) est exclamative (point d''exclamation, ton affectif renforcé) et la phrase c) est impérative (ordre donné). Retiens : type = intention de communication. Forme = affirmative/négative ou active/passive. Ne confonds jamais les deux !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -34,7 +34,7 @@ values
   null,
   '[{"id":"a","label":"Tu viendras demain."},{"id":"b","label":"Viens demain !"},{"id":"c","label":"Viendras-tu demain ?"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  'La phrase interrogative pose une question et se termine par un point d''interrogation. La phrase c) est interrogative : elle utilise l''inversion sujet-verbe, procédé caractéristique de l''interrogation directe. La phrase a) est déclarative et la phrase b) est impérative. On distingue l''interrogation totale (réponse oui/non) de l''interrogation partielle (introduite par un mot interrogatif).',
+  'La phrase interrogative pose une question et se termine par un point d''interrogation. La phrase c) est interrogative : elle utilise l''inversion sujet-verbe, procédé caractéristique de l''interrogation directe totale (réponse oui/non). La phrase a) est déclarative, la phrase b) est impérative. Et n''oublie pas la distinction interrogation totale (oui/non) vs interrogation partielle (introduite par un mot interrogatif : qui, quand, où, comment…) — deux sous-types à maîtriser !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -48,7 +48,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. La phrase exclamative exprime une émotion forte (admiration, surprise, joie, indignation). Elle peut être introduite par un mot exclamatif comme « que », « comme », « quel » et se termine toujours par un point d''exclamation. Ici, « Que tu chantes bien ! » exprime l''admiration du locuteur et présente tous les marqueurs de la phrase exclamative.',
+  'Vrai ! La phrase exclamative exprime une émotion forte — admiration, surprise, joie, indignation. Elle peut être introduite par un mot exclamatif comme « que », « comme » ou « quel » et se termine toujours par un point d''exclamation. Ici, « Que tu chantes bien ! » exprime l''admiration et présente tous les marqueurs de la phrase exclamative. Attention : une phrase peut se terminer par un point d''exclamation sans être exclamative — par exemple une phrase impérative forte !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -62,7 +62,7 @@ values
   null,
   '[{"id":"a","label":"Déclaratif"},{"id":"b","label":"Impératif"},{"id":"c","label":"Interrogatif"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La phrase impérative (ou injonctive) exprime un ordre, un conseil, une interdiction ou une prière. Son trait formel principal est l''absence de sujet exprimé : le verbe est à l''impératif. Ici, « N''oubliez pas vos affaires » donne une injonction négative ; le sujet « vous » est sous-entendu. Même si elle se termine par un point simple, il s''agit bien d''une phrase impérative et non déclarative.',
+  'La phrase impérative (ou injonctive) exprime un ordre, un conseil, une interdiction ou une prière. Son trait formel principal : l''absence de sujet exprimé, avec le verbe à l''impératif. Ici, « N''oubliez pas vos affaires » est une injonction négative — le sujet « vous » est sous-entendu. Et attention : même si elle se termine par un point simple, il s''agit bien d''une phrase impérative et non déclarative. La ponctuation seule ne suffit pas à déterminer le type !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -76,7 +76,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. La grammaire scolaire française distingue quatre types de phrases selon l''intention de communication du locuteur : déclaratif (informer), interrogatif (questionner), exclamatif (exprimer une émotion) et impératif (ordonner/conseiller). Chaque type possède des marques formelles spécifiques (ponctuation, mode verbal, mots introducteurs). Il ne faut pas confondre « type » et « forme » de phrase.',
+  'Vrai ! La grammaire scolaire française distingue exactement quatre types de phrases selon l''intention de communication : déclaratif (informer), interrogatif (questionner), exclamatif (exprimer une émotion) et impératif (ordonner/conseiller). Chaque type possède des marques formelles spécifiques : ponctuation, mode verbal, mots introducteurs. Et surtout — retiens-le bien — ne confonds jamais le « type » (intention) et la « forme » (affirmative/négative, active/passive, personnelle/impersonnelle) !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -90,7 +90,7 @@ values
   null,
   '[{"id":"a","label":"Les enfants ne jouent pas dans le jardin."},{"id":"b","label":"Les enfants jouent-ils dans le jardin ?"},{"id":"c","label":"Que les enfants jouent dans le jardin !"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'La forme négative s''oppose à la forme affirmative et se construit en encadrant le verbe avec une locution négative, le plus souvent « ne…pas ». La phrase a) transforme correctement la phrase en forme négative en ajoutant « ne…pas » autour du verbe « jouent ». Les phrases b) et c) changent le type de phrase (interrogatif et exclamatif) sans transformer la forme négative. Type et forme sont deux propriétés indépendantes.',
+  'La forme négative se construit en encadrant le verbe avec une locution négative, le plus souvent « ne…pas ». La phrase a) transforme correctement la phrase en forme négative. Les phrases b) et c) changent le type de phrase (interrogatif et exclamatif) mais ne transforment pas la forme négative. Retiens : type et forme sont deux propriétés indépendantes qui se combinent librement. Une phrase peut être interrogative ET négative, impérative ET négative, etc.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -104,7 +104,7 @@ values
   null,
   '[{"id":"a","label":"Le jardinier taille les rosiers."},{"id":"b","label":"Les rosiers sont taillés par le jardinier."},{"id":"c","label":"Les rosiers ne sont pas taillés."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La voix passive se construit avec l''auxiliaire « être » conjugué + le participe passé du verbe ; le sujet de la phrase passive subit l''action, et l''agent (ancien sujet actif) est introduit par « par » ou « de ». La phrase b) présente bien cette structure : « les rosiers » (sujet patient), « sont taillés » (être + participe passé), « par le jardinier » (complément d''agent). La phrase a) est active et la phrase c) est négative mais reste à la voix active.',
+  'La voix passive se construit avec l''auxiliaire « être » conjugué + participe passé du verbe, et le sujet de la phrase passive subit l''action. L''agent (ancien sujet actif) est introduit par « par » ou « de ». La phrase b) présente bien cette structure : « les rosiers » (sujet patient), « sont taillés » (être + participe passé), « par le jardinier » (complément d''agent). La phrase a) est active, la phrase c) est négative mais reste à la voix active — « ne sont pas » ce n''est pas la voix passive !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -118,7 +118,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. Un verbe est à la forme impersonnelle lorsque son sujet apparent est le pronom « il » qui ne représente aucun être ni aucune chose réelle : il s''agit d''un sujet grammatical vide de sens. « Falloir » est un verbe essentiellement impersonnel : il ne s''emploie qu''à la 3e personne du singulier avec le sujet apparent « il ». D''autres verbes peuvent s''employer occasionnellement à la forme impersonnelle (il neige, il arrive que…).',
+  'Vrai ! Un verbe est à la forme impersonnelle quand son sujet apparent est le pronom « il » qui ne représente aucun être réel — c''est un sujet grammatical vide de sens. « Falloir » est un verbe essentiellement impersonnel : il ne s''emploie qu''à la 3e personne du singulier avec ce « il » fantôme. D''autres verbes peuvent s''employer occasionnellement à la forme impersonnelle : « il neige », « il arrive que »… À distinguer du sujet « il » personnel, qui désigne un être réel !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -132,7 +132,7 @@ values
   null,
   '[{"id":"a","label":"Le pont a été détruit par la tempête."},{"id":"b","label":"Le pont détruisait la tempête."},{"id":"c","label":"La tempête n''a pas détruit le pont."}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Pour passer de la voix active à la voix passive, le COD du verbe actif (« le pont ») devient le sujet du verbe passif ; le sujet actif (« la tempête ») devient le complément d''agent introduit par « par » ; le verbe se construit avec « être » au même temps + participe passé : « a été détruit ». La phrase a) respecte toutes ces règles. La phrase b) est grammaticalement incorrecte et la phrase c) est simplement la négation de la phrase de départ.',
+  'Pour passer de la voix active à la voix passive, trois opérations : le COD actif (« le pont ») devient sujet passif, le sujet actif (« la tempête ») devient complément d''agent introduit par « par », et le verbe se construit avec « être » au même temps + participe passé : « a été détruit ». La phrase a) respecte toutes ces règles. La phrase b) est grammaticalement incorrecte, et la phrase c) est simplement la négation de la phrase de départ — la négation ne change pas la voix !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -146,7 +146,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. Une phrase peut cumuler un type et plusieurs formes simultanément. Ici : le type est interrogatif (inversion sujet-verbe, point d''interrogation) ; la forme est négative (« n''…pas ») et passive (« a été lu par »). Type et forme sont deux axes d''analyse indépendants qui se combinent librement. Un enseignant doit veiller à ce que les élèves distinguent bien les deux notions.',
+  'Vrai ! C''est ça, exactement ! Une phrase peut cumuler un type et plusieurs formes simultanément. Ici : type interrogatif (inversion sujet-verbe, point d''interrogation), forme négative (« n''…pas ») et forme passive (« a été lu par »). Type et forme sont deux axes d''analyse indépendants qui se combinent librement — et l''enseignant doit s''assurer que les élèves maîtrisent cette distinction fondamentale.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -164,7 +164,7 @@ values
   null,
   '[{"id":"a","label":"Le chien est très doux"},{"id":"b","label":"que j''ai adopté"},{"id":"c","label":"j''ai adopté est très doux"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La proposition subordonnée relative est introduite par un pronom relatif (ici « que ») et complète un nom ou un pronom appelé antécédent. La relative « que j''ai adopté » est enchâssée dans la proposition principale et se rapporte à l''antécédent « le chien ». Elle remplit la fonction de complément de l''antécédent (ou épithète). La proposition principale reste « Le chien est très doux » une fois la relative extraite.',
+  'La proposition subordonnée relative est introduite par un pronom relatif (ici « que ») et complète un nom ou un pronom appelé antécédent. La relative « que j''ai adopté » se rapporte à l''antécédent « le chien » et remplit la fonction d''épithète (complément de l''antécédent). La proposition principale reste « Le chien est très doux » une fois la relative extraite. Test facile : identifie le pronom relatif, remonte à son antécédent — tu as trouvé ta relative !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -178,7 +178,7 @@ values
   null,
   '[{"id":"a","label":"qui"},{"id":"b","label":"élèves"},{"id":"c","label":"fini"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'L''antécédent est le nom (ou pronom) auquel se rapporte le pronom relatif et qu''il reprend. Ici, « qui » reprend « les élèves » : c''est donc « élèves » qui est l''antécédent. Le pronom relatif s''accorde en genre et en nombre avec son antécédent, ce qui est particulièrement visible avec le pronom « lequel » et ses formes. Identifier l''antécédent est la première étape de l''analyse d''une proposition relative.',
+  'L''antécédent, c''est le nom (ou pronom) que reprend le pronom relatif. Ici, « qui » reprend « les élèves » — donc l''antécédent est « élèves ». Simple, non ? Le pronom relatif s''accorde en genre et en nombre avec son antécédent, ce qui est particulièrement visible avec « lequel » et ses formes. Identifier l''antécédent, c''est toujours la première étape de l''analyse d''une proposition relative.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -192,7 +192,7 @@ values
   null,
   '[{"id":"a","label":"Complément d''objet direct"},{"id":"b","label":"Sujet"},{"id":"c","label":"Complément circonstanciel de lieu"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Le pronom relatif « qui » peut exercer différentes fonctions dans la proposition subordonnée relative. Lorsqu''il est sujet du verbe de la relative, le verbe s''accorde avec l''antécédent. Ici, « qui » est sujet du verbe « chante » : on peut vérifier en substituant l''antécédent — « la fillette chante ». Quand « qui » est COD, on utilise plutôt « que » ; quand il est CC de lieu, on utilise « où ».',
+  'Le pronom relatif « qui » peut exercer différentes fonctions dans la relative. Ici, « qui » est sujet du verbe « chante » — vérifie en substituant l''antécédent : « la fillette chante ». Quand « qui » est COD, on utilise plutôt « que » ; pour un CC de lieu, c''est « où ». Retiens les fonctions de chaque pronom relatif : qui = sujet ou COI après prép., que = COD, dont = compl. avec « de », où = lieu ou temps. Ce tableau te sauvera !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -206,7 +206,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. Le pronom relatif « dont » reprend un complément introduit par la préposition « de ». Ici, il remplace « de ce film » : on parle de quelque chose — « parler de quelque chose ». Donc « dont » est complément indirect du verbe « parler » dans la relative. « Dont » peut aussi être complément du nom (« le livre dont la couverture est abîmée ») ou complément de l''adjectif (« le sujet dont il est fier »).',
+  'Vrai ! Le pronom relatif « dont » reprend un complément introduit par la préposition « de ». Ici, il remplace « de ce film » — on parle de quelque chose, donc « parler de ». Donc « dont » est complément indirect du verbe « parler ». Mais attention : « dont » peut aussi être complément du nom (« le livre dont la couverture est abîmée ») ou complément de l''adjectif (« le sujet dont il est fier »). « Dont » = « de quoi / duquel / de qui » — dans tous les cas, il intègre la préposition « de ».',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -220,7 +220,7 @@ values
   null,
   '[{"id":"a","label":"Complément circonstanciel de lieu"},{"id":"b","label":"Complément circonstanciel de temps"},{"id":"c","label":"Sujet"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Le pronom relatif « où » peut indiquer le lieu ou le temps. Ici, l''antécédent est « l''année », un nom de temps : « où » est donc complément circonstanciel de temps du verbe « est né ». Cette valeur temporelle de « où » est fréquente avec des antécédents comme « jour », « moment », « époque », « saison ». Il convient de ne pas se limiter à la valeur spatiale de « où » lors de l''analyse grammaticale.',
+  'Attention au piège classique : « où » ne désigne pas toujours un lieu ! Ici, l''antécédent est « l''année » — un nom de temps. Donc « où » est complément circonstanciel de temps du verbe « est né ». Cette valeur temporelle de « où » est très fréquente avec des antécédents comme « jour », « moment », « époque », « saison ». Ne te laisse pas piéger par la valeur spatiale habituelle de « où » — l''antécédent te dit tout !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -234,7 +234,7 @@ values
   null,
   '[{"id":"a","label":"Déterminative, car elle restreint le groupe nominal"},{"id":"b","label":"Explicative, car elle apporte une précision accessoire et est détachée par des virgules"},{"id":"c","label":"Complétive, car elle complète le verbe principal"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La relative explicative (ou appositive) est détachée par des virgules et apporte une information accessoire qui n''est pas indispensable à l''identification de l''antécédent : on peut la supprimer sans changer le sens fondamental de la phrase. Ici, « qui étaient fatigués » est entre virgules et ne restreint pas la référence du groupe « les élèves » : elle est donc explicative. La relative déterminative, sans virgules, restreint l''ensemble désigné par le nom.',
+  'La relative explicative (ou appositive) est détachée par des virgules et apporte une information accessoire — on peut la supprimer sans changer le sens fondamental de la phrase. Ici, « qui étaient fatigués » est entre virgules et ne restreint pas la référence de « les élèves » : elle est explicative. La relative déterminative, sans virgules, restreint l''ensemble désigné par le nom. Le test de suppression est ta meilleure arme : si tu peux enlever la relative sans que la phrase perde son sens essentiel → explicative !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -248,7 +248,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Cette affirmation est fausse. Le pronom relatif « lequel » (et ses formes composées auquel, duquel, avec lequel…) s''emploie obligatoirement après une préposition. Ici, la préposition « avec » est indispensable : l''outil sert à travailler « avec » quelque chose. On ne peut pas dire *« l''outil que il travaille » ; il faudrait au moins « l''outil avec lequel » ou « l''outil dont il se sert pour travailler ». Le pronom « que » est réservé à la fonction COD sans préposition.',
+  'Faux ! Le pronom relatif « lequel » (et ses formes composées : auquel, duquel, avec lequel…) s''emploie obligatoirement après une préposition. Ici, la préposition « avec » est indispensable — l''outil sert à travailler « avec » quelque chose. On ne peut pas dire « l''outil que il travaille » — ce serait incorrect. Il faudrait au moins « l''outil avec lequel » ou « l''outil dont il se sert ». Le pronom « que » est réservé à la fonction COD sans préposition. La préposition détermine le choix du pronom !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -262,7 +262,7 @@ values
   null,
   '[{"id":"a","label":"écrit"},{"id":"b","label":"écrites"},{"id":"c","label":"écrits"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Lorsque le pronom relatif « que » est COD du verbe de la relative, il représente l''antécédent et le participe passé s''accorde avec cet antécédent en genre et en nombre. Ici, « que » reprend « les lettres » (féminin pluriel) : le participe passé « écrit » s''accorde donc au féminin pluriel → « écrites ». Cette règle d''accord est l''une des plus importantes de l''orthographe grammaticale française et un point régulièrement évalué au CRPE.',
+  'Règle d''or : quand le pronom relatif « que » est COD du verbe de la relative, il représente l''antécédent et le participe passé s''accorde avec cet antécédent en genre et en nombre. Ici, « que » reprend « les lettres » (féminin pluriel) → participe passé au féminin pluriel → « écrites ». C''est l''une des règles d''accord les plus importantes de l''orthographe grammaticale française — et l''une des plus régulièrement évaluées au CRPE. Entraîne-toi avec « que » comme signal d''accord !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -276,7 +276,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. Dans certaines constructions, le pronom relatif « qui » n''a pas d''antécédent exprimé dans la phrase : il équivaut à « celui qui » et la proposition relative fonctionne alors comme un groupe nominal, exerçant une fonction dans la principale (ici, sujet de « verra »). On parle de relative « substantive » ou « indépendante ». C''est une structure figée dans des proverbes, mais elle existe aussi dans la langue courante (« Qui veut voyager loin ménage sa monture »).',
+  'Vrai ! Dans certaines constructions, le pronom relatif « qui » n''a pas d''antécédent exprimé — il équivaut à « celui qui » et la proposition relative fonctionne alors comme un groupe nominal, exerçant une fonction dans la principale (ici, sujet de « verra »). On parle de relative substantive ou indépendante. C''est une structure figée dans les proverbes : « Qui veut voyager loin ménage sa monture », « Qui dort dîne »… Mais elle existe aussi dans la langue courante contemporaine !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -290,7 +290,7 @@ values
   null,
   '[{"id":"a","label":"Complément circonstanciel de but"},{"id":"b","label":"Complément de l''antécédent (épithète de « appartement »)"},{"id":"c","label":"Attribut du sujet"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La proposition subordonnée relative a généralement la fonction de complément de l''antécédent, c''est-à-dire épithète du nom qu''elle complète. Ici, « qui soit lumineux » complète « appartement » et précise quel type d''appartement est recherché. On remarque que le verbe est au subjonctif car la relative suit un verbe exprimant une recherche ou un souhait sur un référent indéfini. Cette valeur modale distingue cette relative d''une relative à l''indicatif qui décrirait un appartement déjà connu.',
+  'La proposition subordonnée relative a généralement la fonction de complément de l''antécédent — épithète du nom qu''elle complète. Ici, « qui soit lumineux » complète « appartement » et précise quel type est recherché. Et remarque le mode : le subjonctif ! Pourquoi ? Parce que la relative suit un verbe exprimant une recherche ou un souhait sur un référent indéfini. Cette valeur modale distingue cette relative d''une relative à l''indicatif qui décrirait un appartement déjà connu. Mode verbal = signal de sens !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -308,7 +308,7 @@ values
   null,
   '[{"id":"a","label":"La conséquence"},{"id":"b","label":"La cause"},{"id":"c","label":"Le but"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La conjonction « parce que » introduit une subordonnée circonstancielle de cause qui répond à la question « pourquoi ? ». Elle exprime la raison pour laquelle l''action de la principale s''est produite. La cause est réelle et présentée comme un fait avéré (indicatif). À ne pas confondre avec la conséquence (« si bien que », « de sorte que »), qui suit logiquement l''action principale, ni avec le but (« pour que », « afin que »), qui exprime une intention future.',
+  '« Parce que » introduit une subordonnée de cause qui répond à la question « pourquoi ? » — c''est la raison pour laquelle l''action de la principale s''est produite. La cause est réelle, présentée comme un fait avéré (indicatif). Ne confonds pas avec la conséquence (« si bien que », « de sorte que » — ce qui suit logiquement), ni avec le but (« pour que », « afin que » — intention future). Méthode simple : pose la question. « Pourquoi est-il resté ? » → parce que = cause !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -322,7 +322,7 @@ values
   null,
   '[{"id":"a","label":"Il a tellement travaillé qu''il a réussi son examen."},{"id":"b","label":"Il a travaillé pour qu''il réussisse son examen."},{"id":"c","label":"Il a travaillé bien qu''il fût épuisé."}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'La subordonnée de conséquence indique le résultat de l''action de la principale. La phrase a) utilise la locution corrélative « tellement… que » (intensité + résultat), caractéristique de la conséquence. Le verbe est à l''indicatif car la conséquence est présentée comme réelle. La phrase b) contient une subordonnée de but (« pour que » + subjonctif). La phrase c) contient une subordonnée de concession (« bien que » + subjonctif imparfait ici au style soutenu).',
+  'La phrase a) utilise la locution corrélative « tellement… que » — intensité + résultat, caractéristique de la conséquence. Le verbe est à l''indicatif car la conséquence est présentée comme réelle et accomplie. La phrase b) contient une subordonnée de but (« pour que » + subjonctif) — c''est l''intention, pas le résultat. La phrase c) contient une subordonnée de concession (« bien que » + subjonctif). Retiens : conséquence = résultat réel, indicatif. But = intention future, subjonctif.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -336,7 +336,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. La subordonnée circonstancielle de but (ou finale) est introduite par des locutions conjonctives telles que « pour que », « afin que », « de peur que », « de crainte que », et elle requiert systématiquement le subjonctif. Cela s''explique par le fait que le but désigne une action envisagée, non encore accomplie : le subjonctif exprime cette virtualité. Exemple : « Il parle lentement pour que les enfants comprennent. » L''infinitif (« pour comprendre ») est possible si les sujets sont identiques.',
+  'Vrai ! La subordonnée circonstancielle de but (ou finale) — introduite par « pour que », « afin que », « de peur que », « de crainte que » — requiert systématiquement le subjonctif. Pourquoi ? Parce que le but désigne une action envisagée, non encore accomplie : le subjonctif exprime cette virtualité. Exemple : « Il parle lentement pour que les enfants comprennent. » Et si les sujets sont identiques, on utilise l''infinitif : « Il parle lentement pour être compris. » — deux sujets = subjonctif, même sujet = infinitif !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -350,7 +350,7 @@ values
   null,
   '[{"id":"a","label":"« Alors que » met en parallèle deux faits contraires (indicatif) ; « bien que » présente un obstacle non concluant (subjonctif)."},{"id":"b","label":"« Alors que » indique le temps ; « bien que » indique la cause."},{"id":"c","label":"Les deux locutions sont interchangeables sans différence de sens."}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'L''opposition (« alors que », « tandis que » + indicatif) met en contraste deux faits sans lien de causalité entre eux. La concession (« bien que », « quoique » + subjonctif) présente un fait qui aurait dû empêcher l''action principale mais ne l''a pas empêchée : le résultat attendu n''a pas eu lieu. Exemple d''opposition : « Il est bavard alors que son frère est silencieux. » Exemple de concession : « Il est sorti bien qu''il fût malade. » Le mode verbal (indicatif vs subjonctif) est un marqueur formel important.',
+  'L''opposition (« alors que », « tandis que » + indicatif) met en contraste deux faits sans lien de causalité. La concession (« bien que », « quoique » + subjonctif) présente un fait qui aurait dû empêcher l''action principale — mais ne l''a pas empêchée. Exemple d''opposition : « Il est bavard alors que son frère est silencieux. » Exemple de concession : « Il est sorti bien qu''il fût malade. » Le mode verbal est le marqueur formel clé : indicatif pour l''opposition, subjonctif pour la concession !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -364,7 +364,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Cette affirmation est fausse. La locution « dès que » exprime non pas la simultanéité stricte, mais l''antériorité immédiate : l''action de la subordonnée se produit juste avant celle de la principale, avec une relation de déclenchement. C''est la conjonction « quand » / « lorsque » (avec des verbes à l''imparfait ou au présent d''habitude) ou « pendant que » / « tandis que » qui marquent la simultanéité. « Dès que » (et « aussitôt que ») indiquent que le deuxième événement suit immédiatement le premier.',
+  'Faux — et c''est un piège classique ! La locution « dès que » exprime l''antériorité immédiate, pas la simultanéité : l''action de la subordonnée se produit juste avant celle de la principale, déclenchant la suivante. Ce sont « quand », « lorsque », « pendant que » et « tandis que » qui marquent la simultanéité. « Dès que » et « aussitôt que » indiquent que le deuxième événement suit immédiatement le premier. Séquence, pas simultanéité — la nuance est petite mais essentielle !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -378,7 +378,7 @@ values
   null,
   '[{"id":"a","label":"Le subjonctif présent"},{"id":"b","label":"Le conditionnel présent"},{"id":"c","label":"L''indicatif présent"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  'En français, la subordonnée conditionnelle introduite par « si » (système hypothétique de type 1 : condition réalisable) prend l''indicatif présent dans la subordonnée, tandis que la principale est au futur simple ou à l''impératif. Règle fondamentale : « si » n''est jamais suivi du conditionnel ni du subjonctif. Pour le système irréel du présent, on utilise « si » + imparfait → conditionnel présent ; pour l''irréel du passé, « si » + plus-que-parfait → conditionnel passé.',
+  'Règle fondamentale — à graver dans ta mémoire : « si » n''est jamais suivi du conditionnel ni du subjonctif ! Pour le système hypothétique réalisable (type 1), c''est « si » + indicatif présent → principale au futur. Pour l''irréel du présent (type 2) : « si » + imparfait → conditionnel présent. Pour l''irréel du passé (type 3) : « si » + plus-que-parfait → conditionnel passé. Trois systèmes, trois combinaisons — mais jamais de conditionnel après « si » !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -392,7 +392,7 @@ values
   null,
   '[{"id":"a","label":"Sujet de « pense »"},{"id":"b","label":"Complément d''objet direct de « pense »"},{"id":"c","label":"Complément circonstanciel de cause"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La proposition subordonnée complétive introduite par « que » peut exercer différentes fonctions. Ici, « que tu as raison » répond à la question « je pense quoi ? » : elle est complément d''objet direct du verbe « penser ». Le verbe est à l''indicatif car « penser » exprime une opinion présentée comme vraie. Si le verbe principal exprimait un doute, un souhait ou un sentiment, on aurait le subjonctif (« je doute que tu aies raison »). La complétive COD est la subordonnée conjonctive la plus fréquente.',
+  'La complétive introduite par « que » répond ici à « je pense quoi ? » → COD du verbe « penser ». Le verbe est à l''indicatif car « penser » exprime une opinion présentée comme vraie. Si le verbe principal exprimait un doute ou un souhait, on aurait le subjonctif : « je doute que tu aies raison ». La complétive COD est la subordonnée conjonctive la plus fréquente — et la nuance indicatif/subjonctif selon le verbe introducteur est régulièrement évaluée au CRPE !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -406,7 +406,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. La proposition subordonnée complétive peut être sujet du verbe de la principale. Ici, « qu''il fasse beau demain » répond à la question « qu''est-ce qui serait une bonne nouvelle ? » : elle est bien sujet de « serait ». Le verbe est au subjonctif parce que la proposition sujet exprime un souhait ou une hypothèse. Cette construction, souvent rencontrée avec les verbes « être », « paraître », « sembler », est plus formelle que la construction avec un sujet nominal.',
+  'Vrai ! La proposition subordonnée complétive peut être sujet du verbe de la principale. Ici, « qu''il fasse beau demain » répond à « qu''est-ce qui serait une bonne nouvelle ? » — c''est bien le sujet de « serait ». Le subjonctif s''explique par le fait que la proposition sujet exprime un souhait ou une hypothèse. Cette construction, plus formelle, se rencontre surtout avec les verbes « être », « paraître », « sembler » et dans les textes soutenus.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -420,7 +420,7 @@ values
   null,
   '[{"id":"a","label":"La relative introduit par « que » a un antécédent et « que » est pronom relatif COD ; la conjonctive est introduite par « que » conjonction de subordination sans antécédent."},{"id":"b","label":"La relative est toujours au subjonctif ; la conjonctive est toujours à l''indicatif."},{"id":"c","label":"Il est impossible de les distinguer formellement."}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Le critère de distinction est la nature grammaticale de « que » et la présence ou l''absence d''un antécédent. Dans la relative, « que » est un pronom relatif qui reprend un antécédent (nom ou pronom) et remplit une fonction dans la subordonnée (généralement COD). Dans la conjonctive, « que » est une conjonction de subordination : il n''a pas de fonction propre et n''a pas d''antécédent. Exemple relatif : « Le livre que tu lis » (antécédent = « livre ») ; exemple conjonctif : « Je sais que tu lis » (pas d''antécédent).',
+  'Le critère de distinction est net ! Dans la relative, « que » est un pronom relatif : il reprend un antécédent et remplit une fonction dans la subordonnée (généralement COD). Dans la conjonctive, « que » est une conjonction de subordination : pas d''antécédent, pas de fonction propre. Exemple relatif : « Le livre que tu lis » — « que » reprend « livre ». Exemple conjonctif : « Je sais que tu lis » — pas d''antécédent. Cherche l''antécédent : s''il existe → relative ; s''il n''existe pas → conjonctive !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -434,7 +434,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. « Bien que » est une locution conjonctive de concession qui impose systématiquement le subjonctif dans la proposition subordonnée qu''elle introduit. Exemple : « Bien qu''il soit fatigué, il continue. » C''est le cas de toutes les locutions de concession et d''opposition construites avec « que » final : « quoique », « encore que », « pour peu que », « à moins que ». Le subjonctif signale que le fait est envisagé comme insuffisant à empêcher l''action principale.',
+  'Vrai ! « Bien que » impose systématiquement le subjonctif — sans exception. C''est le cas de toutes les locutions de concession et d''opposition construites avec « que » final : « quoique », « encore que », « pour peu que », « à moins que »… Le subjonctif signale que le fait est envisagé comme insuffisant à empêcher l''action principale. Retiens le groupe : bien que / quoique / encore que → toujours subjonctif. Une règle simple, absolue, et régulièrement testée !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -452,7 +452,7 @@ values
   'Les résultats obtenus lors du dernier examen semblent encourageants.',
   '[{"id":"a","label":"Les résultats obtenus lors du dernier examen"},{"id":"b","label":"lors du dernier examen"},{"id":"c","label":"encourageants"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Le sujet est le groupe nominal qui commande l''accord du verbe. Pour le trouver, on pose la question « Qui est-ce qui + verbe ? » : « Qui est-ce qui semble encourageant ? → Les résultats obtenus lors du dernier examen. » La réponse est le groupe nominal complet, incluant le noyau (« résultats »), son épithète (participe passé « obtenus ») et son complément du nom (« lors du dernier examen »). « Encourageants » est l''attribut du sujet et « lors du dernier examen » est un complément circonstanciel de temps.',
+  'Pour trouver le sujet, pose « Qui est-ce qui semble encourageant ? » → « Les résultats obtenus lors du dernier examen. » C''est le groupe nominal complet — noyau « résultats », épithète « obtenus » et complément du nom « lors du dernier examen ». Ne prends pas juste le noyau ! « Encourageants » est l''attribut du sujet, « lors du dernier examen » est complément circonstanciel de temps. L''analyse grammaticale, c''est identifier le rôle de chaque élément — pas juste nommer les mots.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -466,7 +466,7 @@ values
   'La directrice a envoyé un courrier aux parents d''élèves dès le lundi matin.',
   '[{"id":"a","label":"aux parents d''élèves"},{"id":"b","label":"un courrier"},{"id":"c","label":"dès le lundi matin"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Le complément d''objet direct (COD) se construit sans préposition et répond à la question « verbe + quoi ? » ou « verbe + qui ? ». Ici : « a envoyé quoi ? → un courrier ». Le groupe « aux parents d''élèves » est introduit par la préposition « à » : c''est un COI. Le groupe « dès le lundi matin » indique le moment de l''action : c''est un complément circonstanciel de temps. Identifier le COD est fondamental pour appliquer la règle d''accord du participe passé avec « avoir ».',
+  'Le COD se construit sans préposition et répond à « a envoyé quoi ? » → « un courrier ». Impeccable ! « Aux parents d''élèves » est introduit par la préposition « à » → COI. « Dès le lundi matin » indique le moment → CC de temps. Retiens : identifier le COD, c''est indispensable pour appliquer la règle d''accord du participe passé avec « avoir » — accord avec le COD placé avant. Ici : « le courrier qu''elle a envoyé » → « envoyé » s''accorderait !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -480,7 +480,7 @@ values
   'Elle téléphone à son médecin chaque semaine.',
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. Le complément d''objet indirect (COI) est construit avec une préposition (ici « à ») et répond à la question « verbe à qui ? / à quoi ? ». Le verbe « téléphoner » est un verbe à construction indirecte : on téléphone à quelqu''un. Donc « à son médecin » est bien le COI. « Chaque semaine » est un complément circonstanciel de temps. La distinction COD / COI est essentielle car elle détermine l''accord (ou non) du participe passé avec les pronoms compléments.',
+  'Vrai ! Le COI est construit avec une préposition (ici « à ») et répond à « téléphoner à qui ? ». Le verbe « téléphoner » est à construction indirecte : on téléphone toujours à quelqu''un. Donc « à son médecin » = COI. « Chaque semaine » = CC de temps. La distinction COD / COI est fondamentale car elle détermine l''accord (ou non) du participe passé avec les pronoms compléments. Avec un COI, pas d''accord !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -494,7 +494,7 @@ values
   'Cette conférence sur la linguistique s''est révélée passionnante.',
   '[{"id":"a","label":"Épithète du nom « conférence »"},{"id":"b","label":"Attribut du sujet"},{"id":"c","label":"Complément circonstanciel de manière"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'L''attribut du sujet qualifie le sujet par l''intermédiaire d''un verbe attributif (être, paraître, sembler, devenir, rester, se révéler…). Ici, « passionnante » qualifie « cette conférence » par le biais du verbe « s''est révélée » : c''est bien un attribut du sujet. Il s''accorde en genre et en nombre avec le sujet (féminin singulier). L''épithète serait directement rattachée au nom sans verbe intermédiaire (« une conférence passionnante »).',
+  'L''attribut du sujet qualifie le sujet par l''intermédiaire d''un verbe attributif. Ici, « passionnante » qualifie « cette conférence » via le verbe « s''est révélée » — c''est un attribut du sujet. Il s''accorde avec le sujet : féminin singulier → « passionnante ». L''épithète, elle, serait directement rattachée au nom sans verbe intermédiaire : « une conférence passionnante ». La différence ? Le verbe attributif qui sert de lien entre sujet et attribut. Verbes attributifs à retenir : être, paraître, sembler, devenir, rester, se révéler, avoir l''air…',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -508,7 +508,7 @@ values
   'Chaque matin, les enfants courent joyeusement dans la cour de récréation.',
   '[{"id":"a","label":"Chaque matin"},{"id":"b","label":"joyeusement"},{"id":"c","label":"dans la cour de récréation"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  'Le complément circonstanciel de lieu répond à la question « où ? ». Ici, « dans la cour de récréation » indique l''endroit où se déroule l''action de courir. « Chaque matin » répond à la question « quand ? » : c''est un CC de temps. « Joyeusement » répond à la question « comment ? » : c''est un CC de manière. Les compléments circonstanciels sont généralement mobiles dans la phrase (on peut les déplacer ou les supprimer) contrairement aux compléments essentiels (COD, COI).',
+  'C''est ça ! « Dans la cour de récréation » répond à « où ? » → CC de lieu. « Chaque matin » répond à « quand ? » → CC de temps. « Joyeusement » répond à « comment ? » → CC de manière. Les trois grandes questions pour les CC : où ? quand ? comment ? (+ pourquoi, dans quel but, dans quelle mesure…). Et rappelle-toi : les CC sont généralement mobiles et supprimables — contrairement aux compléments essentiels comme le COD et le COI.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -522,7 +522,7 @@ values
   'Le professeur corrigeait patiemment les copies de ses élèves.',
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. Le complément du nom est un groupe prépositionnel qui se rattache à un nom et le précise. Ici, « de ses élèves » complète le nom « copies » : il s''agit des copies appartenant aux élèves. C''est donc un complément du nom avec valeur possessive. Il ne faut pas le confondre avec un COI (qui dépend du verbe) ni avec un CC. Pour vérifier, on peut poser la question « les copies de qui ? → de ses élèves » en se rattachant au nom et non au verbe.',
+  'Vrai ! Le complément du nom est un groupe prépositionnel qui se rattache à un nom et le précise. Ici, « de ses élèves » complète le nom « copies » — les copies appartenant aux élèves : valeur possessive. Pour vérifier, pose la question en te rattachant au nom, pas au verbe : « les copies de qui ? → de ses élèves ». Si tu le poses par rapport au verbe (corriger de ses élèves ?), ça ne fonctionne pas — preuve que c''est complément du nom et non COI.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -536,7 +536,7 @@ values
   'Il recommande de lire cet ouvrage avant la conférence.',
   '[{"id":"a","label":"Sujet du verbe « recommande »"},{"id":"b","label":"Complément d''objet indirect de « recommande »"},{"id":"c","label":"Complément circonstanciel de but"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Le groupe infinitif peut exercer de nombreuses fonctions nominales. Ici, « de lire cet ouvrage » est introduit par la préposition « de » et complète le verbe « recommander » : on recommande de faire quelque chose. Il s''agit d''un COI (construction indirecte en « de + infinitif »). Ce n''est pas un CC de but car il n''exprime pas l''intention ou la finalité de l''action principale ; il en est l''objet. La construction « recommander de + infinitif » est une locution verbale à rection indirecte.',
+  'Le groupe infinitif « de lire cet ouvrage » est introduit par la préposition « de » et complète le verbe « recommander » — on recommande de faire quelque chose. C''est donc un COI (construction indirecte en « de + infinitif »). Ce n''est pas un CC de but car il n''exprime pas l''intention ou la finalité de l''action principale — il en est l''objet. Et ce n''est pas un sujet car le sujet est « il ». Retiens : le groupe infinitif peut exercer toutes les fonctions nominales !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -550,7 +550,7 @@ values
   'Il est médecin de campagne depuis vingt ans.',
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Cette affirmation est fausse. Dans cette phrase, « médecin de campagne » est l''attribut du sujet « il » relié par le verbe copule « est ». L''apposition est un groupe nominal juxtaposé ou séparé par une virgule qui désigne le même être que le nom auquel il se rapporte, sans verbe intermédiaire (exemple : « Louis, médecin de campagne, soigne ses patients »). L''attribut, lui, est nécessairement relié au sujet par un verbe attributif. La confusion entre apposition et attribut est fréquente au CRPE.',
+  'Faux — et c''est une confusion fréquente au CRPE ! Dans cette phrase, « médecin de campagne » est l''attribut du sujet « il » relié par le verbe copule « est ». L''apposition est un groupe nominal juxtaposé ou séparé par une virgule, sans verbe intermédiaire : « Louis, médecin de campagne, soigne ses patients. » L''attribut, lui, est nécessairement relié au sujet par un verbe attributif. La clé de la distinction : y a-t-il un verbe copule entre les deux ? Oui → attribut. Non → apposition.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -564,7 +564,7 @@ values
   'Le blessé a été secouru rapidement par les pompiers.',
   '[{"id":"a","label":"Complément circonstanciel de moyen"},{"id":"b","label":"Complément d''agent"},{"id":"c","label":"Complément d''objet indirect"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Le complément d''agent est propre à la voix passive : il désigne l''être ou la chose qui accomplit l''action subie par le sujet, et il est introduit par « par » (parfois « de »). Ici, la phrase est à la voix passive (auxiliaire « être » + participe passé « secouru ») : « les pompiers » sont les agents de l''action. À la voix active, ils seraient le sujet : « Les pompiers ont secouru le blessé rapidement. » Le CC de moyen, en revanche, indique l''instrument ou le procédé utilisé (ex. : « à l''aide d''une échelle »).',
+  'Le complément d''agent est propre à la voix passive ! Il désigne l''être qui accomplit l''action subie par le sujet, introduit par « par » (parfois « de »). Ici, la phrase est à la voix passive (auxiliaire « être » + participe passé) : « les pompiers » sont les agents de l''action. À la voix active, ils deviendraient sujet : « Les pompiers ont secouru le blessé rapidement. » Le CC de moyen, en revanche, indique l''instrument utilisé — « à l''aide d''une échelle » par exemple. Différence d''angle : l''agent fait l''action, le moyen est l''outil.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -578,7 +578,7 @@ values
   'La maîtresse offre un livre à chaque élève en fin d''année.',
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. Le verbe « offrir » est un verbe bitransitif : il peut se construire avec deux compléments d''objet. Ici, « un livre » est le COD (offrir quoi ?) et « à chaque élève » est le COI (offrir à qui ?). « En fin d''année » est un CC de temps. Les verbes de don, de communication et d''échange (donner, envoyer, dire, offrir, montrer…) acceptent fréquemment cette double complémentation. La distinction COD / COI est cruciale pour l''accord des participes passés avec les pronoms.',
+  'Vrai ! Le verbe « offrir » est un verbe bitransitif — il peut prendre deux compléments d''objet. Ici, « un livre » = COD (offrir quoi ?) et « à chaque élève » = COI (offrir à qui ?). « En fin d''année » = CC de temps. Les verbes de don, de communication et d''échange — donner, envoyer, dire, offrir, montrer — acceptent fréquemment cette double complémentation. Enjeu pratique crucial : COD avant l''auxiliaire → accord du participe ; COI avant → pas d''accord !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -596,7 +596,7 @@ values
   null,
   '[{"id":"a","label":"il lisait"},{"id":"b","label":"il lisais"},{"id":"c","label":"il lisaient"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Lors d''une transposition de la 1re personne du singulier (je) à la 3e personne du singulier (il/elle), le verbe change de terminaison mais reste au même temps. À l''imparfait de l''indicatif, la 1re personne donne « -ais » et la 3e personne donne « -ait » : « je lisais » → « il lisait ». La forme « il lisais » est incorrecte (terminaison de 1re/2e personne), et « il lisaient » correspond à la 3e personne du pluriel. Cette distinction orthographique est fondamentale et régulièrement évaluée.',
+  'À l''imparfait, 1re personne → « -ais », 3e personne du singulier → « -ait ». Donc « je lisais » → « il lisait ». « Il lisais » est impossible (terminaison de 1re/2e personne), « il lisaient » correspond à la 3e personne du pluriel. La transposition, c''est systématique : même temps, mais terminaison adaptée à la nouvelle personne. La distinction « -ait » vs « -ais » à l''imparfait est une faute classique — et régulièrement piégée au CRPE !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -610,7 +610,7 @@ values
   null,
   '[{"id":"a","label":"Des enfants jouaient seuls dans la cour."},{"id":"b","label":"Des enfants jouait seuls dans la cour."},{"id":"c","label":"Des enfants jouais seul dans la cour."}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'La transposition du singulier au pluriel entraîne plusieurs modifications : le déterminant (« un » → « des »), l''accord du verbe (3e pers. sing. « jouait » → 3e pers. plur. « jouaient »), et l''accord de l''adjectif attribut (« seul » → « seuls »). La phrase a) réalise correctement toutes ces modifications. La phrase b) conserve à tort la forme singulière du verbe, et la phrase c) comporte une terminaison de 1re/2e personne impossible ici. La transposition exige une révision systématique de tous les accords.',
+  'La transposition singulier → pluriel entraîne plusieurs modifications en cascade : le déterminant (« un » → « des »), l''accord du verbe (« jouait » → « jouaient »), et l''accord de l''adjectif attribut (« seul » → « seuls »). La phrase a) réalise correctement toutes ces modifications. La phrase b) conserve la forme singulière du verbe — erreur ! La phrase c) a une terminaison impossible ici. Retiens : une transposition, c''est une révision systématique de tous les accords — pas juste le déterminant !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -624,7 +624,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. Les verbes dont l''infinitif se termine en « -cer » conservent le son [s] devant les voyelles « a » et « o » grâce à la cédille : « nous avançions », « il avançait », « vous avanciez ». À l''imparfait, toutes les personnes sauf nous/vous prennent la cédille (1re, 2e, 3e pers. sing. et 3e plur. : j''avançais…). Lors d''une transposition du présent vers l''imparfait, il faut veiller à appliquer cette règle orthographique pour les verbes concernés.',
+  'Vrai ! Les verbes en « -cer » conservent le son [s] devant les voyelles « a » et « o » grâce à la cédille : « nous avançions », « il avançait », « vous avanciez ». À l''imparfait, toutes les personnes sauf nous/vous prennent la cédille. Attention à ne pas l''oublier dans une transposition ! Ce détail orthographique est souvent négligé mais bien testé au CRPE. Autres verbes concernés : lancer → il lançait, menacer → il menaçait…',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -638,7 +638,7 @@ values
   null,
   '[{"id":"a","label":"Il se lève tôt et il prend son petit-déjeuner."},{"id":"b","label":"Il se lève tôt et il prends son petit-déjeuner."},{"id":"c","label":"Il se lève tôt et prend son petit-déjeuner."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La phrase b) contient l''erreur : « il prends » est incorrect car la 3e personne du singulier de « prendre » au présent est « prend » (sans « s »). La terminaison « -ds » ou « -s » appartient aux 1re et 2e personnes du singulier. La phrase a) est correcte avec toutes les formes verbales adaptées à la 3e personne. La phrase c) est également correcte : le sujet « il » peut ne pas être répété devant le deuxième verbe coordonné. La transposition exige une vérification méthodique de chaque forme verbale.',
+  'La phrase b) contient l''erreur : « il prends » est impossible — 3e personne du singulier de « prendre » au présent = « prend » (sans « s »). Le « s » appartient aux 1re et 2e personnes du singulier. La phrase a) est correcte avec les formes adaptées à la 3e personne. La phrase c) est également correcte : le sujet « il » peut ne pas être répété devant le deuxième verbe coordonné. La transposition, c''est une vérification méthodique verbe par verbe — aucun ne doit passer entre les mailles !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -652,7 +652,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Cette affirmation est fausse. La transposition au féminin entraîne plusieurs changements : le déterminant (« un » → « une »), le nom (« acteur » → « actrice »), et l''adjectif (« reconnu » → « reconnue »). Il faut également veiller à l''accord du participe passé « devenu » → « devenue ». Une transposition de genre requiert une révision systématique de tous les mots variables (déterminants, noms, adjectifs, participes passés) qui s''accordent en genre avec le nouveau sujet.',
+  'Faux ! La transposition au féminin déclenche une cascade de modifications : le déterminant (« un » → « une »), le nom (« acteur » → « actrice »), l''adjectif (« reconnu » → « reconnue »), et le participe passé « devenu » → « devenue ». Une transposition de genre, ça touche tous les mots variables qui s''accordent avec le nouveau sujet — déterminants, noms, adjectifs, participes passés. Pas seulement le premier élément qu''on aperçoit !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -666,7 +666,7 @@ values
   null,
   '[{"id":"a","label":"Ils lisent leur livre dans leur chambre."},{"id":"b","label":"Ils lisent mon livre dans ma chambre."},{"id":"c","label":"Ils lisent leurs livres dans leurs chambres."}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Lors d''une transposition de la 1re personne (je) à la 3e personne du pluriel (ils), les déterminants possessifs se modifient également : « mon » et « ma » (1re pers. sing.) deviennent « leur » (3e pers. plur. devant un nom singulier). La phrase a) est correcte : « leur livre » et « leur chambre » renvoient au possesseur pluriel sans changer le nombre des noms possédés (on suppose qu''ils partagent ou qu''on généralise). La phrase b) conserve incorrectement les possessifs de la 1re personne. La phrase c) change aussi le nombre des noms, ce qui n''est pas demandé.',
+  'Lors de la transposition de « je » à « ils », les déterminants possessifs changent aussi : « mon » et « ma » (1re pers. sing.) → « leur » (3e pers. plur. devant un nom singulier). La phrase a) est correcte. La phrase b) conserve incorrectement les possessifs de la 1re personne — erreur classique ! La phrase c) change le nombre des noms possédés, ce qui n''est pas demandé ici. La règle : les possessifs changent toujours avec la personne. N''oublie jamais les déterminants dans une transposition !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -680,7 +680,7 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Cette affirmation est fausse. Le verbe « aller » se conjugue au passé composé avec l''auxiliaire « être » et non « avoir » : « il va » → « il est allé ». Les verbes qui se conjuguent avec « être » au passé composé sont principalement les verbes de mouvement ou de changement d''état intransitifs (aller, venir, partir, arriver, naître, mourir…) ainsi que tous les verbes pronominaux. Lors d''une transposition de temps, il est indispensable de vérifier le choix de l''auxiliaire pour chaque verbe.',
+  'Faux ! « Aller » se conjugue au passé composé avec l''auxiliaire « être » : « il va » → « il est allé ». C''est l''une des règles les plus importantes — et les plus piégées ! Les verbes qui se conjuguent avec « être » : les verbes de mouvement ou de changement d''état intransitifs (aller, venir, partir, arriver, naître, mourir…) et tous les verbes pronominaux. Lors d''une transposition de temps, vérifie systématiquement l''auxiliaire pour chaque verbe. L''auxiliaire, c''est le premier piège de la transposition !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -694,7 +694,7 @@ values
   null,
   '[{"id":"a","label":"Nous ne mangeons rien."},{"id":"b","label":"Nous ne mangons rien."},{"id":"c","label":"Nous ne mangeons pas."}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'La transposition de la 1re personne singulier à la 1re personne pluriel (je → nous) nécessite d''adapter la terminaison verbale. Le verbe « manger » est un verbe en « -ger » : devant les terminaisons commençant par « o », il prend un « e » de soutien pour conserver le son [ʒ] — « nous mangeons » et non *« nous mangons ». La négation « ne… rien » est conservée telle quelle car elle ne change pas avec la personne. La phrase c) remplace incorrectement « rien » par « pas », ce qui modifie le sens.',
+  '« Manger » est un verbe en « -ger » : devant une terminaison commençant par « o », il prend un « e » de soutien pour conserver le son [ʒ] — « nous mangeons » et non « nous mangons ». La négation « ne… rien » se conserve telle quelle. La phrase c) remplace incorrectement « rien » par « pas » — ce qui change le sens ! Retiens les verbes en -ger (manger, nager, voyager…) : ils prennent toujours un « e » de soutien devant -ons. Même règle pour les verbes en -cer avec la cédille.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -708,7 +708,7 @@ values
   null,
   '[{"id":"a","label":"2 changements : pronom et verbe"},{"id":"b","label":"3 changements : pronom, verbe et déterminant"},{"id":"c","label":"4 changements : pronom, verbe, déterminant et nom + adjectif"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  'La transposition de « tu » (2e pers. sing.) à « vous » (2e pers. plur.) entraîne ici quatre types de changements : (1) le pronom sujet « tu » → « vous » ; (2) le verbe « étais » (2e pers. sing.) → « étiez » (2e pers. plur.) ; (3) le déterminant « un » → « de » (article partitif pluriel devant adjectif : règle de « de » devant adjectif au pluriel) ; (4) le nom « élève » → « élèves » et l''adjectif « bon » → « bons ». Une transposition complète implique donc une révision systématique de toutes les catégories grammaticales variables.',
+  'Quatre types de changements en cascade ! (1) Pronom : « tu » → « vous ». (2) Verbe : « étais » → « étiez ». (3) Déterminant : « un » → « de » (règle de « de » devant adjectif au pluriel). (4) Nom + adjectif : « élève » → « élèves » et « bon » → « bons ». Une transposition complète, c''est une révision systématique de toutes les catégories grammaticales variables. Ne t''arrête jamais au pronom et au verbe — les déterminants, les adjectifs et les noms changent aussi !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 ),
 
@@ -722,7 +722,8 @@ values
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Cette affirmation est vraie. La transposition du singulier (il) au pluriel (ils) a bien entraîné : (1) le pronom sujet « il » → « ils » ; (2) la forme verbale « se souvient » (3e pers. sing.) → « se souviennent » (3e pers. plur., avec doublement du « n » pour ce verbe du 3e groupe) ; (3) le déterminant possessif « ses » (3e pers. sing.) → « leurs » (3e pers. plur.). Le nom « vacances » reste au pluriel dans les deux cas. Toutes les catégories grammaticales variables ont été correctement modifiées.',
+  'Vrai, tout est correct ! (1) Pronom : « il » → « ils ». (2) Verbe : « se souvient » → « se souviennent » (avec doublement du « n » pour ce verbe du 3e groupe). (3) Possessif : « ses » → « leurs ». Le nom « vacances » reste au pluriel dans les deux cas — pas de changement nécessaire. Toutes les catégories grammaticales variables ont été correctement modifiées. C''est ça, une transposition bien conduite : méthodique, exhaustive, sans rien oublier !',
   'valide', 'CRPE Français — Analyse de la langue V2', 'premium', true
 )
+
 ;

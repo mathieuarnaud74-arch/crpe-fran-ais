@@ -10,6 +10,7 @@ import {
   type FrenchDiagnosticQuestion,
   type FrenchDiagnosticSubdomainKey,
 } from "@/content/french-diagnostic-questions";
+import { Mocca } from "@/components/mascot/mocca";
 import { Badge } from "@/components/ui/badge";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
@@ -209,26 +210,39 @@ export default function DiagnosticPage() {
     return (
       <div className="space-y-8">
         <Panel>
-          <div className="space-y-4">
-            <Badge tone="accentSecondary">Résultats</Badge>
-            <h1 className="font-serif text-4xl font-semibold text-ink">Votre profil de départ</h1>
-            <p className="max-w-3xl text-sm leading-7 text-muted">
-              Vous avez réussi{" "}
-              <strong className="text-ink">
-                {score} question{score > 1 ? "s" : ""} sur {questions.length}
-              </strong>
-              . {profile.detail}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Badge tone="neutral" size="sm">
-                {profile.label}
-              </Badge>
-              <Badge tone="neutral" size="sm">
-                {Math.round((score / questions.length) * 100)} % de réussite
-              </Badge>
-              <Badge tone="neutral" size="sm">
-                {questions.length} questions tirées d&apos;une banque de {FRENCH_DIAGNOSTIC_BANK_SIZE}
-              </Badge>
+          <div className="flex items-start gap-6">
+            <Mocca
+              variant={
+                score / questions.length >= 0.8
+                  ? "happy"
+                  : score / questions.length >= 0.5
+                    ? "neutral"
+                    : "grumpy"
+              }
+              size="lg"
+              className="hidden shrink-0 rounded-full sm:block"
+            />
+            <div className="space-y-4">
+              <Badge tone="accentSecondary">Résultats</Badge>
+              <h1 className="font-serif text-4xl font-semibold text-ink">Votre profil de départ</h1>
+              <p className="max-w-3xl text-sm leading-7 text-muted">
+                Vous avez réussi{" "}
+                <strong className="text-ink">
+                  {score} question{score > 1 ? "s" : ""} sur {questions.length}
+                </strong>
+                . {profile.detail}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Badge tone="neutral" size="sm">
+                  {profile.label}
+                </Badge>
+                <Badge tone="neutral" size="sm">
+                  {Math.round((score / questions.length) * 100)} % de réussite
+                </Badge>
+                <Badge tone="neutral" size="sm">
+                  {questions.length} questions tirées d&apos;une banque de {FRENCH_DIAGNOSTIC_BANK_SIZE}
+                </Badge>
+              </div>
             </div>
           </div>
         </Panel>
@@ -484,21 +498,30 @@ export default function DiagnosticPage() {
         </div>
 
         {hasAnswered ? (
-          <div className="mt-6 space-y-5 rounded-[1.25rem] border border-border bg-secondary px-5 py-4">
-            <div className="flex flex-wrap items-center gap-3">
-              <Badge tone={isCorrect ? "accentSecondary" : "warning"} size="sm">
-                {isCorrect ? "Bonne réponse" : "Point de vigilance"}
-              </Badge>
-              <p className="text-sm text-muted">
-                Réponse attendue : <strong className="text-ink">{question.choices[question.correctIndex]}</strong>
-              </p>
-            </div>
-            <p className="text-sm leading-7 text-muted">{question.explanation}</p>
-            <p className="text-sm leading-7 text-muted">
-              <strong className="text-ink">Conseil de reprise :</strong> {question.retryAdvice}
-            </p>
-            <div className="flex justify-end">
-              <Button onClick={handleNext}>{isLast ? "Voir mon profil" : "Question suivante"}</Button>
+          <div className="mt-6 rounded-[1.25rem] border border-border bg-secondary px-5 py-4">
+            <div className="flex items-start gap-4">
+              <Mocca
+                variant={isCorrect ? "happy" : "grumpy"}
+                size="sm"
+                className="hidden shrink-0 rounded-full sm:block"
+              />
+              <div className="flex-1 space-y-5">
+                <div className="flex flex-wrap items-center gap-3">
+                  <Badge tone={isCorrect ? "accentSecondary" : "warning"} size="sm">
+                    {isCorrect ? "Bonne réponse" : "Point de vigilance"}
+                  </Badge>
+                  <p className="text-sm text-muted">
+                    Réponse attendue : <strong className="text-ink">{question.choices[question.correctIndex]}</strong>
+                  </p>
+                </div>
+                <p className="text-sm leading-7 text-muted">{question.explanation}</p>
+                <p className="text-sm leading-7 text-muted">
+                  <strong className="text-ink">Conseil de reprise :</strong> {question.retryAdvice}
+                </p>
+                <div className="flex justify-end">
+                  <Button onClick={handleNext}>{isLast ? "Voir mon profil" : "Question suivante"}</Button>
+                </div>
+              </div>
             </div>
           </div>
         ) : null}

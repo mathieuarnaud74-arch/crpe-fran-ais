@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { Mocca } from "@/components/mascot/mocca";
 import {
   ArrowRight,
   BarChart3,
@@ -104,9 +106,18 @@ function HeroSection({
   const primaryHref = authenticated ? props.primaryCtaHrefAuth : props.primaryCtaHrefGuest;
 
   return (
-    <section className="relative overflow-hidden border-b border-border/70 bg-[linear-gradient(180deg,#fbf7ef_0%,#f5f1e8_58%,#efe8db_100%)]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(164,104,73,0.16),transparent_34%),radial-gradient(circle_at_80%_12%,rgba(71,98,87,0.13),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.3),transparent_35%)]" />
-      <div className="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-paper/50 blur-3xl" />
+    <section className="relative overflow-hidden border-b border-border/70">
+      <Image
+        src="/hero-bg.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        quality={100}
+        className="object-cover object-center"
+        priority
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,#fbf7ef_18%,rgba(251,247,239,0.75)_38%,rgba(251,247,239,0.15)_58%,transparent_78%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(164,104,73,0.08),transparent_30%)]" />
 
       <div className="relative mx-auto max-w-6xl px-6 pb-14 pt-10 sm:pb-16 lg:pb-24 lg:pt-16">
         <div className="max-w-3xl">
@@ -264,6 +275,18 @@ function FeaturesSection({ props }: { props: FeaturesSectionProps }) {
           </FadeIn>
           <FadeIn delay={0.16}>
             <ShowcaseAnalyse />
+          </FadeIn>
+          <FadeIn delay={0.24} className="lg:col-span-2">
+            <div className="flex items-center gap-5 rounded-[1.5rem] border border-border bg-card p-5 shadow-subtle">
+              <Mocca variant="neutral" size="md" className="shrink-0 rounded-full" />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Votre professeur</p>
+                <p className="mt-1 font-serif text-lg font-semibold text-ink">Mocca explique chaque correction.</p>
+                <p className="mt-1 text-sm leading-7 text-muted">
+                  Pas juste la bonne réponse — la règle qui va avec, pour ne plus refaire l&apos;erreur.
+                </p>
+              </div>
+            </div>
           </FadeIn>
         </div>
       </div>

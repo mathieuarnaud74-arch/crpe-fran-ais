@@ -29,7 +29,7 @@ values
     null,
     '[{"id":"a","label":"Un adjectif qualificatif"},{"id":"b","label":"Un adverbe"},{"id":"c","label":"Un nom commun"}]'::jsonb,
     '{"mode":"single_choice","value":"b"}'::jsonb,
-    '"Attentivement" precise la maniere dont les eleves ecoutent. Il modifie le verbe "ecoutent" : c''est donc un adverbe.',
+    '"Attentivement" précise la manière dont les élèves écoutent — il modifie le verbe "écoutent". C''est donc un adverbe ! Retiens : les adverbes modifient un verbe, un adjectif ou un autre adverbe. Ici, la terminaison en -ment est un bon indice.',
     'valide',
     'Creation CRPE Francais V1',
     'free',
@@ -47,7 +47,7 @@ values
     null,
     null,
     '{"mode":"text","acceptableAnswers":["complement d''objet direct","cod"]}'::jsonb,
-    'Le groupe nominal complete directement le verbe "preparent" sans preposition. Il s''agit d''un complement d''objet direct.',
+    'Le groupe nominal complète directement le verbe "préparent" sans préposition — pose-toi la question : "préparer quoi ?" → "les évaluations". Sans préposition = COD. C''est la manipulation de référence pour identifier cette fonction !',
     'valide',
     'Creation CRPE Francais V1',
     'premium',
@@ -65,7 +65,7 @@ values
     null,
     '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
     '{"mode":"boolean","value":false}'::jsonb,
-    'Avec le verbe pronominal "se parler", le complement est indirect. Le participe passe "parle" ne s''accorde donc pas.',
+    'Faux ! Avec le verbe pronominal "se parler", le complément est indirect — "parler à quelqu''un". Pas de COD placé avant l''auxiliaire, donc pas d''accord. Le participe passé "parlé" reste invariable. Attention au piège : l''auxiliaire être ne suffit pas à déclencher l''accord !',
     'valide',
     'Creation CRPE Francais V1',
     'free',
@@ -83,7 +83,7 @@ values
     null,
     null,
     '{"mode":"text","acceptableAnswers":["Les enfants jouent dans la cour de recreation."]}'::jsonb,
-    'Le nom "enfant" doit etre accorde au pluriel : "enfants". Le reste de la phrase est correct.',
+    'Le nom "enfant" doit être accordé au pluriel : "enfants". C''est le déterminant "Les" qui te le signale — pluriel appelle pluriel dans le groupe nominal. Le reste de la phrase est correct.',
     'valide',
     'Creation CRPE Francais V1',
     'premium',
@@ -101,7 +101,7 @@ values
     null,
     '[{"id":"a","label":"nous voyons"},{"id":"b","label":"nous verrons"},{"id":"c","label":"nous verrions"}]'::jsonb,
     '{"mode":"single_choice","value":"b"}'::jsonb,
-    'Le futur simple du verbe "voir" avec "nous" est "nous verrons".',
+    'Le futur simple de "voir" avec "nous" est "nous verrons" — un futur irrégulier avec le radical "verr-". "Nous voyons" c''est le présent, "nous verrions" c''est le conditionnel. Retiens le radical "verr-" comme pour "vouloir" → "voudr-" : les irréguliers du futur ont souvent un double r !',
     'valide',
     'Creation CRPE Francais V1',
     'free',
@@ -119,7 +119,7 @@ values
     null,
     null,
     '{"mode":"text","acceptableAnswers":["preniez"]}'::jsonb,
-    'Apres "il faut que", on emploie le subjonctif present. Pour "prendre" a la 2e personne du pluriel, on ecrit "vous preniez".',
+    'Après "il faut que", on emploie le subjonctif présent — sans exception ! Pour "prendre" à la 2e personne du pluriel, le subjonctif donne "vous preniez". Astuce : pense à "ils prennent" pour trouver le radical du subjonctif des verbes irréguliers.',
     'valide',
     'Creation CRPE Francais V1',
     'premium',
@@ -137,7 +137,7 @@ values
     null,
     '[{"id":"a","label":"methodique"},{"id":"b","label":"bruyant"},{"id":"c","label":"timide"}]'::jsonb,
     '{"mode":"single_choice","value":"a"}'::jsonb,
-    'Dans un contexte d''etude, "rigoureux" renvoie a une attitude serieuse et methodique.',
+    'Dans un contexte d''étude, "rigoureux" renvoie à une attitude sérieuse et ordonnée — "méthodique" partage exactement ce sens. "Bruyant" et "timide" n''ont aucun rapport avec la rigueur intellectuelle. Les synonymes partiels partagent un sens dans un contexte donné, même s''ils ne sont pas toujours interchangeables.',
     'valide',
     'Creation CRPE Francais V1',
     'free',
@@ -155,7 +155,7 @@ values
     null,
     null,
     '{"mode":"text","acceptableAnswers":["implicite"]}'::jsonb,
-    'L''antonyme courant de "explicite" est "implicite".',
+    'L''antonyme courant de "explicite" est "implicite" — ce qui est dit ouvertement vs ce qui est sous-entendu. En didactique de la lecture, la distinction explicite/implicite est fondamentale : les inférences portent précisément sur l''implicite du texte !',
     'valide',
     'Creation CRPE Francais V1',
     'premium',
@@ -173,7 +173,7 @@ values
     '"En entrant dans la classe, il sentit immediatement une forme d''apaisement. Les voix se taisaient, les regards se posaient, et le silence semblait enfin possible."',
     null,
     '{"mode":"text","acceptableAnswers":["apaisement","un apaisement"]}'::jsonb,
-    'Le texte insiste sur le calme retrouve, le silence et la detente progressive. Le sentiment dominant est donc l''apaisement.',
+    'Le texte insiste sur le calme retrouvé, le silence et la détente progressive. "Apaisement" est même nommé explicitement — et renforcé par les indices implicites : les voix qui se taisent, les regards qui se posent. Le sentiment dominant saute aux yeux !',
     'valide',
     'Creation CRPE Francais V1',
     'free',
@@ -191,7 +191,7 @@ values
     '"En entrant dans la classe, il sentit immediatement une forme d''apaisement. Les voix se taisaient, les regards se posaient, et le silence semblait enfin possible."',
     null,
     '{"mode":"text","acceptableAnswers":["les voix se taisaient","le silence semblait enfin possible"]}'::jsonb,
-    'L''amelioration est perceptible parce que le bruit diminue et que le calme devient possible. Les formulations "les voix se taisaient" et "le silence semblait enfin possible" l''indiquent clairement.',
+    'L''amélioration est perceptible dans les détails : le bruit diminue ("les voix se taisaient") et le calme devient envisageable ("le silence semblait enfin possible"). Ces formulations montrent une progression — la situation n''est pas encore parfaite, mais elle évolue dans le bon sens. Apprendre à repérer ces indices d''évolution, c''est développer la lecture fine.',
     'valide',
     'Creation CRPE Francais V1',
     'premium',
@@ -209,7 +209,7 @@ values
     null,
     null,
     '{"mode":"text","acceptableAnswers":["proposition subordonnee circonstancielle de temps","subordonnee circonstancielle de temps"]}'::jsonb,
-    'Le groupe "Quand il pleut" introduit une circonstance temporelle et contient un verbe conjugue. C''est donc une proposition subordonnee circonstancielle de temps.',
+    '"Quand il pleut" introduit une circonstance temporelle et contient un verbe conjugué — c''est donc une proposition subordonnée circonstancielle de temps. Le mot subordonnant "quand" est un connecteur temporel. Tu peux vérifier en la remplaçant par "lorsqu''il pleut" — même sens, même nature.',
     'valide',
     'Creation CRPE Francais V1',
     'free',
@@ -227,7 +227,7 @@ values
     '"Les voix se taisaient, les regards se posaient, et le silence semblait enfin possible."',
     null,
     '{"mode":"text","acceptableAnswers":["elle montre une installation progressive du calme","elle souligne la progression vers le calme"]}'::jsonb,
-    'L''auteur construit une progression : le bruit baisse d''abord, puis le silence devient envisageable. L''effet produit est celui d''un retour graduel au calme.',
+    'L''auteur construit une progression graduelle : d''abord le bruit diminue ("se taisaient"), puis le silence devient envisageable ("semblait enfin possible"). L''adverbe "enfin" est clé — il suggère une attente, un soulagement. L''effet produit est celui d''un retour graduel au calme, pas d''un basculement brutal.',
     'valide',
     'Creation CRPE Francais V1',
     'premium',
@@ -245,7 +245,7 @@ values
     null,
     '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
     '{"mode":"boolean","value":false}'::jsonb,
-    'La pratique reguliere de lecture ne suffit pas toujours. Les strategies de comprehension doivent aussi etre enseignees explicitement.',
+    'Faux ! La pratique régulière de lecture ne suffit pas — c''est une idée reçue bien ancrée mais invalidée par la recherche. Les stratégies de compréhension doivent être enseignées explicitement : faire des inférences, identifier l''implicite, repérer la structure du texte… Lire beaucoup sans enseignement stratégique, c''est comme nager sans jamais apprendre les techniques. L''enseignement explicite est indispensable !',
     'valide',
     'Creation CRPE Francais V1',
     'free',
@@ -263,7 +263,7 @@ values
     null,
     null,
     '{"mode":"text","acceptableAnswers":["la comprehension justifiee","l''interpretation appuyee sur le texte","la justification des reponses par le texte"]}'::jsonb,
-    'Demander aux eleves de s''appuyer sur le texte developpe une comprehension argumentee, fondee sur des indices explicites.',
+    'Demander aux élèves de s''appuyer sur le texte développe une compréhension argumentée, fondée sur des indices explicites. Ce n''est pas juste "donner la bonne réponse" — c''est apprendre à la justifier par des preuves textuelles. C''est exactement ce qu''évalue le CRPE dans les questions d''analyse littéraire !',
     'valide',
     'Creation CRPE Francais V1',
     'premium',
@@ -290,7 +290,7 @@ values
     null,
     '[{"id":"a","label":"Un adverbe"},{"id":"b","label":"Un adjectif qualificatif"},{"id":"c","label":"Un nom commun"}]'::jsonb,
     '{"mode":"single_choice","value":"b"}'::jsonb,
-    '"Petit" qualifie le nom "chat" en indiquant une caracteristique. C''est un adjectif qualificatif epithete.',
+    '"Petit" qualifie le nom "chat" en indiquant une de ses caractéristiques — c''est un adjectif qualificatif épithète. Retiens : épithète = l''adjectif est directement placé à côté du nom (avant ou après), sans verbe entre les deux.',
     'valide', 'Creation CRPE Francais V1', 'free', true
   ),
   (
@@ -301,7 +301,7 @@ values
     null,
     '[{"id":"a","label":"Un adverbe"},{"id":"b","label":"Une conjonction de coordination"},{"id":"c","label":"Une preposition"}]'::jsonb,
     '{"mode":"single_choice","value":"c"}'::jsonb,
-    '"Dans" introduit un complement de lieu. Il etablit une relation entre "joue" et "la cour" : c''est une preposition.',
+    '"Dans" introduit un complément de lieu et établit une relation entre "joue" et "la cour" — c''est une préposition. Les prépositions sont des mots invariables qui relient deux éléments : de, à, par, pour, en, dans, sur, sous… À ne pas confondre avec les adverbes, qui ne construisent pas de groupe prépositionnel.',
     'valide', 'Creation CRPE Francais V1', 'free', true
   ),
   (
@@ -312,7 +312,7 @@ values
     null,
     '[{"id":"a","label":"Une preposition"},{"id":"b","label":"Une conjonction de coordination"},{"id":"c","label":"Un pronom"}]'::jsonb,
     '{"mode":"single_choice","value":"b"}'::jsonb,
-    '"Et" relie deux groupes nominaux de meme fonction. C''est une conjonction de coordination.',
+    '"Et" relie deux groupes nominaux de même fonction — c''est une conjonction de coordination. Retiens les 7 conjonctions de coordination : mais, ou, et, donc, or, ni, car. Un moyen mnémotechnique classique : "Mais ou est donc Ornicar ?"',
     'valide', 'Creation CRPE Francais V1', 'free', true
   ),
   (
@@ -323,7 +323,7 @@ values
     null,
     '[{"id":"a","label":"Un nom propre"},{"id":"b","label":"Un adjectif"},{"id":"c","label":"Un pronom personnel"}]'::jsonb,
     '{"mode":"single_choice","value":"c"}'::jsonb,
-    '"Nous" designe les locuteurs et remplace un groupe nominal. C''est un pronom personnel sujet.',
+    '"Nous" désigne les locuteurs et remplace un groupe nominal — c''est un pronom personnel sujet. Sa fonction ici est sujet du verbe "partons". Les pronoms personnels sujets : je, tu, il/elle, nous, vous, ils/elles. À distinguer des pronoms personnels compléments (me, te, le, lui, nous, vous, les, leur…).',
     'valide', 'Creation CRPE Francais V1', 'free', true
   ),
 
@@ -335,7 +335,7 @@ values
     'Identifiez la fonction du groupe souligne : "Il a offert un cadeau <a Marie>."',
     null, null,
     '{"mode":"text","acceptableAnswers":["complement d''objet indirect","coi"]}'::jsonb,
-    '"A Marie" complete le verbe "offrir" par l''intermediaire de la preposition "a". Il s''agit d''un complement d''objet indirect.',
+    '"À Marie" complète le verbe "offrir" par l''intermédiaire de la préposition "à" — c''est un complément d''objet indirect. La règle : avec préposition = COI (à qui ? de quoi ?). Sans préposition = COD (qui ? quoi ?). La préposition est le signal distinctif !',
     'valide', 'Creation CRPE Francais V1', 'premium', true
   ),
   (
@@ -345,7 +345,7 @@ values
     'Identifiez la fonction du mot souligne : "Il semble <intelligent>."',
     null, null,
     '{"mode":"text","acceptableAnswers":["attribut du sujet"]}'::jsonb,
-    '"Intelligent" est relie au sujet "il" par le verbe d''etat "sembler". C''est un attribut du sujet.',
+    '"Intelligent" est relié au sujet "il" par le verbe d''état "sembler" — c''est un attribut du sujet. Les verbes d''état qui introduisent un attribut : être, paraître, sembler, devenir, rester, avoir l''air… L''attribut dit quelque chose du sujet à travers le verbe.',
     'valide', 'Creation CRPE Francais V1', 'premium', true
   ),
   (
@@ -355,7 +355,7 @@ values
     'Identifiez la fonction du groupe souligne : "<Les eleves> travaillent en silence."',
     null, null,
     '{"mode":"text","acceptableAnswers":["sujet"]}'::jsonb,
-    '"Les eleves" commande l''accord du verbe "travaillent". C''est le sujet du verbe.',
+    '"Les élèves" commande l''accord du verbe "travaillent" — c''est le sujet du verbe. Astuce : pour trouver le sujet, pose la question "qui est-ce qui + verbe ?" → "Qui est-ce qui travaille ?" → "Les élèves". La manipulation de la pronominalisation (ils travaillent) confirme.',
     'valide', 'Creation CRPE Francais V1', 'premium', true
   ),
   (
@@ -365,7 +365,7 @@ values
     'Identifiez la fonction du groupe souligne : "Il explique <la lecon>."',
     null, null,
     '{"mode":"text","acceptableAnswers":["complement d''objet direct","cod"]}'::jsonb,
-    '"La lecon" repond a la question "expliquer quoi ?", sans preposition. C''est un complement d''objet direct.',
+    '"La leçon" répond à la question "expliquer quoi ?" — sans préposition. C''est un complément d''objet direct. La manipulation de pronominalisation confirme : "Il l''explique" — le pronom COD "l''" remplace "la leçon".',
     'valide', 'Creation CRPE Francais V1', 'premium', true
   ),
 
@@ -378,7 +378,7 @@ values
     null,
     '[{"id":"a","label":"je vais"},{"id":"b","label":"j''allais"},{"id":"c","label":"j''irai"}]'::jsonb,
     '{"mode":"single_choice","value":"c"}'::jsonb,
-    'Le futur simple de "aller" est irregulier : j''irai, tu iras, il ira... Le radical est "ir-".',
+    'Le futur simple de "aller" est irrégulier avec le radical "ir-" : j''irai, tu iras, il ira, nous irons… "Je vais" c''est le présent, "j''allais" c''est l''imparfait. Parmi les futurs irréguliers à retenir absolument : aller → ir-, être → ser-, avoir → aur-, faire → fer-.',
     'valide', 'Creation CRPE Francais V1', 'free', true
   ),
   (
@@ -389,7 +389,7 @@ values
     null,
     '[{"id":"a","label":"nous sommes"},{"id":"b","label":"nous etions"},{"id":"c","label":"nous serons"}]'::jsonb,
     '{"mode":"single_choice","value":"b"}'::jsonb,
-    'L''imparfait de "etre" donne : j''etais, tu etais, il etait, nous etions, vous etiez, ils etaient.',
+    'L''imparfait de "être" donne : j''étais, tu étais, il était, nous étions, vous étiez, ils étaient. "Nous sommes" c''est le présent, "nous serons" c''est le futur. L''imparfait se reconnaît aux terminaisons : -ais, -ais, -ait, -ions, -iez, -aient — invariables pour tous les verbes !',
     'valide', 'Creation CRPE Francais V1', 'free', true
   ),
   (
@@ -400,7 +400,7 @@ values
     null,
     '[{"id":"a","label":"ils avaient"},{"id":"b","label":"ils auront"},{"id":"c","label":"ils ont"}]'::jsonb,
     '{"mode":"single_choice","value":"c"}'::jsonb,
-    'Le present de "avoir" a la 3e personne du pluriel est "ils ont". Verbe irregulier a memoriser.',
+    'Le présent de "avoir" à la 3e personne du pluriel est "ils ont" — un verbe irrégulier à mémoriser absolument. "Ils avaient" c''est l''imparfait, "ils auront" le futur. "Avoir" au présent : j''ai, tu as, il a, nous avons, vous avez, ils ont. Irrégulier mais incontournable !',
     'valide', 'Creation CRPE Francais V1', 'free', true
   ),
   (
@@ -411,6 +411,6 @@ values
     null,
     '[{"id":"a","label":"tu feras"},{"id":"b","label":"tu faisais"},{"id":"c","label":"tu faites"}]'::jsonb,
     '{"mode":"single_choice","value":"a"}'::jsonb,
-    'Le futur simple de "faire" est irregulier : je ferai, tu feras, il fera... Le radical est "fer-".',
+    'Le futur simple de "faire" est irrégulier avec le radical "fer-" : je ferai, tu feras, il fera… "Tu faisais" c''est l''imparfait, "tu faites" c''est le présent. Retiens la famille des futurs en "r double" : faire → fer-, voir → verr-, vouloir → voudr-. Ces irréguliers reviennent souvent au concours !',
     'valide', 'Creation CRPE Francais V1', 'free', true
   );
