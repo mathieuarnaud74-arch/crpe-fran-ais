@@ -96,6 +96,11 @@ export default async function OfferPage() {
                 </li>
               ))}
             </ul>
+            <div className="mt-auto pt-8">
+              <ButtonLink href={user ? "/tableau-de-bord" : "/inscription"} variant="secondary">
+                {user ? "Accéder au tableau de bord" : "Je m'inscris"}
+              </ButtonLink>
+            </div>
           </div>
           {plans.map((plan) => (
             <div
