@@ -22,11 +22,15 @@ type SiteHeaderProps = {
   authenticated?: boolean;
 };
 
-const marketingLinks = [
+const editorialLinks = [
   { label: "Méthode", href: "/#methode" },
   { label: "Domaines", href: "/#domaines" },
   { label: "FAQ", href: "/#faq" },
   { label: "Offre", href: "/offre" },
+];
+
+const allMobileLinks = [
+  ...editorialLinks,
   { label: "Diagnostic gratuit", href: "/diagnostic" },
 ];
 
@@ -34,31 +38,43 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-paper/80 backdrop-blur-xl supports-[backdrop-filter]:bg-paper/75">
-      <div className="mx-auto flex max-w-6xl items-center gap-6 px-6 py-3">
+    <header className="sticky top-0 z-40 border-b border-border/50 bg-paper/80 backdrop-blur-xl supports-[backdrop-filter]:bg-paper/75">
+      <div className="mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center px-6 py-2">
+
+        {/* Logo */}
         <Link href="/" className="flex min-w-0 items-center">
-          <Image
-            src="/logo.jpg"
-            alt="CRPE Français — Banque d'exercices"
-            width={220}
-            height={62}
-            className="h-16 w-auto object-contain mix-blend-multiply"
-            priority
-          />
+          <div className="h-14 overflow-hidden">
+            <Image
+              src="/logo.jpg"
+              alt="CRPE Français — Banque d'exercices"
+              width={1408}
+              height={768}
+              className="-mt-3 h-20 w-auto object-contain mix-blend-multiply"
+              priority
+            />
+          </div>
         </Link>
 
-        <nav className="ml-auto hidden items-center gap-2 lg:flex">
-          {marketingLinks.map((link) => (
+        {/* Nav desktop */}
+        <nav className="hidden items-center justify-center gap-1 lg:flex">
+          {editorialLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-card hover:text-ink"
+              className="rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-secondary hover:text-ink"
             >
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/diagnostic"
+            className="ml-1 rounded-full border border-accentSecondary/30 bg-accentSecondarySoft px-4 py-2 text-sm font-semibold text-accentSecondaryDark transition-colors hover:border-accentSecondary/60"
+          >
+            Diagnostic gratuit
+          </Link>
         </nav>
 
+        {/* Auth desktop */}
         <div className="hidden items-center gap-3 lg:flex">
           {authenticated ? (
             <ButtonLink href="/tableau-de-bord" variant="secondary">
@@ -72,7 +88,7 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
               </Link>
               <ButtonLink
                 href="/inscription"
-                className="shadow-[0_14px_32px_rgba(71,98,87,0.16)] ring-1 ring-accentSecondary/15"
+                className="shadow-subtle ring-1 ring-accentSecondary/40"
               >
                 <UserPlus className="h-4 w-4" />
                 Créer un compte gratuit
@@ -81,11 +97,8 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
           )}
         </div>
 
-        <div className="ml-auto flex items-center gap-2 lg:hidden">
-          <Badge tone="accentSecondary" className="hidden sm:inline-flex">
-            Gratuit
-          </Badge>
-
+        {/* Mobile */}
+        <div className="col-start-3 flex items-center gap-2 lg:hidden">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button
@@ -105,13 +118,12 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
                 </Badge>
                 <SheetTitle>CRPE Français</SheetTitle>
                 <SheetDescription>
-                  Un accès direct au diagnostic gratuit, aux domaines couverts et à l&apos;offre
-                  complète.
+                  Un accès direct au diagnostic gratuit, aux domaines couverts et à l&apos;offre complète.
                 </SheetDescription>
               </SheetHeader>
 
               <nav className="mt-8 space-y-2">
-                {marketingLinks.map((link) => (
+                {allMobileLinks.map((link) => (
                   <SheetClose asChild key={link.href}>
                     <Link
                       href={link.href}
