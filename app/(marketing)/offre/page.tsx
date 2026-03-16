@@ -108,7 +108,7 @@ export default async function OfferPage() {
               className={[
                 "flex flex-col rounded-[2rem] border p-6 shadow-panel",
                 plan.highlighted
-                  ? "border-ink/10 bg-ink text-paper"
+                  ? "border-white/10 bg-premiumDark text-paper"
                   : "border-border bg-card",
               ].join(" ")}
             >

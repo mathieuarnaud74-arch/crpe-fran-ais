@@ -23,6 +23,7 @@ const config: Config = {
         card: "#FDF9F3",
         surface: "#FFFDF9",
         pine: "#31463E",
+        premiumDark: "#2D4039",
         warning: "#92400E",
         warningBg: "#FEF3C7",
         warningBorder: "#F59E0B",
