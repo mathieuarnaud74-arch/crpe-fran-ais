@@ -109,7 +109,7 @@ function HeroSection({
       <div className="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-paper/50 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-6 pb-14 pt-10 sm:pb-16 lg:pb-24 lg:pt-16">
-        <div className="mx-auto max-w-3xl">
+        <div className="max-w-3xl">
           <FadeIn className="relative z-10">
             <Badge tone="accentSecondary" className="border-white/60 bg-card/90">
               {props.badgeText}
