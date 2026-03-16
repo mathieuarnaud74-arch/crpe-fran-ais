@@ -81,7 +81,7 @@ export default async function OfferPage() {
         {/* All tiers */}
         <div className="mt-12 grid gap-5 lg:grid-cols-4">
           {/* Free */}
-          <div className="rounded-[2rem] border border-border bg-card p-6 shadow-panel">
+          <div className="flex flex-col rounded-[2rem] border border-border bg-card p-6 shadow-panel">
             <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">Gratuit</p>
             <p className="mt-3 font-serif text-4xl font-semibold text-ink">0 €</p>
             <p className="mt-1 text-xs text-muted">Inscription gratuite · aucune carte requise</p>
@@ -96,7 +96,7 @@ export default async function OfferPage() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8">
+            <div className="mt-auto pt-8">
               <ButtonLink href={user ? "/tableau-de-bord" : "/inscription"} variant="secondary">
                 {user ? "Accéder au tableau de bord" : "Commencer gratuitement"}
               </ButtonLink>
@@ -106,7 +106,7 @@ export default async function OfferPage() {
             <div
               key={plan.key}
               className={[
-                "rounded-[2rem] border p-6 shadow-panel",
+                "flex flex-col rounded-[2rem] border p-6 shadow-panel",
                 plan.highlighted
                   ? "border-ink/10 bg-ink text-paper"
                   : "border-border bg-card",
@@ -174,7 +174,7 @@ export default async function OfferPage() {
                 ))}
               </ul>
 
-              <div className="mt-8">
+              <div className="mt-auto pt-8">
                 {premium ? (
                   <CheckoutButton
                     endpoint="/api/stripe/portal"
