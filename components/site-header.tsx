@@ -45,11 +45,11 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
         <Link href="/" className="flex min-w-0 items-center">
           <div className="h-14 overflow-hidden">
             <Image
-              src="/logo.jpg"
+              src="/logo.png"
               alt="CRPE Français — Banque d'exercices"
               width={1408}
               height={768}
-              className="-mt-3 h-20 w-auto object-contain mix-blend-multiply"
+              className="-mt-3 h-20 w-auto object-contain"
               priority
             />
           </div>
