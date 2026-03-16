@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, LayoutDashboard, Menu, UserPlus } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -34,15 +35,15 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-paper/80 backdrop-blur-xl supports-[backdrop-filter]:bg-paper/75">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-6 py-4">
-        <Link href="/" className="flex min-w-0 items-center gap-3">
-          <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-card text-sm font-semibold text-ink shadow-subtle">
-            <span>CR</span>
-            <span className="absolute -right-1 -top-1 h-4 w-4 rounded-full border border-card bg-accentSecondary" />
-          </div>
-          <div className="min-w-0">
-            <p className="truncate font-serif text-2xl font-semibold text-ink">CRPE Français</p>
-            <p className="truncate text-sm text-muted">Révision structurée et progressive</p>
-          </div>
+        <Link href="/" className="flex min-w-0 items-center">
+          <Image
+            src="/logo.jpg"
+            alt="CRPE Français — Banque d'exercices"
+            width={160}
+            height={45}
+            className="h-11 w-auto object-contain"
+            priority
+          />
         </Link>
 
         <nav className="ml-auto hidden items-center gap-2 lg:flex">

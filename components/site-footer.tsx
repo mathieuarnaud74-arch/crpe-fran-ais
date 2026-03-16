@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const NAV_LINKS = [
@@ -30,7 +31,13 @@ export function SiteFooter() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
           {/* About */}
           <div>
-            <p className="font-serif text-xl font-semibold text-ink">CRPE Français</p>
+            <Image
+              src="/logo.jpg"
+              alt="CRPE Français — Banque d'exercices"
+              width={160}
+              height={45}
+              className="h-10 w-auto object-contain"
+            />
             <p className="mt-3 max-w-xs text-sm leading-7 text-muted">
               Un espace de révision structuré pour préparer le CRPE avec des séries courtes,
               des corrections lisibles et une progression par domaine.
