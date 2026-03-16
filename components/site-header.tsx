@@ -39,9 +39,9 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
           <Image
             src="/logo.jpg"
             alt="CRPE Français — Banque d'exercices"
-            width={160}
-            height={45}
-            className="h-11 w-auto object-contain"
+            width={220}
+            height={62}
+            className="h-14 w-auto object-contain mix-blend-multiply"
             priority
           />
         </Link>
