@@ -43,12 +43,6 @@ const domainIcons: Record<(typeof FRENCH_DOMAIN_ORDER)[number], LucideIcon> = {
   "analyse-de-la-langue": Sparkles,
 };
 
-const heroResultLevelStyles = {
-  Prioritaire:
-    "border border-accentSecondary/25 bg-accentSecondarySoft text-accentSecondaryDark",
-  "À renforcer": "border border-border bg-secondary text-ink",
-  "Maîtrisé": "border border-successBorder bg-successBg text-accent",
-} as const;
 
 export function HomepageRenderer({ sections, authenticated }: HomepageRendererProps) {
   return (
@@ -155,101 +149,6 @@ function HeroSection({
   );
 }
 
-function HeroPreviewCard({
-  props,
-  authenticated,
-}: {
-  props: HeroSectionProps;
-  authenticated: boolean;
-}) {
-  const primaryHref = authenticated ? props.primaryCtaHrefAuth : props.primaryCtaHrefGuest;
-
-  return (
-    <div className="relative mx-auto w-full max-w-[38rem]">
-      <FadeIn delay={0.08} className="absolute -left-4 top-10 hidden w-44 lg:block">
-        <div className="rounded-[1.5rem] border border-white/70 bg-card/90 p-4 shadow-panel backdrop-blur">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Après 8 min</p>
-          <p className="mt-3 font-serif text-3xl font-semibold text-ink">Vos priorités</p>
-          <p className="mt-2 text-sm leading-6 text-muted">
-            Un ordre de révision clair, sans feuille blanche.
-          </p>
-        </div>
-      </FadeIn>
-
-      <FadeIn delay={0.14} className="relative z-10">
-        <Card className="overflow-hidden border-white/70 bg-[linear-gradient(180deg,rgba(253,249,243,0.96),rgba(248,242,233,0.98))] shadow-[0_28px_72px_rgba(44,36,32,0.14)]">
-          <div className="border-b border-border/80 bg-card/90 px-6 py-5">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <Badge tone="accentSecondary">{props.previewBadgeText}</Badge>
-              <span className="text-xs font-medium text-muted">Exemple de résultat personnalisé</span>
-            </div>
-            <h3 className="mt-4 font-serif text-3xl font-semibold text-ink">
-              {props.previewTitle}
-            </h3>
-            <p className="mt-2 max-w-md text-sm leading-7 text-muted">
-              {props.previewDescription}
-            </p>
-          </div>
-
-          <div className="p-6">
-            <div className="grid gap-3 sm:grid-cols-3">
-              {props.previewStats.map((item) => (
-                <div key={item.label} className="rounded-[1.3rem] border border-border bg-paper px-4 py-4">
-                  <p className="font-serif text-3xl font-semibold text-ink">{item.value}</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.12em] text-muted">{item.label}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-5 space-y-2.5">
-              {props.previewResults.map((result) => (
-                <div
-                  key={result.label}
-                  className="flex items-center justify-between gap-4 rounded-[1.1rem] border border-border/90 bg-paper px-4 py-3"
-                >
-                  <span className="text-sm text-ink">{result.label}</span>
-                  <span
-                    className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-semibold ${heroResultLevelStyles[result.level]}`}
-                  >
-                    {result.level}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 rounded-[1.4rem] border border-accentSecondary/15 bg-accentSecondarySoft/65 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accentSecondaryDark">
-                {props.previewRecommendationEyebrow}
-              </p>
-              <p className="mt-2 text-sm leading-7 text-ink">{props.previewRecommendationText}</p>
-            </div>
-
-            <div className="mt-6">
-              <ButtonLink
-                href={primaryHref}
-                className="w-full justify-center py-3.5 text-sm shadow-[0_20px_46px_rgba(71,98,87,0.22)] ring-1 ring-accentSecondary/25"
-              >
-                {props.primaryCtaLabel}
-              </ButtonLink>
-            </div>
-          </div>
-        </Card>
-      </FadeIn>
-
-      <FadeIn delay={0.22} className="absolute -bottom-5 right-2 hidden w-56 sm:block">
-        <div className="rounded-[1.5rem] border border-white/70 bg-secondary/90 p-4 shadow-panel backdrop-blur">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-            Ce que vous gagnez
-          </p>
-          <p className="mt-3 font-serif text-2xl font-semibold text-ink">Moins d&apos;hésitation</p>
-          <p className="mt-2 text-sm leading-6 text-muted">
-            Plus de clarté dans vos priorités, vos séries et vos prochaines séances.
-          </p>
-        </div>
-      </FadeIn>
-    </div>
-  );
-}
 
 function TrustBarSection({ props }: { props: TrustBarSectionProps }) {
   return (
