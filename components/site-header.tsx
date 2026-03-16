@@ -27,6 +27,7 @@ const marketingLinks = [
   { label: "Domaines", href: "/#domaines" },
   { label: "FAQ", href: "/#faq" },
   { label: "Offre", href: "/offre" },
+  { label: "Diagnostic gratuit", href: "/diagnostic" },
 ];
 
 export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
@@ -34,14 +35,14 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-paper/80 backdrop-blur-xl supports-[backdrop-filter]:bg-paper/75">
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-6 py-4">
+      <div className="mx-auto flex max-w-6xl items-center gap-6 px-6 py-3">
         <Link href="/" className="flex min-w-0 items-center">
           <Image
             src="/logo.jpg"
             alt="CRPE Français — Banque d'exercices"
             width={220}
             height={62}
-            className="h-14 w-auto object-contain mix-blend-multiply"
+            className="h-16 w-auto object-contain mix-blend-multiply"
             priority
           />
         </Link>
@@ -59,9 +60,6 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Badge tone="accentSecondary" className="border-white/60 bg-card/85">
-            Diagnostic gratuit
-          </Badge>
           {authenticated ? (
             <ButtonLink href="/tableau-de-bord" variant="secondary">
               <LayoutDashboard className="h-4 w-4" />
