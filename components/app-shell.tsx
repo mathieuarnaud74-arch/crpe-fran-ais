@@ -26,7 +26,7 @@ export function AppShell({ children, userEmail }: AppShellProps) {
             </div>
           </Link>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <MobileNav />
             <Link
               href="/"
@@ -37,7 +37,7 @@ export function AppShell({ children, userEmail }: AppShellProps) {
             <div className="hidden rounded-full border border-paper/20 bg-paper/10 px-4 py-2 text-xs font-semibold tracking-[0.10em] text-paper/70 lg:inline-flex">
               Espace de révision
             </div>
-            <p className="max-w-[280px] truncate text-sm text-paper/60">{userEmail}</p>
+            <p className="hidden md:block max-w-[280px] truncate text-sm text-paper/60">{userEmail}</p>
             <LogoutButton />
           </div>
         </div>

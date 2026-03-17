@@ -63,10 +63,10 @@ export default async function OfferPage() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <div className="mx-auto max-w-6xl px-6 py-16">
+      <div className="mx-auto max-w-6xl px-6 py-10 sm:py-16">
         {/* Header */}
         <div className="max-w-2xl">
-          <h1 className="font-serif text-5xl font-semibold text-ink">
+          <h1 className="font-serif text-3xl sm:text-5xl font-semibold text-ink">
             Choisissez votre accès
           </h1>
           <p className="mt-4 text-lg leading-8 text-muted">
@@ -79,7 +79,7 @@ export default async function OfferPage() {
         </div>
 
         {/* All tiers */}
-        <div className="mt-12 grid gap-5 lg:grid-cols-4">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {/* Free */}
           <div className="flex flex-col rounded-[2rem] border border-border bg-card p-6 shadow-panel">
             <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">Gratuit</p>

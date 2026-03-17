@@ -57,7 +57,7 @@ export default async function FrenchPage() {
         <div>
           <h2 className="font-serif text-3xl font-semibold text-ink">Domaines</h2>
         </div>
-        <div className="grid gap-4 xl:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {data.domainDirectory.map((domain) => (
             <DomainSummaryCard key={domain.key} domain={domain} />
           ))}

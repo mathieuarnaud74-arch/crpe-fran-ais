@@ -205,7 +205,7 @@ export default async function DashboardPage() {
         diagnostic={diagnostic}
       />
 
-      <div className="relative overflow-hidden rounded-[1.75rem] border border-accentSecondary/20 bg-[linear-gradient(135deg,#476257_0%,#394E45_50%,#2C2420_100%)] px-8 py-12 shadow-panel">
+      <div className="relative overflow-hidden rounded-[1.75rem] border border-accentSecondary/20 bg-[linear-gradient(135deg,#476257_0%,#394E45_50%,#2C2420_100%)] px-5 py-8 sm:px-8 sm:py-12 shadow-panel">
         {/* Decorative background elements */}
         <span aria-hidden className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 rounded-full bg-paper/[0.04] select-none" />
         <span aria-hidden className="pointer-events-none absolute right-24 -bottom-12 h-44 w-44 rounded-full bg-paper/[0.03] select-none" />
@@ -219,7 +219,7 @@ export default async function DashboardPage() {
         >
           {premium ? "Accès premium" : "Accès gratuit"}
         </Badge>
-        <h1 className="mt-5 font-serif text-7xl font-semibold text-paper leading-none">Tableau de bord</h1>
+        <h1 className="mt-5 font-serif text-4xl sm:text-5xl xl:text-7xl font-semibold text-paper leading-none">Tableau de bord</h1>
         <p className="mt-4 text-base text-paper/60 max-w-lg">
           Vos progrès, priorités et séries à reprendre — tout en un coup d&apos;œil.
         </p>
@@ -263,12 +263,12 @@ export default async function DashboardPage() {
       {data.totalAttempts > 0 && (
         <div className="overflow-hidden rounded-[1.75rem] border border-accentSecondary/25 shadow-panel">
           <div className="border-b border-accentSecondary/20 bg-[linear-gradient(135deg,rgba(164,104,73,0.12),rgba(252,250,246,1)_60%)] px-6 py-5">
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accentSecondary">
                   Session du jour
                 </p>
-                <h2 className="mt-1.5 font-serif text-3xl font-semibold text-ink">Plan du jour</h2>
+                <h2 className="mt-1.5 font-serif text-2xl sm:text-3xl font-semibold text-ink">Plan du jour</h2>
                 <p className="mt-1.5 text-sm text-muted">
                   {plan.length === 0
                     ? "Aucune action ciblée pour le moment."
@@ -363,7 +363,7 @@ export default async function DashboardPage() {
         <div className="flex items-end justify-between gap-4 border-b border-border pb-4">
           <div>
             <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[#476257]">Français</p>
-            <h2 className="mt-1 font-serif text-4xl font-semibold text-ink">Domaines</h2>
+            <h2 className="mt-1 font-serif text-3xl sm:text-4xl font-semibold text-ink">Domaines</h2>
           </div>
           <ButtonLink href="/francais" variant="secondary">
             Vue matière

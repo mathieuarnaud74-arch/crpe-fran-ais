@@ -206,7 +206,7 @@ export function ExercisePlayer({
               <Badge>{session.questionCount} questions</Badge>
             </div>
             <div>
-              <h1 className="font-serif text-4xl font-semibold text-ink">{session.title}</h1>
+              <h1 className="font-serif text-2xl sm:text-4xl font-semibold text-ink">{session.title}</h1>
               <button
                 type="button"
                 onClick={() => setShowSessionDetails((v) => !v)}
@@ -302,7 +302,7 @@ export function ExercisePlayer({
                       </Badge>
                     )}
                   </div>
-                  <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">
+                  <h2 className="mt-3 font-serif text-2xl sm:text-3xl font-semibold text-ink">
                     Score final : {score} / {session.questionCount}
                   </h2>
                   <p className="mt-2 text-sm font-medium text-muted">
@@ -428,7 +428,7 @@ export function ExercisePlayer({
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-muted">
                 Question {currentIndex + 1}
               </p>
-              <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">
+              <h2 className="mt-3 font-serif text-2xl sm:text-3xl font-semibold text-ink">
                 {currentQuestion.instruction}
               </h2>
               {currentQuestion.support_text ? (

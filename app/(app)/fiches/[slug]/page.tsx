@@ -57,7 +57,7 @@ export default async function FichePage({ params }: { params: Params }) {
             <div className="flex flex-wrap gap-3">
               {fiche.exercicesAssocies.length > 0 && (
                 <ButtonLink href="/exercices" variant="primary">
-                  S'entraîner →
+                  S&apos;entraîner →
                 </ButtonLink>
               )}
               <ButtonLink href="/fiches" variant="secondary">

@@ -6,6 +6,17 @@ Entrées en ordre chronologique inverse (plus récent en haut).
 
 ---
 
+## [2026-03-17] — Responsive mobile : exercise player, offre, francais
+
+- `features/exercises/components/exercise-player.tsx` — h1 session `text-2xl sm:text-4xl`, h2 score final et h2 question `text-2xl sm:text-3xl` (font sizes mobiles)
+- `app/(marketing)/offre/page.tsx` — h1 `text-3xl sm:text-5xl`, padding vertical `py-10 sm:py-16`, grille plans `sm:grid-cols-2 lg:grid-cols-4` (2 colonnes intermédiaires tablette)
+- `app/(app)/francais/page.tsx` — grille domaines `sm:grid-cols-2 xl:grid-cols-3` (2 colonnes sur tablette)
+
+## [2026-03-17] — Responsive mobile : app-shell et dashboard
+
+- `components/app-shell.tsx` — masquage de l'email utilisateur sur mobile (`hidden md:block`), réduction du gap header sur mobile (`gap-2 md:gap-4`)
+- `app/(app)/tableau-de-bord/page.tsx` — padding et taille du h1 hero adaptatifs (`px-5 py-8 sm:px-8 sm:py-12`, `text-4xl sm:text-5xl xl:text-7xl`), flex-wrap sur le header "Plan du jour", `text-2xl sm:text-3xl` sur le h2 correspondant, `text-3xl sm:text-4xl` sur le h2 "Domaines"
+
 ## [2026-03-17] — Page fiches : vue liste groupée par catégorie
 
 - `features/fiches/components/fiche-card.tsx` — ajout du composant `FicheRow` (ligne compacte horizontale) + exports des constantes `DOMAINE_LABELS` et `MODEL_LABELS`
