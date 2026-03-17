@@ -89,7 +89,7 @@ export default async function OfferPage() {
               Pour découvrir la plateforme et s&apos;entraîner chaque jour sans engagement.
             </p>
             <ul className="mt-5 space-y-2">
-              {["20 questions corrigées par jour", "Corrections et explications immédiates", "Accès aux 3 domaines du programme"].map((feature) => (
+              {["20 questions corrigées par jour", "Corrections et explications immédiates", "5 domaines du programme — 7 sous-domaines CRPE"].map((feature) => (
                 <li key={feature} className="flex items-start gap-2 text-sm text-muted">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accentSecondaryDark" />
                   {feature}

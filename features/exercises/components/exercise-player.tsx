@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
+import { toast } from "sonner";
 
 import { Mocca } from "@/components/mascot/mocca";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { Textarea } from "@/components/ui/textarea";
 import { submitAttemptAction } from "@/features/exercises/server/actions";
@@ -17,6 +18,7 @@ import {
   SUBDOMAIN_LABELS,
   formatLevelLabel,
 } from "@/lib/constants";
+import { MASTERY_THRESHOLD } from "@/lib/dashboard";
 import { cn } from "@/lib/utils";
 import { RevisionSession } from "@/types/domain";
 
@@ -31,16 +33,21 @@ type SessionResult = {
 type ExercisePlayerProps = {
   session: RevisionSession;
   disabledReason?: string | null;
+  nextSession?: { id: string; title: string } | null;
 };
 
 export function ExercisePlayer({
   session,
   disabledReason = null,
+  nextSession = null,
 }: ExercisePlayerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [draftAnswer, setDraftAnswer] = useState("");
   const [results, setResults] = useState<Record<string, SessionResult>>({});
   const [, startTransition] = useTransition();
+  const [showFullExplanation, setShowFullExplanation] = useState(false);
+  const [showSessionDetails, setShowSessionDetails] = useState(false);
+  const [expandedReviewCard, setExpandedReviewCard] = useState<string | null>(null);
 
   const currentQuestion = session.questions[currentIndex];
   const currentResult = currentQuestion ? results[currentQuestion.id] : undefined;
@@ -61,6 +68,10 @@ export function ExercisePlayer({
     }
     return Array.from(groups.entries()).map(([label, count]) => ({ label, count }));
   }, [results, session.questions]);
+
+  useEffect(() => {
+    setShowFullExplanation(false);
+  }, [currentQuestion?.id]);
 
   if (!currentQuestion) {
     return null;
@@ -96,7 +107,11 @@ export function ExercisePlayer({
       formData.append("exerciseId", currentQuestion.id);
       formData.append("answer", draftAnswer);
       formData.append("sessionId", session.id);
-      await submitAttemptAction({ status: "idle" }, formData);
+      try {
+        await submitAttemptAction({ status: "idle" }, formData);
+      } catch {
+        toast.error("Votre réponse n'a pas pu être enregistrée.");
+      }
     });
   }
 
@@ -152,9 +167,7 @@ export function ExercisePlayer({
     }
 
     if (currentResult.isCorrect) {
-      return (
-        <p className="mt-2">{currentQuestion.detailed_explanation}</p>
-      );
+      return null;
     }
 
     if (currentResult.reason === "accent_only") {
@@ -194,11 +207,20 @@ export function ExercisePlayer({
             </div>
             <div>
               <h1 className="font-serif text-4xl font-semibold text-ink">{session.title}</h1>
-              <p className="mt-3 max-w-3xl text-base leading-8 text-muted">{session.summary}</p>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
-                <span className="font-semibold text-ink">Objectif :</span> {session.objective}
-              </p>
-              <p className="mt-2 max-w-3xl text-sm leading-7 text-muted">{session.introduction}</p>
+              <button
+                type="button"
+                onClick={() => setShowSessionDetails((v) => !v)}
+                className="mt-2 flex items-center gap-1 text-xs font-semibold text-accent underline lg:hidden"
+              >
+                {showSessionDetails ? "Masquer les détails ▴" : "Voir les détails ▾"}
+              </button>
+              <div className={cn("space-y-2", !showSessionDetails && "hidden lg:block")}>
+                <p className="mt-3 max-w-3xl text-base leading-8 text-muted">{session.summary}</p>
+                <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
+                  <span className="font-semibold text-ink">Objectif :</span> {session.objective}
+                </p>
+                <p className="mt-2 max-w-3xl text-sm leading-7 text-muted">{session.introduction}</p>
+              </div>
             </div>
           </div>
           <div className="min-w-[220px] rounded-[1.5rem] border border-border bg-paper px-5 py-4">
@@ -264,13 +286,22 @@ export function ExercisePlayer({
                         ? "neutral"
                         : "grumpy"
                   }
-                  size="lg"
-                  className="hidden shrink-0 rounded-full sm:block"
+                  size="xl"
+                  className="hidden shrink-0 sm:block"
                 />
                 <div>
-                  <Badge tone={score === session.questionCount ? "success" : "accent"}>
-                    S&eacute;rie termin&eacute;e
-                  </Badge>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge tone={score === session.questionCount ? "success" : "accent"}>
+                      S&eacute;rie termin&eacute;e
+                    </Badge>
+                    {correctPercent >= MASTERY_THRESHOLD ? (
+                      <Badge tone="success">S&eacute;rie ma&icirc;tris&eacute;e ✓</Badge>
+                    ) : (
+                      <Badge tone="neutral">
+                        Objectif ma&icirc;trise&nbsp;: {MASTERY_THRESHOLD}&nbsp;%
+                      </Badge>
+                    )}
+                  </div>
                   <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">
                     Score final : {score} / {session.questionCount}
                   </h2>
@@ -287,9 +318,16 @@ export function ExercisePlayer({
                   </p>
                 </div>
               </div>
-              <Button type="button" onClick={resetSession} variant="secondary">
-                Recommencer la s&eacute;rie
-              </Button>
+              <div className="flex flex-wrap gap-3">
+                {nextSession && (
+                  <ButtonLink href={`/exercices/${nextSession.id}`} className="w-full sm:w-auto">
+                    Série suivante &rarr;
+                  </ButtonLink>
+                )}
+                <Button type="button" onClick={resetSession} variant="secondary" className="w-full sm:w-auto">
+                  Recommencer la s&eacute;rie
+                </Button>
+              </div>
             </div>
 
             <div className="grid gap-4 lg:grid-cols-2">
@@ -345,25 +383,34 @@ export function ExercisePlayer({
                     <p className="mt-4 text-base font-medium leading-7 text-ink">
                       {question.instruction}
                     </p>
-                    {question.support_text ? (
-                      <div className="mt-4 rounded-xl border border-border bg-card px-4 py-4 text-sm leading-7 text-muted">
-                        {question.support_text}
-                      </div>
-                    ) : null}
-                    <p className="mt-4 text-sm leading-7 text-muted">
-                      <span className="font-semibold text-ink">Votre r&eacute;ponse :</span>{" "}
-                      {results[question.id]?.answer}
-                    </p>
-                    <p className="mt-2 text-sm leading-7 text-muted">
-                      <span className="font-semibold text-ink">Correction :</span>{" "}
-                      {question.detailed_explanation}
-                    </p>
-                    {question.common_mistake ? (
-                      <p className="mt-2 text-sm leading-7 text-muted">
-                        <span className="font-semibold text-ink">Erreur fr&eacute;quente :</span>{" "}
-                        {question.common_mistake}
+                    <button
+                      type="button"
+                      className="mt-2 text-xs font-semibold text-accent underline sm:hidden"
+                      onClick={() => setExpandedReviewCard((v) => (v === question.id ? null : question.id))}
+                    >
+                      {expandedReviewCard === question.id ? "Masquer ▴" : "Voir la correction ▾"}
+                    </button>
+                    <div className={cn("mt-4", expandedReviewCard !== question.id && "hidden sm:block")}>
+                      {question.support_text ? (
+                        <div className="mb-4 rounded-xl border border-border bg-card px-4 py-4 text-sm leading-7 text-muted">
+                          {question.support_text}
+                        </div>
+                      ) : null}
+                      <p className="text-sm leading-7 text-muted">
+                        <span className="font-semibold text-ink">Votre r&eacute;ponse :</span>{" "}
+                        {results[question.id]?.answer}
                       </p>
-                    ) : null}
+                      <p className="mt-2 text-sm leading-7 text-muted">
+                        <span className="font-semibold text-ink">Correction :</span>{" "}
+                        {question.detailed_explanation}
+                      </p>
+                      {question.common_mistake ? (
+                        <p className="mt-2 text-sm leading-7 text-muted">
+                          <span className="font-semibold text-ink">Erreur fr&eacute;quente :</span>{" "}
+                          {question.common_mistake}
+                        </p>
+                      ) : null}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -421,24 +468,33 @@ export function ExercisePlayer({
                         (disabledReason || currentResult) && "cursor-default",
                       )}
                     >
+                      {currentQuestion.exercise_type !== "vrai_faux" && (
+                        <span
+                          className={cn(
+                            "mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors duration-200",
+                            !currentResult &&
+                              (isSelected
+                                ? "border-accent bg-accent text-paper"
+                                : "border-border text-muted"),
+                            showCorrect && "border-successBorder bg-card text-pine",
+                            showIncorrect && "border-errorBorder bg-card text-error",
+                            currentResult &&
+                              !showCorrect &&
+                              !showIncorrect &&
+                              "border-border text-muted",
+                          )}
+                        >
+                          {choice.id.toUpperCase()}
+                        </span>
+                      )}
                       <span
                         className={cn(
-                          "mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors duration-200",
-                          !currentResult &&
-                            (isSelected
-                              ? "border-accent bg-accent text-paper"
-                              : "border-border text-muted"),
-                          showCorrect && "border-successBorder bg-card text-pine",
-                          showIncorrect && "border-errorBorder bg-card text-error",
-                          currentResult &&
-                            !showCorrect &&
-                            !showIncorrect &&
-                            "border-border text-muted",
+                          "min-w-0 flex-1 text-sm leading-7 text-ink",
+                          currentQuestion.exercise_type === "vrai_faux" && "font-semibold",
                         )}
                       >
-                        {choice.id.toUpperCase()}
+                        {choice.label}
                       </span>
-                      <span className="min-w-0 flex-1 text-sm leading-7 text-ink">{choice.label}</span>
                       {showCorrect ? (
                         <span
                           aria-hidden="true"
@@ -556,19 +612,26 @@ export function ExercisePlayer({
                         <div className="relative flex-1 rounded-[1rem] border border-border/50 bg-card/60 px-4 py-3">
                           <div className="absolute -left-2.5 top-5 hidden h-0 w-0 border-y-[8px] border-r-[10px] border-y-transparent border-r-card/60 sm:block" />
                           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Mocca t&apos;explique</p>
-                          <p className="mt-1">{currentQuestion.detailed_explanation}</p>
+                          <p className={cn("mt-1", !showFullExplanation && "line-clamp-3 sm:line-clamp-none")}>{currentQuestion.detailed_explanation}</p>
                           {currentResult.validationRule ? (
-                            <p className="mt-3 text-sm">
+                            <p className={cn("mt-3 text-sm", !showFullExplanation && "hidden sm:block")}>
                               <span className="font-semibold">R&egrave;gle :</span>{" "}
                               {currentResult.validationRule}
                             </p>
                           ) : null}
                           {currentQuestion.common_mistake ? (
-                            <p className="mt-2 text-sm">
+                            <p className={cn("mt-2 text-sm", !showFullExplanation && "hidden sm:block")}>
                               <span className="font-semibold">Erreur fr&eacute;quente :</span>{" "}
                               {currentQuestion.common_mistake}
                             </p>
                           ) : null}
+                          <button
+                            type="button"
+                            onClick={() => setShowFullExplanation((v) => !v)}
+                            className="mt-2 text-xs font-semibold text-accent underline sm:hidden"
+                          >
+                            {showFullExplanation ? "Réduire ▴" : "Lire l'explication complète ▾"}
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -577,36 +640,38 @@ export function ExercisePlayer({
               ) : null}
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
+            <div className="flex flex-col-reverse gap-3 border-t border-border pt-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
               <Button
                 type="button"
                 variant="ghost"
                 disabled={currentIndex === 0}
                 onClick={goToPreviousQuestion}
+                className="w-full sm:w-auto"
               >
                 Question pr&eacute;c&eacute;dente
               </Button>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 {!currentResult ? (
                   <Button
                     type="button"
                     disabled={!draftAnswer.trim() || Boolean(disabledReason)}
                     onClick={submitCurrentQuestion}
+                    className="w-full sm:w-auto"
                   >
                     Corriger cette question
                   </Button>
                 ) : currentResult.isCorrect ? (
-                  <Button type="button" onClick={goToNextQuestion}>
+                  <Button type="button" onClick={goToNextQuestion} className="w-full sm:w-auto">
                     {currentIndex === session.questions.length - 1
                       ? "Voir le r\u00e9capitulatif"
                       : "Question suivante"}
                   </Button>
                 ) : (
                   <>
-                    <Button type="button" variant="secondary" onClick={retryCurrentQuestion}>
+                    <Button type="button" variant="secondary" onClick={retryCurrentQuestion} className="w-full sm:w-auto">
                       R&eacute;essayer
                     </Button>
-                    <Button type="button" onClick={goToNextQuestion}>
+                    <Button type="button" onClick={goToNextQuestion} className="w-full sm:w-auto">
                       {currentIndex === session.questions.length - 1
                         ? "Voir le r\u00e9capitulatif"
                         : "Passer \u00e0 la suivante"}

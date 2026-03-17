@@ -8,6 +8,7 @@ import { isPremiumUser } from "@/features/billing/server/queries";
 import { ExercisePlayer } from "@/features/exercises/components/exercise-player";
 import {
   getAttemptsCountToday,
+  getExercises,
   getExerciseSessionById,
 } from "@/features/exercises/server/queries";
 import { env } from "@/lib/env";
@@ -38,8 +39,22 @@ export default async function ExerciseDetailPage({
     notFound();
   }
 
-  const attemptsToday = await getAttemptsCountToday(user.id);
+  const [attemptsToday, allSessions] = await Promise.all([
+    getAttemptsCountToday(user.id),
+    getExercises({ subdomain: session.subdomain }),
+  ]);
   const crpeContext = CRPE_CONTEXT[session.subdomain as ExerciseSubdomain] ?? null;
+
+  const nextSession =
+    allSessions
+      .filter(
+        (s) =>
+          s.subdomain === session.subdomain &&
+          s.recommendedOrder > session.recommendedOrder,
+      )
+      .sort((a, b) => a.recommendedOrder - b.recommendedOrder)[0] ?? null;
+
+  const remainingFreeQuestions = Math.max(env.freeDailyQuestionLimit - attemptsToday, 0);
 
   let disabledReason: string | null = null;
 
@@ -69,20 +84,36 @@ export default async function ExerciseDetailPage({
       ) : null}
       {!premium ? (
         <Panel className="border-border bg-secondary">
-          <p className="text-sm leading-7 text-ink">
-            Quota gratuit restant aujourd&apos;hui :{" "}
-            <span className="font-semibold">
-              {Math.max(env.freeDailyQuestionLimit - attemptsToday, 0)}
-            </span>
-            {" "}—{" "}
-            <Link href="/abonnement" className="underline underline-offset-2">
-              passer en premium
-            </Link>{" "}
-            pour un accès illimité.
-          </p>
+          {remainingFreeQuestions > 0 ? (
+            <p className="text-sm leading-7 text-ink">
+              Il vous reste{" "}
+              <span className="font-semibold">
+                {remainingFreeQuestions} question
+                {remainingFreeQuestions > 1 ? "s" : ""} gratuites
+              </span>{" "}
+              aujourd&apos;hui —{" "}
+              <Link href="/abonnement" className="underline underline-offset-2">
+                accès illimité dès 0,99 €
+              </Link>
+              .
+            </p>
+          ) : (
+            <p className="text-sm leading-7 text-ink">
+              Séance gratuite du jour terminée — 20 questions corrigées. Votre quota se
+              réinitialise demain matin. Pour continuer maintenant :{" "}
+              <Link href="/abonnement" className="font-semibold underline underline-offset-2">
+                accès 24 h pour 0,99 €
+              </Link>
+              .
+            </p>
+          )}
         </Panel>
       ) : null}
-      <ExercisePlayer session={session} disabledReason={disabledReason} />
+      <ExercisePlayer
+        session={session}
+        disabledReason={disabledReason}
+        nextSession={nextSession ? { id: nextSession.id, title: nextSession.title } : null}
+      />
     </div>
   );
 }

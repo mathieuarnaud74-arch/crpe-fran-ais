@@ -14,13 +14,16 @@ values
 -- ================================================================
 -- SÉRIE 51 — Passé simple — Intermédiaire — free
 -- ================================================================
+-- QCM: Q1→b, Q2→a, Q4→d, Q6→b, Q7→a, Q9→d, Q10→a
+-- (vrai_faux: Q3, Q5, Q8 — skipped)
+
 (
   '51000000-0000-0000-0000-000000000001',
   'Francais', 'conjugaison', 'conj_passe_simple', 'Passé simple', 'Intermediaire',
   'qcm',
   'Quelle est la terminaison du passé simple des verbes du 1er groupe à la 3e personne du singulier ?',
   null,
-  '[{"id":"a","label":"-it"},{"id":"b","label":"-a"},{"id":"c","label":"-ut"}]'::jsonb,
+  '[{"id":"a","label":"-it"},{"id":"b","label":"-a"},{"id":"c","label":"-ut"},{"id":"d","label":"-at"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Retiens le tableau du 1er groupe au passé simple : -ai, -as, -a, -âmes, -âtes, -èrent. La 3e personne du singulier, c''est le -a : il chanta, elle parla, on dansa. Attention ! Le -it, c''est pour les verbes du 3e groupe comme tenir ou venir. Le -ut, c''est pour les verbes en -u comme savoir → sut ou vouloir → voulut. Trois groupes, trois familles de terminaisons — ne les mélange pas !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -32,7 +35,7 @@ values
   'qcm',
   'Conjuguez le verbe "finir" au passé simple, à la 1re personne du pluriel.',
   null,
-  '[{"id":"a","label":"nous finîmes"},{"id":"b","label":"nous finissions"},{"id":"c","label":"nous finimes"}]'::jsonb,
+  '[{"id":"a","label":"nous finîmes"},{"id":"b","label":"nous finissions"},{"id":"c","label":"nous finimes"},{"id":"d","label":"nous finirions"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'Le 2e groupe au passé simple : -is, -is, -it, -îmes, -îtes, -irent. La 1re personne du pluriel donne donc "nous finîmes" — avec le î accent circonflexe obligatoire, c''est lui qui fait toute la différence ! "Nous finissions", c''est l''imparfait — erreur classique, Attention ! Sans accent sur le i, c''est une faute. Au CRPE, ce petit chapeau fait toute la différence, alors ne l''oublie pas.',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -56,8 +59,8 @@ values
   'qcm',
   'Quelle est la forme correcte du passé simple de "être" à la 3e personne du pluriel ?',
   null,
-  '[{"id":"a","label":"ils étaient"},{"id":"b","label":"ils furent"},{"id":"c","label":"ils seront"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"ils étaient"},{"id":"b","label":"ils seront"},{"id":"c","label":"ils sont"},{"id":"d","label":"ils furent"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Attention, "être" est le roi des irréguliers ! Au passé simple, il construit tout sur le radical fu- : je fus, tu fus, il fut, nous fûmes, vous fûtes, ils furent. "Ils étaient" ? C''est l''imparfait. "Ils seront" ? C''est le futur. Retiens bien : être et avoir au passé simple sont à mémoriser par cœur — j''eus, tu eus, il eut… Ils reviennent souvent au CRPE, alors apprends-les comme une comptine !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
 ),
@@ -80,7 +83,7 @@ values
   'qcm',
   'Dans la phrase "Le roi convoqua ses vassaux et leur parla longuement", les verbes en gras sont au :',
   null,
-  '[{"id":"a","label":"Passé composé"},{"id":"b","label":"Passé simple"},{"id":"c","label":"Imparfait"}]'::jsonb,
+  '[{"id":"a","label":"Passé composé"},{"id":"b","label":"Passé simple"},{"id":"c","label":"Imparfait"},{"id":"d","label":"Plus-que-parfait"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'C''est ça ! "Convoqua" et "parla" sont des passés simples du 1er groupe — convoquer → convoqua, parler → parla. Dans ce récit historique, le passé simple exprime des actions ponctuelles, successives et achevées qui font avancer l''histoire. C''est son rôle de "temps du premier plan" : il raconte, il avance. L''imparfait, lui, aurait décrit le décor ou une action en cours. Bien sentir cette différence, c''est comprendre l''architecture du récit.',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -92,7 +95,7 @@ values
   'qcm',
   'Quelle est la forme correcte du passé simple de "aller" à la 2e personne du singulier ?',
   null,
-  '[{"id":"a","label":"tu allas"},{"id":"b","label":"tu allais"},{"id":"c","label":"tu alla"}]'::jsonb,
+  '[{"id":"a","label":"tu allas"},{"id":"b","label":"tu allais"},{"id":"c","label":"tu alla"},{"id":"d","label":"tu allèras"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'Voilà un piège savoureux ! "Aller" est ultra-irrégulier au présent, mais au passé simple il se comporte sagement comme un verbe du 1er groupe : j''allai, tu allas, il alla, nous allâmes, vous allâtes, ils allèrent. La 2e personne du singulier prend donc le -as, identique à tous les verbes du 1er groupe. "Tu allais" ? C''est l''imparfait. Retiens : au passé simple, "aller" rentre dans le rang !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -116,8 +119,8 @@ values
   'qcm',
   'Quelle différence d''usage distingue le passé simple du passé composé dans un récit ?',
   null,
-  '[{"id":"a","label":"Le passé simple est employé à l''oral, le passé composé à l''écrit"},{"id":"b","label":"Le passé simple marque l''action dans un récit écrit littéraire, le passé composé relie l''action au présent du locuteur"},{"id":"c","label":"Les deux temps sont interchangeables dans tous les registres"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Le passé simple est employé à l''oral, le passé composé à l''écrit"},{"id":"b","label":"Les deux temps sont interchangeables dans tous les registres"},{"id":"c","label":"Le passé simple ne s''emploie qu''au négatif"},{"id":"d","label":"Le passé simple marque l''action dans un récit écrit littéraire, le passé composé relie l''action au présent du locuteur"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Exactement ! C''est l''opposition centrale à maîtriser : le passé simple vit dans les récits écrits littéraires ou historiques et coupe les actions du présent de l''énonciateur. Le passé composé, lui, ancre l''action dans un lien avec le présent — c''est le temps narratif de l''oral et des écrits courants. Retiens : passé simple = action coupée du présent ; passé composé = action liée au présent. Cette distinction aspectuelle et énonciative est au cœur de la didactique du récit à l''école, et une question quasi-certaine au CRPE !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
 ),
@@ -128,7 +131,7 @@ values
   'qcm',
   'Parmi les formes suivantes, laquelle est un passé simple correct ?',
   null,
-  '[{"id":"a","label":"il prit"},{"id":"b","label":"il prendit"},{"id":"c","label":"il a pris"}]'::jsonb,
+  '[{"id":"a","label":"il prit"},{"id":"b","label":"il prendit"},{"id":"c","label":"il a pris"},{"id":"d","label":"il prendait"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'C''est "il prit" — et retiens sa conjugaison complète : je pris, tu pris, il prit, nous prîmes, vous prîtes, ils prirent. La forme "il prendit" n''existe tout simplement pas en français — c''est une reconstruction analogique fautive ! "Il a pris", c''est le passé composé. Attention au -t de la 3e personne du singulier, sans -s — ça ressemble au présent (il prend avec -d), alors ne les confonds pas !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -137,13 +140,16 @@ values
 -- ================================================================
 -- SÉRIE 52 — Plus-que-parfait et passé antérieur — Intermédiaire — free
 -- ================================================================
+-- QCM: Q1→b, Q3→b, Q4→d, Q6→b, Q8→d, Q9→b
+-- (vrai_faux: Q2, Q5, Q7, Q10 — skipped)
+
 (
   '52000000-0000-0000-0000-000000000001',
   'Francais', 'conjugaison', 'conj_plus_que_parfait', 'Plus-que-parfait et passé antérieur', 'Intermediaire',
   'qcm',
   'Comment se forme le plus-que-parfait ?',
   null,
-  '[{"id":"a","label":"Auxiliaire au présent + participe passé"},{"id":"b","label":"Auxiliaire à l''imparfait + participe passé"},{"id":"c","label":"Auxiliaire au futur + participe passé"}]'::jsonb,
+  '[{"id":"a","label":"Auxiliaire au présent + participe passé"},{"id":"b","label":"Auxiliaire à l''imparfait + participe passé"},{"id":"c","label":"Auxiliaire au futur + participe passé"},{"id":"d","label":"Auxiliaire au conditionnel + participe passé"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Retiens la formule : plus-que-parfait = auxiliaire être ou avoir à l''imparfait + participe passé. Résultat : j''avais mangé, tu étais parti(e), il avait fini. C''est le temps composé du passé qui exprime une action antérieure à une autre action passée — le "passé du passé" ! L''imparfait de l''auxiliaire te distingue le plus-que-parfait du passé composé (auxiliaire au présent) et du passé antérieur (auxiliaire au passé simple). Trois temps composés, trois auxiliaires différents : différencie-les bien !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -167,7 +173,7 @@ values
   'qcm',
   'Conjuguez "partir" au plus-que-parfait à la 1re personne du singulier.',
   null,
-  '[{"id":"a","label":"j''avais parti"},{"id":"b","label":"j''étais parti(e)"},{"id":"c","label":"je fus parti(e)"}]'::jsonb,
+  '[{"id":"a","label":"j''avais parti"},{"id":"b","label":"j''étais parti(e)"},{"id":"c","label":"je fus parti(e)"},{"id":"d","label":"je serais parti(e)"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Attention ! "Partir" est un verbe de mouvement — il se conjugue avec être, jamais avec avoir. Au plus-que-parfait : j''étais parti(e). "J''avais parti" est une erreur grave, une faute d''auxiliaire. "Je fus parti(e)" ? Ça, c''est le passé antérieur — auxiliaire au passé simple. Et n''oublie pas l''accord du participe avec être : elle était partie, ils étaient partis. Chaque détail compte au CRPE !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -179,8 +185,8 @@ values
   'qcm',
   'Comment se forme le passé antérieur ?',
   null,
-  '[{"id":"a","label":"Auxiliaire au passé simple + participe passé"},{"id":"b","label":"Auxiliaire à l''imparfait + participe passé"},{"id":"c","label":"Auxiliaire au conditionnel présent + participe passé"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
+  '[{"id":"a","label":"Auxiliaire à l''imparfait + participe passé"},{"id":"b","label":"Auxiliaire au conditionnel présent + participe passé"},{"id":"c","label":"Auxiliaire au subjonctif + participe passé"},{"id":"d","label":"Auxiliaire au passé simple + participe passé"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Retiens la formule du passé antérieur : auxiliaire au passé simple + participe passé. Résultat : j''eus mangé, il fut parti, nous eûmes fini. C''est un temps littéraire, rare à l''oral, qui exprime l''antériorité immédiate par rapport à un passé simple dans une subordonnée temporelle. Exemple typique : "Quand il eut mangé, il sortit." La différence avec le plus-que-parfait ? L''auxiliaire : passé simple ici, imparfait là-bas. Un seul détail, mais crucial !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
 ),
@@ -203,7 +209,7 @@ values
   'qcm',
   'Dans "Dès qu''il eut terminé son discours, les applaudissements éclatèrent", quel temps est "eut terminé" ?',
   null,
-  '[{"id":"a","label":"Plus-que-parfait"},{"id":"b","label":"Passé antérieur"},{"id":"c","label":"Passé composé"}]'::jsonb,
+  '[{"id":"a","label":"Plus-que-parfait"},{"id":"b","label":"Passé antérieur"},{"id":"c","label":"Passé composé"},{"id":"d","label":"Conditionnel passé"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'C''est ça ! "Eut terminé" = auxiliaire avoir au passé simple (eut) + participe passé (terminé) → passé antérieur. Deux indices te le confirment : la subordonnée temporelle avec "dès que" et le passé simple de la principale ("éclatèrent"). Retiens ce schéma : dès que / quand / aussitôt que + passé antérieur → passé simple dans la principale. C''est l''emploi le plus typique du passé antérieur — celui qu''on te montrera toujours en exemple dans les grammaires scolaires !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -227,7 +233,7 @@ values
   'qcm',
   'Quelle phrase illustre correctement l''emploi du plus-que-parfait pour marquer l''antériorité ?',
   null,
-  '[{"id":"a","label":"Il mangeait quand le téléphone sonnait."},{"id":"b","label":"Il avait fini son repas quand le téléphone sonna."},{"id":"c","label":"Il mangea quand le téléphone sonnera."}]'::jsonb,
+  '[{"id":"a","label":"Il mangeait quand le téléphone sonnait."},{"id":"b","label":"Il avait fini son repas quand le téléphone sonna."},{"id":"c","label":"Il mangea quand le téléphone sonnera."},{"id":"d","label":"Il avait mangé tous les jours."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'C''est la phrase b) — c''est l''exemple canonique ! "Avait fini" (plus-que-parfait) marque l''action terminée AVANT "sonna" (passé simple). Antériorité parfaite ! La phrase a) montre deux imparfaits simultanés — aucune antériorité marquée. La phrase c) mélange passé simple et futur — aberrant dans ce contexte ! Retiens ce modèle : plus-que-parfait + passé simple = antériorité dans le récit. C''est un objectif d''apprentissage du cycle 3, tu devras le faire construire à tes élèves !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -239,7 +245,7 @@ values
   'qcm',
   'Conjuguez "avoir" au passé antérieur à la 3e personne du pluriel.',
   null,
-  '[{"id":"a","label":"ils avaient eu"},{"id":"b","label":"ils eurent eu"},{"id":"c","label":"ils ont eu"}]'::jsonb,
+  '[{"id":"a","label":"ils avaient eu"},{"id":"b","label":"ils eurent eu"},{"id":"c","label":"ils ont eu"},{"id":"d","label":"ils auraient eu"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Voilà une conjugaison qui fait sourire : le passé antérieur d''avoir, c''est avoir au passé simple (eurent) + participe passé eu → "ils eurent eu". Oui, deux fois "eu" ! "Ils avaient eu" ? C''est le plus-que-parfait d''avoir. "Ils ont eu" ? Le passé composé. Cette conjugaison du passé antérieur d''avoir revient régulièrement dans les épreuves écrites du CRPE — retiens-la bien, elle est piégeuse !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -260,13 +266,16 @@ values
 -- ================================================================
 -- SÉRIE 53 — Conditionnel passé et subjonctif passé — Avancé — premium
 -- ================================================================
+-- QCM: Q1→a, Q2→d, Q4→a, Q5→b, Q7→a, Q8→d, Q10→b
+-- (vrai_faux: Q3, Q6, Q9 — skipped)
+
 (
   '53000000-0000-0000-0000-000000000001',
   'Francais', 'conjugaison', 'conj_conditionnel_subjonctif_passe', 'Conditionnel passé et subjonctif passé', 'Avance',
   'qcm',
   'Comment se forme le conditionnel passé ?',
   null,
-  '[{"id":"a","label":"Auxiliaire au conditionnel présent + participe passé"},{"id":"b","label":"Auxiliaire à l''imparfait + participe passé"},{"id":"c","label":"Auxiliaire au subjonctif présent + participe passé"}]'::jsonb,
+  '[{"id":"a","label":"Auxiliaire au conditionnel présent + participe passé"},{"id":"b","label":"Auxiliaire à l''imparfait + participe passé"},{"id":"c","label":"Auxiliaire au subjonctif présent + participe passé"},{"id":"d","label":"Auxiliaire au futur + participe passé"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'Retiens la formule : conditionnel passé = auxiliaire être ou avoir au conditionnel présent + participe passé. Exemples : j''aurais mangé, tu serais parti(e), il aurait fini. Ce temps composé a deux grandes missions : exprimer une action hypothétique non réalisée dans le passé (conséquence d''une condition irréelle), ou un fait passé présenté comme probable ou regretté. Son lien avec "si + plus-que-parfait" est indissociable — les deux forment une paire inséparable dans les propositions conditionnelles irréelles passées !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
@@ -278,9 +287,9 @@ values
   'qcm',
   'Laquelle de ces phrases illustre correctement la structure hypothétique "si + plus-que-parfait → conditionnel passé" ?',
   null,
-  '[{"id":"a","label":"Si tu venais, je serais content."},{"id":"b","label":"Si tu étais venu, j''aurais été content."},{"id":"c","label":"Si tu viens, je serai content."}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'C''est la phrase b) — et retiens le tableau des trois structures conditionnelles ! Phrase a) : si + imparfait → conditionnel présent = hypothèse irréelle dans le présent. Phrase b) : si + plus-que-parfait → conditionnel passé = hypothèse irréelle dans le passé. Phrase c) : si + présent → futur = condition réalisable. Trois structures, trois niveaux temporels — les maîtriser toutes les trois, c''est maîtriser les conditionnelles du français. Au CRPE, on te les demandera toutes !',
+  '[{"id":"a","label":"Si tu venais, je serais content."},{"id":"b","label":"Si tu viens, je serai content."},{"id":"c","label":"Si tu avais voulu, tu serais venu."},{"id":"d","label":"Si tu étais venu, j''aurais été content."}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'C''est la phrase d) — et retiens le tableau des trois structures conditionnelles ! Phrase a) : si + imparfait → conditionnel présent = hypothèse irréelle dans le présent. Phrase d) : si + plus-que-parfait → conditionnel passé = hypothèse irréelle dans le passé. Phrase b) : si + présent → futur simple = condition réalisable. Trois structures, trois niveaux temporels — les maîtriser toutes les trois, c''est maîtriser les conditionnelles du français. Au CRPE, on te les demandera toutes !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
 ),
 
@@ -302,7 +311,7 @@ values
   'qcm',
   'Comment se forme le subjonctif passé ?',
   null,
-  '[{"id":"a","label":"Auxiliaire au subjonctif présent + participe passé"},{"id":"b","label":"Auxiliaire à l''imparfait + participe passé"},{"id":"c","label":"Auxiliaire au passé simple + participe passé"}]'::jsonb,
+  '[{"id":"a","label":"Auxiliaire au subjonctif présent + participe passé"},{"id":"b","label":"Auxiliaire à l''imparfait + participe passé"},{"id":"c","label":"Auxiliaire au passé simple + participe passé"},{"id":"d","label":"Auxiliaire au futur antérieur + participe passé"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'Retiens la formule : subjonctif passé = auxiliaire être ou avoir au subjonctif présent + participe passé. Résultat : que j''aie mangé, que tu sois parti(e), qu''il ait fini. C''est le temps composé du subjonctif, qui exprime l''antériorité ou l''accompli dans une subordonnée au subjonctif. L''analogie à retenir : subjonctif passé / subjonctif présent = passé composé / présent de l''indicatif. Même logique, mode différent — une fois que tu vois ce parallèle, tout devient plus simple !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
@@ -314,7 +323,7 @@ values
   'qcm',
   'Dans "Je suis content que tu aies réussi", quel est le mode et le temps du verbe "aies réussi" ?',
   null,
-  '[{"id":"a","label":"Indicatif passé composé"},{"id":"b","label":"Subjonctif passé"},{"id":"c","label":"Conditionnel passé"}]'::jsonb,
+  '[{"id":"a","label":"Indicatif passé composé"},{"id":"b","label":"Subjonctif passé"},{"id":"c","label":"Conditionnel passé"},{"id":"d","label":"Subjonctif imparfait"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Exactement — "aies réussi" est un subjonctif passé : auxiliaire avoir au subjonctif présent (aies) + participe passé (réussi). Deux raisons à ce temps : d''abord, "suis content" exprime un sentiment, donc le subjonctif est obligatoire dans la subordonnée. Ensuite, l''action de réussir est antérieure ou accomplie — c''est déjà fait ! Le subjonctif passé marque cet aspect accompli. Cette structure très fréquente en français soigné, tu devras l''expliquer à tes élèves du cycle 3.',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
@@ -338,7 +347,7 @@ values
   'qcm',
   'Conjuguez "venir" au conditionnel passé, 3e personne du singulier.',
   null,
-  '[{"id":"a","label":"il serait venu"},{"id":"b","label":"il viendrait"},{"id":"c","label":"il était venu"}]'::jsonb,
+  '[{"id":"a","label":"il serait venu"},{"id":"b","label":"il viendrait"},{"id":"c","label":"il était venu"},{"id":"d","label":"il serait venus"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'C''est "il serait venu" — "venir" se conjugue avec être, donc le conditionnel passé utilise être au conditionnel présent. "Il viendrait" ? C''est le conditionnel présent. "Il était venu" ? Le plus-que-parfait. Retiens aussi l''accord du participe passé avec être : elle serait venue, ils seraient venus, elles seraient venues. La forme "il serait venu" est indispensable dans les constructions hypothétiques : "S''il avait pu, il serait venu." — une phrase modèle à avoir en tête !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
@@ -350,9 +359,9 @@ values
   'qcm',
   'Quelle phrase contient un subjonctif passé correctement employé ?',
   null,
-  '[{"id":"a","label":"Il faut que tu viennes demain."},{"id":"b","label":"Je doute qu''il ait dit la vérité."},{"id":"c","label":"Je veux qu''il finisse ce travail."}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'C''est la phrase b) ! "Ait dit" = subjonctif passé (auxiliaire avoir au subjonctif présent + participe passé dit), correctement employé après "douter que" — qui exige le subjonctif — pour une action passée et accomplie. Phrases a) et c) : "viennes" et "finisse" sont des subjonctifs présents, pour des actions futures ou en cours. Retiens la règle d''or : subjonctif passé = aspect accompli dans les subordonnées au subjonctif. C''est la différence entre "qu''il vienne" et "qu''il soit venu" !',
+  '[{"id":"a","label":"Il faut que tu viennes demain."},{"id":"b","label":"Je veux qu''il finisse ce travail."},{"id":"c","label":"Elle espère qu''il soit content."},{"id":"d","label":"Je doute qu''il ait dit la vérité."}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'C''est la phrase d) ! "Ait dit" = subjonctif passé (auxiliaire avoir au subjonctif présent + participe passé dit), correctement employé après "douter que" — qui exige le subjonctif — pour une action passée et accomplie. Phrases a) et b) : "viennes" et "finisse" sont des subjonctifs présents, pour des actions futures ou en cours. Retiens la règle d''or : subjonctif passé = aspect accompli dans les subordonnées au subjonctif. C''est la différence entre "qu''il vienne" et "qu''il soit venu" !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
 ),
 
@@ -374,7 +383,7 @@ values
   'qcm',
   'Quel est le subjonctif passé de "finir" à la 2e personne du singulier ?',
   null,
-  '[{"id":"a","label":"que tu finisses"},{"id":"b","label":"que tu aies fini"},{"id":"c","label":"que tu avais fini"}]'::jsonb,
+  '[{"id":"a","label":"que tu finisses"},{"id":"b","label":"que tu aies fini"},{"id":"c","label":"que tu avais fini"},{"id":"d","label":"que tu auras fini"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'C''est "que tu aies fini" — auxiliaire avoir au subjonctif présent (aies) + participe passé (fini). "Que tu finisses" ? C''est le subjonctif présent — aspect non accompli. "Que tu avais fini" ? C''est le plus-que-parfait de l''indicatif — mode et temps incorrects ! Retiens le trio : subjonctif présent = en cours ou futur ; subjonctif passé = accompli ; plus-que-parfait = indicatif seulement. Cette distinction subjonctif présent/passé est enseignée au cycle 3 et testée au CRPE !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
@@ -383,13 +392,16 @@ values
 -- ================================================================
 -- SÉRIE 54 — Valeurs de l'imparfait — Intermédiaire — free
 -- ================================================================
+-- QCM: Q1→b, Q3→d, Q4→b, Q6→a, Q8→d, Q9→c
+-- (vrai_faux: Q2, Q5, Q7, Q10 — skipped)
+
 (
   '54000000-0000-0000-0000-000000000001',
   'Francais', 'conjugaison', 'conj_valeurs_imparfait', 'Valeurs de l''imparfait', 'Intermediaire',
   'qcm',
   'Dans "Chaque soir, il lisait un chapitre avant de dormir", quelle valeur a l''imparfait ?',
   null,
-  '[{"id":"a","label":"Description d''un état"},{"id":"b","label":"Habitude ou répétition dans le passé"},{"id":"c","label":"Action unique et ponctuelle"}]'::jsonb,
+  '[{"id":"a","label":"Description d''un état"},{"id":"b","label":"Habitude ou répétition dans le passé"},{"id":"c","label":"Action unique et ponctuelle"},{"id":"d","label":"Imparfait hypothétique"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'C''est l''imparfait d''habitude — aspect itératif ! Le marqueur "chaque soir" est l''indice clé : il signale la répétition. L''imparfait "lisait" exprime ici une action qui se reproduisait régulièrement dans le passé. L''imparfait de description peindrait plutôt un état ou un décor figé, et l''imparfait d''action unique et ponctuelle n''existe tout simplement pas — c''est le rôle du passé simple ! Retiens : pour identifier la valeur de l''imparfait, cherche toujours les indices contextuels. C''est une compétence centrale du cycle 3 et du CRPE.',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -413,8 +425,8 @@ values
   'qcm',
   'Dans "Si j''avais de l''argent, je voyagerais", quelle est la valeur de l''imparfait "avais" ?',
   null,
-  '[{"id":"a","label":"Imparfait de description"},{"id":"b","label":"Imparfait hypothétique dans une proposition conditionnelle"},{"id":"c","label":"Imparfait de politesse"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Imparfait de description"},{"id":"b","label":"Imparfait de politesse"},{"id":"c","label":"Imparfait d''habitude"},{"id":"d","label":"Imparfait hypothétique dans une proposition conditionnelle"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Attention — ici l''imparfait n''a AUCUNE valeur temporelle passée ! "Avais" exprime une hypothèse irréelle dans le présent : en réalité, je n''ai pas d''argent. C''est l''imparfait hypothétique, dans la structure "si + imparfait → conditionnel présent". C''est une des trois structures conditionnelles fondamentales du français. Retiens : quand tu vois "si + imparfait", pense hypothèse, pas passé ! Cette valeur modale de l''imparfait est essentielle à maîtriser pour le CRPE.',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
 ),
@@ -425,7 +437,7 @@ values
   'qcm',
   'Dans "Je voulais vous demander un service", quelle valeur particulière a l''imparfait ?',
   null,
-  '[{"id":"a","label":"Imparfait pittoresque"},{"id":"b","label":"Imparfait de politesse"},{"id":"c","label":"Imparfait de narration"}]'::jsonb,
+  '[{"id":"a","label":"Imparfait pittoresque"},{"id":"b","label":"Imparfait de politesse"},{"id":"c","label":"Imparfait de narration"},{"id":"d","label":"Imparfait d''habitude"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'C''est l''imparfait de politesse — aussi appelé imparfait d''atténuation ou de modestie ! "Je voulais vous demander…" signifie en réalité "je veux vous demander" — l''action se passe maintenant. L''imparfait adoucit la demande, la rend moins directe, plus polie. C''est un emploi purement modal : pas de valeur temporelle passée ici ! Fréquent dans les échanges formels et à l''écrit soigné. Retiens : l''imparfait de politesse = présent déguisé en passé par politesse.',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -449,7 +461,7 @@ values
   'qcm',
   'Quelle est la principale différence d''aspect entre l''imparfait et le passé composé dans un récit ?',
   null,
-  '[{"id":"a","label":"L''imparfait exprime l''aspect inaccompli/duratif, le passé composé l''aspect accompli/ponctuel"},{"id":"b","label":"L''imparfait est réservé aux textes littéraires, le passé composé à l''oral uniquement"},{"id":"c","label":"Il n''y a aucune différence d''aspect, seulement de registre"}]'::jsonb,
+  '[{"id":"a","label":"L''imparfait exprime l''aspect inaccompli/duratif, le passé composé l''aspect accompli/ponctuel"},{"id":"b","label":"L''imparfait est réservé aux textes littéraires, le passé composé à l''oral uniquement"},{"id":"c","label":"Il n''y a aucune différence d''aspect, seulement de registre"},{"id":"d","label":"L''imparfait est plus récent que le passé composé dans l''histoire du français"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'C''est l''opposition fondamentale à maîtriser ! L''imparfait exprime l''inaccompli, l''action en cours ou la durée non délimitée — aspect imperfectif. Le passé composé exprime l''accompli, l''action achevée et délimitée — aspect perfectif. Exemple mémorable : "Il lisait (imparfait — en cours) quand le téléphone a sonné (passé composé — événement ponctuel)." Retiens : l''imparfait étire le temps, le passé composé le découpe. C''est l''un des enjeux les plus importants de l''enseignement du français à l''école !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -473,8 +485,8 @@ values
   'qcm',
   'Dans "Autrefois, les enfants jouaient dans la rue sans surveillance", l''imparfait exprime :',
   null,
-  '[{"id":"a","label":"Une action unique et datée"},{"id":"b","label":"Une habitude passée révolue"},{"id":"c","label":"Une hypothèse irréelle"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Une action unique et datée"},{"id":"b","label":"Une hypothèse irréelle"},{"id":"c","label":"Un état permanent universel"},{"id":"d","label":"Une habitude passée révolue"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'C''est l''imparfait d''habitude passée révolue — et le mot "autrefois" est l''indice lexical qui te met sur la piste ! Il signale une époque révolue, un temps où les choses se passaient différemment. L''imparfait "jouaient" exprime une pratique régulière du passé qui n''existe plus. Retiens : pour identifier la valeur de l''imparfait, cherche toujours les indices contextuels comme "autrefois", "chaque jour", "jadis"... Reconnaître ces indices dans un texte, c''est une compétence clé au CRPE !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
 ),
@@ -485,7 +497,7 @@ values
   'qcm',
   'Combien de valeurs principales reconnaît-on habituellement à l''imparfait dans les grammaires scolaires ?',
   null,
-  '[{"id":"a","label":"Une seule : la description"},{"id":"b","label":"Deux : description et habitude"},{"id":"c","label":"Plusieurs : description, habitude, hypothèse, politesse, pittoresque"}]'::jsonb,
+  '[{"id":"a","label":"Une seule : la description"},{"id":"b","label":"Deux : description et habitude"},{"id":"c","label":"Plusieurs : description, habitude, hypothèse, politesse, pittoresque"},{"id":"d","label":"Quatre : description, habitude, politesse, passé récent"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
   'Exactement — l''imparfait a plusieurs vies ! Les grammaires distinguent : 1) description ou état (aspect imperfectif) ; 2) habitude/répétition (aspect itératif) ; 3) action en cours interrompue par une autre ; 4) imparfait hypothétique (si + imparfait) ; 5) imparfait de politesse ; 6) imparfait pittoresque. Six valeurs pour un seul temps — c''est ce qui le rend si riche et si complexe à enseigner ! C''est aussi pourquoi l''imparfait est un des sujets récurrents du CRPE. Retiens bien cette liste !',
   'valide', 'CRPE Français — Conjugaison V2', 'free', true
@@ -506,13 +518,16 @@ values
 -- ================================================================
 -- SÉRIE 55 — Concordance des temps — Avancé — premium
 -- ================================================================
+-- QCM: Q1→a, Q2→d, Q4→b, Q6→d, Q8→b, Q9→b
+-- (vrai_faux: Q3, Q5, Q7, Q10 — skipped)
+
 (
   '55000000-0000-0000-0000-000000000001',
   'Francais', 'conjugaison', 'conj_concordance_temps', 'Concordance des temps', 'Avance',
   'qcm',
   'Lorsque le verbe de la principale est au présent, quel temps emploie-t-on dans la subordonnée pour exprimer la simultanéité ?',
   null,
-  '[{"id":"a","label":"Le présent de l''indicatif"},{"id":"b","label":"L''imparfait"},{"id":"c","label":"Le plus-que-parfait"}]'::jsonb,
+  '[{"id":"a","label":"Le présent de l''indicatif"},{"id":"b","label":"L''imparfait"},{"id":"c","label":"Le plus-que-parfait"},{"id":"d","label":"Le conditionnel présent"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'Retiens le tableau de concordance quand la principale est au présent : simultanéité → présent ("Il dit qu''il est fatigué") ; antériorité → passé composé/passé simple ("Il dit qu''il a terminé") ; postériorité → futur simple ("Il dit qu''il viendra"). Principale au présent = les temps restent naturels, pas de transformation. C''est seulement quand la principale est au passé que tout se décale ! Ces règles structurent les discours rapportés — maîtrise fondamentale pour le CRPE.',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
@@ -524,8 +539,8 @@ values
   'qcm',
   'Lorsque le verbe de la principale est à un temps du passé, quel temps emploie-t-on pour exprimer la simultanéité dans la subordonnée ?',
   null,
-  '[{"id":"a","label":"Le présent de l''indicatif"},{"id":"b","label":"L''imparfait de l''indicatif"},{"id":"c","label":"Le futur simple"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Le présent de l''indicatif"},{"id":"b","label":"Le futur simple"},{"id":"c","label":"Le conditionnel présent"},{"id":"d","label":"L''imparfait de l''indicatif"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Exactement ! Quand la principale est au passé, la simultanéité dans la subordonnée s''exprime à l''imparfait : "Il disait qu''il était fatigué." L''imparfait devient le "présent du passé" — c''est l''image à retenir ! Le tableau de décalage : présent de la principale → présent dans la subordonnée ; passé de la principale → imparfait dans la subordonnée (pour la simultanéité). Cette notion de concordance est fondamentale pour analyser les textes narratifs — et pour enseigner le discours rapporté à l''école !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
 ),
@@ -548,7 +563,7 @@ values
   'qcm',
   'Quelle est la transformation correcte pour passer de "Il a dit : ''J''ai fini''" au discours indirect au passé ?',
   null,
-  '[{"id":"a","label":"Il a dit qu''il finissait."},{"id":"b","label":"Il a dit qu''il avait fini."},{"id":"c","label":"Il a dit qu''il aura fini."}]'::jsonb,
+  '[{"id":"a","label":"Il a dit qu''il finissait."},{"id":"b","label":"Il a dit qu''il avait fini."},{"id":"c","label":"Il a dit qu''il aura fini."},{"id":"d","label":"Il a dit qu''il finira."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'C''est la phrase b) ! Au discours indirect au passé, le passé composé ("j''ai fini") se transforme en plus-que-parfait ("il avait fini"). Retiens tout le tableau de transformation : présent → imparfait ; passé composé → plus-que-parfait ; futur simple → conditionnel présent ; futur antérieur → conditionnel passé. "Il finissait" ? Ce serait la transformation du présent. "Il aura fini" ? Un futur antérieur — pas sa place ici. Ce tableau de concordance, c''est un outil de référence à avoir en tête pour le CRPE !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
@@ -572,9 +587,9 @@ values
   'qcm',
   'Quelle structure conditionnelle est correcte pour exprimer une hypothèse réalisable dans le futur ?',
   null,
-  '[{"id":"a","label":"Si + imparfait → conditionnel présent"},{"id":"b","label":"Si + présent → futur simple ou présent"},{"id":"c","label":"Si + plus-que-parfait → conditionnel présent"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'C''est la structure b) ! "Si + présent → futur simple (ou présent)" exprime une hypothèse réalisable : "S''il fait beau, nous sortirons." Retiens les trois structures comme une petite grammaire des conditionnelles : 1) si + présent → futur/présent = hypothèse réalisable ; 2) si + imparfait → conditionnel présent = hypothèse irréelle dans le présent ; 3) si + plus-que-parfait → conditionnel passé = hypothèse irréelle dans le passé. Et surtout : jamais de conditionnel directement après "si" de condition — c''est LA faute classique des élèves !',
+  '[{"id":"a","label":"Si + imparfait → conditionnel présent"},{"id":"b","label":"Si + plus-que-parfait → conditionnel présent"},{"id":"c","label":"Si + conditionnel → futur simple"},{"id":"d","label":"Si + présent → futur simple ou présent"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'C''est la structure d) ! "Si + présent → futur simple (ou présent)" exprime une hypothèse réalisable : "S''il fait beau, nous sortirons." Retiens les trois structures comme une petite grammaire des conditionnelles : 1) si + présent → futur/présent = hypothèse réalisable ; 2) si + imparfait → conditionnel présent = hypothèse irréelle dans le présent ; 3) si + plus-que-parfait → conditionnel passé = hypothèse irréelle dans le passé. Et surtout : jamais de conditionnel directement après "si" de condition — c''est LA faute classique des élèves !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
 ),
 
@@ -596,7 +611,7 @@ values
   'qcm',
   'Transformez en discours indirect : Pierre dit : "Je travaille tous les jours." → Pierre dit que… (principale au présent)',
   null,
-  '[{"id":"a","label":"Pierre dit qu''il travaillait tous les jours."},{"id":"b","label":"Pierre dit qu''il travaille tous les jours."},{"id":"c","label":"Pierre dit qu''il a travaillé tous les jours."}]'::jsonb,
+  '[{"id":"a","label":"Pierre dit qu''il travaillait tous les jours."},{"id":"b","label":"Pierre dit qu''il travaille tous les jours."},{"id":"c","label":"Pierre dit qu''il a travaillé tous les jours."},{"id":"d","label":"Pierre dit qu''il travaillera tous les jours."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Retiens ce principe fondamental : quand la principale est au présent ("dit"), les temps dans la subordonnée ne changent pas pour la simultanéité — le présent reste présent ! Pierre dit qu''il travaille tous les jours. C''est seulement quand la principale est au passé ("disait", "a dit") que les décalages temporels entrent en jeu. La phrase a) serait correcte si la principale était au passé. La phrase c) exprimerait une action accomplie, pas simultanée. Cette distinction est fondamentale dans l''enseignement du discours rapporté !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true
@@ -608,7 +623,7 @@ values
   'qcm',
   'Dans la phrase "Elle pensait qu''il était parti la veille", quelle est la relation temporelle entre les deux verbes ?',
   null,
-  '[{"id":"a","label":"Simultanéité : les deux actions ont lieu en même temps"},{"id":"b","label":"Antériorité : partir est antérieur à penser"},{"id":"c","label":"Postériorité : partir est postérieur à penser"}]'::jsonb,
+  '[{"id":"a","label":"Simultanéité : les deux actions ont lieu en même temps"},{"id":"b","label":"Antériorité : partir est antérieur à penser"},{"id":"c","label":"Postériorité : partir est postérieur à penser"},{"id":"d","label":"Répétition : l''action se reproduit plusieurs fois"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'C''est l''antériorité ! "Pensait" est à l''imparfait (action principale dans le passé) et "était parti" est au plus-que-parfait (action antérieure à "pensait"). Il est parti AVANT qu''elle pense. Et l''adverbe "la veille" vient confirmer cette antériorité — c''est un indice lexical précieux ! Retiens : plus-que-parfait dans la subordonnée = action antérieure à l''action principale passée. Reconstruire ainsi la chronologie des événements dans un texte est une compétence attendue lors de l''analyse grammaticale au CRPE !',
   'valide', 'CRPE Français — Conjugaison V2', 'premium', true

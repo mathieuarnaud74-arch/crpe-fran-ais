@@ -77,8 +77,10 @@ export const LEARNING_STATUS_LABELS: Record<LearningStatus, string> = {
 
 export const FRENCH_DOMAIN_ORDER: FrenchDomainKey[] = [
   "grammaire",
+  "lexique",
   "orthographe",
   "analyse-de-la-langue",
+  "didactique-du-francais",
 ];
 
 export const FRENCH_DOMAIN_CONFIG: Record<
@@ -93,9 +95,16 @@ export const FRENCH_DOMAIN_CONFIG: Record<
   grammaire: {
     label: "Grammaire",
     description:
-      "Fonctions syntaxiques, classes grammaticales, conjugaison des temps et modes, lexique et sens des mots.",
+      "Fonctions syntaxiques, classes grammaticales et conjugaison des temps et modes.",
     href: "/francais/grammaire",
-    subdomains: ["grammaire", "conjugaison", "lexique"],
+    subdomains: ["grammaire", "conjugaison"],
+  },
+  lexique: {
+    label: "Lexique",
+    description:
+      "Sens des mots, vocabulaire, relations lexicales et formation des mots.",
+    href: "/francais/lexique",
+    subdomains: ["lexique"],
   },
   orthographe: {
     label: "Orthographe",
@@ -105,11 +114,18 @@ export const FRENCH_DOMAIN_CONFIG: Record<
     subdomains: ["orthographe"],
   },
   "analyse-de-la-langue": {
-    label: "Analyse & Didactique",
+    label: "Analyse de la langue",
     description:
-      "Analyse syntaxique avancée, compréhension de texte et didactique du français : enseigner la lecture, l'écriture, la grammaire et le vocabulaire.",
+      "Analyse syntaxique avancée et compréhension de texte littéraire ou documentaire.",
     href: "/francais/analyse-de-la-langue",
-    subdomains: ["analyse_langue", "comprehension_texte", "didactique_francais"],
+    subdomains: ["analyse_langue", "comprehension_texte"],
+  },
+  "didactique-du-francais": {
+    label: "Didactique du français",
+    description:
+      "Enseigner la lecture, l'écriture, la grammaire et le vocabulaire à l'école primaire.",
+    href: "/francais/didactique-du-francais",
+    subdomains: ["didactique_francais"],
   },
 };
 
@@ -118,15 +134,12 @@ export function formatLevelLabel(value: string) {
 }
 
 export function getFrenchDomainKey(subdomain: ExerciseSubdomain): FrenchDomainKey {
-  if (FRENCH_DOMAIN_CONFIG.grammaire.subdomains.includes(subdomain)) {
-    return "grammaire";
+  for (const key of FRENCH_DOMAIN_ORDER) {
+    if (FRENCH_DOMAIN_CONFIG[key].subdomains.includes(subdomain)) {
+      return key;
+    }
   }
-
-  if (FRENCH_DOMAIN_CONFIG.orthographe.subdomains.includes(subdomain)) {
-    return "orthographe";
-  }
-
-  return "analyse-de-la-langue";
+  return "grammaire";
 }
 
 export function getFrenchDomainLabel(subdomain: ExerciseSubdomain) {

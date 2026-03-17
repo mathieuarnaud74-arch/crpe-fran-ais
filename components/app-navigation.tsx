@@ -6,8 +6,7 @@ import {
   ClipboardList,
   CreditCard,
   LayoutDashboard,
-  Library,
-  Repeat2,
+  Search,
   Stethoscope,
   User,
 } from "lucide-react";
@@ -25,31 +24,51 @@ type NavLink = {
 };
 
 type NavigationGroup = {
+  kind: "group";
   title: string;
   links: NavLink[];
 };
 
-const navigationGroups: NavigationGroup[] = [
+type NavigationStandalone = {
+  kind: "standalone";
+  href: string;
+  label: string;
+  exact?: boolean;
+  icon?: React.ElementType;
+};
+
+type NavigationItem = NavigationGroup | NavigationStandalone;
+
+const navigationItems: NavigationItem[] = [
   {
+    kind: "group",
     title: "Mon parcours",
     links: [
       { href: "/tableau-de-bord", label: "Tableau de bord", exact: true, icon: LayoutDashboard },
       { href: "/diagnostic", label: "Diagnostic", exact: true, icon: Stethoscope },
-      { href: "/revisions-ciblees", label: "Révisions ciblées", exact: true, icon: Repeat2 },
       { href: "/progression", label: "Progression", exact: true, icon: BarChart3 },
     ],
   },
   {
+    kind: "group",
     title: "Français",
     links: [
-      { href: "/francais/grammaire", label: "Grammaire & Lexique", exact: true, icon: BookText },
+      { href: "/francais/grammaire", label: "Grammaire", exact: true, icon: BookText },
+      { href: "/francais/lexique", label: "Lexique", exact: true, icon: BookText },
       { href: "/francais/orthographe", label: "Orthographe", exact: true, icon: BookText },
-      { href: "/francais/analyse-de-la-langue", label: "Analyse & Didactique", exact: true, icon: BookText },
-      { href: "/exercices", label: "Recherche d'exercices", exact: false, icon: Library },
+      { href: "/francais/analyse-de-la-langue", label: "Analyse de la langue", exact: true, icon: BookText },
+      { href: "/francais/didactique-du-francais", label: "Didactique du français", exact: true, icon: BookText },
       { href: "/ressources/glossaire", label: "Glossaire", exact: false, icon: ClipboardList },
     ],
   },
   {
+    kind: "standalone",
+    href: "/exercices",
+    label: "Recherche avancée",
+    exact: false,
+  },
+  {
+    kind: "group",
     title: "Compte",
     links: [
       { href: "/profil", label: "Profil", exact: true, icon: User },
@@ -137,7 +156,7 @@ function NavGroup({
                 className={cn(
                   "flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm transition",
                   active
-                    ? "border border-border bg-card font-semibold text-ink shadow-subtle"
+                    ? "bg-accent font-semibold text-paper shadow-subtle"
                     : "font-medium text-muted hover:bg-secondary hover:text-ink",
                 )}
               >
@@ -145,7 +164,7 @@ function NavGroup({
                   <Icon
                     className={cn(
                       "h-4 w-4 shrink-0",
-                      active ? "text-accentSecondary" : "text-muted/70",
+                      active ? "text-paper/80" : "text-muted/70",
                     )}
                   />
                 ) : null}
@@ -159,14 +178,40 @@ function NavGroup({
   );
 }
 
+function NavStandalone({ item, pathname }: { item: NavigationStandalone; pathname: string }) {
+  const active = isLinkActive(pathname, item.href, item.exact);
+
+  return (
+    <Link
+      href={item.href}
+      className={cn(
+        "flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition",
+        active
+          ? "bg-accent text-paper shadow-subtle"
+          : "text-muted hover:bg-secondary hover:text-ink",
+      )}
+    >
+      <span>{item.label}</span>
+      <Search
+        className={cn(
+          "h-3.5 w-3.5 shrink-0",
+          active ? "text-paper/80" : "text-muted/70",
+        )}
+      />
+    </Link>
+  );
+}
+
 export function AppNavigation() {
   const pathname = usePathname();
 
+  const groups = navigationItems.filter((i): i is NavigationGroup => i.kind === "group");
+
   const [openGroups, setOpenGroups] = useState<Set<string>>(() => {
-    const initial = navigationGroups
+    const initial = groups
       .filter((group) => isGroupActive(pathname, group.links))
       .map((group) => group.title);
-    return new Set(initial.length > 0 ? initial : [navigationGroups[0].title]);
+    return new Set(initial.length > 0 ? initial : [groups[0].title]);
   });
 
   function toggleGroup(title: string) {
@@ -183,15 +228,22 @@ export function AppNavigation() {
 
   return (
     <nav className="space-y-1" aria-label="Navigation principale">
-      {navigationGroups.map((group) => (
-        <NavGroup
-          key={group.title}
-          group={group}
-          pathname={pathname}
-          isOpen={openGroups.has(group.title)}
-          onToggle={() => toggleGroup(group.title)}
-        />
-      ))}
+      {navigationItems.map((item) => {
+        if (item.kind === "standalone") {
+          return (
+            <NavStandalone key={item.href} item={item} pathname={pathname} />
+          );
+        }
+        return (
+          <NavGroup
+            key={item.title}
+            group={item}
+            pathname={pathname}
+            isOpen={openGroups.has(item.title)}
+            onToggle={() => toggleGroup(item.title)}
+          />
+        );
+      })}
     </nav>
   );
 }

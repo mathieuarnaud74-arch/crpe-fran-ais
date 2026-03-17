@@ -8,6 +8,8 @@ values
 
 -- ============================================================
 -- SÉRIE 30 — Compréhension de texte documentaire (free)
+-- Distribution cible : a×2, b×2, c×2, d×1 sur 7 QCMs
+-- Q1→b, Q3→d, Q4→b, Q6→c, Q8→a, Q9→d, Q10→b
 -- ============================================================
 
 (
@@ -20,7 +22,7 @@ values
   'qcm',
   'Quel est l''objectif principal d''un texte documentaire ?',
   'Le texte documentaire est un écrit non fictif qui vise à transmettre des informations sur le monde réel. Il s''appuie sur des faits vérifiables, des données chiffrées ou des explications objectives. On le rencontre dans les encyclopédies, les manuels scolaires et les articles de presse scientifique.',
-  '[{"id":"a","label":"Divertir le lecteur par une histoire imaginaire"},{"id":"b","label":"Informer le lecteur sur un sujet réel à partir de faits vérifiables"},{"id":"c","label":"Convaincre le lecteur d''adopter une opinion"}]'::jsonb,
+  '[{"id":"a","label":"Divertir le lecteur par une histoire imaginaire"},{"id":"b","label":"Informer le lecteur sur un sujet réel à partir de faits vérifiables"},{"id":"c","label":"Convaincre le lecteur d''adopter une opinion"},{"id":"d","label":"Raconter la biographie de l''auteur du texte"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Le texte documentaire appartient aux écrits informatifs non fictifs — son but premier, c''est de transmettre des connaissances sur la réalité à l''aide de faits vérifiables, de données et d''explications objectives. Il ne raconte pas (c''est le texte narratif) et ne cherche pas à convaincre (c''est le texte argumentatif). Retiens les trois grandes fonctions : informer / raconter / convaincre. C''est la base de la classification des types de textes à enseigner à l''école primaire !',
   'valide',
@@ -58,8 +60,8 @@ values
   'qcm',
   'Parmi ces caractéristiques, laquelle est propre au texte documentaire ?',
   'Le texte documentaire est un écrit non fictif qui vise à transmettre des informations sur le monde réel. Il s''appuie sur des faits vérifiables, des données chiffrées ou des explications objectives. On le rencontre dans les encyclopédies, les manuels scolaires et les articles de presse scientifique.',
-  '[{"id":"a","label":"La présence d''un narrateur à la première personne"},{"id":"b","label":"L''utilisation de faits vérifiables et de données objectives"},{"id":"c","label":"La construction d''un suspense narratif"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"La présence d''un narrateur à la première personne"},{"id":"b","label":"La construction d''un suspense narratif"},{"id":"c","label":"Un point de vue subjectif dominant"},{"id":"d","label":"L''utilisation de faits vérifiables et de données objectives"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Le recours à des faits vérifiables et à des données objectives, c''est la marque distinctive du texte documentaire. Le narrateur à la première personne et le suspense, ça c''est la fiction. Le point de vue subjectif, c''est le texte d''opinion. La vérifiabilité des informations est un critère essentiel que les futurs enseignants doivent savoir expliquer aux élèves — et c''est aussi la base de l''éducation aux médias : apprendre à distinguer fait et opinion dès le cycle 3 !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -77,7 +79,7 @@ values
   'qcm',
   'Quelle structure est la plus fréquente dans un texte documentaire explicatif ?',
   'Le texte documentaire est un écrit non fictif qui vise à transmettre des informations sur le monde réel. Il s''appuie sur des faits vérifiables, des données chiffrées ou des explications objectives. On le rencontre dans les encyclopédies, les manuels scolaires et les articles de presse scientifique.',
-  '[{"id":"a","label":"Situation initiale — péripétie — situation finale"},{"id":"b","label":"Introduction du sujet — développement thématique — conclusion"},{"id":"c","label":"Thèse — antithèse — synthèse"}]'::jsonb,
+  '[{"id":"a","label":"Situation initiale — péripétie — situation finale"},{"id":"b","label":"Introduction du sujet — développement thématique — conclusion"},{"id":"c","label":"Thèse — antithèse — synthèse"},{"id":"d","label":"Amorce poétique — description sensorielle — chute narrative"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Le texte documentaire explicatif s''organise généralement en trois parties : une introduction qui présente le sujet, un développement qui expose les informations de façon thématique ou chronologique, et une conclusion qui synthétise. Situation initiale / péripétie / situation finale, c''est le schéma narratif du récit de fiction. Thèse / antithèse / synthèse, c''est le plan dialectique. Reconnaître ces structures, c''est identifier le genre textuel — une compétence fondamentale au CRPE !',
   'valide',
@@ -115,8 +117,8 @@ values
   'qcm',
   'Dans un texte documentaire, à quoi sert principalement le lexique spécialisé ?',
   'Le texte documentaire est un écrit non fictif qui vise à transmettre des informations sur le monde réel. Il s''appuie sur des faits vérifiables, des données chiffrées ou des explications objectives. On le rencontre dans les encyclopédies, les manuels scolaires et les articles de presse scientifique.',
-  '[{"id":"a","label":"À rendre le texte plus difficile à comprendre"},{"id":"b","label":"À désigner avec précision les notions propres au domaine traité"},{"id":"c","label":"À exprimer les émotions de l''auteur"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"À rendre le texte plus difficile à comprendre"},{"id":"b","label":"À exprimer les émotions de l''auteur"},{"id":"c","label":"À désigner avec précision les notions propres au domaine traité"},{"id":"d","label":"À imiter le style des textes littéraires"}]'::jsonb,
+  '{"mode":"single_choice","value":"c"}'::jsonb,
   'Le lexique spécialisé (ou vocabulaire technique) sert à nommer avec précision les concepts propres au domaine abordé. Son but n''est pas de compliquer la lecture, mais d''assurer l''exactitude terminologique. À l''école, travailler ce lexique spécialisé pendant les lectures documentaires enrichit le vocabulaire disciplinaire des élèves et développe leur capacité à lire des écrits fonctionnels variés. C''est le vocabulaire de la précision — et c''est une compétence transversale à toutes les disciplines !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -153,8 +155,8 @@ values
   'qcm',
   'Comment appelle-t-on l''ensemble des éléments visuels qui accompagnent un texte documentaire (images, schémas, graphiques) ?',
   'Le texte documentaire est un écrit non fictif qui vise à transmettre des informations sur le monde réel. Il s''appuie sur des faits vérifiables, des données chiffrées ou des explications objectives. On le rencontre dans les encyclopédies, les manuels scolaires et les articles de presse scientifique.',
-  '[{"id":"a","label":"Les péritextes"},{"id":"b","label":"Les iconotextes ou éléments iconographiques"},{"id":"c","label":"Les métaphores visuelles"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Les iconotextes ou éléments iconographiques"},{"id":"b","label":"Les péritextes"},{"id":"c","label":"Les métaphores visuelles"},{"id":"d","label":"Les glossaires illustrés"}]'::jsonb,
+  '{"mode":"single_choice","value":"a"}'::jsonb,
   'On désigne par iconotexte ou éléments iconographiques l''ensemble des images, schémas, graphiques et tableaux qui accompagnent un texte documentaire. Ces éléments ne sont pas là pour décorer — ils apportent une information complémentaire ou redondante qui facilite la compréhension. À l''école, apprendre à articuler le texte et l''image est une compétence de compréhension à part entière, travaillée dans les séquences de lecture documentaire. L''image n''est pas un bonus, c''est du texte visuel !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -172,8 +174,8 @@ values
   'qcm',
   'Quelle est la différence principale entre un texte documentaire et un texte de fiction ?',
   'Le texte documentaire est un écrit non fictif qui vise à transmettre des informations sur le monde réel. Il s''appuie sur des faits vérifiables, des données chiffrées ou des explications objectives. On le rencontre dans les encyclopédies, les manuels scolaires et les articles de presse scientifique.',
-  '[{"id":"a","label":"Le texte documentaire parle d''animaux, la fiction parle de personnes"},{"id":"b","label":"Le texte documentaire s''appuie sur des faits réels, la fiction construit un monde imaginaire"},{"id":"c","label":"Le texte documentaire est toujours court, la fiction est toujours longue"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Le texte documentaire parle d''animaux, la fiction parle de personnes"},{"id":"b","label":"Le texte documentaire est toujours court, la fiction est toujours longue"},{"id":"c","label":"Le texte documentaire utilise toujours des illustrations en couleur"},{"id":"d","label":"Le texte documentaire s''appuie sur des faits réels, la fiction construit un monde imaginaire"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'La distinction fondamentale, c''est le rapport au réel : le documentaire s''ancre dans des faits vérifiables, la fiction construit un univers imaginaire. Cette opposition n''est pas liée au sujet (on peut écrire un documentaire sur des animaux — et de la fiction aussi !) ni à la longueur. C''est l''une des premières catégorisations textuelles enseignées dès le cycle 2 — elle conditionne la posture de lecture. Ton élève doit savoir pourquoi il lit différemment un roman et une encyclopédie !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -191,7 +193,7 @@ values
   'qcm',
   'Dans un texte documentaire sur les abeilles, la phrase « La reine pond jusqu''à 2 000 œufs par jour » est une information :',
   'Le texte documentaire est un écrit non fictif qui vise à transmettre des informations sur le monde réel. Il s''appuie sur des faits vérifiables, des données chiffrées ou des explications objectives. On le rencontre dans les encyclopédies, les manuels scolaires et les articles de presse scientifique.',
-  '[{"id":"a","label":"Subjective, car elle exprime l''admiration de l''auteur"},{"id":"b","label":"Objective et vérifiable, caractéristique du texte documentaire"},{"id":"c","label":"Fictive, car aucune abeille ne peut pondre autant"}]'::jsonb,
+  '[{"id":"a","label":"Subjective, car elle exprime l''admiration de l''auteur"},{"id":"b","label":"Objective et vérifiable, caractéristique du texte documentaire"},{"id":"c","label":"Fictive, car aucune abeille ne peut pondre autant"},{"id":"d","label":"Argumentative, car elle cherche à convaincre le lecteur de protéger les abeilles"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Cette phrase énonce un fait chiffré observable dans la réalité — c''est une information objective et vérifiable, la marque typique du texte documentaire. Ça n''exprime pas l''admiration de l''auteur (aucun jugement de valeur !), et ce n''est pas fictif (c''est biologiquement réel). Apprendre aux élèves à distinguer une information objective d''une opinion subjective, c''est une compétence de lecture critique essentielle dans les programmes du cycle 3 — et une base de l''esprit scientifique !',
   'valide',
@@ -202,6 +204,8 @@ values
 
 -- ============================================================
 -- SÉRIE 31 — Inférences et implicite du texte (free)
+-- QCMs: Q1(b), Q3(a), Q4(b), Q6(c), Q8(b), Q9(a)
+-- Cible : a×2, b×2, c×1, d×1 → Q4→d, Q8→d
 -- ============================================================
 
 (
@@ -214,7 +218,7 @@ values
   'qcm',
   'Qu''est-ce qu''une inférence en lecture ?',
   'Marie rentra chez elle trempée. Elle posa son parapluie dans l''entrée et alla chercher une serviette. Par la fenêtre, elle vit les flaques d''eau sur le trottoir.',
-  '[{"id":"a","label":"Une information explicitement écrite dans le texte"},{"id":"b","label":"Une information que le lecteur déduit à partir d''indices textuels et de ses connaissances"},{"id":"c","label":"Un résumé du texte rédigé par l''auteur"}]'::jsonb,
+  '[{"id":"a","label":"Une information explicitement écrite dans le texte"},{"id":"b","label":"Une information que le lecteur déduit à partir d''indices textuels et de ses connaissances"},{"id":"c","label":"Un résumé du texte rédigé par l''auteur"},{"id":"d","label":"Une question posée en fin de texte pour vérifier la compréhension"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Une inférence, c''est une opération cognitive par laquelle le lecteur déduit des informations non explicitement formulées — en combinant des indices textuels et ses connaissances du monde. Dans le texte support, on comprend qu''il a plu sans que ce soit dit directement ! Cette compétence est centrale dans les programmes de lecture : de nombreux élèves en difficulté sont précisément ceux qui ne savent pas dépasser la lecture littérale. Lire, c''est aussi lire entre les lignes !',
   'valide',
@@ -252,7 +256,7 @@ values
   'qcm',
   'Quelle est la différence entre une information explicite et une information implicite dans un texte ?',
   'Marie rentra chez elle trempée. Elle posa son parapluie dans l''entrée et alla chercher une serviette. Par la fenêtre, elle vit les flaques d''eau sur le trottoir.',
-  '[{"id":"a","label":"L''information explicite est dans le texte, l''implicite doit être déduite"},{"id":"b","label":"L''information explicite est fausse, l''implicite est vraie"},{"id":"c","label":"L''information explicite concerne les personnages, l''implicite concerne le décor"}]'::jsonb,
+  '[{"id":"a","label":"L''information explicite est dans le texte, l''implicite doit être déduite"},{"id":"b","label":"L''information explicite est fausse, l''implicite est vraie"},{"id":"c","label":"L''information explicite concerne les personnages, l''implicite concerne le décor"},{"id":"d","label":"L''information explicite est longue, l''implicite est toujours courte"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'L''information explicite est directement formulée dans le texte — disponible en lecture littérale. L''information implicite n''est pas dite mais peut être reconstruite par inférence. Dans le texte support : « Marie rentra chez elle trempée » est explicite. « Il pleuvait » est implicite. Cette distinction est fondamentale dans l''enseignement : les questions sur l''implicite sont souvent celles qui départagent les bons lecteurs des lecteurs en difficulté. C''est là que se joue la vraie compréhension !',
   'valide',
@@ -271,8 +275,8 @@ values
   'qcm',
   'Parmi ces types d''inférences, lequel s''appuie principalement sur les connaissances du lecteur plutôt que sur des indices du texte ?',
   'Marie rentra chez elle trempée. Elle posa son parapluie dans l''entrée et alla chercher une serviette. Par la fenêtre, elle vit les flaques d''eau sur le trottoir.',
-  '[{"id":"a","label":"L''inférence logique"},{"id":"b","label":"L''inférence pragmatique ou encyclopédique"},{"id":"c","label":"L''inférence anaphorique"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"L''inférence logique"},{"id":"b","label":"L''inférence anaphorique"},{"id":"c","label":"L''inférence de cohérence locale"},{"id":"d","label":"L''inférence pragmatique ou encyclopédique"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'L''inférence pragmatique (ou encyclopédique) mobilise les connaissances du monde du lecteur pour combler les ellipses du texte. Savoir qu''un parapluie sert à se protéger de la pluie permet d''inférer qu''il pleuvait — cette connaissance vient de ton vécu, pas du texte ! L''inférence logique découle d''une déduction formelle. L''inférence anaphorique lie un pronom à son référent. Ces distinctions permettent à l''enseignant de cibler précisément l''obstacle de compréhension de chaque élève.',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -309,7 +313,7 @@ values
   'qcm',
   'Quel est l''état émotionnel probable de Marie dans ce texte, même s''il n''est pas explicitement nommé ?',
   'Marie rentra chez elle trempée. Elle posa son parapluie dans l''entrée et alla chercher une serviette. Par la fenêtre, elle vit les flaques d''eau sur le trottoir.',
-  '[{"id":"a","label":"Joyeuse et enthousiaste"},{"id":"b","label":"Indifférente et calme"},{"id":"c","label":"Probablement inconfortable ou contrariée d''être trempée"}]'::jsonb,
+  '[{"id":"a","label":"Joyeuse et enthousiaste"},{"id":"b","label":"Indifférente et calme"},{"id":"c","label":"Probablement inconfortable ou contrariée d''être trempée"},{"id":"d","label":"Soulagée d''être rentrée avant que la pluie commence"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
   'Être trempé, c''est généralement désagréable — et chercher une serviette indique une réaction pratique face à un inconfort. C''est une inférence pragmatique qui mobilise les connaissances du monde et l''empathie du lecteur. Travailler ces inférences émotionnelles à l''école, c''est développer à la fois la compréhension et les compétences psychosociales des élèves — ils apprennent à « se mettre à la place » d''un personnage, ce qui enrichit aussi leur vie relationnelle !',
   'valide',
@@ -347,8 +351,8 @@ values
   'qcm',
   'Quelle stratégie pédagogique est recommandée pour enseigner les inférences aux élèves ?',
   'Marie rentra chez elle trempée. Elle posa son parapluie dans l''entrée et alla chercher une serviette. Par la fenêtre, elle vit les flaques d''eau sur le trottoir.',
-  '[{"id":"a","label":"Demander aux élèves de mémoriser les définitions des types d''inférences"},{"id":"b","label":"Rendre visibles les raisonnements par la verbalisation et le questionnement explicite"},{"id":"c","label":"Éviter les questions sur l''implicite pour ne pas décourager les élèves"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Demander aux élèves de mémoriser les définitions des types d''inférences"},{"id":"b","label":"Éviter les questions sur l''implicite pour ne pas décourager les élèves"},{"id":"c","label":"Proposer uniquement des textes sans ambiguïté pour faciliter la compréhension"},{"id":"d","label":"Rendre visibles les raisonnements par la verbalisation et le questionnement explicite"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'L''enseignement explicite des inférences passe par la verbalisation des raisonnements : l''enseignant modélise à voix haute comment il déduit une information (« je vois qu''elle est trempée, je sais qu''un parapluie sert à... donc je déduis que... »), puis les élèves verbalisent leur propre raisonnement. Cette approche métacognitive est bien plus efficace que la mémorisation de définitions. Elle permet aux élèves de transférer les stratégies à de nouveaux textes — c''est ça, apprendre à apprendre !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -366,7 +370,7 @@ values
   'qcm',
   'Dans le texte support, quel indice permet d''inférer que Marie est rentrée à pied plutôt qu''en voiture ?',
   'Marie rentra chez elle trempée. Elle posa son parapluie dans l''entrée et alla chercher une serviette. Par la fenêtre, elle vit les flaques d''eau sur le trottoir.',
-  '[{"id":"a","label":"Le fait qu''elle soit trempée et ait utilisé un parapluie"},{"id":"b","label":"Le fait qu''elle regarde par la fenêtre"},{"id":"c","label":"Le fait qu''elle cherche une serviette"}]'::jsonb,
+  '[{"id":"a","label":"Le fait qu''elle soit trempée et ait utilisé un parapluie"},{"id":"b","label":"Le fait qu''elle regarde par la fenêtre"},{"id":"c","label":"Le fait qu''elle cherche une serviette"},{"id":"d","label":"Le fait que le texte ne mentionne pas de voiture"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'Être trempée malgré un parapluie indique une exposition directe aux intempéries — ce qui n''aurait pas été le cas dans une voiture ! C''est une inférence logique qui combine la signification du parapluie (protection contre la pluie lors de déplacements à pied) et le fait d''être trempée. Elle mobilise à la fois des connaissances encyclopédiques et un raisonnement logique — c''est exactement ce qui illustre la complexité cognitive de la lecture. Rien n''est anodin dans un texte bien construit !',
   'valide',
@@ -396,6 +400,8 @@ values
 
 -- ============================================================
 -- SÉRIE 32 — Connecteurs logiques et cohérence textuelle (premium)
+-- QCMs: Q1(b), Q3(b), Q4(b), Q6(a), Q8(b), Q9(b)
+-- Cible : a×1, b×2, c×1, d×2 → Q3→d, Q4→c, Q8→d
 -- ============================================================
 
 (
@@ -408,7 +414,7 @@ values
   'qcm',
   'Quel connecteur logique exprime une relation de cause ?',
   null,
-  '[{"id":"a","label":"Cependant"},{"id":"b","label":"Parce que"},{"id":"c","label":"Ensuite"}]'::jsonb,
+  '[{"id":"a","label":"Cependant"},{"id":"b","label":"Parce que"},{"id":"c","label":"Ensuite"},{"id":"d","label":"Néanmoins"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   '« Parce que » est un connecteur causal — il relie une conséquence à sa cause. « Cependant » exprime une opposition, et « ensuite » marque une succession temporelle. Retiens les grandes catégories : causalité (parce que, puisque, car), opposition (mais, cependant, pourtant), addition (et, de plus, en outre), conséquence (donc, ainsi, c''est pourquoi), condition (si), but (pour que, afin que). Maîtriser ces catégories est indispensable pour comprendre et produire des textes cohérents — un objectif explicite du cycle 3 !',
   'valide',
@@ -446,8 +452,8 @@ values
   'qcm',
   'Dans la phrase « Il travaille dur ; pourtant, il n''obtient pas de bons résultats », quel rapport logique est exprimé ?',
   null,
-  '[{"id":"a","label":"Une relation de cause à effet"},{"id":"b","label":"Une relation d''opposition ou de concession"},{"id":"c","label":"Une relation d''addition"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Une relation de cause à effet"},{"id":"b","label":"Une relation d''addition"},{"id":"c","label":"Une relation de condition"},{"id":"d","label":"Une relation d''opposition ou de concession"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   '« Pourtant » est un connecteur adversatif (ou concessif) : il introduit une opposition entre un fait attendu (travailler dur devrait mener au succès) et la réalité contraire. C''est une concession : l''obstacle attendu ne produit pas l''effet escompté. Les connecteurs d''opposition (mais, or, cependant, néanmoins, pourtant, toutefois) sont particulièrement importants dans les textes argumentatifs. Attention : les élèves confondent souvent cause et opposition — un travail explicite sur ces connecteurs est indispensable !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -465,8 +471,8 @@ values
   'qcm',
   'Quelle est la fonction des connecteurs logiques dans un texte ?',
   null,
-  '[{"id":"a","label":"Décorer le texte et le rendre plus élégant stylistiquement"},{"id":"b","label":"Assurer la cohérence en signalant les relations logiques entre les idées"},{"id":"c","label":"Indiquer les temps verbaux utilisés dans la phrase"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Décorer le texte et le rendre plus élégant stylistiquement"},{"id":"b","label":"Indiquer les temps verbaux utilisés dans la phrase"},{"id":"c","label":"Assurer la cohérence en signalant les relations logiques entre les idées"},{"id":"d","label":"Remplacer les pronoms pour éviter les répétitions"}]'::jsonb,
+  '{"mode":"single_choice","value":"c"}'::jsonb,
   'Les connecteurs logiques sont des outils de cohérence textuelle : ils articulent les idées entre elles en signalant explicitement la nature du lien (cause, opposition, addition, conséquence, condition...). Sans eux, les phrases resteraient juxtaposées et le lecteur ne saurait pas quel lien les unit. Dans les programmes scolaires, les connecteurs sont travaillés en lecture (comprendre les relations logiques) et en production écrite (structurer sa pensée). Ce ne sont pas des décorations — ce sont des charnières !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -503,7 +509,7 @@ values
   'qcm',
   'Quel connecteur permet d''introduire une condition ?',
   null,
-  '[{"id":"a","label":"Si"},{"id":"b","label":"Donc"},{"id":"c","label":"Or"}]'::jsonb,
+  '[{"id":"a","label":"Si"},{"id":"b","label":"Donc"},{"id":"c","label":"Or"},{"id":"d","label":"Pourtant"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   '« Si » est le connecteur conditionnel par excellence — il introduit une condition dont dépend la réalisation d''un événement. « Donc » est consécutif (conséquence). « Or » est adversatif ou introduit un élément nouveau dans un raisonnement. Les connecteurs conditionnels (si, à condition que, pourvu que, en supposant que) sont abordés progressivement à l''école primaire, car ils impliquent la maîtrise du conditionnel et d''un raisonnement hypothétique. C''est de la logique au service de la grammaire !',
   'valide',
@@ -541,8 +547,8 @@ values
   'qcm',
   'Dans « Il faisait froid, c''est pourquoi elle prit son manteau », quel est le rôle de « c''est pourquoi » ?',
   null,
-  '[{"id":"a","label":"Il exprime une opposition entre les deux propositions"},{"id":"b","label":"Il exprime la conséquence de la première proposition sur la seconde"},{"id":"c","label":"Il exprime une condition pour que la seconde proposition soit vraie"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Il exprime une opposition entre les deux propositions"},{"id":"b","label":"Il exprime une condition pour que la seconde proposition soit vraie"},{"id":"c","label":"Il introduit une explication de la première proposition"},{"id":"d","label":"Il exprime la conséquence de la première proposition sur la seconde"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   '« C''est pourquoi » est un connecteur consécutif : la seconde proposition est la conséquence logique de la première — il fait froid, donc elle prend son manteau. Il appartient à la même famille que « donc », « ainsi », « par conséquent », « aussi » (en tête de phrase). Distinguer cause-conséquence et condition-conséquence est une difficulté récurrente chez les élèves. Un travail explicite sur les connecteurs consécutifs est recommandé dès le cycle 3 — et c''est souvent évalué au CRPE !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -560,7 +566,7 @@ values
   'qcm',
   'Quel connecteur convient le mieux pour compléter : « Il aime la lecture… il préfère les romans policiers » ?',
   null,
-  '[{"id":"a","label":"Mais"},{"id":"b","label":"En particulier"},{"id":"c","label":"Pourtant"}]'::jsonb,
+  '[{"id":"a","label":"Mais"},{"id":"b","label":"En particulier"},{"id":"c","label":"Pourtant"},{"id":"d","label":"Car"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   '« En particulier » est un connecteur d''exemplification ou de précision : il introduit une information plus précise ou un exemple qui illustre la proposition précédente. « Mais » et « pourtant » introduiraient une opposition — mais ici, la seconde proposition est dans la continuité de la première (les romans policiers sont une sous-catégorie de la lecture qu''il aime) ! Ce type d''exercice de choix de connecteur est fréquent dans les évaluations CRPE — il teste la compréhension fine des relations logiques.',
   'valide',
@@ -590,6 +596,8 @@ values
 
 -- ============================================================
 -- SÉRIE 33 — Texte argumentatif et injonctif (premium)
+-- QCMs: Q1(b), Q3(b), Q4(b), Q6(b), Q8(a), Q9(b)
+-- Cible : a×1, b×2, c×1, d×2 → Q4→d, Q6→c, Q9→d
 -- ============================================================
 
 (
@@ -602,7 +610,7 @@ values
   'qcm',
   'Quelle est la structure canonique d''un texte argumentatif ?',
   null,
-  '[{"id":"a","label":"Introduction — péripéties — dénouement"},{"id":"b","label":"Thèse — arguments — conclusion"},{"id":"c","label":"Titre — développement — bibliographie"}]'::jsonb,
+  '[{"id":"a","label":"Introduction — péripéties — dénouement"},{"id":"b","label":"Thèse — arguments — conclusion"},{"id":"c","label":"Titre — développement — bibliographie"},{"id":"d","label":"Amorce — description — chute"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Le texte argumentatif s''organise autour d''une thèse (la position défendue), des arguments qui la soutiennent (souvent illustrés par des exemples), et d''une conclusion qui la réaffirme. Cette structure, parfois enrichie d''une antithèse et d''une réfutation, est fondamentale dans la culture scolaire. Introduction / péripéties / dénouement, c''est le schéma narratif. Titre / développement / bibliographie, c''est la présentation formelle d''un article. Ne confonds pas ! L''initiation à l''argumentation commence au cycle 3.',
   'valide',
@@ -640,7 +648,7 @@ values
   'qcm',
   'Qu''est-ce qu''une réfutation dans un texte argumentatif ?',
   null,
-  '[{"id":"a","label":"Un argument qui soutient la thèse principale"},{"id":"b","label":"La réponse de l''auteur à un argument adverse pour le contester"},{"id":"c","label":"La conclusion qui résume les arguments"}]'::jsonb,
+  '[{"id":"a","label":"Un argument qui soutient la thèse principale"},{"id":"b","label":"La réponse de l''auteur à un argument adverse pour le contester"},{"id":"c","label":"La conclusion qui résume les arguments"},{"id":"d","label":"Une anecdote illustrative placée en introduction"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'La réfutation, c''est présenter un argument opposé à la thèse défendue, puis le contester pour montrer sa faiblesse ou son insuffisance. Elle renforce la démonstration en montrant que l''auteur a examiné les objections possibles — ça donne du crédit à son raisonnement. Dans un texte dialectique (thèse / antithèse / synthèse), l''antithèse peut être réfutée dans la synthèse. Identifier les réfutations, c''est une compétence avancée de lecture critique, visée en fin de cycle 3 !',
   'valide',
@@ -659,8 +667,8 @@ values
   'qcm',
   'Quelle est la caractéristique principale d''un texte injonctif ?',
   null,
-  '[{"id":"a","label":"Il raconte une histoire avec des personnages"},{"id":"b","label":"Il donne des instructions ou des consignes pour accomplir une action"},{"id":"c","label":"Il décrit un lieu ou un personnage avec précision"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Il raconte une histoire avec des personnages"},{"id":"b","label":"Il décrit un lieu ou un personnage avec précision"},{"id":"c","label":"Il défend une opinion en s''appuyant sur des arguments"},{"id":"d","label":"Il donne des instructions ou des consignes pour accomplir une action"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Le texte injonctif a pour fonction de donner des instructions, des directives ou des consignes pour réaliser une action. On le reconnaît à l''emploi de l''impératif, des verbes à l''infinitif à valeur d''ordre, et d''une organisation souvent numérotée ou chronologique. Recettes de cuisine, modes d''emploi, consignes scolaires — ce sont tous des textes injonctifs. Apprendre aux élèves à lire et à produire ce type de texte, c''est les préparer à la vie réelle, pas seulement à l''école !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -697,8 +705,8 @@ values
   'qcm',
   'Quelle marque linguistique est caractéristique du texte injonctif ?',
   null,
-  '[{"id":"a","label":"L''emploi fréquent de l''imparfait de narration"},{"id":"b","label":"L''emploi de l''impératif ou de l''infinitif à valeur d''ordre"},{"id":"c","label":"L''emploi du subjonctif présent pour exprimer le doute"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"L''emploi fréquent de l''imparfait de narration"},{"id":"b","label":"L''emploi du subjonctif présent pour exprimer le doute"},{"id":"c","label":"L''emploi de l''impératif ou de l''infinitif à valeur d''ordre"},{"id":"d","label":"L''emploi du conditionnel pour exprimer une hypothèse"}]'::jsonb,
+  '{"mode":"single_choice","value":"c"}'::jsonb,
   'Le texte injonctif se reconnaît à l''emploi de l''impératif (« Ajoutez le sel », « Tournez à gauche ») ou de l''infinitif à valeur d''ordre (« Mélanger les ingrédients »). Ces formes verbales expriment la directive ou la consigne. L''imparfait est caractéristique des récits. Le subjonctif exprime le doute ou la nécessité. Reconnaître les marques linguistiques des types de textes, c''est une compétence grammaticale au service de la compréhension — la grammaire n''est jamais une fin en soi !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -735,7 +743,7 @@ values
   'qcm',
   'Quelle est la différence entre convaincre et persuader ?',
   null,
-  '[{"id":"a","label":"Convaincre fait appel à la raison, persuader fait appel aux émotions"},{"id":"b","label":"Convaincre s''adresse à un groupe, persuader s''adresse à un individu"},{"id":"c","label":"Convaincre utilise des images, persuader utilise des mots"}]'::jsonb,
+  '[{"id":"a","label":"Convaincre fait appel à la raison, persuader fait appel aux émotions"},{"id":"b","label":"Convaincre s''adresse à un groupe, persuader s''adresse à un individu"},{"id":"c","label":"Convaincre utilise des images, persuader utilise des mots"},{"id":"d","label":"Convaincre est propre à l''écrit, persuader est propre à l''oral"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'Convaincre, c''est emporter l''adhésion par des arguments rationnels, des preuves et des démonstrations logiques. Persuader, c''est mobiliser les émotions, les valeurs et la sensibilité du destinataire. Un discours efficace combine souvent les deux ! Cette distinction rhétorique héritée d''Aristote (logos, ethos, pathos) est pertinente pour analyser les textes argumentatifs et pour développer l''esprit critique des élèves face aux messages médiatiques. Au CRPE, tu peux être interrogé dessus — retiens-la !',
   'valide',
@@ -754,8 +762,8 @@ values
   'qcm',
   'Dans une recette de cuisine, pourquoi les étapes sont-elles numérotées ?',
   null,
-  '[{"id":"a","label":"Pour permettre au lecteur de choisir les étapes qu''il préfère réaliser"},{"id":"b","label":"Pour indiquer l''ordre obligatoire dans lequel les actions doivent être effectuées"},{"id":"c","label":"Pour donner une valeur décorative à la mise en page"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Pour permettre au lecteur de choisir les étapes qu''il préfère réaliser"},{"id":"b","label":"Pour donner une valeur décorative à la mise en page"},{"id":"c","label":"Pour que l''auteur puisse être reconnu comme expert culinaire"},{"id":"d","label":"Pour indiquer l''ordre obligatoire dans lequel les actions doivent être effectuées"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Dans un texte injonctif comme une recette, la numérotation indique un ordre procédural obligatoire : chaque action dépend de la précédente. Cette organisation est un trait caractéristique des textes procéduraux (recettes, modes d''emploi, consignes). Apprendre aux élèves à respecter l''ordre des consignes, c''est une compétence de lecture fonctionnelle essentielle — et une compétence de vie réelle ! On ne commence pas à faire cuire avant d''avoir mélangé les ingrédients. L''ordre, ça compte !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -784,6 +792,8 @@ values
 
 -- ============================================================
 -- SÉRIE 34 — Résumé et reformulation (premium)
+-- QCMs: Q1(b), Q3(b), Q4(b), Q6(c), Q8(b), Q9(a)
+-- Cible : a×1, b×2, c×1, d×2 → Q3→d, Q4→d, Q8→c
 -- ============================================================
 
 (
@@ -796,7 +806,7 @@ values
   'qcm',
   'Quelle est la différence principale entre un résumé et une paraphrase ?',
   null,
-  '[{"id":"a","label":"Le résumé est plus long que le texte original, la paraphrase est plus courte"},{"id":"b","label":"Le résumé condense les idées essentielles avec ses propres mots, la paraphrase reproduit le texte en changeant seulement certains mots"},{"id":"c","label":"Le résumé est réservé aux textes narratifs, la paraphrase aux textes argumentatifs"}]'::jsonb,
+  '[{"id":"a","label":"Le résumé est plus long que le texte original, la paraphrase est plus courte"},{"id":"b","label":"Le résumé condense les idées essentielles avec ses propres mots, la paraphrase reproduit le texte en changeant seulement certains mots"},{"id":"c","label":"Le résumé est réservé aux textes narratifs, la paraphrase aux textes argumentatifs"},{"id":"d","label":"Le résumé est produit par l''auteur, la paraphrase est produite par le lecteur"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Le résumé, c''est une réécriture condensée et fidèle des idées essentielles, rédigée avec ses propres mots et structures. La paraphrase, elle, redit le texte en changeant seulement quelques mots ou en réordonnant les phrases — sans véritable compréhension. La paraphrase n''est pas acceptable comme preuve de compréhension au CRPE ! Apprendre aux élèves à résumer plutôt qu''à paraphraser, c''est un objectif pédagogique central au cycle 3 — car le résumé exige une compréhension profonde.',
   'valide',
@@ -834,8 +844,8 @@ values
   'qcm',
   'Quelle compétence cognitive est principalement mise en jeu lors de la rédaction d''un résumé ?',
   null,
-  '[{"id":"a","label":"La mémorisation exacte des formulations de l''auteur"},{"id":"b","label":"La hiérarchisation de l''information et la reformulation"},{"id":"c","label":"La copie rapide et sans erreurs orthographiques"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"La mémorisation exacte des formulations de l''auteur"},{"id":"b","label":"La copie rapide et sans erreurs orthographiques"},{"id":"c","label":"La maîtrise de la ponctuation et de la syntaxe complexe"},{"id":"d","label":"La hiérarchisation de l''information et la reformulation"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Résumer un texte mobilise deux opérations cognitives de haut niveau : la hiérarchisation (distinguer l''information principale des détails secondaires) et la reformulation (exprimer les idées retenues avec ses propres mots). Ces deux compétences révèlent une compréhension profonde. Le résumé est donc à la fois un outil d''évaluation de la compréhension et un exercice de structuration de la pensée — particulièrement valorisé dans les épreuves de français du CRPE. Sais-tu résumer ? Alors tu as compris !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -853,8 +863,8 @@ values
   'qcm',
   'Lors de la rédaction d''un résumé, que doit-on faire des exemples et des détails illustratifs du texte original ?',
   null,
-  '[{"id":"a","label":"Les copier tels quels car ils sont indispensables à la compréhension"},{"id":"b","label":"Les supprimer ou les synthétiser, sauf s''ils constituent l''idée principale"},{"id":"c","label":"Les placer au début du résumé pour capter l''attention"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Les copier tels quels car ils sont indispensables à la compréhension"},{"id":"b","label":"Les placer au début du résumé pour capter l''attention"},{"id":"c","label":"Les développer davantage pour les rendre plus clairs"},{"id":"d","label":"Les supprimer ou les synthétiser, sauf s''ils constituent l''idée principale"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Dans un résumé, les exemples et les détails illustratifs sont généralement supprimés ou synthétisés — ils servent à illustrer une idée, pas à l''exprimer. On conserve l''idée générale qu''ils illustrent, pas l''exemple lui-même. C''est l''une des opérations les plus difficiles pour les élèves, qui ont tendance à conserver tous les détails concrets et à laisser tomber les idées abstraites. Enseigner à distinguer l''idée principale de ses illustrations, c''est une compétence de compréhension fine travaillée au cycle 3 !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -891,7 +901,7 @@ values
   'qcm',
   'Quelle est la longueur idéale d''un résumé par rapport au texte original ?',
   null,
-  '[{"id":"a","label":"Il doit faire la même longueur que le texte original"},{"id":"b","label":"Il doit être plus long que le texte original pour être complet"},{"id":"c","label":"Il doit être significativement plus court, souvent entre un quart et un tiers du texte original"}]'::jsonb,
+  '[{"id":"a","label":"Il doit faire la même longueur que le texte original"},{"id":"b","label":"Il doit être plus long que le texte original pour être complet"},{"id":"c","label":"Il doit être significativement plus court, souvent entre un quart et un tiers du texte original"},{"id":"d","label":"Il doit tenir en une seule phrase, quelle que soit la longueur du texte"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
   'Un résumé doit être sensiblement plus court que le texte d''origine : la règle pratique, c''est souvent un quart ou un tiers de la longueur originale, selon le niveau scolaire et la consigne. Cette contrainte de concision oblige à hiérarchiser et à condenser — c''est exactement l''intérêt de l''exercice ! À l''école primaire, on peut proposer des résumés plus libres en termes de longueur, mais la contrainte de brièveté est toujours là pour distinguer le résumé de la reformulation extensive.',
   'valide',
@@ -929,8 +939,8 @@ values
   'qcm',
   'Quel est l''intérêt pédagogique de demander aux élèves de reformuler oralement ce qu''ils ont compris d''un texte ?',
   null,
-  '[{"id":"a","label":"Cela permet de gagner du temps en évitant de relire le texte"},{"id":"b","label":"Cela révèle les représentations des élèves et évalue leur compréhension réelle"},{"id":"c","label":"Cela développe uniquement les compétences orthographiques"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"Cela permet de gagner du temps en évitant de relire le texte"},{"id":"b","label":"Cela développe uniquement les compétences orthographiques"},{"id":"c","label":"Cela révèle les représentations des élèves et évalue leur compréhension réelle"},{"id":"d","label":"Cela permet de remplacer l''écrit par l''oral dans l''évaluation"}]'::jsonb,
+  '{"mode":"single_choice","value":"c"}'::jsonb,
   'La reformulation orale est un outil d''évaluation formative puissant ! Elle révèle ce que l''élève a réellement compris, met en évidence ses erreurs de compréhension ou ses lacunes, et distingue les élèves qui ont compris de ceux qui ont mémorisé des formulations sans en saisir le sens. C''est pourquoi les pratiques de « lecture puis reformulation orale » sont recommandées dans l''enseignement de la compréhension. Et bonus : la reformulation développe aussi la fluidité langagière et l''expression orale !',
   'valide',
   'CRPE Français — Compréhension V2',
@@ -948,7 +958,7 @@ values
   'qcm',
   'Parmi ces formulations, laquelle constitue une reformulation acceptable de « Le soleil se couche à l''horizon » ?',
   null,
-  '[{"id":"a","label":"L''astre du jour disparaît progressivement derrière la ligne où le ciel rejoint la terre"},{"id":"b","label":"Il fait beau ce soir et le ciel est rouge"},{"id":"c","label":"Le soleil se couche à l''horizon, c''est-à-dire que le soleil se couche à l''horizon"}]'::jsonb,
+  '[{"id":"a","label":"L''astre du jour disparaît progressivement derrière la ligne où le ciel rejoint la terre"},{"id":"b","label":"Il fait beau ce soir et le ciel est rouge"},{"id":"c","label":"Le soleil se couche à l''horizon, c''est-à-dire que le soleil se couche à l''horizon"},{"id":"d","label":"La nuit commence lorsque toutes les lumières du ciel s''éteignent"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'La reformulation (a) exprime la même idée avec un lexique différent (« astre du jour » pour « soleil », « disparaît progressivement » pour « se couche ») tout en conservant le sens — c''est une vraie reformulation. La formulation (b) ajoute des informations non présentes (le beau temps, le ciel rouge) et change le sens. La formulation (c) est une pseudo-reformulation qui répète le texte sans le transformer. Travailler sur des exemples concrets de reformulation acceptable et inacceptable, c''est développer la conscience linguistique des élèves !',
   'valide',

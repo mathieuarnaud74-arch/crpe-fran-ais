@@ -46,7 +46,7 @@ export function CheckoutButton({
       <Button type="button" onClick={handleClick} disabled={disabled || isLoading}>
         {isLoading ? "Redirection..." : label}
       </Button>
-      {error ? <p className="text-sm text-red-700">{error}</p> : null}
+      {error ? <p className="text-sm text-error">{error}</p> : null}
     </div>
   );
 }

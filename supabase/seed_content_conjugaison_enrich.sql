@@ -12,25 +12,26 @@ values
 -- ================================================================
 -- ENRICHISSEMENT — conj_subjonctif (5 questions supplémentaires)
 -- Série 84
+-- Distribution correcte : Q1=a, Q2=d, Q3=b, Q4=vrai_faux, Q5=b
 -- ================================================================
 
 ('84000000-0000-0000-0000-000000000001','Francais','conjugaison','conj_subjonctif','Subjonctif présent','Intermediaire','qcm',
 'Quelle est la forme correcte du subjonctif présent de « savoir » à la 3e personne du singulier ?',null,
-'[{"id":"a","label":"sache"},{"id":"b","label":"sait"},{"id":"c","label":"save"}]'::jsonb,
+'[{"id":"a","label":"sache"},{"id":"b","label":"sait"},{"id":"c","label":"save"},{"id":"d","label":"saurait"}]'::jsonb,
 '{"mode":"single_choice","value":"a"}'::jsonb,
 'Attention, « savoir » est l''un des grands irréguliers du subjonctif — il faut le mémoriser ! Sa conjugaison complète : que je sache, que tu saches, qu''il sache, que nous sachions, que vous sachiez, qu''ils sachent. Ne le confonds pas avec l''indicatif présent (il sait) ! Retiens la liste des verbes irréguliers au subjonctif à connaître pour le CRPE : être → soit, avoir → ait, aller → aille, vouloir → veuille, pouvoir → puisse, savoir → sache, falloir → faille. Apprends-les comme une liste magique !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
 
 ('84000000-0000-0000-0000-000000000002','Francais','conjugaison','conj_subjonctif','Subjonctif présent','Intermediaire','qcm',
 'Dans quelle phrase le subjonctif est-il correctement employé ?',null,
-'[{"id":"a","label":"« Je sais qu''il vienne demain. »"},{"id":"b","label":"« Je veux qu''il vienne demain. »"},{"id":"c","label":"« Je vois qu''il vienne demain. »"}]'::jsonb,
-'{"mode":"single_choice","value":"b"}'::jsonb,
-'C''est la phrase b) ! Après les verbes de volonté et de souhait — vouloir, souhaiter, exiger — le subjonctif est obligatoire dans la subordonnée : « je veux qu''il vienne ». Mais après les verbes de perception ou de certitude — savoir, voir, croire en phrase affirmative — c''est l''indicatif : « je sais qu''il vient », « je vois qu''il vient ». Retiens la règle d''or : volonté/souhait/obligation → subjonctif ; certitude/perception → indicatif. Cette distinction est fondamentale — et un classique du CRPE !',
+'[{"id":"a","label":"« Je sais qu''il vienne demain. »"},{"id":"b","label":"« Je vois qu''il vienne demain. »"},{"id":"c","label":"« Je crois qu''il vienne certainement. »"},{"id":"d","label":"« Je veux qu''il vienne demain. »"}]'::jsonb,
+'{"mode":"single_choice","value":"d"}'::jsonb,
+'C''est la phrase d) ! Après les verbes de volonté et de souhait — vouloir, souhaiter, exiger — le subjonctif est obligatoire dans la subordonnée : « je veux qu''il vienne ». Mais après les verbes de perception ou de certitude — savoir, voir, croire en phrase affirmative — c''est l''indicatif : « je sais qu''il vient », « je vois qu''il vient ». Retiens la règle d''or : volonté/souhait/obligation → subjonctif ; certitude/perception → indicatif. Cette distinction est fondamentale — et un classique du CRPE !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
 
 ('84000000-0000-0000-0000-000000000003','Francais','conjugaison','conj_subjonctif','Subjonctif présent','Intermediaire','qcm',
 'Après quelle locution conjonctive emploie-t-on le subjonctif ?',null,
-'[{"id":"a","label":"« parce que »"},{"id":"b","label":"« bien que »"},{"id":"c","label":"« depuis que »"}]'::jsonb,
+'[{"id":"a","label":"« parce que »"},{"id":"b","label":"« bien que »"},{"id":"c","label":"« depuis que »"},{"id":"d","label":"« alors que » (sens causal)"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
 '« Bien que » exige toujours le subjonctif — c''est une locution de concession ! Retiens les trois grandes familles qui déclenchent le subjonctif : concession (bien que, quoique, encore que) + but (afin que, pour que) + crainte (de peur que, de crainte que). À l''inverse, cause et temps se construisent avec l''indicatif : « parce que » → indicatif ; « depuis que » → indicatif. Apprends ces familles par groupes — c''est le meilleur moyen de ne plus hésiter !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
@@ -44,35 +45,36 @@ values
 
 ('84000000-0000-0000-0000-000000000005','Francais','conjugaison','conj_subjonctif','Subjonctif présent','Intermediaire','qcm',
 'Quelle est la forme du subjonctif présent de « aller » à la 1re personne du pluriel ?',null,
-'[{"id":"a","label":"que nous allons"},{"id":"b","label":"que nous allions"},{"id":"c","label":"que nous aillions"}]'::jsonb,
+'[{"id":"a","label":"que nous allons"},{"id":"b","label":"que nous allions"},{"id":"c","label":"que nous aillions"},{"id":"d","label":"que nous allassions"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
 'Retiens la conjugaison complète de « aller » au subjonctif : que j''aille, que tu ailles, qu''il aille, que nous allions, que vous alliez, qu''ils aillent. Les 1re et 2e personnes du pluriel sont régulières (radical + -ions, -iez), tandis que les autres personnes ont le radical irrégulier aille-. Même modèle pour « vouloir » : que nous voulions (régulier) / que je veuille (irrégulier). Ce contraste régulier/irrégulier dans la même conjugaison est typique des verbes irréguliers au subjonctif — Attention !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
 
 -- ================================================================
 -- ENRICHISSEMENT — conj_concordance_temps (5 questions supplémentaires)
--- Série 85
+-- Série 85 (10 questions au total)
+-- Distribution correcte : Q1=b, Q2=a, Q3=d, Q4=vrai_faux, Q5=a, Q6=b, Q7=b, Q8=vrai_faux, Q9=a, Q10=c
 -- ================================================================
 
 ('85000000-0000-0000-0000-000000000001','Francais','conjugaison','conj_concordance_temps','Concordance des temps','Difficile','qcm',
 'Dans le discours indirect, comment transforme-t-on « Je viendrai » (présent direct) quand le verbe introducteur est au passé ?',null,
-'[{"id":"a","label":"On garde le futur simple : il dit qu''il viendra"},{"id":"b","label":"On le met au conditionnel présent (futur du passé) : il dit qu''il viendrait"},{"id":"c","label":"On le met à l''imparfait : il dit qu''il venait"}]'::jsonb,
+'[{"id":"a","label":"On garde le futur simple : il dit qu''il viendra"},{"id":"b","label":"On le met au conditionnel présent (futur du passé) : il dit qu''il viendrait"},{"id":"c","label":"On le met à l''imparfait : il dit qu''il venait"},{"id":"d","label":"On le met au subjonctif présent : il dit qu''il vienne"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
 'Exactement ! Au discours indirect avec verbe introducteur au passé, le futur simple se transforme en conditionnel présent — le fameux "futur du passé". « Je viendrai » → « il dit qu''il viendrait ». Retiens : le conditionnel présent joue un double rôle en français — mode du possible ET futur du passé dans le discours indirect. C''est magnifique ! Tableau complet : présent → imparfait ; passé composé → plus-que-parfait ; futur simple → conditionnel présent. Apprends ce tableau par cœur !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
 
 ('85000000-0000-0000-0000-000000000002','Francais','conjugaison','conj_concordance_temps','Concordance des temps','Difficile','qcm',
 'Dans la phrase « Il pensait qu''elle était partie », quel temps est employé dans la subordonnée et pourquoi ?',null,
-'[{"id":"a","label":"Plus-que-parfait, pour exprimer une action antérieure à l''action principale passée"},{"id":"b","label":"Imparfait, pour exprimer la simultanéité"},{"id":"c","label":"Passé composé, pour exprimer l''aspect accompli"}]'::jsonb,
+'[{"id":"a","label":"Plus-que-parfait, pour exprimer une action antérieure à l''action principale passée"},{"id":"b","label":"Imparfait, pour exprimer la simultanéité"},{"id":"c","label":"Passé composé, pour exprimer l''aspect accompli"},{"id":"d","label":"Conditionnel passé, pour exprimer une hypothèse dans le passé"}]'::jsonb,
 '{"mode":"single_choice","value":"a"}'::jsonb,
 'C''est le plus-que-parfait pour l''antériorité ! « Pensait » est à l''imparfait (passé), et « était partie » exprime une action accomplie AVANT la pensée — elle était déjà partie quand il pensait. Retiens le tableau de concordance quand le V principal est au passé : action antérieure → plus-que-parfait ; action simultanée → imparfait ; action postérieure → conditionnel présent. Ces trois cas couvrent toutes les situations — maîtrise-les et tu auras les outils pour analyser n''importe quel texte narratif !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
 
 ('85000000-0000-0000-0000-000000000003','Francais','conjugaison','conj_concordance_temps','Concordance des temps','Difficile','qcm',
 'Laquelle de ces phrases présente une erreur de concordance des temps ?',null,
-'[{"id":"a","label":"« Il savait qu''elle partirait le lendemain. »"},{"id":"b","label":"« Il savait qu''elle partira le lendemain. »"},{"id":"c","label":"« Il savait qu''elle était déjà partie. »"}]'::jsonb,
-'{"mode":"single_choice","value":"b"}'::jsonb,
-'L''erreur est en (b) ! Après « il savait » (verbe principal au passé), le futur simple « partira » viole la concordance des temps. Le futur simple s''emploie uniquement quand le V principal est au présent. Après un V principal au passé, il faut le conditionnel présent (futur du passé) : « il savait qu''elle partirait » — comme en (a). La phrase (c) est correcte : le plus-que-parfait pour une action antérieure. Retiens : futur simple après verbe au passé = faute de concordance ! C''est une erreur fréquente dans les copies au CRPE.',
+'[{"id":"a","label":"« Il savait qu''elle partirait le lendemain. »"},{"id":"b","label":"« Il savait qu''elle était déjà partie. »"},{"id":"c","label":"« Il savait qu''elle partait en même temps que lui. »"},{"id":"d","label":"« Il savait qu''elle partira le lendemain. »"}]'::jsonb,
+'{"mode":"single_choice","value":"d"}'::jsonb,
+'L''erreur est en d) ! Après « il savait » (verbe principal au passé), le futur simple « partira » viole la concordance des temps. Le futur simple s''emploie uniquement quand le V principal est au présent. Après un V principal au passé, il faut le conditionnel présent (futur du passé) : « il savait qu''elle partirait » — comme en a). La phrase b) est correcte : le plus-que-parfait pour une action antérieure. Retiens : futur simple après verbe au passé = faute de concordance ! C''est une erreur fréquente dans les copies au CRPE.',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
 
 ('85000000-0000-0000-0000-000000000004','Francais','conjugaison','conj_concordance_temps','Concordance des temps','Difficile','vrai_faux',
@@ -84,40 +86,76 @@ values
 
 ('85000000-0000-0000-0000-000000000005','Francais','conjugaison','conj_concordance_temps','Concordance des temps','Difficile','qcm',
 'Dans « Si j''avais su, je serais venu », quelle règle de concordance est illustrée ?',null,
-'[{"id":"a","label":"Condition irréelle dans le passé : si + plus-que-parfait → conditionnel passé"},{"id":"b","label":"Condition possible dans le futur : si + présent → futur"},{"id":"c","label":"Condition hypothétique présente : si + imparfait → conditionnel présent"}]'::jsonb,
+'[{"id":"a","label":"Condition irréelle dans le passé : si + plus-que-parfait → conditionnel passé"},{"id":"b","label":"Condition possible dans le futur : si + présent → futur"},{"id":"c","label":"Condition hypothétique présente : si + imparfait → conditionnel présent"},{"id":"d","label":"Condition réalisée dans le passé : si + passé composé → futur antérieur"}]'::jsonb,
 '{"mode":"single_choice","value":"a"}'::jsonb,
 'C''est la structure de l''hypothèse irréelle dans le passé : si + plus-que-parfait → conditionnel passé. En réalité : on n''a pas su, donc on n''est pas venu — c''est une condition qui ne s''est pas réalisée. Retiens les trois structures conditionnelles comme une grammaire en trois lignes : (1) si + présent → futur/présent = condition possible ; (2) si + imparfait → conditionnel présent = hypothèse irréelle présente ; (3) si + plus-que-parfait → conditionnel passé = condition irréelle passée. Trois structures, trois niveaux temporels — indispensables au CRPE !',
+'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
+
+('85000000-0000-0000-0000-000000000006','Francais','conjugaison','conj_concordance_temps','Concordance des temps','Difficile','qcm',
+'Au discours indirect avec verbe introducteur au passé, par quel temps remplace-t-on le présent de la subordonnée ?',null,
+'[{"id":"a","label":"On le garde au présent"},{"id":"b","label":"On le met à l''imparfait"},{"id":"c","label":"On le met au passé composé"},{"id":"d","label":"On le met au conditionnel présent"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'Le présent se transforme en imparfait au discours indirect ! Tableau complet de la concordance quand le verbe introducteur est au passé : présent → imparfait ; passé composé → plus-que-parfait ; futur simple → conditionnel présent. Exemples : « Il dit : "Je travaille." » → « Il a dit qu''il travaillait. » ; « Elle dit : "J''ai fini." » → « Elle a dit qu''elle avait fini. » Ce tableau est indispensable pour le discours indirect — apprends-le comme une table de multiplication, il n''y a pas de raccourci !',
+'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
+
+('85000000-0000-0000-0000-000000000007','Francais','conjugaison','conj_concordance_temps','Concordance des temps','Difficile','qcm',
+'Laquelle de ces phrases respecte correctement la concordance des temps dans la proposition conditionnelle ?',null,
+'[{"id":"a","label":"« Si tu viendrais, je serais content. »"},{"id":"b","label":"« Si tu venais, je serais content. »"},{"id":"c","label":"« Si tu seras venu, je serai content. »"},{"id":"d","label":"« Si tu viens, je serais content. »"}]'::jsonb,
+'{"mode":"single_choice","value":"b"}'::jsonb,
+'Règle d''or à ne jamais oublier : on ne met JAMAIS le conditionnel dans la proposition introduite par « si » hypothétique ! « Si tu viendrais » est une faute grave, très fréquente à l''oral mais inacceptable à l''écrit. La structure correcte pour une hypothèse irréelle présente : si + imparfait → conditionnel présent. Pour une condition possible : si + présent → futur. Pour une hypothèse irréelle passée : si + plus-que-parfait → conditionnel passé. Cette règle est l''une des plus évaluées au CRPE — tolérance zéro dans les copies !',
+'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
+
+('85000000-0000-0000-0000-000000000008','Francais','conjugaison','conj_concordance_temps','Concordance des temps','Difficile','vrai_faux',
+'Vrai ou faux : dans « Dès qu''elle aura terminé, elle partira », le verbe « aura terminé » exprime une action antérieure à « partira ».',null,
+'[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
+'{"mode":"boolean","value":true}'::jsonb,
+'Vrai — c''est exactement la valeur du futur antérieur ! Il exprime l''antériorité dans le futur : d''abord elle terminera (futur accompli), ENSUITE elle partira (futur simple). Les subordonnées temporelles introduites par « quand », « lorsque », « dès que », « aussitôt que », « une fois que » exigent le futur antérieur quand l''action est antérieure à celle de la principale. Erreur classique : « Quand tu finiras, tu sortiras » — futur simple à la place du futur antérieur. Au CRPE, cette subtilité est testée dans l''analyse des temps et dans la production écrite !',
+'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
+
+('85000000-0000-0000-0000-000000000009','Francais','conjugaison','conj_concordance_temps','Concordance des temps','Difficile','qcm',
+'Quelle est la transformation correcte au discours indirect de : « Elle a dit : "Je viendrai demain." » ?',null,
+'[{"id":"a","label":"Elle a dit qu''elle viendrait le lendemain."},{"id":"b","label":"Elle a dit qu''elle viendra demain."},{"id":"c","label":"Elle a dit qu''elle venait le lendemain."},{"id":"d","label":"Elle a dit qu''elle soit venue le lendemain."}]'::jsonb,
+'{"mode":"single_choice","value":"a"}'::jsonb,
+'Double transformation ! Le futur simple « viendrai » → conditionnel présent « viendrait » (concordance des temps). Et « demain » → « le lendemain » (transposition des déictiques temporels). Au discours indirect, tous les repères liés à la situation d''énonciation changent : maintenant → alors, hier → la veille, demain → le lendemain, ici → là, cette semaine → cette semaine-là. Cette transposition simultanée du temps verbal ET des indicateurs de temps est la vraie difficulté du discours indirect — une compétence explicitement attendue au CRPE !',
+'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
+
+('85000000-0000-0000-0000-000000000010','Francais','conjugaison','conj_concordance_temps','Concordance des temps','Difficile','qcm',
+'Dans un récit au passé, quel temps exprime une action entièrement accomplie AVANT une autre action passée ?',null,
+'[{"id":"a","label":"L''imparfait"},{"id":"b","label":"Le passé simple"},{"id":"c","label":"Le plus-que-parfait"},{"id":"d","label":"Le passé antérieur"}]'::jsonb,
+'{"mode":"single_choice","value":"c"}'::jsonb,
+'Le plus-que-parfait est le temps de l''antériorité dans le récit au passé — son rôle principal ! Il exprime qu''une action est terminée avant qu''une autre action passée commence. Exemple : « Quand il arriva (passé simple), la pluie avait déjà cessé (plus-que-parfait). » La pluie s''est arrêtée AVANT qu''il arrive. Retiens le système des temps du récit : premier plan, actions principales → passé simple ; arrière-plan, descriptions, habitudes → imparfait ; antériorité par rapport à une action passée → plus-que-parfait. Cette articulation est fondamentale pour l''analyse narrative au CRPE !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
 
 -- ================================================================
 -- ENRICHISSEMENT — conj_valeurs_temps (5 questions supplémentaires)
 -- Série 86
+-- Distribution correcte : Q1=b, Q2=d, Q3=b, Q4=b, Q5=vrai_faux
 -- ================================================================
 
 ('86000000-0000-0000-0000-000000000001','Francais','conjugaison','conj_valeurs_temps','Valeurs des temps verbaux','Avance','qcm',
 'Quelle est la valeur du présent de l''indicatif dans : « En 1789, la Révolution éclate et le roi fuit. » ?',null,
-'[{"id":"a","label":"Présent d''énonciation (maintenant)"},{"id":"b","label":"Présent de narration (ou présent historique) — il actualise un événement passé"},{"id":"c","label":"Présent de vérité générale"}]'::jsonb,
+'[{"id":"a","label":"Présent d''énonciation (maintenant)"},{"id":"b","label":"Présent de narration (ou présent historique) — il actualise un événement passé"},{"id":"c","label":"Présent de vérité générale"},{"id":"d","label":"Présent itératif — répétition d''une action passée"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
 'C''est le présent de narration — aussi appelé présent historique ! Il emploie le présent pour raconter des faits passés en leur donnant une vivacité dramatique, comme si on y était. Effet garanti ! Il est fréquent dans les récits historiques, les résumés littéraires et le style journalistique. Retiens les quatre grandes valeurs du présent : énonciation (ce qui se passe maintenant), narration (événement passé revivifié), vérité générale (lois, proverbes), futur proche (« Je pars demain »). Au CRPE, savoir les nommer toutes, c''est indispensable !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
 
 ('86000000-0000-0000-0000-000000000002','Francais','conjugaison','conj_valeurs_temps','Valeurs des temps verbaux','Avance','qcm',
 'Quelle est la valeur de l''imparfait dans : « Elle lisait chaque soir pendant une heure. » ?',null,
-'[{"id":"a","label":"Imparfait de rupture"},{"id":"b","label":"Imparfait d''habitude (aspect itératif)"},{"id":"c","label":"Imparfait pittoresque"}]'::jsonb,
-'{"mode":"single_choice","value":"b"}'::jsonb,
+'[{"id":"a","label":"Imparfait de rupture"},{"id":"b","label":"Imparfait pittoresque"},{"id":"c","label":"Imparfait duratif : action longue et continue dans le passé"},{"id":"d","label":"Imparfait d''habitude (aspect itératif)"}]'::jsonb,
+'{"mode":"single_choice","value":"d"}'::jsonb,
 'C''est l''imparfait d''habitude — aspect itératif ! L''indicateur de répétition « chaque soir » est la clé : il signale une action régulière, répétée sans début ni fin précis. L''imparfait d''habitude exprime ce que l''on faisait habituellement dans le passé. Retiens aussi les autres valeurs de l''imparfait : description/cadre, simultanéité avec une action principale, imparfait de politesse (« je voulais vous demander »), imparfait contrefactuel dans les conditionnelles (si + imparfait). L''imparfait est le temps aux multiples visages — apprends à les distinguer tous !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
 
 ('86000000-0000-0000-0000-000000000003','Francais','conjugaison','conj_valeurs_temps','Valeurs des temps verbaux','Avance','qcm',
 'Dans « Il aurait menti selon les témoins », quelle valeur du conditionnel est exprimée ?',null,
-'[{"id":"a","label":"Conditionnel d''hypothèse irréelle"},{"id":"b","label":"Conditionnel journalistique (ou de l''information non vérifiée)"},{"id":"c","label":"Futur du passé"}]'::jsonb,
+'[{"id":"a","label":"Conditionnel d''hypothèse irréelle"},{"id":"b","label":"Conditionnel journalistique (ou de l''information non vérifiée)"},{"id":"c","label":"Futur du passé"},{"id":"d","label":"Conditionnel de politesse"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
 'C''est le conditionnel journalistique — aussi appelé conditionnel de l''ouï-dire ! Il sert à rapporter des faits non confirmés ou des informations attribuées à une source externe, sans que le locuteur en prenne la responsabilité. Il dit en substance : "je ne garantis pas que c''est vrai". Tu le trouves partout dans la presse : « Le suspect aurait fui à l''étranger ». Retiens : conditionnel journalistique = distance énonciative, information non vérifiée. Cette valeur est attendue dans l''analyse de textes médiatiques au CRPE !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),
 
 ('86000000-0000-0000-0000-000000000004','Francais','conjugaison','conj_valeurs_temps','Valeurs des temps verbaux','Avance','qcm',
 'Quelle est la valeur du futur simple dans : « Tu prendras ce médicament trois fois par jour. » ?',null,
-'[{"id":"a","label":"Futur de prediction"},{"id":"b","label":"Futur à valeur d''impératif (prescription ou ordre atténué)"},{"id":"c","label":"Futur historique"}]'::jsonb,
+'[{"id":"a","label":"Futur de prediction"},{"id":"b","label":"Futur à valeur d''impératif (prescription ou ordre atténué)"},{"id":"c","label":"Futur historique"},{"id":"d","label":"Futur d''atténuation pour exprimer une demande polie"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
 'Retiens ce bel emploi du futur ! Dans les ordonnances médicales, modes d''emploi et prescriptions officielles, le futur simple exprime un ordre ou une obligation de façon plus atténuée et moins directe que l''impératif. C''est le futur prescriptif ou injonctif : « vous prendrez », « vous éviterez ». Il est très courant dans les textes officiels, les consignes scolaires et les instructions techniques — l''impératif y paraîtrait trop abrupt. Une valeur souvent ignorée, pourtant bien présente dans les textes que tu analyseras au CRPE !',
 'valide','CRPE Français — Enrichissement Conjugaison','premium',true),

@@ -13,16 +13,16 @@ type AppShellProps = {
 export function AppShell({ children, userEmail }: AppShellProps) {
   return (
     <div className="min-h-screen bg-paper">
-      <header className="border-b border-border/80 bg-card">
+      <header className="border-b border-ink/20 bg-[linear-gradient(135deg,#2C2420,#394E45)]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between">
           <Link href="/tableau-de-bord" className="flex min-w-0 items-center gap-3">
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-secondary text-sm font-semibold text-ink shadow-subtle">
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-paper/20 bg-paper/10 text-sm font-semibold text-paper shadow-subtle">
               <span>CR</span>
-              <span className="absolute -right-1 -top-1 h-4 w-4 rounded-full border border-card bg-accentSecondary" />
+              <span className="absolute -right-1 -top-1 h-4 w-4 rounded-full border border-ink/20 bg-accentSecondary" />
             </div>
             <div className="min-w-0">
-              <p className="truncate font-serif text-2xl font-semibold text-ink">CRPE Français</p>
-              <p className="truncate text-sm text-muted">Révision structurée et progressive</p>
+              <p className="truncate font-serif text-2xl font-semibold text-paper">CRPE Français</p>
+              <p className="truncate text-sm text-paper/60">Révision structurée et progressive</p>
             </div>
           </Link>
 
@@ -30,14 +30,14 @@ export function AppShell({ children, userEmail }: AppShellProps) {
             <MobileNav />
             <Link
               href="/"
-              className="rounded-full border border-border bg-paper px-4 py-2 text-sm font-medium text-ink transition hover:border-accentSecondary/30 hover:bg-accentSecondarySoft"
+              className="rounded-full border border-paper/20 bg-paper/10 px-4 py-2 text-sm font-medium text-paper transition hover:bg-paper/20"
             >
               Accueil
             </Link>
-            <div className="hidden rounded-full border border-border bg-secondary px-4 py-2 text-xs font-semibold tracking-[0.10em] text-muted lg:inline-flex">
+            <div className="hidden rounded-full border border-paper/20 bg-paper/10 px-4 py-2 text-xs font-semibold tracking-[0.10em] text-paper/70 lg:inline-flex">
               Espace de révision
             </div>
-            <p className="max-w-[280px] truncate text-sm text-muted">{userEmail}</p>
+            <p className="max-w-[280px] truncate text-sm text-paper/60">{userEmail}</p>
             <LogoutButton />
           </div>
         </div>
@@ -46,12 +46,12 @@ export function AppShell({ children, userEmail }: AppShellProps) {
       <div className="mx-auto grid max-w-[1440px] gap-8 px-6 py-8 xl:grid-cols-[292px,1fr]">
         <aside className="hidden xl:sticky xl:top-6 xl:block xl:self-start">
           <div className="overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-panel">
-            <div className="border-b border-border bg-secondary/50 px-5 py-4">
-              <p className="text-xs font-semibold tracking-[0.10em] text-muted">
-                Navigation
+            <div className="border-b border-border bg-[linear-gradient(135deg,#476257,#394E45)] px-5 py-4">
+              <p className="text-xs font-semibold tracking-[0.10em] text-paper/70">
+                Mon parcours
               </p>
-              <p className="mt-1 text-sm text-muted">
-                Synthèse, domaines, reprises et progression.
+              <p className="mt-1 text-sm font-semibold text-paper">
+                Domaines, reprises et progression
               </p>
             </div>
             <div className="p-5">

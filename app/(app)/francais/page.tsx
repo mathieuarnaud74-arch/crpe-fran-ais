@@ -26,8 +26,8 @@ export default async function FrenchPage() {
             <h1 className="mt-4 font-serif text-4xl font-semibold text-ink">Français</h1>
           </div>
           <div className="flex flex-wrap gap-3">
-            <ButtonLink href="/revisions-ciblees" variant="secondary">
-              Révisions ciblées
+            <ButtonLink href="/tableau-de-bord" variant="secondary">
+              Tableau de bord
             </ButtonLink>
             <ButtonLink href="/exercices">Catalogue complet</ButtonLink>
           </div>

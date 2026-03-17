@@ -9,6 +9,8 @@ values
 -- =============================================================
 -- SÉRIE 46 — Homophones lexicaux courants (Facile / free)
 -- =============================================================
+-- Correct answer distribution: Q1→b, Q2→a, Q4→a, Q6→a, Q8→d, Q9→b
+-- (vrai_faux: Q3, Q5, Q7, Q10 — skipped)
 
 (
   '46000000-0000-0000-0000-000000000001',
@@ -16,7 +18,7 @@ values
   'qcm',
   'Choisissez la bonne orthographe : « Je vais ___ marché. »',
   null,
-  '[{"id":"a","label":"a"},{"id":"b","label":"à"},{"id":"c","label":"as"}]'::jsonb,
+  '[{"id":"a","label":"a"},{"id":"b","label":"à"},{"id":"c","label":"as"},{"id":"d","label":"ah"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'La préposition « à » (avec accent) indique un lieu ou une direction. Pour ne plus te tromper, teste avec « avait » : si ça fonctionne, c''est le verbe ; sinon, c''est la préposition. « Je vais avait marché » — impossible ! Donc on écrit bien « à ». Ce test de remplacement, c''est ton meilleur ami pour distinguer ces deux homophones.',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
@@ -28,7 +30,7 @@ values
   'qcm',
   'Choisissez la bonne orthographe : « Il ___ mangé toute la tarte. »',
   null,
-  '[{"id":"a","label":"a"},{"id":"b","label":"à"},{"id":"c","label":"as"}]'::jsonb,
+  '[{"id":"a","label":"a"},{"id":"b","label":"à"},{"id":"c","label":"as"},{"id":"d","label":"â"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   '« A » est la 3e personne du singulier du verbe avoir. Teste avec « avait » : « Il avait mangé toute la tarte » — ça fonctionne ! Donc c''est le verbe, on écrit sans accent. La préposition « à » (avec accent) ne peut jamais être remplacée par une forme conjuguée. Un seul test, et tu ne confonds plus jamais !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
@@ -52,7 +54,7 @@ values
   'qcm',
   'Choisissez la bonne orthographe : « ___ livre est sur la table. »',
   null,
-  '[{"id":"a","label":"Ce"},{"id":"b","label":"Se"},{"id":"c","label":"Cet"}]'::jsonb,
+  '[{"id":"a","label":"Ce"},{"id":"b","label":"Se"},{"id":"c","label":"Cet"},{"id":"d","label":"Ses"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   '« Ce » est le déterminant démonstratif masculin singulier devant un nom (livre). « Se » introduit toujours un verbe pronominal — il ne peut jamais précéder un nom directement. Et « cet » s''emploie devant un nom masculin commençant par une voyelle ou un h muet. Ici, « livre » commence par une consonne → « ce ». Analyse la nature du mot qui suit !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
@@ -76,7 +78,7 @@ values
   'qcm',
   'Choisissez la bonne orthographe : « ___ frère chante bien. »',
   null,
-  '[{"id":"a","label":"Son"},{"id":"b","label":"Sont"},{"id":"c","label":"Sond"}]'::jsonb,
+  '[{"id":"a","label":"Son"},{"id":"b","label":"Sont"},{"id":"c","label":"Sond"},{"id":"d","label":"Sons"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   '« Son » est le déterminant possessif singulier (3e personne) devant un nom. Teste avec « étaient » : « étaient frère » — impossible ! Donc ce n''est pas le verbe être. Teste avec « mon » : « Mon frère chante bien » — ça marche ! C''est bien « son » possessif. Ces substitutions sont tes outils clés pour ne plus te tromper.',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
@@ -100,8 +102,8 @@ values
   'qcm',
   'Choisissez la bonne orthographe : « Je viendrai en juin ___ juillet. »',
   null,
-  '[{"id":"a","label":"et"},{"id":"b","label":"est"},{"id":"c","label":"ai"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
+  '[{"id":"a","label":"est"},{"id":"b","label":"ai"},{"id":"c","label":"ait"},{"id":"d","label":"et"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'La conjonction de coordination « et » relie deux noms de mois. Teste avec « était » : « je viendrai en juin était juillet » — absurde ! Donc ce n''est pas le verbe être. « Et » est invariable et ne peut jamais être une forme verbale. Et ne confonds pas non plus avec « ai » (1re personne du verbe avoir) — qui ne peut apparaître qu''en tant que verbe conjugué.',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
 ),
@@ -112,7 +114,7 @@ values
   'qcm',
   'Choisissez la bonne orthographe : « Je ne ___ pas te suivre. »',
   null,
-  '[{"id":"a","label":"peu"},{"id":"b","label":"peux"},{"id":"c","label":"peut"}]'::jsonb,
+  '[{"id":"a","label":"peu"},{"id":"b","label":"peux"},{"id":"c","label":"peut"},{"id":"d","label":"peuse"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Trois homophones, trois rôles différents ! « Peut » = 3e personne (il peut). « Peux » = 1re ou 2e personne (je peux, tu peux). « Peu » = adverbe de quantité (un petit peu) — invariable. Ici le sujet est « je » → on utilise « peux ». Identifie la personne grammaticale et l''accord est évident !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
@@ -133,6 +135,8 @@ values
 -- =============================================================
 -- SÉRIE 47 — Accord des adjectifs de couleur (Intermédiaire / free)
 -- =============================================================
+-- QCM: Q2→b, Q3→a, Q5→d, Q7→a, Q9→d
+-- (vrai_faux: Q1, Q4, Q6, Q8, Q10 — skipped)
 
 (
   '47000000-0000-0000-0000-000000000001',
@@ -152,7 +156,7 @@ values
   'qcm',
   'Quelle orthographe est correcte selon la règle traditionnelle ?',
   null,
-  '[{"id":"a","label":"des yeux marrons"},{"id":"b","label":"des yeux marron"},{"id":"c","label":"des yeux marons"}]'::jsonb,
+  '[{"id":"a","label":"des yeux marrons"},{"id":"b","label":"des yeux marron"},{"id":"c","label":"des yeux marons"},{"id":"d","label":"des yeux marronne"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   '« Marron » vient du nom commun (le marron, le fruit). Règle traditionnelle : adjectif de couleur issu d''un nom → invariable. « Des yeux marron » sans s. Même chose pour châtaigne, saumon, crème, kaki, tabac... Seuls les adjectifs de couleur simples non issus de noms s''accordent normalement : bleu, rouge, vert, noir, blanc. Retiens la distinction : adjectif pur → accord, nom utilisé comme adj → invariable !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
@@ -164,7 +168,7 @@ values
   'qcm',
   'Quelle orthographe est correcte ?',
   null,
-  '[{"id":"a","label":"des murs bleu clair"},{"id":"b","label":"des murs bleus clairs"},{"id":"c","label":"des murs bleus clair"}]'::jsonb,
+  '[{"id":"a","label":"des murs bleu clair"},{"id":"b","label":"des murs bleus clairs"},{"id":"c","label":"des murs bleus clair"},{"id":"d","label":"des murs bleu-clairs"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'Un adjectif de couleur composé de deux mots (bleu clair, vert foncé, rouge vif...) est invariable — sans aucun accord, quels que soient les composants. « Des murs bleu clair » sans s ni e. Cette règle est absolue : vert pomme, bleu marine, jaune paille, gris anthracite — tous invariables. C''est une règle que les futurs profs des écoles doivent maîtriser parfaitement !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
@@ -188,8 +192,8 @@ values
   'qcm',
   'Quelle forme est correcte selon la règle traditionnelle ?',
   null,
-  '[{"id":"a","label":"des voitures mauves"},{"id":"b","label":"des voitures mauve"},{"id":"c","label":"des voitures mauves ou mauve"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
+  '[{"id":"a","label":"des voitures mauve"},{"id":"b","label":"des voitures mauves ou mauve"},{"id":"c","label":"des voitures mauves"},{"id":"d","label":"des voitures mauvette"}]'::jsonb,
+  '{"mode":"single_choice","value":"c"}'::jsonb,
   '« Mauve » n''est pas un nom employé adjectivement — c''est un vrai adjectif qualificatif qui s''accorde normalement. Même chose pour « fauve », « pourpre », « écarlate », « vermeil » et « châtain ». La distinction à graver : les vrais adjectifs de couleur s''accordent ; les noms utilisés comme adjectifs de couleur (marron, orange, crème...) sont invariables. Identifie la nature du mot, et l''accord suit !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
 ),
@@ -212,7 +216,7 @@ values
   'qcm',
   'Quelle orthographe est correcte ?',
   null,
-  '[{"id":"a","label":"des écharpes bleu marine"},{"id":"b","label":"des écharpes bleues marines"},{"id":"c","label":"des écharpes bleu marines"}]'::jsonb,
+  '[{"id":"a","label":"des écharpes bleu marine"},{"id":"b","label":"des écharpes bleues marines"},{"id":"c","label":"des écharpes bleu marines"},{"id":"d","label":"des écharpes blues marines"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   '« Bleu marine » est un adjectif de couleur composé (adjectif + nom) → invariable dans tous les cas, quels que soient les composants. « Des écharpes bleu marine » sans aucun accord. Cette règle s''applique partout : vert bouteille, rouge bordeaux, bleu nuit, gris perle, jaune canari. L''une des règles les plus régulièrement testées au CRPE — à connaître absolument !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
@@ -236,8 +240,8 @@ values
   'qcm',
   'Quelle orthographe est correcte ?',
   null,
-  '[{"id":"a","label":"des nappes crème"},{"id":"b","label":"des nappes crèmes"},{"id":"c","label":"des nappes créme"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
+  '[{"id":"a","label":"des nappes crèmes"},{"id":"b","label":"des nappes créme"},{"id":"c","label":"des nappes crémées"},{"id":"d","label":"des nappes crème"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   '« Crème » vient du nom « la crème » → invariable selon la règle traditionnelle : « des nappes crème » sans accord. Ne confonds pas avec « crémeux » (adjectif variable qui s''accorde normalement). Dans la liste des invariables issus de noms, tu trouveras aussi : saumon, kaki, tabac, rouille, ivoire, caramel, chocolat. Tous sans marque de genre ou de nombre !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
 ),
@@ -257,6 +261,8 @@ values
 -- =============================================================
 -- SÉRIE 48 — Pluriel des noms composés (Intermédiaire / premium)
 -- =============================================================
+-- QCM: Q1→b, Q3→d, Q5→b, Q7→d, Q9→b
+-- (vrai_faux: Q2, Q4, Q6, Q8, Q10 — skipped)
 
 (
   '48000000-0000-0000-0000-000000000001',
@@ -264,7 +270,7 @@ values
   'qcm',
   'Quelle est la forme correcte au pluriel de « timbre-poste » ?',
   null,
-  '[{"id":"a","label":"timbres-postes"},{"id":"b","label":"timbres-poste"},{"id":"c","label":"timbre-postes"}]'::jsonb,
+  '[{"id":"a","label":"timbres-postes"},{"id":"b","label":"timbres-poste"},{"id":"c","label":"timbre-postes"},{"id":"d","label":"timbres-postaux"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Dans « timbre-poste », « timbre » est le nom principal et « poste » est un nom employé comme complément déterminatif (le service postal). Dans ce type de composition (nom + nom complément), seul le premier nom s''accorde : « timbres-poste ». « Poste » reste invariable. Analyse la structure grammaticale du composé — c''est toujours elle qui décide !',
   'valide', 'CRPE Français — Orthographe V2', 'premium', true
@@ -288,8 +294,8 @@ values
   'qcm',
   'Quelle est la forme correcte au pluriel de « grand-mère » ?',
   null,
-  '[{"id":"a","label":"grands-mères"},{"id":"b","label":"grand-mères"},{"id":"c","label":"grande-mères"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"grands-mères"},{"id":"b","label":"grande-mères"},{"id":"c","label":"grand-mères-là"},{"id":"d","label":"grand-mères"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'Dans « grand-mère », la règle logique (adjectif + nom → les deux s''accordent) donnerait « grands-mères ». Mais l''usage consacré par l''Académie est « grand-mères » avec « grand » invariable — héritage de l''ancien français où grand était une forme unique pour les deux genres. Les rectifications de 1990 admettent « grands-mères » mais « grand-mères » reste dominant dans les dictionnaires. Les deux passent au CRPE !',
   'valide', 'CRPE Français — Orthographe V2', 'premium', true
 ),
@@ -312,7 +318,7 @@ values
   'qcm',
   'Quelle est la forme correcte au pluriel de « arc-en-ciel » ?',
   null,
-  '[{"id":"a","label":"arcs-en-ciels"},{"id":"b","label":"arcs-en-ciel"},{"id":"c","label":"arc-en-ciels"}]'::jsonb,
+  '[{"id":"a","label":"arcs-en-ciels"},{"id":"b","label":"arcs-en-ciel"},{"id":"c","label":"arc-en-ciels"},{"id":"d","label":"arc-en-ciaux"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Dans « arc-en-ciel » : « arc » (nom) + « en ciel » (groupe prépositionnel invariable). Seul le premier nom — le noyau — prend le pluriel : « des arcs-en-ciel ». « Ciel » reste au singulier dans le composé. L''analyse des éléments constitutifs, c''est la clé pour orthographier correctement le pluriel des noms composés. Ne laisse jamais la logique du mot simple prendre le dessus sur la grammaire du composé !',
   'valide', 'CRPE Français — Orthographe V2', 'premium', true
@@ -336,8 +342,8 @@ values
   'qcm',
   'Quelle est la forme correcte au pluriel de « long-courrier » ?',
   null,
-  '[{"id":"a","label":"long-courriers"},{"id":"b","label":"longs-courriers"},{"id":"c","label":"longs-courrier"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"long-courriers"},{"id":"b","label":"longs-courrier"},{"id":"c","label":"longs-courriaux"},{"id":"d","label":"longs-courriers"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   '« Long-courrier » = adjectif (long) + nom (courrier). Quand un composé réunit un adjectif et un nom, les deux s''accordent en nombre : « des longs-courriers ». Règle générale pour adjectif + nom : les deux bougent. Par exemple : des beaux-arts, des basses-cours, des coffres-forts. Identifie la nature grammaticale de chaque composant — c''est toujours elle qui décide de l''accord !',
   'valide', 'CRPE Français — Orthographe V2', 'premium', true
 ),
@@ -360,7 +366,7 @@ values
   'qcm',
   'Quelle est la forme correcte au pluriel de « chef-d''œuvre » ?',
   null,
-  '[{"id":"a","label":"chefs-d''œuvres"},{"id":"b","label":"chefs-d''œuvre"},{"id":"c","label":"chef-d''œuvres"}]'::jsonb,
+  '[{"id":"a","label":"chefs-d''œuvres"},{"id":"b","label":"chefs-d''œuvre"},{"id":"c","label":"chef-d''œuvres"},{"id":"d","label":"chefs-d''œuvriers"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Dans « chef-d''œuvre », « chef » est le premier nom — le noyau — et « œuvre » est précédé de la préposition « de » → groupe prépositionnel invariable. Seul « chef » prend le -s : « des chefs-d''œuvre ». Ne pas ajouter de -s à « œuvre » — c''est l''erreur classique ! Même structure qu''« arc-en-ciel » : seul le nom noyau (premier élément) s''accorde.',
   'valide', 'CRPE Français — Orthographe V2', 'premium', true
@@ -381,6 +387,8 @@ values
 -- =============================================================
 -- SÉRIE 49 — Rectifications orthographiques de 1990 (Avancé / premium)
 -- =============================================================
+-- QCM: Q1→b, Q3→a, Q5→d, Q7→c, Q9→d
+-- (vrai_faux: Q2, Q4, Q6, Q8, Q10 — skipped)
 
 (
   '49000000-0000-0000-0000-000000000001',
@@ -388,7 +396,7 @@ values
   'qcm',
   'Selon les rectifications de 1990, quelle graphie est recommandée ?',
   null,
-  '[{"id":"a","label":"événement"},{"id":"b","label":"évènement"},{"id":"c","label":"évenement"}]'::jsonb,
+  '[{"id":"a","label":"événement"},{"id":"b","label":"évènement"},{"id":"c","label":"évenement"},{"id":"d","label":"évennement"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Les rectifications de 1990 recommandent « évènement » avec accent grave (è) pour aligner la graphie sur la prononciation réelle [ɛvɛnmɑ̃] — sur le modèle de « règlement » ou « sèchement ». L''ancienne graphie « événement » (avec deux accents aigus) reste admise. Pour le CRPE, connaître cette rectification est attendu — c''est l''une des plus connues et des plus souvent testées !',
   'valide', 'CRPE Français — Orthographe V2', 'premium', true
@@ -412,7 +420,7 @@ values
   'qcm',
   'Selon les rectifications de 1990, comment s''écrit « vingt et un » dans les nombres composés ?',
   null,
-  '[{"id":"a","label":"vingt-et-un"},{"id":"b","label":"vingt et un"},{"id":"c","label":"vingt-et un"}]'::jsonb,
+  '[{"id":"a","label":"vingt-et-un"},{"id":"b","label":"vingt et un"},{"id":"c","label":"vingt-et un"},{"id":"d","label":"vingtet-un"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   'Les rectifications de 1990 généralisent le trait d''union dans tous les numéraux composés — y compris ceux avec « et » : vingt-et-un, trente-et-un, quarante-et-un... Avant 1990, le trait d''union était absent quand « et » était présent. Cette nouvelle règle simplifie et uniformise. Elle s''applique à tous les composés : deux-cent-vingt-et-un. C''est l''une des rectifications les plus connues — à retenir !',
   'valide', 'CRPE Français — Orthographe V2', 'premium', true
@@ -436,8 +444,8 @@ values
   'qcm',
   'Selon les rectifications de 1990, quelle graphie est recommandée pour le mot désignant un appareil photo ?',
   null,
-  '[{"id":"a","label":"appareils-photos"},{"id":"b","label":"appareils photos"},{"id":"c","label":"appareils photo"}]'::jsonb,
-  '{"mode":"single_choice","value":"c"}'::jsonb,
+  '[{"id":"a","label":"appareils-photos"},{"id":"b","label":"appareils photos"},{"id":"c","label":"appareils-photographiques"},{"id":"d","label":"appareils photo"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   'L''Académie française et les dictionnaires courants recommandent « des appareils photo » avec « photo » invariable (nom en apposition). Les rectifications de 1990 ne modifient pas directement ce cas mais recommandent d''éviter les traits d''union superflus dans certains composés. La règle générale des noms en apposition : ils ne prennent pas la marque du pluriel. « Des appareils photo » — retiens ce cas !',
   'valide', 'CRPE Français — Orthographe V2', 'premium', true
 ),
@@ -460,7 +468,7 @@ values
   'qcm',
   'Selon les rectifications de 1990, comment s''écrit le mot désignant ce qu''on doit (somme d''argent) ?',
   null,
-  '[{"id":"a","label":"dû"},{"id":"b","label":"du"},{"id":"c","label":"dû ou du selon le contexte"}]'::jsonb,
+  '[{"id":"a","label":"dû"},{"id":"b","label":"dûe"},{"id":"c","label":"dû ou du selon le contexte"},{"id":"d","label":"dehu"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
   'Les rectifications de 1990 rendent l''accent facultatif sur î et û, SAUF pour éviter les ambiguïtés. « Dû » (participe passé de devoir, masculin singulier) conserve son accent pour ne pas être confondu avec « du » (article contracté). Réponse la plus précise : « dû » avec accent est maintenu là où il distingue des homophones, mais peut disparaître ailleurs. Ces exceptions sont exigées au CRPE — connais-les par cœur !',
   'valide', 'CRPE Français — Orthographe V2', 'premium', true
@@ -484,7 +492,7 @@ values
   'qcm',
   'Selon les rectifications de 1990, quelle graphie est recommandée pour le légume alliacé ?',
   null,
-  '[{"id":"a","label":"oignon"},{"id":"b","label":"ognon"},{"id":"c","label":"ongnon"}]'::jsonb,
+  '[{"id":"a","label":"oignon"},{"id":"b","label":"ognon"},{"id":"c","label":"ongnon"},{"id":"d","label":"oignion"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Les rectifications de 1990 recommandent « ognon » (sans i) plutôt qu''« oignon » — le i ne se prononce pas, autant le supprimer ! Cette logique de simplification phonétique est au cœur des rectifications. « Oignon » reste une graphie correcte et acceptée. Un futur professeur des écoles doit être capable d''expliquer aux élèves que ces deux formes coexistent légitimement dans l''usage actuel.',
   'valide', 'CRPE Français — Orthographe V2', 'premium', true
@@ -505,6 +513,8 @@ values
 -- =============================================================
 -- SÉRIE 50 — Accents, majuscules et traits d'union (Intermédiaire / free)
 -- =============================================================
+-- QCM: Q2→b, Q3→d, Q5→a, Q7→d, Q9→b
+-- (vrai_faux: Q1, Q4, Q6, Q8, Q10 — skipped)
 
 (
   '50000000-0000-0000-0000-000000000001',
@@ -524,7 +534,7 @@ values
   'qcm',
   'Quelle orthographe est correcte pour désigner la région administrative ?',
   null,
-  '[{"id":"a","label":"ile-de-france"},{"id":"b","label":"Île-de-France"},{"id":"c","label":"Ile de France"}]'::jsonb,
+  '[{"id":"a","label":"ile-de-france"},{"id":"b","label":"Île-de-France"},{"id":"c","label":"Ile de France"},{"id":"d","label":"île-De-France"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   'Pour les noms géographiques composés : majuscule initiale avec accent + traits d''union entre tous les composants. « Île-de-France » avec l''accent circonflexe sur le I majuscule et des traits d''union partout. Cette règle s''applique à toutes les régions, villes et lieux composés : Aix-en-Provence, Clermont-Ferrand. Oublier l''accent sur la majuscule ou les traits d''union, c''est une faute d''orthographe caractérisée !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
@@ -536,8 +546,8 @@ values
   'qcm',
   'Quelle orthographe est correcte ?',
   null,
-  '[{"id":"a","label":"arc en ciel"},{"id":"b","label":"arc-en-ciel"},{"id":"c","label":"arc-en ciel"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '[{"id":"a","label":"arc en ciel"},{"id":"b","label":"arc-en ciel"},{"id":"c","label":"arc-enciel"},{"id":"d","label":"arc-en-ciel"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   '« Arc-en-ciel » : tous les éléments sont liés par des traits d''union — ils forment une unité lexicale. Arc + en + ciel = arc-en-ciel, invariablement. Au pluriel : « des arcs-en-ciel » (seul « arc » s''accorde). Les traits d''union sont obligatoires et leur omission constitue une faute caractérisée. Pas de demi-mesure : soit tout attaché avec des traits, soit une faute !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
 ),
@@ -560,7 +570,7 @@ values
   'qcm',
   'Quelle orthographe est correcte dans « Elle a rendu ___ copie » (la copie jointe) ?',
   null,
-  '[{"id":"a","label":"ci-joint"},{"id":"b","label":"ci joint"},{"id":"c","label":"cijointe"}]'::jsonb,
+  '[{"id":"a","label":"ci-joint"},{"id":"b","label":"ci joint"},{"id":"c","label":"cijointe"},{"id":"d","label":"ci-joignée"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
   '« Ci-joint » avec trait d''union quand il est placé avant le nom (emploi adverbial) — et dans ce cas il est invariable. Mais attention : quand « ci-joint » est placé après le nom ou le pronom, il s''accorde comme un adjectif : « Veuillez trouver ci-jointes les pièces demandées ». Avant le nom → invariable avec trait d''union ; après → accord. Cette alternance est un classique des exercices d''orthographe !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
@@ -584,8 +594,8 @@ values
   'qcm',
   'Quelle orthographe est correcte pour l''adverbe signifiant « également » ?',
   null,
-  '[{"id":"a","label":"aussi"},{"id":"b","label":"ausi"},{"id":"c","label":"aussi-tôt"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
+  '[{"id":"a","label":"ausi"},{"id":"b","label":"aussi-tôt"},{"id":"c","label":"aussitot"},{"id":"d","label":"aussi"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
   '« Aussi » s''écrit sans trait d''union — c''est un adverbe simple. Ne le confonds pas avec « aussitôt » (= immédiatement) qui s''écrit en un seul mot. Et « ausi » ? C''est simplement incorrect — le doublement du s est indispensable. Les adverbes composés avec un trait d''union sont rares et leur liste est fixe : peut-être, vis-à-vis, c''est-à-dire. Pour « aussi », c''est simple : un mot, un s double, pas de trait d''union !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
 ),
@@ -608,7 +618,7 @@ values
   'qcm',
   'Quelle orthographe est correcte pour le pronom interrogatif ?',
   null,
-  '[{"id":"a","label":"ou est-il ?"},{"id":"b","label":"où est-il ?"},{"id":"c","label":"Ou est-il ?"}]'::jsonb,
+  '[{"id":"a","label":"ou est-il ?"},{"id":"b","label":"où est-il ?"},{"id":"c","label":"Ou est-il ?"},{"id":"d","label":"oû est-il ?"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
   '« Où » avec accent grave : pronom interrogatif ou adverbe de lieu — toujours. Test : peut-on remplacer par « ou bien » ? « Ou bien est-il ? » — ça n''a aucun sens ! Donc accent grave obligatoire. « Ou » sans accent = « ou bien » (alternative). L''accent grave sur « où » est une marque distinctive essentielle que les élèves apprennent dès le cycle 2 — et que tout professeur des écoles doit maîtriser parfaitement.',
   'valide', 'CRPE Français — Orthographe V2', 'free', true

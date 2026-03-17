@@ -1,33 +1,20 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
-import { getLatestDiagnostic, type DiagnosticResult } from "@/lib/diagnostic-storage";
+import type { DiagnosticResult } from "@/features/diagnostic/types";
 
 export function OnboardingBanner({
   firstSeriesId,
   hasAttempts,
+  diagnostic,
 }: {
   firstSeriesId: string | null;
   hasAttempts: boolean;
+  diagnostic: DiagnosticResult | null;
 }) {
-  const [diagnostic, setDiagnostic] = useState<DiagnosticResult | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setDiagnostic(getLatestDiagnostic());
-  }, []);
-
-  if (!mounted) return null;
-
   const hasDiagnostic = diagnostic !== null;
-  const hasStartedExercises = hasAttempts;
 
   // If the user has both completed the diagnostic AND started exercises, hide the banner
-  if (hasDiagnostic && hasStartedExercises) return null;
+  if (hasDiagnostic && hasAttempts) return null;
 
   const diagnosticRate = diagnostic
     ? Math.round((diagnostic.score / diagnostic.total) * 100)
@@ -47,9 +34,10 @@ export function OnboardingBanner({
             <p className="mt-3 text-sm leading-7 text-muted">
               {hasDiagnostic ? (
                 <>
-                  Votre diagnostic est terminé ({diagnostic.score}/{diagnostic.total} — {diagnosticRate} %).
-                  Profil : <strong className="text-ink">{diagnostic.profileLabel}</strong>.
-                  Lancez maintenant vos premières séries en commençant par vos priorités.
+                  Votre diagnostic est terminé ({diagnostic.score}/{diagnostic.total} —{" "}
+                  {diagnosticRate} %). Profil :{" "}
+                  <strong className="text-ink">{diagnostic.profileLabel}</strong>. Lancez maintenant
+                  vos premières séries en commençant par vos priorités.
                 </>
               ) : (
                 <>
@@ -64,9 +52,7 @@ export function OnboardingBanner({
           <div className="grid gap-3 sm:grid-cols-3">
             <div
               className={`rounded-[1.25rem] border px-4 py-4 ${
-                hasDiagnostic
-                  ? "border-successBorder bg-successBg"
-                  : "border-accentSecondary/25 bg-card"
+                hasDiagnostic ? "border-successBorder bg-successBg" : "border-accentSecondary/25 bg-card"
               }`}
             >
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accentSecondary">
@@ -83,9 +69,7 @@ export function OnboardingBanner({
             </div>
             <div
               className={`rounded-[1.25rem] border px-4 py-4 ${
-                hasDiagnostic
-                  ? "border-accentSecondary/25 bg-card"
-                  : "border-border bg-card"
+                hasDiagnostic ? "border-accentSecondary/25 bg-card" : "border-border bg-card"
               }`}
             >
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accentSecondary">
@@ -110,12 +94,7 @@ export function OnboardingBanner({
 
         <div className="flex shrink-0 flex-col gap-3">
           {hasDiagnostic ? (
-            <>
-              <ButtonLink href="/revisions-ciblees">Mes révisions ciblées</ButtonLink>
-              <ButtonLink href="/diagnostic" variant="secondary">
-                Refaire le diagnostic
-              </ButtonLink>
-            </>
+            <ButtonLink href="/tableau-de-bord">Tableau de bord</ButtonLink>
           ) : (
             <>
               <ButtonLink href="/diagnostic">Lancer le diagnostic</ButtonLink>

@@ -26,31 +26,34 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     visible: true,
     props: {
       badgeText: "CRPE Français Oral & Écrit 2026-2027",
-      title: "Révisez les épreuves de français en vous exerçant.",
+      title: "Passez votre CRPE français sans laisser de lacunes.",
       description:
-        "Retrouvez de nombreux contenus gratuits pour revoir les notions essentielles du programme 2026, faire le point sur vos besoins et avancer pas à pas avec des exercices ciblés et des corrections claires.",
-      primaryCtaLabel: "Découvrir gratuitement",
+        "Le CRPE teste des automatismes précis. 40 questions suffisent à révéler vos vraies lacunes. Ensuite, des séries ciblées travaillent exactement ces points — avec des corrections qui expliquent la règle, pas juste la bonne réponse.",
+      primaryCtaLabel: "Faire le diagnostic gratuit",
       primaryCtaHrefGuest: "/inscription",
       primaryCtaHrefAuth: "/diagnostic",
       secondaryCtaLabel: "Voir l'offre complète",
       secondaryCtaHref: "/offre",
-      metaItems: ["Aucune carte requise", "Conforme au programme 2026"],
+      metaItems: ["Gratuit, sans carte bancaire", "Programme officiel 2026", "500+ exercices · 60+ séries"],
     },
   },
   {
     type: "trust_bar",
-    visible: false,
+    visible: true,
     props: {
-      eyebrow: "Repères immédiats",
+      eyebrow: "En un coup d'œil",
       items: [
-        { label: "~8 minutes", detail: "pour poser un vrai point de départ" },
         {
-          label: `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions ciblées`,
-          detail: `${subdomainCount} sous-domaines couverts sans surcharge`,
+          label: "500+ exercices",
+          detail: `${subdomainCount} sous-domaines du programme officiel CRPE 2026`,
         },
         {
-          label: "Gratuit",
-          detail: "vous testez la méthode avant d'aller plus loin",
+          label: `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions · ~8 minutes`,
+          detail: "Diagnostic personnalisé par sous-domaine, pas une note globale",
+        },
+        {
+          label: "Gratuit pour commencer",
+          detail: "20 questions corrigées par jour — sans carte bancaire",
         },
       ],
     },
@@ -162,6 +165,16 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
           answer:
             "Oui. Résiliation sans condition via Stripe. Les accès journalier et hebdomadaire ne se renouvellent pas automatiquement.",
         },
+        {
+          question: "En quoi c'est différent des annales officielles ?",
+          answer:
+            "Les annales vous donnent des sujets — pas de correction, pas de priorisation, pas d'adaptation à vos lacunes. Ici, chaque exercice est corrigé avec la règle qui s'applique, un diagnostic identifie vos points faibles sous-domaine par sous-domaine, et les séries remontent dans l'ordre où vous en avez le plus besoin. Les annales sont un outil de test. Ce site est un outil de progression.",
+        },
+        {
+          question: "Combien d'exercices sont disponibles ?",
+          answer:
+            "Plus de 500 exercices répartis en 60+ séries, couvrant les 7 sous-domaines testés au CRPE : grammaire, conjugaison, orthographe, lexique, analyse de la langue, compréhension de texte et didactique du français. Le catalogue est aligné sur le programme officiel 2026.",
+        },
       ],
     },
   },
@@ -170,16 +183,22 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     visible: true,
     props: {
       eyebrow: "Prêt à commencer ?",
-      title: "Gratuit pour commencer. 8 minutes. Un profil de révision en sortie.",
+      title: "Commencez par le diagnostic — gratuit, 8 minutes, sans carte.",
       description:
-        "Pas de carte bancaire. Pas d'engagement. Juste un point de départ clair.",
+        "Identifiez vos lacunes réelles. Révisez dans l'ordre qui compte. Comprenez avant de passer à la suite.",
       bulletItems: [
-        "Accès gratuit pour commencer.",
+        "Gratuit pour commencer — sans carte bancaire.",
+        "Profil sous-domaine en sortie du diagnostic.",
         "Séries ciblées selon vos résultats.",
-        "Résiliable à tout moment.",
+        "Résiliable à tout moment via Stripe.",
       ],
-      pricingTiers: [],
-      primaryCtaLabel: "Commencer — c'est gratuit",
+      pricingTiers: [
+        { label: "Gratuit", price: "0 €/jour", highlight: false },
+        { label: "Journalier", price: "0,99 €", highlight: false },
+        { label: "Semainier", price: "2,99 €", highlight: false },
+        { label: "Mensuel", price: "6,99 €/mois", highlight: true },
+      ],
+      primaryCtaLabel: "Faire le diagnostic gratuit",
       primaryCtaHref: "/inscription",
       secondaryCtaLabelGuest: "Voir l'offre complète",
       secondaryCtaHrefGuest: "/offre",

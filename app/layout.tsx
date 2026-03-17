@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
+import { Toaster } from "sonner";
 
 import "./globals.css";
 
@@ -29,7 +31,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${sans.variable} ${serif.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <NextTopLoader color="#476257" showSpinner={false} height={2} />
+        {children}
+        <Toaster position="bottom-right" richColors />
+      </body>
     </html>
   );
 }

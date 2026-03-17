@@ -17,9 +17,9 @@ values
   'qcm',
   'Quel mot est le synonyme le plus précis de « frugal » ?',
   null,
-  '[{"id":"a","label":"sobre"},{"id":"b","label":"généreux"},{"id":"c","label":"abondant"}]'::jsonb,
+  '[{"id":"a","label":"sobre"},{"id":"b","label":"généreux"},{"id":"c","label":"abondant"},{"id":"d","label":"fastueux"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Exactement ! « Frugal » et « sobre » partagent tous les deux l''idée de modération et de retenue — ce sont bien des synonymes. Généreux et abondant, eux, vont dans le sens contraire : ce sont des quasi-antonymes de frugal. Retiens : un synonyme partage le sens, un antonyme s''y oppose. Et ici, « sobre » est le seul qui colle parfaitement !',
+  'Exactement ! « Frugal » et « sobre » partagent tous les deux l''idée de modération et de retenue — ce sont bien des synonymes. Généreux et abondant, eux, vont dans le sens contraire : ce sont des quasi-antonymes de frugal. Fastueux évoque le luxe et le faste — l''opposé exact de la frugalité. Retiens : un synonyme partage le sens, un antonyme s''y oppose. Et ici, « sobre » est le seul qui colle parfaitement !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -30,9 +30,9 @@ values
   'qcm',
   'Quel est l''antonyme de « loquace » ?',
   null,
-  '[{"id":"a","label":"bavard"},{"id":"b","label":"taciturne"},{"id":"c","label":"éloquent"}]'::jsonb,
+  '[{"id":"a","label":"bavard"},{"id":"b","label":"taciturne"},{"id":"c","label":"verbeux"},{"id":"d","label":"éloquent"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Loquace, c''est quelqu''un qui parle beaucoup et volontiers — donc son antonyme, c''est le contraire : taciturne, quelqu''un de peu communicatif et silencieux. Attention aux pièges : bavard est un synonyme de loquace (même sens !), et éloquent désigne la qualité de bien s''exprimer, pas la quantité. Retiens le couple loquace / taciturne comme une paire classique à connaître par cœur !',
+  'Loquace, c''est quelqu''un qui parle beaucoup et volontiers — donc son antonyme, c''est le contraire : taciturne, quelqu''un de peu communicatif et silencieux. Attention aux pièges : bavard est un synonyme de loquace (même sens !), et éloquent désigne la qualité de bien s''exprimer, pas la quantité. Verbeux désigne quelqu''un qui parle avec excès — encore un synonyme, pas un antonyme. Retiens le couple loquace / taciturne comme une paire classique à connaître par cœur !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -56,9 +56,9 @@ values
   'qcm',
   'Dans la phrase « Il a évoqué ses souvenirs d''enfance », quel verbe pourrait remplacer « évoquer » sans changer le sens ?',
   null,
-  '[{"id":"a","label":"invoquer"},{"id":"b","label":"rappeler"},{"id":"c","label":"provoquer"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Évoquer signifie « faire revenir à l''esprit » — et rappeler, c''est exactement ça ! C''est donc le synonyme parfait ici. Attention à invoquer : c''est un paronyme d''évoquer, pas un synonyme ! Invoquer, c''est faire appel à une autorité ou une puissance (invoquer la loi, invoquer Dieu). Quant à provoquer, ça n''a rien à voir. La confusion évoquer/invoquer est une faute typique — méfie-toi !',
+  '[{"id":"a","label":"invoquer"},{"id":"b","label":"provoquer"},{"id":"c","label":"convoquer"},{"id":"d","label":"rappeler"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'Évoquer signifie « faire revenir à l''esprit » — et rappeler, c''est exactement ça ! C''est donc le synonyme parfait ici. Attention à invoquer : c''est un paronyme d''évoquer, pas un synonyme ! Invoquer, c''est faire appel à une autorité ou une puissance (invoquer la loi, invoquer Dieu). Provoquer, c''est déclencher quelque chose. Convoquer, c''est appeler quelqu''un à se réunir. La confusion évoquer/invoquer est une faute typique — méfie-toi !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -82,9 +82,9 @@ values
   'qcm',
   'Quel est le synonyme le plus nuancé de « peur » pour exprimer une crainte intense et irrationnelle ?',
   null,
-  '[{"id":"a","label":"inquiétude"},{"id":"b","label":"phobie"},{"id":"c","label":"méfiance"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Peur, c''est le terme générique. Mais quand la crainte est intense, persistante et irrationnelle — on parle de phobie. C''est la nuance la plus forte parmi les propositions. Inquiétude, c''est plus modéré et souvent rationnel. Méfiance, c''est de la prudence vis-à-vis d''une personne, sans forcément avoir peur. Retiens la gradation : inquiétude < peur < phobie. Choisir le synonyme le plus précis, c''est maîtriser les nuances sémantiques — une compétence clé au CRPE !',
+  '[{"id":"a","label":"inquiétude"},{"id":"b","label":"méfiance"},{"id":"c","label":"phobie"},{"id":"d","label":"vigilance"}]'::jsonb,
+  '{"mode":"single_choice","value":"c"}'::jsonb,
+  'Peur, c''est le terme générique. Mais quand la crainte est intense, persistante et irrationnelle — on parle de phobie. C''est la nuance la plus forte parmi les propositions. Inquiétude, c''est plus modéré et souvent rationnel. Méfiance, c''est de la prudence vis-à-vis d''une personne, sans forcément avoir peur. Vigilance évoque l''attention et la surveillance, sans dimension de peur. Retiens la gradation : inquiétude < peur < phobie. Choisir le synonyme le plus précis, c''est maîtriser les nuances sémantiques — une compétence clé au CRPE !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -108,9 +108,9 @@ values
   'qcm',
   'Quel paronyme complète correctement cette phrase : « Sa nomination est _______ ; elle sera annoncée dans les prochains jours » ?',
   null,
-  '[{"id":"a","label":"éminente"},{"id":"b","label":"imminente"},{"id":"c","label":"éminencée"}]'::jsonb,
+  '[{"id":"a","label":"éminente"},{"id":"b","label":"imminente"},{"id":"c","label":"éminencée"},{"id":"d","label":"immanente"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'La phrase parle d''un événement sur le point de se produire — donc c''est imminente (féminin d''imminent) qui convient. Éminente (féminin d''éminent) qualifierait une personnalité remarquable ou une qualité supérieure, pas un événement proche. Et éminencée ? Ça n''existe pas en français, range ça aux oubliettes ! Retiens une bonne fois pour toutes : im-minent → im-médiat, ça arrive bientôt. Éminent → supérieur, remarquable.',
+  'La phrase parle d''un événement sur le point de se produire — donc c''est imminente (féminin d''imminent) qui convient. Éminente (féminin d''éminent) qualifierait une personnalité remarquable ou une qualité supérieure, pas un événement proche. Éminencée ? Ça n''existe pas en français, range ça aux oubliettes ! Immanente ? C''est un terme philosophique qui signifie « inhérent à, contenu dans » — pas du tout adapté au contexte. Retiens une bonne fois pour toutes : im-minent → im-médiat, ça arrive bientôt. Éminent → supérieur, remarquable.',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -121,9 +121,9 @@ values
   'qcm',
   'Parmi ces propositions, laquelle constitue une paire de synonymes exacts ?',
   null,
-  '[{"id":"a","label":"aride / fertile"},{"id":"b","label":"concis / laconique"},{"id":"c","label":"austère / prodigue"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Concis et laconique désignent tous les deux un style bref qui va à l''essentiel — ce sont bien des synonymes, même si laconique évoque une brièveté encore plus prononcée, parfois sèche. Pour les autres : aride et fertile sont des antonymes (stérile vs productif). Austère et prodigue aussi : l''un, c''est la retenue, l''autre, l''excès de générosité. Reconnaître les paires synonymiques, c''est un classique du CRPE — entraîne-toi !',
+  '[{"id":"a","label":"aride / fertile"},{"id":"b","label":"austère / prodigue"},{"id":"c","label":"prolixe / éloquent"},{"id":"d","label":"concis / laconique"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'Concis et laconique désignent tous les deux un style bref qui va à l''essentiel — ce sont bien des synonymes, même si laconique évoque une brièveté encore plus prononcée, parfois sèche. Pour les autres : aride et fertile sont des antonymes (stérile vs productif). Austère et prodigue aussi : l''un, c''est la retenue, l''autre, l''excès de générosité. Prolixe et éloquent ne sont pas synonymes : prolixe désigne quelqu''un qui parle avec excès, éloquent désigne celui qui s''exprime avec efficacité et force. Reconnaître les paires synonymiques, c''est un classique du CRPE !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -151,9 +151,9 @@ values
   'qcm',
   'Quel mot n''appartient pas au champ lexical de la « mer » ?',
   null,
-  '[{"id":"a","label":"houle"},{"id":"b","label":"berge"},{"id":"c","label":"écume"}]'::jsonb,
+  '[{"id":"a","label":"houle"},{"id":"b","label":"berge"},{"id":"c","label":"écume"},{"id":"d","label":"marée"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Houle et écume, c''est clairement la mer : la houle, ce sont les grandes vagues régulières, et l''écume, c''est la mousse blanche à la surface. Mais berge ? Ça désigne la rive d''un cours d''eau — rivière ou fleuve — pas la mer ! C''est donc l''intrus. Trouver l''intrus dans un champ lexical, c''est un exercice classique à l''école primaire et au CRPE. L''idée clé : tous les mots d''un champ lexical partagent le même univers thématique.',
+  'Houle et écume, c''est clairement la mer : la houle, ce sont les grandes vagues régulières, et l''écume, c''est la mousse blanche à la surface. Marée appartient également au champ lexical de la mer — c''est le mouvement périodique des eaux. Mais berge ? Ça désigne la rive d''un cours d''eau — rivière ou fleuve — pas la mer ! C''est donc l''intrus. Trouver l''intrus dans un champ lexical, c''est un exercice classique à l''école primaire et au CRPE. L''idée clé : tous les mots d''un champ lexical partagent le même univers thématique.',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -177,9 +177,9 @@ values
   'qcm',
   'Parmi ces mots, lequel appartient au champ lexical de la « tristesse » ?',
   null,
-  '[{"id":"a","label":"allégresse"},{"id":"b","label":"mélancolie"},{"id":"c","label":"enthousiasme"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Mélancolie, c''est une tristesse douce et vague, souvent teintée de nostalgie — elle appartient bien au champ lexical de la tristesse. Allégresse, c''est une joie vive et expansive. Enthousiasme, c''est l''ardeur et l''admiration. Ces deux derniers sont dans le champ des émotions positives. Retiens : pour identifier un champ lexical, demande-toi toujours à quel univers émotionnel ou thématique le mot renvoie. Ici, seule la mélancolie « colle » à la tristesse.',
+  '[{"id":"a","label":"allégresse"},{"id":"b","label":"enthousiasme"},{"id":"c","label":"sérénité"},{"id":"d","label":"mélancolie"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'Mélancolie, c''est une tristesse douce et vague, souvent teintée de nostalgie — elle appartient bien au champ lexical de la tristesse. Allégresse, c''est une joie vive et expansive. Enthousiasme, c''est l''ardeur et l''admiration. Sérénité, c''est un calme paisible et positif. Ces trois derniers sont dans le champ des émotions positives. Retiens : pour identifier un champ lexical, demande-toi toujours à quel univers émotionnel ou thématique le mot renvoie. Ici, seule la mélancolie « colle » à la tristesse.',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -203,9 +203,9 @@ values
   'qcm',
   'Dans un texte sur la forêt, les mots « chêne », « mousse », « sous-bois », « frondaison » et « écorce » constituent :',
   null,
-  '[{"id":"a","label":"un champ sémantique"},{"id":"b","label":"une famille de mots"},{"id":"c","label":"un champ lexical"}]'::jsonb,
+  '[{"id":"a","label":"un champ sémantique"},{"id":"b","label":"une famille de mots"},{"id":"c","label":"un champ lexical"},{"id":"d","label":"un réseau étymologique"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  'Ces mots appartiennent tous au thème de la forêt — mais ils n''ont pas de radical commun ! C''est donc un champ lexical, pas une famille de mots. Et ce n''est pas un champ sémantique non plus, qui désignerait les différents sens d''un seul mot. Retiens la distinction clé : champ lexical = ensemble de mots d''un texte liés à un même thème (peu importe leur forme). Famille de mots = mots partageant un radical commun. Famille ≠ champ lexical !',
+  'Ces mots appartiennent tous au thème de la forêt — mais ils n''ont pas de radical commun ! C''est donc un champ lexical, pas une famille de mots. Et ce n''est pas un champ sémantique non plus, qui désignerait les différents sens d''un seul mot. Un réseau étymologique regrouperait des mots issus d''une même racine ancienne, ce qui n''est pas le cas ici. Retiens la distinction clé : champ lexical = ensemble de mots d''un texte liés à un même thème (peu importe leur forme). Famille de mots = mots partageant un radical commun. Famille ≠ champ lexical !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -216,9 +216,9 @@ values
   'qcm',
   'Quel mot appartient au champ lexical du « voyage » ?',
   null,
-  '[{"id":"a","label":"itinéraire"},{"id":"b","label":"cadastre"},{"id":"c","label":"verdict"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Itinéraire, c''est le tracé ou le parcours d''un trajet — ça appartient pleinement au champ lexical du voyage. Cadastre ? C''est un registre administratif des propriétés foncières, rien à voir. Verdict ? Un terme juridique (décision d''un jury), toujours sans rapport. Pour repérer le bon mot, demande-toi : « Est-ce que ce mot peut apparaître naturellement dans un texte sur le voyage ? » Itinéraire : oui, évident. Les autres : non !',
+  '[{"id":"a","label":"cadastre"},{"id":"b","label":"verdict"},{"id":"c","label":"tribut"},{"id":"d","label":"itinéraire"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'Itinéraire, c''est le tracé ou le parcours d''un trajet — ça appartient pleinement au champ lexical du voyage. Cadastre ? C''est un registre administratif des propriétés foncières, rien à voir. Verdict ? Un terme juridique (décision d''un jury), toujours sans rapport. Tribut ? C''est une contribution imposée ou un hommage rendu — domaine politique ou historique. Pour repérer le bon mot, demande-toi : « Est-ce que ce mot peut apparaître naturellement dans un texte sur le voyage ? » Itinéraire : oui, évident. Les autres : non !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -242,9 +242,9 @@ values
   'qcm',
   'Le mot « banque » appartient principalement à quel champ lexical dans la phrase « Il a déposé ses économies à la banque » ?',
   null,
-  '[{"id":"a","label":"le champ lexical de la finance"},{"id":"b","label":"le champ lexical de la géographie"},{"id":"c","label":"le champ lexical de la nature"}]'::jsonb,
+  '[{"id":"a","label":"le champ lexical de la finance"},{"id":"b","label":"le champ lexical de la géographie"},{"id":"c","label":"le champ lexical de la nature"},{"id":"d","label":"le champ lexical du commerce"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Dans ce contexte, « banque » désigne un établissement financier — donc le champ lexical de la finance, avec « économies », « dépôt », « compte », « intérêt ». Mais attention : le même mot pourrait s''inscrire dans un autre champ lexical dans une autre phrase ! « Un banc de poissons » ou « un banc de sable », c''est de la géologie ou de la biologie marine. C''est ça, la polysémie en action — et c''est exactement ce qu''on attend de toi au CRPE !',
+  'Dans ce contexte, « banque » désigne un établissement financier — donc le champ lexical de la finance, avec « économies », « dépôt », « compte », « intérêt ». On pourrait hésiter avec le commerce, mais la mention des économies déposées oriente clairement vers la finance. Attention : le même mot pourrait s''inscrire dans un autre champ lexical dans une autre phrase ! « Un banc de poissons » ou « un banc de sable », c''est de la géologie ou de la biologie marine. C''est ça, la polysémie en action — et c''est exactement ce qu''on attend de toi au CRPE !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -255,9 +255,9 @@ values
   'qcm',
   'Quelle est la différence entre champ lexical et champ sémantique ?',
   null,
-  '[{"id":"a","label":"Le champ lexical regroupe les mots d''un texte sur un même thème ; le champ sémantique regroupe les sens d''un seul mot"},{"id":"b","label":"Ce sont deux termes identiques désignant la même réalité"},{"id":"c","label":"Le champ sémantique regroupe les mots d''un texte ; le champ lexical regroupe les sens d''un mot"}]'::jsonb,
+  '[{"id":"a","label":"Le champ lexical regroupe les mots d''un texte sur un même thème ; le champ sémantique regroupe les sens d''un seul mot"},{"id":"b","label":"Ce sont deux termes identiques désignant la même réalité"},{"id":"c","label":"Le champ sémantique regroupe les mots d''un texte ; le champ lexical regroupe les sens d''un mot"},{"id":"d","label":"Le champ lexical concerne uniquement les noms ; le champ sémantique concerne tous les mots"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'La distinction est fondamentale — et fréquemment confondue, même par des candidats au CRPE ! Retiens bien : champ lexical = outil d''analyse textuelle (les mots d''un texte qui partagent un thème). Champ sémantique = outil d''analyse d''un seul mot (tous ses sens possibles). Moyen mnémotechnique : lexi-cal → on analyse le texte. séman-tique → on analyse le sens d''un mot. Ne jamais les inverser !',
+  'La distinction est fondamentale — et fréquemment confondue, même par des candidats au CRPE ! Retiens bien : champ lexical = outil d''analyse textuelle (les mots d''un texte qui partagent un thème). Champ sémantique = outil d''analyse d''un seul mot (tous ses sens possibles). La réponse b est fausse : ce ne sont pas deux termes identiques. La réponse c inverse les définitions. La réponse d est inventée : le champ lexical ne se limite pas aux noms. Moyen mnémotechnique : lexi-cal → on analyse le texte. séman-tique → on analyse le sens d''un mot. Ne jamais les inverser !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -285,9 +285,9 @@ values
   'qcm',
   'Le préfixe grec « auto- » signifie :',
   null,
-  '[{"id":"a","label":"contre"},{"id":"b","label":"soi-même"},{"id":"c","label":"à distance"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Auto- vient du grec autos : « soi-même ». C''est dans autobiographie (récit de sa propre vie), autonomie (se gouverner soi-même), automobile (qui se meut par elle-même) ou autoportrait. Contre, c''est anti- (grec) ou contra- (latin). À distance, c''est télé-. Retiens la famille : tout ce qui commence par auto- parle de soi ou d''autonomie. Et en bonus, si tu connais les préfixes étymologiques, tu peux déchiffrer des tonnes de mots savants sans jamais les avoir vus avant !',
+  '[{"id":"a","label":"contre"},{"id":"b","label":"à distance"},{"id":"c","label":"soi-même"},{"id":"d","label":"en dessous"}]'::jsonb,
+  '{"mode":"single_choice","value":"c"}'::jsonb,
+  'Auto- vient du grec autos : « soi-même ». C''est dans autobiographie (récit de sa propre vie), autonomie (se gouverner soi-même), automobile (qui se meut par elle-même) ou autoportrait. Contre, c''est anti- (grec) ou contra- (latin). À distance, c''est télé-. En dessous, c''est sub- (latin). Retiens la famille : tout ce qui commence par auto- parle de soi ou d''autonomie. Et en bonus, si tu connais les préfixes étymologiques, tu peux déchiffrer des tonnes de mots savants sans jamais les avoir vus avant !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -298,9 +298,9 @@ values
   'qcm',
   'Que signifie le préfixe latin « ante- » dans des mots comme « antérieur » ou « antidater » ?',
   null,
-  '[{"id":"a","label":"après"},{"id":"b","label":"avant"},{"id":"c","label":"contre"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Ante- vient du latin et signifie « avant » dans le temps ou dans l''espace. Antérieur = qui précède, antédiluvien = d''avant le déluge, antichambre = la pièce qui précède la chambre. Après, c''est post- (latin). Contre, c''est contra- ou anti-. Retiens la paire : ante- (avant) / post- (après). C''est utile pour les textes d''histoire au cycle 3 et ça revient souvent dans le vocabulaire savant que tes élèves vont rencontrer !',
+  '[{"id":"a","label":"après"},{"id":"b","label":"contre"},{"id":"c","label":"au-dessus"},{"id":"d","label":"avant"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'Ante- vient du latin et signifie « avant » dans le temps ou dans l''espace. Antérieur = qui précède, antédiluvien = d''avant le déluge, antichambre = la pièce qui précède la chambre. Après, c''est post- (latin). Contre, c''est contra- ou anti-. Au-dessus, c''est super- ou sur-. Retiens la paire : ante- (avant) / post- (après). C''est utile pour les textes d''histoire au cycle 3 et ça revient souvent dans le vocabulaire savant que tes élèves vont rencontrer !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -324,9 +324,9 @@ values
   'qcm',
   'Dans le mot « géographie », quel est le sens du préfixe « géo- » ?',
   null,
-  '[{"id":"a","label":"vie"},{"id":"b","label":"terre"},{"id":"c","label":"eau"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Géo- vient du grec gê : la Terre. Géographie = description de la Terre, géologie = étude des roches terrestres, géomètre = qui mesure la Terre. Vie, c''est bio- (biologie, biographe). Eau, c''est hydro- (hydrologie, hydraulique). Retiens les trois : géo- (terre), bio- (vie), hydro- (eau). Ces préfixes reviennent constamment dans les textes documentaires du cycle 3 — les maîtriser, c''est donner à tes élèves une clé pour déchiffrer des mots inconnus tout seuls !',
+  '[{"id":"a","label":"vie"},{"id":"b","label":"eau"},{"id":"c","label":"feu"},{"id":"d","label":"terre"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'Géo- vient du grec gê : la Terre. Géographie = description de la Terre, géologie = étude des roches terrestres, géomètre = qui mesure la Terre. Vie, c''est bio- (biologie, biographe). Eau, c''est hydro- (hydrologie, hydraulique). Feu, c''est pyro- (pyrotechnie, pyromane). Retiens les quatre : géo- (terre), bio- (vie), hydro- (eau), pyro- (feu). Ces préfixes reviennent constamment dans les textes documentaires du cycle 3 — les maîtriser, c''est donner à tes élèves une clé pour déchiffrer des mots inconnus tout seuls !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -350,9 +350,9 @@ values
   'qcm',
   'Quel préfixe grec signifie « à distance » et se retrouve dans des mots comme « téléphone » ou « télévision » ?',
   null,
-  '[{"id":"a","label":"micro-"},{"id":"b","label":"télé-"},{"id":"c","label":"pseudo-"}]'::jsonb,
+  '[{"id":"a","label":"micro-"},{"id":"b","label":"télé-"},{"id":"c","label":"pseudo-"},{"id":"d","label":"hyper-"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Télé- vient du grec tele : « loin, à distance ». Téléphone = voix à distance, télévision = vision à distance, télécommande = commande à distance, télépathie = communication de pensée à distance. Micro- signifie « petit » (microbe, microscope) et pseudo- signifie « faux » (pseudonyme, pseudoscience). Télé- est très utile pour les élèves qui découvrent le vocabulaire des nouvelles technologies — et pour toi au CRPE, c''est un préfixe incontournable !',
+  'Télé- vient du grec tele : « loin, à distance ». Téléphone = voix à distance, télévision = vision à distance, télécommande = commande à distance, télépathie = communication de pensée à distance. Micro- signifie « petit » (microbe, microscope) et pseudo- signifie « faux » (pseudonyme, pseudoscience). Hyper- signifie « au-dessus, à l''excès » (hypermarché, hyperactif). Télé- est très utile pour les élèves qui découvrent le vocabulaire des nouvelles technologies — et pour toi au CRPE, c''est un préfixe incontournable !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -363,9 +363,9 @@ values
   'qcm',
   'Dans « anticonstitutionnel », quel est le sens du préfixe « anti- » ?',
   null,
-  '[{"id":"a","label":"pour, en faveur de"},{"id":"b","label":"contre, opposé à"},{"id":"c","label":"avant"}]'::jsonb,
+  '[{"id":"a","label":"pour, en faveur de"},{"id":"b","label":"contre, opposé à"},{"id":"c","label":"avant"},{"id":"d","label":"sous, en dessous"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Anti- vient du grec et signifie « contre, opposé à ». Anticonstitutionnel = contraire à la Constitution. Antibiotique = contre les bactéries. Antipathie = sentiment contraire à la sympathie. Antidote = contre le poison. Pour, c''est pro- (proeuropéen). Avant, c''est ante- ou pré-. Retiens la paire : anti- (contre) / pro- (pour). Anti- est l''un des préfixes les plus productifs en français moderne — et probablement celui que tes élèves utilisent déjà sans le savoir !',
+  'Anti- vient du grec et signifie « contre, opposé à ». Anticonstitutionnel = contraire à la Constitution. Antibiotique = contre les bactéries. Antipathie = sentiment contraire à la sympathie. Antidote = contre le poison. Pour, c''est pro- (proeuropéen). Avant, c''est ante- ou pré-. Sous, c''est sub-. Retiens la paire : anti- (contre) / pro- (pour). Anti- est l''un des préfixes les plus productifs en français moderne — et probablement celui que tes élèves utilisent déjà sans le savoir !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -389,9 +389,9 @@ values
   'qcm',
   'Le préfixe grec « chrono- » signifie :',
   null,
-  '[{"id":"a","label":"couleur"},{"id":"b","label":"temps"},{"id":"c","label":"espace"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Chrono- vient du grec khronos : le temps. Chronologie = l''étude de la succession des événements dans le temps, chronomètre = instrument qui mesure le temps, chronique = récit d''événements dans l''ordre chronologique, anachronisme = erreur de datation. Couleur, c''est chromato- ou chromo-. Espace, c''est topo- ou géo-. Retiens : chrono- → temps. C''est un préfixe qu''on rencontre constamment dans les textes d''histoire au cycle 3 — et au CRPE !',
+  '[{"id":"a","label":"temps"},{"id":"b","label":"espace"},{"id":"c","label":"son"},{"id":"d","label":"couleur"}]'::jsonb,
+  '{"mode":"single_choice","value":"a"}'::jsonb,
+  'Chrono- vient du grec khronos : le temps. Chronologie = l''étude de la succession des événements dans le temps, chronomètre = instrument qui mesure le temps, chronique = récit d''événements dans l''ordre chronologique, anachronisme = erreur de datation. Couleur, c''est chromato- ou chromo-. Espace, c''est topo- ou géo-. Son, c''est phono- ou acou-. Retiens : chrono- → temps. C''est un préfixe qu''on rencontre constamment dans les textes d''histoire au cycle 3 — et au CRPE !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -402,9 +402,9 @@ values
   'qcm',
   'Que signifie le préfixe latin « trans- » dans des mots comme « transformer » ou « transatlantique » ?',
   null,
-  '[{"id":"a","label":"à travers, au-delà"},{"id":"b","label":"en dessous"},{"id":"c","label":"à l''intérieur"}]'::jsonb,
+  '[{"id":"a","label":"à travers, au-delà"},{"id":"b","label":"en dessous"},{"id":"c","label":"à l''intérieur"},{"id":"d","label":"à rebours, en sens inverse"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Trans- vient du latin et signifie « à travers, au-delà, de l''autre côté ». Transatlantique = qui traverse l''Atlantique, transformer = changer de forme en traversant un état, transparent = qui laisse passer la lumière à travers, transférer = porter d''un lieu à un autre. En dessous, c''est sub-. À l''intérieur, c''est intra-. Retiens la triade : sub- (sous) / trans- (à travers) / intra- (dedans). Maîtriser trans-, c''est déchiffrer tout un pan du vocabulaire géographique et scientifique !',
+  'Trans- vient du latin et signifie « à travers, au-delà, de l''autre côté ». Transatlantique = qui traverse l''Atlantique, transformer = changer de forme en traversant un état, transparent = qui laisse passer la lumière à travers, transférer = porter d''un lieu à un autre. En dessous, c''est sub-. À l''intérieur, c''est intra-. À rebours, c''est rétro-. Retiens la triade : sub- (sous) / trans- (à travers) / intra- (dedans). Maîtriser trans-, c''est déchiffrer tout un pan du vocabulaire géographique et scientifique !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -419,9 +419,9 @@ values
   'qcm',
   'Le suffixe nominal « -ité » sert à former :',
   null,
-  '[{"id":"a","label":"des noms désignant une qualité ou un état abstrait"},{"id":"b","label":"des verbes exprimant une action"},{"id":"c","label":"des adjectifs qualificatifs"}]'::jsonb,
+  '[{"id":"a","label":"des noms désignant une qualité ou un état abstrait"},{"id":"b","label":"des verbes exprimant une action"},{"id":"c","label":"des adjectifs qualificatifs"},{"id":"d","label":"des noms désignant une personne exerçant un métier"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Le suffixe -ité (du latin -itas) s''ajoute à des adjectifs pour créer des noms abstraits qui désignent une qualité ou un état. Rapide → rapidité, habile → habileté, possible → possibilité, public → publicité. C''est un suffixe extrêmement productif en français, notamment dans les termes scientifiques et abstraits. Et bonus : tous les noms en -ité sont féminins ! Un repère orthographique pratique à donner à tes élèves.',
+  'Le suffixe -ité (du latin -itas) s''ajoute à des adjectifs pour créer des noms abstraits qui désignent une qualité ou un état. Rapide → rapidité, habile → habileté, possible → possibilité, public → publicité. C''est un suffixe extrêmement productif en français, notamment dans les termes scientifiques et abstraits. Les verbes, ce serait -iser ou -ifier. Les adjectifs, ce serait -el, -al ou -ique. Les noms de métier, ce serait -eur, -ien ou -iste. Et bonus : tous les noms en -ité sont féminins ! Un repère orthographique pratique à donner à tes élèves.',
   'valide', 'CRPE Français — Lexique V2', 'premium', true
 ),
 
@@ -445,9 +445,9 @@ values
   'qcm',
   'Quel suffixe adjectival exprime une possibilité ou une aptitude (« qui peut être… ») ?',
   null,
-  '[{"id":"a","label":"-able"},{"id":"b","label":"-ique"},{"id":"c","label":"-al"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Le suffixe -able (et sa variante -ible) exprime la possibilité ou l''aptitude passive : mangeable = qui peut être mangé, lisible = qui peut être lu, faisable = qui peut être fait, compréhensible. -Ique forme des adjectifs de relation (historique, logique, phonologique). -Al signifie « relatif à » (national, oral, final). -Able est extrêmement productif en français — et il continue de créer des néologismes contemporains ! C''est le suffixe qui dit « c''est possible ».',
+  '[{"id":"a","label":"-ique"},{"id":"b","label":"-al"},{"id":"c","label":"-eux"},{"id":"d","label":"-able"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'Le suffixe -able (et sa variante -ible) exprime la possibilité ou l''aptitude passive : mangeable = qui peut être mangé, lisible = qui peut être lu, faisable = qui peut être fait, compréhensible. -Ique forme des adjectifs de relation (historique, logique, phonologique). -Al signifie « relatif à » (national, oral, final). -Eux indique une propriété ou une disposition (courageux, sérieux, chanceux). -Able est extrêmement productif en français — et il continue de créer des néologismes contemporains ! C''est le suffixe qui dit « c''est possible ».',
   'valide', 'CRPE Français — Lexique V2', 'premium', true
 ),
 
@@ -471,9 +471,9 @@ values
   'qcm',
   'Quelle classe grammaticale le suffixe verbal « -iser » permet-il de produire ?',
   null,
-  '[{"id":"a","label":"des noms"},{"id":"b","label":"des adjectifs"},{"id":"c","label":"des verbes"}]'::jsonb,
+  '[{"id":"a","label":"des noms"},{"id":"b","label":"des adjectifs"},{"id":"c","label":"des verbes"},{"id":"d","label":"des adverbes"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  '-Iser est un suffixe verbal qui transforme des noms ou des adjectifs en verbes du 1er groupe. National → nationaliser, moderne → moderniser, informatique → informatiser, robotique → robotiser. C''est un suffixe très productif dans le vocabulaire contemporain. Son concurrent, c''est -ifier (simplifier, clarifier, intensifier), qui fonctionne de la même façon. Ces deux suffixes verbaux sont des outils de dérivation essentiels à connaître pour le CRPE !',
+  '-Iser est un suffixe verbal qui transforme des noms ou des adjectifs en verbes du 1er groupe. National → nationaliser, moderne → moderniser, informatique → informatiser, robotique → robotiser. C''est un suffixe très productif dans le vocabulaire contemporain. Son concurrent, c''est -ifier (simplifier, clarifier, intensifier), qui fonctionne de la même façon. Les adverbes se forment en -ment. Ces deux suffixes verbaux sont des outils de dérivation essentiels à connaître pour le CRPE !',
   'valide', 'CRPE Français — Lexique V2', 'premium', true
 ),
 
@@ -484,9 +484,9 @@ values
   'qcm',
   'Le suffixe « -tude » dans des mots comme « solitude », « plénitude » ou « rectitude » forme :',
   null,
-  '[{"id":"a","label":"des noms abstraits féminins"},{"id":"b","label":"des adjectifs masculins"},{"id":"c","label":"des verbes d''état"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
-  '-Tude (du latin -tudo) forme des noms abstraits féminins à partir d''adjectifs. Seul → solitude, plein → plénitude, exact → exactitude, prompt → promptitude. Ces noms expriment un état ou une qualité abstraite — et ils appartiennent à un registre soutenu, voire littéraire. C''est donc un suffixe qui apparaît souvent dans les textes littéraires que tu vas analyser ou faire analyser. Retiens : -tude → féminin, abstrait, registre soutenu.',
+  '[{"id":"a","label":"des adjectifs masculins"},{"id":"b","label":"des verbes d''état"},{"id":"c","label":"des noms masculins de doctrine"},{"id":"d","label":"des noms abstraits féminins"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  '-Tude (du latin -tudo) forme des noms abstraits féminins à partir d''adjectifs. Seul → solitude, plein → plénitude, exact → exactitude, prompt → promptitude. Ces noms expriment un état ou une qualité abstraite — et ils appartiennent à un registre soutenu, voire littéraire. Les adjectifs masculins nécessiteraient des suffixes comme -el, -al, -ique. Les verbes d''état se forment autrement (paraître, sembler, rester...). Les noms de doctrine, c''est -isme. Retiens : -tude → féminin, abstrait, registre soutenu.',
   'valide', 'CRPE Français — Lexique V2', 'premium', true
 ),
 
@@ -510,9 +510,9 @@ values
   'qcm',
   'Quel suffixe permet de former des noms désignant une personne originaire d''un lieu ou pratiquant une discipline (ex : « musicien », « Parisien ») ?',
   null,
-  '[{"id":"a","label":"-ien"},{"id":"b","label":"-age"},{"id":"c","label":"-if"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
-  '-Ien est un suffixe polyfonctionnel ! Il forme des noms de personnes selon l''origine géographique (Parisien, Brésilien, Algérien), la discipline pratiquée (musicien, mathématicien, historien) ou l''appartenance à un groupe (chrétien, gardien). Il forme aussi des adjectifs de relation : quotidien, aérien, terrien. -Ien est très fréquent dans le vocabulaire des sciences humaines et des nationalités — deux domaines clés de l''enseignement à l''école primaire. Incontournable !',
+  '[{"id":"a","label":"-age"},{"id":"b","label":"-if"},{"id":"c","label":"-ien"},{"id":"d","label":"-ure"}]'::jsonb,
+  '{"mode":"single_choice","value":"c"}'::jsonb,
+  '-Ien est un suffixe polyfonctionnel ! Il forme des noms de personnes selon l''origine géographique (Parisien, Brésilien, Algérien), la discipline pratiquée (musicien, mathématicien, historien) ou l''appartenance à un groupe (chrétien, gardien). Il forme aussi des adjectifs de relation : quotidien, aérien, terrien. -Age forme des noms d''action ou de collection (jardinage, feuillage). -If forme des adjectifs (actif, vif, négatif). -Ure forme des noms de résultat ou d''action (lecture, blessure). Incontournable !',
   'valide', 'CRPE Français — Lexique V2', 'premium', true
 ),
 
@@ -523,9 +523,9 @@ values
   'qcm',
   'Le suffixe adjectival « -el » dans des mots comme « naturel », « formel » ou « culturel » indique :',
   null,
-  '[{"id":"a","label":"une relation ou une appartenance à un domaine"},{"id":"b","label":"une possibilité ou une aptitude"},{"id":"c","label":"un défaut ou un excès"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Le suffixe -el (variante de -al) forme des adjectifs relationnels : ils expriment une relation ou une appartenance à un domaine. Nature → naturel, forme → formel, culture → culturel, profession → professionnel. Attention : ces adjectifs ne fonctionnent pas comme des adjectifs qualificatifs ordinaires — tu ne peux pas dire « très naturel » dans le sens de « relatif à la nature ». Ils ne se degrèrent pas. C''est la morphologie dérivationnelle — un domaine examiné au CRPE !',
+  '[{"id":"a","label":"une possibilité ou une aptitude"},{"id":"b","label":"une relation ou une appartenance à un domaine"},{"id":"c","label":"un défaut ou un excès"},{"id":"d","label":"un état ou une qualité mesurable"}]'::jsonb,
+  '{"mode":"single_choice","value":"b"}'::jsonb,
+  'Le suffixe -el (variante de -al) forme des adjectifs relationnels : ils expriment une relation ou une appartenance à un domaine. Nature → naturel, forme → formel, culture → culturel, profession → professionnel. Une possibilité ou une aptitude, c''est -able (faisable, lisible). Un défaut ou un excès, ce serait plutôt -ard ou des adjectifs péjoratifs. Un état mesurable, ce n''est pas une fonction de -el. Attention : ces adjectifs ne fonctionnent pas comme des adjectifs qualificatifs ordinaires — tu ne peux pas dire « très naturel » dans le sens de « relatif à la nature ». C''est la morphologie dérivationnelle — un domaine examiné au CRPE !',
   'valide', 'CRPE Français — Lexique V2', 'premium', true
 ),
 
@@ -553,9 +553,9 @@ values
   'qcm',
   'Dans la phrase « Il a un cœur de pierre », le mot « pierre » est employé :',
   null,
-  '[{"id":"a","label":"au sens propre"},{"id":"b","label":"au sens figuré"},{"id":"c","label":"dans un sens technique"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Dans « un cœur de pierre », la pierre ne désigne pas le matériau minéral — elle sert de métaphore pour évoquer la dureté et l''insensibilité d''une personne. C''est donc un emploi au sens figuré. Le sens propre de « pierre », c''est le matériau minéral dur et compact. Retiens : sens propre = sens concret et littéral. Sens figuré = transfert métaphorique. Distinguer les deux, c''est une compétence fondamentale dès le cycle 2-3 pour comprendre les figures de style !',
+  '[{"id":"a","label":"au sens figuré"},{"id":"b","label":"au sens propre"},{"id":"c","label":"dans un sens technique"},{"id":"d","label":"dans un sens étymologique"}]'::jsonb,
+  '{"mode":"single_choice","value":"a"}'::jsonb,
+  'Dans « un cœur de pierre », la pierre ne désigne pas le matériau minéral — elle sert de métaphore pour évoquer la dureté et l''insensibilité d''une personne. C''est donc un emploi au sens figuré. Le sens propre de « pierre », c''est le matériau minéral dur et compact. Un sens technique serait propre à un domaine spécialisé (géologie, construction). Un sens étymologique renverrait à l''origine du mot. Retiens : sens propre = sens concret et littéral. Sens figuré = transfert métaphorique. Distinguer les deux, c''est une compétence fondamentale dès le cycle 2-3 !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -579,9 +579,9 @@ values
   'qcm',
   'Dans quelle phrase le mot « dévorer » est-il utilisé au sens figuré ?',
   null,
-  '[{"id":"a","label":"Le lion dévore sa proie."},{"id":"b","label":"Elle dévore les livres avec passion."},{"id":"c","label":"L''incendie a dévoré la forêt."}]'::jsonb,
+  '[{"id":"a","label":"Le lion dévore sa proie."},{"id":"b","label":"Elle dévore les livres avec passion."},{"id":"c","label":"L''incendie a dévoré la forêt."},{"id":"d","label":"Le chien dévore son repas en quelques secondes."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Dans « elle dévore les livres avec passion », dévorer est au sens figuré : il signifie lire avidement, avec un appétit métaphorique. Dans « le lion dévore sa proie », c''est le sens propre — manger avec voracité. Dans « l''incendie a dévoré la forêt », c''est aussi du sens figuré, mais c''est une métaphore d''action destructrice, pas du registre intellectuel. La phrase b est la plus clairement figurée dans le domaine de la lecture. Toujours regarder le contexte pour trancher !',
+  'Dans « elle dévore les livres avec passion », dévorer est au sens figuré : il signifie lire avidement, avec un appétit métaphorique. Dans « le lion dévore sa proie », c''est le sens propre — manger avec voracité. Dans « l''incendie a dévoré la forêt », c''est aussi du sens figuré, mais c''est une métaphore d''action destructrice. Dans « le chien dévore son repas », c''est encore le sens propre — manger rapidement. La phrase b est la plus clairement figurée dans le domaine intellectuel. Toujours regarder le contexte pour trancher !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -605,9 +605,9 @@ values
   'qcm',
   'Dans la phrase « La discussion a allumé une vive polémique », le verbe « allumer » est :',
   null,
-  '[{"id":"a","label":"au sens propre : il s''agit d''un feu réel"},{"id":"b","label":"au sens figuré : il signifie déclencher, provoquer"},{"id":"c","label":"un terme technique du domaine politique"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Allumer au sens propre = mettre le feu ou activer une source lumineuse. Dans « allumer une polémique », c''est le sens figuré : déclencher, provoquer, faire naître une querelle. C''est une métaphore du feu très courante en français — embraser un débat, enflammer les passions, allumer une controverse. Ces métaphores du feu pour désigner des conflits sont des métaphores lexicalisées : elles sont tellement usées qu''on ne les « sent » plus comme figurées, mais elles le sont quand même !',
+  '[{"id":"a","label":"au sens propre : il s''agit d''un feu réel"},{"id":"b","label":"un terme technique du domaine politique"},{"id":"c","label":"un néologisme journalistique"},{"id":"d","label":"au sens figuré : il signifie déclencher, provoquer"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'Allumer au sens propre = mettre le feu ou activer une source lumineuse. Dans « allumer une polémique », c''est le sens figuré : déclencher, provoquer, faire naître une querelle. C''est une métaphore du feu très courante en français — embraser un débat, enflammer les passions, allumer une controverse. Un terme technique du domaine politique serait spécialisé et défini comme tel. Un néologisme serait un mot récemment créé. Ces métaphores du feu sont des métaphores lexicalisées : tellement usées qu''on ne les « sent » plus comme figurées, mais elles le sont quand même !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -631,9 +631,9 @@ values
   'qcm',
   'Dans « il a les pieds sur terre », l''expression signifie :',
   null,
-  '[{"id":"a","label":"il marche pieds nus sur le sol"},{"id":"b","label":"il est réaliste et pragmatique"},{"id":"c","label":"il travaille dans les champs"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  '« Avoir les pieds sur terre » est une locution idiomatique au sens figuré : elle désigne quelqu''un de réaliste, ancré dans le concret, qui ne se laisse pas emporter par les illusions. Littéralement (sens propre), l''expression décrirait simplement le fait de se tenir debout. Les locutions idiomatiques sont des expressions dont le sens global ne se déduit pas de la somme des sens des mots — c''est un défi particulier pour l''enseignement du vocabulaire, et un piège classique en compréhension de texte !',
+  '[{"id":"a","label":"il marche pieds nus sur le sol"},{"id":"b","label":"il travaille dans les champs"},{"id":"c","label":"il est réaliste et pragmatique"},{"id":"d","label":"il souffre d''un problème aux pieds"}]'::jsonb,
+  '{"mode":"single_choice","value":"c"}'::jsonb,
+  '« Avoir les pieds sur terre » est une locution idiomatique au sens figuré : elle désigne quelqu''un de réaliste, ancré dans le concret, qui ne se laisse pas emporter par les illusions. Littéralement (sens propre), l''expression décrirait simplement le fait de se tenir debout. Marcher dans les champs ou souffrir des pieds, ce serait des interprétations purement littérales et fantaisistes. Les locutions idiomatiques sont des expressions dont le sens global ne se déduit pas de la somme des sens des mots — c''est un défi particulier pour l''enseignement du vocabulaire !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -644,9 +644,9 @@ values
   'qcm',
   'Parmi ces phrases, laquelle utilise le mot « lumière » au sens propre ?',
   null,
-  '[{"id":"a","label":"Il est la lumière de notre groupe."},{"id":"b","label":"La lumière du soleil entre par la fenêtre."},{"id":"c","label":"Son esprit est une lumière dans les ténèbres."}]'::jsonb,
+  '[{"id":"a","label":"Il est la lumière de notre groupe."},{"id":"b","label":"La lumière du soleil entre par la fenêtre."},{"id":"c","label":"Son esprit est une lumière dans les ténèbres."},{"id":"d","label":"Les Lumières ont changé la philosophie européenne."}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Dans « la lumière du soleil entre par la fenêtre », lumière désigne le rayonnement lumineux physique et concret — c''est le sens propre. Dans « il est la lumière de notre groupe », lumière signifie métaphoriquement la personne la plus brillante ou inspirante. Dans « son esprit est une lumière dans les ténèbres », c''est aussi une métaphore de l''intelligence. Le sens propre est toujours lié au réel physique et tangible — demande-toi : est-ce qu''on peut le mesurer, le toucher, le voir ?',
+  'Dans « la lumière du soleil entre par la fenêtre », lumière désigne le rayonnement lumineux physique et concret — c''est le sens propre. Dans « il est la lumière de notre groupe », lumière signifie métaphoriquement la personne la plus brillante. Dans « son esprit est une lumière dans les ténèbres », c''est aussi une métaphore de l''intelligence. Dans « les Lumières », c''est un emploi spécialisé désignant le mouvement intellectuel du XVIIIe siècle. Le sens propre est toujours lié au réel physique et tangible — demande-toi : est-ce qu''on peut le mesurer, le toucher, le voir ?',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -670,9 +670,9 @@ values
   'qcm',
   'Dans « cette décision a ouvert une nouvelle porte pour l''entreprise », le mot « porte » est employé :',
   null,
-  '[{"id":"a","label":"au sens propre"},{"id":"b","label":"au sens figuré"},{"id":"c","label":"dans un sens juridique"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Ici, « porte » est au sens figuré : elle désigne une possibilité, une opportunité nouvelle. Pas question d''une porte physique qu''on peut ouvrir ! La métaphore de la porte pour désigner une opportunité ou un accès à quelque chose de nouveau est très courante en français. C''est une métaphore lexicalisée — tellement usée qu''on l''utilise sans y penser. Mais en classe, c''est exactement le type d''expression qu''il faut expliciter pour développer la conscience du sens figuré chez tes élèves.',
+  '[{"id":"a","label":"au sens propre"},{"id":"b","label":"dans un sens juridique"},{"id":"c","label":"dans un sens architectural"},{"id":"d","label":"au sens figuré"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'Ici, « porte » est au sens figuré : elle désigne une possibilité, une opportunité nouvelle. Pas question d''une porte physique qu''on peut ouvrir ! Un sens architectural désignerait une ouverture dans un mur. Un sens juridique n''existe pas pour ce mot dans ce contexte. Le sens propre serait le battant qu''on ouvre et referme. La métaphore de la porte pour désigner une opportunité ou un accès à quelque chose de nouveau est très courante en français. C''est une métaphore lexicalisée — tellement usée qu''on l''utilise sans y penser. Mais en classe, c''est exactement le type d''expression qu''il faut expliciter pour développer la conscience du sens figuré chez tes élèves.',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -687,9 +687,9 @@ values
   'qcm',
   'Quel mot n''appartient pas à la famille du mot « terre » ?',
   null,
-  '[{"id":"a","label":"terrestre"},{"id":"b","label":"territoire"},{"id":"c","label":"terrasse"}]'::jsonb,
+  '[{"id":"a","label":"terrestre"},{"id":"b","label":"territoire"},{"id":"c","label":"terrasse"},{"id":"d","label":"enterrer"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  'Terrestre (relatif à la Terre) et territoire (étendue de terre) partagent le radical latin terra et appartiennent bien à la famille de « terre ». Terrasse, en revanche, a une étymologie plus complexe : elle vient de l''ancien français avec le sens d''amas de terre, mais s''est spécialisée dans le sens de surface plane aménagée, et son lien avec terra est moins transparent. C''est donc l''intrus. Retiens : les familles de mots permettent aux élèves de mémoriser l''orthographe et d''inférer le sens des mots inconnus !',
+  'Terrestre (relatif à la Terre) et territoire (étendue de terre) partagent le radical latin terra et appartiennent bien à la famille de « terre ». Enterrer (mettre en terre) aussi — il contient clairement le radical terre. Terrasse, en revanche, a une étymologie plus complexe : elle vient de l''ancien français avec le sens d''amas de terre, mais s''est spécialisée dans le sens de surface plane aménagée, et son lien avec terra est moins transparent pour les élèves — c''est donc l''intrus pédagogiquement pertinent. Retiens : les familles de mots permettent aux élèves de mémoriser l''orthographe et d''inférer le sens des mots inconnus !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -713,9 +713,9 @@ values
   'qcm',
   'Parmi ces mots, lequel appartient à la famille de « lire » ?',
   null,
-  '[{"id":"a","label":"lisière"},{"id":"b","label":"relecture"},{"id":"c","label":"litige"}]'::jsonb,
+  '[{"id":"a","label":"lisière"},{"id":"b","label":"relecture"},{"id":"c","label":"litige"},{"id":"d","label":"lilas"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Relecture = re- + lecture, dérivé du verbe lire. Ça appartient bien à la famille de « lire ». Lisière ? Ça désigne le bord d''un tissu ou d''une forêt — c''est d''origine germanique, aucun lien avec lire. Litige ? C''est un différend juridique, du latin litigium (querelle) — aucun lien non plus. Méfie-toi des mots qui commencent par « li- » et qui n''ont rien à voir avec « lire » ! C''est exactement le type de piège que le CRPE adore tendre.',
+  'Relecture = re- + lecture, dérivé du verbe lire. Ça appartient bien à la famille de « lire ». Lisière ? Ça désigne le bord d''un tissu ou d''une forêt — c''est d''origine germanique, aucun lien avec lire. Litige ? C''est un différend juridique, du latin litigium (querelle) — aucun lien non plus. Lilas ? C''est un arbuste à fleurs violettes, d''origine turque — sans rapport avec lire. Méfie-toi des mots qui commencent par « li- » et qui n''ont rien à voir avec « lire » ! C''est exactement le type de piège que le CRPE adore tendre.',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -739,9 +739,9 @@ values
   'qcm',
   'Quel est le radical commun aux mots « portail », « porteur », « transport » et « reporter » ?',
   null,
-  '[{"id":"a","label":"port-"},{"id":"b","label":"por-"},{"id":"c","label":"port- / -port-"}]'::jsonb,
+  '[{"id":"a","label":"port-"},{"id":"b","label":"por-"},{"id":"c","label":"port- / -port-"},{"id":"d","label":"-ort-"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  'Le radical commun est port- (du latin portare, porter). Dans portail et porteur, il est en début de mot. Dans transport et reporter, il est après un préfixe (trans- et re-). Tous ces mots appartiennent à la famille du verbe porter. La réponse c est la plus complète car elle précise que le radical peut apparaître en position initiale (port-) ou non initiale (-port-). Identifier le radical commun, c''est un exercice fondamental de morphologie lexicale — et un vrai outil pédagogique au cycle 3 !',
+  'Le radical commun est port- (du latin portare, porter). Dans portail et porteur, il est en début de mot. Dans transport et reporter, il est après un préfixe (trans- et re-). Tous ces mots appartiennent à la famille du verbe porter. La réponse c est la plus complète car elle précise que le radical peut apparaître en position initiale (port-) ou non initiale (-port-). La réponse a (port- uniquement) est incomplète. La réponse b (por-) est incorrecte — le radical est port-, pas por-. La réponse d (-ort-) n''est pas le bon radical. Identifier le radical commun, c''est un exercice fondamental de morphologie lexicale !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -765,9 +765,9 @@ values
   'qcm',
   'Lequel de ces mots est un néologisme (mot créé récemment) ?',
   null,
-  '[{"id":"a","label":"courriel"},{"id":"b","label":"château"},{"id":"c","label":"maison"}]'::jsonb,
+  '[{"id":"a","label":"courriel"},{"id":"b","label":"château"},{"id":"c","label":"maison"},{"id":"d","label":"sentier"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Courriel est un néologisme francophone créé pour désigner le courrier électronique (email) : officialisé par la Commission générale de terminologie dans les années 1990-2000. Château vient du latin castellum. Maison vient du latin mansio. Ces deux derniers sont des mots très anciens dans la langue. Les néologismes témoignent de la vitalité créatrice de la langue — et étudier leur formation avec tes élèves, c''est leur montrer que le français est vivant et qu''il crée encore de nouveaux mots !',
+  'Courriel est un néologisme francophone créé pour désigner le courrier électronique (email) : officialisé par la Commission générale de terminologie dans les années 1990-2000. Château vient du latin castellum. Maison vient du latin mansio. Sentier vient du latin semitarius — tous des mots très anciens dans la langue. Les néologismes témoignent de la vitalité créatrice de la langue — et étudier leur formation avec tes élèves, c''est leur montrer que le français est vivant et qu''il crée encore de nouveaux mots !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -778,9 +778,9 @@ values
   'qcm',
   'Le processus de formation du mot « inutilisable » fait intervenir :',
   null,
-  '[{"id":"a","label":"un seul préfixe"},{"id":"b","label":"une préfixation et une suffixation (parasynthèse)"},{"id":"c","label":"deux radicaux différents (composition)"}]'::jsonb,
+  '[{"id":"a","label":"un seul préfixe"},{"id":"b","label":"une préfixation et une suffixation (parasynthèse)"},{"id":"c","label":"deux radicaux différents (composition)"},{"id":"d","label":"un emprunt à une langue étrangère"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  'Inutilisable, c''est un exemple parfait de parasynthèse : ajout simultané ou successif d''un préfixe (in- = non) et d''un suffixe (-able = qui peut être) à la même base. Regarde la chaîne de dérivation : utile → utiliser → utilisable → inutilisable. Chaque étape ajoute un élément. Ce procédé illustre la richesse de la dérivation en français — et la possibilité d''enchaîner plusieurs affixes sur un même radical. C''est du niveau avancé, mais ça montre à quel point la morphologie est fascinante !',
+  'Inutilisable, c''est un exemple parfait de parasynthèse : ajout simultané ou successif d''un préfixe (in- = non) et d''un suffixe (-able = qui peut être) à la même base. Regarde la chaîne de dérivation : utile → utiliser → utilisable → inutilisable. Un seul préfixe ne suffirait pas à expliquer la forme. La composition (deux radicaux) ne s''applique pas ici. Un emprunt serait un mot venu d''une autre langue. Ce procédé illustre la richesse de la dérivation en français — et la possibilité d''enchaîner plusieurs affixes sur un même radical. C''est du niveau avancé, mais ça montre à quel point la morphologie est fascinante !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 ),
 
@@ -804,9 +804,9 @@ values
   'qcm',
   'Parmi ces mots, lesquels appartiennent à la famille de « grand » ?',
   null,
-  '[{"id":"a","label":"grandeur, agrandir, grandiloquent"},{"id":"b","label":"grandeur, gronder, granit"},{"id":"c","label":"agrandir, grange, grandeur"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Grandeur, agrandir et grandiloquent partagent tous le radical grand- : grandeur (qualité de ce qui est grand), agrandir (rendre plus grand), grandiloquent (qui parle avec excès de grandeur — et oui, ce sens est lié à grand !). Dans les autres propositions, les intrus sont clairs : gronder vient d''un radical différent (bruit sourd), granit est un mot d''emprunt (roche), et grange vient du latin granica (lieu pour le grain). Ces faux amis morphologiques sont un classique des questions de famille de mots au CRPE !',
+  '[{"id":"a","label":"grandeur, gronder, granit"},{"id":"b","label":"agrandir, grange, grandeur"},{"id":"c","label":"grandeur, grandir, gradient"},{"id":"d","label":"grandeur, agrandir, grandiloquent"}]'::jsonb,
+  '{"mode":"single_choice","value":"d"}'::jsonb,
+  'Grandeur, agrandir et grandiloquent partagent tous le radical grand- : grandeur (qualité de ce qui est grand), agrandir (rendre plus grand), grandiloquent (qui parle avec excès de grandeur — et oui, ce sens est lié à grand !). Dans les autres propositions, les intrus sont clairs : gronder vient d''un radical différent (bruit sourd), granit est un mot d''emprunt (roche), et grange vient du latin granica (lieu pour le grain). Gradient vient du latin gradus (degré, pas) — sans lien avec grand. Ces faux amis morphologiques sont un classique des questions de famille de mots au CRPE !',
   'valide', 'CRPE Français — Lexique V2', 'free', true
 )
 ;

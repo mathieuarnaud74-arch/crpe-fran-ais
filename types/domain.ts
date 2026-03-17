@@ -19,7 +19,12 @@ export type AccessTier = "free" | "premium";
 export type ValidationStatus = "brouillon" | "valide";
 export type ProgressStatus = "prioritaire" | "fragile" | "en_cours" | "acquis";
 export type LearningStatus = "non_commencee" | "en_cours" | "a_revoir" | "maitrisee";
-export type FrenchDomainKey = "grammaire" | "orthographe" | "analyse-de-la-langue";
+export type FrenchDomainKey =
+  | "grammaire"
+  | "lexique"
+  | "orthographe"
+  | "analyse-de-la-langue"
+  | "didactique-du-francais";
 
 export type ExerciseChoice = {
   id: string;

@@ -179,7 +179,7 @@ export default async function FrenchDomainPage({
             <ButtonLink href="/francais" variant="secondary">
               Retour à la matière
             </ButtonLink>
-            <ButtonLink href="/revisions-ciblees">Voir les priorités</ButtonLink>
+            <ButtonLink href="/tableau-de-bord">Tableau de bord</ButtonLink>
           </div>
         </div>
       </Panel>

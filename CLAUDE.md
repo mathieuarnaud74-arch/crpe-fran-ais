@@ -19,9 +19,11 @@ Modèle : accès gratuit limité (20 questions/jour) + abonnement premium (Strip
 | Base de données | Supabase (Postgres) |
 | Auth | Supabase SSR (`@supabase/ssr`) |
 | Paiement | Stripe |
-| UI primitives | Radix UI (Label, Select, Separator) |
+| UI primitives | Radix UI (Accordion, Dialog, Label, Select, Separator) |
 | Variants | class-variance-authority (CVA) |
 | Icônes | lucide-react |
+| Notifications | sonner |
+| Progress bar | nextjs-toploader |
 | Tests | Vitest + Storybook 10 |
 
 ---
@@ -29,11 +31,12 @@ Modèle : accès gratuit limité (20 questions/jour) + abonnement premium (Strip
 ## Commandes
 
 ```bash
-npm run dev          # serveur local
-npm run build        # build production
-npm run typecheck    # tsc --noEmit
-npm run lint         # eslint
-npm run storybook    # Storybook sur :6006
+npm run dev                          # serveur local
+npm run build                        # build production
+npm run typecheck                    # tsc --noEmit
+npm run lint                         # eslint
+npm run storybook                    # Storybook sur :6006
+npm run generate:french-module-seed  # génère le seed SQL du module français
 ```
 
 ---
@@ -44,7 +47,17 @@ npm run storybook    # Storybook sur :6006
 app/
   (marketing)/       # pages publiques : /, /offre, /cgu, /mentions-legales...
   (auth)/            # /connexion, /inscription
-  (app)/             # pages protégées : /tableau-de-bord, /francais...
+  (app)/             # pages protégées : /tableau-de-bord, /francais, /diagnostic...
+  admin/
+    homepage/
+      preview/       # prévisualisation de la page d'accueil (admin)
+  api/
+    diagnostic/
+      complete/      # POST — finalise et persiste un diagnostic
+    _stripe/
+      checkout/      # POST — crée une session Stripe
+      portal/        # POST — portail client Stripe
+      webhook/       # POST — événements Stripe (abonnement, paiement one-time)
 ```
 
 Les layouts injectent `SiteHeader` et `SiteFooter` au niveau approprié.
@@ -57,10 +70,14 @@ Les layouts injectent `SiteHeader` et `SiteFooter` au niveau approprié.
 features/
   auth/              # guards, logout-button, auth-form
   billing/           # checkout-button
-  dashboard/         # domain-summary-card, session-progress-card, learning-status-badge
+  dashboard/         # domain-summary-card, session-progress-card, learning-status-badge, collapsible-panel
+  diagnostic/        # components/ (UI diagnostic), server/ (logique + persistance en base)
   exercises/         # exercise-player
+  homepage/          # renderer, admin-shell, default-homepage
 components/
   ui/                # button, badge, card, input, label, select, separator, textarea
+  mascot/
+    mocca.tsx        # mascotte Mocca — affichée dans les corrections (états : happy, neutral, grumpy)
   site-header.tsx
   site-footer.tsx
   app-shell.tsx
@@ -156,6 +173,33 @@ Table principale : `public.exercises`
 | `access_tier` | text | `free` ou `premium` |
 | `is_published` | bool | |
 
+Table secondaire : `public.diagnostic_results` — persiste les résultats du diagnostic par utilisateur.
+
+---
+
+## UI/Design Guidelines
+
+When making UI/design changes, make bold, meaningful improvements — not marginal tweaks. If changing colors or layouts, ensure the difference is visually significant and professional-quality.
+
+---
+
+## Content & Copy
+
+When editing content or copy, use compelling marketing language with real benefits and CTAs — not generic or technical descriptions.
+
+---
+
+## Safety Rules
+
+- Before deleting any files, always list the files you plan to remove and get explicit confirmation. Never delete content/data files without asking first.
+- If a tool or approach fails twice with the same error, stop retrying and suggest an alternative approach or ask the user how to proceed.
+
+---
+
+## Workflow Preferences
+
+When asked to audit or review code, apply fixes directly rather than producing lengthy reports. Bias toward action over analysis unless explicitly asked for a report.
+
 ---
 
 ## Conventions de code
@@ -166,3 +210,22 @@ Table principale : `public.exercises`
 - Pas de commentaires dans le JSX sauf logique non évidente.
 - Pas d'inline styles sauf si un token Tailwind n'existe pas pour la valeur exacte.
 - Laisser les Server Components async — ne passer en `"use client"` que si nécessaire.
+
+---
+
+## Changelog
+
+À la fin de **chaque session** ayant modifié du code, l'agent doit ajouter une entrée dans `CHANGELOG.md` avec :
+- la date (format `YYYY-MM-DD`)
+- une ligne par fichier modifié ou créé, avec le motif du changement
+
+Format attendu :
+
+```markdown
+## [YYYY-MM-DD] — Description courte de la session
+
+- `chemin/du/fichier.tsx` — ce qui a été fait et pourquoi
+- `autre/fichier.ts` — idem
+```
+
+Voir `CHANGELOG.md` à la racine pour les entrées existantes.

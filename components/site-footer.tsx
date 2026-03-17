@@ -11,7 +11,7 @@ const NAV_LINKS = [
 const RESOURCE_LINKS = [
   { label: "Grammaire & orthographe", href: "/francais" },
   { label: "Analyse & didactique", href: "/francais/analyse-de-la-langue" },
-  { label: "Révisions ciblées", href: "/revisions-ciblees" },
+  { label: "Tableau de bord", href: "/tableau-de-bord" },
   { label: "Glossaire", href: "/ressources/glossaire" },
   { label: "Voir l'offre", href: "/offre" },
 ];

@@ -41,8 +41,10 @@ const trustBarIcons = [Clock3, BarChart3, ShieldCheck] satisfies LucideIcon[];
 const benefitIcons = [Target, BookOpen, Sparkles] satisfies LucideIcon[];
 const domainIcons: Record<(typeof FRENCH_DOMAIN_ORDER)[number], LucideIcon> = {
   grammaire: BookOpen,
+  lexique: BookOpen,
   orthographe: CheckCircle2,
   "analyse-de-la-langue": Sparkles,
+  "didactique-du-francais": Sparkles,
 };
 
 
@@ -276,18 +278,7 @@ function FeaturesSection({ props }: { props: FeaturesSectionProps }) {
           <FadeIn delay={0.16}>
             <ShowcaseAnalyse />
           </FadeIn>
-          <FadeIn delay={0.24} className="lg:col-span-2">
-            <div className="flex items-center gap-5 rounded-[1.5rem] border border-border bg-card p-5 shadow-subtle">
-              <Mocca variant="neutral" size="md" className="shrink-0 rounded-full" />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Votre professeur</p>
-                <p className="mt-1 font-serif text-lg font-semibold text-ink">Mocca explique chaque correction.</p>
-                <p className="mt-1 text-sm leading-7 text-muted">
-                  Pas juste la bonne réponse — la règle qui va avec, pour ne plus refaire l&apos;erreur.
-                </p>
-              </div>
-            </div>
-          </FadeIn>
+
         </div>
       </div>
     </section>

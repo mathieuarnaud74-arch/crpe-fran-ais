@@ -23,18 +23,18 @@ export function HomepageAdminShell({ children }: HomepageAdminShellProps) {
               <div className="min-w-0">
                 <p className="truncate font-serif text-2xl font-semibold text-ink">Homepage admin</p>
                 <p className="truncate text-sm text-muted">
-                  Edition modulaire et publication controlee
+                  Édition modulaire et publication contrôlée
                 </p>
               </div>
             </Link>
             <Badge tone="accentSecondary" className="hidden lg:inline-flex">
-              Blocs predefinis
+              Blocs prédéfinis
             </Badge>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             <ButtonLink href="/admin/homepage/preview" variant="secondary">
-              Previsualiser
+              Prévisualiser
             </ButtonLink>
             <ButtonLink href="/" variant="secondary">
               Voir le live

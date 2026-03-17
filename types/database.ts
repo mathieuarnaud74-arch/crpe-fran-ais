@@ -215,6 +215,39 @@ export interface Database {
         };
         Relationships: [];
       };
+      diagnostic_results: {
+        Row: {
+          id: string;
+          user_id: string;
+          completed_at: string;
+          score: number;
+          total: number;
+          profile_label: string;
+          profile_detail: string;
+          subdomains: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          completed_at: string;
+          score: number;
+          total: number;
+          profile_label: string;
+          profile_detail: string;
+          subdomains: Json;
+          created_at?: string;
+        };
+        Update: {
+          completed_at?: string;
+          score?: number;
+          total?: number;
+          profile_label?: string;
+          profile_detail?: string;
+          subdomains?: Json;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {
