@@ -2,6 +2,7 @@
 
 import {
   BarChart3,
+  BookOpen,
   BookText,
   ClipboardList,
   CreditCard,
@@ -60,6 +61,13 @@ const navigationItems: NavigationItem[] = [
       { href: "/francais/didactique-du-francais", label: "Didactique du français", exact: true, icon: BookText },
       { href: "/ressources/glossaire", label: "Glossaire", exact: false, icon: ClipboardList },
     ],
+  },
+  {
+    kind: "standalone",
+    href: "/fiches",
+    label: "Fiches CRPE",
+    exact: false,
+    icon: BookOpen,
   },
   {
     kind: "standalone",
@@ -180,6 +188,7 @@ function NavGroup({
 
 function NavStandalone({ item, pathname }: { item: NavigationStandalone; pathname: string }) {
   const active = isLinkActive(pathname, item.href, item.exact);
+  const Icon = item.icon ?? Search;
 
   return (
     <Link
@@ -192,7 +201,7 @@ function NavStandalone({ item, pathname }: { item: NavigationStandalone; pathnam
       )}
     >
       <span>{item.label}</span>
-      <Search
+      <Icon
         className={cn(
           "h-3.5 w-3.5 shrink-0",
           active ? "text-paper/80" : "text-muted/70",

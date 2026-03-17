@@ -1,0 +1,51 @@
+import type { Fiche } from "@/features/fiches/types";
+
+import { reperageExpliciteSprint } from "./comprehension-texte-reperage-explicite-sprint";
+import { impliciteInferenceSprint } from "./comprehension-texte-implicite-inference-sprint";
+import { texteDocumentaireSprint } from "./comprehension-texte-documentaire-sprint";
+import { participePasseSprint } from "./orthographe-participe-passe-sprint";
+import { accordGnSprint } from "./orthographe-accord-gn-sprint";
+import { homophonesSprint } from "./orthographe-homophones-sprint";
+import { accordVerbeSujetSprint } from "./orthographe-accord-verbe-sujet-sprint";
+import { infinitifParticipeSprint } from "./orthographe-infinitif-participe-sprint";
+import { natureMotsSprint } from "./grammaire-nature-mots-sprint";
+import { fonctionsGrammaticalesSprint } from "./grammaire-fonctions-sprint";
+import { phraseSimpleSprint } from "./grammaire-phrase-simple-sprint";
+import { subordonnéesRelativesSprint } from "./grammaire-subordonnees-relatives-sprint";
+import { analyseLangueRelativesSprint } from "./analyse-langue-subordonnees-relatives-sprint";
+import { formationMotsSprint } from "./lexique-formation-mots-sprint";
+import { figuresDeStyleSprint } from "./lexique-figures-de-style-sprint";
+import { valeursPresentSprint } from "./conjugaison-valeurs-present-sprint";
+import { imparfaitPasseSimpleSprint } from "./conjugaison-imparfait-passe-simple-sprint";
+import { enseignementOrthographeSprint } from "./didactique-enseignement-orthographe-sprint";
+import { apprendreALireSprint } from "./didactique-apprendre-a-lire-sprint";
+import { productionEcriteSprint } from "./didactique-production-ecrite-sprint";
+import { evaluationFrancaisSprint } from "./didactique-evaluation-francais-sprint";
+import { grammaireInductiveSprint } from "./didactique-grammaire-inductive-sprint";
+import { programmesFrancaisCyclesReference } from "./didactique-programmes-cycles-reference";
+
+export const allFiches: Fiche[] = [
+  reperageExpliciteSprint,
+  impliciteInferenceSprint,
+  texteDocumentaireSprint,
+  participePasseSprint,
+  accordGnSprint,
+  homophonesSprint,
+  accordVerbeSujetSprint,
+  infinitifParticipeSprint,
+  natureMotsSprint,
+  fonctionsGrammaticalesSprint,
+  phraseSimpleSprint,
+  subordonnéesRelativesSprint,
+  analyseLangueRelativesSprint,
+  formationMotsSprint,
+  figuresDeStyleSprint,
+  valeursPresentSprint,
+  imparfaitPasseSimpleSprint,
+  enseignementOrthographeSprint,
+  apprendreALireSprint,
+  productionEcriteSprint,
+  evaluationFrancaisSprint,
+  grammaireInductiveSprint,
+  programmesFrancaisCyclesReference,
+];
