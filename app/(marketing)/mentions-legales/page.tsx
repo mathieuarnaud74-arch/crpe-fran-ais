@@ -87,7 +87,7 @@ export default function MentionsLegalesPage() {
                 Les exercices, corrections et explications proposés sur ce site sont des outils d&apos;entraînement pédagogique. Ils ne se substituent pas aux textes officiels du concours CRPE, aux programmes nationaux ni aux ressources publiées par le Ministère de l&apos;Éducation nationale.
               </p>
               <p>
-                L&apos;éditeur s&apos;efforce de maintenir les informations à jour et exactes, mais ne peut garantir l&apos;exhaustivité ni l&apos;absence d&apos;erreurs. Toute signalement d&apos;inexactitude peut être adressé au contact indiqué ci-dessus.
+                L&apos;éditeur s&apos;efforce de maintenir les informations à jour et exactes, mais ne peut garantir l&apos;exhaustivité ni l&apos;absence d&apos;erreurs. Tout signalement d&apos;inexactitude peut être adressé au contact indiqué ci-dessus.
               </p>
             </Section>
 

@@ -304,7 +304,7 @@ export default async function FrenchDomainPage({
             >
               <option value="">Tous</option>
               {LEVEL_OPTIONS.map((option) => (
-                <option key={option.value} value={option.label}>
+                <option key={option.value} value={option.value}>
                   {option.label}
                 </option>
               ))}

@@ -139,31 +139,32 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
       description: "Réponses directes. Pas d'engagement caché.",
       noteTitle: "Une question non listée ?",
       noteDescription: "Écrivez à contact@crpe-prep.fr",
+      noteLinkHref: "mailto:contact@crpe-prep.fr",
       items: [
         {
           question: "C'est vraiment gratuit ?",
           answer:
-            "Oui — sans paiement ni carte bancaire. Accessible à tous avant tout engagement.",
+            "Oui — sans carte bancaire ni engagement. Le diagnostic complet est gratuit, et vous accédez à 20 exercices par jour en version libre. L'abonnement débloque l'accès illimité et les séries ciblées selon vos résultats.",
         },
         {
           question: "Que reçoit-on à la fin de la session de départ ?",
           answer:
-            "Un profil détaillé sous-domaine par sous-domaine, avec les priorités à travailler en premier.",
+            "En 8 minutes et 16 questions, vous obtenez un profil complet sous-domaine par sous-domaine : vos points forts, vos lacunes prioritaires, et un ordre de révision personnalisé. Ce profil guide tout votre parcours — les séries remontent dans l'ordre où vous en avez le plus besoin.",
         },
         {
           question: "Les corrections sont-elles vraiment utiles ?",
           answer:
-            "C'est le point central du site. Chaque exercice est corrigé avec la règle qui s'applique — pas seulement la bonne réponse.",
+            "C'est le point central du site. Chaque exercice est corrigé avec la règle grammaticale ou orthographique qui s'applique — pas seulement la bonne réponse. Vous comprenez pourquoi vous avez faux, et vous mémorisez la règle pour ne plus refaire la même erreur le jour du concours.",
         },
         {
           question: "Quels domaines sont couverts ?",
           answer:
-            `Grammaire, orthographe, conjugaison, lexique, analyse de la langue, compréhension de texte et didactique — les ${subdomainCount} sous-domaines testés au CRPE.`,
+            `Grammaire, orthographe, conjugaison, lexique, analyse de la langue, compréhension de texte et didactique du français — les ${subdomainCount} sous-domaines testés au CRPE. Tout le contenu est aligné sur le programme officiel 2026.`,
         },
         {
           question: "Peut-on arrêter l'abonnement facilement ?",
           answer:
-            "Oui. Résiliation sans condition via Stripe. Les accès journalier et hebdomadaire ne se renouvellent pas automatiquement.",
+            "Oui, sans condition ni délai de préavis. Résiliation en un clic depuis le portail Stripe. Les formules journalière et hebdomadaire ne se renouvellent pas automatiquement — aucune surprise sur votre relevé.",
         },
         {
           question: "En quoi c'est différent des annales officielles ?",

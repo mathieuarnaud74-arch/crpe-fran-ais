@@ -125,6 +125,7 @@ export const faqSectionPropsSchema = z.object({
   description: richTextSchema,
   noteTitle: shortTextSchema,
   noteDescription: richTextSchema,
+  noteLinkHref: z.string().url().optional(),
   items: z
     .array(
       z.object({

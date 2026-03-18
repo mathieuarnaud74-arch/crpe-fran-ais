@@ -6,6 +6,21 @@ Entrées en ordre chronologique inverse (plus récent en haut).
 
 ---
 
+## [2026-03-18] - Améliorations UI, corrections et mise à jour diagnostique
+
+- `CLAUDE.md` — token accent mis à jour : vert → bleu (#4A6E8F)
+- `components/app-shell.tsx` — logo remplacé par composant Image Next.js avec fichier /logo.png
+- `app/(app)/fiches/page.tsx` — passage vouvoiement ("ton" → "votre", "Essaie" → "Essayez")
+- `app/(app)/francais/[domain]/page.tsx` — correctif filtre niveau : `option.label` → `option.value`
+- `app/(marketing)/mentions-legales/page.tsx` — correction grammaticale : "Toute" → "Tout signalement"
+- `content/french-diagnostic-questions.ts` — questions diagnostiques grammaire/orthographe/lexique mises à niveau CRPE avancé (analyse syntaxique, dislocations, subordonnées complexes)
+- `features/homepage/components/renderer.tsx` — section FAQ : support lien cliquable sur la note de bas de section
+- `features/homepage/lib/blocks.ts` — ajout champ `noteLinkHref` optionnel au schéma FAQ
+- `features/homepage/lib/default-homepage.ts` — FAQ mise à jour : réponses enrichies + lien mailto contact
+- `supabase/migrations/20260322_update_faq_content.sql` — migration en attente : mise à jour contenu FAQ en base
+
+---
+
 ## [2026-03-18] — Sprint contenu V3 : 30 séries + 20 fiches CRPE Français
 
 - `content/french-crpe-series.ts` — intégration des 3 nouveaux batches V3 (imports + spread dans `frenchCrpeSeriesSeed`) ; total séries : 49 (19 existantes + 30 nouvelles)

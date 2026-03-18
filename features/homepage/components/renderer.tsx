@@ -365,7 +365,15 @@ function FaqSection({ props }: { props: FaqSectionProps }) {
               </div>
               <div>
                 <p className="text-sm font-semibold text-ink">{props.noteTitle}</p>
-                <p className="mt-2 text-sm leading-7 text-muted">{props.noteDescription}</p>
+                {props.noteLinkHref ? (
+                  <p className="mt-2 text-sm leading-7 text-muted">
+                    <a href={props.noteLinkHref} className="underline hover:text-ink transition-colors">
+                      {props.noteDescription}
+                    </a>
+                  </p>
+                ) : (
+                  <p className="mt-2 text-sm leading-7 text-muted">{props.noteDescription}</p>
+                )}
               </div>
             </div>
           </div>

@@ -52,7 +52,7 @@ export default async function FichesPage({
               <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
                 Synthèses rigoureuses pour réviser le français du CRPE : règles
                 disciplinaires, dimension didactique, pièges de concours et tests
-                d&apos;auto-évaluation. Trois modèles selon ton besoin du moment.
+                d&apos;auto-évaluation. Trois modèles selon votre besoin du moment.
               </p>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default async function FichesPage({
             Aucune fiche disponible
           </p>
           <p className="mt-2 text-sm text-muted">
-            Essaie de modifier les filtres.
+            Essayez de modifier les filtres.
           </p>
           <ButtonLink href="/fiches" variant="secondary" size="sm" className="mt-4">
             Réinitialiser

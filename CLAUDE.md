@@ -99,8 +99,8 @@ components/
 | `ink` | #2C2420 | Texte principal |
 | `muted` | #6B534A | Texte secondaire |
 | `border` | #D8D2C6 | Bordures |
-| `accent` | #476257 | Vert — CTA principal |
-| `accentDark` | #394E45 | Vert hover |
+| `accent` | #4A6E8F | Bleu — CTA principal |
+| `accentDark` | #3A5A7A | Bleu hover |
 | `accentSecondary` | #A46849 | Terracotta — badges, highlights |
 | `accentSecondaryDark` | #7E4E36 | Terracotta foncé |
 | `accentSecondarySoft` | #F1E0D5 | Fond badge terracotta |

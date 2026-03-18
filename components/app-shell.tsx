@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -15,14 +16,16 @@ export function AppShell({ children, userEmail }: AppShellProps) {
     <div className="min-h-screen bg-paper">
       <header className="border-b border-ink/20 bg-[linear-gradient(135deg,#2C2420,#394E45)]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between">
-          <Link href="/tableau-de-bord" className="flex min-w-0 items-center gap-3">
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-paper/20 bg-paper/10 text-sm font-semibold text-paper shadow-subtle">
-              <span>CR</span>
-              <span className="absolute -right-1 -top-1 h-4 w-4 rounded-full border border-ink/20 bg-accentSecondary" />
-            </div>
-            <div className="min-w-0">
-              <p className="truncate font-serif text-2xl font-semibold text-paper">CRPE Français</p>
-              <p className="truncate text-sm text-paper/60">Révision structurée et progressive</p>
+          <Link href="/tableau-de-bord" className="flex min-w-0 items-center">
+            <div className="h-14 overflow-hidden">
+              <Image
+                src="/logo.png"
+                alt="CRPE Français — Banque d'exercices"
+                width={1408}
+                height={768}
+                className="-mt-3 h-20 w-auto object-contain brightness-0 invert"
+                priority
+              />
             </div>
           </Link>
 
