@@ -6,6 +6,13 @@ Entrées en ordre chronologique inverse (plus récent en haut).
 
 ---
 
+## [2026-03-18] — Migration SQL V3 : 300 questions en base (30 séries) — corrigée et appliquée
+
+- `supabase/migrations/20260323_seed_v3_series_300_questions.sql` — renommé depuis 20260318 (conflit de version) + correctifs SQL : 2 patterns `«l'''` → `«l''»` (guillemet manquant), ajout `ALTER TABLE ... ADD COLUMN IF NOT EXISTS common_mistake text` ; migration appliquée avec succès en production via `supabase db push`
+- `supabase/migrations/20260318_seed_v3_series_300_questions.sql` — supprimé (remplacé par 20260323)
+
+---
+
 ## [2026-03-18] — Migration SQL V3 : 300 questions en base (30 séries)
 
 - `supabase/migrations/20260318_seed_v3_series_300_questions.sql` — créé : migration complète 300 questions CRPE Français V3 (30 séries × 10 questions), couvrant Batch A (phrase complexe, subordonnées, discours, types de phrases, participe passé, pluriel, accords, tout/même, ponctuation), Batch B (subjonctif, concordance des temps, aspect verbal, conditionnel, impératif, champs lexicaux, registres, polysémie, connecteurs, majuscules) et Batch C (préfixes/suffixes, dérivation, composition, énonciation, types de textes, anaphores, cohérence textuelle, schéma narratif, texte argumentatif, conscience phonologique) ; UUIDs a3/b3/c3, access_tier free, is_published true
