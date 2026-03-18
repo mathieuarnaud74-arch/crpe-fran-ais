@@ -6,6 +6,12 @@ Entrées en ordre chronologique inverse (plus récent en haut).
 
 ---
 
+## [2026-03-18] — Migration SQL V3 : 300 questions en base (30 séries)
+
+- `supabase/migrations/20260318_seed_v3_series_300_questions.sql` — créé : migration complète 300 questions CRPE Français V3 (30 séries × 10 questions), couvrant Batch A (phrase complexe, subordonnées, discours, types de phrases, participe passé, pluriel, accords, tout/même, ponctuation), Batch B (subjonctif, concordance des temps, aspect verbal, conditionnel, impératif, champs lexicaux, registres, polysémie, connecteurs, majuscules) et Batch C (préfixes/suffixes, dérivation, composition, énonciation, types de textes, anaphores, cohérence textuelle, schéma narratif, texte argumentatif, conscience phonologique) ; UUIDs a3/b3/c3, access_tier free, is_published true
+
+---
+
 ## [2026-03-18] - Améliorations UI, corrections et mise à jour diagnostique
 
 - `CLAUDE.md` — token accent mis à jour : vert → bleu (#4A6E8F)
