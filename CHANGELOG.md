@@ -6,6 +6,104 @@ Entrées en ordre chronologique inverse (plus récent en haut).
 
 ---
 
+## [2026-03-18] — Sprint contenu V3 : 30 séries + 20 fiches CRPE Français
+
+- `content/french-crpe-series.ts` — intégration des 3 nouveaux batches V3 (imports + spread dans `frenchCrpeSeriesSeed`) ; total séries : 49 (19 existantes + 30 nouvelles)
+- `content/french-crpe-series-v3-a.ts` — créé : 10 séries × 10 questions (phrase complexe, subordonnées circonstancielles, complétives, discours direct/indirect, types de phrases, PP avec avoir, pluriel noms composés, accord adjectif couleur, tout/même/quelque, ponctuation)
+- `content/french-crpe-series-v3-b.ts` — créé : 10 séries × 10 questions (subjonctif, concordance des temps, aspect verbal, conditionnel, impératif, champs lexicaux, registres de langue, polysémie/homonymie, connecteurs logiques, majuscules)
+- `content/french-crpe-series-v3-c.ts` — créé : 10 séries × 10 questions (préfixes/suffixes, dérivation, composition, énonciation, types de textes, anaphores, cohérence textuelle, schéma narratif, texte argumentatif, conscience phonologique)
+- `content/fiches/grammaire-phrase-complexe-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/grammaire-voix-passive-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/grammaire-discours-direct-indirect-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/grammaire-subordonnees-circonstancielles-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/orthographe-participe-passe-avoir-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/orthographe-pluriel-noms-composes-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/orthographe-tout-meme-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/conjugaison-subjonctif-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/conjugaison-concordance-temps-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/conjugaison-conditionnel-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/lexique-registres-langue-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/lexique-champs-lexicaux-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/lexique-connecteurs-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/analyse-langue-derivation-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/analyse-langue-enonciation-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/comprehension-texte-schema-narratif-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/comprehension-texte-argumentatif-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/didactique-conscience-phonologique-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/didactique-erreurs-eleves-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/didactique-differentiation-sprint.ts` — nouvelle fiche sprint
+- `content/fiches/index.ts` — 20 imports + 20 entrées ajoutés dans `allFiches` ; total : 43 fiches
+
+---
+
+## [2026-03-18] — Seed V3 batch C : 10 séries, 100 questions (morphologie, énonciation, types de textes, cohérence, narratif, argumentation, conscience phonologique)
+
+- `content/french-crpe-series-v3-c.ts` — créé : 10 séries × 10 questions niveau CRPE couvrant préfixes/suffixes/radical, dérivation, composition des mots, énonciation et modalités, types et genres de textes, anaphores et substitution lexicale, cohérence et cohésion textuelle, schéma narratif, texte argumentatif, conscience phonologique ; mélange QCM / Vrai-Faux / réponse courte ; explications rigoureuses et common_mistake rédigés ; 100 IDs uniques v3c-*
+
+---
+
+## [2026-03-18] — Seed V3 batch B : 10 séries, 100 questions (conjugaison, lexique, orthographe)
+
+- `content/french-crpe-series-v3-b.ts` — créé : 10 séries × 10 questions niveau CRPE (subjonctif formes/valeurs, concordance des temps, aspect verbal, valeurs du conditionnel, impératif, champs lexicaux, registres et niveaux de langue, polysémie/homonymie/paronymie, connecteurs logiques, emploi des majuscules) ; mélange QCM / Vrai-Faux / réponse courte / correction orthographique ; explications pédagogiques et common_mistake rédigés ; 100 IDs uniques v3b-*
+
+---
+
+## [2026-03-18] — Seed V3 batch A : 10 séries, 100 questions (grammaire, orthographe, analyse de la langue)
+
+- `content/french-crpe-series-v3-a.ts` — créé : 10 séries × 10 questions niveau CRPE (phrase complexe coordination, subordonnées circonstancielles, complétives, discours direct/indirect, types de phrases, participe passé avec avoir, pluriel des noms composés, accord adjectifs de couleur, accord de tout/même/quelque, ponctuation) ; mélange QCM / Vrai-Faux / réponse courte / correction orthographique ; explications et common_mistake rédigés ; 100 IDs uniques v3a-*
+
+---
+
+## [2026-03-18] — 10 nouvelles fiches sprint (lexique, analyse de la langue, compréhension, didactique)
+
+- `content/fiches/lexique-registres-langue-sprint.ts` — nouvelle fiche : distinction niveaux de langue (soutenu/courant/familier) vs registres littéraires (comique/tragique/lyrique…), piège CRPE fréquent
+- `content/fiches/lexique-champs-lexicaux-sprint.ts` — nouvelle fiche : champ lexical vs champ sémantique vs famille de mots, métaphore filée par superposition de champs, usage cycle 3
+- `content/fiches/lexique-connecteurs-sprint.ts` — nouvelle fiche : 8 catégories de connecteurs logiques, distinctions donc/en effet, par contre/en revanche, organisateurs textuels vs connecteurs
+- `content/fiches/analyse-langue-derivation-sprint.ts` — nouvelle fiche : dérivation préfixale et suffixale, valeurs des affixes fréquents, dérivation impropre, piège in- négatif vs directionnel
+- `content/fiches/analyse-langue-enonciation-sprint.ts` — nouvelle fiche : déictiques, énoncé ancré vs coupé, modalités, discours indirect libre, auteur ≠ narrateur
+- `content/fiches/comprehension-texte-schema-narratif-sprint.ts` — nouvelle fiche : schéma narratif quinaire (Larivaille), situation finale ≠ retour à l'initial, schéma narratif vs schéma actantiel
+- `content/fiches/comprehension-texte-argumentatif-sprint.ts` — nouvelle fiche : structure thèse-argument-exemple, types d'arguments, concession rhétorique, argumentation directe vs indirecte
+- `content/fiches/didactique-conscience-phonologique-sprint.ts` — nouvelle fiche : conscience syllabique vs phonémique, phonics ≠ conscience phonologique, entraînement explicite, lien dyslexie
+- `content/fiches/didactique-erreurs-eleves-sprint.ts` — nouvelle fiche : erreur systématique vs faute, surgénéralisation, remédiation ciblée sur l'obstacle, groupes de besoin, évaluation formative
+- `content/fiches/didactique-differentiation-sprint.ts` — nouvelle fiche : 4 leviers (contenu/processus/production/environnement), différenciation proactive ≠ remédiation réactive, PAP/PPRE/PPS
+- `content/fiches/index.ts` — enregistrement des 10 nouvelles fiches dans allFiches
+
+## [2026-03-18] — 10 nouvelles fiches sprint (grammaire, orthographe, conjugaison)
+
+- `content/fiches/grammaire-phrase-complexe-sprint.ts` — nouvelle fiche : distinctions juxtaposition/coordination/subordination, piège sur "et" + verbe unique
+- `content/fiches/grammaire-voix-passive-sprint.ts` — nouvelle fiche : formation et identification de la voix passive vs construction attributive, verbes intransitifs
+- `content/fiches/grammaire-discours-direct-indirect-sprint.ts` — nouvelle fiche : transformations direct→indirect (personnes, temps, déictiques), discours indirect libre
+- `content/fiches/grammaire-subordonnees-circonstancielles-sprint.ts` — nouvelle fiche : 6 types de circonstancielles, modes imposés (but/cause/concession/condition/temps/conséquence), piège "après que" + indicatif
+- `content/fiches/orthographe-participe-passe-avoir-sprint.ts` — nouvelle fiche : accord PP avec avoir (COD antéposé), invariabilité avec EN, faire + infinitif
+- `content/fiches/orthographe-pluriel-noms-composes-sprint.ts` — nouvelle fiche : pluriel des noms composés (noms/adjectifs variables, verbes/adverbes/prépositions invariables), réforme 1990
+- `content/fiches/orthographe-tout-meme-sprint.ts` — nouvelle fiche : accord de "tout" (exception voyelle/h aspiré) et de "même" (adjectif vs adverbe)
+- `content/fiches/conjugaison-subjonctif-sprint.ts` — nouvelle fiche : déclencheurs du subjonctif, piège "espérer que" + indicatif, "penser/croire" selon la polarité
+- `content/fiches/conjugaison-concordance-temps-sprint.ts` — nouvelle fiche : tableau de correspondance des temps, exception vérité générale
+- `content/fiches/conjugaison-conditionnel-sprint.ts` — nouvelle fiche : valeurs du conditionnel, règle absolue si + conditionnel interdit, test "si" conditionnel vs interrogatif
+- `content/fiches/index.ts` — enregistrement des 10 nouvelles fiches dans allFiches
+
+## [2026-03-18] — Logo app shell remplacé par logo image
+
+- `components/app-shell.tsx` — remplacement du placeholder texte "CR" par le vrai logo `/logo.png` avec filtre `brightness-0 invert` pour visibilité sur fond sombre
+
+## [2026-03-18] — Audit FAQ : enrichissement contenu + email cliquable + migration DB
+
+- `features/homepage/lib/default-homepage.ts` — enrichissement des 5 réponses FAQ trop courtes (gratuit, diagnostic, corrections, résiliation) + ajout `noteLinkHref` pour l'email de contact
+- `features/homepage/lib/blocks.ts` — ajout champ optionnel `noteLinkHref: z.string().url().optional()` dans `faqSectionPropsSchema`
+- `features/homepage/components/renderer.tsx` — `FaqSection` rend l'email de contact comme lien `<a href={noteLinkHref}>` si le prop est présent
+- `supabase/migrations/20260322_update_faq_content.sql` — migration pour mettre à jour le contenu FAQ en base (réponses enrichies + noteLinkHref)
+
+## [2026-03-18] — Audit contenu : 34 questions diagnostiques trop faciles remplacées + corrections
+
+- `content/french-diagnostic-questions.ts` — remplacé 34 questions triviales (niveau CE1-CM2) par des questions de niveau CRPE difficile dans tous les sous-domaines : grammaire (dislocation, négation expletive, complément du résultat), orthographe (PP verbes de perception, accord demi/tout/même/nu/mi, réforme 1990), conjugaison (passé antérieur, imparfait du subjonctif, futur antérieur, conditionnel journalistique, gérondif), lexique (calque sémantique, barbarisme, pléonasme), analyse (participiale absolue, subordonnée comparative, complétive sujet, valeurs de depuis/pendant/en), compréhension (performatif, texte injoncto-explicatif, captation rhétorique), didactique (conflit socio-cognitif, conscience phonologique)
+
+## [2026-03-18] — Audit : corrections French, bug filtre niveau, docs
+
+- `app/(marketing)/mentions-legales/page.tsx` — corrigé accord de genre : "Toute signalement" → "Tout signalement"
+- `app/(app)/fiches/page.tsx` — corrigé vouvoiement : "ton besoin" → "votre besoin", "Essaie" → "Essayez" (cohérence avec le reste de l'app)
+- `app/(app)/francais/[domain]/page.tsx` — corrigé bug logic : `value={option.label}` → `value={option.value}` dans le filtre Niveau (envoyait le label accentué au lieu de la clé DB)
+- `CLAUDE.md` — mis à jour les tokens couleur accent (#476257 → #4A6E8F, #394E45 → #3A5A7A) pour correspondre à tailwind.config.ts
+
 ## [2026-03-17] — Responsive mobile : exercise player, offre, francais
 
 - `features/exercises/components/exercise-player.tsx` — h1 session `text-2xl sm:text-4xl`, h2 score final et h2 question `text-2xl sm:text-3xl` (font sizes mobiles)

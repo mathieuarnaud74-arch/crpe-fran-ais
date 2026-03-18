@@ -3,6 +3,9 @@ import {
   frenchModuleSeriesIntegration,
   part4PremierLotSeriesCompletes,
 } from "@/content/french-crpe-module";
+import { seriesV3BatchA } from "@/content/french-crpe-series-v3-a";
+import { seriesV3BatchB } from "@/content/french-crpe-series-v3-b";
+import { seriesV3BatchC } from "@/content/french-crpe-series-v3-c";
 
 const createdAt = "2026-03-12T08:00:00.000Z";
 
@@ -1386,4 +1389,7 @@ const moduleFrenchCrpeSeriesSeed = part4PremierLotSeriesCompletes.map(buildModul
 export const frenchCrpeSeriesSeed: RevisionSession[] = [
   ...legacyFrenchCrpeSeriesSeed,
   ...moduleFrenchCrpeSeriesSeed,
+  ...seriesV3BatchA,
+  ...seriesV3BatchB,
+  ...seriesV3BatchC,
 ];
