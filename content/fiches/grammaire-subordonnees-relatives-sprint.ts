@@ -4,7 +4,6 @@ export const subordonnéesRelativesSprint: Fiche = {
   id: "grammaire-subordonnees-relatives-sprint",
   slug: "propositions-subordonnees-relatives",
   title: "Propositions subordonnées relatives",
-  subtitle: "Révision express — 5 min",
   domaine: "grammaire",
   model: "sprint",
   accessTier: "free",

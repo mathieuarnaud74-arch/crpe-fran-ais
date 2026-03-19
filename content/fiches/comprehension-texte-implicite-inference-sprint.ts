@@ -4,7 +4,6 @@ export const impliciteInferenceSprint: Fiche = {
   id: "comprehension-texte-implicite-inference-sprint",
   slug: "explicite-implicite-inferences",
   title: "Explicite et implicite : comprendre les inférences",
-  subtitle: "Révision express — 5 min",
   domaine: "comprehension_texte",
   model: "sprint",
   accessTier: "free",

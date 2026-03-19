@@ -4,7 +4,6 @@ export const phraseSimpleSprint: Fiche = {
   id: "grammaire-phrase-simple-sprint",
   slug: "phrase-simple-sprint",
   title: "La phrase simple : types et formes",
-  subtitle: "Révision express — 4 min",
   domaine: "grammaire",
   model: "sprint",
   accessTier: "free",

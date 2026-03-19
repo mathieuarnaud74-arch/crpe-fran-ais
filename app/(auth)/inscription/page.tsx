@@ -5,9 +5,10 @@ import { AuthForm } from "@/features/auth/components/auth-form";
 export default function InscriptionPage() {
   return (
     <div className="mt-6">
-      <h1 className="font-serif text-4xl font-semibold text-ink">Inscription</h1>
+      <h1 className="font-serif text-4xl font-semibold text-ink">Créer votre compte gratuit</h1>
       <p className="mt-3 text-sm leading-7 text-ink/72">
-        Créez un compte pour démarrer gratuitement et débloquer ensuite le premium mensuel si besoin.
+        Commencez sans carte bancaire : vous pourrez lancer le diagnostic, sauvegarder vos résultats
+        et accéder chaque jour à des questions corrigées.
       </p>
       <div className="mt-8">
         <AuthForm mode="signup" />
@@ -21,4 +22,3 @@ export default function InscriptionPage() {
     </div>
   );
 }
-

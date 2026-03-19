@@ -4,7 +4,6 @@ export const champsLexicauxSprint: Fiche = {
   id: "lexique-champs-lexicaux-sprint",
   slug: "champs-lexicaux-sprint",
   title: "Champs lexicaux",
-  subtitle: "Révision express — 5 min",
   domaine: "lexique",
   model: "sprint",
   accessTier: "free",

@@ -4,7 +4,6 @@ export const enonciationSprint: Fiche = {
   id: "analyse-langue-enonciation-sprint",
   slug: "enonciation-sprint",
   title: "L'énonciation",
-  subtitle: "Révision express — 5 min",
   domaine: "analyse_langue",
   model: "sprint",
   accessTier: "free",

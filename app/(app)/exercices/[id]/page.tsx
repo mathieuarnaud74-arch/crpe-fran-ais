@@ -72,7 +72,6 @@ export default async function ExerciseDetailPage({
         </Badge>
         <Badge>{formatLevelLabel(session.level)}</Badge>
         <Badge>{session.questionCount} questions</Badge>
-        <Badge>{session.estimatedMinutes} min</Badge>
       </div>
       {crpeContext ? (
         <Panel className="border-accentSecondary/20 bg-accentSecondarySoft">

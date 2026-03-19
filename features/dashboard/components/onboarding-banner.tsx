@@ -42,7 +42,7 @@ export function OnboardingBanner({
               ) : (
                 <>
                   Commencez par le diagnostic : il repère vos zones solides et vos fragilités en{" "}
-                  <strong className="text-ink">environ 30 minutes</strong>, puis vous oriente vers les
+                  <strong className="text-ink">environ 20 minutes</strong>, puis vous oriente vers les
                   séries les plus utiles pour vous. C&apos;est la porte d&apos;entrée recommandée.
                 </>
               )}
@@ -64,7 +64,7 @@ export function OnboardingBanner({
               <p className="mt-1 text-xs leading-5 text-muted">
                 {hasDiagnostic
                   ? `${diagnosticRate} % de réussite — profil identifié.`
-                  : "40 questions, profil par sous-domaine, priorités identifiées. ~30 min."}
+                  : "40 questions, profil par sous-domaine, priorités identifiées. ~20 min."}
               </p>
             </div>
             <div

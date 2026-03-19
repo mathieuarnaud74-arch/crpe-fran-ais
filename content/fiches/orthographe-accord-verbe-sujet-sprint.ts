@@ -4,7 +4,6 @@ export const accordVerbeSujetSprint: Fiche = {
   id: "orthographe-accord-verbe-sujet-sprint",
   slug: "accord-verbe-sujet",
   title: "Accord du verbe avec le sujet",
-  subtitle: "Révision express — 5 min",
   domaine: "orthographe",
   model: "sprint",
   accessTier: "free",

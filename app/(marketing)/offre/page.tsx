@@ -67,29 +67,29 @@ export default async function OfferPage() {
         {/* Header */}
         <div className="max-w-2xl">
           <h1 className="font-serif text-3xl sm:text-5xl font-semibold text-ink">
-            Choisissez votre accès
+            Commencez gratuitement, passez au premium si vous voulez aller plus vite
           </h1>
           <p className="mt-4 text-lg leading-8 text-muted">
-            20 questions gratuites par jour avec un compte gratuit. Pour aller plus loin,
-            choisissez la durée qui correspond à votre rythme de révision.
+            Le compte gratuit donne accès au diagnostic et à 20 questions corrigées par jour.
+            Le premium débloque l'accès illimité, les séries complètes et un travail plus régulier.
           </p>
           <p className="mt-2 text-sm text-muted">
-            Exercices ajoutés régulièrement · Paiement sécurisé Stripe
+            Sans carte bancaire pour commencer · Paiement sécurisé Stripe pour le premium
           </p>
         </div>
 
-        {/* All tiers */}
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Comparatif principal : Gratuit vs Premium */}
+        <div className="mx-auto mt-12 grid max-w-3xl gap-6 lg:grid-cols-2">
           {/* Free */}
           <div className="flex flex-col rounded-[2rem] border border-border bg-card p-6 shadow-panel">
             <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">Gratuit</p>
             <p className="mt-3 font-serif text-4xl font-semibold text-ink">0 €</p>
             <p className="mt-1 text-xs text-muted">Inscription gratuite · aucune carte requise</p>
             <p className="mt-4 text-sm leading-7 text-muted">
-              Pour découvrir la plateforme et s&apos;entraîner chaque jour sans engagement.
+              Pour démarrer, obtenir votre profil de départ et travailler un peu chaque jour sans engagement.
             </p>
             <ul className="mt-5 space-y-2">
-              {["20 questions corrigées par jour", "Corrections et explications immédiates", "5 domaines du programme — 7 sous-domaines CRPE"].map((feature) => (
+              {["Diagnostic initial gratuit", "20 questions corrigées par jour", "Corrections et explications immédiates"].map((feature) => (
                 <li key={feature} className="flex items-start gap-2 text-sm text-muted">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accentSecondaryDark" />
                   {feature}
@@ -98,133 +98,125 @@ export default async function OfferPage() {
             </ul>
             <div className="mt-auto pt-8">
               <ButtonLink href={user ? "/tableau-de-bord" : "/inscription"} variant="secondary">
-                {user ? "Accéder au tableau de bord" : "Je m'inscris"}
+                {user ? "Accéder à mon tableau de bord" : "Créer mon compte gratuit"}
               </ButtonLink>
             </div>
           </div>
-          {plans.map((plan) => (
-            <div
-              key={plan.key}
-              className={[
-                "flex flex-col rounded-[2rem] border p-6 shadow-panel",
-                plan.highlighted
-                  ? "border-white/10 bg-premiumDark text-paper"
-                  : "border-border bg-card",
-              ].join(" ")}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <p
-                  className={[
-                    "text-xs font-semibold uppercase tracking-[0.15em]",
-                    plan.highlighted ? "text-paper/60" : "text-muted",
-                  ].join(" ")}
-                >
-                  {plan.label}
-                </p>
-                {plan.highlighted && (
-                  <span className="rounded-full border border-accentSecondary/40 bg-accentSecondary/20 px-2.5 py-0.5 text-xs text-accentSecondarySoft">
-                    Recommandé
-                  </span>
-                )}
-              </div>
 
-              <p
-                className={[
-                  "mt-3 font-serif text-4xl font-semibold",
-                  plan.highlighted ? "text-paper" : "text-ink",
-                ].join(" ")}
-              >
-                {plan.price}
+          {/* Premium mensuel — recommandé */}
+          <div className="flex flex-col rounded-[2rem] border border-white/10 bg-premiumDark p-6 text-paper shadow-panel">
+            <div className="flex items-start justify-between gap-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-paper/60">
+                Premium mensuel
               </p>
-              <p
-                className={[
-                  "mt-1 text-xs",
-                  plan.highlighted ? "text-paper/60" : "text-muted",
-                ].join(" ")}
-              >
-                {plan.priceDetail}
-              </p>
-
-              <p
-                className={[
-                  "mt-4 text-sm leading-7",
-                  plan.highlighted ? "text-paper/76" : "text-muted",
-                ].join(" ")}
-              >
-                {plan.description}
-              </p>
-
-              <ul className="mt-5 space-y-2">
-                {plan.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className={[
-                      "flex items-start gap-2 text-sm",
-                      plan.highlighted ? "text-paper/80" : "text-muted",
-                    ].join(" ")}
-                  >
-                    <span
-                      className={[
-                        "mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full",
-                        plan.highlighted ? "bg-accentSecondary" : "bg-accentSecondaryDark",
-                      ].join(" ")}
-                    />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-auto pt-8">
-                {premium ? (
-                  <CheckoutButton
-                    endpoint="/api/stripe/portal"
-                    label="Gérer mon abonnement"
-                    disabled={!stripeReady}
-                  />
-                ) : user ? (
-                  <CheckoutButton
-                    endpoint="/api/stripe/checkout"
-                    priceId={getPriceId(plan.key)}
-                    label={plan.key === "monthly" ? "S'abonner" : `Accéder ${plan.duration.toLowerCase()}`}
-                    disabled={!stripeReady}
-                  />
-                ) : (
-                  <ButtonLink
-                    href="/inscription"
-                    className={plan.highlighted ? "bg-paper text-ink hover:bg-paper/90" : ""}
-                  >
-                    {plan.key === "monthly" ? "S'abonner" : `Accéder ${plan.duration.toLowerCase()}`}
-                  </ButtonLink>
-                )}
-
-                {!stripeReady && user && (
-                  <p className="mt-3 text-sm text-warning">
-                    Paiement non disponible pour l&apos;instant.
-                  </p>
-                )}
-              </div>
+              <span className="rounded-full border border-accentSecondary/40 bg-accentSecondary/20 px-2.5 py-0.5 text-xs text-accentSecondarySoft">
+                Recommandé
+              </span>
             </div>
-          ))}
+            <p className="mt-3 font-serif text-4xl font-semibold text-paper">6,99 €</p>
+            <p className="mt-1 text-xs text-paper/60">par mois · résiliable à tout moment</p>
+            <p className="mt-4 text-sm leading-7 text-paper/76">
+              Pour une préparation régulière et structurée sur la durée.
+            </p>
+            <ul className="mt-5 space-y-2">
+              {["Accès illimité, renouvelé chaque mois", "Toutes les séries et corrections", "Tableau de bord et progression", "Résiliation sans conditions via Stripe"].map((feature) => (
+                <li key={feature} className="flex items-start gap-2 text-sm text-paper/80">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accentSecondary" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-auto pt-8">
+              {premium ? (
+                <CheckoutButton
+                  endpoint="/api/stripe/portal"
+                  label="Gérer mon abonnement"
+                  disabled={!stripeReady}
+                />
+              ) : user ? (
+                <CheckoutButton
+                  endpoint="/api/stripe/checkout"
+                  priceId={getPriceId("monthly")}
+                  label="Choisir l'offre mensuelle"
+                  disabled={!stripeReady}
+                />
+              ) : (
+                <ButtonLink
+                  href="/inscription"
+                  className="bg-paper text-ink hover:bg-paper/90"
+                >
+                  Choisir l&apos;offre mensuelle
+                </ButtonLink>
+              )}
+              {!stripeReady && user && (
+                <p className="mt-3 text-sm text-warning">
+                  Paiement non disponible pour l&apos;instant.
+                </p>
+              )}
+            </div>
+          </div>
         </div>
 
-        <p className="mt-8 text-xs text-muted">
-          Pour le journalier et le semainier, l&apos;accès expire automatiquement sans renouvellement.
-          Pour le mensuel, résiliation possible à tout moment depuis le portail Stripe.
-        </p>
+        {/* Formules ponctuelles */}
+        <div className="mx-auto mt-10 max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+            Besoin d&apos;un accès ponctuel ?
+          </p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            {plans.filter((p) => !p.highlighted).map((plan) => (
+              <div
+                key={plan.key}
+                className="flex flex-col rounded-[1.75rem] border border-border bg-card p-5 shadow-subtle"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">
+                    {plan.label}
+                  </p>
+                  <p className="font-serif text-2xl font-semibold text-ink">{plan.price}</p>
+                </div>
+                <p className="mt-1 text-xs text-muted">{plan.priceDetail}</p>
+                <p className="mt-3 text-sm leading-7 text-muted">{plan.description}</p>
+                <div className="mt-auto pt-5">
+                  {premium ? (
+                    <CheckoutButton
+                      endpoint="/api/stripe/portal"
+                      label="Gérer mon abonnement"
+                      disabled={!stripeReady}
+                    />
+                  ) : user ? (
+                    <CheckoutButton
+                      endpoint="/api/stripe/checkout"
+                      priceId={getPriceId(plan.key)}
+                      label={plan.key === "weekly" ? "Activer 7 jours" : "Activer 24 h"}
+                      disabled={!stripeReady}
+                    />
+                  ) : (
+                    <ButtonLink href="/inscription" variant="secondary">
+                      {plan.key === "weekly" ? "Activer 7 jours" : "Activer 24 h"}
+                    </ButtonLink>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-xs text-muted">
+            Accès unique, non renouvelé automatiquement.
+          </p>
+        </div>
 
         {/* Proof of method */}
         <div className="mt-20 border-t border-border pt-16">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-              Pourquoi ça marche
+              Ce que vous obtenez
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">
-              Un format pensé pour le CRPE, pas pour le grand public.
+              Une préparation pensée pour le niveau attendu au CRPE.
             </h2>
             <p className="mt-4 text-sm leading-7 text-muted">
-              Le concours teste des automatismes précis sur des notions ciblées. Ce site est conçu
-              pour entraîner exactement ces automatismes : séries courtes, corrections qui expliquent
-              l&apos;erreur, reprise ciblée des fragilités.
+              Le concours teste des automatismes précis sur des notions ciblées. Le site est donc
+              construit autour de trois leviers utiles : repérer vos fragilités, expliquer les erreurs
+              et vous faire reprendre les bonnes notions au bon moment.
             </p>
           </div>
 
@@ -235,8 +227,8 @@ export default async function OfferPage() {
                 Correction immédiate
               </h3>
               <p className="mt-3 text-sm leading-7 text-muted">
-                Chaque réponse est corrigée instantanément avec une explication complète — pas
-                un simple « faux ». Vous comprenez l&apos;erreur avant de passer à la suivante.
+                Chaque réponse est corrigée avec la règle ou le raisonnement attendu. Vous ne voyez
+                pas seulement que c&apos;est faux : vous comprenez pourquoi.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-border bg-secondary p-6 shadow-panel">
@@ -246,8 +238,8 @@ export default async function OfferPage() {
               </h3>
               <p className="mt-3 text-sm leading-7 text-muted">
                 40 questions tirées d&apos;une banque de {" "}
-                <strong className="text-ink">plus de 200 questions</strong> pour repérer vos
-                fragilités sous-domaine par sous-domaine, pas juste une note globale.
+                <strong className="text-ink">plus de 100 questions</strong> pour repérer vos
+                fragilités sous-domaine par sous-domaine, puis prioriser les révisions les plus rentables.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-border bg-card p-6 shadow-panel">
@@ -257,7 +249,7 @@ export default async function OfferPage() {
               </h3>
               <p className="mt-3 text-sm leading-7 text-muted">
                 Contenu aligné sur le programme officiel de français : grammaire, orthographe,
-                analyse de la langue, compréhension et didactique.
+                conjugaison, lexique, analyse de la langue, compréhension et didactique.
               </p>
             </div>
           </div>

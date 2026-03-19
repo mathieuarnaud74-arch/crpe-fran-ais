@@ -4,7 +4,6 @@ export const texteDocumentaireSprint: Fiche = {
   id: "comprehension-texte-documentaire-sprint",
   slug: "comprendre-texte-documentaire",
   title: "Comprendre un texte documentaire",
-  subtitle: "Révision express — 5 min",
   domaine: "comprehension_texte",
   model: "sprint",
   accessTier: "free",

@@ -4,7 +4,6 @@ export const grammaireInductiveSprint: Fiche = {
   id: "didactique-grammaire-inductive-sprint",
   slug: "enseigner-grammaire-en-contexte",
   title: "Enseigner la grammaire en contexte",
-  subtitle: "Révision express — 5 min",
   domaine: "didactique_francais",
   model: "sprint",
   accessTier: "premium",

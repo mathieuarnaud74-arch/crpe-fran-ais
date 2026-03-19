@@ -4,7 +4,6 @@ export const conditionnelSprint: Fiche = {
   id: "conjugaison-conditionnel-sprint",
   slug: "conditionnel-sprint",
   title: "Le conditionnel",
-  subtitle: "Révision express — 5 min",
   domaine: "conjugaison",
   model: "sprint",
   accessTier: "free",

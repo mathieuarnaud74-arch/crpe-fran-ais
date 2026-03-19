@@ -4,7 +4,6 @@ export const evaluationFrancaisSprint: Fiche = {
   id: "didactique-evaluation-francais-sprint",
   slug: "evaluer-en-francais-a-l-ecole",
   title: "Évaluer en français à l'école",
-  subtitle: "Révision express — 5 min",
   domaine: "didactique_francais",
   model: "sprint",
   accessTier: "free",

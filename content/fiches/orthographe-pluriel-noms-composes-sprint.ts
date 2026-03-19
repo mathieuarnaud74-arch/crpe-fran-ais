@@ -4,7 +4,6 @@ export const plurielNomsComposesSprint: Fiche = {
   id: "orthographe-pluriel-noms-composes-sprint",
   slug: "pluriel-noms-composes-sprint",
   title: "Pluriel des noms composés",
-  subtitle: "Révision express — 5 min",
   domaine: "orthographe",
   model: "sprint",
   accessTier: "free",

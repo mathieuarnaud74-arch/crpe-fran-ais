@@ -42,6 +42,7 @@ export const EXERCISE_TYPE_LABELS: Record<ExerciseType, string> = {
   identification_grammaticale: "Identification grammaticale",
   correction_orthographique: "Correction orthographique",
   analyse_texte: "Analyse de texte",
+  tri_categories: "Tri par catégories",
 };
 
 export const EXERCISE_TYPE_OPTIONS: Array<{
@@ -54,6 +55,7 @@ export const EXERCISE_TYPE_OPTIONS: Array<{
   { value: "identification_grammaticale", label: EXERCISE_TYPE_LABELS.identification_grammaticale },
   { value: "correction_orthographique", label: EXERCISE_TYPE_LABELS.correction_orthographique },
   { value: "analyse_texte", label: EXERCISE_TYPE_LABELS.analyse_texte },
+  { value: "tri_categories", label: EXERCISE_TYPE_LABELS.tri_categories },
 ];
 
 export const LEVEL_LABELS: Record<string, string> = {

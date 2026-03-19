@@ -76,6 +76,22 @@ export function buildExpectedAnswerLabel(
     return getChoiceLabel(String(expectedAnswer.value), choices, TRUE_FALSE_CHOICES);
   }
 
+  if (expectedAnswer.mode === "categorization") {
+    const byCategory = new Map<string, string[]>();
+    for (const [itemId, categoryId] of Object.entries(expectedAnswer.mapping)) {
+      const item = choices?.find((c) => c.id === itemId);
+      const cat = expectedAnswer.categories.find((c) => c.id === categoryId);
+      if (item && cat) {
+        const current = byCategory.get(cat.label) ?? [];
+        current.push(item.label);
+        byCategory.set(cat.label, current);
+      }
+    }
+    return Array.from(byCategory.entries())
+      .map(([catLabel, itemLabels]) => `${catLabel} : ${itemLabels.join(", ")}`)
+      .join(" — ");
+  }
+
   return expectedAnswer.acceptableAnswers.join(" / ");
 }
 
@@ -89,6 +105,23 @@ export function evaluateExerciseAnswer(
 ): SubmissionEvaluation {
   const trimmedValue = submittedValue.trim();
   const expectedAnswerLabel = buildExpectedAnswerLabel(question.expected_answer, question.choices);
+
+  if (question.expected_answer.mode === "categorization") {
+    let placement: Record<string, string>;
+    try {
+      placement = JSON.parse(trimmedValue);
+    } catch {
+      return { isCorrect: false, reason: "incorrect", expectedAnswerLabel, validationRule: null };
+    }
+    const { mapping } = question.expected_answer;
+    const allCorrect = Object.keys(mapping).every((itemId) => placement[itemId] === mapping[itemId]);
+    return {
+      isCorrect: allCorrect,
+      reason: allCorrect ? "correct" : "incorrect",
+      expectedAnswerLabel,
+      validationRule: null,
+    };
+  }
 
   if (question.expected_answer.mode === "single_choice") {
     return {

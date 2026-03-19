@@ -1,5 +1,88 @@
 # Changelog
 
+## [2026-03-19] — Audit diagnostic : corrections de fond, qualité banque, cohérence produit
+
+- `content/french-diagnostic-questions.ts` — correction erreur de fond `diag-lex-7` (avocat = homonymie, non polysémie) ; suppression du `.slice(0, 10)` dans le générateur (toute la banque est maintenant tirée) ; réécriture des 11 questions classées A (trop faciles) : grammaire-8, ortho-5, lex-3/4/8/10, comp-4/9, did-1/2/8 — passages de définitions frontales à des cas d'application et distracteurs plus proches
+- `features/diagnostic/components/diagnostic-client.tsx` — harmonisation durée : 8 min → 20 min (titre et carte durée)
+- `features/dashboard/components/onboarding-banner.tsx` — harmonisation durée : ~30 min → ~20 min
+- `app/(marketing)/offre/page.tsx` — correction banque annoncée : "plus de 200 questions" → "plus de 100 questions" (valeur réelle : 105)
+
+## [2026-03-19] — Refonte structurelle UX : diagnostic, home, offre, navigation
+
+- `features/diagnostic/components/diagnostic-client.tsx` — ajout d'un écran d'introduction (durée, nb questions, gratuité, bénéfice) avec CTA « Commencer le diagnostic » ; passation isolée dans un overlay plein écran (header/footer masqués, barre de progression fixe, bouton « Quitter ») ; suppression de la barre de progression inline redondante
+- `features/homepage/lib/default-homepage.ts` — suppression des mini-steps redondants (doublonnaient les 3 grandes cartes « Comment ça marche »)
+- `features/homepage/components/renderer.tsx` — suppression du rendu de la grille mini-steps dans BenefitsSection
+- `app/(marketing)/offre/page.tsx` — restructuration : comparatif principal 2 colonnes (Gratuit vs Premium mensuel recommandé) ; journalier/semainier relégués en section secondaire « Besoin d'un accès ponctuel ? »
+- `components/site-header.tsx` — suppression du lien « Domaines » (section cachée sur la home)
+- `components/site-footer.tsx` — suppression des liens vers pages protégées (/francais, /progression, /ressources/glossaire, /tableau-de-bord) ; restructuration en Navigation publique + Le site + Légal
+
+## [2026-03-19] — Tri par catégories : drag-and-drop réel (@dnd-kit)
+
+- `features/exercises/components/tri-categories-input.tsx` — réécriture complète avec `@dnd-kit/core` : `DndContext` + `PointerSensor` (souris et touch), `useDraggable` sur chaque étiquette, `useDroppable` sur la banque et chaque colonne, `DragOverlay` flottant avec rotation ; l'étiquette originale s'estompe (`opacity-40`) pendant le glisser ; les colonnes et la banque s'illuminent (`ring-2 ring-accent/40`) au survol ; correction vert/rouge et liste d'erreurs préservées
+- `content/french-crpe-series.ts` — ajout de `tri_categories` dans `MODULE_EXERCISE_TYPE_LABELS` (corrige erreur TypeScript `TS2741`)
+
+## [2026-03-19] — Vrai tri par catégories interactif (clic-pour-placer)
+
+- `types/domain.ts` — ajout de `"tri_categories"` dans `ExerciseType` ; ajout du type `CategorizationCategory` et du mode `"categorization"` dans `ExpectedAnswer` (champs : `categories`, `mapping`)
+- `lib/constants.ts` — ajout du label `"Tri par catégories"` dans `EXERCISE_TYPE_LABELS` et `EXERCISE_TYPE_OPTIONS`
+- `features/exercises/server/queries.ts` — `normalizeExpectedAnswer` : nouveau cas `categorization` qui hydrate correctement les champs `categories` et `mapping` depuis le JSONB Supabase
+- `features/exercises/shared/evaluation.ts` — `buildExpectedAnswerLabel` : génère un résumé lisible par catégorie (ex. "Nom : soleil, maison — Verbe : écrire, courir") ; `evaluateExerciseAnswer` : évalue le JSON de placement soumis contre le mapping attendu
+- `features/exercises/components/tri-categories-input.tsx` — création du composant interactif : banque de mots cliquables, colonnes par catégorie avec bouton "Placer ici", coloration vert/rouge après correction, liste des erreurs de classement ; aucune dépendance DnD (compatible mobile)
+- `features/exercises/components/exercise-player.tsx` — branchement de `TriCategoriesInput` pour `exercise_type === "tri_categories"` ; ajout de `triResetKey` pour réinitialiser le composant au retry ; gestion de l'affichage "Classement soumis" dans le récapitulatif fin de série
+- `supabase/migrations/20260319_add_tri_categories_type.sql` — `ALTER TYPE public.exercise_type ADD VALUE IF NOT EXISTS 'tri_categories'` (transaction séparée obligatoire)
+- `supabase/migrations/20260319_seed_tri_nature_mots.sql` — 6 exercices `tri_categories` : Nom/Verbe/Adjectif, Déterminant/Pronom/Adverbe, mots de liaison, Variable/Invariable, formes verbales, natures du mot « tout »
+- `content/french-crpe-series-tri-nature-mots.ts` — source TypeScript canonique de la série (topic_key `tri_nature_mots`, session DB `session-tri_nature_mots-Intermediaire-1`)
+
+## [2026-03-19] - 10 series "Tri par categories" pour la grammaire + garde-fous mobile
+
+- `content/french-crpe-series-v3-e.ts` - creation d'un nouveau batch V3-E : 10 series "Tri par categories" (100 questions) centrees sur la nature des mots, les familles grammaticales, les mots de liaison, les formes verbales et les mots pieges (`tout`, `que`, mots a double nature)
+- `content/french-crpe-series.ts` - ajout du batch `seriesV3BatchE` dans l'agregat des series pour alimenter le mode demo et garder la source de contenu coherente
+- `supabase/migrations/20260325_seed_tri_categories_grammaire.sql` - migration additive generee depuis `v3-e` pour inserer 100 nouvelles questions de grammaire en base sans toucher au schema
+- `components/ui/card.tsx` - ajout de `break-words` sur les titres de cartes pour eviter les debordements en mobile sur les intitules longs
+- `features/exercises/components/exercise-player.tsx` - ajout de `break-words` sur le titre de serie et l'intitule de question pour securiser l'affichage smartphone
+- `features/dashboard/components/session-progress-card.tsx` - ajout de `break-words` sur les titres de series dans les cartes de progression
+## [2026-03-19] — 10 séries de correction d'erreurs (batch D) + simplification header
+
+- `components/site-header.tsx` — suppression du bouton "Créer un compte gratuit" ; CTA unique "Connexion" (desktop + mobile) ; espacement nav amélioré (gap-2, px-5, py-3, text-[0.9375rem])
+- `features/homepage/lib/default-homepage.ts` — suppression de "Gratuit, sans carte bancaire" dans metaItems du hero
+- `content/french-crpe-series-v3-d.ts` — création : 10 séries de correction d'erreurs (orders 51–60), ~100 questions correction_orthographique/QCM/vrai-faux ; thèmes : PP avec être, homophones courants, infinitif vs -é, accord adjectif, PC vs imparfait, discours indirect, tout/même, pronoms relatifs, accord SV complexes, homophones avancés
+- `content/french-crpe-series.ts` — import de seriesV3BatchD déjà présent
+
+## [2026-03-19] — Refonte visuelle majeure du radar chart
+
+- `features/diagnostic/components/radar-chart.tsx` — refonte complète : viewBox 560×450 (fin du clipping des labels), algorithme greedy de découpe (max 14 chars/ligne), fill radialGradient (centre transparent → bord 42% opaque), anneaux concentriques en alternance de fills, vertex dots mastery-colorés avec drop-shadow SVG et point blanc central, stroke 3px round, typo labels 12px bold + % coloré par maîtrise, suppression des labels d'axe internes parasites
+- `features/diagnostic/components/diagnostic-client.tsx` — panel radar redesigné en fond sombre (#1C1714) avec titre clair, légende en pills colorées dark-themed (vert/ambre/rouge)
+
+## [2026-03-19] — Radar chart des résultats du diagnostic
+
+- `features/diagnostic/components/radar-chart.tsx` — création du composant SVG radar "toile d'araignée" : N axes (un par sous-domaine), points colorés par niveau de maîtrise (vert/orange/rouge), légende intégrée
+- `features/diagnostic/components/diagnostic-client.tsx` — remplacement du pavé "Lecture par sous-domaine" (liste) par le radar chart ; "Points d'appui" et "Priorités immédiates" passent en grille 2 colonnes en dessous
+
+## [2026-03-19] — Diagnostic public sans compte (suppression du gate d'inscription)
+
+- `app/(marketing)/diagnostic/page.tsx` — création de la route publique du diagnostic : `getOptionalUser()`, redirect tableau-de-bord si diagnostic déjà fait (connecté), sinon rendu de `DiagnosticClient` sans auth
+- `app/(app)/diagnostic/page.tsx` — remplacé par un `redirect("/diagnostic")` pour compatibilité avec les liens existants
+- `features/diagnostic/components/diagnostic-client.tsx` — ajout prop `isAuthenticated` (défaut `true`) ; en mode anonyme : skip de l'appel API, affichage d'un CTA "Créer mon compte gratuit" / "J'ai déjà un compte" au lieu des boutons dashboard
+- `features/homepage/lib/default-homepage.ts` — CTA guest hero et CTA final pointent désormais vers `/diagnostic` au lieu de `/inscription`
+
+## [2026-03-19] — Suppression des indications de temps et du terme "Sprint"
+
+- `features/fiches/components/fiche-header.tsx` — suppression du bloc Clock/estimatedMinutes, renommage du badge "Sprint 5 min" → "Révision express"
+- `features/fiches/components/fiche-card.tsx` — suppression du Clock/estimatedMinutes dans FicheRow et FicheCard, renommage "Sprint" → "Révision express", nettoyage import Clock
+- `app/(app)/exercices/page.tsx` — suppression des badges et labels affichant `estimatedMinutes min`
+- `app/(app)/exercices/[id]/page.tsx` — suppression du badge `estimatedMinutes min`
+- `features/dashboard/components/session-progress-card.tsx` — suppression de `estimatedMinutes min` dans la méta des sessions
+- `app/(app)/tableau-de-bord/page.tsx` — suppression de la durée estimée dans le plan du jour et les items de plan
+- `content/fiches/*-sprint.ts` (46 fichiers) — suppression des champs `subtitle` "Révision express — X min"
+## [2026-03-18] - Priorite 4 : analyse de la langue enrichie (2 fiches free, 2 fiches premium, 1 serie free)
+
+- `content/fiches/analyse-langue-phrase-complexe-types-sprint.ts` - creation d'une fiche Sprint free sur les types de propositions dans la phrase complexe, avec distinctions independantes / principale / subordonnee et pieges CRPE
+- `content/fiches/analyse-langue-complements-circonstanciels-sprint.ts` - creation d'une fiche Sprint free sur l'identification des complements circonstanciels, leurs tests de mobilite/suppressibilite et leur distinction avec les complements essentiels
+- `content/fiches/analyse-langue-voix-active-passive-sprint.ts` - creation d'une fiche Sprint premium sur la voix active/passive, les conditions de transformation et les confusions frequentes avec les constructions attributives
+- `content/fiches/analyse-langue-subordonnees-conjonctives-completives-circonstancielles-sprint.ts` - creation d'une fiche Sprint premium sur la distinction completives / circonstancielles, les conjonctions de subordination et les fonctions attendues au CRPE
+- `content/fiches/index.ts` - ajout des 4 nouvelles fiches analyse_langue dans `allFiches` et raccordement des imports associes
+- `content/french-crpe-series-v3-c.ts` - ajout d'une serie free `phrase_complexe_types` (10 questions) pour rendre le domaine `analyse_langue` visible aux utilisateurs gratuits
+- `supabase/migrations/20260324_seed_phrase_complexe_types_free.sql` - creation d'une migration additive qui insere en base la nouvelle serie free `phrase_complexe_types`
 Format : `## [YYYY-MM-DD] — Description courte`
 Entrées en ordre chronologique inverse (plus récent en haut).
 **Les agents Claude doivent ajouter une entrée à chaque session ayant modifié du code.**

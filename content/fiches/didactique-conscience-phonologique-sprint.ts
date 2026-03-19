@@ -4,7 +4,6 @@ export const consciencePhonologiqueSprint: Fiche = {
   id: "didactique-conscience-phonologique-sprint",
   slug: "conscience-phonologique-sprint",
   title: "Conscience phonologique",
-  subtitle: "Révision express — 5 min",
   domaine: "didactique_francais",
   model: "sprint",
   accessTier: "free",

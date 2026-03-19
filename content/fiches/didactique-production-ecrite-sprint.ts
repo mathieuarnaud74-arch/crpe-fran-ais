@@ -4,7 +4,6 @@ export const productionEcriteSprint: Fiche = {
   id: "didactique-production-ecrite-sprint",
   slug: "enseigner-production-ecrite",
   title: "Enseigner la production écrite",
-  subtitle: "Révision express — 5 min",
   domaine: "didactique_francais",
   model: "sprint",
   accessTier: "free",

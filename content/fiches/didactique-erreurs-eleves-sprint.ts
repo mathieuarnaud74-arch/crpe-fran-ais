@@ -4,7 +4,6 @@ export const erreursElevesSprint: Fiche = {
   id: "didactique-erreurs-eleves-sprint",
   slug: "erreurs-eleves-sprint",
   title: "Erreurs d'élèves et remédiation",
-  subtitle: "Révision express — 5 min",
   domaine: "didactique_francais",
   model: "sprint",
   accessTier: "free",

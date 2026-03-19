@@ -13,6 +13,7 @@ import {
   evaluateExerciseAnswer,
   getAnswerValidationRule,
 } from "@/features/exercises/shared/evaluation";
+import { TriCategoriesInput } from "@/features/exercises/components/tri-categories-input";
 import {
   EXERCISE_TYPE_LABELS,
   SUBDOMAIN_LABELS,
@@ -48,6 +49,7 @@ export function ExercisePlayer({
   const [showFullExplanation, setShowFullExplanation] = useState(false);
   const [showSessionDetails, setShowSessionDetails] = useState(false);
   const [expandedReviewCard, setExpandedReviewCard] = useState<string | null>(null);
+  const [triResetKey, setTriResetKey] = useState(0);
 
   const currentQuestion = session.questions[currentIndex];
   const currentResult = currentQuestion ? results[currentQuestion.id] : undefined;
@@ -137,6 +139,8 @@ export function ExercisePlayer({
       delete next[currentQuestion.id];
       return next;
     });
+    setDraftAnswer("");
+    setTriResetKey((k) => k + 1);
   }
 
   function resetSession() {
@@ -206,7 +210,9 @@ export function ExercisePlayer({
               <Badge>{session.questionCount} questions</Badge>
             </div>
             <div>
-              <h1 className="font-serif text-2xl sm:text-4xl font-semibold text-ink">{session.title}</h1>
+              <h1 className="break-words font-serif text-2xl font-semibold text-ink sm:text-4xl">
+                {session.title}
+              </h1>
               <button
                 type="button"
                 onClick={() => setShowSessionDetails((v) => !v)}
@@ -398,7 +404,9 @@ export function ExercisePlayer({
                       ) : null}
                       <p className="text-sm leading-7 text-muted">
                         <span className="font-semibold text-ink">Votre r&eacute;ponse :</span>{" "}
-                        {results[question.id]?.answer}
+                        {question.exercise_type === "tri_categories"
+                          ? "Classement soumis"
+                          : results[question.id]?.answer}
                       </p>
                       <p className="mt-2 text-sm leading-7 text-muted">
                         <span className="font-semibold text-ink">Correction :</span>{" "}
@@ -428,7 +436,7 @@ export function ExercisePlayer({
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-muted">
                 Question {currentIndex + 1}
               </p>
-              <h2 className="mt-3 font-serif text-2xl sm:text-3xl font-semibold text-ink">
+              <h2 className="mt-3 break-words font-serif text-2xl font-semibold text-ink sm:text-3xl">
                 {currentQuestion.instruction}
               </h2>
               {currentQuestion.support_text ? (
@@ -438,7 +446,18 @@ export function ExercisePlayer({
               ) : null}
             </div>
 
-            {currentQuestion.choices ? (
+            {currentQuestion.exercise_type === "tri_categories" &&
+            currentQuestion.expected_answer.mode === "categorization" ? (
+              <TriCategoriesInput
+                key={`${currentQuestion.id}-${triResetKey}`}
+                items={currentQuestion.choices ?? []}
+                categories={currentQuestion.expected_answer.categories}
+                onChange={setDraftAnswer}
+                result={currentResult}
+                expectedMapping={currentQuestion.expected_answer.mapping}
+                disabled={Boolean(disabledReason) || Boolean(currentResult)}
+              />
+            ) : currentQuestion.choices ? (
               <div className="space-y-3">
                 {currentQuestion.choices.map((choice) => {
                   const isSelected = draftAnswer === choice.id;

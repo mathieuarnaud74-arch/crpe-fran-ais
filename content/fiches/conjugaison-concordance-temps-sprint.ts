@@ -4,7 +4,6 @@ export const concordanceTempsSprint: Fiche = {
   id: "conjugaison-concordance-temps-sprint",
   slug: "concordance-temps-sprint",
   title: "Concordance des temps",
-  subtitle: "Révision express — 5 min",
   domaine: "conjugaison",
   model: "sprint",
   accessTier: "free",

@@ -4,7 +4,6 @@ export const grammairePhraseCOmplexeSprint: Fiche = {
   id: "grammaire-phrase-complexe-sprint",
   slug: "phrase-complexe-sprint",
   title: "La phrase complexe",
-  subtitle: "Révision express — 5 min",
   domaine: "grammaire",
   model: "sprint",
   accessTier: "free",

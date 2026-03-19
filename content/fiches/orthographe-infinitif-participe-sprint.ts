@@ -4,7 +4,6 @@ export const infinitifParticipeSprint: Fiche = {
   id: "orthographe-infinitif-participe-sprint",
   slug: "infinitif-ou-participe-passe",
   title: "Infinitif ou participe passé (-er / -é) ?",
-  subtitle: "Révision express — 4 min",
   domaine: "orthographe",
   model: "sprint",
   accessTier: "free",

@@ -13,7 +13,8 @@ export type ExerciseType =
   | "reponse_courte"
   | "identification_grammaticale"
   | "correction_orthographique"
-  | "analyse_texte";
+  | "analyse_texte"
+  | "tri_categories";
 
 export type AccessTier = "free" | "premium";
 export type ValidationStatus = "brouillon" | "valide";
@@ -31,6 +32,11 @@ export type ExerciseChoice = {
   label: string;
 };
 
+export type CategorizationCategory = {
+  id: string;
+  label: string;
+};
+
 export type ExpectedAnswer =
   | {
       mode: "single_choice";
@@ -43,6 +49,11 @@ export type ExpectedAnswer =
   | {
       mode: "text";
       acceptableAnswers: string[];
+    }
+  | {
+      mode: "categorization";
+      categories: CategorizationCategory[];
+      mapping: Record<string, string>;
     };
 
 export type ExerciseRecord = {

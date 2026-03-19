@@ -1,4 +1,3 @@
-import { Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { Fiche } from "@/features/fiches/types";
@@ -21,7 +20,7 @@ const DIFFICULTE_LABELS: Record<string, string> = {
 
 const MODEL_LABELS: Record<string, string> = {
   reference: "Fiche Référence",
-  sprint: "Sprint 5 min",
+  sprint: "Révision express",
   operatoire: "Carte opératoire",
 };
 
@@ -51,11 +50,6 @@ export function FicheHeader({ fiche }: { fiche: Fiche }) {
         {fiche.subtitle && (
           <p className="mt-2 text-sm leading-7 text-muted">{fiche.subtitle}</p>
         )}
-      </div>
-
-      <div className="flex items-center gap-1.5 text-xs text-muted">
-        <Clock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-        <span>{fiche.estimatedMinutes} min de lecture</span>
       </div>
 
       {fiche.tags.length > 0 && (

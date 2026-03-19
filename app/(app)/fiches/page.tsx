@@ -127,21 +127,21 @@ export default async function FichesPage({
           </ButtonLink>
         </Panel>
       ) : (
-        <div className="space-y-10">
-          {groupedDomains.map((d) => {
+        <div className="space-y-6">
+          {groupedDomains.map((d, i) => {
             const fiches = filtered.filter((f) => f.domaine === d);
             if (fiches.length === 0) return null;
             return (
-              <section key={d}>
-                <div className="mb-3 flex items-center gap-3">
-                  <h2 className="font-serif text-xl font-semibold text-ink">
+              <section key={d} className={i > 0 ? "border-t border-border pt-6" : ""}>
+                <div className="mb-2 flex items-center gap-2.5">
+                  <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
                     {DOMAINE_LABELS[d] ?? d}
                   </h2>
-                  <span className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium text-muted">
+                  <span className="text-xs text-muted/60">
                     {fiches.length}
                   </span>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="grid gap-x-8 gap-y-0 sm:grid-cols-2">
                   {fiches.map((fiche) => (
                     <FicheRow key={fiche.id} fiche={fiche} />
                   ))}

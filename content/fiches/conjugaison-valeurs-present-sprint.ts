@@ -4,7 +4,6 @@ export const valeursPresentSprint: Fiche = {
   id: "conjugaison-valeurs-present-sprint",
   slug: "valeurs-du-present",
   title: "Les valeurs du présent de l'indicatif",
-  subtitle: "Révision express — 5 min",
   domaine: "conjugaison",
   model: "sprint",
   accessTier: "free",

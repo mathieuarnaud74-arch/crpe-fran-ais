@@ -4,7 +4,6 @@ export const participePasseSprint: Fiche = {
   id: "orthographe-pp-sprint",
   slug: "accord-participe-passe-sprint",
   title: "Accord du participe passé",
-  subtitle: "Révision express — 5 min",
   domaine: "orthographe",
   model: "sprint",
   accessTier: "free",

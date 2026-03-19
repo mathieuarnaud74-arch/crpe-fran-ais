@@ -4,7 +4,6 @@ export const analyseLangueRelativesSprint: Fiche = {
   id: "analyse-langue-subordonnees-relatives-sprint",
   slug: "subordonnees-relatives-sprint",
   title: "Les subordonnées relatives",
-  subtitle: "Révision express — 5 min",
   domaine: "analyse_langue",
   model: "sprint",
   accessTier: "free",

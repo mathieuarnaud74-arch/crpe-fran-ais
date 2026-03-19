@@ -4,7 +4,6 @@ export const texteArgumentatifSprint: Fiche = {
   id: "comprehension-texte-argumentatif-sprint",
   slug: "texte-argumentatif-sprint",
   title: "Le texte argumentatif",
-  subtitle: "Révision express — 5 min",
   domaine: "comprehension_texte",
   model: "sprint",
   accessTier: "free",

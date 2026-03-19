@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
@@ -71,34 +72,6 @@ function matchesSearch(session: DashboardSessionProgress, query: string) {
   return haystack.includes(normalizedQuery);
 }
 
-function DomainMetric({
-  label,
-  value,
-  detail,
-  tone = "default",
-}: {
-  label: string;
-  value: string | number;
-  detail?: string;
-  tone?: "default" | "warm";
-}) {
-  return (
-    <div
-      className={[
-        "rounded-[1.5rem] border px-5 py-5",
-        tone === "default" && "border-border bg-paper",
-        tone === "warm" && "border-accentSecondary/25 bg-card",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <p className="text-xs font-semibold tracking-[0.10em] text-muted">{label}</p>
-      <p className="mt-3 font-serif text-3xl font-semibold text-ink">{value}</p>
-      {detail ? <p className="mt-2 text-sm leading-7 text-muted">{detail}</p> : null}
-    </div>
-  );
-}
-
 export default async function FrenchDomainPage({
   params,
   searchParams,
@@ -149,6 +122,10 @@ export default async function FrenchDomainPage({
   })).filter((group) => group.items.length > 0);
 
   const domainSummary = data.domainDirectory.find((item) => item.key === domain);
+  const totalSeries = domainSummary?.totalSeries ?? domainSessions.length;
+  const toReview = domainSummary?.toReviewSeries ?? 0;
+  const inProgress = domainSummary?.inProgressSeries ?? 0;
+  const mastered = domainSummary?.masteredSeries ?? 0;
   const domainCorrectRate = domainSummary?.correctRate;
 
   const subdomainSummary = config.subdomains.map((subdomain) => {
@@ -158,14 +135,18 @@ export default async function FrenchDomainPage({
       key: subdomain,
       label: SUBDOMAIN_LABELS[subdomain],
       totalSeries: sessions.length,
-      enCours: sessions.filter((session) => session.status === "en_cours").length,
-      aRevoir: sessions.filter((session) => session.status === "a_revoir").length,
-      maitrisees: sessions.filter((session) => session.status === "maitrisee").length,
+      enCours: sessions.filter((s) => s.status === "en_cours").length,
+      aRevoir: sessions.filter((s) => s.status === "a_revoir").length,
+      maitrisees: sessions.filter((s) => s.status === "maitrisee").length,
     };
   });
 
+  const masteryPercent = totalSeries > 0 ? Math.round((mastered / totalSeries) * 100) : 0;
+  const hasActiveFilters = !!(selectedStatus || selectedSubdomain || selectedLevel || query);
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
+      {/* ── Header ── */}
       <Panel className="border-border bg-card">
         <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
           <div className="space-y-3">
@@ -184,91 +165,108 @@ export default async function FrenchDomainPage({
         </div>
       </Panel>
 
-      <div className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-4">
-        <DomainMetric
-          label="Séries"
-          value={domainSummary?.totalSeries ?? domainSessions.length}
-          detail={`${filteredSessions.length} visible(s) avec les filtres actuels`}
-        />
-        <DomainMetric
-          label="À revoir"
-          value={domainSummary?.toReviewSeries ?? 0}
-          detail="Travail déjà fait, mais encore instable."
-          tone="warm"
-        />
-        <DomainMetric
-          label="En cours"
-          value={domainSummary?.inProgressSeries ?? 0}
-          detail="Séries entamées à reprendre sans repartir de zéro."
-        />
-        <DomainMetric
-          label="Maîtrisées"
-          value={domainSummary?.masteredSeries ?? 0}
-          detail={
-            domainCorrectRate === null || domainCorrectRate === undefined
-              ? "Aucune donnée de réussite pour le moment."
-              : `${domainCorrectRate} % de réussite sur ce domaine`
-          }
-        />
+      {/* ── Stats strip + progress bar ── */}
+      <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-4">
+          <div className="bg-card px-5 py-4 text-center">
+            <p className="font-serif text-3xl font-semibold text-ink">{totalSeries}</p>
+            <p className="mt-1 text-xs font-medium tracking-wide text-muted">Séries</p>
+          </div>
+          <div className="bg-card px-5 py-4 text-center">
+            <p className="font-serif text-3xl font-semibold text-accentSecondary">{toReview}</p>
+            <p className="mt-1 text-xs font-medium tracking-wide text-muted">À revoir</p>
+          </div>
+          <div className="bg-card px-5 py-4 text-center">
+            <p className="font-serif text-3xl font-semibold text-accent">{inProgress}</p>
+            <p className="mt-1 text-xs font-medium tracking-wide text-muted">En cours</p>
+          </div>
+          <div className="bg-card px-5 py-4 text-center">
+            <p className="font-serif text-3xl font-semibold text-pine">{mastered}</p>
+            <p className="mt-1 text-xs font-medium tracking-wide text-muted">Maîtrisées</p>
+            {domainCorrectRate != null && (
+              <p className="mt-0.5 text-xs text-muted">{domainCorrectRate}% réussite</p>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <div className="mb-1.5 flex justify-between text-xs text-muted">
+            <span>Progression</span>
+            <span>
+              {mastered}/{totalSeries} maîtrisées ({masteryPercent}%)
+            </span>
+          </div>
+          <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-accent to-pine transition-all"
+              style={{ width: `${masteryPercent}%` }}
+            />
+          </div>
+        </div>
       </div>
 
-      <section className="space-y-4">
-        <div>
-          <Badge tone="accentSecondary" size="sm">
-            Structure
-          </Badge>
-          <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">Sous-domaines</h2>
-          <p className="mt-2 text-sm leading-7 text-muted">
-            Vue de repérage rapide pour comprendre la structure du domaine avant d’ouvrir les séries.
-          </p>
+      {/* ── Sous-domaines — compact table ── */}
+      <section>
+        <div className="mb-3 flex items-baseline gap-3">
+          <h2 className="font-serif text-2xl font-semibold text-ink">Sous-domaines</h2>
+          <span className="text-xs text-muted">Cliquez pour filtrer</span>
         </div>
-        <div className="grid gap-4 xl:grid-cols-3">
-          {subdomainSummary.map((item) => (
-            <Panel key={item.key} className="bg-card">
-              <p className="text-xs font-semibold tracking-[0.10em] text-muted">Sous-domaine</p>
-              <h3 className="mt-3 text-xl font-semibold text-ink">{item.label}</h3>
-              <div className="mt-5 grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
-                <div className="rounded-[1.25rem] border border-border bg-paper px-4 py-4 text-sm text-muted">
-                  <p className="text-xs font-medium tracking-[0.10em] text-muted">Séries</p>
-                  <p className="mt-2 text-2xl font-semibold text-ink">{item.totalSeries}</p>
-                </div>
-                <div className="rounded-[1.25rem] border border-border bg-paper px-4 py-4 text-sm text-muted">
-                  <p className="text-xs uppercase tracking-[0.16em]">En cours / À revoir</p>
-                  <p className="mt-2 text-lg font-semibold text-ink">
-                    {item.enCours} / {item.aRevoir}
-                  </p>
-                </div>
-                <div className="rounded-[1.25rem] border border-border bg-paper px-4 py-4 text-sm text-muted">
-                  <p className="text-xs uppercase tracking-[0.16em]">Maîtrisées</p>
-                  <p className="mt-2 text-2xl font-semibold text-ink">{item.maitrisees}</p>
-                </div>
-              </div>
-            </Panel>
+        <div className="overflow-hidden rounded-2xl border border-border">
+          <div className="hidden border-b border-border bg-secondary/50 px-5 py-2.5 md:grid md:grid-cols-[1fr_5rem_8rem_5.5rem] md:gap-4">
+            <span className="text-xs font-semibold uppercase tracking-widest text-muted">Nom</span>
+            <span className="text-center text-xs font-semibold uppercase tracking-widest text-muted">
+              Séries
+            </span>
+            <span className="text-center text-xs font-semibold uppercase tracking-widest text-muted">
+              En c. / À rev.
+            </span>
+            <span className="text-center text-xs font-semibold uppercase tracking-widest text-muted">
+              Maîtrisées
+            </span>
+          </div>
+          {subdomainSummary.map((item, i) => (
+            <Link
+              key={item.key}
+              href={buildHref(pathname, { subdomain: item.key })}
+              className={cn(
+                "flex flex-col gap-1 bg-card px-5 py-3.5 transition-colors hover:bg-paper md:grid md:grid-cols-[1fr_5rem_8rem_5.5rem] md:items-center md:gap-4",
+                i < subdomainSummary.length - 1 && "border-b border-border",
+              )}
+            >
+              <span className="text-sm font-semibold text-ink">{item.label}</span>
+              <span className="text-sm tabular-nums text-muted md:text-center">
+                <span className="text-xs md:hidden">Séries : </span>
+                {item.totalSeries}
+              </span>
+              <span className="text-sm tabular-nums text-muted md:text-center">
+                <span className="text-xs md:hidden">En cours / À revoir : </span>
+                {item.enCours} / {item.aRevoir}
+              </span>
+              <span className="text-sm tabular-nums text-pine md:text-center">
+                <span className="text-xs md:hidden">Maîtrisées : </span>
+                {item.maitrisees}
+              </span>
+            </Link>
           ))}
         </div>
       </section>
 
+      {/* ── Filters — compact ── */}
       <Panel>
-        <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
-          <div>
-            <h2 className="font-serif text-2xl font-semibold text-ink">Filtres</h2>
-            <p className="mt-2 text-sm leading-7 text-muted">
-              Le détail reste ici, pas sur le tableau de bord. Les filtres réduisent la densité sans
-              masquer la hiérarchie.
-            </p>
-          </div>
-          <ButtonLink href={pathname} variant="ghost">
+        <div className="flex items-center justify-between">
+          <h2 className="font-serif text-xl font-semibold text-ink">Filtres</h2>
+          <ButtonLink href={pathname} variant="ghost" size="sm">
             Réinitialiser
           </ButtonLink>
         </div>
 
-        <form className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-          <label className="space-y-2 text-sm text-muted">
+        <form className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+          <label className="space-y-1.5 text-sm text-muted">
             <span>Statut</span>
             <select
               name="status"
               defaultValue={selectedStatus}
-              className="w-full rounded-2xl border border-border bg-paper px-4 py-3 text-ink outline-none focus:border-accent"
+              className="w-full rounded-xl border border-border bg-paper px-4 py-2.5 text-sm text-ink outline-none focus:border-accent"
             >
               <option value="">Tous</option>
               {STATUS_ORDER.map((status) => (
@@ -279,12 +277,12 @@ export default async function FrenchDomainPage({
             </select>
           </label>
 
-          <label className="space-y-2 text-sm text-muted">
+          <label className="space-y-1.5 text-sm text-muted">
             <span>Sous-domaine</span>
             <select
               name="subdomain"
               defaultValue={selectedSubdomain}
-              className="w-full rounded-2xl border border-border bg-paper px-4 py-3 text-ink outline-none focus:border-accent"
+              className="w-full rounded-xl border border-border bg-paper px-4 py-2.5 text-sm text-ink outline-none focus:border-accent"
             >
               <option value="">Tous</option>
               {config.subdomains.map((subdomain) => (
@@ -295,12 +293,12 @@ export default async function FrenchDomainPage({
             </select>
           </label>
 
-          <label className="space-y-2 text-sm text-muted">
+          <label className="space-y-1.5 text-sm text-muted">
             <span>Niveau</span>
             <select
               name="level"
               defaultValue={selectedLevel}
-              className="w-full rounded-2xl border border-border bg-paper px-4 py-3 text-ink outline-none focus:border-accent"
+              className="w-full rounded-xl border border-border bg-paper px-4 py-2.5 text-sm text-ink outline-none focus:border-accent"
             >
               <option value="">Tous</option>
               {LEVEL_OPTIONS.map((option) => (
@@ -311,83 +309,86 @@ export default async function FrenchDomainPage({
             </select>
           </label>
 
-          <label className="space-y-2 text-sm text-muted xl:col-span-2">
+          <label className="space-y-1.5 text-sm text-muted xl:col-span-2">
             <span>Recherche</span>
-            <input
-              type="search"
-              name="q"
-              defaultValue={query}
-              placeholder="Titre, notion, résumé..."
-              className="w-full rounded-2xl border border-border bg-paper px-4 py-3 text-ink outline-none placeholder:text-muted focus:border-accent"
-            />
+            <div className="flex gap-2">
+              <input
+                type="search"
+                name="q"
+                defaultValue={query}
+                placeholder="Titre, notion, résumé..."
+                className="w-full rounded-xl border border-border bg-paper px-4 py-2.5 text-sm text-ink outline-none placeholder:text-muted focus:border-accent"
+              />
+              <button
+                type="submit"
+                className="shrink-0 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-paper transition hover:bg-accentDark active:scale-[0.97]"
+              >
+                Filtrer
+              </button>
+            </div>
           </label>
-
-          <div className="flex items-end">
-            <button
-              type="submit"
-              className="w-full rounded-full bg-accent px-5 py-3 text-sm font-semibold text-paper transition hover:bg-accentDark"
-            >
-              Filtrer
-            </button>
-          </div>
         </form>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          {selectedStatus ? (
-            <ButtonLink
-              href={buildHref(pathname, {
-                level: selectedLevel,
-                subdomain: selectedSubdomain,
-                q: query || undefined,
-              })}
-              variant="secondary"
-              className="px-4 py-2 text-xs"
-            >
-              {LEARNING_STATUS_LABELS[selectedStatus]}
-            </ButtonLink>
-          ) : null}
-          {selectedSubdomain ? (
-            <ButtonLink
-              href={buildHref(pathname, {
-                status: selectedStatus || undefined,
-                level: selectedLevel,
-                q: query || undefined,
-              })}
-              variant="secondary"
-              className="px-4 py-2 text-xs"
-            >
-              {SUBDOMAIN_LABELS[selectedSubdomain as DashboardSessionProgress["subdomain"]]}
-            </ButtonLink>
-          ) : null}
-          {selectedLevel ? (
-            <ButtonLink
-              href={buildHref(pathname, {
-                status: selectedStatus || undefined,
-                subdomain: selectedSubdomain || undefined,
-                q: query || undefined,
-              })}
-              variant="secondary"
-              className="px-4 py-2 text-xs"
-            >
-              {selectedLevel}
-            </ButtonLink>
-          ) : null}
-          {query ? (
-            <ButtonLink
-              href={buildHref(pathname, {
-                status: selectedStatus || undefined,
-                level: selectedLevel || undefined,
-                subdomain: selectedSubdomain || undefined,
-              })}
-              variant="secondary"
-              className="px-4 py-2 text-xs"
-            >
-              Recherche : {query}
-            </ButtonLink>
-          ) : null}
-        </div>
+        {hasActiveFilters && (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {selectedStatus ? (
+              <ButtonLink
+                href={buildHref(pathname, {
+                  level: selectedLevel,
+                  subdomain: selectedSubdomain,
+                  q: query || undefined,
+                })}
+                variant="secondary"
+                className="px-3 py-1.5 text-xs"
+              >
+                &times; {LEARNING_STATUS_LABELS[selectedStatus]}
+              </ButtonLink>
+            ) : null}
+            {selectedSubdomain ? (
+              <ButtonLink
+                href={buildHref(pathname, {
+                  status: selectedStatus || undefined,
+                  level: selectedLevel,
+                  q: query || undefined,
+                })}
+                variant="secondary"
+                className="px-3 py-1.5 text-xs"
+              >
+                &times;{" "}
+                {SUBDOMAIN_LABELS[selectedSubdomain as DashboardSessionProgress["subdomain"]]}
+              </ButtonLink>
+            ) : null}
+            {selectedLevel ? (
+              <ButtonLink
+                href={buildHref(pathname, {
+                  status: selectedStatus || undefined,
+                  subdomain: selectedSubdomain || undefined,
+                  q: query || undefined,
+                })}
+                variant="secondary"
+                className="px-3 py-1.5 text-xs"
+              >
+                &times; {selectedLevel}
+              </ButtonLink>
+            ) : null}
+            {query ? (
+              <ButtonLink
+                href={buildHref(pathname, {
+                  status: selectedStatus || undefined,
+                  level: selectedLevel || undefined,
+                  subdomain: selectedSubdomain || undefined,
+                })}
+                variant="secondary"
+                className="px-3 py-1.5 text-xs"
+              >
+                &times; &laquo; {query} &raquo;
+              </ButtonLink>
+            ) : null}
+          </div>
+        )}
       </Panel>
 
+      {/* ── Séries grouped by status ── */}
       {groupedSessions.length === 0 ? (
         <Panel>
           <h2 className="font-serif text-2xl font-semibold text-ink">Aucun résultat</h2>
@@ -396,41 +397,36 @@ export default async function FrenchDomainPage({
           </p>
         </Panel>
       ) : (
-        <section className="space-y-4">
+        <section className="space-y-3">
           <div className="flex items-end justify-between gap-4">
-            <div>
-              <h2 className="font-serif text-3xl font-semibold text-ink">Séries</h2>
-              <p className="mt-2 text-sm leading-7 text-muted">
-                Regroupement par statut pour éviter une liste uniforme et difficile à parcourir.
-              </p>
-            </div>
-            <p className="text-sm text-muted">{filteredSessions.length} série(s) visible(s)</p>
+            <h2 className="font-serif text-2xl font-semibold text-ink">Séries</h2>
+            <p className="text-sm text-muted">{filteredSessions.length} série(s)</p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {groupedSessions.map((group, index) => (
               <details
                 key={group.status}
                 open={index < 2}
-                className="rounded-[1.75rem] border border-border bg-card p-6 shadow-panel"
+                className="rounded-2xl border border-border bg-card p-5 shadow-subtle"
               >
                 <summary className="cursor-pointer list-none">
-                  <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-3">
-                        <LearningStatusPill status={group.status} />
-                        <p className="text-sm font-semibold text-ink">{group.items.length} série(s)</p>
-                      </div>
-                      <p className="mt-2 text-sm leading-7 text-muted">
-                        {STATUS_DESCRIPTIONS[group.status]}
-                      </p>
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <LearningStatusPill status={group.status} />
+                      <span className="text-sm font-medium text-ink">
+                        {group.items.length} série{group.items.length > 1 ? "s" : ""}
+                      </span>
                     </div>
-                    <p className="text-sm text-muted">Afficher / réduire</p>
+                    <span className="text-xs text-muted">Afficher / réduire</span>
                   </div>
                 </summary>
-                <div className="mt-5 space-y-3">
+                <p className="mt-2 text-xs leading-relaxed text-muted">
+                  {STATUS_DESCRIPTIONS[group.status]}
+                </p>
+                <div className="mt-4 space-y-2">
                   {group.items.map((session) => (
-                    <SessionProgressCard key={session.id} session={session} />
+                    <SessionProgressCard key={session.id} session={session} compact />
                   ))}
                 </div>
               </details>

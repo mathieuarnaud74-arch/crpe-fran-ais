@@ -4,7 +4,6 @@ export const fonctionsGrammaticalesSprint: Fiche = {
   id: "grammaire-fonctions-sprint",
   slug: "fonctions-grammaticales-sprint",
   title: "Fonctions grammaticales",
-  subtitle: "Révision express — 5 min",
   domaine: "grammaire",
   model: "sprint",
   accessTier: "free",

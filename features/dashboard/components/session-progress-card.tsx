@@ -11,7 +11,7 @@ type SessionProgressCardProps = {
 };
 
 function formatSessionMeta(session: DashboardSessionProgress) {
-  const parts = [`${session.questionCount} questions`, session.level, `${session.estimatedMinutes} min`];
+  const parts = [`${session.questionCount} questions`, session.level];
 
   if (session.correctRate !== null) {
     parts.push(`${session.correctRate} %`);
@@ -36,7 +36,7 @@ export function SessionProgressCard({ session, compact = false }: SessionProgres
           </div>
           <div>
             <p className="text-sm font-semibold text-muted">{session.topicLabel}</p>
-            <h3 className="mt-1 text-lg font-semibold text-ink">{session.title}</h3>
+            <h3 className="mt-1 break-words text-lg font-semibold text-ink">{session.title}</h3>
             {!compact ? (
               <p className="mt-2 max-w-3xl text-sm leading-7 text-muted">{session.summary}</p>
             ) : null}

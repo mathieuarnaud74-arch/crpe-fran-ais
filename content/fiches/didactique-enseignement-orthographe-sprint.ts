@@ -4,7 +4,6 @@ export const enseignementOrthographeSprint: Fiche = {
   id: "didactique-enseignement-orthographe-sprint",
   slug: "enseigner-l-orthographe",
   title: "Enseigner l'orthographe à l'école",
-  subtitle: "Révision express — 5 min",
   domaine: "didactique_francais",
   model: "sprint",
   accessTier: "free",

@@ -4,7 +4,6 @@ export const grammaireDiscoursSprint: Fiche = {
   id: "grammaire-discours-direct-indirect-sprint",
   slug: "discours-direct-indirect-sprint",
   title: "Discours direct et indirect",
-  subtitle: "Révision express — 5 min",
   domaine: "grammaire",
   model: "sprint",
   accessTier: "free",

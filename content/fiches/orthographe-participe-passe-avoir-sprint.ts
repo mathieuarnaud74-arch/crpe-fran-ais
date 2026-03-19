@@ -4,7 +4,6 @@ export const ppAvoirSprint: Fiche = {
   id: "orthographe-participe-passe-avoir-sprint",
   slug: "participe-passe-avoir-sprint",
   title: "Accord du participe passé avec avoir",
-  subtitle: "Révision express — 5 min",
   domaine: "orthographe",
   model: "sprint",
   accessTier: "free",

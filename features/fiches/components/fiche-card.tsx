@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Clock, ChevronRight } from "lucide-react";
+import { ChevronRight, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Fiche } from "@/features/fiches/types";
 
@@ -15,7 +15,7 @@ export const DOMAINE_LABELS: Record<string, string> = {
 
 export const MODEL_LABELS: Record<string, string> = {
   reference: "Référence",
-  sprint: "Sprint",
+  sprint: "Révision express",
   operatoire: "Opératoire",
 };
 
@@ -29,33 +29,15 @@ export function FicheRow({ fiche }: { fiche: Fiche }) {
   return (
     <Link
       href={`/fiches/${fiche.slug}`}
-      className="group flex items-center gap-4 rounded-[1.1rem] border border-border bg-card px-5 py-4 transition-shadow hover:shadow-panel"
+      className="group flex items-center gap-2.5 py-1.5 transition-colors"
     >
-      <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-1.5">
-          <Badge size="sm" tone="neutral">{MODEL_LABELS[fiche.model]}</Badge>
-          {fiche.accessTier === "premium" && (
-            <Badge size="sm" tone="warning">Premium</Badge>
-          )}
-        </div>
-        <p className="mt-1.5 font-serif text-base font-semibold leading-snug text-ink transition-colors group-hover:text-accentDark">
-          {fiche.title}
-        </p>
-        {fiche.subtitle && (
-          <p className="mt-0.5 line-clamp-1 text-xs text-muted">{fiche.subtitle}</p>
-        )}
-      </div>
-
-      <div className="flex shrink-0 items-center gap-4">
-        <div className="hidden flex-col items-end gap-1 sm:flex">
-          <span className="text-xs text-muted">{DIFFICULTE_LABELS[fiche.difficulte]}</span>
-          <div className="flex items-center gap-1 text-xs text-muted">
-            <Clock className="h-3 w-3 shrink-0" aria-hidden="true" />
-            <span>{fiche.estimatedMinutes} min</span>
-          </div>
-        </div>
-        <ChevronRight className="h-4 w-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden="true" />
-      </div>
+      <ChevronRight className="h-3.5 w-3.5 shrink-0 -translate-x-0.5 text-transparent transition-all group-hover:translate-x-0 group-hover:text-accent" aria-hidden="true" />
+      <span className="font-serif text-[1.08rem] font-medium leading-snug text-ink transition-colors group-hover:text-accent">
+        {fiche.title}
+      </span>
+      {fiche.accessTier === "premium" && (
+        <Lock className="h-3 w-3 shrink-0 text-muted/60" aria-label="Premium" />
+      )}
     </Link>
   );
 }
@@ -88,11 +70,7 @@ export function FicheCard({ fiche }: { fiche: Fiche }) {
       )}
 
       <div className="mt-auto pt-4">
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-1 text-xs text-muted">
-            <Clock className="h-3 w-3 shrink-0" aria-hidden="true" />
-            <span>{fiche.estimatedMinutes} min</span>
-          </div>
+        <div className="flex items-center justify-end gap-2">
           <span className="text-xs text-muted">{DIFFICULTE_LABELS[fiche.difficulte]}</span>
         </div>
 

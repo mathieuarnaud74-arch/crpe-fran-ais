@@ -228,21 +228,6 @@ function BenefitsSection({ props }: { props: BenefitsSectionProps }) {
         })}
       </div>
 
-      <div className="mt-10 grid gap-4 lg:grid-cols-3">
-        {props.steps.map((step, index) => (
-          <FadeIn key={`${step.title}-${index}`} delay={0.12 + index * 0.07}>
-            <div className="rounded-[1.6rem] border border-border bg-paper/60 p-5">
-              <div className="flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-sm font-semibold text-paper">
-                  0{index + 1}
-                </span>
-                <h3 className="font-serif text-2xl font-semibold text-ink">{step.title}</h3>
-              </div>
-              <p className="mt-4 text-sm leading-7 text-muted">{step.description}</p>
-            </div>
-          </FadeIn>
-        ))}
-      </div>
     </section>
   );
 }

@@ -4,7 +4,6 @@ export const accordGnSprint: Fiche = {
   id: "orthographe-gn-sprint",
   slug: "accord-groupe-nominal",
   title: "L'accord dans le groupe nominal",
-  subtitle: "Révision express — 4 min",
   domaine: "orthographe",
   model: "sprint",
   accessTier: "free",

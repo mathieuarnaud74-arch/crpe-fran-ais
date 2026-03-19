@@ -78,6 +78,20 @@ function normalizeExpectedAnswer(
     };
   }
 
+  if (
+    rawMode === "categorization" &&
+    Array.isArray(rawExpected.categories) &&
+    rawExpected.mapping !== null &&
+    typeof rawExpected.mapping === "object" &&
+    !Array.isArray(rawExpected.mapping)
+  ) {
+    return {
+      mode: "categorization",
+      categories: rawExpected.categories as { id: string; label: string }[],
+      mapping: rawExpected.mapping as Record<string, string>,
+    };
+  }
+
   if (typeof rawExpected.value === "string") {
     return {
       mode: "text",

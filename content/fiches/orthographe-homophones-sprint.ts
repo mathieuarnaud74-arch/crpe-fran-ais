@@ -4,7 +4,6 @@ export const homophonesSprint: Fiche = {
   id: "orthographe-homophones-sprint",
   slug: "homophones-grammaticaux",
   title: "Les homophones grammaticaux",
-  subtitle: "Révision express — 4 min",
   domaine: "orthographe",
   model: "sprint",
   accessTier: "free",

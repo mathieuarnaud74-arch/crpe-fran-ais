@@ -4,7 +4,6 @@ export const natureMotsSprint: Fiche = {
   id: "grammaire-nature-mots-sprint",
   slug: "nature-des-mots-sprint",
   title: "Nature des mots",
-  subtitle: "Révision express — 5 min",
   domaine: "grammaire",
   model: "sprint",
   accessTier: "free",

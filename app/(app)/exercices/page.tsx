@@ -81,7 +81,6 @@ function SessionCard({ session, premium }: { session: RevisionSession; premium: 
           </Badge>
           <Badge>{formatLevelLabel(session.level)}</Badge>
           <Badge>{session.questionCount} questions</Badge>
-          <Badge>{session.estimatedMinutes} min</Badge>
         </div>
         <p className="text-xs font-medium tracking-[0.10em] text-muted">
           Étape {session.recommendedOrder} · {SUBDOMAIN_LABELS[session.subdomain]}
@@ -221,7 +220,7 @@ export default async function ExercisesPage({
                   {SUBDOMAIN_LABELS[session.subdomain]}
                 </span>
                 <span className="text-sm font-semibold text-ink">{session.title}</span>
-                <span className="text-xs text-muted">{session.estimatedMinutes} min · {session.questionCount} questions</span>
+                <span className="text-xs text-muted">{session.questionCount} questions</span>
               </Link>
             ))}
           </div>

@@ -3,17 +3,15 @@ import Link from "next/link";
 
 const NAV_LINKS = [
   { label: "Accueil", href: "/" },
-  { label: "Diagnostic de niveau", href: "/diagnostic" },
-  { label: "Français", href: "/francais" },
-  { label: "Progression", href: "/progression" },
+  { label: "Diagnostic gratuit", href: "/diagnostic" },
+  { label: "Méthode", href: "/#methode" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 const RESOURCE_LINKS = [
-  { label: "Grammaire & orthographe", href: "/francais" },
-  { label: "Analyse & didactique", href: "/francais/analyse-de-la-langue" },
-  { label: "Tableau de bord", href: "/tableau-de-bord" },
-  { label: "Glossaire", href: "/ressources/glossaire" },
   { label: "Voir l'offre", href: "/offre" },
+  { label: "Inscription gratuite", href: "/inscription" },
+  { label: "Connexion", href: "/connexion" },
 ];
 
 const LEGAL_LINKS = [
@@ -48,7 +46,7 @@ export function SiteFooter() {
           <FooterColumn title="Navigation" links={NAV_LINKS} />
 
           {/* Ressources */}
-          <FooterColumn title="Ressources" links={RESOURCE_LINKS} />
+          <FooterColumn title="Le site" links={RESOURCE_LINKS} />
 
           {/* Légal */}
           <FooterColumn title="Légal" links={LEGAL_LINKS} />

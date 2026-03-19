@@ -4,7 +4,6 @@ export const differentiationSprint: Fiche = {
   id: "didactique-differentiation-sprint",
   slug: "differentiation-sprint",
   title: "Différenciation pédagogique en français",
-  subtitle: "Révision express — 5 min",
   domaine: "didactique_francais",
   model: "sprint",
   accessTier: "free",

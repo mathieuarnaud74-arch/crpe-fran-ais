@@ -4,7 +4,6 @@ export const grammaireVoixPassiveSprint: Fiche = {
   id: "grammaire-voix-passive-sprint",
   slug: "voix-passive-sprint",
   title: "La voix passive",
-  subtitle: "Révision express — 5 min",
   domaine: "grammaire",
   model: "sprint",
   accessTier: "free",

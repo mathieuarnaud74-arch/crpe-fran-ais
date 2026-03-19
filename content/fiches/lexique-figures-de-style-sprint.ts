@@ -4,7 +4,6 @@ export const figuresDeStyleSprint: Fiche = {
   id: "lexique-figures-de-style-sprint",
   slug: "figures-de-style-sprint",
   title: "Figures de style essentielles",
-  subtitle: "Révision express — 5 min",
   domaine: "lexique",
   model: "sprint",
   accessTier: "free",

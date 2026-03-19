@@ -4,7 +4,6 @@ export const apprendreALireSprint: Fiche = {
   id: "didactique-apprendre-a-lire-sprint",
   slug: "apprendre-a-lire-methodes",
   title: "Apprendre à lire : méthodes et programmes",
-  subtitle: "Révision express — 5 min",
   domaine: "didactique_francais",
   model: "sprint",
   accessTier: "free",

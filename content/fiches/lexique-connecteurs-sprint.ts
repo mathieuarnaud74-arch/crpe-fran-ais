@@ -4,7 +4,6 @@ export const connecteursSprint: Fiche = {
   id: "lexique-connecteurs-sprint",
   slug: "connecteurs-sprint",
   title: "Connecteurs logiques",
-  subtitle: "Révision express — 5 min",
   domaine: "lexique",
   model: "sprint",
   accessTier: "free",

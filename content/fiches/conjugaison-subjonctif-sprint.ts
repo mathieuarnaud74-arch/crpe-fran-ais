@@ -4,7 +4,6 @@ export const subjonctifSprint: Fiche = {
   id: "conjugaison-subjonctif-sprint",
   slug: "subjonctif-sprint",
   title: "Le subjonctif",
-  subtitle: "Révision express — 5 min",
   domaine: "conjugaison",
   model: "sprint",
   accessTier: "free",

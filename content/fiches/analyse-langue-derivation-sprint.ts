@@ -4,7 +4,6 @@ export const derivationSprint: Fiche = {
   id: "analyse-langue-derivation-sprint",
   slug: "derivation-sprint",
   title: "La dérivation",
-  subtitle: "Révision express — 5 min",
   domaine: "analyse_langue",
   model: "sprint",
   accessTier: "free",

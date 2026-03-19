@@ -4,7 +4,6 @@ export const toutMemeSprint: Fiche = {
   id: "orthographe-tout-meme-sprint",
   slug: "tout-meme-sprint",
   title: "Accord de tout et même",
-  subtitle: "Révision express — 5 min",
   domaine: "orthographe",
   model: "sprint",
   accessTier: "free",

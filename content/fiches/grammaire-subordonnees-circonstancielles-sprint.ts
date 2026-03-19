@@ -4,7 +4,6 @@ export const grammaireSubCircSprint: Fiche = {
   id: "grammaire-subordonnees-circonstancielles-sprint",
   slug: "subordonnees-circonstancielles-sprint",
   title: "Subordonnées circonstancielles",
-  subtitle: "Révision express — 5 min",
   domaine: "grammaire",
   model: "sprint",
   accessTier: "free",

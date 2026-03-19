@@ -4,7 +4,6 @@ export const reperageExpliciteSprint: Fiche = {
   id: "comprehension-texte-reperage-explicite-sprint",
   slug: "reperage-informations-explicites",
   title: "Repérage des informations explicites",
-  subtitle: "Révision express — 5 min",
   domaine: "comprehension_texte",
   model: "sprint",
   accessTier: "free",

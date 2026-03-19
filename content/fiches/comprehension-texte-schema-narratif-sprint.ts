@@ -4,7 +4,6 @@ export const schemaNarratifSprint: Fiche = {
   id: "comprehension-texte-schema-narratif-sprint",
   slug: "schema-narratif-sprint",
   title: "Le schéma narratif",
-  subtitle: "Révision express — 5 min",
   domaine: "comprehension_texte",
   model: "sprint",
   accessTier: "free",

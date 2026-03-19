@@ -38,6 +38,10 @@ import { champsLexicauxSprint } from "./lexique-champs-lexicaux-sprint";
 import { connecteursSprint } from "./lexique-connecteurs-sprint";
 import { derivationSprint } from "./analyse-langue-derivation-sprint";
 import { enonciationSprint } from "./analyse-langue-enonciation-sprint";
+import { analyseLanguePhraseComplexeTypesSprint } from "./analyse-langue-phrase-complexe-types-sprint";
+import { analyseLangueComplementsCirconstancielsSprint } from "./analyse-langue-complements-circonstanciels-sprint";
+import { analyseLangueVoixActivePassiveSprint } from "./analyse-langue-voix-active-passive-sprint";
+import { analyseLangueSubordonneesConjonctivesSprint } from "./analyse-langue-subordonnees-conjonctives-completives-circonstancielles-sprint";
 import { schemaNarratifSprint } from "./comprehension-texte-schema-narratif-sprint";
 import { texteArgumentatifSprint } from "./comprehension-texte-argumentatif-sprint";
 import { consciencePhonologiqueSprint } from "./didactique-conscience-phonologique-sprint";
@@ -83,6 +87,10 @@ export const allFiches: Fiche[] = [
   connecteursSprint,
   derivationSprint,
   enonciationSprint,
+  analyseLanguePhraseComplexeTypesSprint,
+  analyseLangueComplementsCirconstancielsSprint,
+  analyseLangueVoixActivePassiveSprint,
+  analyseLangueSubordonneesConjonctivesSprint,
   schemaNarratifSprint,
   texteArgumentatifSprint,
   consciencePhonologiqueSprint,

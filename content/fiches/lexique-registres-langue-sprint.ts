@@ -4,7 +4,6 @@ export const registresLangueSprint: Fiche = {
   id: "lexique-registres-langue-sprint",
   slug: "registres-langue-sprint",
   title: "Registres et niveaux de langue",
-  subtitle: "Révision express — 5 min",
   domaine: "lexique",
   model: "sprint",
   accessTier: "free",

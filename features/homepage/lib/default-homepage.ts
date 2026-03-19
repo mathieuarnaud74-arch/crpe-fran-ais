@@ -2,7 +2,7 @@ import {
   FRENCH_DIAGNOSTIC_BANK_SIZE,
   FRENCH_DIAGNOSTIC_SESSION_SIZE,
 } from "@/content/french-diagnostic-questions";
-import { FRENCH_DOMAIN_ORDER, SUBJECT_LABEL, SUBDOMAIN_LABELS } from "@/lib/constants";
+import { SUBDOMAIN_LABELS } from "@/lib/constants";
 
 import {
   type HomepagePageRecord,
@@ -25,35 +25,38 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     type: "hero",
     visible: true,
     props: {
-      badgeText: "CRPE Français Oral & Écrit 2026-2027",
-      title: "Passez votre CRPE français sans laisser de lacunes.",
+      badgeText: "Préparation CRPE Français 2026",
+      title: "Repérez vos lacunes en français CRPE, puis révisez seulement ce qui vous fera gagner des points.",
       description:
-        "Le CRPE teste des automatismes précis. 40 questions suffisent à révéler vos vraies lacunes. Ensuite, des séries ciblées travaillent exactement ces points — avec des corrections qui expliquent la règle, pas juste la bonne réponse.",
-      primaryCtaLabel: "Faire le diagnostic gratuit",
-      primaryCtaHrefGuest: "/inscription",
+        `Le diagnostic de ${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions repère vos fragilités sous-domaine par sous-domaine. Ensuite, des séries ciblées et des corrections expliquées vous aident à travailler la règle utile au lieu d'enchaîner des exercices au hasard.`,
+      primaryCtaLabel: "Lancer le diagnostic gratuit",
+      primaryCtaHrefGuest: "/diagnostic",
       primaryCtaHrefAuth: "/diagnostic",
-      secondaryCtaLabel: "Voir l'offre complète",
+      secondaryCtaLabel: "Comparer gratuit et premium",
       secondaryCtaHref: "/offre",
-      metaItems: ["Gratuit, sans carte bancaire", "Programme officiel 2026", "500+ exercices · 60+ séries"],
+      metaItems: [
+        "Programme officiel 2026",
+        `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions · profil par sous-domaine`,
+      ],
     },
   },
   {
     type: "trust_bar",
     visible: true,
     props: {
-      eyebrow: "En un coup d'œil",
+      eyebrow: "Concret dès l'arrivée",
       items: [
         {
           label: "500+ exercices",
           detail: `${subdomainCount} sous-domaines du programme officiel CRPE 2026`,
         },
         {
-          label: `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions · ~8 minutes`,
-          detail: "Diagnostic personnalisé par sous-domaine, pas une note globale",
+          label: `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions · ~30 min`,
+          detail: `Session tirée d'une banque de ${FRENCH_DIAGNOSTIC_BANK_SIZE} questions, avec profil par sous-domaine`,
         },
         {
           label: "Gratuit pour commencer",
-          detail: "20 questions corrigées par jour — sans carte bancaire",
+          detail: "Compte gratuit, diagnostic sauvegardé et 20 questions corrigées par jour",
         },
       ],
     },
@@ -63,46 +66,30 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     visible: true,
     props: {
       eyebrow: "Comment ça marche",
-      title: "Trois étapes. Un point de départ clair. Des révisions qui servent.",
+      title: "Diagnostic, priorités, séries ciblées.",
       description:
-        "Le CRPE teste des règles précises. Les premières questions identifient les lacunes. Les séries les travaillent dans l'ordre.",
+        "Vous commencez par situer vos fragilités, puis vous travaillez les notions qui vous feront progresser le plus vite.",
       cards: [
         {
           eyebrow: "01 — Point de départ",
-          title: "Vous savez ce qui vous manque — en 8 minutes.",
+          title: "Vous voyez vos lacunes avant de réviser.",
           description:
-            `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions sur les ${subdomainCount} sous-domaines identifient vos fragilités. Pas une note globale — un profil avec les priorités en premier.`,
+            `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions couvrent les ${subdomainCount} sous-domaines. En sortie, vous savez quoi reprendre d'abord et quoi laisser de côté pour l'instant.`,
         },
         {
           eyebrow: "02 — Séries ciblées",
-          title: "Vous révisez ce qui compte, pas ce que vous savez déjà.",
+          title: "Vous travaillez les points qui méritent vraiment votre temps.",
           description:
-            "Les séries prioritaires remontent selon votre profil. Vous progressez sur vos points faibles, pas sur vos acquis.",
+            "Les séries à lancer en premier remontent selon votre profil. Vous avancez dans un ordre utile, pas au hasard.",
         },
         {
           eyebrow: "03 — Corrections",
-          title: "Chaque erreur devient une règle que vous ne referez plus.",
+          title: "Les corrections vous laissent une règle claire, pas juste un verdict.",
           description:
-            "Les corrections expliquent le raisonnement derrière la bonne réponse. Vous comprenez avant de passer à la suite.",
+            "Chaque correction explique le raisonnement, le piège et le repère à retenir pour la suite.",
         },
       ],
-      steps: [
-        {
-          title: "Point de départ en 8 minutes",
-          description:
-            "Un bref passage qui identifie les fragilités avant de débloquer les révisions.",
-        },
-        {
-          title: "Séries dans le bon ordre",
-          description:
-            "Le profil obtenu met en avant les thèmes les plus rentables à reprendre en premier.",
-        },
-        {
-          title: "Corrections qui enseignent",
-          description:
-            "Chaque réponse laisse une règle, une justification et un repère pour la suite.",
-        },
-      ],
+      steps: [],
     },
   },
   {
@@ -110,13 +97,13 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     visible: true,
     props: {
       eyebrow: "La qualité des corrections",
-      title: "Pas un simple « faux ». Une explication qui vaut une révision.",
+      title: "Chaque correction doit vous laisser une règle claire.",
       description:
-        "Les exercices expliquent la règle et l'appliquent. Vous quittez chaque question avec quelque chose en plus.",
+        "L'objectif n'est pas de signaler l'erreur. L'objectif est de vous aider à la comprendre, puis à la refaire juste.",
       bulletItems: [
-        "QCM et analyses de langue avec feedback immédiat.",
-        "Règle nommée et justification réutilisable pour les séances suivantes.",
-        "Formulation pensée pour le concours, pas pour l'effet gadget.",
+        "Feedback immédiat sur les QCM et les analyses de langue.",
+        "Règle nommée et justification réutilisable dans les séries suivantes.",
+        "Formulation pensée pour le niveau attendu au CRPE.",
       ],
     },
   },
@@ -136,7 +123,7 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     props: {
       eyebrow: "FAQ",
       title: "Ce que les candidats demandent avant de commencer.",
-      description: "Réponses directes. Pas d'engagement caché.",
+      description: "Réponses courtes aux vraies hésitations avant de commencer.",
       noteTitle: "Une question non listée ?",
       noteDescription: "Écrivez à contact@crpe-prep.fr",
       noteLinkHref: "mailto:contact@crpe-prep.fr",
@@ -149,17 +136,12 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
         {
           question: "Que reçoit-on à la fin de la session de départ ?",
           answer:
-            "En 8 minutes et 16 questions, vous obtenez un profil complet sous-domaine par sous-domaine : vos points forts, vos lacunes prioritaires, et un ordre de révision personnalisé. Ce profil guide tout votre parcours — les séries remontent dans l'ordre où vous en avez le plus besoin.",
+            `Environ 30 minutes et ${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions plus tard, vous obtenez un profil complet sous-domaine par sous-domaine : points d'appui, lacunes prioritaires et ordre de révision recommandé. Ce profil guide ensuite les séries à lancer en premier.`,
         },
         {
           question: "Les corrections sont-elles vraiment utiles ?",
           answer:
             "C'est le point central du site. Chaque exercice est corrigé avec la règle grammaticale ou orthographique qui s'applique — pas seulement la bonne réponse. Vous comprenez pourquoi vous avez faux, et vous mémorisez la règle pour ne plus refaire la même erreur le jour du concours.",
-        },
-        {
-          question: "Quels domaines sont couverts ?",
-          answer:
-            `Grammaire, orthographe, conjugaison, lexique, analyse de la langue, compréhension de texte et didactique du français — les ${subdomainCount} sous-domaines testés au CRPE. Tout le contenu est aligné sur le programme officiel 2026.`,
         },
         {
           question: "Peut-on arrêter l'abonnement facilement ?",
@@ -171,11 +153,6 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
           answer:
             "Les annales vous donnent des sujets — pas de correction, pas de priorisation, pas d'adaptation à vos lacunes. Ici, chaque exercice est corrigé avec la règle qui s'applique, un diagnostic identifie vos points faibles sous-domaine par sous-domaine, et les séries remontent dans l'ordre où vous en avez le plus besoin. Les annales sont un outil de test. Ce site est un outil de progression.",
         },
-        {
-          question: "Combien d'exercices sont disponibles ?",
-          answer:
-            "Plus de 500 exercices répartis en 60+ séries, couvrant les 7 sous-domaines testés au CRPE : grammaire, conjugaison, orthographe, lexique, analyse de la langue, compréhension de texte et didactique du français. Le catalogue est aligné sur le programme officiel 2026.",
-        },
       ],
     },
   },
@@ -183,15 +160,15 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     type: "final_cta",
     visible: true,
     props: {
-      eyebrow: "Prêt à commencer ?",
-      title: "Commencez par le diagnostic — gratuit, 8 minutes, sans carte.",
+      eyebrow: "Point de départ recommandé",
+      title: "Commencez par voir où vous perdez vraiment des points.",
       description:
-        "Identifiez vos lacunes réelles. Révisez dans l'ordre qui compte. Comprenez avant de passer à la suite.",
+        "Le diagnostic est gratuit. Il vous donne un profil par sous-domaine, puis vous oriente vers les séries les plus rentables.",
       bulletItems: [
-        "Gratuit pour commencer — sans carte bancaire.",
-        "Profil sous-domaine en sortie du diagnostic.",
-        "Séries ciblées selon vos résultats.",
-        "Résiliable à tout moment via Stripe.",
+        "Diagnostic complet gratuit, sans carte bancaire.",
+        "Profil sous-domaine en sortie.",
+        "20 questions corrigées par jour en accès gratuit.",
+        "Accès premium illimité, résiliable à tout moment.",
       ],
       pricingTiers: [
         { label: "Gratuit", price: "0 €/jour", highlight: false },
@@ -199,11 +176,11 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
         { label: "Semainier", price: "2,99 €", highlight: false },
         { label: "Mensuel", price: "6,99 €/mois", highlight: true },
       ],
-      primaryCtaLabel: "Faire le diagnostic gratuit",
-      primaryCtaHref: "/inscription",
-      secondaryCtaLabelGuest: "Voir l'offre complète",
+      primaryCtaLabel: "Lancer le diagnostic gratuit",
+      primaryCtaHref: "/diagnostic",
+      secondaryCtaLabelGuest: "Voir les accès gratuit et premium",
       secondaryCtaHrefGuest: "/offre",
-      secondaryCtaLabelAuth: "Voir l'offre complète",
+      secondaryCtaLabelAuth: "Voir les accès gratuit et premium",
       secondaryCtaHrefAuth: "/offre",
     },
   },

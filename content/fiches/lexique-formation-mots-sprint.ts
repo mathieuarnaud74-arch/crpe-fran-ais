@@ -4,7 +4,6 @@ export const formationMotsSprint: Fiche = {
   id: "lexique-formation-mots-sprint",
   slug: "formation-des-mots-sprint",
   title: "Formation des mots : dérivation et composition",
-  subtitle: "Révision express — 5 min",
   domaine: "lexique",
   model: "sprint",
   accessTier: "free",

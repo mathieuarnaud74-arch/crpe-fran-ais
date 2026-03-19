@@ -4,7 +4,6 @@ export const imparfaitPasseSimpleSprint: Fiche = {
   id: "conjugaison-imparfait-passe-simple-sprint",
   slug: "imparfait-ou-passe-simple",
   title: "Imparfait ou passé simple ?",
-  subtitle: "Révision express — 5 min",
   domaine: "conjugaison",
   model: "sprint",
   accessTier: "free",

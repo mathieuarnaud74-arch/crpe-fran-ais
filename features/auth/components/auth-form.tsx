@@ -64,7 +64,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       }
 
       setMessage(
-        "Compte créé. Si la confirmation email est activée dans Supabase, validez votre adresse avant de vous connecter.",
+        "Compte créé. Si la confirmation email est activée, validez votre adresse puis connectez-vous pour retrouver votre diagnostic et vos révisions.",
       );
       setIsLoading(false);
       return;
@@ -130,7 +130,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         {isLoading
           ? "Traitement en cours..."
           : mode === "signup"
-            ? "Créer mon compte"
+            ? "Créer mon compte gratuit"
             : "Se connecter"}
       </Button>
     </form>
