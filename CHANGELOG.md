@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-19] — Correction format tri par catégories : 100 QCM → 60 vrais exercices drag-and-drop
+
+- `supabase/migrations/20260329_fix_tri_categories_format.sql` — suppression des 100 exercices QCM/vrai-faux/réponse courte qui portaient le label « Tri par catégories » sans en respecter le format ; remplacement par 60 vrais exercices `tri_categories` (mode `categorization`, drag-and-drop) répartis sur 10 séries : nom/verbe/adjectif, déterminant/pronom/adverbe, mots de liaison, variable/invariable, familles de déterminants, familles de pronoms, formes verbales, le mot « tout », le mot « que », mots à double nature
+
 ## [2026-03-19] — Audit diagnostic : corrections de fond, qualité banque, cohérence produit
 
 - `content/french-diagnostic-questions.ts` — correction erreur de fond `diag-lex-7` (avocat = homonymie, non polysémie) ; suppression du `.slice(0, 10)` dans le générateur (toute la banque est maintenant tirée) ; réécriture des 11 questions classées A (trop faciles) : grammaire-8, ortho-5, lex-3/4/8/10, comp-4/9, did-1/2/8 — passages de définitions frontales à des cas d'application et distracteurs plus proches
