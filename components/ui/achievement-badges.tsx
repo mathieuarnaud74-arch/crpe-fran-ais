@@ -217,23 +217,37 @@ export function AchievementBadges({
                         "flex h-9 w-9 cursor-default items-center justify-center rounded-full text-lg transition-transform duration-150",
                         isEarned
                           ? "bg-successBg/60 hover:scale-125"
-                          : "bg-secondary/60 opacity-30 grayscale",
+                          : "bg-secondary/60 opacity-30 grayscale hover:opacity-50 hover:scale-110",
                       )}
                       aria-label={`${badge.label} — ${badge.description}${isEarned ? "" : " (verrouill\u00e9)"}`}
                     >
                       {badge.icon}
                     </span>
-                    {isEarned && (
-                      <span
-                        role="tooltip"
-                        className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-2 hidden -translate-x-1/2 whitespace-nowrap rounded-lg border border-border bg-ink px-2.5 py-1.5 text-xs text-paper shadow-elevated group-hover:block"
-                      >
-                        <span className="font-semibold">{badge.label}</span>
-                        <br />
-                        <span className="text-paper/60">{badge.description}</span>
-                        <span className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-ink" />
+                    <span
+                      role="tooltip"
+                      className={cn(
+                        "pointer-events-none absolute bottom-full left-1/2 z-30 mb-2 hidden -translate-x-1/2 whitespace-nowrap rounded-lg border px-2.5 py-1.5 text-xs shadow-elevated group-hover:block",
+                        isEarned
+                          ? "border-border bg-ink text-paper"
+                          : "border-border bg-ink/80 text-paper/80",
+                      )}
+                    >
+                      <span className="font-semibold">{badge.label}</span>
+                      <br />
+                      <span className={isEarned ? "text-paper/60" : "text-paper/50"}>
+                        {badge.description}
                       </span>
-                    )}
+                      {!isEarned && (
+                        <>
+                          <br />
+                          <span className="text-paper/40">🔒 Verrouillé</span>
+                        </>
+                      )}
+                      <span className={cn(
+                        "absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent",
+                        isEarned ? "border-t-ink" : "border-t-ink/80",
+                      )} />
+                    </span>
                   </div>
                 );
               })}

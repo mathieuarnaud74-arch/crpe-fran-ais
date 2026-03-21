@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-21] — Fix tooltips badges coupés + tooltips sur badges verrouillés
+
+- `components/ui/badges-summary.tsx` — suppression `overflow-hidden` du conteneur qui coupait les tooltips sur les bords, ajout `rounded` sur bouton et zone de contenu
+- `components/ui/achievement-badges.tsx` — ajout tooltip au survol pour les badges non obtenus (nom + description + 🔒 Verrouillé), effet hover sur badges verrouillés
+
 ## [2026-03-21] — Badges déplacés sous les stats sur la page Progression
 
 - `app/(app)/progression/page.tsx` — déplacement du `BadgesSummary` juste après le panneau stats (Tentatives/Réussite/Maîtrisées/Non commencées) au lieu de tout en bas de la page

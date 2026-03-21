@@ -19,11 +19,11 @@ export function BadgesSummary({ earnedBadges }: BadgesSummaryProps) {
   const lastEarned = earnedBadges.slice(-3);
 
   return (
-    <div className="overflow-hidden rounded-[1.25rem] border border-border bg-card shadow-subtle">
+    <div className="rounded-[1.25rem] border border-border bg-card shadow-subtle">
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-paper/50"
+        className="flex w-full items-center gap-4 rounded-t-[1.25rem] px-5 py-4 text-left transition-colors hover:bg-paper/50"
       >
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-4 gap-y-2">
           <span className="text-xs font-semibold uppercase tracking-[0.16em] text-accentSecondary">
@@ -57,7 +57,7 @@ export function BadgesSummary({ earnedBadges }: BadgesSummaryProps) {
       </button>
 
       {open && (
-        <div className="border-t border-border px-5 py-4">
+        <div className="overflow-visible rounded-b-[1.25rem] border-t border-border px-5 py-4">
           <AchievementBadges earnedBadges={earnedBadges} />
         </div>
       )}
