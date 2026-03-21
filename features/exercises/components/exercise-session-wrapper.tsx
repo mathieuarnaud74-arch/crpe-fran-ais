@@ -4,8 +4,19 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 
 import { ExercisePlayer } from "@/features/exercises/components/exercise-player";
-import { ModeSelector } from "@/features/exercises/components/mode-selector";
+import { ModeSelector, FAST_MODE_TYPES } from "@/features/exercises/components/mode-selector";
 import type { ExerciseMode, RevisionSession } from "@/types/domain";
+
+/** Filter session questions to only those compatible with the selected mode */
+function filterSessionForMode(session: RevisionSession, mode: ExerciseMode): RevisionSession {
+  if (mode === "standard") return session;
+
+  const filtered = mode === "swipe"
+    ? session.questions.filter((q) => q.exercise_type === "vrai_faux")
+    : session.questions.filter((q) => FAST_MODE_TYPES.has(q.exercise_type));
+
+  return { ...session, questions: filtered, questionCount: filtered.length };
+}
 
 const SprintPlayer = dynamic(
   () =>
@@ -63,10 +74,12 @@ export function ExerciseSessionWrapper({
     );
   }
 
+  const filteredSession = filterSessionForMode(session, selectedMode);
+
   if (selectedMode === "swipe") {
     return (
       <SwipePlayer
-        session={session}
+        session={filteredSession}
         initialXp={initialXp}
         nextSession={nextSession}
       />
@@ -76,7 +89,7 @@ export function ExerciseSessionWrapper({
   if (selectedMode === "sprint") {
     return (
       <SprintPlayer
-        session={session}
+        session={filteredSession}
         initialXp={initialXp}
         personalBest={personalBest}
         nextSession={nextSession}
@@ -86,7 +99,7 @@ export function ExerciseSessionWrapper({
 
   return (
     <ExercisePlayer
-      session={session}
+      session={filteredSession}
       disabledReason={disabledReason}
       nextSession={nextSession}
       mode={selectedMode}

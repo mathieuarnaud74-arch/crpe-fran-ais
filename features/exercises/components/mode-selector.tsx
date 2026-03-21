@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -19,11 +19,12 @@ type ModeOption = {
   icon: string;
   xpMultiplier: string;
   estimatedTime: string;
-  available: (session: RevisionSession) => boolean;
+  /** Returns the number of compatible questions for this mode in the given session */
+  compatibleCount: (session: RevisionSession) => number;
 };
 
 /** Types d'exercices compatibles avec les modes rapides (chrono/sprint) */
-const FAST_MODE_TYPES = new Set([
+export const FAST_MODE_TYPES = new Set([
   "qcm",
   "vrai_faux",
   "reponse_courte",
@@ -32,8 +33,12 @@ const FAST_MODE_TYPES = new Set([
   "analyse_texte",
 ]);
 
-function isSeriesFastModeCompatible(session: RevisionSession): boolean {
-  return session.questions.every((q) => FAST_MODE_TYPES.has(q.exercise_type));
+function countFastModeCompatible(session: RevisionSession): number {
+  return session.questions.filter((q) => FAST_MODE_TYPES.has(q.exercise_type)).length;
+}
+
+function countVraiFaux(session: RevisionSession): number {
+  return session.questions.filter((q) => q.exercise_type === "vrai_faux").length;
 }
 
 const MODES: ModeOption[] = [
@@ -44,7 +49,7 @@ const MODES: ModeOption[] = [
     icon: "📖",
     xpMultiplier: "×1",
     estimatedTime: "~10 min",
-    available: () => true,
+    compatibleCount: (session) => session.questions.length,
   },
   {
     mode: "timed",
@@ -53,7 +58,7 @@ const MODES: ModeOption[] = [
     icon: "⏱️",
     xpMultiplier: "×1.5",
     estimatedTime: "~5 min",
-    available: (session) => isSeriesFastModeCompatible(session),
+    compatibleCount: countFastModeCompatible,
   },
   {
     mode: "sprint",
@@ -62,7 +67,7 @@ const MODES: ModeOption[] = [
     icon: "🏃",
     xpMultiplier: "×2",
     estimatedTime: "~2 min",
-    available: (session) => isSeriesFastModeCompatible(session),
+    compatibleCount: countFastModeCompatible,
   },
   {
     mode: "swipe",
@@ -71,8 +76,7 @@ const MODES: ModeOption[] = [
     icon: "👆",
     xpMultiplier: "×1.2",
     estimatedTime: "~3 min",
-    available: (session) =>
-      session.questions.every((q) => q.exercise_type === "vrai_faux"),
+    compatibleCount: countVraiFaux,
   },
 ];
 
@@ -86,14 +90,13 @@ export function ModeSelector({ session, onSelect }: ModeSelectorProps) {
   const [selectedMode, setSelectedMode] = useState<ExerciseMode | null>(null);
   const [timerDuration, setTimerDuration] = useState(60);
 
-  const availableModes = MODES.filter((m) => m.available(session));
-
   function handleConfirm() {
     if (!selectedMode) return;
     onSelect(selectedMode, { timerDuration });
   }
 
   return (
+    <LazyMotion features={domAnimation}>
     <div className="space-y-6">
       <div>
         <h2 className="font-serif text-2xl font-semibold text-ink">
@@ -105,36 +108,52 @@ export function ModeSelector({ session, onSelect }: ModeSelectorProps) {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        {availableModes.map((m) => (
-          <motion.button
-            key={m.mode}
-            type="button"
-            onClick={() => setSelectedMode(m.mode)}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className={cn(
-              "flex flex-col gap-3 rounded-panel border-2 p-5 text-left transition-colors",
-              selectedMode === m.mode
-                ? "border-accent bg-accent/5 shadow-panel"
-                : "border-border bg-card hover:border-accent/50",
-            )}
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">{m.icon}</span>
-                <span className="font-serif text-lg font-semibold text-ink">{m.label}</span>
+        {MODES.map((opt) => {
+          const count = opt.compatibleCount(session);
+          const disabled = count === 0;
+          const partial = count < session.questions.length && count > 0 && opt.mode !== "standard";
+
+          return (
+            <m.button
+              key={opt.mode}
+              type="button"
+              onClick={() => !disabled && setSelectedMode(opt.mode)}
+              whileHover={!disabled ? { scale: 1.02 } : undefined}
+              whileTap={!disabled ? { scale: 0.98 } : undefined}
+              className={cn(
+                "flex flex-col gap-3 rounded-panel border-2 p-5 text-left transition-colors",
+                disabled
+                  ? "cursor-not-allowed border-border bg-secondary/50 opacity-50"
+                  : selectedMode === opt.mode
+                    ? "border-accent bg-accent/5 shadow-panel"
+                    : "border-border bg-card hover:border-accent/50",
+              )}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">{opt.icon}</span>
+                  <span className="font-serif text-lg font-semibold text-ink">{opt.label}</span>
+                </div>
+                <Badge tone={disabled ? "neutral" : "accent"} size="sm">{opt.xpMultiplier} XP</Badge>
               </div>
-              <Badge tone="accent" size="sm">{m.xpMultiplier} XP</Badge>
-            </div>
-            <p className="text-sm leading-relaxed text-muted">{m.description}</p>
-            <p className="text-xs text-muted">Durée estimée : {m.estimatedTime}</p>
-          </motion.button>
-        ))}
+              <p className="text-sm leading-relaxed text-muted">{opt.description}</p>
+              <div className="flex items-center justify-between">
+                <p className="text-xs text-muted">Durée estimée : {opt.estimatedTime}</p>
+                {partial && (
+                  <p className="text-xs text-accentSecondary">{count}/{session.questions.length} questions</p>
+                )}
+                {disabled && (
+                  <p className="text-xs text-muted">Aucune question compatible</p>
+                )}
+              </div>
+            </m.button>
+          );
+        })}
       </div>
 
       {/* Timer duration selector for timed mode */}
       {selectedMode === "timed" && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           className="rounded-card border border-border bg-card p-4"
@@ -157,10 +176,10 @@ export function ModeSelector({ session, onSelect }: ModeSelectorProps) {
               </button>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       )}
 
-      <motion.button
+      <m.button
         type="button"
         onClick={handleConfirm}
         disabled={!selectedMode}
@@ -173,8 +192,9 @@ export function ModeSelector({ session, onSelect }: ModeSelectorProps) {
             : "cursor-not-allowed bg-secondary text-muted",
         )}
       >
-        {selectedMode ? `Commencer en mode ${MODES.find((m) => m.mode === selectedMode)?.label}` : "Sélectionnez un mode"}
-      </motion.button>
+        {selectedMode ? `Commencer en mode ${MODES.find((opt) => opt.mode === selectedMode)?.label}` : "Sélectionnez un mode"}
+      </m.button>
     </div>
+    </LazyMotion>
   );
 }
