@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
+import { DownloadFicheButton } from "@/features/fiches/components/download-fiche-button";
 import { FicheHeader } from "@/features/fiches/components/fiche-header";
 import { FicheReference } from "@/features/fiches/components/fiche-reference";
 import { FicheSprint } from "@/features/fiches/components/fiche-sprint";
@@ -26,6 +27,7 @@ export default async function FichePage({ params }: { params: Params }) {
         <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
           <FicheHeader fiche={fiche} />
           <div className="flex shrink-0 flex-wrap gap-3">
+            <DownloadFicheButton fiche={fiche} />
             <ButtonLink href="/fiches" variant="secondary">
               ← Toutes les fiches
             </ButtonLink>

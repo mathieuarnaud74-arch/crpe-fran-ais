@@ -14,7 +14,7 @@ export const analyseLangueComplementsCirconstancielsSprint: Fiche = {
     "complement circonstanciel",
     "mobilite",
     "suppressibilite",
-    "complement essentiel",
+    "COD COI",
     "valence verbale",
     "temps",
     "lieu",
@@ -26,7 +26,7 @@ export const analyseLangueComplementsCirconstancielsSprint: Fiche = {
     disclaimer:
       "Cette fiche donne les tests les plus rentables pour le CRPE. Ils fonctionnent dans la majorite des cas, mais doivent toujours etre verifies par le sens du verbe et par la construction de la phrase.",
     oneLiner:
-      "Un complement circonstanciel precise les circonstances de l'action (temps, lieu, maniere, cause, but...) sans etre impose par la valence du verbe. Les tests utiles sont la mobilite et la suppressibilite ; a l'inverse, un complement essentiel est etroitement commande par le verbe et supporte mal la suppression ou certains deplacements.",
+      "Un complement circonstanciel precise les circonstances de l'action (temps, lieu, maniere, cause, but...) sans etre impose par la valence du verbe. Les tests utiles sont la mobilite et la suppressibilite ; a l'inverse, un complement d'objet (COD ou COI) est etroitement commande par le verbe et supporte mal la suppression ou certains deplacements.",
     exampleCorrect: {
       sentence: "\"Demain, les candidats reliront leur synthese dans le calme.\"",
       explanation:
@@ -63,7 +63,7 @@ export const analyseLangueComplementsCirconstancielsSprint: Fiche = {
       },
       {
         sentence:
-          "Un complement essentiel est toujours impossible a deplacer, sans aucune exception.",
+          "Un complement d'objet (COD ou COI) est toujours impossible a deplacer, sans aucune exception.",
         isCorrect: false,
         explanation:
           "FAUX. Les tests de mobilite et de suppressibilite sont tres utiles, mais ils ne doivent pas etre transformes en regles absolues. Certains complements essentiels acceptent des deplacements marques ; c'est l'ensemble des indices syntaxiques qu'il faut croiser.",

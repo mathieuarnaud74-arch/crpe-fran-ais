@@ -77,6 +77,20 @@ import { concordanceTempsReference } from "./conjugaison-concordance-temps-refer
 import { figuresStyleReference } from "./lexique-figures-style-reference";
 import { schemaNarratifOperatoire } from "./comprehension-texte-schema-narratif-operatoire";
 import { apprentissageLectureReference } from "./didactique-apprentissage-lecture-reference";
+import { naturePronomsSprint } from "./analyse-langue-nature-pronoms-sprint";
+import { evaluationLectureSprint } from "./didactique-evaluation-lecture-sprint";
+import { connecteursLogiquesSprint } from "./comprehension-texte-connecteurs-logiques-sprint";
+import { natureFonctionOperatoire } from "./grammaire-nature-fonction-operatoire";
+import { choixTempsPasseOperatoire } from "./conjugaison-choix-temps-passe-operatoire";
+import { accordAdjectifOperatoire } from "./orthographe-accord-adjectif-operatoire";
+import { sensMotContexteOperatoire } from "./lexique-sens-mot-contexte-operatoire";
+import { phraseComplexeReference } from "./grammaire-phrase-complexe-reference";
+import { homophonesGrammaticauxReference } from "./orthographe-homophones-grammaticaux-reference";
+import { manipulationsSyntaxiquesReference } from "./analyse-langue-manipulations-syntaxiques-reference";
+import { typeDiscoursOperatoire } from "./comprehension-texte-type-discours-operatoire";
+import { demarcheEtudeLangueOperatoire } from "./didactique-demarche-etude-langue-operatoire";
+import { plurielIrregulierSprint } from "./orthographe-pluriel-irregulier-sprint";
+import { phraseInterrogativeSprint } from "./grammaire-phrase-interrogative-sprint";
 
 export const allFiches: Fiche[] = [
   reperageExpliciteSprint,
@@ -156,4 +170,18 @@ export const allFiches: Fiche[] = [
   figuresStyleReference,
   schemaNarratifOperatoire,
   apprentissageLectureReference,
+  naturePronomsSprint,
+  evaluationLectureSprint,
+  connecteursLogiquesSprint,
+  natureFonctionOperatoire,
+  choixTempsPasseOperatoire,
+  accordAdjectifOperatoire,
+  sensMotContexteOperatoire,
+  phraseComplexeReference,
+  homophonesGrammaticauxReference,
+  manipulationsSyntaxiquesReference,
+  typeDiscoursOperatoire,
+  demarcheEtudeLangueOperatoire,
+  plurielIrregulierSprint,
+  phraseInterrogativeSprint,
 ];
