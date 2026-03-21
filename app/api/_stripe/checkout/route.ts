@@ -44,13 +44,18 @@ export async function POST(request: Request) {
     priceId === env.stripePricePremiumWeeklyId;
 
   const admin = createSupabaseAdminClient();
-  const { data: existingSubscription } = await admin
+  const { data: existingSubscription, error: dbError } = await admin
     .from("subscriptions")
     .select("*")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
+
+  if (dbError) {
+    console.error("[checkout] subscription lookup failed:", dbError.message);
+    return NextResponse.json({ error: "Erreur interne." }, { status: 500 });
+  }
 
   const stripe = getStripeServerClient();
   const customerId = existingSubscription?.stripe_customer_id ?? null;

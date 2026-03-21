@@ -110,7 +110,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
     estimatedMinutes: 12,
     access_tier: "free",
-    recommendedOrder: 44,
+    recommendedOrder: 49,
     completionSummary: {
       skill: "Analyser la fonction attribut du sujet et identifier les verbes attributifs dans un corpus de phrases",
       keyPoints: [
@@ -250,7 +250,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
     estimatedMinutes: 14,
     access_tier: "free",
-    recommendedOrder: 45,
+    recommendedOrder: 50,
     completionSummary: {
       skill: "Classer les phrases selon leurs types et formes conformément à la terminologie Éduscol 2021 et analyser les phrases atypiques",
       keyPoints: [
@@ -384,7 +384,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
     estimatedMinutes: 13,
     access_tier: "free",
-    recommendedOrder: 46,
+    recommendedOrder: 51,
     completionSummary: {
       skill: "Distinguer polysémie et homonymie et analyser les relations sémantiques dans un corpus lexical",
       keyPoints: [
@@ -518,7 +518,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
     estimatedMinutes: 13,
     access_tier: "free",
-    recommendedOrder: 47,
+    recommendedOrder: 52,
     completionSummary: {
       skill: "Analyser les mécanismes de cohésion textuelle et identifier les reprises anaphoriques dans un texte",
       keyPoints: [
@@ -642,7 +642,7 @@ export const seriesV3BatchK: RevisionSession[] = [
   buildSession({
     id: "fr-v3-serie-imperatif-modes",
     title: "L'impératif et les modes non personnels",
-    summary: "Maîtriser les formes de l'impératif (absence du -s pour le 2e personne du singulier du 1er groupe, sauf devant en/y), distinguer modes personnels et non personnels, et comprendre que l'infinitif et le participe sont des modes de la conjugaison.",
+    summary: "Maîtriser les formes de l'impératif (absence du -s pour la 2e personne du singulier du 1er groupe, sauf devant en/y), distinguer modes personnels et non personnels, et comprendre que l'infinitif et le participe sont des modes de la conjugaison.",
     objective: "Connaître les particularités de l'impératif et les modes non personnels (infinitif, participe, gérondif) pour l'analyse grammaticale et la conjugaison au CRPE.",
     introduction: "L'impératif est un mode personnel qui ne se conjugue qu'à trois personnes (2e singulier, 1re et 2e pluriel) sans pronom sujet. Ses particularités orthographiques sont un piège classique du CRPE : l'absence du -s à la 2e personne du singulier pour les verbes du 1er groupe (sauf devant « en » et « y »). Cette série aborde aussi les modes non personnels (infinitif, participe, gérondif) qui, bien que ne variant pas en personne, sont des modes à part entière de la conjugaison française.",
     subdomain: "conjugaison",
@@ -652,7 +652,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
     estimatedMinutes: 13,
     access_tier: "free",
-    recommendedOrder: 48,
+    recommendedOrder: 53,
     completionSummary: {
       skill: "Conjuguer correctement l'impératif et analyser les modes personnels et non personnels de la conjugaison française",
       keyPoints: [
@@ -746,7 +746,7 @@ export const seriesV3BatchK: RevisionSession[] = [
       reponseCourte(
         "v3k-im-8", "conjugaison", "Intermediaire",
         "Conjuguez le verbe « finir » (2e groupe) à l'impératif présent, 2e personne du singulier.",
-        ["finis", "Finis"],
+        ["finis", "Finis", "Finis !", "finis !", "Finis!", "finis!"],
         "La forme correcte est « Finis » (avec un -s). Contrairement aux verbes du 1er groupe qui perdent le -s à l'impératif 2e personne du singulier, les verbes du 2e groupe le conservent. C'est logique : la forme de l'impératif du 2e groupe est identique à celle de l'indicatif présent (« tu finis » → « Finis ! »). Seuls les verbes du 1er groupe (-er) et quelques verbes du 3e groupe conjugués comme le 1er groupe (ouvrir → « Ouvre ! », cueillir → « Cueille ! ») perdent le -s à l'impératif 2e personne du singulier.",
         "Retirer le -s par analogie avec la règle des verbes du 1er groupe. La suppression du -s à l'impératif 2e personne du singulier ne concerne que les verbes en -er (1er groupe) et quelques verbes du 3e groupe assimilés.",
         "free",
@@ -762,7 +762,7 @@ export const seriesV3BatchK: RevisionSession[] = [
       reponseCourte(
         "v3k-im-10", "conjugaison", "Intermediaire",
         "Quels sont les trois modes non personnels de la conjugaison française ?",
-        ["infinitif, participe, gérondif", "infinitif participe gérondif", "Infinitif, participe, gérondif", "l'infinitif, le participe et le gérondif", "L'infinitif, le participe et le gérondif", "infinitif, participe et gérondif"],
+        ["infinitif, participe, gérondif", "infinitif participe gérondif", "Infinitif, participe, gérondif", "l'infinitif, le participe et le gérondif", "L'infinitif, le participe et le gérondif", "infinitif, participe et gérondif", "participe, infinitif, gerondif", "participe, infinitif, gérondif", "gerondif, infinitif, participe", "gérondif, infinitif, participe", "infinitif, gerondif, participe", "infinitif, gérondif, participe", "participe, gerondif, infinitif", "participe, gérondif, infinitif", "gerondif, participe, infinitif", "gérondif, participe, infinitif", "le participe, l'infinitif et le gérondif", "le gérondif, l'infinitif et le participe", "l'infinitif, le gérondif et le participe"],
         "Les trois modes non personnels sont l'infinitif, le participe et le gérondif. Ils sont dits « non personnels » car ils ne se conjuguent pas en personne (pas de variation je/tu/il/nous/vous/ils). L'infinitif a deux temps : présent (chanter) et passé (avoir chanté). Le participe a deux temps : présent (chantant) et passé (chanté). Le gérondif n'a qu'un présent (en chantant). Malgré l'absence de variation en personne, ces trois modes font pleinement partie du système de conjugaison du français et doivent être connus pour le CRPE.",
         "Oublier le gérondif et ne citer que l'infinitif et le participe. Le gérondif (en + participe présent) est bien un mode à part entière, distinct du participe présent seul.",
         "free",

@@ -530,7 +530,7 @@ export const seriesV3BatchC: RevisionSession[] = [
         "v3c-comp-7",
         "analyse_langue",
         "Intermediaire",
-        "Dans « télévision », quel est le sens de l'élément téléo- ?",
+        "Dans « télévision », quel est le sens de l'élément télé- ?",
         [
           { id: "a", label: "Rapide" },
           { id: "b", label: "À distance, loin" },
@@ -538,7 +538,7 @@ export const seriesV3BatchC: RevisionSession[] = [
           { id: "d", label: "Électronique" },
         ],
         "b",
-        "L'élément téléo- / télé- vient du grec têle, « loin, à distance ». Il entre dans de nombreux composés savants : télévision (voir à distance), téléphone (son à distance), télépathie, télécommande. Il ne faut pas le confondre avec le préfixe télé- de télévision (abréviation familière).",
+        "L'élément télé- vient du grec têle, « loin, à distance ». Il entre dans de nombreux composés savants : télévision (voir à distance), téléphone (son à distance), télépathie, télécommande. Il ne faut pas le confondre avec le préfixe télé- de télévision (abréviation familière).",
         "Associer télé- à l'appareil (le téléviseur) et oublier le sens étymologique « loin ».",
         "free",
       ),

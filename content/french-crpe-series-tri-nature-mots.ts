@@ -3,7 +3,7 @@
  * topic_key : tri_nature_mots
  * Session DB  : session-tri_nature_mots-Intermediaire-1
  *
- * 6 exercices de tri interactif — le mot est classé dans une colonne
+ * 10 exercices de tri interactif — le mot est classé dans une colonne
  * par clic, sans drag-and-drop.
  * Les données de référence sont dans la migration SQL :
  *   supabase/migrations/20260319_seed_tri_nature_mots.sql
@@ -63,7 +63,7 @@ const CAT_LIAISON = [
   { id: "subord", label: "Conjonction de subordination" },
 ];
 
-const CAT_VARIANV = [
+const CAT_VARIANT = [
   { id: "variable", label: "Variable" },
   { id: "invariable", label: "Invariable" },
 ];
@@ -72,6 +72,26 @@ const CAT_FORMES = [
   { id: "infinitif", label: "Infinitif" },
   { id: "pp", label: "Participe passé" },
   { id: "conjugue", label: "Verbe conjugué" },
+];
+
+const CAT_EN = [
+  { id: "prep", label: "Préposition" },
+  { id: "pronom", label: "Pronom" },
+];
+
+const CAT_SI = [
+  { id: "subord", label: "Conjonction de subordination" },
+  { id: "adverbe", label: "Adverbe d'intensité" },
+];
+
+const CAT_OU = [
+  { id: "pronom_rel", label: "Pronom relatif" },
+  { id: "adverbe_inter", label: "Adverbe interrogatif" },
+];
+
+const CAT_Y = [
+  { id: "pronom", label: "Pronom" },
+  { id: "adverbe", label: "Adverbe de lieu" },
 ];
 
 export const seriesTriNatureMots: RevisionSession[] = [
@@ -83,14 +103,14 @@ export const seriesTriNatureMots: RevisionSession[] = [
     objective:
       "Identifier avec sûreté la nature de tout mot rencontré dans une phrase ou hors contexte.",
     introduction:
-      "Le tri par catégories oblige à aller au-delà du sens : il faut analyser le fonctionnement du mot dans la langue. Ces six exercices couvrent les natures fondamentales attendues au CRPE.",
+      "Le tri par catégories oblige à aller au-delà du sens : il faut analyser le fonctionnement du mot dans la langue. Ces dix exercices couvrent les natures fondamentales attendues au CRPE, y compris les mots polyvalents (en, si, où, y).",
     subdomain: "grammaire",
     topicKey: "tri_nature_mots",
     topicLabel: "Tri par catégories : nature des mots",
     level: "Intermediaire",
     exerciseTypeLabel: "Tri par catégories",
-    questionCount: 6,
-    estimatedMinutes: 12,
+    questionCount: 10,
+    estimatedMinutes: 20,
     access_tier: "free",
     recommendedOrder: 71,
     completionSummary: {
@@ -163,7 +183,7 @@ export const seriesTriNatureMots: RevisionSession[] = [
           { id: "tc01q4w5", label: "parce que" },
           { id: "tc01q4w6", label: "courageux" },
         ],
-        CAT_VARIANV,
+        CAT_VARIANT,
         { tc01q4w1: "variable", tc01q4w2: "invariable", tc01q4w3: "variable", tc01q4w4: "invariable", tc01q4w5: "invariable", tc01q4w6: "variable" },
         "Belle (beau/belle/beaux/belles) et courageux varient en genre et en nombre : ils sont variables. Leurs varie en nombre (leur/leurs) : il est variable. Rapidement, jamais et parce que ne changent jamais de forme : ils sont invariables.",
         "Oublier que leurs est variable (leur/leurs), ou croire que la terminaison -ment garantit l'invariabilité — elle s'applique aux adverbes, lesquels sont effectivement invariables, mais ce n'est pas la terminaison qui le prouve.",
@@ -199,6 +219,70 @@ export const seriesTriNatureMots: RevisionSession[] = [
         { tc01q6w1: "determinant", tc01q6w2: "pronom", tc01q6w3: "adverbe", tc01q6w4: "determinant", tc01q6w5: "pronom", tc01q6w6: "adverbe" },
         "Tout [le livre] et toute [la classe] précèdent un nom : ce sont des déterminants. Tous [ont réussi] est sujet ; tout [compris] est COD — les deux fonctionnent seuls et remplacent un groupe nominal : ce sont des pronoms. Tout [heureuse] et tout [petit] modifient un adjectif : ce sont des adverbes (tout peut prendre la marque du féminin devant consonne : toute petite).",
         "Croire que tout est toujours déterminant. Trois tests : un nom suit immédiatement → déterminant ; le mot fonctionne seul comme sujet ou complément → pronom ; le mot modifie un adjectif → adverbe.",
+      ),
+      triExercise(
+        "ac110000-0000-0000-0000-000000000007",
+        "Le mot « en » change de nature selon le contexte. Classez ces six occurrences.",
+        [
+          { id: "tc01q7w1", label: "en [hiver]" },
+          { id: "tc01q7w2", label: "J'en [veux]" },
+          { id: "tc01q7w3", label: "en [France]" },
+          { id: "tc01q7w4", label: "Il en [mange]" },
+          { id: "tc01q7w5", label: "en [arrivant]" },
+          { id: "tc01q7w6", label: "Elle en [parle]" },
+        ],
+        CAT_EN,
+        { tc01q7w1: "prep", tc01q7w2: "pronom", tc01q7w3: "prep", tc01q7w4: "pronom", tc01q7w5: "prep", tc01q7w6: "pronom" },
+        "En [hiver], en [France] et en [arrivant] introduisent un groupe nominal ou un gérondif : ce sont des prépositions. J'en [veux], il en [mange] et elle en [parle] — dans ces trois cas, en remplace un complément (du gâteau, de ce sujet…) : c'est un pronom personnel (pronom adverbial).",
+        "Confondre le pronom en et la préposition en. Test : si en peut être remplacé par « de cela » ou « de + GN », c'est un pronom ; s'il introduit un nom de lieu, de temps ou un gérondif, c'est une préposition.",
+      ),
+      triExercise(
+        "ac110000-0000-0000-0000-000000000008",
+        "Le mot « si » change de nature selon le contexte. Classez ces six occurrences.",
+        [
+          { id: "tc01q8w1", label: "Si [tu viens]" },
+          { id: "tc01q8w2", label: "si [grand]" },
+          { id: "tc01q8w3", label: "Si [j'avais su]" },
+          { id: "tc01q8w4", label: "si [gentiment]" },
+          { id: "tc01q8w5", label: "Si [elle accepte]" },
+          { id: "tc01q8w6", label: "si [peu]" },
+        ],
+        CAT_SI,
+        { tc01q8w1: "subord", tc01q8w2: "adverbe", tc01q8w3: "subord", tc01q8w4: "adverbe", tc01q8w5: "subord", tc01q8w6: "adverbe" },
+        "Si [tu viens], si [j'avais su] et si [elle accepte] introduisent une proposition subordonnée circonstancielle de condition : ce sont des conjonctions de subordination. Si [grand], si [gentiment] et si [peu] modifient un adjectif ou un adverbe pour exprimer l'intensité (= tellement) : ce sont des adverbes d'intensité.",
+        "Confondre les deux natures de si. Test : si si peut être remplacé par « tellement » ou « aussi », c'est un adverbe d'intensité ; s'il introduit une condition ou une hypothèse, c'est une conjonction de subordination.",
+      ),
+      triExercise(
+        "ac110000-0000-0000-0000-000000000009",
+        "Le mot « où » change de nature selon le contexte. Classez ces six occurrences.",
+        [
+          { id: "tc01q9w1", label: "la ville où [je vis]" },
+          { id: "tc01q9w2", label: "Où [vas-tu] ?" },
+          { id: "tc01q9w3", label: "le jour où [il est parti]" },
+          { id: "tc01q9w4", label: "Où [habitez-vous] ?" },
+          { id: "tc01q9w5", label: "l'endroit où [elle travaille]" },
+          { id: "tc01q9w6", label: "Où [se trouve] la gare ?" },
+        ],
+        CAT_OU,
+        { tc01q9w1: "pronom_rel", tc01q9w2: "adverbe_inter", tc01q9w3: "pronom_rel", tc01q9w4: "adverbe_inter", tc01q9w5: "pronom_rel", tc01q9w6: "adverbe_inter" },
+        "La ville où [je vis], le jour où [il est parti] et l'endroit où [elle travaille] — dans ces trois cas, où reprend un antécédent (ville, jour, endroit) et introduit une proposition subordonnée relative : c'est un pronom relatif. Où [vas-tu], où [habitez-vous] et où [se trouve] la gare — dans ces trois cas, où ouvre une interrogation portant sur le lieu : c'est un adverbe interrogatif.",
+        "Oublier que où peut exprimer le temps en plus du lieu (le jour où…). Test : si où a un antécédent et introduit une relative, c'est un pronom relatif ; s'il ouvre une question, c'est un adverbe interrogatif.",
+      ),
+      triExercise(
+        "ac110000-0000-0000-0000-000000000010",
+        "Le mot « y » change de nature selon le contexte. Classez ces six occurrences.",
+        [
+          { id: "tc01q10w1", label: "J'y [pense]" },
+          { id: "tc01q10w2", label: "Nous y [allons]" },
+          { id: "tc01q10w3", label: "Il y [réfléchit]" },
+          { id: "tc01q10w4", label: "Elle y [habite]" },
+          { id: "tc01q10w5", label: "J'y [tiens]" },
+          { id: "tc01q10w6", label: "Restez-y" },
+        ],
+        CAT_Y,
+        { tc01q10w1: "pronom", tc01q10w2: "adverbe", tc01q10w3: "pronom", tc01q10w4: "adverbe", tc01q10w5: "pronom", tc01q10w6: "adverbe" },
+        "J'y [pense] (= je pense à cela), il y [réfléchit] (= il réfléchit à cela) et j'y [tiens] (= je tiens à cela) — dans ces trois cas, y remplace un complément introduit par « à » : c'est un pronom personnel (pronom adverbial). Nous y [allons] (= nous allons là-bas), elle y [habite] (= elle habite là) et restez-y (= restez là) — dans ces trois cas, y indique le lieu : c'est un adverbe de lieu.",
+        "Confondre pronom et adverbe pour y. Test : si y peut être remplacé par « à cela / à + GN », c'est un pronom ; s'il peut être remplacé par « là / dans ce lieu », c'est un adverbe de lieu.",
       ),
     ],
   },

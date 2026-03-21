@@ -236,7 +236,7 @@ export const seriesV3BatchA: RevisionSession[] = [
       reponseCourte(
         "v3a-pcc-10", "grammaire", "Intermediaire",
         "Citez les six conjonctions de coordination du français selon la terminologie officielle (Éduscol 2021).",
-        ["mais ou et or ni car", "mais, ou, et, or, ni, car"],
+        ["mais ou et or ni car", "mais, ou, et, or, ni, car", "or, mais, ou, et, ni, car", "car, mais, ou, et, or, ni", "ni, or, car, mais, ou, et", "et, ou, ni, mais, or, car", "ou, et, mais, or, ni, car", "car, or, ni, mais, ou, et", "mais or ni car ou et", "et ou ni mais or car"],
         "Les six conjonctions de coordination (Éduscol 2021) sont : mais, ou, et, or, ni, car. Le moyen mnémotechnique classique 'Mais où est donc Ornicar ?' reste utile, mais attention : « donc » est classé comme un ADVERBE de liaison selon la terminologie officielle, pas comme une conjonction de coordination. Chaque conjonction exprime une valeur sémantique distincte : opposition (mais), alternative (ou), addition (et), restriction logique (or), négation (ni), cause (car).",
         "Citer « donc » parmi les conjonctions de coordination par habitude du moyen mnémotechnique, alors que la terminologie officielle le classe comme adverbe.",
         "free",
@@ -373,7 +373,7 @@ export const seriesV3BatchA: RevisionSession[] = [
       reponseCourte(
         "v3a-sc-10", "analyse_langue", "Difficile",
         "Donnez deux locutions conjonctives de but (autres que 'pour que') qui imposent le subjonctif.",
-        ["afin que", "de peur que", "de crainte que", "à condition que", "afin que / de peur que", "afin que / de crainte que"],
+        ["afin que", "de peur que", "de crainte que", "afin que / de peur que", "afin que / de crainte que"],
         "Les principales locutions conjonctives de but imposant le subjonctif sont : 'afin que', 'de peur que' (+ ne explétif), 'de crainte que' (+ ne explétif). À noter que 'de peur que' et 'de crainte que' expriment un but préventif (on agit pour éviter quelque chose). D'autres locutions avec subjonctif : 'à moins que' (condition négative), 'bien que' et 'quoique' (concession).",
         "Les candidats mémorisent souvent 'pour que' mais oublient 'afin que', 'de peur que', 'de crainte que'. Ces locutions de but avec nuance préventive sont fréquentes dans les textes littéraires et les sujets de CRPE.",
         "free",
@@ -657,10 +657,10 @@ export const seriesV3BatchA: RevisionSession[] = [
 
   buildSession({
     id: "fr-v3-serie-phrase-types",
-    title: "Types et formes de phrases (terminologie Eduscol 2021)",
+    title: "Types et formes de phrases (terminologie Éduscol 2021)",
     summary: "Maîtriser les trois types de phrases (déclaratif, interrogatif, impératif) et les formes (affirmative, négative, exclamative) selon la terminologie officielle 2021.",
-    objective: "Distinguer types et formes de phrases selon la terminologie Eduscol 2021, analyser les structures interrogatives et maîtriser les mots interrogatifs.",
-    introduction: "Selon la terminologie officielle (Eduscol 2021), on distingue trois types de phrases — déclaratif, interrogatif, impératif — et plusieurs formes, dont l'affirmative, la négative et l'exclamative. L'exclamation, autrefois classée comme un type, est désormais considérée comme une forme pouvant se combiner avec n'importe quel type. Ces notions sont fondamentales pour l'enseignement du français à l'école primaire et sont régulièrement évaluées au CRPE.",
+    objective: "Distinguer types et formes de phrases selon la terminologie Éduscol 2021, analyser les structures interrogatives et maîtriser les mots interrogatifs.",
+    introduction: "Selon la terminologie officielle (Éduscol 2021), on distingue trois types de phrases — déclaratif, interrogatif, impératif — et plusieurs formes, dont l'affirmative, la négative et l'exclamative. L'exclamation, autrefois classée comme un type, est désormais considérée comme une forme pouvant se combiner avec n'importe quel type. Ces notions sont fondamentales pour l'enseignement du français à l'école primaire et sont régulièrement évaluées au CRPE.",
     subdomain: "grammaire",
     topicKey: "types_phrases_grammaire",
     topicLabel: "Types et formes de phrases",
@@ -672,7 +672,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     completionSummary: {
       skill: "Identifier et transformer les types et formes de phrases",
       keyPoints: [
-        "Selon Eduscol 2021, trois types : déclaratif, interrogatif, impératif — et plusieurs formes : affirmative, négative, exclamative",
+        "Selon Éduscol 2021, trois types : déclaratif, interrogatif, impératif — et plusieurs formes : affirmative, négative, exclamative",
         "L'interrogation totale porte sur l'ensemble de la proposition (réponse oui/non) ; l'interrogation partielle porte sur un élément précis (mot interrogatif)",
         "Les trois procédés d'interrogation directe : intonation montante, 'est-ce que', inversion du sujet — seule l'inversion est absente dans le registre familier",
       ],
@@ -681,7 +681,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     questions: [
       qcm(
         "v3a-tp-1", "grammaire", "Facile",
-        "Selon la terminologie officielle (Eduscol 2021), combien existe-t-il de types de phrases en français ?",
+        "Selon la terminologie officielle (Éduscol 2021), combien existe-t-il de types de phrases en français ?",
         [
           { id: "a", label: "Deux (positive et négative)" },
           { id: "b", label: "Trois (déclaratif, interrogatif, impératif)" },
@@ -689,13 +689,13 @@ export const seriesV3BatchA: RevisionSession[] = [
           { id: "d", label: "Cinq (en ajoutant le conditionnel)" },
         ],
         "b",
-        "Depuis la terminologie officielle de 2021 (Eduscol), on distingue trois types de phrases : le déclaratif (affirmation ou négation d'un fait), l'interrogatif (question) et l'impératif (ordre, conseil, interdiction). L'exclamation, autrefois considérée comme un quatrième type, est désormais classée comme une forme de phrase. Les formes incluent l'affirmative, la négative et l'exclamative.",
+        "Depuis la terminologie officielle de 2021 (Éduscol), on distingue trois types de phrases : le déclaratif (affirmation ou négation d'un fait), l'interrogatif (question) et l'impératif (ordre, conseil, interdiction). L'exclamation, autrefois considérée comme un quatrième type, est désormais classée comme une forme de phrase. Les formes incluent l'affirmative, la négative et l'exclamative.",
         "La confusion entre 'type' et 'forme' est fréquente. Attention : les anciens manuels mentionnent quatre types (incluant l'exclamatif). La terminologie officielle 2021 retient trois types. L'exclamation peut se combiner avec n'importe quel type : « Comme il chante bien ! » (déclaratif + exclamatif).",
         "free",
       ),
       qcm(
         "v3a-tp-2", "grammaire", "Facile",
-        "Selon la terminologie Eduscol 2021, quel est le type de la phrase : « Quelle belle journée nous avons aujourd'hui ! » ?",
+        "Selon la terminologie Éduscol 2021, quel est le type de la phrase : « Quelle belle journée nous avons aujourd'hui ! » ?",
         [
           { id: "a", label: "Interrogatif" },
           { id: "b", label: "Déclaratif (avec forme exclamative)" },
@@ -1003,7 +1003,7 @@ export const seriesV3BatchA: RevisionSession[] = [
         "v3a-pnc-6", "orthographe", "Difficile",
         "La réforme orthographique de 1990 recommande de supprimer le trait d'union dans la plupart des noms composés.",
         false,
-        "C'est inexact. La réforme de 1990 recommande de souder certains mots composés qui s'écrivaient avec un trait d'union (portemonnaie → portefeuille reste avec trait d'union, mais nénuphar et oignon changent d'orthographe). La réforme ne supprime pas systématiquement les traits d'union dans les noms composés. Elle concerne surtout la soudure des préfixes et quelques mots spécifiques.",
+        "C'est inexact. La réforme de 1990 recommande de souder certains mots composés qui s'écrivaient avec un trait d'union (porte-monnaie → portemonnaie est recommandé, et d'autres modifications concernent les accents ou certaines lettres (nénufar, ognon)). La réforme ne supprime pas systématiquement les traits d'union dans les noms composés. Elle concerne surtout la soudure des préfixes et quelques mots spécifiques.",
         "Les candidats ont souvent une idée imprécise du contenu de la réforme de 1990. Celle-ci touche principalement : les mots avec préfixes (ex. : contre-exemple → contrexemple est recommandé), les numéraux (quatre-vingt-un → quatre-vingt-un ou quatre vingts), et quelques mots isolés.",
         "free",
       ),
@@ -1143,7 +1143,7 @@ export const seriesV3BatchA: RevisionSession[] = [
         ],
         "d",
         "Les deux adjectifs sont invariables : 'marine' (nom → couleur bleu foncé de la mer) et 'bordeaux' (nom → couleur du vin de Bordeaux). Ils s'écrivent sans accord : 'des écharpes marine et bordeaux'. Attention : 'marine' en tant qu'adjectif de couleur est invariable, mais 'marine' en tant qu'adjectif commun (la flotte marine) s'accorde normalement.",
-        "Les candidats accordent parfois 'marine' en 'marines' car son terminaison rappelle les adjectifs ordinaires. Mais comme adjectif de couleur issu d'un nom, 'marine' est invariable.",
+        "Les candidats accordent parfois 'marine' en 'marines' car sa terminaison rappelle les adjectifs ordinaires. Mais comme adjectif de couleur issu d'un nom, 'marine' est invariable.",
         "free",
       ),
       correction(
@@ -1199,10 +1199,10 @@ export const seriesV3BatchA: RevisionSession[] = [
     questions: [
       correction(
         "v3a-tma-1", "orthographe", "Difficile",
-        "Corrigez si nécessaire : « Elle était tout heureuse de sa victoire. »",
-        ["Elle était toute heureuse de sa victoire.", "Elle était toute heureuse de sa victoire"],
-        "'Tout' est ici adverbe (= entièrement, tout à fait). Devant un adjectif féminin commençant par une consonne (ou un h aspiré), 'tout' adverbe s'accorde : 'toute heureuse'. Cette exception phonétique évite le hiatus ou la cacophonie. Devant un adjectif féminin commençant par une voyelle ou un h muet, 'tout' reste invariable : 'elle était tout émue'.",
-        "La règle de 'tout' adverbe est particulièrement délicate : il est invariable devant adjectif masculin (tout surpris) et devant adjectif féminin commençant par une voyelle (tout émue), mais variable devant adjectif féminin commençant par consonne ou h aspiré (toute petite, toute honteuse).",
+        "Corrigez si nécessaire : « Elle était tout contente de sa victoire. »",
+        ["Elle était toute contente de sa victoire.", "Elle était toute contente de sa victoire", "toute contente"],
+        "'Tout' est ici adverbe (= entièrement, tout à fait). Devant un adjectif féminin commençant par une consonne, 'tout' adverbe s'accorde : 'toute contente'. Devant un adjectif féminin commençant par une voyelle ou un h muet, 'tout' reste invariable : 'elle était tout émue', 'elle était tout heureuse' (h muet).",
+        "La règle de 'tout' adverbe est particulièrement délicate : il est invariable devant adjectif masculin (tout surpris) et devant adjectif féminin commençant par une voyelle ou un h muet (tout émue, tout heureuse), mais variable devant adjectif féminin commençant par consonne ou h aspiré (toute contente, toute honteuse).",
         "free",
       ),
       qcm(

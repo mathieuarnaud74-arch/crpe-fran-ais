@@ -159,10 +159,10 @@ export const seriesV3BatchJ: RevisionSession[] = [
       ),
       reponseCourte(
         "v3j-oe-4", "didactique_francais", "Intermediaire",
-        "En didactique de l'oral, comment appelle-t-on l'aide apportée par l'enseignant lorsqu'il reformule, complète ou relance les propos d'un élève pour l'aider à structurer et enrichir son discours oral ?",
-        ["étayage", "Étayage", "l'étayage", "L'étayage", "etayage", "Etayage", "l'etayage", "L'etayage"],
-        "L'étayage (concept emprunté à Bruner) désigne l'ensemble des interventions de l'adulte qui permettent à l'enfant de réaliser une tâche qu'il ne pourrait pas accomplir seul. En matière d'oral, l'étayage prend des formes variées : la reformulation (redire en « bon français » ce que l'élève a exprimé maladroitement), la relance (poser une question pour aller plus loin), l'expansion (compléter un énoncé lacunaire), la sollicitation directe (inviter un élève silencieux à s'exprimer). L'étayage est particulièrement crucial au cycle 1, où l'enseignant aide les élèves à passer du langage en situation au langage d'évocation.",
-        "Confondre l'étayage avec la simple correction. L'étayage ne consiste pas à dire « non, on ne dit pas ça », mais à reformuler positivement pour modéliser la forme attendue tout en validant le contenu du propos de l'élève.",
+        "Comment appelle-t-on un échange oral dans lequel plusieurs locuteurs construisent collectivement le discours ?",
+        ["oral polygéré", "oral polygeré", "oral polyphonique", "interaction langagiere", "interaction langagière", "interactions langagieres", "interactions langagières", "Oral polygéré", "Oral polyphonique", "Interaction langagière", "Interactions langagières"],
+        "L'oral polygéré (ou polyphonique) désigne un échange où la construction du discours est partagée entre plusieurs locuteurs, par opposition à l'oral monogéré (exposé, récitation). Les programmes insistent sur ces interactions langagières pour développer les compétences orales des élèves.",
+        "Confondre oral polygéré et oral monogéré. L'oral monogéré est pris en charge par un seul locuteur (exposé, récitation), tandis que l'oral polygéré implique une co-construction du discours par plusieurs participants.",
         "free",
       ),
       vraiFaux(
@@ -332,7 +332,7 @@ export const seriesV3BatchJ: RevisionSession[] = [
       reponseCourte(
         "v3j-lj-8", "didactique_francais", "Intermediaire",
         "Comment appelle-t-on le dispositif dans lequel un petit groupe d'élèves lit la même œuvre puis échange sur celle-ci selon des rôles répartis (meneur de discussion, chercheur de passages, illustrateur, connecteur...) ?",
-        ["cercle de lecture", "Cercle de lecture", "le cercle de lecture", "Le cercle de lecture", "cercles de lecture", "Cercles de lecture", "comité de lecture", "Comité de lecture"],
+        ["cercle de lecture", "Cercle de lecture", "le cercle de lecture", "Le cercle de lecture", "cercles de lecture", "Cercles de lecture"],
         "Le cercle de lecture (inspiré des « literature circles » anglo-saxons, notamment les travaux de Harvey Daniels) est un dispositif dans lequel un groupe de 4 à 6 élèves lit la même œuvre et se réunit régulièrement pour en discuter. Chaque élève se voit attribuer un rôle qui tourne d'une séance à l'autre : meneur de discussion (prépare des questions), chercheur de passages (sélectionne des extraits marquants), illustrateur (représente une scène clé), connecteur (fait des liens avec d'autres textes ou la vie réelle). Ce dispositif développe l'autonomie du lecteur et les compétences orales d'argumentation littéraire.",
         "Confondre le cercle de lecture (dispositif structuré avec des rôles) avec un simple échange libre sur un livre. La structuration par rôles est ce qui distingue le cercle de lecture d'une discussion informelle.",
         "free",
@@ -607,7 +607,7 @@ export const seriesV3BatchJ: RevisionSession[] = [
       ),
       reponseCourte(
         "v3j-dfd-9", "didactique_francais", "Intermediaire",
-        "Dans la typologie de Nina Catach, comment appelle-t-on les erreurs qui portent sur la transcription des sons en lettres (par exemple, écrire « fonète » au lieu de « phonète ») ?",
+        "Dans la typologie de Nina Catach, comment appelle-t-on les erreurs qui portent sur la transcription des sons en lettres (par exemple, écrire « farmasi » au lieu de « pharmacie ») ?",
         ["erreurs phonogrammiques", "Erreurs phonogrammiques", "phonogrammiques", "Phonogrammiques", "erreur phonogrammique", "Erreur phonogrammique"],
         "Nina Catach distingue trois grands types d'erreurs orthographiques selon leur niveau linguistique. Les erreurs phonogrammiques portent sur la correspondance phonème-graphème : l'élève ne transcrit pas correctement le son en lettres (par exemple, « mèzon » pour « maison »). Les erreurs morphogrammiques portent sur les marques grammaticales non audibles (accords en nombre, en genre, terminaisons verbales muettes). Les erreurs logogrammiques portent sur les homophones (« vert/vers/verre/ver »). Cette classification permet à l'enseignant d'analyser finement les erreurs des élèves et de concevoir des remédiations ciblées.",
         "Traiter toutes les erreurs orthographiques de la même façon sans les analyser. La typologie de Catach permet de distinguer la nature de l'erreur et d'adapter la remédiation : un élève qui fait des erreurs phonogrammiques a besoin d'un travail sur le code, pas sur les accords.",

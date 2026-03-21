@@ -78,7 +78,7 @@ function FooterColumn({
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink">{title}</p>
       <ul className="mt-5 space-y-3">
         {links.map(({ label, href }) => (
-          <li key={label}>
+          <li key={href}>
             <Link
               href={href}
               className="text-sm text-muted transition-colors hover:text-ink"

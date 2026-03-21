@@ -138,7 +138,7 @@ export const seriesV3BatchD: RevisionSession[] = [
         "Intermediaire",
         "Corrigez l'erreur dans cette phrase : « Marie est tombé dans l'escalier. »",
         ["Marie est tombée dans l'escalier."],
-        "Le sujet Marie est féminin singulier. Avec l'auxiliaire être, le participe passé tombe s'accorde → tombée.",
+        "Le sujet Marie est féminin singulier. Avec l'auxiliaire être, le participe passé « tombé » s'accorde → tombée.",
         "Oublier le -e final car le participe passé ressemble à un adjectif et l'accord visuel est parfois négligé à l'oral.",
         "free",
       ),
@@ -782,9 +782,9 @@ export const seriesV3BatchD: RevisionSession[] = [
     objective: "Maîtriser les transformations syntaxiques et temporelles requises lors du passage au discours indirect.",
     introduction: "La transposition du discours direct en discours indirect mobilise plusieurs compétences : concordance des temps, changement de pronoms, transformation des adverbes de temps et de lieu. Savoir enseigner ces mécanismes est attendu au CRPE.",
     subdomain: "grammaire",
-    topicKey: "discours_direct_indirect",
+    topicKey: "discours_direct_indirect_avance",
     topicLabel: "Discours direct et indirect",
-    level: "Avance",
+    level: "Avancé",
     exerciseTypeLabel: "Correction d'erreurs, QCM, vrai/faux",
     estimatedMinutes: 15,
     access_tier: "premium",
@@ -803,7 +803,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-ddi-1",
         "grammaire",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Il a dit qu'il viendra demain. »",
         ["Il a dit qu'il viendrait le lendemain."],
         "Le verbe introducteur 'a dit' est au passé → concordance des temps : futur simple → conditionnel présent (viendrait). L'adverbe 'demain' devient 'le lendemain' au discours indirect.",
@@ -813,7 +813,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-ddi-2",
         "grammaire",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Elle m'a demandé si je veux venir. »",
         ["Elle m'a demandé si je voulais venir."],
         "Le verbe introducteur 'a demandé' est au passé → concordance : présent → imparfait (voulais).",
@@ -823,7 +823,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-ddi-3",
         "grammaire",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Il déclara que il avait terminé son travail. »",
         ["Il déclara qu'il avait terminé son travail."],
         "Devant un mot commençant par une voyelle, la conjonction que s'élide en qu'. L'écriture 'que il' (sans élision) est une faute d'orthographe.",
@@ -833,7 +833,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-ddi-4",
         "grammaire",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Il m'a dit qu'il est fatigué. »",
         ["Il m'a dit qu'il était fatigué."],
         "Verbe introducteur au passé (a dit) → concordance : présent → imparfait (était fatigué).",
@@ -843,7 +843,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-ddi-5",
         "grammaire",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Elle lui a demandé s'il a faim. »",
         ["Elle lui a demandé s'il avait faim."],
         "Verbe introducteur au passé (a demandé) → concordance : présent → imparfait (avait faim).",
@@ -853,7 +853,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       qcm(
         "v3d-ddi-6",
         "grammaire",
-        "Avance",
+        "Avancé",
         "Quelle est la meilleure transposition au discours indirect ? Direct : « Il a affirmé : \"Je suis content.\" »",
         [
           { id: "a", label: "Il a affirmé qu'il était content." },
@@ -868,7 +868,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-ddi-7",
         "grammaire",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Le professeur a dit d'ouvrir vos livres. »",
         ["Le professeur leur a demandé d'ouvrir leurs livres."],
         "Au discours indirect, l'impératif se transforme en infinitif introduit par de. Le déterminant possessif vos (2e pers. plur.) doit devenir leurs (3e pers. plur.) pour s'accorder avec le changement de point de vue.",
@@ -878,7 +878,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-ddi-8",
         "grammaire",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Il a dit qu'il partirait aujourd'hui. »",
         ["Il a dit qu'il partirait ce jour-là."],
         "Au discours indirect, 'aujourd'hui' (déictique temporel) se transforme en 'ce jour-là' pour maintenir la cohérence du point de vue narratif.",
@@ -888,7 +888,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       vraiFaux(
         "v3d-ddi-9",
         "grammaire",
-        "Avance",
+        "Avancé",
         "Au discours indirect, le verbe introducteur 'demander' introduit une question par la conjonction 'que'.",
         false,
         "Pour une question fermée (oui/non), 'demander' est suivi de 'si'. Pour une question ouverte (qui, quoi, où…), il est suivi de l'adverbe ou pronom interrogatif. Pour une injonction, 'demander' est suivi de 'de' + infinitif. La conjonction 'que' n'introduit pas de question.",
@@ -898,7 +898,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-ddi-10",
         "grammaire",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Elle a crié qu'elle reviendrai. »",
         ["Elle a crié qu'elle reviendrait."],
         "Verbe introducteur au passé (a crié) → concordance : futur simple → conditionnel présent (reviendrait). La terminaison -ai est celle du futur, pas du conditionnel (-ait).",
@@ -916,9 +916,9 @@ export const seriesV3BatchD: RevisionSession[] = [
     objective: "Distinguer les emplois de 'tout' et 'même' et appliquer les règles d'accord correspondantes.",
     introduction: "'Tout' et 'même' sont des mots polycatégoriels dont l'accord dépend de leur nature grammaticale dans la phrase. Ces cas sont régulièrement abordés en cycle 3 et constituent un point attendu au CRPE.",
     subdomain: "orthographe",
-    topicKey: "tout_meme_accord",
+    topicKey: "tout_meme_accord_avance",
     topicLabel: "Tout et même",
-    level: "Avance",
+    level: "Avancé",
     exerciseTypeLabel: "Correction d'erreurs, QCM, vrai/faux",
     estimatedMinutes: 14,
     access_tier: "premium",
@@ -937,7 +937,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-tout-c1",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Tout les filles sont venues. »",
         ["Toutes les filles sont venues."],
         "Tout est ici un adjectif indéfini déterminant (= la totalité de). Il s'accorde avec le nom féminin pluriel filles → toutes.",
@@ -947,7 +947,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-tout-c2",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Elles sont tout prêtes. »",
         ["Elles sont toutes prêtes."],
         "Tout qualifie ici un adjectif féminin pluriel (prêtes) qui commence par une consonne. L'adverbe tout prend la marque du féminin pluriel devant un adjectif féminin commençant par une consonne → toutes.",
@@ -957,7 +957,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-tout-c3",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Il est toute surpris. »",
         ["Il est tout surpris."],
         "Tout est un adverbe devant l'adjectif masculin singulier surpris → invariable : tout surpris.",
@@ -967,17 +967,17 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-tout-c4",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Elle est tout honteuse. »",
         ["Elle est toute honteuse."],
-        "Tout est un adverbe devant l'adjectif féminin honteuse qui commence par une consonne → tout prend la marque du féminin → toute honteuse.",
+        "Tout est un adverbe devant l'adjectif féminin honteuse qui commence par un h aspiré → tout prend la marque du féminin → toute honteuse.",
         "Laisser tout invariable devant un adjectif féminin commençant par une consonne.",
         "premium",
       ),
       qcm(
         "v3d-tout-c5",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Complétez : « Les enfants, ___ joyeux, chantaient. »",
         [
           { id: "a", label: "tout" },
@@ -985,15 +985,15 @@ export const seriesV3BatchD: RevisionSession[] = [
           { id: "c", label: "toutes" },
           { id: "d", label: "tous" },
         ],
-        "d",
-        "Tout est ici un adjectif indéfini apposé au nom masculin pluriel enfants → tous.",
-        "Choisir tout (invariable) en confondant adjectif et adverbe.",
+        "a",
+        "Tout est ici un adverbe (= entièrement) devant l'adjectif masculin pluriel joyeux. Devant un adjectif masculin, l'adverbe tout est invariable → tout joyeux.",
+        "Choisir tous en confondant adverbe et adjectif indéfini.",
         "premium",
       ),
       correction(
         "v3d-tout-c6",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Mêmes les professeurs sont venus. »",
         ["Même les professeurs sont venus."],
         "Même est ici un adverbe de renforcement (= jusqu'à, y compris) → invariable : même les professeurs.",
@@ -1003,7 +1003,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-tout-c7",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Ils m'ont dit la mêmes chose. »",
         ["Ils m'ont dit la même chose."],
         "Même est ici un adjectif qualifiant le nom féminin singulier chose → la même chose (accord au féminin singulier, sans -s).",
@@ -1013,7 +1013,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-tout-c8",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Elles sont venues elles-même. »",
         ["Elles sont venues elles-mêmes."],
         "Même accolé à un pronom personnel (elles-mêmes) s'accorde avec ce pronom → féminin pluriel → elles-mêmes.",
@@ -1023,7 +1023,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       qcm(
         "v3d-tout-c9",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Complétez : « Elle est ___ émue par le discours. »",
         [
           { id: "a", label: "tout" },
@@ -1037,7 +1037,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       vraiFaux(
         "v3d-tout-c10",
         "orthographe",
-        "Avance",
+        "Avancé",
         "L'adverbe 'tout' est toujours invariable devant un adjectif féminin commençant par une consonne.",
         false,
         "Devant un adjectif féminin commençant par une consonne ou un h aspiré, l'adverbe tout prend les marques du féminin (et du pluriel) pour des raisons euphoniques : toute petite, toutes petites. Il reste invariable devant une voyelle ou un h muet.",
@@ -1193,7 +1193,7 @@ export const seriesV3BatchD: RevisionSession[] = [
     subdomain: "orthographe",
     topicKey: "accord_sujet_verbe_complexe",
     topicLabel: "Accord sujet-verbe complexes",
-    level: "Avance",
+    level: "Avancé",
     exerciseTypeLabel: "Correction d'erreurs, QCM, vrai/faux",
     estimatedMinutes: 14,
     access_tier: "free",
@@ -1212,7 +1212,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-asvc-1",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Chacun des élèves ont répondu correctement. »",
         ["Chacun des élèves a répondu correctement."],
         "Le sujet grammatical est chacun (pronom indéfini singulier), pas 'des élèves' (complément du nom) → accord au singulier : a répondu.",
@@ -1222,7 +1222,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-asvc-2",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « La plupart des étudiants a réussi. »",
         ["La plupart des étudiants ont réussi."],
         "La plupart de + nom pluriel → verbe au pluriel : la plupart des étudiants ont réussi.",
@@ -1232,7 +1232,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-asvc-3",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « C'est moi qui est responsable. »",
         ["C'est moi qui suis responsable."],
         "Dans 'c'est + pronom + qui', le verbe de la relative s'accorde avec le pronom : moi = 1re pers. sing. → suis.",
@@ -1242,7 +1242,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-asvc-4",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Beaucoup d'élèves a refusé de partir. »",
         ["Beaucoup d'élèves ont refusé de partir."],
         "Beaucoup de + nom pluriel → verbe au pluriel : ont refusé.",
@@ -1252,7 +1252,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-asvc-5",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « L'un et l'autre est arrivé en retard. »",
         ["L'un et l'autre sont arrivés en retard."],
         "L'un et l'autre exprime une coordination → les deux sujets sont impliqués → accord au pluriel : sont arrivés.",
@@ -1262,7 +1262,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       qcm(
         "v3d-asvc-6",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Complétez : « Tout le monde ___ content. »",
         [
           { id: "a", label: "sont" },
@@ -1276,7 +1276,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-asvc-7",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « C'est eux qui ont décidé. »",
         ["Ce sont eux qui ont décidé."],
         "Le présentatif c'est se transforme en ce sont devant un pronom personnel de la 3e personne du pluriel (eux, elles).",
@@ -1286,7 +1286,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       qcm(
         "v3d-asvc-8",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Complétez : « La moitié des élèves ___ absent(s). »",
         [
           { id: "a", label: "sont" },
@@ -1300,7 +1300,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       qcm(
         "v3d-asvc-9",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Complétez : « Ni l'un ni l'autre n'___ venu. »",
         [
           { id: "a", label: "est" },
@@ -1314,7 +1314,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-asvc-10",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Plusieurs élèves a déjà terminé. »",
         ["Plusieurs élèves ont déjà terminé."],
         "Plusieurs est un déterminant indéfini pluriel → accord au pluriel : plusieurs élèves ont terminé.",
@@ -1334,7 +1334,7 @@ export const seriesV3BatchD: RevisionSession[] = [
     subdomain: "orthographe",
     topicKey: "homophones_avances",
     topicLabel: "Homophones avancés",
-    level: "Avance",
+    level: "Avancé",
     exerciseTypeLabel: "Correction d'erreurs, QCM, vrai/faux",
     estimatedMinutes: 14,
     access_tier: "premium",
@@ -1353,7 +1353,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-hom2-1",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Il est près à partir. »",
         ["Il est prêt à partir."],
         "Prêt est un adjectif attribut (= disposé à, disponible pour). Près est un adverbe ou préposition de lieu (= à proximité). Test : 'il est disposé à partir' → prêt.",
@@ -1363,7 +1363,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-hom2-2",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Quand à moi, je préfère rester. »",
         ["Quant à moi, je préfère rester."],
         "Quant à est une locution prépositionnelle (= en ce qui concerne). Quand est une conjonction de temps (remplaçable par 'lorsque'). Test : 'lorsque à moi' est impossible → quant à.",
@@ -1373,7 +1373,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-hom2-3",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Travaille d'avantage si tu veux réussir. »",
         ["Travaille davantage si tu veux réussir."],
         "Davantage est un adverbe de quantité (= plus). D'avantage = préposition de + nom avantage (un avantage précis). On ne peut pas parler d'un avantage ici → davantage.",
@@ -1383,7 +1383,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-hom2-4",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Quel que peu nerveux, il attendait. »",
         ["Quelque peu nerveux, il attendait."],
         "Quelque peu est une locution adverbiale figée (= un peu). Quel que (deux mots) est une locution concessive suivie du verbe être au subjonctif (quel que soit le résultat).",
@@ -1393,7 +1393,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-hom2-5",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Quant il fait beau, nous sortons. »",
         ["Quand il fait beau, nous sortons."],
         "Quand est une conjonction de temps (remplaçable par 'lorsque'). Quant appartient uniquement à la locution 'quant à'. Test : 'lorsqu'il fait beau' → quand.",
@@ -1403,7 +1403,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       correction(
         "v3d-hom2-6",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Corrigez l'erreur dans cette phrase : « Il y a peut de chances. »",
         ["Il y a peu de chances."],
         "Peu est un adverbe de quantité. Peut est le verbe pouvoir conjugué (il peut). Test : 'il y a il peut de chances' est impossible → peu.",
@@ -1413,7 +1413,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       qcm(
         "v3d-hom2-7",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Quelle est la forme correcte pour l'inversion interrogative de 'je peux' ?",
         [
           { id: "a", label: "Puis-je" },
@@ -1427,22 +1427,22 @@ export const seriesV3BatchD: RevisionSession[] = [
       qcm(
         "v3d-hom2-8",
         "orthographe",
-        "Avance",
-        "Complétez : « ___ la fin du mois, tout sera réglé. »",
+        "Avancé",
+        "Complétez : « ___ à moi, je préfère rester ici. »",
         [
           { id: "a", label: "Quand" },
           { id: "b", label: "Quant" },
           { id: "c", label: "Qu'en" },
         ],
         "b",
-        "Quant à la fin du mois est une locution prépositionnelle (= en ce qui concerne / d'ici). Test : 'lorsque la fin du mois' changerait le sens → quant à.",
+        "« Quant à » signifie « en ce qui concerne ». Ne pas confondre avec « quand » (temporel) ni « qu'en » (que + en). Ici : quant à moi = en ce qui me concerne.",
         "Choisir quand (conjonction de temps) au lieu de quant (locution prépositionnelle) en confondant les deux homophones.",
         "premium",
       ),
       qcm(
         "v3d-hom2-9",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Complétez : « Elle travaille ___ que lui. »",
         [
           { id: "a", label: "d'avantage" },
@@ -1456,7 +1456,7 @@ export const seriesV3BatchD: RevisionSession[] = [
       vraiFaux(
         "v3d-hom2-10",
         "orthographe",
-        "Avance",
+        "Avancé",
         "Dans « Il est prêt », le mot 'prêt' est un adverbe de lieu.",
         false,
         "Prêt (avec accent circonflexe) est un adjectif qualificatif (attribut du sujet : il est prêt = disposé à agir). C'est près (sans accent) qui est un adverbe ou préposition de lieu (= à proximité). Les deux mots sont homophones mais n'ont pas la même nature ni le même sens.",

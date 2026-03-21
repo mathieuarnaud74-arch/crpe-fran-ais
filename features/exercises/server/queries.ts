@@ -99,6 +99,10 @@ function normalizeExpectedAnswer(
     };
   }
 
+  console.warn(
+    "[normalizeExpectedAnswer] Unrecognized expected_answer format, falling back to empty acceptableAnswers:",
+    rawExpected,
+  );
   return {
     mode: "text",
     acceptableAnswers: [],

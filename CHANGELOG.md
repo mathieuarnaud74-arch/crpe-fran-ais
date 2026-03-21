@@ -1,5 +1,108 @@
 # Changelog
 
+## [2026-03-21] — Audit global et correction de bugs (API, UI, exercices, billing)
+
+- `app/api/_stripe/webhook/route.ts` — Ajout error handling sur tous les upsert Supabase (retour 500 → Stripe retry), accès metadata sécurisé (`metadata?.user_id`), logs d'erreur
+- `app/api/_stripe/checkout/route.ts` — Ajout vérification erreur DB lors du lookup subscription existante
+- `app/api/diagnostic/complete/route.ts` — Ajout try/catch sur `request.json()` (retour 400 au lieu de crash sur JSON malformé)
+- `features/billing/server/queries.ts` — Validation de `current_period_end` contre les dates invalides (NaN guard)
+- `features/exercises/server/queries.ts` — Ajout console.warn quand `normalizeExpectedAnswer` tombe dans le fallback (acceptableAnswers vide)
+- `app/(app)/tableau-de-bord/page.tsx` — Ajout `aria-hidden="true"` sur SVGs décoratifs (progress ring, checkmark)
+- `components/site-footer.tsx` — Clé React changée de `label` vers `href` (unicité garantie)
+
+## [2026-03-21] — Refonte UX du composant de délimitation de propositions
+
+- `features/exercises/components/highlight-propositions-input.tsx` — Refonte complète du composant :
+  - Ancien : segments empilés en cartes verticales avec labels S1-S7, mécanisme de "cycle au clic" invisible et incompréhensible
+  - Nouveau : sélecteur de proposition actif (toolbar avec boutons colorés), phrase affichée en flux inline (mots côte à côte), clic pour attribuer/désattribuer, compteur de mots attribués par groupe, feedback visuel clair après correction
+- `supabase/migrations/20260340_fix_surlignage_word_segments.sql` — Réécriture des 10 exercices de la Série 7 (phrase complexe) :
+  - Ancien : 2 segments = phrases entières pré-découpées → exercice trivial sans intérêt pédagogique
+  - Nouveau : 4-8 segments mot par mot → l'élève doit identifier les frontières entre propositions
+
+## [2026-03-21] — Audit et correction des séries d'exercices V3
+
+- `content/french-crpe-series.ts` — Import manquant de `seriesV3BatchD` et `seriesTriNatureMots` (séries invisibles dans l'app)
+- `content/french-crpe-series-v3-d.ts` — v3d-tout-c5 : mauvaise réponse corrigée ("d" → "a"), explication réécrite (adverbe, pas adjectif)
+- `content/french-crpe-series-v3-d.ts` — v3d-ppe-1 : "le participe passé tombe s'accorde" → "le participe passé « tombé » s'accorde"
+- `content/french-crpe-series-v3-d.ts` — v3d-tout-c4 : "consonne" → "h aspiré" pour honteuse
+- `content/french-crpe-series-v3-e.ts` — v3e-nva-8 : "fatigué" → "fatigue" (cohérence avec la phrase)
+- `content/french-crpe-series-v3-e.ts` — v3e-dbl-4 : accent manquant "jusqu'a" → "jusqu'à"
+- `content/french-crpe-series-v3-a.ts` — v3a-pnc-6 : explication corrigée (portemonnaie/portefeuille confondus)
+- `content/french-crpe-series-v3-g.ts` — v3g-tv-6 : "a son avenir" → "à son avenir" dans l'énoncé
+- `content/french-crpe-series-v3-g.ts` — "a introduire" → "à introduire"
+- `content/french-crpe-series-v3-h.ts` — 10+ accents manquants corrigés (reconnaît, écrite, voté, proximité, dénotent, tête, cortège, etc.)
+- `content/french-crpe-series-v3-h.ts` — Doublons supprimés dans la liste d'hyponymes d'arbre (cèdre, cyprès, séquoia)
+- `content/french-crpe-series-v3-h.ts` — "Coeur" → "Cœur", "emploi figure" → "emploi figuré"
+- `content/french-crpe-series-v3-j.ts` — "oral polygere" → "oral polygéré"
+- `content/french-crpe-series-v3-{e,f,g,h,i}.ts` — Niveau "Intermédiaire" → "Intermediaire" (cohérence avec constants.ts)
+- `content/french-crpe-series-v3-{f,h,i}.ts` — Source "Série CRPE Français V3" → "Serie CRPE Francais V3" (cohérence)
+
+## [2026-03-21] — Complétion de 6 séries legacy supplémentaires à 10 questions
+
+- `content/french-crpe-series.ts` — Ajout de 25 questions aux séries legacy restantes qui en avaient moins de 10 :
+  - serie-fonctions-essentielles : +4 questions (fct-7 à fct-10) — COD, attribut du sujet, CC de lieu, COI avec préposition
+  - serie-nature-ou-fonction : +5 questions (nof-6 à nof-10) — distinction nature/fonction sur adverbe, groupe prépositionnel, épithète, complément du nom, analyse complète
+  - serie-futur-conditionnel-subjonctif : +3 questions (fcs-8 à fcs-10) — futur vs conditionnel, subjonctif après « pourvu que », conditionnel après « si + imparfait »
+  - serie-analyse-groupe-nominal-relative : +3 questions (agl-8 à agl-10) — fonction du pronom relatif « que », pronom « dont » COI, accord PP avec avoir et COD antéposé
+  - serie-gn-expansions : +5 questions (gne-6 à gne-10) — complément du nom prépositionnel, double expansion, CDN vs épithète, épithètes coordonnées, correction d'erreur
+  - serie-participe-passe-etre : +5 questions (ppe-6 à ppe-10) — correction double accord, masculin pluriel, féminin singulier, conjugaison avec accord, justification de l'accord
+
+## [2026-03-21] — Complétion des 6 séries legacy à 10 questions chacune
+
+- `content/french-crpe-series.ts` — Ajout de 28 questions aux séries legacy qui en avaient moins de 10 :
+  - serie-accords-sujet-verbe : +4 questions (asv-7 à asv-10) — sujets coordonnés, pronom relatif "qui", "ainsi que", "aucun"
+  - serie-accords-groupe-nominal : +5 questions (agn-6 à agn-10) — adjectif antéposé, genre, coordination mixte, déterminant pluriel, féminin pluriel
+  - serie-classes-grammaticales : +5 questions (cgr-6 à cgr-10) — adverbe vs adjectif, déterminant indéfini, conjonction de coordination, préposition
+  - serie-homophones-grammaticaux : +4 questions (hg-7 à hg-10) — a/à avec conjonction, cette/est, se/ce pronom réfléchi, ces/ses/car
+  - serie-temps-de-base : +5 questions (tdb-6 à tdb-10) — imparfait irrégulier, futur simple, imparfait vs présent, correction orthographique futur, identification temps
+  - serie-synonymes-antonymes : +5 questions (lex-6 à lex-10) — synonymes en contexte, antonymes, vrai/faux antonymie, synonyme "limpide", synonyme "contraindre"
+
+## [2026-03-21] — Ajout des accents français dans french-crpe-series-v3-h.ts et french-crpe-series-v3-i.ts
+
+- `content/french-crpe-series-v3-h.ts` — Ajout systématique des diacritiques français sur tous les textes affichés : titres, introductions, résumés, questions, explications, erreurs fréquentes, labels de choix et réponses acceptées (3 séries : hyperonymie/hyponymie, familles de mots, sens figuré). Corrections incluant é/è/ê/œ/à/î/ï sur des centaines d'occurrences.
+- `content/french-crpe-series-v3-i.ts` — Correction de "Intermediaire" → "Intermédiaire" sur toutes les occurrences (33 questions) et "Serie CRPE Francais V3" → "Série CRPE Français V3" dans le champ source.
+
+## [2026-03-21] — Ajout des accents français dans french-crpe-series-v3-e.ts
+
+- `content/french-crpe-series-v3-e.ts` — Ajout systématique des diacritiques français (accents aigus, graves, circonflexes, cédilles, trémas) sur tous les textes affichés aux utilisateurs : titres, introductions, résumés, questions, explications, erreurs fréquentes, labels de choix et réponses acceptées. Aucune modification des identifiants, clés de données ou structure TypeScript.
+
+## [2026-03-21] — Fix ambiguites et formats d'exercices (hg-5, gne-5, agl-6, v3b-reg-7)
+
+- `content/french-crpe-series.ts` — hg-5 : ajouté "la-bas sur la table" pour lever l'ambiguité ces/ses (deixis claire)
+- `content/french-crpe-series.ts` — gne-5 : converti de reponse_courte en QCM (question trop ouverte pour une réponse courte)
+- `content/french-crpe-series.ts` — agl-6 : converti de reponse_courte en QCM (question trop ouverte pour une réponse courte)
+- `content/french-crpe-series-v3-b.ts` — v3b-reg-7 : remplacé "être dans le pétrin" (familier) par "kiffer" (vraiment argotique)
+
+## [2026-03-21] — Corrections de contenu exercices (v3-g, v3-j, v3-k, series)
+
+- `content/french-crpe-series-v3-g.ts` — v3g-mv-9 : corrigé l'explication pour indiquer le radical "prend-" (et non "prendr-"), cohérent avec la désinence "-r-ont"
+- `content/french-crpe-series-v3-j.ts` — v3j-lj-8 : retiré "comité de lecture" des réponses acceptées (un comité de lecture est un comité de sélection, pas un cercle de discussion)
+- `content/french-crpe-series-v3-j.ts` — v3j-oe-4 : remplacé le doublon sur l'étayage par une question sur l'oral polygéré / interactions langagières
+- `content/french-crpe-series-v3-k.ts` — corrigé les recommendedOrder de 44-48 à 49-53 pour éviter les doublons avec v3-j
+- `content/french-crpe-series-v3-k.ts` — v3k-im-10 : ajouté 13 variantes de réponses acceptées (ordres différents, avec/sans accents, avec articles)
+- `content/french-crpe-series.ts` — gne-2 : corrigé "nature" → "fonction" dans la question (la réponse "complément du nom" est une fonction)
+- `content/french-crpe-series.ts` — terminologie : remplacé "verbe d'état" par "verbe attributif" (2 occurrences)
+
+## [2026-03-21] — Validation reponse_courte plus souple (v3-e, v3-h, v3-k, series)
+
+- `content/french-crpe-series-v3-e.ts` — v3e-nva-7 : ajouté "un nom", "Nom", "Un nom" aux réponses acceptées
+- `content/french-crpe-series-v3-e.ts` — v3e-var-8 : ajouté "mot variable", "Variable", "un mot variable"
+- `content/french-crpe-series-v3-e.ts` — v3e-tout-8 : ajouté "un determinant", "Determinant", "un déterminant", "Déterminant"
+- `content/french-crpe-series-v3-e.ts` — v3e-dpa-9 : ajouté "un pronom", "Pronom" et variantes avec/sans accent de "pronom indefini"
+- `content/french-crpe-series-v3-h.ts` — v3h-hh-8 : ajouté 13 essences d'arbres supplémentaires (cèdre, cyprès, saule, etc.)
+- `content/french-crpe-series-v3-k.ts` — v3k-im-8 : ajouté variantes avec point d'exclamation ("Finis !", "finis !", etc.)
+- `content/french-crpe-series.ts` — fct-1 : ajouté "Sujet", "le sujet", "Le sujet"
+- `content/french-crpe-series.ts` — fct-2 : ajouté "COD" majuscule et variantes avec/sans accent
+- `content/french-crpe-series.ts` — fct-3 : ajouté "COI" majuscule et variantes avec/sans accent
+
+## [2026-03-21] — Corrections de contenu exercices (v3-a, v3-d)
+
+- `content/french-crpe-series-v3-a.ts` — v3a-tma-1 : corrigé "tout heureuse" (h muet = invariable) en "tout contente" → "toute contente" (consonne = accord) ; mise à jour question, réponses et explication
+- `content/french-crpe-series-v3-a.ts` — v3a-pcc-10 : ajouté 8 permutations supplémentaires dans les réponses acceptées pour les conjonctions de coordination
+- `content/french-crpe-series-v3-d.ts` — corrigé "Avance" → "Avancé" sur l'ensemble du fichier (niveau de difficulté)
+- `content/french-crpe-series-v3-d.ts` — v3d-hom2-8 : remplacé la phrase ambiguë "Quant à la fin du mois" par "Quant à moi, je préfère rester ici" avec explication clarifiée
+- `content/french-crpe-series-v3-d.ts` — topicKey dédoublonnés : "discours_direct_indirect" → "discours_direct_indirect_avance", "tout_meme_accord" → "tout_meme_accord_avance"
+
 ## [2026-03-21] — 20 séries d'exercices (200 questions) + 5 fiches
 
 ### 20 séries d'exercices (hors grammaire) — 200 questions

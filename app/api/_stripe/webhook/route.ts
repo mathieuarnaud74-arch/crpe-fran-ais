@@ -44,15 +44,16 @@ export async function POST(request: Request) {
 
   async function upsertSubscription(subscription: Stripe.Subscription, overridePriceId?: string) {
     const userId =
-      subscription.metadata.user_id || subscription.items.data[0]?.metadata?.user_id;
+      subscription.metadata?.user_id || subscription.items.data[0]?.metadata?.user_id;
 
     if (!userId) {
+      console.error("[stripe-webhook] Missing user_id in subscription metadata", subscription.id);
       return;
     }
 
     const priceId = overridePriceId ?? subscription.items.data[0]?.price.id ?? null;
 
-    await admin.from("subscriptions").upsert(
+    const { error } = await admin.from("subscriptions").upsert(
       {
         user_id: userId,
         stripe_customer_id: String(subscription.customer),
@@ -64,6 +65,11 @@ export async function POST(request: Request) {
       },
       { onConflict: "user_id" },
     );
+
+    if (error) {
+      console.error("[stripe-webhook] upsert failed:", error.message);
+      throw error;
+    }
   }
 
   if (event.type === "checkout.session.completed") {
@@ -76,7 +82,7 @@ export async function POST(request: Request) {
       const days = ONE_TIME_DURATIONS[priceId];
       if (days !== undefined) {
         const periodEnd = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
-        await admin.from("subscriptions").upsert(
+        const { error: upsertError } = await admin.from("subscriptions").upsert(
           {
             user_id: userId,
             stripe_customer_id: String(session.customer ?? ""),
@@ -88,24 +94,41 @@ export async function POST(request: Request) {
           },
           { onConflict: "user_id" },
         );
+
+        if (upsertError) {
+          console.error("[stripe-webhook] one-time upsert failed:", upsertError.message);
+          return NextResponse.json({ error: upsertError.message }, { status: 500 });
+        }
       }
     }
 
     if (session.mode === "subscription" && session.subscription && userId) {
-      const subscription = await stripe.subscriptions.retrieve(String(session.subscription));
-      await upsertSubscription(
-        { ...subscription, metadata: { ...subscription.metadata, user_id: userId } },
-        priceId ?? undefined,
-      );
+      try {
+        const subscription = await stripe.subscriptions.retrieve(String(session.subscription));
+        await upsertSubscription(
+          { ...subscription, metadata: { ...subscription.metadata, user_id: userId } },
+          priceId ?? undefined,
+        );
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Database error";
+        console.error("[stripe-webhook] subscription upsert failed:", message);
+        return NextResponse.json({ error: message }, { status: 500 });
+      }
     }
   }
 
-  if (
-    event.type === "customer.subscription.created" ||
-    event.type === "customer.subscription.updated" ||
-    event.type === "customer.subscription.deleted"
-  ) {
-    await upsertSubscription(event.data.object as Stripe.Subscription);
+  try {
+    if (
+      event.type === "customer.subscription.created" ||
+      event.type === "customer.subscription.updated" ||
+      event.type === "customer.subscription.deleted"
+    ) {
+      await upsertSubscription(event.data.object as Stripe.Subscription);
+    }
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Database error";
+    console.error("[stripe-webhook] handler failed:", message);
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 
   return NextResponse.json({ received: true });

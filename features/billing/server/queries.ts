@@ -20,6 +20,7 @@ export async function isPremiumUser(userId: string) {
   if (!subscription) return false;
   const isActiveStatus =
     subscription.status === "active" || subscription.status === "trialing";
-  const isNotExpired = new Date(subscription.current_period_end) > new Date();
-  return isActiveStatus && isNotExpired;
+  const periodEnd = new Date(subscription.current_period_end);
+  if (isNaN(periodEnd.getTime())) return false;
+  return isActiveStatus && periodEnd > new Date();
 }

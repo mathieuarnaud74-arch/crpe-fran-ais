@@ -14,7 +14,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const body: DiagnosticResult = await request.json();
+  let body: DiagnosticResult;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Corps de la requête invalide." }, { status: 400 });
+  }
 
   const { error } = await supabase.from("diagnostic_results").insert({
     user_id: user.id,

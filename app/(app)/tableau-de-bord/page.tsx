@@ -72,7 +72,7 @@ function DailyGoalRing({ current, goal }: { current: number; goal: number }) {
 
   return (
     <div className="relative h-11 w-11 shrink-0">
-      <svg viewBox="0 0 44 44" className="h-11 w-11 -rotate-90">
+      <svg viewBox="0 0 44 44" className="h-11 w-11 -rotate-90" aria-hidden="true">
         <circle
           cx="22"
           cy="22"
@@ -721,6 +721,7 @@ export default async function DashboardPage() {
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                           strokeWidth={2.5}
+                          aria-hidden="true"
                         >
                           <path
                             strokeLinecap="round"
