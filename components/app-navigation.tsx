@@ -6,6 +6,7 @@ import {
   BookText,
   ClipboardList,
   CreditCard,
+  Dices,
   LayoutDashboard,
   Search,
   Stethoscope,
@@ -49,6 +50,13 @@ const navigationItems: NavigationItem[] = [
       { href: "/diagnostic", label: "Diagnostic", exact: true, icon: Stethoscope },
       { href: "/progression", label: "Progression", exact: true, icon: BarChart3 },
     ],
+  },
+  {
+    kind: "standalone",
+    href: "/api/random-exercise",
+    label: "Exercice aléatoire",
+    exact: true,
+    icon: Dices,
   },
   {
     kind: "group",
