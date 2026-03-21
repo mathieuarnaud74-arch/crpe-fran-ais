@@ -197,10 +197,10 @@ values
 'valide','CRPE Français — Analyse de la langue V3','premium',true),
 
 ('92000000-0000-0000-0000-000000000006','Francais','analyse_langue','al_fonctions_complexes','Fonctions syntaxiques complexes','Difficile','qcm',
-'Qu''est-ce qu''un complément essentiel par opposition à un complément circonstanciel ?',null,
+'Qu''est-ce qu''un complément d''objet (COD ou COI) par opposition à un complément circonstanciel ?',null,
 '[{"id":"a","label":"Un complément qui décrit les circonstances de l''action (temps, lieu, manière)"},{"id":"b","label":"Un complément qui peut être facilement supprimé ou déplacé dans la phrase"},{"id":"c","label":"Un complément qui fait partie intégrante de la valence du verbe et ne peut être ni supprimé ni déplacé sans altérer la structure ou le sens"},{"id":"d","label":"Un complément toujours introduit par une préposition"}]'::jsonb,
 '{"mode":"single_choice","value":"c"}'::jsonb,
-'Le complément essentiel (COD, COI, COS, complément d''agent) est intimement lié à la valence du verbe — il complète sa structure : « mettre [qqch] [qqpart] » exige deux compléments essentiels. On ne peut pas dire « il met » tout court. Tests : suppression impossible sans rendre la phrase agrammaticale ou changer le sens ; déplacement impossible en tête de phrase. Le circonstanciel est facultatif et mobile : « il mange vite / vite, il mange / il mange à midi ». Cette distinction essentiel / circonstanciel est fondamentale pour la notion de valence verbale et pour l''analyse des fonctions au CRPE.',
+'Le complément d''objet (COD, COI) est intimement lié à la valence du verbe — il complète sa structure : « mettre [qqch] [qqpart] » exige deux compléments d''objet. On ne peut pas dire « il met » tout court. Tests : suppression impossible sans rendre la phrase agrammaticale ou changer le sens ; déplacement impossible en tête de phrase. Le circonstanciel est facultatif et mobile : « il mange vite / vite, il mange / il mange à midi ». Cette distinction complément d''objet / circonstanciel est fondamentale pour l''analyse des fonctions au CRPE (Éduscol 2021).',
 'valide','CRPE Français — Analyse de la langue V3','premium',true),
 
 ('92000000-0000-0000-0000-000000000007','Francais','analyse_langue','al_fonctions_complexes','Fonctions syntaxiques complexes','Difficile','qcm',
@@ -219,9 +219,9 @@ values
 
 ('92000000-0000-0000-0000-000000000009','Francais','analyse_langue','al_fonctions_complexes','Fonctions syntaxiques complexes','Difficile','qcm',
 'Dans « Fatiguée, elle s''endormit aussitôt », quelle est la fonction de l''adjectif « fatiguée » ?',null,
-'[{"id":"a","label":"Attribut du sujet avec verbe attributif implicite"},{"id":"b","label":"Épithète liée de « elle »"},{"id":"c","label":"Épithète détachée (prédicat second), apposée au sujet"},{"id":"d","label":"Complément de manière du verbe « s''endormit »"}]'::jsonb,
+'[{"id":"a","label":"Attribut du sujet avec verbe attributif implicite"},{"id":"b","label":"Épithète liée de « elle »"},{"id":"c","label":"Apposition (adjectif détaché), apposée au sujet"},{"id":"d","label":"Complément de manière du verbe « s''endormit »"}]'::jsonb,
 '{"mode":"single_choice","value":"c"}'::jsonb,
-'« Fatiguée » est une apposition (adjectif détaché) (ou prédicat second / apposition adjectivale) : séparée par une virgule, elle renvoie au sujet « elle » et exprime une circonstance concomitante à l''action principale. On peut la reformuler : « Elle s''endormit parce qu''elle était fatiguée » ou « Comme elle était fatiguée, elle s''endormit ». Elle diffère de l''attribut du sujet (qui exige un verbe attributif : « elle paraissait fatiguée ») et de l''épithète liée (directement accolée : « Elle, fatiguée, s''endormit » n''est pas liée). Ce prédicat second est une structure très productive en stylistique littéraire — attendu au CRPE.',
+'« Fatiguée » est une apposition (adjectif détaché, Éduscol 2021) : séparée par une virgule, elle renvoie au sujet « elle » et exprime une circonstance concomitante à l''action principale. On peut la reformuler : « Elle s''endormit parce qu''elle était fatiguée » ou « Comme elle était fatiguée, elle s''endormit ». Elle diffère de l''attribut du sujet (qui exige un verbe attributif : « elle paraissait fatiguée ») et de l''épithète liée (directement accolée : « Elle, fatiguée, s''endormit » n''est pas liée). Cette apposition est une structure très productive en stylistique littéraire — attendu au CRPE.',
 'valide','CRPE Français — Analyse de la langue V3','premium',true),
 
 ('92000000-0000-0000-0000-000000000010','Francais','analyse_langue','al_fonctions_complexes','Fonctions syntaxiques complexes','Difficile','qcm',

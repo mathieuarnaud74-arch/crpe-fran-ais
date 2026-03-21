@@ -507,23 +507,23 @@ export const seriesV3BatchD: RevisionSession[] = [
     ],
   }),
 
-  // ─── Série 54 : Accord de l'adjectif qualificatif ──────────────────────────
+  // ─── Série 54 : Accord de l'adjectif ───────────────────────────────────────
   buildSession({
     id: "fr-v3d-serie-adj",
-    title: "Accord de l'adjectif qualificatif : correction d'erreurs",
-    summary: "Repérer et corriger les erreurs d'accord de l'adjectif qualificatif en genre et en nombre.",
-    objective: "Accorder correctement l'adjectif qualificatif avec le nom ou le pronom auquel il se rapporte.",
+    title: "Accord de l'adjectif : correction d'erreurs",
+    summary: "Repérer et corriger les erreurs d'accord de l'adjectif en genre et en nombre.",
+    objective: "Accorder correctement l'adjectif avec le nom ou le pronom auquel il se rapporte.",
     introduction: "L'accord de l'adjectif est une règle enseignée dès le cycle 2. En maîtriser les nuances — y compris les cas particuliers comme 'avoir l'air' — est indispensable pour le CRPE.",
     subdomain: "orthographe",
-    topicKey: "accord_adjectif_qualificatif",
-    topicLabel: "Accord de l'adjectif qualificatif",
+    topicKey: "accord_adjectif",
+    topicLabel: "Accord de l'adjectif",
     level: "Intermediaire",
     exerciseTypeLabel: "Correction d'erreurs, QCM, vrai/faux",
     estimatedMinutes: 13,
     access_tier: "free",
     recommendedOrder: 54,
     completionSummary: {
-      skill: "Accorder l'adjectif qualificatif avec son référent nominal",
+      skill: "Accorder l'adjectif avec son référent nominal",
       keyPoints: [
         "L'adjectif s'accorde en genre et en nombre avec le nom (ou pronom) qu'il qualifie.",
         "Pour le féminin, on ajoute généralement -e ; pour le pluriel, -s.",
@@ -1459,7 +1459,7 @@ export const seriesV3BatchD: RevisionSession[] = [
         "Avancé",
         "Dans « Il est prêt », le mot 'prêt' est un adverbe de lieu.",
         false,
-        "Prêt (avec accent circonflexe) est un adjectif qualificatif (attribut du sujet : il est prêt = disposé à agir). C'est près (sans accent) qui est un adverbe ou préposition de lieu (= à proximité). Les deux mots sont homophones mais n'ont pas la même nature ni le même sens.",
+        "Prêt (avec accent circonflexe) est un adjectif (attribut du sujet : il est prêt = disposé à agir). C'est près (sans accent) qui est un adverbe ou préposition de lieu (= à proximité). Les deux mots sont homophones mais n'ont pas la même nature ni le même sens.",
         "Confondre prêt (adjectif) et près (adverbe de lieu) ou attribuer la fonction d'adverbe à prêt.",
         "premium",
       ),

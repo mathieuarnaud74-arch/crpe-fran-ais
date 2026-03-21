@@ -597,7 +597,7 @@ export const seriesV3BatchB: RevisionSession[] = [
     title: "Les valeurs du conditionnel : temps et mode",
     summary: "Distinguer les emplois temporels et modaux du conditionnel, et reconnaître ses différentes valeurs en contexte : hypothèse, politesse, information non confirmée, irréel.",
     objective: "Identifier et nommer la valeur du conditionnel dans des phrases variées.",
-    introduction: "Le conditionnel est à la fois un temps (futur dans le passé) et un mode (expression de l'hypothèse, du souhait, de la politesse). Cette série vous entraîne à distinguer ces emplois avec précision.",
+    introduction: "Le conditionnel est un temps de l'indicatif (Éduscol 2021) qui peut avoir une valeur temporelle (futur dans le passé) ou des valeurs modales (hypothèse, souhait, politesse). Cette série vous entraîne à distinguer ces emplois avec précision.",
     subdomain: "conjugaison",
     topicKey: "valeurs_conditionnel",
     topicLabel: "Les valeurs du conditionnel",

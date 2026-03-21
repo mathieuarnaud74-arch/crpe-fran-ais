@@ -225,6 +225,24 @@ export type EarnedBadge = {
   category: "milestone" | "streak" | "mastery" | "engagement";
 };
 
+// ─── Gamification Types ──────────────────────────────────
+
+export type ExerciseMode = "standard" | "timed" | "sprint" | "swipe";
+
+export type UserGamification = {
+  user_id: string;
+  xp: number;
+  level: number;
+  current_streak: number;
+  longest_streak: number;
+  last_activity_date: string | null;
+  sound_enabled: boolean;
+  reduced_animations: boolean;
+  daily_goal: number;
+  personal_best_sprint_time: number | null;
+  onboarding_completed: boolean;
+};
+
 export type DashboardData = {
   subjectLabel: string;
   totalSeries: number;

@@ -116,7 +116,7 @@ values
   '56000000-0000-0000-0000-000000000009',
   'Francais', 'grammaire', 'grm_types_formes_phrases', 'Types et formes de phrases', 'Facile',
   'qcm',
-  'Parmi les quatre types de phrases, lequel n''existe pas en français ?',
+  'Parmi ces propositions, laquelle n''est PAS un type de phrase reconnu par la terminologie officielle ?',
   null,
   '[{"id":"a","label":"Déclarative"},{"id":"b","label":"Subjective"},{"id":"c","label":"Impérative"},{"id":"d","label":"Interrogative"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
@@ -446,7 +446,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Faux ! « Noir » est ici ATTRIBUT DU SUJET, pas épithète liée. La différence fondamentale : l''attribut est séparé du nom par un verbe attributif (être, paraître, sembler, devenir…). Ici, « est » est ce verbe attributif — il relie le sujet « le chat » à l''attribut « noir ». L''épithète liée, elle, est directement accolée au nom : « Le chat noir dort. » Cette distinction est cruciale parce qu''elle change la fonction syntaxique : attribut = lié au prédicat, épithète = interne au GN. Les deux peuvent être des adjectifs, mais leurs rôles sont complètement différents.',
+  'Faux ! « Noir » est ici ATTRIBUT DU SUJET, pas épithète liée. La différence fondamentale : l''attribut est séparé du nom par un verbe attributif (être, paraître, sembler, devenir…). Ici, « est » est ce verbe attributif — il relie le sujet « le chat » à l''attribut « noir ». L''épithète liée, elle, est directement accolée au nom : « Le chat noir dort. » Cette distinction est cruciale parce qu''elle change la fonction syntaxique : attribut = lié au groupe verbal (GV), épithète = interne au GN. Les deux peuvent être des adjectifs, mais leurs rôles sont complètement différents.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 

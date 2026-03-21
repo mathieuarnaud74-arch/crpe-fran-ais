@@ -335,15 +335,15 @@ INSERT INTO public.exercises (
   NULL,
   '[{"id":"vrai","label":"Vrai"},{"id":"faux","label":"Faux"}]'::jsonb,
   '{"mode":"single_choice","value":"vrai"}'::jsonb,
-  'Vrai ! C''est justement l''un des deux critères fondamentaux qui définissent le CC selon la grammaire scolaire : il est SUPPRIMABLE et DÉPLAÇABLE. Si on supprime un CC, la phrase reste grammaticalement correcte (même si elle perd de l''information). « Les enfants jouent dans la cour » → « Les enfants jouent. » La phrase est toujours bien formée. Si la suppression rend la phrase incorrecte, c''est probablement un complément essentiel (COI, complément essentiel de lieu).',
-  'Penser que « dans la cour » dans « Il habite dans la cour » est un CC supprimable : « Il habite » seul est incomplet. C''est un complément essentiel de lieu.',
+  'Vrai ! C''est justement l''un des deux critères fondamentaux qui définissent le CC selon la grammaire scolaire : il est SUPPRIMABLE et DÉPLAÇABLE. Si on supprime un CC, la phrase reste grammaticalement correcte (même si elle perd de l''information). « Les enfants jouent dans la cour » → « Les enfants jouent. » La phrase est toujours bien formée. Si la suppression rend la phrase incorrecte, c''est probablement un complément d''objet (COD ou COI) exigé par la valence du verbe.',
+  'Penser que « dans la cour » dans « Il habite dans la cour » est un CC supprimable : « Il habite » seul est incomplet. C''est un COI de lieu exigé par le verbe.',
   'valide',
   'CRPE Français — Compléments circonstanciels',
   'free',
   true
 ) ON CONFLICT (id) DO NOTHING;
 
--- Q4 — Intermédiaire — QCM — CC vs complément essentiel de lieu
+-- Q4 — Intermédiaire — QCM — CC vs COI de lieu
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
@@ -356,12 +356,12 @@ INSERT INTO public.exercises (
   'Compléments circonstanciels',
   'Intermediaire',
   'qcm',
-  'Dans « Pierre habite à Lyon », le groupe « à Lyon » est-il un complément circonstanciel de lieu ou un complément essentiel de lieu ?',
+  'Dans « Pierre habite à Lyon », le groupe « à Lyon » est-il un complément circonstanciel de lieu ou un COI de lieu exigé par le verbe ?',
   NULL,
-  '[{"id":"a","label":"CC de lieu, car il répond à la question « où ? »"},{"id":"b","label":"Complément essentiel de lieu, car il ne peut pas être supprimé"},{"id":"c","label":"CC de lieu, car il est introduit par une préposition"},{"id":"d","label":"Attribut du sujet, car il complète « habite »"}]'::jsonb,
+  '[{"id":"a","label":"CC de lieu, car il répond à la question « où ? »"},{"id":"b","label":"COI de lieu, car il ne peut pas être supprimé"},{"id":"c","label":"CC de lieu, car il est introduit par une préposition"},{"id":"d","label":"Attribut du sujet, car il complète « habite »"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  '« À Lyon » est un complément essentiel de lieu (et non un CC). La preuve : « Pierre habite » est incomplet, la phrase nécessite ce complément pour être grammaticalement acceptable. Le verbe « habiter » réclame un complément de lieu — on ne peut ni le supprimer ni le déplacer librement. C''est la distinction fondamentale au CRPE : le CC est supprimable et déplaçable, le complément essentiel ne l''est pas. Autres verbes pièges : « aller », « se rendre », « résider ».',
-  'Classer tout complément de lieu comme CC : quand le verbe exige un lieu pour être complet (habiter, aller, résider), c''est un complément essentiel.',
+  '« À Lyon » est un COI de lieu (et non un CC). La preuve : « Pierre habite » est incomplet, la phrase nécessite ce complément pour être grammaticalement acceptable. Le verbe « habiter » réclame un complément de lieu — on ne peut ni le supprimer ni le déplacer librement. C''est la distinction fondamentale au CRPE : le CC est supprimable et déplaçable, le complément d''objet ne l''est pas (Éduscol 2021). Autres verbes pièges : « aller », « se rendre », « résider ».',
+  'Classer tout complément de lieu comme CC : quand le verbe exige un lieu pour être complet (habiter, aller, résider), c''est un complément d''objet, pas un CC.',
   'valide',
   'CRPE Français — Compléments circonstanciels',
   'free',

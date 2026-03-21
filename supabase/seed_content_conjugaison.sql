@@ -199,7 +199,7 @@ null,
 'Quel est le conditionnel présent de "avoir" à la 1re personne du singulier ?',null,
 '[{"id":"a","label":"j''aurai"},{"id":"b","label":"j''avais"},{"id":"c","label":"j''aie"},{"id":"d","label":"j''aurais"}]'::jsonb,
 '{"mode":"single_choice","value":"d"}'::jsonb,
-'Le conditionnel présent = radical du futur + terminaisons de l''imparfait. "Avoir" : radical du futur "aur-" + "-ais" → "j''aurais". "J''aurai" c''est le futur simple. "J''avais" c''est l''imparfait. La différence futur/conditionnel à la 1re pers. sing. : -ai (futur) vs -ais (conditionnel). Un seul s — mais deux modes distincts !',
+'Le conditionnel présent = radical du futur + terminaisons de l''imparfait. "Avoir" : radical du futur "aur-" + "-ais" → "j''aurais". "J''aurai" c''est le futur simple. "J''avais" c''est l''imparfait. La différence futur/conditionnel à la 1re pers. sing. : -ai (futur) vs -ais (conditionnel). Un seul s — mais deux temps bien distincts de l''indicatif !',
 'valide','CRPE Français V2','free',true),
 
 ('18000000-0000-0000-0000-000000000006','Francais','conjugaison','conj_futur_cond','Futur simple et conditionnel présent','Intermediaire','qcm',

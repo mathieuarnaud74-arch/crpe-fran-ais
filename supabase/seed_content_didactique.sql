@@ -221,7 +221,7 @@ values
 'À quel cycle les élèves commencent-ils à étudier la notion de phrase complexe (coordination, subordination) selon les programmes en vigueur ?',null,
 '[{"id":"a","label":"Cycle 1 (grande section de maternelle)"},{"id":"b","label":"Cycle 2 (CP-CE1-CE2)"},{"id":"c","label":"Cycle 3 (CM1-CM2-6ème)"},{"id":"d","label":"Uniquement au collège, à partir de la 5ème"}]'::jsonb,
 '{"mode":"single_choice","value":"c"}'::jsonb,
-'La phrase complexe (avec ses propositions coordonnées, juxtaposées et subordonnées) est au programme du cycle 3. Au cycle 2, le travail porte sur la phrase simple : identifier ses constituants (sujet, prédicat), reconnaître les types et formes de phrases. C''est au cycle 3 que la subordination (relatives, complétives, circonstancielles) fait l''objet d''un enseignement explicite.',
+'La phrase complexe (avec ses propositions coordonnées, juxtaposées et subordonnées) est au programme du cycle 3. Au cycle 2, le travail porte sur la phrase simple : identifier ses constituants (sujet, groupe verbal), reconnaître les types et formes de phrases. C''est au cycle 3 que la subordination (relatives, complétives, circonstancielles) fait l''objet d''un enseignement explicite.',
 'valide','CRPE Français V2 — Didactique','premium',true),
 
 ('23000000-0000-0000-0000-000000000009','Francais','didactique_francais','did_grammaire_ecole','Enseigner la grammaire à l''école','Intermediaire','vrai_faux',

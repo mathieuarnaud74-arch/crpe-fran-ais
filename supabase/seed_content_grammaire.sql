@@ -351,7 +351,7 @@ values
 'Quelle est la forme de la phrase "Les copies sont corrigées par le professeur" ?',null,
 '[{"id":"a","label":"Forme active"},{"id":"b","label":"Forme emphatique"},{"id":"c","label":"Forme négative"},{"id":"d","label":"Forme passive"}]'::jsonb,
 '{"mode":"single_choice","value":"d"}'::jsonb,
-'Forme passive — le schéma est parfait : sujet ("les copies") + auxiliaire "être" ("sont") + participe passé ("corrigées") + complément d''agent ("par le professeur"). Le sujet subit l''action réalisée par l''agent. À la forme active, ce serait : "Le professeur corrige les copies." Le participe s''accorde avec le sujet passif : "copies" est féminin pluriel → "corrigées". Toujours vérifier cet accord !',
+'Forme passive — le schéma est parfait : sujet ("les copies") + auxiliaire "être" ("sont") + participe passé ("corrigées") + complément d''agent ("par le professeur"). Le sujet subit l''action réalisée par l''agent. À la voix active, ce serait : "Le professeur corrige les copies." Le participe s''accorde avec le sujet passif : "copies" est féminin pluriel → "corrigées". Toujours vérifier cet accord !',
 'valide','CRPE Français V2','free',true),
 
 -- Q7 correct=b (forme emphatique) — keep at b

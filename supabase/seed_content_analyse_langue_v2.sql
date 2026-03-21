@@ -66,7 +66,7 @@ values
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
--- Q5 — récapitulatif des 4 types (vrai_faux)
+-- Q5 — récapitulatif des 3 types (vrai_faux, piège exclamatif)
 (
   '35000000-0000-0000-0000-000000000005',
   'Francais', 'analyse_langue', 'al_types_phrases',

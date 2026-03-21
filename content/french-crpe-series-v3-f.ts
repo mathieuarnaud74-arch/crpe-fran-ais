@@ -325,7 +325,7 @@ export const seriesV3BatchF: RevisionSession[] = [
         "Intermediaire",
         'Vrai ou faux : dans "un livre passionnant", "passionnant" est une épithète du nom "livre".',
         true,
-        "\"Passionnant\" est un adjectif qualificatif placé directement après le nom \"livre\", sans virgule ni préposition. Il qualifie ce nom et fait partie du groupe nominal : c'est bien une épithète. L'épithète est l'expansion du nom la plus simple : un adjectif (ou un participe employé comme adjectif) accolé au nom, en position antéposée ou postposée.",
+        "\"Passionnant\" est un adjectif placé directement après le nom \"livre\", sans virgule ni préposition. Il qualifie ce nom et fait partie du groupe nominal : c'est bien une épithète. L'épithète est l'expansion du nom la plus simple : un adjectif (ou un participe employé comme adjectif) accolé au nom, en position antéposée ou postposée.",
         "Répondre attribut parce que l'adjectif qualifie le nom, sans vérifier la présence d'un verbe attributif.",
         "free",
       ),
