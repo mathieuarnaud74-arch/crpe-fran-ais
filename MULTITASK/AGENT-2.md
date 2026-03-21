@@ -1,5 +1,26 @@
 # Agent 2 — Error boundaries & pages d'erreur
 
+> **AVANT DE COMMENCER** : Lis `CLAUDE.md` à la racine du projet. Respecte les conventions (named exports pour composants partagés, MAIS `export default` pour les pages Next.js, `cn()`, alias `@/`, tokens Tailwind). Ne lance PAS `npm run build` — l'utilisateur le fera. Ne fais PAS de `git commit`.
+
+> **PERSÉVÉRANCE** : Tu DOIS terminer 100% de ta mission. Ne t'arrête JAMAIS en cours de route. Ne demande JAMAIS "voulez-vous que je continue ?" ou "souhaitez-vous que je passe au fichier suivant ?". Enchaîne automatiquement chaque fichier jusqu'à ce que TOUS soient créés. Si tu rencontres un problème, note-le et passe au suivant.
+
+> **RAPPORT OBLIGATOIRE** : Une fois ta mission 100% terminée, crée le fichier `MULTITASK/RAPPORT-2.md` avec ce format exact :
+> ```markdown
+> # Rapport Agent 2 — Error boundaries & 404
+> ## Statut : ✅ Terminé / ⚠️ Partiel / ❌ Bloqué
+> ## Fichiers créés
+> - `chemin/fichier.tsx` — description
+> ## Fichiers modifiés
+> - (aucun attendu)
+> ## Problèmes rencontrés
+> - (aucun) ou description du problème
+> ## Handoffs
+> - (aucun) ou description
+> ## Résumé chiffré
+> - X pages d'erreur créées
+> - X fichiers créés
+> ```
+
 ## Ta mission
 
 Le projet n'a **aucun `error.tsx`** ni **`not-found.tsx`** dans l'app router. Quand une erreur serveur ou une page introuvable survient, l'utilisateur voit une page blanche ou l'erreur Next.js par défaut. Tu vas créer des pages d'erreur cohérentes avec le design system.

@@ -1,4 +1,4 @@
-import { ExerciseSubdomain, ExerciseType, FrenchDomainKey, LearningStatus } from "@/types/domain";
+import { ExerciseSubdomain, ExerciseType, FrenchDomainKey, LearningStatus, ProgressStatus } from "@/types/domain";
 
 export const SUBJECT_LABEL = "Français";
 
@@ -149,3 +149,33 @@ export function getFrenchDomainKey(subdomain: ExerciseSubdomain): FrenchDomainKe
 export function getFrenchDomainLabel(subdomain: ExerciseSubdomain) {
   return FRENCH_DOMAIN_CONFIG[getFrenchDomainKey(subdomain)].label;
 }
+
+// ─── Exercise Types List ──────────────────────────────────
+
+/** Liste ordonnée de tous les types d'exercices */
+export const EXERCISE_TYPES: ExerciseType[] = [
+  "qcm",
+  "vrai_faux",
+  "reponse_courte",
+  "identification_grammaticale",
+  "correction_orthographique",
+  "analyse_texte",
+  "tri_categories",
+  "surlignage_propositions",
+];
+
+// ─── Progress Status Labels ──────────────────────────────────
+
+export const PROGRESS_STATUS_LABELS: Record<ProgressStatus, string> = {
+  prioritaire: "Prioritaire",
+  fragile: "Fragile",
+  en_cours: "En cours",
+  acquis: "Acquis",
+};
+
+// ─── Access Tier Labels ──────────────────────────────────
+
+export const ACCESS_TIER_LABELS: Record<string, string> = {
+  free: "Gratuit",
+  premium: "Premium",
+};

@@ -1,8 +1,18 @@
 "use client";
 
-import { ResponsiveRadar } from "@nivo/radar";
+import dynamic from "next/dynamic";
 
 import type { DashboardDomainProgress } from "@/types/domain";
+
+const ResponsiveRadar = dynamic(
+  () => import("@nivo/radar").then((mod) => mod.ResponsiveRadar),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[300px] w-full animate-pulse rounded-card bg-secondary" />
+    ),
+  },
+);
 
 type NivoRadarProps = {
   domains: DashboardDomainProgress[];

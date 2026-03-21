@@ -1,5 +1,25 @@
 # Agent 3 — Durcissement des routes API
 
+> **AVANT DE COMMENCER** : Lis `CLAUDE.md` à la racine du projet. Respecte les conventions (TypeScript strict, alias `@/`). Ne lance PAS `npm run build` — l'utilisateur le fera. Ne fais PAS de `git commit`.
+
+> **PERSÉVÉRANCE** : Tu DOIS terminer 100% de ta mission. Ne t'arrête JAMAIS en cours de route. Ne demande JAMAIS "voulez-vous que je continue ?". Traite CHAQUE route API de ta zone l'une après l'autre, sans interruption. Si une route pose problème, note-le et passe à la suivante.
+
+> **RAPPORT OBLIGATOIRE** : Une fois ta mission 100% terminée, crée le fichier `MULTITASK/RAPPORT-3.md` avec ce format exact :
+> ```markdown
+> # Rapport Agent 3 — Durcissement API
+> ## Statut : ✅ Terminé / ⚠️ Partiel / ❌ Bloqué
+> ## Fichiers modifiés
+> - `chemin/route.ts` — ce qui a changé (validation ajoutée, erreurs typées, etc.)
+> ## Problèmes rencontrés
+> - (aucun) ou description
+> ## Handoffs
+> - (aucun) ou description
+> ## Résumé chiffré
+> - X routes API durcies
+> - X validations ajoutées
+> - X erreurs silencieuses corrigées
+> ```
+
 ## Ta mission
 
 Les routes API ont des problèmes de robustesse : erreurs génériques sans détail, parsing JSON silencieux qui avale les erreurs, et manque de validation. Tu vas les durcir sans changer leur comportement fonctionnel.

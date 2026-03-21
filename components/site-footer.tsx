@@ -43,13 +43,13 @@ export function SiteFooter() {
           </div>
 
           {/* Navigation */}
-          <FooterColumn title="Navigation" links={NAV_LINKS} />
+          <FooterColumn title="Navigation" links={NAV_LINKS} ariaLabel="Navigation du pied de page" />
 
           {/* Ressources */}
-          <FooterColumn title="Le site" links={RESOURCE_LINKS} />
+          <FooterColumn title="Le site" links={RESOURCE_LINKS} ariaLabel="Liens du site" />
 
           {/* Légal */}
-          <FooterColumn title="Légal" links={LEGAL_LINKS} />
+          <FooterColumn title="Légal" links={LEGAL_LINKS} ariaLabel="Liens légaux" />
         </div>
       </div>
 
@@ -69,26 +69,28 @@ export function SiteFooter() {
 function FooterColumn({
   title,
   links,
+  ariaLabel,
 }: {
   title: string;
   links: { label: string; href: string }[];
+  ariaLabel?: string;
 }) {
   return (
-    <div>
+    <nav aria-label={ariaLabel}>
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink">{title}</p>
       <ul className="mt-5 space-y-3">
         {links.map(({ label, href }) => (
           <li key={href}>
             <Link
               href={href}
-              className="text-sm text-muted transition-colors hover:text-ink"
+              className="text-sm text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
             >
               {label}
             </Link>
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 }
 

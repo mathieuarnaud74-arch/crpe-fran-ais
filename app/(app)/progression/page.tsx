@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
+
 import { AchievementBadges } from "@/components/ui/achievement-badges";
+
+export const metadata: Metadata = {
+  title: "Ma progression",
+  description: "Statistiques détaillées de votre préparation au CRPE.",
+};
 import { ActivityHeatmap } from "@/components/ui/activity-heatmap";
 import { Badge } from "@/components/ui/badge";
 import { BadgeUnlockToast } from "@/components/ui/badge-unlock-toast";

@@ -1,5 +1,18 @@
 # Changelog
 
+## [2026-03-21] — Création du système MULTITASK (8 agents parallèles)
+
+- `MULTITASK/INDEX.md` — Index central avec carte des agents, règles globales, prompt de lancement sécurisé
+- `MULTITASK/AGENT-1.md` — Mission tests unitaires (Vitest : evaluation, xp, freemium, utils)
+- `MULTITASK/AGENT-2.md` — Mission error boundaries & pages 404 (global-error, not-found, error.tsx)
+- `MULTITASK/AGENT-3.md` — Mission durcissement API (validation, parsing, error handling)
+- `MULTITASK/AGENT-4.md` — Mission accessibilité (aria, focus, prefers-reduced-motion)
+- `MULTITASK/AGENT-5.md` — Mission performance (dynamic imports, lazy loading composants lourds)
+- `MULTITASK/AGENT-6.md` — Mission SEO & métadonnées (metadata/generateMetadata sur toutes les pages)
+- `MULTITASK/AGENT-7.md` — Mission contenu (4 nouvelles fiches reference : conjugaison, compréhension, didactique, lexique)
+- `MULTITASK/AGENT-8.md` — Mission constants & types (extraction valeurs hardcodées, pricing, CRPE context)
+- Ajout blocs **Persévérance** (interdiction de s'arrêter en cours) + **Rapport obligatoire** (`MULTITASK/RAPPORT-X.md`) sur chaque agent
+
 ## [2026-03-21] — Section Défi rapide refaite + contenu engageant
 
 ### Dashboard — Section Défi rapide refaite

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -25,6 +26,22 @@ const CRPE_CONTEXT: Partial<Record<ExerciseSubdomain, string>> = {
   analyse_langue:
     "L'analyse syntaxique et morphologique est évaluée dans la partie « étude de la langue » du CRPE. Maîtriser les manipulations syntaxiques est indispensable pour répondre aux questions d'analyse grammaticale.",
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const session = await getExerciseSessionById(id);
+  if (!session) {
+    return { title: "Exercice introuvable" };
+  }
+  return {
+    title: `Exercice — ${session.title}`,
+    description: session.summary || `Série d'exercices : ${session.title}`,
+  };
+}
 
 export default async function ExerciseDetailPage({
   params,

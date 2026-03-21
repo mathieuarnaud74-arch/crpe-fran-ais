@@ -21,19 +21,25 @@ export function XpPopup({ xp, trigger }: XpPopupProps) {
     }
   }, [trigger, xp]);
 
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ opacity: 0, y: 0, scale: 0.8 }}
-          animate={{ opacity: 1, y: -40, scale: 1 }}
-          exit={{ opacity: 0, y: -70, scale: 0.6 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="pointer-events-none absolute right-4 top-0 z-50 font-serif text-xl font-bold text-accent"
-        >
-          +{displayXp} XP
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div role="status" aria-live="polite" className="pointer-events-none absolute right-4 top-0 z-50">
+      <AnimatePresence>
+        {visible && (
+          <motion.div
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 0, scale: 0.8 }}
+            animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: -40, scale: 1 }}
+            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -70, scale: 0.6 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.8, ease: "easeOut" }}
+            className="font-serif text-xl font-bold text-accent"
+          >
+            +{displayXp} XP
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

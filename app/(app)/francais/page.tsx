@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
+
+export const metadata: Metadata = {
+  title: "Domaines du français",
+  description: "Explorez les 7 domaines du programme de français au CRPE.",
+};
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";

@@ -13,7 +13,9 @@ export async function POST() {
 
     await completeOnboarding(user.id);
     return NextResponse.json({ ok: true });
-  } catch {
-    return NextResponse.json({ error: "Failed" }, { status: 500 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[gamification/onboarding]", message);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

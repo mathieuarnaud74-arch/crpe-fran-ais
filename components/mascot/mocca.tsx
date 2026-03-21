@@ -28,7 +28,7 @@ export function Mocca({
 }) {
   const { className: sizeClass, sizes } = SIZE[size];
   return (
-    <div className={`relative shrink-0 overflow-hidden ${sizeClass} ${className}`}>
+    <div aria-hidden="true" className={`relative shrink-0 overflow-hidden ${sizeClass} ${className}`}>
       <Image
         src={SRC[variant]}
         alt=""

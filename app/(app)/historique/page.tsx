@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
+
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { EmptyState } from "@/components/empty-state";
+
+export const metadata: Metadata = {
+  title: "Historique",
+  description: "Historique de vos sessions d'entraînement.",
+};
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";
 import { isPremiumUser } from "@/features/billing/server/queries";

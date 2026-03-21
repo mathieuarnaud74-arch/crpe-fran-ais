@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
@@ -13,6 +14,18 @@ type Params = Promise<{ slug: string }>;
 export async function generateStaticParams() {
   const fiches = getAllFiches();
   return fiches.map((f) => ({ slug: f.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { slug } = await params;
+  const fiche = getFicheBySlug(slug);
+  if (!fiche) {
+    return { title: "Fiche introuvable" };
+  }
+  return {
+    title: fiche.title,
+    description: fiche.subtitle || `Fiche de révision : ${fiche.title}`,
+  };
 }
 
 export default async function FichePage({ params }: { params: Params }) {

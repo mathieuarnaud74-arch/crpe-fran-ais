@@ -1,8 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useCallback } from "react";
 
-import { OnboardingTour } from "@/features/onboarding/components/onboarding-tour";
+const OnboardingTour = dynamic(
+  () =>
+    import("@/features/onboarding/components/onboarding-tour").then(
+      (mod) => mod.OnboardingTour,
+    ),
+  { ssr: false },
+);
 
 type OnboardingTourWrapperProps = {
   completed: boolean;

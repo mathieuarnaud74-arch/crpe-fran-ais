@@ -188,9 +188,10 @@ export function AchievementBadges({
         {earnedBadges.map((badge, i) => (
           <div
             key={badge.id}
-            className="group relative flex animate-badge-pop items-center gap-1.5 rounded-full border border-border bg-paper px-3 py-1.5 text-sm shadow-subtle transition-shadow hover:shadow-panel"
+            className="group relative flex motion-safe:animate-badge-pop items-center gap-1.5 rounded-full border border-border bg-paper px-3 py-1.5 text-sm shadow-subtle transition-shadow hover:shadow-panel"
             style={{ animationDelay: `${i * 50}ms` }}
             title={`${badge.label} — ${badge.description}`}
+            aria-label={`Badge ${badge.label} — ${badge.description}`}
           >
             <span className="text-base" aria-hidden="true">
               {badge.icon}
@@ -271,6 +272,11 @@ export function AchievementBadges({
       <div className="flex items-center gap-2">
         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-secondary">
           <div
+            role="progressbar"
+            aria-valuenow={earnedBadges.length}
+            aria-valuemin={0}
+            aria-valuemax={ALL_BADGES.length}
+            aria-label={`Progression des badges : ${earnedBadges.length} sur ${ALL_BADGES.length}`}
             className="h-full rounded-full bg-gradient-to-r from-[#476257] to-[#6B8F80] transition-all duration-500"
             style={{ width: `${(earnedBadges.length / ALL_BADGES.length) * 100}%` }}
           />

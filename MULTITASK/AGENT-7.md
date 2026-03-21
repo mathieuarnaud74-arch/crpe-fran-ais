@@ -1,5 +1,27 @@
 # Agent 7 — Contenu : nouvelles fiches de révision
 
+> **AVANT DE COMMENCER** : Lis `CLAUDE.md` à la racine du projet. Lis ENTIÈREMENT au moins 2 fiches reference existantes pour copier exactement leur structure TypeScript. Ne lance PAS `npm run build` — l'utilisateur le fera. Ne fais PAS de `git commit`.
+
+> **PERSÉVÉRANCE** : Tu DOIS terminer 100% de ta mission — les 4 fiches ET la mise à jour de l'index. Ne t'arrête JAMAIS en cours de route. Ne demande JAMAIS "voulez-vous que je continue ?" ou "dois-je créer la fiche suivante ?". Enchaîne les 4 fiches l'une après l'autre, puis mets à jour `index.ts`. Chaque fiche doit avoir au moins 15 blocs — ne fais pas de fiches courtes pour aller plus vite.
+
+> **RAPPORT OBLIGATOIRE** : Une fois ta mission 100% terminée, crée le fichier `MULTITASK/RAPPORT-7.md` avec ce format exact :
+> ```markdown
+> # Rapport Agent 7 — Nouvelles fiches reference
+> ## Statut : ✅ Terminé / ⚠️ Partiel / ❌ Bloqué
+> ## Fichiers créés
+> - `content/fiches/nom-fiche.ts` — sujet, nombre de blocs
+> ## Fichiers modifiés
+> - `content/fiches/index.ts` — X fiches ajoutées à l'export
+> ## Problèmes rencontrés
+> - (aucun) ou description
+> ## Handoffs
+> - (aucun) ou description
+> ## Résumé chiffré
+> - X fiches créées
+> - X blocs au total
+> - Types de blocs utilisés : rule, example, watchout, tip, table, related
+> ```
+
 ## Ta mission
 
 Le projet a 92 fiches mais seulement **5 fiches "reference"** (format complet/exhaustif). Chaque domaine devrait avoir au moins une fiche reference. Tu vas en créer de nouvelles en suivant exactement le format existant.

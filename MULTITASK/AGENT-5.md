@@ -1,5 +1,28 @@
 # Agent 5 — Performance & lazy loading
 
+> **AVANT DE COMMENCER** : Lis `CLAUDE.md` à la racine du projet. Respecte les conventions (`cn()`, alias `@/`, `"use client"` uniquement si nécessaire). Ne lance PAS `npm run build` — l'utilisateur le fera. Ne fais PAS de `git commit`.
+
+> **PERSÉVÉRANCE** : Tu DOIS terminer 100% de ta mission. Ne t'arrête JAMAIS en cours de route. Ne demande JAMAIS "voulez-vous que je continue ?". Traite chaque composant de la liste par ordre de priorité (Priorité 1 d'abord, puis 2, puis 3). Si un composant n'utilise pas de librairie lourde, passe au suivant sans demander.
+
+> **RAPPORT OBLIGATOIRE** : Une fois ta mission 100% terminée, crée le fichier `MULTITASK/RAPPORT-5.md` avec ce format exact :
+> ```markdown
+> # Rapport Agent 5 — Performance & lazy loading
+> ## Statut : ✅ Terminé / ⚠️ Partiel / ❌ Bloqué
+> ## Fichiers modifiés
+> - `chemin/composant.tsx` — import dynamique ajouté pour X (taille estimée du bundle épargné)
+> ## Fichiers non modifiés (pas de lazy loading nécessaire)
+> - `chemin/composant.tsx` — raison
+> ## Problèmes rencontrés
+> - (aucun) ou description
+> ## Handoffs
+> - (aucun) ou description
+> ## Résumé chiffré
+> - X composants analysés
+> - X imports dynamiques ajoutés
+> - X skeletons de chargement créés
+> - Librairies lazy-loadées : liste
+> ```
+
 ## Ta mission
 
 Optimiser les performances en ajoutant du lazy loading, des imports dynamiques et des Suspense boundaries sur les composants lourds (graphiques, PDF, animations).

@@ -1,8 +1,13 @@
 "use client";
 
-import CountUp from "react-countup";
+import dynamic from "next/dynamic";
 
 import { cn } from "@/lib/utils";
+
+const CountUp = dynamic(() => import("react-countup"), {
+  ssr: false,
+  loading: () => <span className="animate-pulse">—</span>,
+});
 
 type AnimatedCounterProps = {
   end: number;

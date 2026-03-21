@@ -1,5 +1,27 @@
 # Agent 6 — SEO & métadonnées
 
+> **AVANT DE COMMENCER** : Lis `CLAUDE.md` à la racine du projet. ATTENTION : tu ne modifies QUE les exports `metadata` / `generateMetadata` en haut des fichiers page.tsx. Tu ne touches JAMAIS au JSX, au rendu, ni à la logique. Ne lance PAS `npm run build` — l'utilisateur le fera. Ne fais PAS de `git commit`.
+
+> **PERSÉVÉRANCE** : Tu DOIS terminer 100% de ta mission. Ne t'arrête JAMAIS en cours de route. Ne demande JAMAIS "voulez-vous que je continue ?". Parcours TOUTES les pages listées une par une. Commence par le layout (title.template), puis les pages statiques, puis les pages dynamiques. Ne t'arrête qu'une fois toutes les pages traitées.
+
+> **RAPPORT OBLIGATOIRE** : Une fois ta mission 100% terminée, crée le fichier `MULTITASK/RAPPORT-6.md` avec ce format exact :
+> ```markdown
+> # Rapport Agent 6 — SEO & métadonnées
+> ## Statut : ✅ Terminé / ⚠️ Partiel / ❌ Bloqué
+> ## Fichiers modifiés
+> - `chemin/page.tsx` — metadata ajouté (title: "X", description: "Y")
+> ## Fichiers déjà conformes
+> - `chemin/page.tsx` — avait déjà un export metadata
+> ## Problèmes rencontrés
+> - (aucun) ou description
+> ## Handoffs
+> - (aucun) ou description
+> ## Résumé chiffré
+> - X pages avec metadata ajouté/amélioré
+> - X pages déjà conformes
+> - title.template configuré : oui/non
+> ```
+
 ## Ta mission
 
 Ajouter des exports `metadata` (ou `generateMetadata`) sur toutes les pages de l'app pour améliorer le SEO, les partages sociaux et l'expérience utilisateur (titre d'onglet).

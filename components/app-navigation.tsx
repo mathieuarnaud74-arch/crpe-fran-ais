@@ -145,7 +145,7 @@ function NavGroup({
         onClick={onToggle}
         aria-expanded={isOpen}
         className={cn(
-          "flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] transition active:scale-[0.98]",
+          "flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] transition active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
           groupActive
             ? "bg-secondary text-ink"
             : "text-muted hover:bg-secondary hover:text-ink",
@@ -170,8 +170,9 @@ function NavGroup({
               <Link
                 key={link.href}
                 href={link.href}
+                aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex items-center gap-2.5 rounded-xl px-3 py-3 text-sm transition active:scale-[0.98]",
+                  "flex items-center gap-2.5 rounded-xl px-3 py-3 text-sm transition active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
                   active
                     ? "bg-accent font-semibold text-paper shadow-subtle"
                     : "font-medium text-muted hover:bg-secondary hover:text-ink",
@@ -203,8 +204,9 @@ function NavStandalone({ item, pathname }: { item: NavigationStandalone; pathnam
   return (
     <Link
       href={item.href}
+      aria-current={active ? "page" : undefined}
       className={cn(
-        "flex w-full items-center justify-between rounded-xl px-3 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition active:scale-[0.98]",
+        "flex w-full items-center justify-between rounded-xl px-3 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
         active
           ? "bg-accent text-paper shadow-subtle"
           : "text-muted hover:bg-secondary hover:text-ink",

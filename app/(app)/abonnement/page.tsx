@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
+
 import { Badge } from "@/components/ui/badge";
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";
+
+export const metadata: Metadata = {
+  title: "Abonnement",
+  description: "Gérez votre abonnement CRPE Français.",
+};
 import { CheckoutButton } from "@/features/billing/components/checkout-button";
 import {
   getUserSubscription,

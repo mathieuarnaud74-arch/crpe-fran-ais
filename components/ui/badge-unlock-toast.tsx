@@ -135,7 +135,8 @@ export function BadgeUnlockToast({
             whileHover={{ scale: 1.02, y: -2 }}
             type="button"
             onClick={() => dismiss(toast.id)}
-            className="pointer-events-auto flex w-full items-center gap-3 rounded-[1.25rem] border border-successBorder/50 bg-card px-4 py-3 text-left shadow-elevated"
+            aria-label={`Badge débloqué : ${toast.label} — ${toast.description}. Cliquer pour fermer.`}
+            className="pointer-events-auto flex w-full items-center gap-3 rounded-[1.25rem] border border-successBorder/50 bg-card px-4 py-3 text-left shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
             <motion.span
               initial={{ rotate: -20, scale: 0.5 }}
@@ -161,6 +162,7 @@ export function BadgeUnlockToast({
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth={2}
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

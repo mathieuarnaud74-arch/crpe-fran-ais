@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
 
 type OnboardingTourProps = {
   completed: boolean;
@@ -17,7 +15,11 @@ export function OnboardingTour({ completed, onComplete }: OnboardingTourProps) {
     hasRun.current = true;
 
     // Small delay to let the page render
-    const timeout = setTimeout(() => {
+    const timeout = setTimeout(async () => {
+      // @ts-expect-error — CSS module import for side effects
+      await import("driver.js/dist/driver.css");
+      const { driver } = await import("driver.js");
+
       const driverObj = driver({
         showProgress: true,
         allowClose: true,

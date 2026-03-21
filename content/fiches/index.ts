@@ -91,6 +91,9 @@ import { typeDiscoursOperatoire } from "./comprehension-texte-type-discours-oper
 import { demarcheEtudeLangueOperatoire } from "./didactique-demarche-etude-langue-operatoire";
 import { plurielIrregulierSprint } from "./orthographe-pluriel-irregulier-sprint";
 import { phraseInterrogativeSprint } from "./grammaire-phrase-interrogative-sprint";
+import { tempsIndicatifReference } from "./conjugaison-temps-indicatif-reference";
+import { typesTextesReference } from "./comprehension-texte-types-textes-reference";
+import { formationMotsReference } from "./lexique-formation-mots-reference";
 
 export const allFiches: Fiche[] = [
   reperageExpliciteSprint,
@@ -184,4 +187,7 @@ export const allFiches: Fiche[] = [
   demarcheEtudeLangueOperatoire,
   plurielIrregulierSprint,
   phraseInterrogativeSprint,
+  tempsIndicatifReference,
+  typesTextesReference,
+  formationMotsReference,
 ];

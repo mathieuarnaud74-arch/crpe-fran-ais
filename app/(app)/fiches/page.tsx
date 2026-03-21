@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
+
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { DOMAINE_LABELS, MODEL_LABELS, FicheRow } from "@/features/fiches/components/fiche-card";
+
+export const metadata: Metadata = {
+  title: "Fiches de révision",
+  description: "Fiches synthétiques pour réviser le CRPE Français.",
+};
 import { getAllFiches } from "@/features/fiches/lib/get-fiche";
 import type { FicheModel } from "@/features/fiches/types";
 

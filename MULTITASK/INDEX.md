@@ -2,11 +2,25 @@
 
 ## Comment utiliser ce dossier
 
-Ouvre **8 fenêtres Claude** et dis dans chacune :
+Ouvre **8 fenêtres Claude** et copie-colle ce prompt dans chacune (en changeant le numéro) :
 
-> **"Tu es l'Agent X. Lis le fichier MULTITASK/AGENT-X.md et exécute ta mission."**
+```
+Lis ces 2 fichiers dans cet ordre AVANT de faire quoi que ce soit :
+1. CLAUDE.md (conventions du projet)
+2. MULTITASK/AGENT-1.md (ta mission)
 
-(Remplace X par le numéro : 1, 2, 3, 4, 5, 6, 7 ou 8)
+Tu es l'Agent 1. Règles critiques :
+- Ne touche QUE les fichiers listés dans ta zone ✅/🚫
+- Ne lance PAS npm install, npm run build, git commit, ou git push
+- Si tu dois modifier un fichier hors zone, écris-le dans MULTITASK/HANDOFF-1.md
+- Ne lance PAS de commandes longues (build, typecheck) — je les lancerai moi-même après
+- Tu DOIS finir 100% de ta mission — ne t'arrête JAMAIS pour demander si tu dois continuer
+- À la fin, crée MULTITASK/RAPPORT-1.md avec le bilan complet de ton travail
+
+Montre-moi ton plan, puis exécute TOUTES les étapes sans interruption jusqu'au rapport final.
+```
+
+(Change le numéro `1` par `2`, `3`, ... `8` selon la fenêtre)
 
 ---
 

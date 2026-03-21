@@ -1,9 +1,42 @@
 "use client";
 
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import dynamic from "next/dynamic";
 
 import { cn } from "@/lib/utils";
+
+const DomainGaugeInner = dynamic(
+  () =>
+    import("react-circular-progressbar").then((mod) => {
+      require("react-circular-progressbar/dist/styles.css");
+      const Comp = (props: {
+        value: number;
+        text: string;
+        pathColor: string;
+        textColor: string;
+        trailColor: string;
+      }) => (
+        <mod.CircularProgressbar
+          value={props.value}
+          text={props.text}
+          styles={mod.buildStyles({
+            textSize: "24px",
+            pathColor: props.pathColor,
+            textColor: props.textColor,
+            trailColor: props.trailColor,
+            pathTransitionDuration: 1.5,
+          })}
+        />
+      );
+      Comp.displayName = "DomainGaugeInner";
+      return Comp;
+    }),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-20 w-20 animate-pulse rounded-full bg-secondary" />
+    ),
+  },
+);
 
 type DomainGaugeProps = {
   label: string;
@@ -26,16 +59,12 @@ export function DomainGauge({ label, percentage, status, className }: DomainGaug
   return (
     <div className={cn("flex flex-col items-center gap-2", className)}>
       <div className="h-20 w-20">
-        <CircularProgressbar
+        <DomainGaugeInner
           value={displayPercent}
           text={`${displayPercent}%`}
-          styles={buildStyles({
-            textSize: "24px",
-            pathColor: colors.path,
-            textColor: colors.text,
-            trailColor: colors.trail,
-            pathTransitionDuration: 1.5,
-          })}
+          pathColor={colors.path}
+          textColor={colors.text}
+          trailColor={colors.trail}
         />
       </div>
       <p className="text-center text-xs font-medium text-ink">{label}</p>

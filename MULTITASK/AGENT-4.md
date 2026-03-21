@@ -1,5 +1,28 @@
 # Agent 4 — Accessibilité (a11y)
 
+> **AVANT DE COMMENCER** : Lis `CLAUDE.md` à la racine du projet. Respecte les conventions (`cn()`, alias `@/`, tokens Tailwind, pas d'inline styles). Ne lance PAS `npm run build` — l'utilisateur le fera. Ne fais PAS de `git commit`.
+
+> **PERSÉVÉRANCE** : Tu DOIS terminer 100% de ta mission. Ne t'arrête JAMAIS en cours de route. Ne demande JAMAIS "voulez-vous que je continue ?". Parcours CHAQUE composant de ta zone un par un et applique les corrections. Si un composant n'a rien à corriger, passe au suivant sans demander.
+
+> **RAPPORT OBLIGATOIRE** : Une fois ta mission 100% terminée, crée le fichier `MULTITASK/RAPPORT-4.md` avec ce format exact :
+> ```markdown
+> # Rapport Agent 4 — Accessibilité
+> ## Statut : ✅ Terminé / ⚠️ Partiel / ❌ Bloqué
+> ## Fichiers modifiés
+> - `chemin/composant.tsx` — corrections apportées (aria-label, role, focus, etc.)
+> ## Fichiers non modifiés (déjà conformes)
+> - `chemin/composant.tsx` — raison
+> ## Problèmes rencontrés
+> - (aucun) ou description
+> ## Handoffs
+> - (aucun) ou description
+> ## Résumé chiffré
+> - X composants audités
+> - X composants modifiés
+> - X aria-labels ajoutés
+> - X corrections prefers-reduced-motion
+> ```
+
 ## Ta mission
 
 Auditer et corriger les problèmes d'accessibilité dans les composants UI et la navigation. L'objectif est un score Lighthouse Accessibility > 95.

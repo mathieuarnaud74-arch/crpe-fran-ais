@@ -1,5 +1,27 @@
 # Agent 1 — Tests unitaires
 
+> **AVANT DE COMMENCER** : Lis `CLAUDE.md` à la racine du projet. Respecte les conventions (named exports, `cn()`, alias `@/`, pas de commentaires inutiles). Ne lance PAS `npm run build` ni `npm run typecheck` — l'utilisateur le fera. Ne fais PAS de `git commit`.
+
+> **PERSÉVÉRANCE** : Tu DOIS terminer 100% de ta mission. Ne t'arrête JAMAIS en cours de route. Si tu rencontres un problème sur une étape, note-le et passe à la suivante — mais ne demande pas "voulez-vous que je continue ?". Continue automatiquement jusqu'à ce que TOUTES les tâches soient terminées. Si tu approches de ta limite de contexte, priorise la finalisation des fichiers en cours plutôt que d'en commencer de nouveaux.
+
+> **RAPPORT OBLIGATOIRE** : Une fois ta mission 100% terminée, crée le fichier `MULTITASK/RAPPORT-1.md` avec ce format exact :
+> ```markdown
+> # Rapport Agent 1 — Tests unitaires
+> ## Statut : ✅ Terminé / ⚠️ Partiel / ❌ Bloqué
+> ## Fichiers créés
+> - `chemin/fichier.ts` — description
+> ## Fichiers modifiés
+> - `chemin/fichier.ts` — ce qui a changé
+> ## Problèmes rencontrés
+> - (aucun) ou description du problème
+> ## Handoffs (travail pour d'autres agents/sessions)
+> - (aucun) ou description
+> ## Résumé chiffré
+> - X tests écrits
+> - X fichiers créés
+> - X fichiers modifiés
+> ```
+
 ## Ta mission
 
 Le projet a **zéro test**. Vitest est configuré dans `package.json` mais aucun fichier test n'existe. Tu vas créer la fondation de tests pour les fonctions critiques du projet.

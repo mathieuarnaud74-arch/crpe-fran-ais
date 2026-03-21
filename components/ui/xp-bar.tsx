@@ -38,9 +38,16 @@ export function XpBar({
             {xpInCurrentLevel}/{xpNeededForNext} XP
           </span>
         </div>
-        <div className={cn("w-full overflow-hidden rounded-full bg-secondary", heights[size])}>
+        <div
+          role="progressbar"
+          aria-valuenow={xpInCurrentLevel}
+          aria-valuemin={0}
+          aria-valuemax={xpNeededForNext}
+          aria-label={`Progression XP : ${label}, ${xpInCurrentLevel}/${xpNeededForNext} XP`}
+          className={cn("w-full overflow-hidden rounded-full bg-secondary", heights[size])}
+        >
           <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-accent to-accentSecondary"
+            className="h-full rounded-full bg-gradient-to-r from-accent to-accentSecondary motion-reduce:transition-none"
             initial={{ width: 0 }}
             animate={{ width: `${progress * 100}%` }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -64,9 +71,16 @@ export function XpBar({
         </span>
       </div>
 
-      <div className={cn("w-full overflow-hidden rounded-full bg-secondary", heights[size])}>
+      <div
+        role="progressbar"
+        aria-valuenow={xpInCurrentLevel}
+        aria-valuemin={0}
+        aria-valuemax={xpNeededForNext}
+        aria-label={`Progression XP : niveau ${currentLevel}, ${xpInCurrentLevel}/${xpNeededForNext} XP`}
+        className={cn("w-full overflow-hidden rounded-full bg-secondary", heights[size])}
+      >
         <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-accent to-accentSecondary"
+          className="h-full rounded-full bg-gradient-to-r from-accent to-accentSecondary motion-reduce:transition-none"
           initial={{ width: 0 }}
           animate={{ width: `${progress * 100}%` }}
           transition={{ duration: 0.8, ease: "easeOut" }}

@@ -64,7 +64,7 @@ export function ProgressionRadarChart({ domains, compact = false, className }: P
     <div className={cn("relative", className)}>
       <svg
         viewBox={compact ? "0 0 420 320" : "0 0 520 410"}
-        className="mx-auto w-full max-w-md animate-radar-fill"
+        className="mx-auto w-full max-w-md motion-safe:animate-radar-fill"
         role="img"
         aria-label="Radar de progression par domaine"
       >
@@ -106,7 +106,7 @@ export function ProgressionRadarChart({ domains, compact = false, className }: P
           stroke="#476257"
           strokeWidth={2}
           strokeLinejoin="round"
-          className="animate-radar-fill"
+          className="motion-safe:animate-radar-fill"
         />
 
         {/* Data points */}

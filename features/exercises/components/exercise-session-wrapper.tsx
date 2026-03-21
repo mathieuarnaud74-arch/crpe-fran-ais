@@ -1,12 +1,37 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 
 import { ExercisePlayer } from "@/features/exercises/components/exercise-player";
 import { ModeSelector } from "@/features/exercises/components/mode-selector";
-import { SprintPlayer } from "@/features/exercises/components/sprint-player";
-import { SwipePlayer } from "@/features/exercises/components/swipe-player";
 import type { ExerciseMode, RevisionSession } from "@/types/domain";
+
+const SprintPlayer = dynamic(
+  () =>
+    import("@/features/exercises/components/sprint-player").then(
+      (mod) => mod.SprintPlayer,
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[400px] w-full animate-pulse rounded-card bg-secondary" />
+    ),
+  },
+);
+
+const SwipePlayer = dynamic(
+  () =>
+    import("@/features/exercises/components/swipe-player").then(
+      (mod) => mod.SwipePlayer,
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[400px] w-full animate-pulse rounded-card bg-secondary" />
+    ),
+  },
+);
 
 type ExerciseSessionWrapperProps = {
   session: RevisionSession;

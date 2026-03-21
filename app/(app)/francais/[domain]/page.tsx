@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -19,6 +20,18 @@ import { cn } from "@/lib/utils";
 import { DashboardSessionProgress, FrenchDomainKey, LearningStatus } from "@/types/domain";
 
 type Params = Promise<{ domain: string }>;
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { domain } = await params;
+  if (!isFrenchDomainKey(domain)) {
+    return { title: "Domaine introuvable" };
+  }
+  const config = FRENCH_DOMAIN_CONFIG[domain];
+  return {
+    title: config.label,
+    description: `Exercices et fiches pour ${config.label.toLowerCase()} — ${config.description}`,
+  };
+}
 
 type SearchParams = Promise<{
   status?: string;

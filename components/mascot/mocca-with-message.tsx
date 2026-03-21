@@ -23,7 +23,7 @@ export function MoccaWithMessage({
   return (
     <div className={cn("flex items-start gap-3", className)}>
       <Mocca variant={variant} size={size} className="shrink-0" />
-      <div className="relative rounded-inner border border-border/50 bg-card/80 px-4 py-3 shadow-subtle">
+      <div aria-live="polite" className="relative rounded-inner border border-border/50 bg-card/80 px-4 py-3 shadow-subtle">
         {/* Speech bubble arrow */}
         <div className="absolute -left-2 top-4 h-0 w-0 border-y-[6px] border-r-[8px] border-y-transparent border-r-card/80" />
         {typewriter ? (

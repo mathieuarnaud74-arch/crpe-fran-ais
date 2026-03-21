@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
+
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
+
+export const metadata: Metadata = {
+  title: "Ressources",
+  description: "Ressources complémentaires pour le CRPE Français.",
+};
 
 type NotionItem = { label: string; detail?: string };
 

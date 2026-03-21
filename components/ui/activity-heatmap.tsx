@@ -156,7 +156,7 @@ export function ActivityHeatmap({ dailyActivity, weeks = 13 }: ActivityHeatmapPr
           width={totalWidth}
           height={totalHeight}
           viewBox={`0 0 ${totalWidth} ${totalHeight}`}
-          className="block animate-heatmap-fade"
+          className="block motion-safe:animate-heatmap-fade"
           role="img"
           aria-label={`Calendrier d'activité : ${totalCount} réponses sur les ${weeks} dernières semaines`}
         >

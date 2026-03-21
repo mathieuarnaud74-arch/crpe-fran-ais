@@ -1,5 +1,28 @@
 # Agent 8 — Constants, types & nettoyage
 
+> **AVANT DE COMMENCER** : Lis `CLAUDE.md` à la racine du projet. Tu crées/enrichis uniquement des fichiers dans `lib/` et `types/`. Tu ne modifies PAS les fichiers qui consomment ces constantes — note les changements nécessaires dans HANDOFF-8.md. Ne lance PAS `npm run build` — l'utilisateur le fera. Ne fais PAS de `git commit`.
+
+> **PERSÉVÉRANCE** : Tu DOIS terminer 100% de ta mission. Ne t'arrête JAMAIS en cours de route. Ne demande JAMAIS "voulez-vous que je continue ?". Suis les étapes 1 à 6 dans l'ordre sans interruption. L'étape 6 (HANDOFF-8.md) est OBLIGATOIRE — ne la saute pas.
+
+> **RAPPORT OBLIGATOIRE** : Une fois ta mission 100% terminée, crée le fichier `MULTITASK/RAPPORT-8.md` avec ce format exact :
+> ```markdown
+> # Rapport Agent 8 — Constants, types & nettoyage
+> ## Statut : ✅ Terminé / ⚠️ Partiel / ❌ Bloqué
+> ## Fichiers créés
+> - `lib/fichier.ts` — description des constantes
+> ## Fichiers modifiés
+> - `lib/constants.ts` — X constantes ajoutées
+> - `types/domain.ts` — X types améliorés
+> ## Problèmes rencontrés
+> - (aucun) ou description
+> ## Handoffs (HANDOFF-8.md)
+> - X fichiers listés qui doivent importer les nouvelles constantes
+> ## Résumé chiffré
+> - X constantes créées
+> - X types ajoutés/améliorés
+> - X fichiers à brancher (listés dans HANDOFF-8.md)
+> ```
+
 ## Ta mission
 
 Extraire les valeurs hardcodées dans des constantes, améliorer les types, et centraliser les chaînes business-critical. Cela rend le code plus maintenable sans changer aucun comportement.

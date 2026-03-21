@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
+
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";
+
+export const metadata: Metadata = {
+  title: "Mon profil",
+  description: "Paramètres de votre compte.",
+};
 import { getUserSubscription, isPremiumUser } from "@/features/billing/server/queries";
 import { getDashboardData } from "@/features/dashboard/server/queries";
 import { formatDate } from "@/lib/utils";

@@ -55,19 +55,19 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
         </Link>
 
         {/* Nav desktop */}
-        <nav className="hidden items-center justify-center gap-2 lg:flex">
+        <nav aria-label="Navigation principale" className="hidden items-center justify-center gap-2 lg:flex">
           {editorialLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-5 py-2 text-[0.9375rem] font-medium text-muted transition-colors hover:bg-secondary hover:text-ink"
+              className="rounded-full px-5 py-2 text-[0.9375rem] font-medium text-muted transition-colors hover:bg-secondary hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               {link.label}
             </Link>
           ))}
           <Link
             href="/diagnostic"
-            className="ml-1 rounded-full border border-accentSecondary/30 bg-accentSecondarySoft px-5 py-2 text-[0.9375rem] font-semibold text-accentSecondaryDark transition-colors hover:border-accentSecondary/60"
+            className="ml-1 rounded-full border border-accentSecondary/30 bg-accentSecondarySoft px-5 py-2 text-[0.9375rem] font-semibold text-accentSecondaryDark transition-colors hover:border-accentSecondary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
             Diagnostic gratuit
           </Link>
@@ -112,7 +112,7 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
                 </SheetDescription>
               </SheetHeader>
 
-              <nav className="mt-8 space-y-2">
+              <nav aria-label="Navigation mobile" className="mt-8 space-y-2">
                 {allMobileLinks.map((link) => (
                   <SheetClose asChild key={link.href}>
                     <Link

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { ChevronDown, Lock, PlayCircle } from "lucide-react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Exercices",
+  description: "Banque d'exercices corrigés pour le CRPE Français.",
+};
 
 import { EmptyState } from "@/components/empty-state";
 import { Badge } from "@/components/ui/badge";

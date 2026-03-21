@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Mocca } from "@/components/mascot/mocca";
+
+export const metadata: Metadata = {
+  title: "Tableau de bord",
+  description: "Votre espace de révision personnalisé pour le CRPE Français.",
+};
 import { MoccaWithMessage } from "@/components/mascot/mocca-with-message";
 import { AchievementBadges } from "@/components/ui/achievement-badges";
 import { ActivityHeatmap } from "@/components/ui/activity-heatmap";

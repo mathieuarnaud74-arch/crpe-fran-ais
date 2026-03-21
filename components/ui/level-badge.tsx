@@ -20,7 +20,7 @@ export function LevelBadge({ level, size = "md", className }: LevelBadgeProps) {
   };
 
   return (
-    <div className={cn("flex items-center gap-2", className)}>
+    <div className={cn("flex items-center gap-2", className)} aria-label={`Niveau ${level} — ${label}`}>
       <AnimatePresence mode="wait">
         <motion.div
           key={level}
@@ -28,6 +28,7 @@ export function LevelBadge({ level, size = "md", className }: LevelBadgeProps) {
           animate={{ scale: 1, rotate: 0 }}
           exit={{ scale: 0.5, rotate: 180 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          aria-hidden="true"
           className={cn(
             "flex items-center justify-center rounded-full bg-gradient-to-br from-accent to-accentDark font-serif font-bold text-white shadow-elevated",
             sizes[size],

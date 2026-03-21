@@ -1,21 +1,23 @@
-import Link from "next/link";
+import { Mocca } from "@/components/mascot/mocca";
+import { ButtonLink } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen items-center justify-center px-6">
-      <div className="max-w-lg text-center">
-        <h1 className="font-serif text-5xl font-semibold text-ink">Page introuvable</h1>
-        <p className="mt-4 text-sm leading-7 text-ink/72">
-          L&apos;adresse demandée n&apos;existe pas ou a été déplacée.
-        </p>
-        <Link
-          href="/"
-          className="mt-8 inline-flex rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-accentDark"
-        >
-          Retour à l&apos;accueil
-        </Link>
-      </div>
-    </div>
+    <main className="flex min-h-[60vh] flex-col items-center justify-center px-6 py-20 text-center">
+      <Mocca variant="grumpy" size="lg" className="mb-6" />
+
+      <h1 className="font-serif text-3xl font-semibold text-ink">
+        Oups, cette page n&apos;existe pas !
+      </h1>
+
+      <p className="mt-3 max-w-md text-muted">
+        La page que tu cherches est introuvable. Elle a peut-être été déplacée
+        ou supprimée.
+      </p>
+
+      <ButtonLink href="/" variant="primary" className="mt-8">
+        Retour à l&apos;accueil
+      </ButtonLink>
+    </main>
   );
 }
-

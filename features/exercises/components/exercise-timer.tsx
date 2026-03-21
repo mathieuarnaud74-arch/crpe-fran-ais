@@ -1,8 +1,21 @@
 "use client";
 
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import dynamic from "next/dynamic";
 
 import { cn } from "@/lib/utils";
+
+const CountdownCircleTimer = dynamic(
+  () =>
+    import("react-countdown-circle-timer").then(
+      (mod) => mod.CountdownCircleTimer,
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-20 w-20 animate-pulse rounded-full bg-secondary" />
+    ),
+  },
+);
 
 type ExerciseTimerProps = {
   duration: number; // seconds

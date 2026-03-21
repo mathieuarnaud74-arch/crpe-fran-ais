@@ -1,3 +1,4 @@
+/** Sous-domaines du Français couverts par la plateforme */
 export type ExerciseSubdomain =
   | "grammaire"
   | "orthographe"
@@ -7,6 +8,7 @@ export type ExerciseSubdomain =
   | "analyse_langue"
   | "didactique_francais";
 
+/** Types d'exercices disponibles */
 export type ExerciseType =
   | "qcm"
   | "vrai_faux"
@@ -17,10 +19,25 @@ export type ExerciseType =
   | "tri_categories"
   | "surlignage_propositions";
 
+/** Mode de validation de la réponse attendue */
+export type AnswerMode = "single_choice" | "boolean" | "text" | "categorization" | "highlight_groups";
+
+/** Niveau d'accès d'un exercice ou d'une série */
 export type AccessTier = "free" | "premium";
+
+/** Statut de validation éditoriale */
 export type ValidationStatus = "brouillon" | "valide";
+
+/** Statut de progression d'un domaine */
 export type ProgressStatus = "prioritaire" | "fragile" | "en_cours" | "acquis";
+
+/** Statut d'apprentissage d'une série */
 export type LearningStatus = "non_commencee" | "en_cours" | "a_revoir" | "maitrisee";
+
+/** Catégorie de badge de gamification */
+export type BadgeCategory = "milestone" | "streak" | "mastery" | "engagement";
+
+/** Clés des domaines du Français (utilisées dans les URLs) */
 export type FrenchDomainKey =
   | "grammaire"
   | "lexique"
@@ -222,7 +239,7 @@ export type EarnedBadge = {
   label: string;
   description: string;
   icon: string;
-  category: "milestone" | "streak" | "mastery" | "engagement";
+  category: BadgeCategory;
 };
 
 // ─── Gamification Types ──────────────────────────────────
