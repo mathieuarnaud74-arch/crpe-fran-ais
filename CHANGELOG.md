@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-21] — Badges déplacés sous les stats sur la page Progression
+
+- `app/(app)/progression/page.tsx` — déplacement du `BadgesSummary` juste après le panneau stats (Tentatives/Réussite/Maîtrisées/Non commencées) au lieu de tout en bas de la page
+
 ## [2026-03-21] — Badges compacts : icônes denses + tooltip au survol
 
 - `components/ui/achievement-badges.tsx` — refonte du mode grille : chaque badge est réduit à un cercle d'icône 36px (`h-9 w-9`), flex-wrap avec `gap-1.5`, hover `scale-125` avec tooltip CSS (label + description), badges verrouillés en `grayscale opacity-30`, catégories avec compteur inline

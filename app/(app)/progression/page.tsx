@@ -78,6 +78,9 @@ export default async function ProgressPage() {
         )}
       </Panel>
 
+      {/* ── Badges — résumé compact ── */}
+      <BadgesSummary earnedBadges={data.earnedBadges} />
+
       {/* ── Radar + Évolution — panneau fusionné ── */}
       {data.totalAttempts > 0 && (
         <Panel className="p-4 sm:p-5">
@@ -128,8 +131,6 @@ export default async function ProgressPage() {
         </CollapsiblePanel>
       )}
 
-      {/* ── Badges — résumé compact ── */}
-      <BadgesSummary earnedBadges={data.earnedBadges} />
     </div>
   );
 }

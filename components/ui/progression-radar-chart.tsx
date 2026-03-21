@@ -31,8 +31,8 @@ type ProgressionRadarChartProps = {
 };
 
 export function ProgressionRadarChart({ domains, compact = false, className }: ProgressionRadarChartProps) {
-  const cx = compact ? 160 : 210;
-  const cy = compact ? 155 : 200;
+  const cx = compact ? 210 : 260;
+  const cy = compact ? 160 : 205;
   const r = compact ? 95 : 125;
   const labelOffset = compact ? 28 : 34;
   const n = domains.length;
@@ -63,7 +63,7 @@ export function ProgressionRadarChart({ domains, compact = false, className }: P
   return (
     <div className={cn("relative", className)}>
       <svg
-        viewBox={compact ? "0 0 320 310" : "0 0 420 405"}
+        viewBox={compact ? "0 0 420 320" : "0 0 520 410"}
         className="mx-auto w-full max-w-md animate-radar-fill"
         role="img"
         aria-label="Radar de progression par domaine"
