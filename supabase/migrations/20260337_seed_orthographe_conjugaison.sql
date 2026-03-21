@@ -7,7 +7,7 @@
 -- ============================================================
 -- SÉRIE 1 : Accord sujet-verbe — les cas complexes
 -- Topic : orth_accord_sujet_verbe
--- UUID prefix : orth-asv0
+-- UUID prefix : a1010000
 -- 10 exercices : 3 qcm, 2 vrai_faux, 2 reponse_courte, 1 tri_categories, 2 qcm
 -- ============================================================
 
@@ -17,7 +17,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-asv0-0000-0000-0000-000000000001',
+  'a1010000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'orth_accord_sujet_verbe',
@@ -42,7 +42,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-asv0-0000-0000-0000-000000000002',
+  'a1010000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'orth_accord_sujet_verbe',
@@ -67,7 +67,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-asv0-0000-0000-0000-000000000003',
+  'a1010000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'orth_accord_sujet_verbe',
@@ -92,7 +92,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-asv0-0000-0000-0000-000000000004',
+  'a1010000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'orth_accord_sujet_verbe',
@@ -117,7 +117,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-asv0-0000-0000-0000-000000000005',
+  'a1010000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'orth_accord_sujet_verbe',
@@ -142,7 +142,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-asv0-0000-0000-0000-000000000006',
+  'a1010000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'orth_accord_sujet_verbe',
@@ -167,7 +167,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-asv0-0000-0000-0000-000000000007',
+  'a1010000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'orth_accord_sujet_verbe',
@@ -192,7 +192,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-asv0-0000-0000-0000-000000000008',
+  'a1010000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'orth_accord_sujet_verbe',
@@ -217,7 +217,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-asv0-0000-0000-0000-000000000009',
+  'a1010000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'orth_accord_sujet_verbe',
@@ -242,7 +242,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-asv0-0000-0000-0000-000000000010',
+  'a1010000-0000-0000-0000-000000000010',
   'Francais',
   'orthographe',
   'orth_accord_sujet_verbe',
@@ -264,7 +264,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 2 : Homophones grammaticaux
 -- Topic : orth_homophones_gram
--- UUID prefix : orth-hom0
+-- UUID prefix : a1020000
 -- 10 exercices : 3 qcm, 3 vrai_faux, 2 reponse_courte, 2 tri_categories
 -- ============================================================
 
@@ -274,7 +274,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-hom0-0000-0000-0000-000000000001',
+  'a1020000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'orth_homophones_gram',
@@ -299,7 +299,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-hom0-0000-0000-0000-000000000002',
+  'a1020000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'orth_homophones_gram',
@@ -324,7 +324,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-hom0-0000-0000-0000-000000000003',
+  'a1020000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'orth_homophones_gram',
@@ -349,7 +349,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-hom0-0000-0000-0000-000000000004',
+  'a1020000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'orth_homophones_gram',
@@ -374,7 +374,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-hom0-0000-0000-0000-000000000005',
+  'a1020000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'orth_homophones_gram',
@@ -399,7 +399,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-hom0-0000-0000-0000-000000000006',
+  'a1020000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'orth_homophones_gram',
@@ -424,7 +424,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-hom0-0000-0000-0000-000000000007',
+  'a1020000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'orth_homophones_gram',
@@ -449,7 +449,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-hom0-0000-0000-0000-000000000008',
+  'a1020000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'orth_homophones_gram',
@@ -474,7 +474,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-hom0-0000-0000-0000-000000000009',
+  'a1020000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'orth_homophones_gram',
@@ -499,7 +499,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-hom0-0000-0000-0000-000000000010',
+  'a1020000-0000-0000-0000-000000000010',
   'Francais',
   'orthographe',
   'orth_homophones_gram',
@@ -521,7 +521,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 3 : Accord du participe passé
 -- Topic : orth_participe_passe
--- UUID prefix : orth-pp00
+-- UUID prefix : a1030000
 -- 10 exercices : 3 qcm, 2 vrai_faux, 3 reponse_courte, 2 tri_categories
 -- ============================================================
 
@@ -531,7 +531,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pp00-0000-0000-0000-000000000001',
+  'a1030000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'orth_participe_passe',
@@ -556,7 +556,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pp00-0000-0000-0000-000000000002',
+  'a1030000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'orth_participe_passe',
@@ -581,7 +581,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pp00-0000-0000-0000-000000000003',
+  'a1030000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'orth_participe_passe',
@@ -606,7 +606,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pp00-0000-0000-0000-000000000004',
+  'a1030000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'orth_participe_passe',
@@ -631,7 +631,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pp00-0000-0000-0000-000000000005',
+  'a1030000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'orth_participe_passe',
@@ -656,7 +656,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pp00-0000-0000-0000-000000000006',
+  'a1030000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'orth_participe_passe',
@@ -681,7 +681,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pp00-0000-0000-0000-000000000007',
+  'a1030000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'orth_participe_passe',
@@ -706,7 +706,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pp00-0000-0000-0000-000000000008',
+  'a1030000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'orth_participe_passe',
@@ -731,7 +731,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pp00-0000-0000-0000-000000000009',
+  'a1030000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'orth_participe_passe',
@@ -756,7 +756,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pp00-0000-0000-0000-000000000010',
+  'a1030000-0000-0000-0000-000000000010',
   'Francais',
   'orthographe',
   'orth_participe_passe',
@@ -778,7 +778,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 4 : Pluriel des noms composés
 -- Topic : orth_pluriel_composes
--- UUID prefix : orth-pnc0
+-- UUID prefix : a1040000
 -- 10 exercices : 3 qcm, 2 vrai_faux, 3 reponse_courte, 2 tri_categories
 -- ============================================================
 
@@ -788,7 +788,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pnc0-0000-0000-0000-000000000001',
+  'a1040000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'orth_pluriel_composes',
@@ -813,7 +813,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pnc0-0000-0000-0000-000000000002',
+  'a1040000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'orth_pluriel_composes',
@@ -838,7 +838,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pnc0-0000-0000-0000-000000000003',
+  'a1040000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'orth_pluriel_composes',
@@ -863,7 +863,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pnc0-0000-0000-0000-000000000004',
+  'a1040000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'orth_pluriel_composes',
@@ -888,7 +888,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pnc0-0000-0000-0000-000000000005',
+  'a1040000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'orth_pluriel_composes',
@@ -913,7 +913,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pnc0-0000-0000-0000-000000000006',
+  'a1040000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'orth_pluriel_composes',
@@ -938,7 +938,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pnc0-0000-0000-0000-000000000007',
+  'a1040000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'orth_pluriel_composes',
@@ -963,7 +963,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pnc0-0000-0000-0000-000000000008',
+  'a1040000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'orth_pluriel_composes',
@@ -988,7 +988,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pnc0-0000-0000-0000-000000000009',
+  'a1040000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'orth_pluriel_composes',
@@ -1013,7 +1013,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'orth-pnc0-0000-0000-0000-000000000010',
+  'a1040000-0000-0000-0000-000000000010',
   'Francais',
   'orthographe',
   'orth_pluriel_composes',
@@ -1035,7 +1035,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 5 : Présent de l'indicatif — formes et valeurs
 -- Topic : conj_present_indicatif
--- UUID prefix : conj-pre0
+-- UUID prefix : a2010000
 -- 10 exercices : 3 qcm, 2 vrai_faux, 3 reponse_courte, 2 tri_categories
 -- ============================================================
 
@@ -1045,7 +1045,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-pre0-0000-0000-0000-000000000001',
+  'a2010000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'conj_present_indicatif',
@@ -1070,7 +1070,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-pre0-0000-0000-0000-000000000002',
+  'a2010000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'conj_present_indicatif',
@@ -1095,7 +1095,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-pre0-0000-0000-0000-000000000003',
+  'a2010000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'conj_present_indicatif',
@@ -1120,7 +1120,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-pre0-0000-0000-0000-000000000004',
+  'a2010000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'conj_present_indicatif',
@@ -1145,7 +1145,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-pre0-0000-0000-0000-000000000005',
+  'a2010000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'conj_present_indicatif',
@@ -1170,7 +1170,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-pre0-0000-0000-0000-000000000006',
+  'a2010000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'conj_present_indicatif',
@@ -1195,7 +1195,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-pre0-0000-0000-0000-000000000007',
+  'a2010000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'conj_present_indicatif',
@@ -1220,7 +1220,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-pre0-0000-0000-0000-000000000008',
+  'a2010000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'conj_present_indicatif',
@@ -1245,7 +1245,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-pre0-0000-0000-0000-000000000009',
+  'a2010000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'conj_present_indicatif',
@@ -1270,7 +1270,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-pre0-0000-0000-0000-000000000010',
+  'a2010000-0000-0000-0000-000000000010',
   'Francais',
   'conjugaison',
   'conj_present_indicatif',
@@ -1292,7 +1292,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 6 : Imparfait et passé simple
 -- Topic : conj_imparfait_passe_simple
--- UUID prefix : conj-ips0
+-- UUID prefix : a2020000
 -- 10 exercices : 3 qcm, 2 vrai_faux, 2 reponse_courte, 1 tri_categories, 2 qcm
 -- ============================================================
 
@@ -1302,7 +1302,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-ips0-0000-0000-0000-000000000001',
+  'a2020000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'conj_imparfait_passe_simple',
@@ -1327,7 +1327,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-ips0-0000-0000-0000-000000000002',
+  'a2020000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'conj_imparfait_passe_simple',
@@ -1352,7 +1352,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-ips0-0000-0000-0000-000000000003',
+  'a2020000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'conj_imparfait_passe_simple',
@@ -1377,7 +1377,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-ips0-0000-0000-0000-000000000004',
+  'a2020000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'conj_imparfait_passe_simple',
@@ -1402,7 +1402,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-ips0-0000-0000-0000-000000000005',
+  'a2020000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'conj_imparfait_passe_simple',
@@ -1427,7 +1427,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-ips0-0000-0000-0000-000000000006',
+  'a2020000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'conj_imparfait_passe_simple',
@@ -1452,7 +1452,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-ips0-0000-0000-0000-000000000007',
+  'a2020000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'conj_imparfait_passe_simple',
@@ -1477,7 +1477,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-ips0-0000-0000-0000-000000000008',
+  'a2020000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'conj_imparfait_passe_simple',
@@ -1502,7 +1502,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-ips0-0000-0000-0000-000000000009',
+  'a2020000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'conj_imparfait_passe_simple',
@@ -1527,7 +1527,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-ips0-0000-0000-0000-000000000010',
+  'a2020000-0000-0000-0000-000000000010',
   'Francais',
   'conjugaison',
   'conj_imparfait_passe_simple',
@@ -1549,7 +1549,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 7 : Le subjonctif présent
 -- Topic : conj_subjonctif_present
--- UUID prefix : conj-sub0
+-- UUID prefix : a2030000
 -- 10 exercices : 3 qcm, 3 vrai_faux, 2 reponse_courte, 2 tri_categories
 -- ============================================================
 
@@ -1559,7 +1559,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-sub0-0000-0000-0000-000000000001',
+  'a2030000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'conj_subjonctif_present',
@@ -1584,7 +1584,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-sub0-0000-0000-0000-000000000002',
+  'a2030000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'conj_subjonctif_present',
@@ -1609,7 +1609,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-sub0-0000-0000-0000-000000000003',
+  'a2030000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'conj_subjonctif_present',
@@ -1634,7 +1634,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-sub0-0000-0000-0000-000000000004',
+  'a2030000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'conj_subjonctif_present',
@@ -1659,7 +1659,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-sub0-0000-0000-0000-000000000005',
+  'a2030000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'conj_subjonctif_present',
@@ -1684,7 +1684,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-sub0-0000-0000-0000-000000000006',
+  'a2030000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'conj_subjonctif_present',
@@ -1709,7 +1709,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-sub0-0000-0000-0000-000000000007',
+  'a2030000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'conj_subjonctif_present',
@@ -1734,7 +1734,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-sub0-0000-0000-0000-000000000008',
+  'a2030000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'conj_subjonctif_present',
@@ -1759,7 +1759,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-sub0-0000-0000-0000-000000000009',
+  'a2030000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'conj_subjonctif_present',
@@ -1784,7 +1784,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-sub0-0000-0000-0000-000000000010',
+  'a2030000-0000-0000-0000-000000000010',
   'Francais',
   'conjugaison',
   'conj_subjonctif_present',
@@ -1806,7 +1806,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 8 : Concordance des temps
 -- Topic : conj_concordance_temps
--- UUID prefix : conj-cdt0
+-- UUID prefix : a2040000
 -- 10 exercices : 3 qcm, 2 vrai_faux, 3 reponse_courte, 2 tri_categories
 -- ============================================================
 
@@ -1816,7 +1816,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-cdt0-0000-0000-0000-000000000001',
+  'a2040000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'conj_concordance_temps',
@@ -1841,7 +1841,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-cdt0-0000-0000-0000-000000000002',
+  'a2040000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'conj_concordance_temps',
@@ -1866,7 +1866,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-cdt0-0000-0000-0000-000000000003',
+  'a2040000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'conj_concordance_temps',
@@ -1891,7 +1891,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-cdt0-0000-0000-0000-000000000004',
+  'a2040000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'conj_concordance_temps',
@@ -1916,7 +1916,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-cdt0-0000-0000-0000-000000000005',
+  'a2040000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'conj_concordance_temps',
@@ -1941,7 +1941,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-cdt0-0000-0000-0000-000000000006',
+  'a2040000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'conj_concordance_temps',
@@ -1966,7 +1966,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-cdt0-0000-0000-0000-000000000007',
+  'a2040000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'conj_concordance_temps',
@@ -1991,7 +1991,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-cdt0-0000-0000-0000-000000000008',
+  'a2040000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'conj_concordance_temps',
@@ -2016,7 +2016,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-cdt0-0000-0000-0000-000000000009',
+  'a2040000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'conj_concordance_temps',
@@ -2041,7 +2041,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'conj-cdt0-0000-0000-0000-000000000010',
+  'a2040000-0000-0000-0000-000000000010',
   'Francais',
   'conjugaison',
   'conj_concordance_temps',

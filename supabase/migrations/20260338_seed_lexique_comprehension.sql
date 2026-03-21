@@ -7,7 +7,7 @@
 -- ============================================================
 -- SÉRIE 1 : Champs lexicaux et champs sémantiques
 -- Topic : lex_champs_lexicaux
--- UUID prefix : lex-chl0
+-- UUID prefix : b1010000
 -- 4 Facile, 3 Intermédiaire, 3 Difficile
 -- Mix : 3 qcm, 2 vrai_faux, 2 reponse_courte, 3 tri_categories
 -- ============================================================
@@ -18,7 +18,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-chl0-0000-0000-0000-000000000001',
+  'b1010000-0000-0000-0000-000000000001',
   'Francais',
   'lexique',
   'lex_champs_lexicaux',
@@ -43,7 +43,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-chl0-0000-0000-0000-000000000002',
+  'b1010000-0000-0000-0000-000000000002',
   'Francais',
   'lexique',
   'lex_champs_lexicaux',
@@ -68,7 +68,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-chl0-0000-0000-0000-000000000003',
+  'b1010000-0000-0000-0000-000000000003',
   'Francais',
   'lexique',
   'lex_champs_lexicaux',
@@ -93,7 +93,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-chl0-0000-0000-0000-000000000004',
+  'b1010000-0000-0000-0000-000000000004',
   'Francais',
   'lexique',
   'lex_champs_lexicaux',
@@ -118,7 +118,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-chl0-0000-0000-0000-000000000005',
+  'b1010000-0000-0000-0000-000000000005',
   'Francais',
   'lexique',
   'lex_champs_lexicaux',
@@ -143,7 +143,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-chl0-0000-0000-0000-000000000006',
+  'b1010000-0000-0000-0000-000000000006',
   'Francais',
   'lexique',
   'lex_champs_lexicaux',
@@ -168,7 +168,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-chl0-0000-0000-0000-000000000007',
+  'b1010000-0000-0000-0000-000000000007',
   'Francais',
   'lexique',
   'lex_champs_lexicaux',
@@ -193,7 +193,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-chl0-0000-0000-0000-000000000008',
+  'b1010000-0000-0000-0000-000000000008',
   'Francais',
   'lexique',
   'lex_champs_lexicaux',
@@ -218,7 +218,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-chl0-0000-0000-0000-000000000009',
+  'b1010000-0000-0000-0000-000000000009',
   'Francais',
   'lexique',
   'lex_champs_lexicaux',
@@ -243,7 +243,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-chl0-0000-0000-0000-000000000010',
+  'b1010000-0000-0000-0000-000000000010',
   'Francais',
   'lexique',
   'lex_champs_lexicaux',
@@ -265,7 +265,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 2 : Figures de style
 -- Topic : lex_figures_style
--- UUID prefix : lex-fig0
+-- UUID prefix : b1020000
 -- 3 Facile, 4 Intermédiaire, 3 Difficile
 -- Mix : 4 qcm, 2 vrai_faux, 2 reponse_courte, 2 tri_categories
 -- ============================================================
@@ -276,7 +276,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-fig0-0000-0000-0000-000000000001',
+  'b1020000-0000-0000-0000-000000000001',
   'Francais',
   'lexique',
   'lex_figures_style',
@@ -301,7 +301,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-fig0-0000-0000-0000-000000000002',
+  'b1020000-0000-0000-0000-000000000002',
   'Francais',
   'lexique',
   'lex_figures_style',
@@ -326,7 +326,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-fig0-0000-0000-0000-000000000003',
+  'b1020000-0000-0000-0000-000000000003',
   'Francais',
   'lexique',
   'lex_figures_style',
@@ -351,7 +351,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-fig0-0000-0000-0000-000000000004',
+  'b1020000-0000-0000-0000-000000000004',
   'Francais',
   'lexique',
   'lex_figures_style',
@@ -376,7 +376,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-fig0-0000-0000-0000-000000000005',
+  'b1020000-0000-0000-0000-000000000005',
   'Francais',
   'lexique',
   'lex_figures_style',
@@ -401,7 +401,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-fig0-0000-0000-0000-000000000006',
+  'b1020000-0000-0000-0000-000000000006',
   'Francais',
   'lexique',
   'lex_figures_style',
@@ -426,7 +426,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-fig0-0000-0000-0000-000000000007',
+  'b1020000-0000-0000-0000-000000000007',
   'Francais',
   'lexique',
   'lex_figures_style',
@@ -451,7 +451,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-fig0-0000-0000-0000-000000000008',
+  'b1020000-0000-0000-0000-000000000008',
   'Francais',
   'lexique',
   'lex_figures_style',
@@ -476,7 +476,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-fig0-0000-0000-0000-000000000009',
+  'b1020000-0000-0000-0000-000000000009',
   'Francais',
   'lexique',
   'lex_figures_style',
@@ -501,7 +501,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-fig0-0000-0000-0000-000000000010',
+  'b1020000-0000-0000-0000-000000000010',
   'Francais',
   'lexique',
   'lex_figures_style',
@@ -523,7 +523,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 3 : Registres et niveaux de langue
 -- Topic : lex_registres_langue
--- UUID prefix : lex-reg0
+-- UUID prefix : b1030000
 -- 4 Facile, 3 Intermédiaire, 3 Difficile
 -- Mix : 3 qcm, 2 vrai_faux, 2 reponse_courte, 3 tri_categories
 -- ============================================================
@@ -534,7 +534,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-reg0-0000-0000-0000-000000000001',
+  'b1030000-0000-0000-0000-000000000001',
   'Francais',
   'lexique',
   'lex_registres_langue',
@@ -559,7 +559,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-reg0-0000-0000-0000-000000000002',
+  'b1030000-0000-0000-0000-000000000002',
   'Francais',
   'lexique',
   'lex_registres_langue',
@@ -584,7 +584,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-reg0-0000-0000-0000-000000000003',
+  'b1030000-0000-0000-0000-000000000003',
   'Francais',
   'lexique',
   'lex_registres_langue',
@@ -609,7 +609,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-reg0-0000-0000-0000-000000000004',
+  'b1030000-0000-0000-0000-000000000004',
   'Francais',
   'lexique',
   'lex_registres_langue',
@@ -634,7 +634,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-reg0-0000-0000-0000-000000000005',
+  'b1030000-0000-0000-0000-000000000005',
   'Francais',
   'lexique',
   'lex_registres_langue',
@@ -659,7 +659,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-reg0-0000-0000-0000-000000000006',
+  'b1030000-0000-0000-0000-000000000006',
   'Francais',
   'lexique',
   'lex_registres_langue',
@@ -684,7 +684,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-reg0-0000-0000-0000-000000000007',
+  'b1030000-0000-0000-0000-000000000007',
   'Francais',
   'lexique',
   'lex_registres_langue',
@@ -709,7 +709,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-reg0-0000-0000-0000-000000000008',
+  'b1030000-0000-0000-0000-000000000008',
   'Francais',
   'lexique',
   'lex_registres_langue',
@@ -734,7 +734,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-reg0-0000-0000-0000-000000000009',
+  'b1030000-0000-0000-0000-000000000009',
   'Francais',
   'lexique',
   'lex_registres_langue',
@@ -759,7 +759,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-reg0-0000-0000-0000-000000000010',
+  'b1030000-0000-0000-0000-000000000010',
   'Francais',
   'lexique',
   'lex_registres_langue',
@@ -781,7 +781,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 4 : Relations de sens (synonymie, antonymie, polysémie)
 -- Topic : lex_relations_sens
--- UUID prefix : lex-sap0
+-- UUID prefix : b1040000
 -- 3 Facile, 4 Intermédiaire, 3 Difficile
 -- Mix : 3 qcm, 2 vrai_faux, 3 reponse_courte, 2 tri_categories
 -- ============================================================
@@ -792,7 +792,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-sap0-0000-0000-0000-000000000001',
+  'b1040000-0000-0000-0000-000000000001',
   'Francais',
   'lexique',
   'lex_relations_sens',
@@ -817,7 +817,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-sap0-0000-0000-0000-000000000002',
+  'b1040000-0000-0000-0000-000000000002',
   'Francais',
   'lexique',
   'lex_relations_sens',
@@ -842,7 +842,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-sap0-0000-0000-0000-000000000003',
+  'b1040000-0000-0000-0000-000000000003',
   'Francais',
   'lexique',
   'lex_relations_sens',
@@ -867,7 +867,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-sap0-0000-0000-0000-000000000004',
+  'b1040000-0000-0000-0000-000000000004',
   'Francais',
   'lexique',
   'lex_relations_sens',
@@ -892,7 +892,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-sap0-0000-0000-0000-000000000005',
+  'b1040000-0000-0000-0000-000000000005',
   'Francais',
   'lexique',
   'lex_relations_sens',
@@ -917,7 +917,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-sap0-0000-0000-0000-000000000006',
+  'b1040000-0000-0000-0000-000000000006',
   'Francais',
   'lexique',
   'lex_relations_sens',
@@ -942,7 +942,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-sap0-0000-0000-0000-000000000007',
+  'b1040000-0000-0000-0000-000000000007',
   'Francais',
   'lexique',
   'lex_relations_sens',
@@ -967,7 +967,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-sap0-0000-0000-0000-000000000008',
+  'b1040000-0000-0000-0000-000000000008',
   'Francais',
   'lexique',
   'lex_relations_sens',
@@ -992,7 +992,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-sap0-0000-0000-0000-000000000009',
+  'b1040000-0000-0000-0000-000000000009',
   'Francais',
   'lexique',
   'lex_relations_sens',
@@ -1017,7 +1017,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'lex-sap0-0000-0000-0000-000000000010',
+  'b1040000-0000-0000-0000-000000000010',
   'Francais',
   'lexique',
   'lex_relations_sens',
@@ -1039,7 +1039,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 5 : Le schéma narratif
 -- Topic : cpt_schema_narratif
--- UUID prefix : cpt-sn00
+-- UUID prefix : b2010000
 -- 3 Facile, 4 Intermédiaire, 3 Difficile
 -- Mix : 4 qcm, 2 vrai_faux, 2 reponse_courte, 2 tri_categories
 -- ============================================================
@@ -1050,7 +1050,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-sn00-0000-0000-0000-000000000001',
+  'b2010000-0000-0000-0000-000000000001',
   'Francais',
   'comprehension_texte',
   'cpt_schema_narratif',
@@ -1075,7 +1075,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-sn00-0000-0000-0000-000000000002',
+  'b2010000-0000-0000-0000-000000000002',
   'Francais',
   'comprehension_texte',
   'cpt_schema_narratif',
@@ -1100,7 +1100,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-sn00-0000-0000-0000-000000000003',
+  'b2010000-0000-0000-0000-000000000003',
   'Francais',
   'comprehension_texte',
   'cpt_schema_narratif',
@@ -1125,7 +1125,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-sn00-0000-0000-0000-000000000004',
+  'b2010000-0000-0000-0000-000000000004',
   'Francais',
   'comprehension_texte',
   'cpt_schema_narratif',
@@ -1150,7 +1150,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-sn00-0000-0000-0000-000000000005',
+  'b2010000-0000-0000-0000-000000000005',
   'Francais',
   'comprehension_texte',
   'cpt_schema_narratif',
@@ -1175,7 +1175,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-sn00-0000-0000-0000-000000000006',
+  'b2010000-0000-0000-0000-000000000006',
   'Francais',
   'comprehension_texte',
   'cpt_schema_narratif',
@@ -1200,7 +1200,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-sn00-0000-0000-0000-000000000007',
+  'b2010000-0000-0000-0000-000000000007',
   'Francais',
   'comprehension_texte',
   'cpt_schema_narratif',
@@ -1225,7 +1225,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-sn00-0000-0000-0000-000000000008',
+  'b2010000-0000-0000-0000-000000000008',
   'Francais',
   'comprehension_texte',
   'cpt_schema_narratif',
@@ -1250,7 +1250,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-sn00-0000-0000-0000-000000000009',
+  'b2010000-0000-0000-0000-000000000009',
   'Francais',
   'comprehension_texte',
   'cpt_schema_narratif',
@@ -1275,7 +1275,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-sn00-0000-0000-0000-000000000010',
+  'b2010000-0000-0000-0000-000000000010',
   'Francais',
   'comprehension_texte',
   'cpt_schema_narratif',
@@ -1297,7 +1297,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 6 : Analyser un texte argumentatif
 -- Topic : cpt_texte_argumentatif
--- UUID prefix : cpt-arg0
+-- UUID prefix : b2020000
 -- 3 Facile, 3 Intermédiaire, 4 Difficile
 -- Mix : 4 qcm, 2 vrai_faux, 2 reponse_courte, 2 tri_categories
 -- ============================================================
@@ -1308,7 +1308,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-arg0-0000-0000-0000-000000000001',
+  'b2020000-0000-0000-0000-000000000001',
   'Francais',
   'comprehension_texte',
   'cpt_texte_argumentatif',
@@ -1333,7 +1333,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-arg0-0000-0000-0000-000000000002',
+  'b2020000-0000-0000-0000-000000000002',
   'Francais',
   'comprehension_texte',
   'cpt_texte_argumentatif',
@@ -1358,7 +1358,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-arg0-0000-0000-0000-000000000003',
+  'b2020000-0000-0000-0000-000000000003',
   'Francais',
   'comprehension_texte',
   'cpt_texte_argumentatif',
@@ -1383,7 +1383,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-arg0-0000-0000-0000-000000000004',
+  'b2020000-0000-0000-0000-000000000004',
   'Francais',
   'comprehension_texte',
   'cpt_texte_argumentatif',
@@ -1408,7 +1408,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-arg0-0000-0000-0000-000000000005',
+  'b2020000-0000-0000-0000-000000000005',
   'Francais',
   'comprehension_texte',
   'cpt_texte_argumentatif',
@@ -1433,7 +1433,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-arg0-0000-0000-0000-000000000006',
+  'b2020000-0000-0000-0000-000000000006',
   'Francais',
   'comprehension_texte',
   'cpt_texte_argumentatif',
@@ -1458,7 +1458,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-arg0-0000-0000-0000-000000000007',
+  'b2020000-0000-0000-0000-000000000007',
   'Francais',
   'comprehension_texte',
   'cpt_texte_argumentatif',
@@ -1483,7 +1483,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-arg0-0000-0000-0000-000000000008',
+  'b2020000-0000-0000-0000-000000000008',
   'Francais',
   'comprehension_texte',
   'cpt_texte_argumentatif',
@@ -1508,7 +1508,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-arg0-0000-0000-0000-000000000009',
+  'b2020000-0000-0000-0000-000000000009',
   'Francais',
   'comprehension_texte',
   'cpt_texte_argumentatif',
@@ -1533,7 +1533,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-arg0-0000-0000-0000-000000000010',
+  'b2020000-0000-0000-0000-000000000010',
   'Francais',
   'comprehension_texte',
   'cpt_texte_argumentatif',
@@ -1555,7 +1555,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 7 : Cohérence et cohésion textuelle
 -- Topic : cpt_coherence_textuelle
--- UUID prefix : cpt-coh0
+-- UUID prefix : b2030000
 -- 3 Facile, 4 Intermédiaire, 3 Difficile
 -- Mix : 3 qcm, 2 vrai_faux, 3 reponse_courte, 2 tri_categories
 -- ============================================================
@@ -1566,7 +1566,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-coh0-0000-0000-0000-000000000001',
+  'b2030000-0000-0000-0000-000000000001',
   'Francais',
   'comprehension_texte',
   'cpt_coherence_textuelle',
@@ -1591,7 +1591,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-coh0-0000-0000-0000-000000000002',
+  'b2030000-0000-0000-0000-000000000002',
   'Francais',
   'comprehension_texte',
   'cpt_coherence_textuelle',
@@ -1616,7 +1616,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-coh0-0000-0000-0000-000000000003',
+  'b2030000-0000-0000-0000-000000000003',
   'Francais',
   'comprehension_texte',
   'cpt_coherence_textuelle',
@@ -1641,7 +1641,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-coh0-0000-0000-0000-000000000004',
+  'b2030000-0000-0000-0000-000000000004',
   'Francais',
   'comprehension_texte',
   'cpt_coherence_textuelle',
@@ -1666,7 +1666,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-coh0-0000-0000-0000-000000000005',
+  'b2030000-0000-0000-0000-000000000005',
   'Francais',
   'comprehension_texte',
   'cpt_coherence_textuelle',
@@ -1691,7 +1691,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-coh0-0000-0000-0000-000000000006',
+  'b2030000-0000-0000-0000-000000000006',
   'Francais',
   'comprehension_texte',
   'cpt_coherence_textuelle',
@@ -1716,7 +1716,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-coh0-0000-0000-0000-000000000007',
+  'b2030000-0000-0000-0000-000000000007',
   'Francais',
   'comprehension_texte',
   'cpt_coherence_textuelle',
@@ -1741,7 +1741,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-coh0-0000-0000-0000-000000000008',
+  'b2030000-0000-0000-0000-000000000008',
   'Francais',
   'comprehension_texte',
   'cpt_coherence_textuelle',
@@ -1766,7 +1766,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-coh0-0000-0000-0000-000000000009',
+  'b2030000-0000-0000-0000-000000000009',
   'Francais',
   'comprehension_texte',
   'cpt_coherence_textuelle',
@@ -1791,7 +1791,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'cpt-coh0-0000-0000-0000-000000000010',
+  'b2030000-0000-0000-0000-000000000010',
   'Francais',
   'comprehension_texte',
   'cpt_coherence_textuelle',

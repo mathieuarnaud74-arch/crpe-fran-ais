@@ -7,7 +7,7 @@
 -- ============================================================
 -- SÉRIE 1 : Les subordonnées relatives
 -- Topic : anal_subordonnees_relatives
--- UUID prefix : anal-rel0
+-- UUID prefix : c3010000
 -- 3 qcm, 2 vrai_faux, 3 reponse_courte, 2 tri_categories
 -- ============================================================
 
@@ -17,7 +17,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-rel0-0000-0000-0000-000000000001',
+  'c3010000-0000-0000-0000-000000000001',
   'Francais',
   'analyse_langue',
   'anal_subordonnees_relatives',
@@ -42,7 +42,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-rel0-0000-0000-0000-000000000002',
+  'c3010000-0000-0000-0000-000000000002',
   'Francais',
   'analyse_langue',
   'anal_subordonnees_relatives',
@@ -67,7 +67,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-rel0-0000-0000-0000-000000000003',
+  'c3010000-0000-0000-0000-000000000003',
   'Francais',
   'analyse_langue',
   'anal_subordonnees_relatives',
@@ -92,7 +92,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-rel0-0000-0000-0000-000000000004',
+  'c3010000-0000-0000-0000-000000000004',
   'Francais',
   'analyse_langue',
   'anal_subordonnees_relatives',
@@ -117,7 +117,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-rel0-0000-0000-0000-000000000005',
+  'c3010000-0000-0000-0000-000000000005',
   'Francais',
   'analyse_langue',
   'anal_subordonnees_relatives',
@@ -142,7 +142,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-rel0-0000-0000-0000-000000000006',
+  'c3010000-0000-0000-0000-000000000006',
   'Francais',
   'analyse_langue',
   'anal_subordonnees_relatives',
@@ -167,7 +167,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-rel0-0000-0000-0000-000000000007',
+  'c3010000-0000-0000-0000-000000000007',
   'Francais',
   'analyse_langue',
   'anal_subordonnees_relatives',
@@ -192,7 +192,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-rel0-0000-0000-0000-000000000008',
+  'c3010000-0000-0000-0000-000000000008',
   'Francais',
   'analyse_langue',
   'anal_subordonnees_relatives',
@@ -217,7 +217,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-rel0-0000-0000-0000-000000000009',
+  'c3010000-0000-0000-0000-000000000009',
   'Francais',
   'analyse_langue',
   'anal_subordonnees_relatives',
@@ -242,7 +242,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-rel0-0000-0000-0000-000000000010',
+  'c3010000-0000-0000-0000-000000000010',
   'Francais',
   'analyse_langue',
   'anal_subordonnees_relatives',
@@ -264,7 +264,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 2 : Compléments circonstanciels
 -- Topic : anal_complements_circ
--- UUID prefix : anal-cc00
+-- UUID prefix : c3020000
 -- 3 qcm, 2 vrai_faux, 2 reponse_courte, 3 tri_categories
 -- ============================================================
 
@@ -274,7 +274,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-cc00-0000-0000-0000-000000000001',
+  'c3020000-0000-0000-0000-000000000001',
   'Francais',
   'analyse_langue',
   'anal_complements_circ',
@@ -299,7 +299,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-cc00-0000-0000-0000-000000000002',
+  'c3020000-0000-0000-0000-000000000002',
   'Francais',
   'analyse_langue',
   'anal_complements_circ',
@@ -324,7 +324,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-cc00-0000-0000-0000-000000000003',
+  'c3020000-0000-0000-0000-000000000003',
   'Francais',
   'analyse_langue',
   'anal_complements_circ',
@@ -349,7 +349,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-cc00-0000-0000-0000-000000000004',
+  'c3020000-0000-0000-0000-000000000004',
   'Francais',
   'analyse_langue',
   'anal_complements_circ',
@@ -374,7 +374,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-cc00-0000-0000-0000-000000000005',
+  'c3020000-0000-0000-0000-000000000005',
   'Francais',
   'analyse_langue',
   'anal_complements_circ',
@@ -399,7 +399,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-cc00-0000-0000-0000-000000000006',
+  'c3020000-0000-0000-0000-000000000006',
   'Francais',
   'analyse_langue',
   'anal_complements_circ',
@@ -424,7 +424,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-cc00-0000-0000-0000-000000000007',
+  'c3020000-0000-0000-0000-000000000007',
   'Francais',
   'analyse_langue',
   'anal_complements_circ',
@@ -449,7 +449,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-cc00-0000-0000-0000-000000000008',
+  'c3020000-0000-0000-0000-000000000008',
   'Francais',
   'analyse_langue',
   'anal_complements_circ',
@@ -474,7 +474,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-cc00-0000-0000-0000-000000000009',
+  'c3020000-0000-0000-0000-000000000009',
   'Francais',
   'analyse_langue',
   'anal_complements_circ',
@@ -499,7 +499,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-cc00-0000-0000-0000-000000000010',
+  'c3020000-0000-0000-0000-000000000010',
   'Francais',
   'analyse_langue',
   'anal_complements_circ',
@@ -521,7 +521,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 3 : Voix active et voix passive
 -- Topic : anal_voix_active_passive
--- UUID prefix : anal-vap0
+-- UUID prefix : c3030000
 -- 3 qcm, 2 vrai_faux, 3 reponse_courte, 2 tri_categories
 -- ============================================================
 
@@ -531,7 +531,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-vap0-0000-0000-0000-000000000001',
+  'c3030000-0000-0000-0000-000000000001',
   'Francais',
   'analyse_langue',
   'anal_voix_active_passive',
@@ -556,7 +556,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-vap0-0000-0000-0000-000000000002',
+  'c3030000-0000-0000-0000-000000000002',
   'Francais',
   'analyse_langue',
   'anal_voix_active_passive',
@@ -581,7 +581,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-vap0-0000-0000-0000-000000000003',
+  'c3030000-0000-0000-0000-000000000003',
   'Francais',
   'analyse_langue',
   'anal_voix_active_passive',
@@ -606,7 +606,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-vap0-0000-0000-0000-000000000004',
+  'c3030000-0000-0000-0000-000000000004',
   'Francais',
   'analyse_langue',
   'anal_voix_active_passive',
@@ -631,7 +631,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-vap0-0000-0000-0000-000000000005',
+  'c3030000-0000-0000-0000-000000000005',
   'Francais',
   'analyse_langue',
   'anal_voix_active_passive',
@@ -656,7 +656,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-vap0-0000-0000-0000-000000000006',
+  'c3030000-0000-0000-0000-000000000006',
   'Francais',
   'analyse_langue',
   'anal_voix_active_passive',
@@ -681,7 +681,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-vap0-0000-0000-0000-000000000007',
+  'c3030000-0000-0000-0000-000000000007',
   'Francais',
   'analyse_langue',
   'anal_voix_active_passive',
@@ -706,7 +706,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-vap0-0000-0000-0000-000000000008',
+  'c3030000-0000-0000-0000-000000000008',
   'Francais',
   'analyse_langue',
   'anal_voix_active_passive',
@@ -731,7 +731,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-vap0-0000-0000-0000-000000000009',
+  'c3030000-0000-0000-0000-000000000009',
   'Francais',
   'analyse_langue',
   'anal_voix_active_passive',
@@ -756,7 +756,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'anal-vap0-0000-0000-0000-000000000010',
+  'c3030000-0000-0000-0000-000000000010',
   'Francais',
   'analyse_langue',
   'anal_voix_active_passive',
@@ -778,7 +778,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 4 : L''apprentissage de la lecture
 -- Topic : did_apprentissage_lecture
--- UUID prefix : did-lect0
+-- UUID prefix : c4010000
 -- 4 qcm, 3 vrai_faux, 2 reponse_courte, 1 tri_categories
 -- ============================================================
 
@@ -788,7 +788,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-lect0-0000-0000-0000-000000000001',
+  'c4010000-0000-0000-0000-000000000001',
   'Francais',
   'didactique_francais',
   'did_apprentissage_lecture',
@@ -813,7 +813,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-lect0-0000-0000-0000-000000000002',
+  'c4010000-0000-0000-0000-000000000002',
   'Francais',
   'didactique_francais',
   'did_apprentissage_lecture',
@@ -838,7 +838,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-lect0-0000-0000-0000-000000000003',
+  'c4010000-0000-0000-0000-000000000003',
   'Francais',
   'didactique_francais',
   'did_apprentissage_lecture',
@@ -863,7 +863,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-lect0-0000-0000-0000-000000000004',
+  'c4010000-0000-0000-0000-000000000004',
   'Francais',
   'didactique_francais',
   'did_apprentissage_lecture',
@@ -888,7 +888,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-lect0-0000-0000-0000-000000000005',
+  'c4010000-0000-0000-0000-000000000005',
   'Francais',
   'didactique_francais',
   'did_apprentissage_lecture',
@@ -913,7 +913,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-lect0-0000-0000-0000-000000000006',
+  'c4010000-0000-0000-0000-000000000006',
   'Francais',
   'didactique_francais',
   'did_apprentissage_lecture',
@@ -938,7 +938,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-lect0-0000-0000-0000-000000000007',
+  'c4010000-0000-0000-0000-000000000007',
   'Francais',
   'didactique_francais',
   'did_apprentissage_lecture',
@@ -963,7 +963,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-lect0-0000-0000-0000-000000000008',
+  'c4010000-0000-0000-0000-000000000008',
   'Francais',
   'didactique_francais',
   'did_apprentissage_lecture',
@@ -988,7 +988,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-lect0-0000-0000-0000-000000000009',
+  'c4010000-0000-0000-0000-000000000009',
   'Francais',
   'didactique_francais',
   'did_apprentissage_lecture',
@@ -1013,7 +1013,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-lect0-0000-0000-0000-000000000010',
+  'c4010000-0000-0000-0000-000000000010',
   'Francais',
   'didactique_francais',
   'did_apprentissage_lecture',
@@ -1035,7 +1035,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 5 : Conscience phonologique
 -- Topic : did_conscience_phono
--- UUID prefix : did-phon0
+-- UUID prefix : c4020000
 -- 4 qcm, 3 vrai_faux, 2 reponse_courte, 1 tri_categories
 -- ============================================================
 
@@ -1045,7 +1045,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-phon0-0000-0000-0000-000000000001',
+  'c4020000-0000-0000-0000-000000000001',
   'Francais',
   'didactique_francais',
   'did_conscience_phono',
@@ -1070,7 +1070,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-phon0-0000-0000-0000-000000000002',
+  'c4020000-0000-0000-0000-000000000002',
   'Francais',
   'didactique_francais',
   'did_conscience_phono',
@@ -1095,7 +1095,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-phon0-0000-0000-0000-000000000003',
+  'c4020000-0000-0000-0000-000000000003',
   'Francais',
   'didactique_francais',
   'did_conscience_phono',
@@ -1120,7 +1120,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-phon0-0000-0000-0000-000000000004',
+  'c4020000-0000-0000-0000-000000000004',
   'Francais',
   'didactique_francais',
   'did_conscience_phono',
@@ -1145,7 +1145,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-phon0-0000-0000-0000-000000000005',
+  'c4020000-0000-0000-0000-000000000005',
   'Francais',
   'didactique_francais',
   'did_conscience_phono',
@@ -1170,7 +1170,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-phon0-0000-0000-0000-000000000006',
+  'c4020000-0000-0000-0000-000000000006',
   'Francais',
   'didactique_francais',
   'did_conscience_phono',
@@ -1195,7 +1195,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-phon0-0000-0000-0000-000000000007',
+  'c4020000-0000-0000-0000-000000000007',
   'Francais',
   'didactique_francais',
   'did_conscience_phono',
@@ -1220,7 +1220,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-phon0-0000-0000-0000-000000000008',
+  'c4020000-0000-0000-0000-000000000008',
   'Francais',
   'didactique_francais',
   'did_conscience_phono',
@@ -1245,7 +1245,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-phon0-0000-0000-0000-000000000009',
+  'c4020000-0000-0000-0000-000000000009',
   'Francais',
   'didactique_francais',
   'did_conscience_phono',
@@ -1270,7 +1270,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'did-phon0-0000-0000-0000-000000000010',
+  'c4020000-0000-0000-0000-000000000010',
   'Francais',
   'didactique_francais',
   'did_conscience_phono',
