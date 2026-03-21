@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Mocca } from "@/components/mascot/mocca";
+import { MoccaWithMessage } from "@/components/mascot/mocca-with-message";
 import { AchievementBadges } from "@/components/ui/achievement-badges";
 import { ActivityHeatmap } from "@/components/ui/activity-heatmap";
 import { Badge } from "@/components/ui/badge";
@@ -9,11 +10,17 @@ import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";
 import { isPremiumUser } from "@/features/billing/server/queries";
+import { AnimatedCounter } from "@/features/dashboard/components/animated-counter";
 import { CollapsiblePanel } from "@/features/dashboard/components/collapsible-panel";
+import { DomainGauge } from "@/features/dashboard/components/domain-gauge";
+import { NivoRadarChart } from "@/features/dashboard/components/nivo-radar";
 import { OnboardingBanner } from "@/features/dashboard/components/onboarding-banner";
 import { SessionProgressCard } from "@/features/dashboard/components/session-progress-card";
+import { XpLevelCard } from "@/features/dashboard/components/xp-level-card";
 import { getDashboardData } from "@/features/dashboard/server/queries";
 import { getDiagnosticResult } from "@/features/diagnostic/server/queries";
+import { getUserGamification } from "@/features/gamification/server/queries";
+import { OnboardingTourWrapper } from "@/features/onboarding/components/onboarding-tour-wrapper";
 import { MASTERY_THRESHOLD as MASTERY_THRESHOLD_IMPORT } from "@/lib/dashboard";
 import { env } from "@/lib/env";
 import { cn, formatDate } from "@/lib/utils";
@@ -174,6 +181,16 @@ function buildPlanDuJour(data: DashboardData): PlanItem[] {
 export default async function DashboardPage() {
   const user = await requireUser();
   const premium = await isPremiumUser(user.id);
+  let gamification;
+  try {
+    gamification = await getUserGamification(user.id);
+  } catch {
+    gamification = {
+      user_id: user.id, xp: 0, level: 1, current_streak: 0, longest_streak: 0,
+      last_activity_date: null, sound_enabled: true, reduced_animations: false,
+      daily_goal: 20, personal_best_sprint_time: null, onboarding_completed: false,
+    };
+  }
   const [data, diagnostic] = await Promise.all([
     getDashboardData(user.id, premium),
     getDiagnosticResult(user.id),
@@ -205,13 +222,44 @@ export default async function DashboardPage() {
   const showWelcomeBack =
     daysSinceLastActivity !== null && daysSinceLastActivity >= 3 && data.totalAttempts > 0;
 
-  const quickChallengeSession =
-    data.sessionProgress.find(
-      (s) => s.access_tier === "free" && s.status !== "maitrisee",
-    ) ?? null;
+  // Smart challenge: prioritize weak areas, then not-started, then in-progress — with randomization
+  const challengePool = data.sessionProgress.filter(
+    (s) => s.access_tier === "free" && s.status !== "maitrisee",
+  );
+  const prioritySessions = challengePool.filter((s) => s.status === "a_revoir");
+  const notStartedSessions = challengePool.filter((s) => s.status === "non_commencee");
+  const inProgressSessions = challengePool.filter((s) => s.status === "en_cours");
+
+  // Pick from priority first, then not-started, then in-progress
+  const challengeBucket = prioritySessions.length > 0
+    ? prioritySessions
+    : notStartedSessions.length > 0
+      ? notStartedSessions
+      : inProgressSessions;
+
+  // Deterministic daily rotation based on date (so it changes each day but stays stable within a day)
+  const today = new Date();
+  const daySeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+  const quickChallengeSession = challengeBucket.length > 0
+    ? challengeBucket[daySeed % challengeBucket.length]
+    : null;
+
+  // Pick 2 more suggestions from other buckets for variety
+  const otherSuggestions = challengePool
+    .filter((s) => s.id !== quickChallengeSession?.id)
+    .sort((a, b) => {
+      // Prioritize: a_revoir > non_commencee > en_cours
+      const statusOrder = { a_revoir: 0, non_commencee: 1, en_cours: 2 } as Record<string, number>;
+      return (statusOrder[a.status] ?? 3) - (statusOrder[b.status] ?? 3);
+    })
+    .slice(0, 2);
 
   return (
     <div className="space-y-6">
+      <OnboardingTourWrapper
+        completed={gamification.onboarding_completed}
+        userId={user.id}
+      />
       <BadgeUnlockToast earnedBadges={data.earnedBadges} />
 
       <OnboardingBanner
@@ -223,17 +271,17 @@ export default async function DashboardPage() {
       {/* ── Welcome back after absence ── */}
       {showWelcomeBack && (
         <div className="flex items-center gap-4 rounded-[1.5rem] border border-accentSecondary/25 bg-[linear-gradient(135deg,rgba(164,104,73,0.08),rgba(253,249,243,1)_60%)] px-5 py-4 shadow-subtle">
-          <Mocca variant="happy" size="md" className="hidden shrink-0 sm:block" />
-          <div className="flex-1">
-            <p className="text-sm font-bold text-ink">
-              Content de te revoir !
-            </p>
-            <p className="mt-1 text-sm text-muted">
-              {daysSinceLastActivity! >= 7
+          <MoccaWithMessage
+            variant="happy"
+            size="sm"
+            typewriter
+            message={
+              daysSinceLastActivity! >= 7
                 ? `Cela fait ${daysSinceLastActivity} jours — pas de pression, chaque question compte. Reprends à ton rythme !`
-                : `${daysSinceLastActivity} jours sans réviser — un petit exercice pour se remettre en selle ?`}
-            </p>
-          </div>
+                : `${daysSinceLastActivity} jours sans réviser — un petit exercice pour se remettre en selle ?`
+            }
+            className="flex-1"
+          />
           {quickChallengeSession && (
             <ButtonLink
               href={`/exercices/${quickChallengeSession.id}`}
@@ -297,13 +345,18 @@ export default async function DashboardPage() {
         </div>
       </div>
 
+      {/* ── XP & Level Card ── */}
+      <div data-tour="xp-card">
+        <XpLevelCard gamification={gamification} />
+      </div>
+
       {/* ── Stats strip + progress bar ── */}
       {data.totalAttempts > 0 && (
         <div className="space-y-3">
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-4">
+          <div data-tour="stats-strip" className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-4">
             <div className="bg-card px-5 py-4 text-center">
               <p className="font-serif text-3xl font-semibold text-pine">
-                {data.masteredSessions}
+                <AnimatedCounter end={data.masteredSessions} />
               </p>
               <p className="mt-1 text-xs font-medium tracking-wide text-muted">Maîtrisées</p>
               <p className="mt-0.5 text-xs text-muted">
@@ -312,23 +365,23 @@ export default async function DashboardPage() {
             </div>
             <div className="bg-card px-5 py-4 text-center">
               <p className="font-serif text-3xl font-semibold text-accent">
-                {data.overallCorrectRate === null ? "—" : `${data.overallCorrectRate}%`}
+                {data.overallCorrectRate === null ? "—" : <><AnimatedCounter end={data.overallCorrectRate} />%</>}
               </p>
               <p className="mt-1 text-xs font-medium tracking-wide text-muted">Score global</p>
               <p className="mt-0.5 text-xs text-muted">
-                {data.totalAttempts} tentative(s)
+                <AnimatedCounter end={data.totalAttempts} /> tentative(s)
               </p>
             </div>
             <div className="bg-card px-5 py-4 text-center">
-              <p className="font-serif text-3xl font-semibold text-ink">{completionRate}%</p>
+              <p className="font-serif text-3xl font-semibold text-ink"><AnimatedCounter end={completionRate} />%</p>
               <p className="mt-1 text-xs font-medium tracking-wide text-muted">Progression</p>
               <p className="mt-0.5 text-xs text-muted">
-                {data.completedSeries} terminée(s)
+                <AnimatedCounter end={data.completedSeries} /> terminée(s)
               </p>
             </div>
             <div className="bg-card px-5 py-4 text-center">
               <p className="font-serif text-3xl font-semibold text-accentSecondary">
-                {premium ? "∞" : data.remainingToday}
+                {premium ? "∞" : <AnimatedCounter end={data.remainingToday} />}
               </p>
               <p className="mt-1 text-xs font-medium tracking-wide text-muted">
                 {premium ? "Accès illimité" : "Questions du jour"}
@@ -575,6 +628,39 @@ export default async function DashboardPage() {
         </div>
       </section>
 
+      {/* ── Radar compétences + Jauges ── */}
+      {data.totalAttempts > 0 && (
+        <div data-tour="radar" className="grid gap-4 2xl:grid-cols-2">
+          <Panel>
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent">
+              Vue d&apos;ensemble
+            </p>
+            <h2 className="mt-1 font-serif text-xl font-semibold text-ink">
+              Radar de comp&eacute;tences
+            </h2>
+            <NivoRadarChart domains={data.domainProgress} />
+          </Panel>
+          <Panel>
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accentSecondary">
+              Par domaine
+            </p>
+            <h2 className="mt-1 mb-4 font-serif text-xl font-semibold text-ink">
+              Ma&icirc;trise
+            </h2>
+            <div className="flex flex-wrap justify-center gap-6">
+              {data.domainProgress.map((domain) => (
+                <DomainGauge
+                  key={domain.domain}
+                  label={domain.label}
+                  percentage={domain.correctRate ?? 0}
+                  status={domain.status}
+                />
+              ))}
+            </div>
+          </Panel>
+        </div>
+      )}
+
       {/* ── Priorités & Fragilités ── */}
       {data.totalAttempts > 0 && (
         <div className="space-y-4">
@@ -762,7 +848,7 @@ export default async function DashboardPage() {
       {data.totalAttempts > 0 && (
         <div className="grid gap-4 2xl:grid-cols-2">
           {/* Activity heatmap */}
-          <Panel>
+          <Panel data-tour="heatmap">
             <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
               <div>
                 <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-[#476257]">
@@ -781,38 +867,115 @@ export default async function DashboardPage() {
             </div>
           </Panel>
 
-          {/* Quick challenge */}
+          {/* Quick challenge — smart daily pick */}
           {quickChallengeSession ? (
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-accentSecondary/20 bg-[linear-gradient(135deg,#476257_0%,#394E45_60%,#2C2420_100%)] px-6 py-6 shadow-panel">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-accentSecondary/20 bg-[linear-gradient(135deg,#476257_0%,#394E45_60%,#2C2420_100%)] px-5 py-5 shadow-panel sm:px-6 sm:py-6">
               <span
                 aria-hidden
                 className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-paper/[0.04] select-none"
               />
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/50">
-                D&eacute;fi rapide
-              </p>
-              <h2 className="mt-2 font-serif text-2xl font-semibold text-paper">
-                Envie d&apos;un exercice ?
-              </h2>
-              <p className="mt-2 text-sm text-paper/60 max-w-sm">
-                Lancez une s&eacute;rie rapide pour garder le rythme. Chaque question
-                renforce vos acquis.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-3">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute right-16 bottom-0 h-28 w-28 rounded-full bg-paper/[0.03] select-none"
+              />
+
+              {/* Header with streak */}
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/50">
+                    {quickChallengeSession.status === "a_revoir"
+                      ? "Point faible d\u00e9tect\u00e9"
+                      : quickChallengeSession.status === "en_cours"
+                        ? "S\u00e9rie en cours"
+                        : "Nouvelle s\u00e9rie"}
+                  </p>
+                  <h2 className="mt-1 font-serif text-xl font-semibold text-paper sm:text-2xl">
+                    {quickChallengeSession.title}
+                  </h2>
+                </div>
+                {gamification.current_streak > 0 && (
+                  <span className="shrink-0 rounded-pill border border-paper/15 bg-paper/10 px-2.5 py-1 text-xs font-bold text-paper/80">
+                    \uD83D\uDD25 {gamification.current_streak}j
+                  </span>
+                )}
+              </div>
+
+              {/* Meta */}
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <Badge className="border-paper/20 bg-paper/10 text-paper/70">
+                  {quickChallengeSession.subdomainLabel}
+                </Badge>
+                <Badge className="border-paper/20 bg-paper/10 text-paper/70">
+                  {quickChallengeSession.questionCount} questions
+                </Badge>
+                <Badge className="border-paper/20 bg-paper/10 text-paper/70">
+                  ~{quickChallengeSession.estimatedMinutes} min
+                </Badge>
+              </div>
+
+              {/* Progress if in-progress */}
+              {quickChallengeSession.answeredQuestions > 0 && (
+                <div className="mt-3">
+                  <div className="flex justify-between text-[10px] text-paper/50">
+                    <span>{quickChallengeSession.answeredQuestions}/{quickChallengeSession.questionCount}</span>
+                    {quickChallengeSession.correctRate !== null && (
+                      <span>{quickChallengeSession.correctRate} %</span>
+                    )}
+                  </div>
+                  <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-paper/10">
+                    <div
+                      className="h-full rounded-full bg-paper/40 transition-all"
+                      style={{ width: `${(quickChallengeSession.answeredQuestions / quickChallengeSession.questionCount) * 100}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* CTA */}
+              <div className="mt-4 flex flex-wrap gap-3">
                 <ButtonLink
                   href={`/exercices/${quickChallengeSession.id}`}
                   className="border-paper/20 bg-paper text-ink hover:bg-paper/90"
                 >
-                  Lancer le d&eacute;fi &rarr;
+                  {quickChallengeSession.status === "en_cours" ? "Reprendre" : "Lancer"} &rarr;
                 </ButtonLink>
                 <ButtonLink
                   href="/exercices"
                   variant="ghost"
                   className="text-paper/70 hover:text-paper hover:bg-paper/10"
                 >
-                  Choisir une s&eacute;rie
+                  Catalogue
                 </ButtonLink>
               </div>
+
+              {/* Alternative suggestions */}
+              {otherSuggestions.length > 0 && (
+                <div className="mt-4 border-t border-paper/10 pt-3">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-paper/40">
+                    Aussi sugg&eacute;r&eacute;
+                  </p>
+                  <div className="mt-2 flex flex-col gap-1.5">
+                    {otherSuggestions.map((s) => (
+                      <Link
+                        key={s.id}
+                        href={`/exercices/${s.id}`}
+                        className="group flex items-center justify-between rounded-xl bg-paper/[0.06] px-3 py-2 transition-colors hover:bg-paper/10"
+                      >
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-sm font-medium text-paper/80 group-hover:text-paper">
+                            {s.title}
+                          </p>
+                          <p className="text-[10px] text-paper/40">
+                            {s.subdomainLabel}
+                            {s.correctRate !== null && ` \u00b7 ${s.correctRate} %`}
+                          </p>
+                        </div>
+                        <span className="ml-2 text-xs text-paper/40 group-hover:text-paper/70">&rarr;</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
             <Panel className="flex flex-col items-center justify-center border-successBorder/30 bg-successBg/30 text-center">
@@ -830,7 +993,7 @@ export default async function DashboardPage() {
 
       {/* ── Badges ── */}
       {data.earnedBadges.length > 0 && (
-        <Panel>
+        <Panel data-tour="badges">
           <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
             <div>
               <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-accentSecondary">
