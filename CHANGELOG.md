@@ -1,5 +1,32 @@
 # Changelog
 
+## [2026-03-21] — Audit qualité contenu : corrections terminologiques, linguistiques et difficulté
+
+- `content/french-crpe-series-v3-a.ts` — types de phrases : 4→3 types (Eduscol 2021), exclamation reclassée en forme ; discours indirect : verbe introducteur passé au passé composé pour cohérence avec la concordance des temps ; retrait de « parataxe » des réponses acceptables (était le contraire de la bonne réponse)
+- `content/french-crpe-series-v3-c.ts` — correction texte dupliqué dans common_mistake (« fragilesse » répété)
+- `content/french-crpe-series-v3-d.ts` — remplacement de 6 exercices trop faciles (PP+être basique) par des cas CRPE-difficiles : verbes pronominaux avec COD/COI, fait+infinitif invariable, s'arroger exception ; « Corrige » → « Corrigez » (vouvoiement cohérent)
+- `content/french-crpe-module.ts` — corrections : « polysenie » → « polysemie », « polysmiques » → « polysemiques », « Suggester » → « Suggerer »
+- `supabase/migrations/20260335_fix_audit_content_corrections.sql` — migration SQL corrigeant en base les 5 exercices existants : types de phrases (IDs a305…001/002/006), parataxe (ID a301…007), discours indirect (ID a304…002)
+
+## [2026-03-21] — Heatmap d'activité, badges & achievements, welcome-back, défi rapide
+
+- `types/domain.ts` — ajout des types `DailyActivityEntry`, `EarnedBadge` et extension de `DashboardData` avec `dailyActivity`, `earnedBadges`, `lastActivityDate`
+- `lib/dashboard.ts` — ajout de `buildDailyActivity()` (agrégation tentatives/jour) et `computeEarnedBadges()` (16 badges calculés à partir des données existantes : jalons, maîtrise, régularité, engagement)
+- `components/ui/activity-heatmap.tsx` — **nouveau** composant client : heatmap SVG type GitHub (13 semaines × 7 jours, 5 niveaux d'intensité, labels mois/jours, tooltip au survol, responsive)
+- `components/ui/achievement-badges.tsx` — **nouveau** composant : grille de 16 badges avec état gagné/verrouillé, catégorisés (Jalons, Maîtrise, Régularité, Engagement), mode compact pour dashboard
+- `app/(app)/tableau-de-bord/page.tsx` — message welcome-back Mocca (≥ 3 jours d'absence), carte « Défi rapide » avec CTA, panneau heatmap, section badges compacts, renommage « Activité récente » → « Dernières réponses »
+- `app/(app)/progression/page.tsx` — ajout du calendrier d'activité (heatmap) et de la grille complète des badges avec progression
+- `app/globals.css` — animations `badge-pop` et `heatmap-fade` + support `prefers-reduced-motion`
+
+## [2026-03-21] — Audit typographie : cohérence des polices d'écriture
+
+- `CLAUDE.md` — section Typographie mise à jour : Manrope et Cormorant Garamond documentées comme polices principales, Avenir Next/Segoe UI/Iowan Old Style/Palatino Linotype comme fallbacks
+- `features/diagnostic/components/radar-chart.tsx` — ajout de `var(--font-sans)` en tête des 3 stacks fontFamily hardcodés dans le SVG (cohérence avec le reste de l'app)
+- `stories/page.css` — remplacement de Nunito Sans par le stack projet (`var(--font-sans)`)
+- `stories/header.css` — idem
+- `stories/button.css` — idem
+- `app/globals.css` — suppression de la déclaration `font-family` dupliquée sur body (déjà gérée par la classe Tailwind `font-sans` dans layout.tsx)
+
 ## [2026-03-21] — Fix navigation exercices : scroll auto + bouton dernière question
 
 - `features/exercises/components/exercise-player.tsx` — ajout scroll automatique vers le feedback après soumission d'une réponse, scroll vers le haut lors de la navigation entre questions, correction du bouton "Voir le récapitulatif" bloqué sur la dernière question (redirige vers la première question non répondue si nécessaire)

@@ -206,7 +206,7 @@ export const seriesV3BatchA: RevisionSession[] = [
       reponseCourte(
         "v3a-pcc-7", "grammaire", "Intermediaire",
         "Quel terme désigne le procédé consistant à relier des propositions par un mot de liaison grammatical (conjonction) plutôt que par la seule ponctuation ?",
-        ["hypotaxe", "parataxe", "coordination", "hypotaxe ou coordination"],
+        ["hypotaxe", "coordination", "hypotaxe ou coordination"],
         "On parle de parataxe lorsque les propositions sont juxtaposées (liées par la seule ponctuation), et d'hypotaxe lorsqu'elles sont reliées par un mot de liaison (conjonction de coordination ou de subordination). La coordination est un cas particulier d'hypotaxe, où le lien est assuré par une conjonction de coordination.",
         "Les candidats confondent souvent parataxe et hypotaxe. Moyen mnémotechnique : 'para' = à côté (les propositions sont placées côte à côte sans lien grammatical) ; 'hypo' = sous (une proposition est subordonnée à l'autre, ou liée par un mot grammatical).",
         "free",
@@ -558,7 +558,7 @@ export const seriesV3BatchA: RevisionSession[] = [
       ),
       qcm(
         "v3a-ddi-2", "grammaire", "Intermediaire",
-        "Transformez au discours indirect : Marie dit : « Je viendrai demain. » → Marie dit que...",
+        "Transformez au discours indirect : Marie a dit : « Je viendrai demain. » → Marie a dit que...",
         [
           { id: "a", label: "elle viendra demain." },
           { id: "b", label: "elle viendrait le lendemain." },
@@ -566,7 +566,7 @@ export const seriesV3BatchA: RevisionSession[] = [
           { id: "d", label: "elle est venue le lendemain." },
         ],
         "b",
-        "Quand le verbe introducteur est au présent (dit), les temps ne changent pas dans la subordonnée. Mais dans cet exemple, si 'dit' est au présent historique ou si on considère la transformation standard, le passage au discours indirect entraîne : futur → conditionnel ('viendra' → 'viendrait'), 'je' → 'elle', 'demain' → 'le lendemain'. La réponse correcte est donc 'elle viendrait le lendemain' (transformation complète).",
+        "Quand le verbe introducteur est au passé ('a dit'), la concordance des temps s'applique dans la subordonnée : futur → conditionnel ('viendra' → 'viendrait'). De plus, les personnes changent ('je' → 'elle') et les déictiques temporels sont transposés ('demain' → 'le lendemain'). La réponse correcte est donc 'elle viendrait le lendemain'.",
         "Les candidats oublient souvent de changer les déictiques temporels. 'Demain' dans le discours direct devient 'le lendemain' dans le discours indirect (car le point de référence change). De même 'hier' → 'la veille', 'maintenant' → 'alors'.",
         "free",
       ),
@@ -657,10 +657,10 @@ export const seriesV3BatchA: RevisionSession[] = [
 
   buildSession({
     id: "fr-v3-serie-phrase-types",
-    title: "Types et formes de phrases : interrogative, exclamative, impérative",
-    summary: "Maîtriser les quatre types de phrases et les deux formes, identifier les structures interrogatives et transformer les phrases.",
-    objective: "Distinguer les types et formes de phrases, analyser les structures interrogatives et maîtriser les mots interrogatifs.",
-    introduction: "Toute phrase en français appartient à un type (déclarative, interrogative, exclamative, impérative) et à une forme (affirmative ou négative). Ces notions sont fondamentales pour l'enseignement du français à l'école primaire et sont régulièrement évaluées au CRPE.",
+    title: "Types et formes de phrases (terminologie Eduscol 2021)",
+    summary: "Maîtriser les trois types de phrases (déclaratif, interrogatif, impératif) et les formes (affirmative, négative, exclamative) selon la terminologie officielle 2021.",
+    objective: "Distinguer types et formes de phrases selon la terminologie Eduscol 2021, analyser les structures interrogatives et maîtriser les mots interrogatifs.",
+    introduction: "Selon la terminologie officielle (Eduscol 2021), on distingue trois types de phrases — déclaratif, interrogatif, impératif — et plusieurs formes, dont l'affirmative, la négative et l'exclamative. L'exclamation, autrefois classée comme un type, est désormais considérée comme une forme pouvant se combiner avec n'importe quel type. Ces notions sont fondamentales pour l'enseignement du français à l'école primaire et sont régulièrement évaluées au CRPE.",
     subdomain: "grammaire",
     topicKey: "types_phrases_grammaire",
     topicLabel: "Types et formes de phrases",
@@ -672,7 +672,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     completionSummary: {
       skill: "Identifier et transformer les types et formes de phrases",
       keyPoints: [
-        "Les quatre types de phrases sont : déclarative, interrogative, exclamative, impérative — et les deux formes : affirmative et négative",
+        "Selon Eduscol 2021, trois types : déclaratif, interrogatif, impératif — et plusieurs formes : affirmative, négative, exclamative",
         "L'interrogation totale porte sur l'ensemble de la proposition (réponse oui/non) ; l'interrogation partielle porte sur un élément précis (mot interrogatif)",
         "Les trois procédés d'interrogation directe : intonation montante, 'est-ce que', inversion du sujet — seule l'inversion est absente dans le registre familier",
       ],
@@ -681,30 +681,30 @@ export const seriesV3BatchA: RevisionSession[] = [
     questions: [
       qcm(
         "v3a-tp-1", "grammaire", "Facile",
-        "Combien existe-t-il de types de phrases en français ?",
+        "Selon la terminologie officielle (Eduscol 2021), combien existe-t-il de types de phrases en français ?",
         [
           { id: "a", label: "Deux (positive et négative)" },
-          { id: "b", label: "Trois (déclarative, interrogative, impérative)" },
-          { id: "c", label: "Quatre (déclarative, interrogative, exclamative, impérative)" },
-          { id: "d", label: "Cinq (en ajoutant la conditionnelle)" },
+          { id: "b", label: "Trois (déclaratif, interrogatif, impératif)" },
+          { id: "c", label: "Quatre (déclaratif, interrogatif, exclamatif, impératif)" },
+          { id: "d", label: "Cinq (en ajoutant le conditionnel)" },
         ],
-        "c",
-        "On distingue en français quatre types de phrases : la déclarative (affirmation ou négation d'un fait), l'interrogative (question), l'exclamative (expression d'une émotion intense), et l'impérative (ordre, conseil, interdiction). À chacun de ces types peuvent s'appliquer les deux formes : affirmative et négative.",
-        "La confusion entre 'type' et 'forme' est fréquente. Le type correspond à la visée communicative de la phrase ; la forme correspond à la polarité positive ou négative. Une phrase impérative peut être affirmative ('Viens !') ou négative ('Ne viens pas !').",
+        "b",
+        "Depuis la terminologie officielle de 2021 (Eduscol), on distingue trois types de phrases : le déclaratif (affirmation ou négation d'un fait), l'interrogatif (question) et l'impératif (ordre, conseil, interdiction). L'exclamation, autrefois considérée comme un quatrième type, est désormais classée comme une forme de phrase. Les formes incluent l'affirmative, la négative et l'exclamative.",
+        "La confusion entre 'type' et 'forme' est fréquente. Attention : les anciens manuels mentionnent quatre types (incluant l'exclamatif). La terminologie officielle 2021 retient trois types. L'exclamation peut se combiner avec n'importe quel type : « Comme il chante bien ! » (déclaratif + exclamatif).",
         "free",
       ),
       qcm(
         "v3a-tp-2", "grammaire", "Facile",
-        "Quel est le type de la phrase : « Quelle belle journée nous avons aujourd'hui ! » ?",
+        "Selon la terminologie Eduscol 2021, quel est le type de la phrase : « Quelle belle journée nous avons aujourd'hui ! » ?",
         [
-          { id: "a", label: "Interrogative" },
-          { id: "b", label: "Déclarative" },
-          { id: "c", label: "Exclamative" },
-          { id: "d", label: "Impérative" },
+          { id: "a", label: "Interrogatif" },
+          { id: "b", label: "Déclaratif (avec forme exclamative)" },
+          { id: "c", label: "Exclamatif (un type à part entière)" },
+          { id: "d", label: "Impératif" },
         ],
-        "c",
-        "Cette phrase est exclamative : elle se termine par un point d'exclamation et exprime l'admiration ou l'enthousiasme du locuteur. Elle est introduite par le déterminant exclamatif 'quelle'. Les phrases exclamatives peuvent commencer par 'quel/quelle/quels/quelles', 'comme', 'que', 'combien' et se terminent par un point d'exclamation.",
-        "Les candidats confondent parfois exclamative et interrogative car les deux peuvent commencer par 'quel'. Différence : l'interrogative demande une information ('Quelle journée avons-nous ?'), l'exclamative exprime une émotion ('Quelle belle journée !'). La ponctuation et l'intonation les distinguent.",
+        "b",
+        "Selon la terminologie officielle 2021, cette phrase est de type déclaratif (elle affirme un fait) et de forme exclamative (elle exprime une émotion intense, marquée par le point d'exclamation et le déterminant « quelle »). L'exclamation n'est plus considérée comme un type de phrase mais comme une forme qui peut se combiner avec les trois types : déclaratif, interrogatif ou impératif.",
+        "Les anciens manuels classent cette phrase comme 'exclamative' (un 4e type). Depuis 2021, la terminologie officielle retient trois types seulement. L'exclamation est une forme : « Quelle belle journée ! » = type déclaratif + forme exclamative. Attention aux sujets CRPE qui testent spécifiquement cette mise à jour terminologique.",
         "free",
       ),
       vraiFaux(
@@ -747,8 +747,8 @@ export const seriesV3BatchA: RevisionSession[] = [
         "v3a-tp-6", "grammaire", "Facile",
         "La phrase « N'est-il pas venu ? » est à la fois de type interrogatif et de forme négative.",
         true,
-        "C'est vrai. Cette phrase cumule le type interrogatif (marqué par l'inversion du sujet et le point d'interrogation) et la forme négative (marquée par la négation 'ne…pas'). Type et forme sont deux catégories indépendantes qui peuvent se combiner : une phrase peut être interrogative-négative, impérative-négative, exclamative-négative, etc.",
-        "L'erreur consiste à opposer type et forme comme s'ils s'excluaient. Une phrase a TOUJOURS un type ET une forme. La forme négative peut s'appliquer à tous les types.",
+        "C'est vrai. Cette phrase cumule le type interrogatif (marqué par l'inversion du sujet et le point d'interrogation) et la forme négative (marquée par la négation 'ne…pas'). Type et forme sont deux catégories indépendantes qui peuvent se combiner : une phrase peut être interrogative-négative, impérative-négative, déclarative-exclamative-négative, etc.",
+        "L'erreur consiste à opposer type et forme comme s'ils s'excluaient. Une phrase a TOUJOURS un type ET au moins une forme. La forme négative ou exclamative peut s'appliquer à tous les types.",
         "free",
       ),
       reponseCourte(

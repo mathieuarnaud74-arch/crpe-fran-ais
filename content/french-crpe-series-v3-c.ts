@@ -181,7 +181,7 @@ export const seriesV3BatchC: RevisionSession[] = [
         "Le suffixe -ité sert à former des noms à partir d'adjectifs. Donnez un exemple de mot ainsi formé à partir de l'adjectif « fragile ».",
         ["fragilité"],
         "Le suffixe -ité est un suffixe nominalisateur qui forme des noms abstraits à partir d'adjectifs : fragile → fragilité, agile → agilité, fertile → fertilité. Il correspond souvent aux suffixes latins -itas/-itatis.",
-        "Proposer « fragilesse » ou « fragilesse » par analogie avec d'autres formations incorrectes.",
+        "Proposer « fragilesse » par analogie avec d'autres formations, ou confondre avec le suffixe -esse (comme dans « tendresse »).",
         "free",
       ),
       qcm(

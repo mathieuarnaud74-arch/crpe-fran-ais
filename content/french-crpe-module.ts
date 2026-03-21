@@ -289,16 +289,16 @@ export const part1CadragePedagogiqueFrancais: FrenchPedagogicalDomain[] = [
     label: DOMAIN_LABELS.lexique,
     competencies: [
       "Comprendre les relations de sens entre les mots.",
-      "Mobiliser famille de mots, synonymie, antonymie, polysenie et contexte.",
+      "Mobiliser famille de mots, synonymie, antonymie, polysemie et contexte.",
       "Appuyer la comprehension et la production sur un raisonnement lexical precis.",
     ],
-    essentialNotions: ["Familles de mots", "Synonymie, antonymie, champ lexical", "Sens en contexte, polysenie, valeur des affixes"],
+    essentialNotions: ["Familles de mots", "Synonymie, antonymie, champ lexical", "Sens en contexte, polysemie, valeur des affixes"],
     frequentErrors: [
       "Choisir un mot voisin sans tenir compte du contexte.",
       "Confondre famille de mots et simple ressemblance sonore.",
       "Reduire le lexique a un stock de definitions.",
     ],
-    typicalDifficulties: ["Questions de nuance fine", "Mots polysmiques selon le texte", "Manque d'outils pour justifier un choix lexical"],
+    typicalDifficulties: ["Questions de nuance fine", "Mots polysemiques selon le texte", "Manque d'outils pour justifier un choix lexical"],
     didacticWatchpoints: [
       "Toujours relier le lexique au contexte d'emploi.",
       "Faire travailler la justification semantique, pas seulement la bonne option.",
@@ -422,7 +422,7 @@ export const part2StructureParcoursApprentissage: FrenchLearningPath = {
       goal: "Transformer l'erreur en nouvelle seance ciblee.",
       guidance: [
         "A la fin d'une serie, isoler 2 ou 3 points de reprise maximum.",
-        "Suggester une serie precedente si l'obstacle releve d'une base non maitrisee.",
+        "Suggerer une serie precedente si l'obstacle releve d'une base non maitrisee.",
       ],
     },
     {
