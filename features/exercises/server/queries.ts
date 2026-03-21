@@ -11,6 +11,7 @@ import {
   ExerciseSubdomain,
   ExerciseType,
   ExpectedAnswer,
+  HighlightGroup,
   RevisionSession,
 } from "@/types/domain";
 
@@ -88,6 +89,20 @@ function normalizeExpectedAnswer(
     return {
       mode: "categorization",
       categories: rawExpected.categories as { id: string; label: string }[],
+      mapping: rawExpected.mapping as Record<string, string>,
+    };
+  }
+
+  if (
+    rawMode === "highlight_groups" &&
+    Array.isArray(rawExpected.groups) &&
+    rawExpected.mapping !== null &&
+    typeof rawExpected.mapping === "object" &&
+    !Array.isArray(rawExpected.mapping)
+  ) {
+    return {
+      mode: "highlight_groups",
+      groups: rawExpected.groups as HighlightGroup[],
       mapping: rawExpected.mapping as Record<string, string>,
     };
   }
