@@ -34,7 +34,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Types et formes de phrases',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q2 — Facile — Classer par type (variantes)
 INSERT INTO public.exercises (
@@ -59,7 +59,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Types et formes de phrases',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q3 — Facile — TYPE ou FORME ? (piège CRPE fondamental)
 INSERT INTO public.exercises (
@@ -84,7 +84,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Types et formes de phrases',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q4 — Intermédiaire — Identifier la forme de phrase
 INSERT INTO public.exercises (
@@ -109,7 +109,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Types et formes de phrases',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q5 — Intermédiaire — Type ou forme ? (avancé)
 INSERT INTO public.exercises (
@@ -134,7 +134,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Types et formes de phrases',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q6 — Intermédiaire — Phrases verbales vs averbales
 INSERT INTO public.exercises (
@@ -159,7 +159,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Types et formes de phrases',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q7 — Intermédiaire — Tri par type avec pièges courants
 INSERT INTO public.exercises (
@@ -184,7 +184,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Types et formes de phrases',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q8 — Difficile — Piège : interrogation indirecte = phrase déclarative
 INSERT INTO public.exercises (
@@ -209,7 +209,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Types et formes de phrases',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 — Difficile — Formes avancées
 INSERT INTO public.exercises (
@@ -234,7 +234,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Types et formes de phrases',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 — Difficile — Synthèse type vs forme (CRPE)
 INSERT INTO public.exercises (
@@ -259,7 +259,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Types et formes de phrases',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- ============================================================
 -- SÉRIE 2 : Constituants de la phrase P = [GS + GV] (+ GC)
@@ -291,7 +291,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Constituants de la phrase',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q2 — Facile — GS + GV + GC
 INSERT INTO public.exercises (
@@ -316,7 +316,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Constituants de la phrase',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q3 — Facile — Phrase avec GN étendu en GS
 INSERT INTO public.exercises (
@@ -341,7 +341,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Constituants de la phrase',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q4 — Intermédiaire — GC antéposé + deux GC
 INSERT INTO public.exercises (
@@ -366,7 +366,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Constituants de la phrase',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q5 — Intermédiaire — Pronom sujet
 INSERT INTO public.exercises (
@@ -391,7 +391,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Constituants de la phrase',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q6 — Intermédiaire — GS avec complément du nom
 INSERT INTO public.exercises (
@@ -416,7 +416,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Constituants de la phrase',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q7 — Intermédiaire — GV avec COD et COI
 INSERT INTO public.exercises (
@@ -441,7 +441,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Constituants de la phrase',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q8 — Difficile — GC multiples et GS complexe
 INSERT INTO public.exercises (
@@ -466,7 +466,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Constituants de la phrase',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 — Difficile — GS coordonné
 INSERT INTO public.exercises (
@@ -491,7 +491,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Constituants de la phrase',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 — Difficile — Phrase avec infinitif sujet
 INSERT INTO public.exercises (
@@ -516,7 +516,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Constituants de la phrase',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- ============================================================
 -- SÉRIE 3 : Formation des mots (tri_categories) — Lexique
@@ -547,7 +547,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Formation des mots',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q2 — Facile — Suite préfixation / suffixation / composition
 INSERT INTO public.exercises (
@@ -572,7 +572,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Formation des mots',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q3 — Facile — Dérivation vs composition (2 catégories)
 INSERT INTO public.exercises (
@@ -597,7 +597,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Formation des mots',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q4 — Intermédiaire — Dérivation parasynthétique
 INSERT INTO public.exercises (
@@ -622,7 +622,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Formation des mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q5 — Intermédiaire — Conversion, troncation, emprunt
 INSERT INTO public.exercises (
@@ -647,7 +647,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Formation des mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q6 — Intermédiaire — Famille de mots vs champ lexical
 INSERT INTO public.exercises (
@@ -672,7 +672,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Formation des mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q7 — Intermédiaire — Préfixes et leur sens
 INSERT INTO public.exercises (
@@ -697,7 +697,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Formation des mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q8 — Difficile — Relations sémantiques : synonymes / antonymes / homonymes
 INSERT INTO public.exercises (
@@ -722,7 +722,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Formation des mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 — Difficile — Polysémie vs homonymie
 INSERT INTO public.exercises (
@@ -747,7 +747,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Formation des mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 — Difficile — Registres de langue
 INSERT INTO public.exercises (
@@ -772,7 +772,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Formation des mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- ============================================================
 -- SÉRIE 4 : Les 8 classes de mots (tri_categories) — Grammaire
@@ -803,7 +803,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Classes de mots',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q2 — Facile — Variable vs invariable
 INSERT INTO public.exercises (
@@ -828,7 +828,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Classes de mots',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q3 — Facile — Identifier nom / verbe / adjectif
 INSERT INTO public.exercises (
@@ -853,7 +853,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Classes de mots',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q4 — Intermédiaire — Déterminant / pronom / préposition
 INSERT INTO public.exercises (
@@ -878,7 +878,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Classes de mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q5 — Intermédiaire — Conjonctions de coordination vs subordination
 INSERT INTO public.exercises (
@@ -903,7 +903,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Classes de mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q6 — Intermédiaire — Adverbe vs préposition
 INSERT INTO public.exercises (
@@ -928,7 +928,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Classes de mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q7 — Difficile — Piège CRPE : « donc » est un adverbe !
 INSERT INTO public.exercises (
@@ -953,7 +953,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Classes de mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q8 — Difficile — Types de déterminants
 INSERT INTO public.exercises (
@@ -978,7 +978,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Classes de mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 — Difficile — Types de pronoms
 INSERT INTO public.exercises (
@@ -1003,7 +1003,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Classes de mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 — Difficile — Piège « leur » : déterminant ou pronom ?
 INSERT INTO public.exercises (
@@ -1028,7 +1028,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Classes de mots',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- ============================================================
 -- SÉRIE 5 : Voix, modes et temps (tri_categories) — Conjugaison
@@ -1059,7 +1059,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Voix, modes et temps',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q2 — Facile — Sous-types de verbes pronominaux
 INSERT INTO public.exercises (
@@ -1084,7 +1084,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Voix, modes et temps',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q3 — Intermédiaire — Transitivité
 INSERT INTO public.exercises (
@@ -1109,7 +1109,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Voix, modes et temps',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q4 — Intermédiaire — Verbe attributif vs verbe d'action
 INSERT INTO public.exercises (
@@ -1134,7 +1134,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Voix, modes et temps',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q5 — Intermédiaire — Modes personnels vs non personnels
 INSERT INTO public.exercises (
@@ -1159,7 +1159,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Voix, modes et temps',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q6 — Intermédiaire — Auxiliaire vs semi-auxiliaire
 INSERT INTO public.exercises (
@@ -1184,7 +1184,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Voix, modes et temps',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q7 — Difficile — Temps simples vs composés
 INSERT INTO public.exercises (
@@ -1209,7 +1209,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Voix, modes et temps',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q8 — Difficile — Groupes de verbes (piège : aller = 3e groupe)
 INSERT INTO public.exercises (
@@ -1234,7 +1234,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Voix, modes et temps',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 — Difficile — Morphologie verbale : radical et désinence
 INSERT INTO public.exercises (
@@ -1259,7 +1259,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Voix, modes et temps',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 — Difficile — Piège CRPE : le conditionnel = temps de l'indicatif
 INSERT INTO public.exercises (
@@ -1284,7 +1284,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Voix, modes et temps',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- ============================================================
 -- SÉRIE 6 : Nature vs Fonction (tri_categories) — Grammaire
@@ -1315,7 +1315,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Nature vs Fonction',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q2 — Facile — Suite nature / fonction
 INSERT INTO public.exercises (
@@ -1340,7 +1340,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Nature vs Fonction',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q3 — Facile — Termes avancés
 INSERT INTO public.exercises (
@@ -1365,7 +1365,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Nature vs Fonction',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q4 — Intermédiaire — Natures précises
 INSERT INTO public.exercises (
@@ -1390,7 +1390,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Nature vs Fonction',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q5 — Intermédiaire — Fonctions de l'adjectif
 INSERT INTO public.exercises (
@@ -1415,7 +1415,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Nature vs Fonction',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q6 — Intermédiaire — Fonctions dans le GV vs dans la phrase
 INSERT INTO public.exercises (
@@ -1440,7 +1440,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Nature vs Fonction',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q7 — Intermédiaire — Fonctions dans le GN
 INSERT INTO public.exercises (
@@ -1465,7 +1465,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Nature vs Fonction',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q8 — Difficile — Identifier nature ET fonction
 INSERT INTO public.exercises (
@@ -1490,7 +1490,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Nature vs Fonction',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 — Difficile — Natures possibles pour la fonction sujet
 INSERT INTO public.exercises (
@@ -1515,7 +1515,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Nature vs Fonction',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 — Difficile — Synthèse analyse grammaticale
 INSERT INTO public.exercises (
@@ -1540,7 +1540,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Nature vs Fonction',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- ============================================================
 -- SÉRIE 7 : Phrase complexe — Propositions (surlignage)
@@ -1571,7 +1571,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Phrase complexe',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q2 — Facile — Subordination complétive
 INSERT INTO public.exercises (
@@ -1596,7 +1596,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Phrase complexe',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q3 — Facile — Subordination antéposée
 INSERT INTO public.exercises (
@@ -1621,7 +1621,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Phrase complexe',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q4 — Intermédiaire — Relative enchâssée
 INSERT INTO public.exercises (
@@ -1646,7 +1646,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Phrase complexe',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q5 — Intermédiaire — Interrogation indirecte
 INSERT INTO public.exercises (
@@ -1671,7 +1671,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Phrase complexe',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q6 — Intermédiaire — Coordination (indépendantes)
 INSERT INTO public.exercises (
@@ -1696,7 +1696,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Phrase complexe',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q7 — Intermédiaire — Juxtaposition
 INSERT INTO public.exercises (
@@ -1721,7 +1721,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Phrase complexe',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q8 — Difficile — Coordination avec « mais »
 INSERT INTO public.exercises (
@@ -1746,7 +1746,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Phrase complexe',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 — Difficile — Concessive (bien que + subjonctif)
 INSERT INTO public.exercises (
@@ -1771,7 +1771,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Phrase complexe',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 — Difficile — Deux subordonnées dans une phrase
 INSERT INTO public.exercises (
@@ -1796,7 +1796,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Phrase complexe',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- ============================================================
 -- SÉRIE 8 : Fonctions grammaticales dans la phrase (surlignage)
@@ -1827,7 +1827,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Fonctions grammaticales',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q2 — Facile — Sujet + verbe intransitif + CC
 INSERT INTO public.exercises (
@@ -1852,7 +1852,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Fonctions grammaticales',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q3 — Facile — Sujet + verbe attributif + attribut du sujet
 INSERT INTO public.exercises (
@@ -1877,7 +1877,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Fonctions grammaticales',
   'free',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q4 — Intermédiaire — COD + CC
 INSERT INTO public.exercises (
@@ -1902,7 +1902,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Fonctions grammaticales',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q5 — Intermédiaire — COI seul
 INSERT INTO public.exercises (
@@ -1927,7 +1927,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Fonctions grammaticales',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q6 — Intermédiaire — Complément du nom dans le sujet
 INSERT INTO public.exercises (
@@ -1952,7 +1952,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Fonctions grammaticales',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q7 — Intermédiaire — Attribut du sujet avec « sembler »
 INSERT INTO public.exercises (
@@ -1977,7 +1977,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Fonctions grammaticales',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q8 — Difficile — Forme passive + complément d'agent
 INSERT INTO public.exercises (
@@ -2002,7 +2002,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Fonctions grammaticales',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 — Difficile — Attribut du COD
 INSERT INTO public.exercises (
@@ -2027,7 +2027,7 @@ INSERT INTO public.exercises (
   'CRPE Français — Fonctions grammaticales',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 — Difficile — Analyse complète d'une phrase complexe
 INSERT INTO public.exercises (
@@ -2052,4 +2052,4 @@ INSERT INTO public.exercises (
   'CRPE Français — Fonctions grammaticales',
   'premium',
   true
-);
+) ON CONFLICT (id) DO NOTHING;
