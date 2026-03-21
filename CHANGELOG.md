@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-21] — Fix navigation exercices : scroll auto + bouton dernière question
+
+- `features/exercises/components/exercise-player.tsx` — ajout scroll automatique vers le feedback après soumission d'une réponse, scroll vers le haut lors de la navigation entre questions, correction du bouton "Voir le récapitulatif" bloqué sur la dernière question (redirige vers la première question non répondue si nécessaire)
+
 ## [2026-03-21] — Audit terminologique Éduscol 2021 (session 3) — 13 corrections
 
 ### Terminologie « donc = adverbe » (6 conjonctions, pas 7)

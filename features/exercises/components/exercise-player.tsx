@@ -56,6 +56,8 @@ export function ExercisePlayer({
   const [showConfetti, setShowConfetti] = useState(false);
   const [streakCelebration, setStreakCelebration] = useState<number | null>(null);
   const prevResultsCount = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const feedbackRef = useRef<HTMLDivElement>(null);
 
   const currentQuestion = session.questions[currentIndex];
   const currentResult = currentQuestion ? results[currentQuestion.id] : undefined;
@@ -80,6 +82,14 @@ export function ExercisePlayer({
   useEffect(() => {
     setShowFullExplanation(false);
   }, [currentQuestion?.id]);
+
+  // Scroll to top when series is completed
+  useEffect(() => {
+    if (completed) {
+      scrollToContainer();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [completed]);
 
   // Track consecutive correct answers and trigger celebrations
   useEffect(() => {
@@ -146,6 +156,8 @@ export function ExercisePlayer({
       },
     }));
 
+    scrollToFeedback();
+
     startTransition(async () => {
       const formData = new FormData();
       formData.append("exerciseId", currentQuestion.id);
@@ -159,11 +171,32 @@ export function ExercisePlayer({
     });
   }
 
+  function scrollToContainer() {
+    setTimeout(() => {
+      containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  }
+
+  function scrollToFeedback() {
+    setTimeout(() => {
+      feedbackRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }, 150);
+  }
+
   function goToNextQuestion() {
     if (currentIndex < session.questions.length - 1) {
       const nextQuestion = session.questions[currentIndex + 1];
       setCurrentIndex((index) => index + 1);
       setDraftAnswer(results[nextQuestion.id]?.answer ?? "");
+      scrollToContainer();
+    } else {
+      // Last question — navigate to first unanswered question if any
+      const firstUnansweredIndex = session.questions.findIndex((q) => !results[q.id]);
+      if (firstUnansweredIndex !== -1) {
+        setCurrentIndex(firstUnansweredIndex);
+        setDraftAnswer("");
+        scrollToContainer();
+      }
     }
   }
 
@@ -172,6 +205,7 @@ export function ExercisePlayer({
       const previousQuestion = session.questions[currentIndex - 1];
       setCurrentIndex((index) => index - 1);
       setDraftAnswer(results[previousQuestion.id]?.answer ?? "");
+      scrollToContainer();
     }
   }
 
@@ -193,6 +227,7 @@ export function ExercisePlayer({
     setShowConfetti(false);
     setStreakCelebration(null);
     prevResultsCount.current = 0;
+    scrollToContainer();
   }
 
   function renderFeedbackTitle() {
@@ -273,7 +308,7 @@ export function ExercisePlayer({
   const moccaEncouragement = getMoccaEncouragement();
 
   return (
-    <div className="space-y-6">
+    <div ref={containerRef} className="scroll-mt-20 space-y-6">
       <Confetti trigger={showConfetti} />
 
       <Panel className="border-border bg-card">
@@ -706,7 +741,7 @@ export function ExercisePlayer({
               </div>
             ) : null}
 
-            <div aria-live="polite" aria-atomic="true">
+            <div ref={feedbackRef} aria-live="polite" aria-atomic="true">
               {currentResult ? (
                 <div
                   className={cn(
@@ -832,7 +867,7 @@ export function ExercisePlayer({
                 ) : currentResult.isCorrect ? (
                   <Button type="button" onClick={goToNextQuestion} className="w-full sm:w-auto">
                     {currentIndex === session.questions.length - 1
-                      ? "Voir le r\u00e9capitulatif"
+                      ? "Terminer la s\u00e9rie"
                       : "Question suivante"}
                   </Button>
                 ) : (
@@ -842,7 +877,7 @@ export function ExercisePlayer({
                     </Button>
                     <Button type="button" onClick={goToNextQuestion} className="w-full sm:w-auto">
                       {currentIndex === session.questions.length - 1
-                        ? "Voir le r\u00e9capitulatif"
+                        ? "Terminer la s\u00e9rie"
                         : "Passer \u00e0 la suivante"}
                     </Button>
                   </>
