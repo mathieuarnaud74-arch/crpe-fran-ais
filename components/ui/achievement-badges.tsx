@@ -141,6 +141,18 @@ const ALL_BADGES: BadgeDefinition[] = [
   { id: "avance-mastery", label: "Haute voltige", description: "Maîtriser une série Avancé", icon: "\uD83E\uDD85", category: "engagement" },
   { id: "diverse-types", label: "Caméléon", description: "Répondre à 4 types d'exercices", icon: "\uD83C\uDFAD", category: "engagement" },
   { id: "improvement", label: "Progression visible", description: "Améliorer son score sur une série refaite", icon: "\uD83D\uDCC8", category: "engagement" },
+
+  // ────────────────────────────────────────
+  // SECRET — Badges cachés & fun (8)
+  // ────────────────────────────────────────
+  { id: "night-owl", label: "Oiseau de nuit", description: "Réviser après 23 h — le CRPE n'attend pas !", icon: "\uD83E\uDD89", category: "engagement" },
+  { id: "early-bird", label: "Lève-tôt", description: "Réviser avant 7 h du matin", icon: "\uD83D\uDC26", category: "engagement" },
+  { id: "speed-demon", label: "Éclair", description: "Terminer un sprint en moins de 60 secondes", icon: "\u26A1", category: "streak" },
+  { id: "perfectionist", label: "Perfectionniste", description: "3 séries parfaites d'affilée", icon: "\uD83D\uDC8E", category: "mastery" },
+  { id: "comeback-king", label: "Phénix", description: "Revenir après 7+ jours et maîtriser une série", icon: "\uD83D\uDD25", category: "engagement" },
+  { id: "polyglot-types", label: "Polyglotte", description: "Répondre aux 8 types d'exercices", icon: "\uD83C\uDF0D", category: "engagement" },
+  { id: "streak-15", label: "Quinze d'affilée", description: "15 bonnes réponses consécutives en une série", icon: "\uD83C\uDF1F", category: "streak" },
+  { id: "sunday-scholar", label: "Dimanche studieux", description: "Terminer 3 séries un dimanche", icon: "\u2615", category: "engagement" },
 ];
 
 const CATEGORY_LABELS: Record<EarnedBadge["category"], string> = {
