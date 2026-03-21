@@ -18,7 +18,7 @@ export const fonctionsGrammaticalesSprint: Fiche = {
     disclaimer:
       "Fiche de révision rapide. Pour les fonctions dans la phrase complexe (propositions subordonnées, apposition détachée), consulte la fiche Référence.",
     oneLiner:
-      "La fonction d'un groupe indique son rôle dans la phrase, indépendamment de sa nature. On l'identifie par substitution pronominale : le sujet se remplace par « il/elle/ils », le COD par « le/la/les », le COI par « lui/leur/y/en », l'attribut du sujet est relié au sujet par un verbe d'état. Un même groupe nominal peut être sujet dans une phrase et COD dans une autre : sa nature (GN) ne change pas, seule sa fonction varie.",
+      "La fonction d'un groupe indique son rôle dans la phrase, indépendamment de sa nature. On l'identifie par substitution pronominale : le sujet se remplace par « il/elle/ils », le COD par « le/la/les », le COI par « lui/leur/y/en », l'attribut du sujet est relié au sujet par un verbe attributif (être, sembler, paraître…). Un même groupe nominal peut être sujet dans une phrase et COD dans une autre : sa nature (GN) ne change pas, seule sa fonction varie.",
     exampleCorrect: {
       sentence: "Le directeur félicite les élèves.",
       explanation:
@@ -31,14 +31,14 @@ export const fonctionsGrammaticalesSprint: Fiche = {
         "FAUX. La nature (GN) ne détermine pas la fonction. Ici, « parler à » est un verbe transitif indirect : « ses élèves » est COI (il leur parle).",
     },
     mainTrap:
-      "Ne pas confondre nature et fonction : un GN peut être sujet, COD, COI, complément circonstanciel, attribut du sujet ou épithète selon la phrase. De même, un adjectif peut être épithète (il qualifie directement un nom : « une belle journée ») ou attribut du sujet (il est relié au sujet par un verbe d'état : « la journée est belle »). La nature de l'adjectif ne change pas ; sa fonction, si.",
+      "Ne pas confondre nature et fonction : un GN peut être sujet, COD, COI, complément circonstanciel, attribut du sujet ou épithète selon la phrase. De même, un adjectif peut être épithète (il qualifie directement un nom : « une belle journée ») ou attribut du sujet (il est relié au sujet par un verbe attributif : « la journée est belle »). La nature de l'adjectif ne change pas ; sa fonction, si.",
     quiz: [
       {
         sentence:
           "Dans « Cette décision semble juste », le mot « juste » est attribut du sujet.",
         isCorrect: true,
         explanation:
-          "« juste » est relié au sujet « cette décision » par le verbe d'état « sembler » : c'est bien un attribut du sujet.",
+          "« juste » est relié au sujet « cette décision » par le verbe attributif « sembler » : c'est bien un attribut du sujet.",
       },
       {
         sentence:

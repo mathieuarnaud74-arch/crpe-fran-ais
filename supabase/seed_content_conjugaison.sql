@@ -234,7 +234,7 @@ null,
 'Distinguez futur et conditionnel : "Je ___ bien t''aider mais je n''ai pas le temps."',null,
 '[{"id":"a","label":"voudrai"},{"id":"b","label":"voulus"},{"id":"c","label":"voulais"},{"id":"d","label":"voudrais"}]'::jsonb,
 '{"mode":"single_choice","value":"d"}'::jsonb,
-'Le conditionnel exprime ici un souhait poli ou un regret : "Je voudrais bien t''aider" = je souhaiterais, mais je ne peux pas. "Je voudrai" (futur) exprimerait une volonté future certaine — ça ne va pas avec "mais je n''ai pas le temps". Le conditionnel de politesse adoucit la demande — c''est une des valeurs les plus belles et les plus utiles de ce mode !',
+'Le conditionnel exprime ici un souhait poli ou un regret : "Je voudrais bien t''aider" = je souhaiterais, mais je ne peux pas. "Je voudrai" (futur) exprimerait une volonté future certaine — ça ne va pas avec "mais je n''ai pas le temps". Le conditionnel de politesse adoucit la demande — c''est une des valeurs les plus belles et les plus utiles de ce temps ! Selon la terminologie officielle (Éduscol 2021), le conditionnel est un temps de l''indicatif, et non un mode à part entière.',
 'valide','CRPE Français V2','free',true),
 
 -- ================================================================

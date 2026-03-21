@@ -16,7 +16,7 @@ values
 -- Q1 correct=b (adverbe) — keep at b
 ('01000000-0000-0000-0000-000000000001','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
 'Quelle est la nature du mot "lentement" dans "Il marche lentement" ?',null,
-'[{"id":"a","label":"Un adjectif qualificatif"},{"id":"b","label":"Un adverbe"},{"id":"c","label":"Un nom commun"},{"id":"d","label":"Un verbe"}]'::jsonb,
+'[{"id":"a","label":"Un adjectif"},{"id":"b","label":"Un adverbe"},{"id":"c","label":"Un nom commun"},{"id":"d","label":"Un verbe"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
 '"Lentement" dit COMMENT il marche — il modifie le verbe, c''est donc un adverbe de manière. Formé sur l''adjectif "lent" avec le suffixe "-ment", c''est le procédé de formation le plus courant pour les adverbes de manière. Retiens : adjectif au féminin + -ment = adverbe. Ici "lente" + "-ment" = "lentement". Simple et fiable !',
 'valide','CRPE Français V2','free',true),
@@ -24,9 +24,9 @@ values
 -- Q2 correct=c (adjectif qualificatif) — move to d
 ('01000000-0000-0000-0000-000000000002','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
 'Quelle est la nature du mot "grand" dans "Un grand arbre pousse devant la maison" ?',null,
-'[{"id":"a","label":"Un adverbe"},{"id":"b","label":"Un nom commun"},{"id":"c","label":"Un pronom"},{"id":"d","label":"Un adjectif qualificatif"}]'::jsonb,
+'[{"id":"a","label":"Un adverbe"},{"id":"b","label":"Un nom commun"},{"id":"c","label":"Un pronom"},{"id":"d","label":"Un adjectif"}]'::jsonb,
 '{"mode":"single_choice","value":"d"}'::jsonb,
-'"Grand" qualifie le nom "arbre" en lui attribuant une propriété — c''est un adjectif qualificatif épithète, placé AVANT le nom. Bien vu si tu l''as repéré directement ! Les adjectifs courts et courants comme "grand", "petit", "beau", "vieux" se placent généralement avant le nom en français — c''est une particularité à mémoriser.',
+'"Grand" qualifie le nom "arbre" en lui attribuant une propriété — c''est un adjectif épithète, placé AVANT le nom. Bien vu si tu l''as repéré directement ! Les adjectifs courts et courants comme "grand", "petit", "beau", "vieux" se placent généralement avant le nom en français — c''est une particularité à mémoriser.',
 'valide','CRPE Français V2','free',true),
 
 -- Q3 correct=b (nom propre) — keep at b
@@ -50,7 +50,7 @@ values
 'Quelle est la nature du mot "et" dans "Marie et Paul travaillent ensemble" ?',null,
 '[{"id":"a","label":"Une préposition"},{"id":"b","label":"Un adverbe"},{"id":"c","label":"Une conjonction de coordination"},{"id":"d","label":"Un pronom relatif"}]'::jsonb,
 '{"mode":"single_choice","value":"c"}'::jsonb,
-'"Et" relie deux groupes nominaux de même fonction syntaxique — ce sont deux sujets coordonnés. C''est une conjonction de coordination. Et le moyen mnémotechnique pour les sept conjonctions de coordination : "mais, ou, et, donc, or, ni, car". À apprendre par cœur, elles tombent régulièrement au CRPE !',
+'"Et" relie deux groupes nominaux de même fonction syntaxique — ce sont deux sujets coordonnés. C''est une conjonction de coordination. Selon la terminologie officielle (Éduscol 2021), il existe six conjonctions de coordination : mais, ou, et, or, ni, car. Attention : « donc » est classé comme un ADVERBE de liaison, pas comme une conjonction. Le moyen mnémotechnique « Mais où est donc Ornicar ? » reste utile mais « donc » n''y figure pas en tant que conjonction.',
 'valide','CRPE Français V2','free',true),
 
 -- Q6 correct=c (préposition) — move to d
@@ -66,7 +66,7 @@ values
 'Quelle est la nature du mot "elle" dans "Elle répond à la question avec assurance" ?',null,
 '[{"id":"a","label":"Un nom propre"},{"id":"b","label":"Un déterminant"},{"id":"c","label":"Un pronom personnel"},{"id":"d","label":"Un adverbe"}]'::jsonb,
 '{"mode":"single_choice","value":"c"}'::jsonb,
-'"Elle" remplace un groupe nominal féminin déjà mentionné — c''est un pronom personnel sujet de 3e personne du singulier. Il assure la reprise anaphorique dans le discours : on évite de répéter le nom. Retiens : les pronoms remplacent un nom ou un GN. "Elle" = quelqu''un de féminin dont on a déjà parlé.',
+'"Elle" tient lieu d''un groupe nominal féminin déjà mentionné — c''est un pronom personnel sujet de 3e personne du singulier. Il assure la reprise anaphorique dans le discours : on évite de répéter le GN. Retiens : les pronoms tiennent lieu d''un GN (et non simplement d''un nom). "Elle" = quelqu''un de féminin dont on a déjà parlé.',
 'valide','CRPE Français V2','free',true),
 
 -- Q8 correct=b (verbe à l'infinitif) — move to a
@@ -74,13 +74,13 @@ values
 'Quelle est la nature du mot "chanter" dans "Il aime chanter le soir" ?',null,
 '[{"id":"a","label":"Un verbe à l''infinitif"},{"id":"b","label":"Un nom commun"},{"id":"c","label":"Un adjectif verbal"},{"id":"d","label":"Un participe présent"}]'::jsonb,
 '{"mode":"single_choice","value":"a"}'::jsonb,
-'"Chanter" est à la forme non conjuguée de l''infinitif — et il fonctionne ici comme COD du verbe "aime" (il aime quoi ? → chanter). Ne confonds pas avec le nom verbal "le chant" (nom) ou le participe présent "chantant". L''infinitif se reconnaît à sa terminaison (-er, -ir, -re, -oir) et à l''absence de marque de personne ou de temps.',
+'"Chanter" est un verbe au mode infinitif — et il fonctionne ici comme COD du verbe "aime" (il aime quoi ? → chanter). Ne confonds pas avec le nom verbal "le chant" (nom) ou le participe présent "chantant". L''infinitif est un mode non personnel de la conjugaison (Éduscol 2021) : il se reconnaît à sa terminaison (-er, -ir, -re, -oir).',
 'valide','CRPE Français V2','free',true),
 
 -- Q9 correct=c (adverbe) — move to d
 ('01000000-0000-0000-0000-000000000009','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
 'Quelle est la nature du mot "très" dans "Il est très attentif pendant le cours" ?',null,
-'[{"id":"a","label":"Un adjectif qualificatif"},{"id":"b","label":"Un déterminant"},{"id":"c","label":"Une préposition"},{"id":"d","label":"Un adverbe"}]'::jsonb,
+'[{"id":"a","label":"Un adjectif"},{"id":"b","label":"Un déterminant"},{"id":"c","label":"Une préposition"},{"id":"d","label":"Un adverbe"}]'::jsonb,
 '{"mode":"single_choice","value":"d"}'::jsonb,
 '"Très" modifie l''adjectif "attentif" en indiquant l''intensité — c''est un adverbe d''intensité. C''est ça qui est fascinant avec les adverbes : ils peuvent modifier un verbe, un adjectif ou même un autre adverbe ! Ici il modifie un adjectif. Et "très" est invariable — aucun accord, jamais. Adverbes d''intensité courants à connaître : très, fort, trop, peu, assez, bien.',
 'valide','CRPE Français V2','free',true),
@@ -132,7 +132,7 @@ values
 -- Q5 correct=c (déterminant indéfini) — move to b
 ('02000000-0000-0000-0000-000000000005','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','qcm',
 'Quelle est la nature de "aucun" dans "Aucun élève n''est absent aujourd''hui" ?',null,
-'[{"id":"a","label":"Un adjectif qualificatif"},{"id":"b","label":"Un déterminant indéfini"},{"id":"c","label":"Un pronom indéfini"},{"id":"d","label":"Un adverbe de négation"}]'::jsonb,
+'[{"id":"a","label":"Un adjectif"},{"id":"b","label":"Un déterminant indéfini"},{"id":"c","label":"Un pronom indéfini"},{"id":"d","label":"Un adverbe de négation"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
 '"Aucun" est placé DEVANT le nom "élève" qu''il détermine — c''est donc un déterminant indéfini à valeur négative. Il requiert "ne" dans la proposition. La règle pour distinguer : si le mot précède directement un nom, c''est un déterminant ; s''il est seul à la place du nom, c''est un pronom. Exemple : "Aucun élève" → déterminant. "Aucun n''est absent" → pronom. Même forme, classes différentes selon l''emploi !',
 'valide','CRPE Français V2','free',true),
@@ -146,7 +146,7 @@ values
 -- Q7 correct=c (déterminant indéfini) — move to b (already used b for Q5, use d)
 ('02000000-0000-0000-0000-000000000007','Francais','grammaire','grm_classes_inter','Classes grammaticales','Intermediaire','qcm',
 'Quelle est la nature de "tout" dans "Tout le monde a bien compris" ?',null,
-'[{"id":"a","label":"Un pronom indéfini"},{"id":"b","label":"Un adverbe"},{"id":"c","label":"Un adjectif qualificatif"},{"id":"d","label":"Un déterminant indéfini"}]'::jsonb,
+'[{"id":"a","label":"Un pronom indéfini"},{"id":"b","label":"Un adverbe"},{"id":"c","label":"Un adjectif"},{"id":"d","label":"Un déterminant indéfini"}]'::jsonb,
 '{"mode":"single_choice","value":"d"}'::jsonb,
 '"Tout" est suivi de "le" et du nom "monde" — il précède un nom → déterminant indéfini ! Quand il est seul à la place du nom, c''est un pronom : "Tout est prêt". Quand il modifie un adjectif, c''est un adverbe : "il est tout content" (invariable au masculin mais variable au féminin : "toute contente"). Ces trois rôles de "tout" sont un grand classique des exercices de classe grammaticale au CRPE.',
 'valide','CRPE Français V2','free',true),
@@ -201,7 +201,7 @@ values
 ('03000000-0000-0000-0000-000000000005','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
 'Identifiez la fonction du mot souligné : "Cet élève paraît [intelligent]."',null,null,
 '{"mode":"text","acceptableAnswers":["attribut du sujet","attribut du sujet du verbe paraît"]}'::jsonb,
-'"Intelligent" est relié au sujet "cet élève" par le verbe d''état "paraître" — c''est un attribut du sujet ! Les verbes d''état courants : être, paraître, sembler, devenir, rester, demeurer, avoir l''air. Avec ces verbes, l''adjectif qui suit qualifie le SUJET (pas le verbe) et s''accorde avec lui. Test : le verbe d''état peut être remplacé par "être" sans trop changer le sens → attribut du sujet.',
+'"Intelligent" est relié au sujet "cet élève" par le verbe attributif "paraître" — c''est un attribut du sujet ! Les verbes d''état courants : être, paraître, sembler, devenir, rester, demeurer, avoir l''air. Avec ces verbes, l''adjectif qui suit qualifie le SUJET (pas le verbe) et s''accorde avec lui. Test : le verbe attributif peut être remplacé par "être" sans trop changer le sens → attribut du sujet.',
 'valide','CRPE Français V2','premium',true),
 
 ('03000000-0000-0000-0000-000000000006','Francais','grammaire','grm_fonctions_inter','Fonctions syntaxiques','Intermediaire','identification_grammaticale',
@@ -312,7 +312,7 @@ values
 'Quel est le type de la phrase "Quelle heure est-il ?" ?',null,
 '[{"id":"a","label":"Déclaratif"},{"id":"b","label":"Impératif"},{"id":"c","label":"Exclamatif"},{"id":"d","label":"Interrogatif"}]'::jsonb,
 '{"mode":"single_choice","value":"d"}'::jsonb,
-'Une question directe avec un point d''interrogation — c''est une phrase de type interrogatif ! Les quatre types de phrases : déclaratif (énoncer), interrogatif (questionner), impératif (ordonner), exclamatif (exprimer). Le type correspond à l''INTENTION de communication. Ici : on pose une question → interrogatif. Toujours demander : qu''est-ce que l''auteur ou le locuteur veut faire avec cette phrase ?',
+'Une question directe avec un point d''interrogation — c''est une phrase de type interrogatif ! Les trois types de phrases selon la terminologie officielle : déclaratif (énoncer), interrogatif (questionner), impératif (ordonner). L''exclamation est une forme (pas un type) qui peut se combiner avec n''importe quel type. Le type correspond à l''INTENTION de communication. Ici : on pose une question → interrogatif.',
 'valide','CRPE Français V2','free',true),
 
 -- Q2 correct=c (impératif) — keep at c
@@ -336,7 +336,7 @@ values
 'Quel est le type de la phrase "Comme il fait beau aujourd''hui !" ?',null,
 '[{"id":"a","label":"Exclamatif"},{"id":"b","label":"Déclaratif"},{"id":"c","label":"Impératif"},{"id":"d","label":"Interrogatif"}]'::jsonb,
 '{"mode":"single_choice","value":"a"}'::jsonb,
-'"Comme" + point d''exclamation = phrase exclamative ! Elle exprime une émotion — ici l''émerveillement devant le beau temps. Les marqueurs de l''exclamative : "comme", "que", "quel/quelle", et le point d''exclamation final. Retiens : l''exclamative EXPRIME une réaction émotionnelle, elle ne pose pas une question (même si "comme" peut parfois introduire une comparaison). Ici c''est bien une exclamation.',
+'"Comme" + point d''exclamation = phrase de forme exclamative ! Elle exprime une émotion — ici l''émerveillement devant le beau temps. Les marqueurs de la forme exclamative : "comme", "que", "quel/quelle", et le point d''exclamation final. Attention (Éduscol 2021) : l''exclamation est une FORME de phrase, pas un type. Cette phrase est de type déclaratif et de forme exclamative.',
 'valide','CRPE Français V2','free',true),
 
 ('05000000-0000-0000-0000-000000000005','Francais','grammaire','grm_types_phrases','Types et formes de phrases','Facile','vrai_faux',
@@ -405,7 +405,7 @@ values
 'Dans "Que de talent dans cette classe !", quel est le type de la phrase ?',null,
 '[{"id":"a","label":"Exclamatif"},{"id":"b","label":"Déclaratif"},{"id":"c","label":"Interrogatif"},{"id":"d","label":"Impératif"}]'::jsonb,
 '{"mode":"single_choice","value":"a"}'::jsonb,
-'"Que de" est un déterminant exclamatif — phrase exclamative ! Et remarque qu''elle est nominale (sans verbe conjugué), ce qui est tout à fait possible pour les exclamatives. L''exclamative n''a pas besoin d''un verbe conjugué pour exprimer une réaction émotionnelle forte. "Que de talent dans cette classe !" = admiration exprimée de façon compacte. C''est un style apprécié dans la dissertation et les textes littéraires.',
+'"Que de" est un déterminant exclamatif — phrase de forme exclamative ! Et remarque qu''elle est nominale (sans verbe conjugué), ce qui est tout à fait possible. La forme exclamative n''a pas besoin d''un verbe conjugué pour exprimer une réaction émotionnelle forte. "Que de talent dans cette classe !" = admiration exprimée de façon compacte. Rappel (Éduscol 2021) : l''exclamation est une forme de phrase, pas un type.',
 'valide','CRPE Français V2','free',true),
 
 ('06000000-0000-0000-0000-000000000004','Francais','grammaire','grm_types_phrases_inter','Types et formes de phrases','Intermediaire','vrai_faux',
@@ -617,7 +617,7 @@ values
 -- Q2 correct=b (un nom) — move to d
 ('09000000-0000-0000-0000-000000000002','Francais','grammaire','grm_groupes_fonctionnels','Groupes fonctionnels','Intermediaire','qcm',
 'Quel élément est obligatoirement le noyau d''un groupe nominal ?',null,
-'[{"id":"a","label":"Un déterminant"},{"id":"b","label":"Un adjectif qualificatif"},{"id":"c","label":"Une préposition"},{"id":"d","label":"Un nom"}]'::jsonb,
+'[{"id":"a","label":"Un déterminant"},{"id":"b","label":"Un adjectif"},{"id":"c","label":"Une préposition"},{"id":"d","label":"Un nom"}]'::jsonb,
 '{"mode":"single_choice","value":"d"}'::jsonb,
 'Le noyau du GN est TOUJOURS un nom (ou un pronom). Le déterminant et les expansions (adjectifs, compléments du nom, relatives) sont des éléments facultatifs ou variables. Sans nom noyau, pas de GN au sens strict. Retiens : dans un GN, tout est organisé autour du nom. Peu importe le nombre d''expansions, le nom reste le centre — c''est lui qui commande les accords des adjectifs et du verbe (via la fonction sujet).',
 'valide','CRPE Français V2','free',true),

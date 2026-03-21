@@ -17,11 +17,11 @@ export const grammairePhraseCOmplexeSprint: Fiche = {
     model: "sprint",
     disclaimer: "Cette fiche suppose que tu maîtrises la notion de proposition et sais repérer un verbe conjugué.",
     oneLiner:
-      "Phrase complexe = 2+ verbes conjugués. Juxtaposition : virgule/point-virgule. Coordination : conjonction de coordination (mais/ou/et/donc/or/ni/car). Subordination : une proposition dépend syntaxiquement d'une autre (conjonction de subordination, pronom relatif).",
+      "Phrase complexe = 2+ verbes conjugués. Juxtaposition : virgule/point-virgule. Coordination : conjonction de coordination (mais/ou/et/or/ni/car). Subordination : une proposition dépend syntaxiquement d'une autre (conjonction de subordination, pronom relatif). Note : « donc » est un adverbe (terminologie Éduscol 2021), pas une conjonction de coordination.",
     exampleCorrect: {
-      sentence: "Il pleuvait, donc nous sommes restés à l'intérieur.",
+      sentence: "Il pleuvait, car la météo l'avait annoncé.",
       explanation:
-        "Deux propositions indépendantes reliées par la conjonction de coordination \"donc\" → phrase complexe par coordination.",
+        "Deux propositions indépendantes reliées par la conjonction de coordination « car » → phrase complexe par coordination. Les conjonctions de coordination sont : mais, ou, et, or, ni, car.",
     },
     exampleWrong: {
       sentence: "Cette phrase est complexe : elle contient une subordonnée relative et une subordonnée temporelle.",

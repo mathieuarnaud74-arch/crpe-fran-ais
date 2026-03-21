@@ -23,9 +23,9 @@ const GLOSSARY: LetterSection[] = [
     letter: "A",
     entries: [
       {
-        term: "Adjectif qualificatif",
+        term: "Adjectif",
         definition:
-          "Mot variable qui s'accorde en genre et en nombre avec le nom qu'il qualifie. Il peut être épithète (placé près du nom) ou attribut (relié au nom par un verbe d'état).",
+          "Mot variable qui s'accorde en genre et en nombre avec le nom auquel il se rapporte. Il peut être épithète (placé près du nom) ou attribut (relié au nom par un verbe attributif). La terminologie officielle (Éduscol 2021) utilise simplement « adjectif » ; le terme « adjectif qualificatif » désigne un sous-type.",
       },
       {
         term: "Adverbe",
@@ -60,7 +60,7 @@ const GLOSSARY: LetterSection[] = [
       {
         term: "Attribut du sujet",
         definition:
-          "Fonction exercée par un adjectif ou un nom relié au sujet par un verbe d'état (être, sembler, paraître, devenir, rester…). L'attribut s'accorde avec le sujet. Ex. : « Cette histoire est belle. »",
+          "Fonction exercée par un adjectif ou un nom relié au sujet par un verbe attributif (être, sembler, paraître, devenir, rester…). L'attribut s'accorde avec le sujet. Ex. : « Cette histoire est belle. » Le terme officiel (Éduscol 2021) est « verbe attributif » plutôt que « verbe d'état ».",
       },
       {
         term: "Auxiliaire",
@@ -130,7 +130,7 @@ const GLOSSARY: LetterSection[] = [
       {
         term: "Coordination",
         definition:
-          "Relation entre deux propositions ou deux éléments de même fonction, reliés par une conjonction de coordination (mais, ou, et, donc, or, ni, car) ou par simple juxtaposition. À distinguer de la subordination (où une proposition dépend de l'autre).",
+          "Relation entre deux propositions ou deux éléments de même fonction, reliés par une conjonction de coordination (mais, ou, et, or, ni, car) ou par simple juxtaposition. « Donc » est un adverbe de liaison, pas une conjonction de coordination (Éduscol 2021). À distinguer de la subordination (où une proposition dépend de l'autre).",
       },
       {
         term: "Connecteur logique",
@@ -140,7 +140,7 @@ const GLOSSARY: LetterSection[] = [
       {
         term: "Conjonction de coordination",
         definition:
-          "Mot invariable qui unit deux éléments de même nature ou de même fonction. Les sept conjonctions de coordination sont : mais, ou, et, donc, or, ni, car.",
+          "Mot invariable qui unit deux éléments de même nature ou de même fonction. Les six conjonctions de coordination sont : mais, ou, et, or, ni, car. Attention : « donc » est classé comme adverbe de liaison par la terminologie officielle (Éduscol 2021), et non comme conjonction.",
       },
       {
         term: "Conjonction de subordination",
@@ -210,7 +210,7 @@ const GLOSSARY: LetterSection[] = [
       {
         term: "Expansion du groupe nominal",
         definition:
-          "Tout élément ajouté au nom noyau pour l'enrichir : l'épithète (adjectif qualificatif), l'apposition (nom ou GN juxtaposé), le complément du nom (préposition + GN) et la proposition subordonnée relative.",
+          "Tout élément ajouté au nom noyau pour l'enrichir : l'épithète (adjectif), l'apposition (nom ou GN juxtaposé, ou adjectif détaché entre virgules), le complément du nom (préposition + GN) et la proposition subordonnée relative.",
       },
     ],
   },
@@ -570,7 +570,7 @@ const GLOSSARY: LetterSection[] = [
       {
         term: "Type de phrase",
         definition:
-          "Classification des phrases selon leur intention de communication. On distingue quatre types : déclaratif (énonce un fait), interrogatif (pose une question), exclamatif (exprime une émotion), impératif (exprime un ordre). À ne pas confondre avec la forme de phrase (affirmative/négative, active/passive).",
+          "Classification des phrases selon leur intention de communication. La terminologie officielle (Éduscol 2021) distingue trois types : déclaratif (énonce un fait), interrogatif (pose une question), impératif (exprime un ordre). L'exclamation n'est pas un type mais une forme de phrase, au même titre que la forme négative, passive, emphatique ou impersonnelle. À ne pas confondre type et forme.",
       },
     ],
   },

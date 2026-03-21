@@ -58,7 +58,7 @@ export const natureMotsSprint: Fiche = {
           "Dans la phrase « Pourtant, il refusa », le mot « pourtant » est une conjonction de coordination.",
         isCorrect: false,
         explanation:
-          "« Pourtant » est un adverbe de relation (ou connecteur logique). Les conjonctions de coordination sont : mais, ou, et, donc, or, ni, car.",
+          "« Pourtant » est un adverbe de relation (ou connecteur logique). Les conjonctions de coordination sont : mais, ou, et, or, ni, car. Attention : « donc » est un adverbe selon la terminologie Éduscol 2021, et non une conjonction de coordination.",
       },
       {
         sentence:

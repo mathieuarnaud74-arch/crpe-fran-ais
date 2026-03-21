@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { toast } from "sonner";
 
 import { Mocca } from "@/components/mascot/mocca";
 import { Badge } from "@/components/ui/badge";
+import { Confetti } from "@/components/ui/confetti";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +14,7 @@ import {
   evaluateExerciseAnswer,
   getAnswerValidationRule,
 } from "@/features/exercises/shared/evaluation";
+import { HighlightPropositionsInput } from "@/features/exercises/components/highlight-propositions-input";
 import { TriCategoriesInput } from "@/features/exercises/components/tri-categories-input";
 import {
   EXERCISE_TYPE_LABELS,
@@ -50,6 +52,10 @@ export function ExercisePlayer({
   const [showSessionDetails, setShowSessionDetails] = useState(false);
   const [expandedReviewCard, setExpandedReviewCard] = useState<string | null>(null);
   const [triResetKey, setTriResetKey] = useState(0);
+  const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [streakCelebration, setStreakCelebration] = useState<number | null>(null);
+  const prevResultsCount = useRef(0);
 
   const currentQuestion = session.questions[currentIndex];
   const currentResult = currentQuestion ? results[currentQuestion.id] : undefined;
@@ -74,6 +80,42 @@ export function ExercisePlayer({
   useEffect(() => {
     setShowFullExplanation(false);
   }, [currentQuestion?.id]);
+
+  // Track consecutive correct answers and trigger celebrations
+  useEffect(() => {
+    const currentCount = Object.keys(results).length;
+    if (currentCount <= prevResultsCount.current) {
+      prevResultsCount.current = currentCount;
+      return;
+    }
+    prevResultsCount.current = currentCount;
+
+    // Find the most recently added result
+    const orderedResults = session.questions
+      .filter((q) => results[q.id])
+      .map((q) => results[q.id]);
+    const lastResult = orderedResults[orderedResults.length - 1];
+
+    if (lastResult?.isCorrect) {
+      const newStreak = consecutiveCorrect + 1;
+      setConsecutiveCorrect(newStreak);
+      if (newStreak === 5 || newStreak === 10) {
+        setStreakCelebration(newStreak);
+        setTimeout(() => setStreakCelebration(null), 2500);
+      }
+    } else {
+      setConsecutiveCorrect(0);
+    }
+
+    // Trigger confetti when series is completed with mastery
+    if (currentCount === session.questions.length) {
+      const finalScore = Object.values(results).filter((r) => r.isCorrect).length;
+      const finalPercent = (finalScore / session.questions.length) * 100;
+      if (finalPercent >= MASTERY_THRESHOLD) {
+        setShowConfetti(true);
+      }
+    }
+  }, [results, session.questions, consecutiveCorrect]);
 
   if (!currentQuestion) {
     return null;
@@ -147,6 +189,10 @@ export function ExercisePlayer({
     setResults({});
     setCurrentIndex(0);
     setDraftAnswer("");
+    setConsecutiveCorrect(0);
+    setShowConfetti(false);
+    setStreakCelebration(null);
+    prevResultsCount.current = 0;
   }
 
   function renderFeedbackTitle() {
@@ -155,14 +201,27 @@ export function ExercisePlayer({
     }
 
     if (currentResult.isCorrect) {
-      return "Bonne r\u00e9ponse.";
+      if (consecutiveCorrect >= 5) return "Impressionnant, quelle s\u00e9rie !";
+      if (consecutiveCorrect >= 3) return "Encore juste, bien jou\u00e9 !";
+      const correctTitles = [
+        "Bonne r\u00e9ponse !",
+        "Exactement !",
+        "Bien vu !",
+        "C\u2019est correct !",
+      ];
+      return correctTitles[currentIndex % correctTitles.length];
     }
 
     if (currentResult.reason === "accent_only") {
-      return "R\u00e9ponse presque correcte.";
+      return "Presque ! L\u2019accent fait la diff\u00e9rence.";
     }
 
-    return "R\u00e9ponse \u00e0 reprendre.";
+    const incorrectTitles = [
+      "Pas tout \u00e0 fait. Regardons ensemble.",
+      "Ce n\u2019est pas \u00e7a, mais c\u2019est formateur.",
+      "Pas cette fois. Voyons pourquoi.",
+    ];
+    return incorrectTitles[currentIndex % incorrectTitles.length];
   }
 
   function renderFeedbackBody() {
@@ -178,8 +237,8 @@ export function ExercisePlayer({
       return (
         <>
           <p className="mt-2">
-            Le fond est bon, mais cet exercice d&apos;orthographe exige une graphie exacte avec les
-            accents attendus.
+            Le raisonnement est bon ! Cet exercice exige cependant la graphie exacte avec les
+            accents. C&apos;est un automatisme qui viendra avec la pratique.
           </p>
           <p className="mt-2">
             <span className="font-semibold">Forme attendue :</span>{" "}
@@ -197,8 +256,26 @@ export function ExercisePlayer({
     );
   }
 
+  function getMoccaEncouragement(): string | null {
+    if (currentResult) return null;
+    const remaining = session.questionCount - answeredCount;
+    if (remaining === 1) return "Derni\u00e8re question, donne tout !";
+    if (remaining === 2) return "Plus que 2 questions, tu y es presque !";
+    if (remaining === 3) return "Plus que 3 ! La fin est proche.";
+    if (consecutiveCorrect >= 5) return "S\u00e9rie en or ! Continue comme \u00e7a.";
+    if (consecutiveCorrect >= 3) return "Tu es en forme ! Continue.";
+    if (answeredCount === Math.floor(session.questionCount / 2) && answeredCount > 0) {
+      return "Mi-parcours ! Tu avances bien.";
+    }
+    return null;
+  }
+
+  const moccaEncouragement = getMoccaEncouragement();
+
   return (
     <div className="space-y-6">
+      <Confetti trigger={showConfetti} />
+
       <Panel className="border-border bg-card">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div className="space-y-3">
@@ -208,6 +285,17 @@ export function ExercisePlayer({
               </Badge>
               <Badge>{formatLevelLabel(session.level)}</Badge>
               <Badge>{session.questionCount} questions</Badge>
+              {consecutiveCorrect >= 3 && !completed && (
+                <span className={cn(
+                  "inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-[0.10em]",
+                  consecutiveCorrect >= 5
+                    ? "animate-fire-glow border-accentSecondary/40 bg-accentSecondarySoft text-accentSecondaryDark"
+                    : "border-accent/25 bg-accent/10 text-accent",
+                )}>
+                  <span aria-hidden="true">{consecutiveCorrect >= 5 ? "\uD83D\uDD25" : "\u26A1"}</span>
+                  {consecutiveCorrect} d&apos;affil&eacute;e
+                </span>
+              )}
             </div>
             <div>
               <h1 className="break-words font-serif text-2xl font-semibold text-ink sm:text-4xl">
@@ -280,8 +368,32 @@ export function ExercisePlayer({
       </Panel>
 
       {completed ? (
-        <Panel className="border-border bg-card">
+        <Panel
+          className={cn(
+            "border-border bg-card",
+            correctPercent >= MASTERY_THRESHOLD && "border-successBorder/50",
+          )}
+        >
           <div className="space-y-6">
+            {/* Mastery celebration banner */}
+            {correctPercent >= MASTERY_THRESHOLD && (
+              <div className="animate-score-reveal flex items-center gap-3 rounded-[1.25rem] border border-successBorder bg-successBg px-5 py-4">
+                <span className="text-2xl" aria-hidden="true">{score === session.questionCount ? "\uD83C\uDFC6" : "\uD83C\uDF1F"}</span>
+                <div>
+                  <p className="text-sm font-bold text-pine">
+                    {score === session.questionCount
+                      ? "Score parfait ! Vous ma\u00eetrisez ce sujet."
+                      : "S\u00e9rie ma\u00eetris\u00e9e ! Beau travail."}
+                  </p>
+                  <p className="text-xs text-pine/70">
+                    {score === session.questionCount
+                      ? "Toutes les r\u00e9ponses sont correctes. Impressionnant !"
+                      : `${score}/${session.questionCount} bonnes r\u00e9ponses \u2014 vous avez d\u00e9pass\u00e9 le seuil de ${MASTERY_THRESHOLD}\u00a0%.`}
+                  </p>
+                </div>
+              </div>
+            )}
+
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="flex items-start gap-5">
                 <Mocca
@@ -301,22 +413,26 @@ export function ExercisePlayer({
                       S&eacute;rie termin&eacute;e
                     </Badge>
                     {correctPercent >= MASTERY_THRESHOLD ? (
-                      <Badge tone="success">S&eacute;rie ma&icirc;tris&eacute;e ✓</Badge>
+                      <Badge tone="success" className="animate-mastery-shine">S&eacute;rie ma&icirc;tris&eacute;e ✓</Badge>
                     ) : (
                       <Badge tone="neutral">
                         Objectif ma&icirc;trise&nbsp;: {MASTERY_THRESHOLD}&nbsp;%
                       </Badge>
                     )}
                   </div>
-                  <h2 className="mt-3 font-serif text-2xl sm:text-3xl font-semibold text-ink">
+                  <h2 className="animate-score-reveal mt-3 font-serif text-2xl sm:text-3xl font-semibold text-ink">
                     Score final : {score} / {session.questionCount}
                   </h2>
                   <p className="mt-2 text-sm font-medium text-muted">
-                    {correctPercent >= 80
-                      ? "Excellent travail ! Mocca est fier."
-                      : correctPercent >= 50
-                        ? "Pas mal. Continuez sur cette lanc\u00e9e."
-                        : "Il faudra retravailler \u00e7a. Mocca y croit."}
+                    {correctPercent >= 90
+                      ? "Excellent ! Vous ma\u00eetrisez ce domaine. Continuez \u00e0 consolider vos acquis."
+                      : correctPercent >= 80
+                        ? "Tr\u00e8s bon travail ! Mocca est impressionn\u00e9. Quelques ajustements et ce sera parfait."
+                        : correctPercent >= 60
+                          ? "Bon effort ! Vous \u00eates sur la bonne voie. Retravaillez les points fragiles ci-dessous."
+                          : correctPercent >= 40
+                            ? "C\u2019est un d\u00e9but. Relisez les corrections et r\u00e9essayez \u2014 chaque erreur est une le\u00e7on."
+                            : "Courage ! Ce sujet demande du travail, mais la persévérance paie. Mocca croit en vous."}
                   </p>
                   <p className="mt-2 max-w-2xl text-sm leading-7 text-muted">
                     Retrouvez ci-dessous les corrections compl&egrave;tes, les erreurs
@@ -359,10 +475,13 @@ export function ExercisePlayer({
                 <div className="rounded-[1.5rem] border border-border bg-paper p-5">
                   <h3 className="font-serif text-2xl font-semibold text-ink">Axes de reprise</h3>
                   {weakAreas.length === 0 ? (
-                    <p className="mt-3 text-sm leading-7 text-muted">
-                      Aucune erreur dans cette s&eacute;rie. Vous pouvez passer &agrave; une
-                      s&eacute;rie plus exigeante.
-                    </p>
+                    <div className="mt-3 flex items-center gap-3 rounded-xl border border-successBorder bg-successBg px-4 py-3">
+                      <span className="text-lg" aria-hidden="true">&#x2728;</span>
+                      <p className="text-sm leading-7 text-pine">
+                        Z&eacute;ro erreur ! Vous pouvez passer &agrave; une
+                        s&eacute;rie plus exigeante ou consolider avec une r&eacute;vision.
+                      </p>
+                    </div>
                   ) : (
                     <ul className="mt-4 space-y-3 text-sm leading-7 text-muted">
                       {weakAreas.map(({ label, count }) => (
@@ -404,7 +523,7 @@ export function ExercisePlayer({
                       ) : null}
                       <p className="text-sm leading-7 text-muted">
                         <span className="font-semibold text-ink">Votre r&eacute;ponse :</span>{" "}
-                        {question.exercise_type === "tri_categories"
+                        {question.exercise_type === "tri_categories" || question.exercise_type === "surlignage_propositions"
                           ? "Classement soumis"
                           : results[question.id]?.answer}
                       </p>
@@ -427,6 +546,26 @@ export function ExercisePlayer({
         </Panel>
       ) : (
         <Panel className="border-border bg-card">
+          {/* Streak celebration toast */}
+          {streakCelebration !== null && (
+            <div className="animate-score-reveal mb-4 flex items-center gap-3 rounded-[1.25rem] border border-accentSecondary/30 bg-accentSecondarySoft px-4 py-3">
+              <Mocca variant="happy" size="sm" className="shrink-0" />
+              <p className="text-sm font-semibold text-accentSecondaryDark">
+                {streakCelebration >= 10
+                  ? "\uD83C\uDF1F Incroyable ! 10 bonnes r\u00e9ponses cons\u00e9cutives !"
+                  : "\uD83D\uDD25 5 bonnes r\u00e9ponses d\u2019affil\u00e9e ! Tu g\u00e8res !"}
+              </p>
+            </div>
+          )}
+
+          {/* Mocca contextual encouragement */}
+          {moccaEncouragement && !currentResult && (
+            <div className="animate-question-stage mb-4 flex items-center gap-2.5 rounded-xl border border-accent/15 bg-accent/5 px-4 py-2.5">
+              <Mocca variant={consecutiveCorrect >= 3 ? "happy" : "neutral"} size="sm" className="shrink-0" />
+              <p className="text-sm font-medium text-accent">{moccaEncouragement}</p>
+            </div>
+          )}
+
           <div key={currentQuestion.id} className="animate-question-stage space-y-6">
             <div className="flex flex-wrap items-center gap-3">
               <Badge>{SUBDOMAIN_LABELS[currentQuestion.subdomain]}</Badge>
@@ -446,7 +585,18 @@ export function ExercisePlayer({
               ) : null}
             </div>
 
-            {currentQuestion.exercise_type === "tri_categories" &&
+            {currentQuestion.exercise_type === "surlignage_propositions" &&
+            currentQuestion.expected_answer.mode === "highlight_groups" ? (
+              <HighlightPropositionsInput
+                key={`${currentQuestion.id}-${triResetKey}`}
+                segments={currentQuestion.choices ?? []}
+                groups={currentQuestion.expected_answer.groups}
+                onChange={setDraftAnswer}
+                result={currentResult}
+                expectedMapping={currentQuestion.expected_answer.mapping}
+                disabled={Boolean(disabledReason) || Boolean(currentResult)}
+              />
+            ) : currentQuestion.exercise_type === "tri_categories" &&
             currentQuestion.expected_answer.mode === "categorization" ? (
               <TriCategoriesInput
                 key={`${currentQuestion.id}-${triResetKey}`}

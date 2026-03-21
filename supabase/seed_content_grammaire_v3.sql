@@ -198,7 +198,7 @@ values
 -- Q2 correct=c (was b — "4 types d''expansions" moves to c; b becomes new wrong answer)
 ('66000000-0000-0000-0000-000000000002','Francais','grammaire','grm_gn_gv_structure','Structure du GN et du GV','Intermediaire','qcm',
 'Quelles sont les expansions possibles du nom dans le GN ?',null,
-'[{"id":"a","label":"Uniquement l''adjectif qualificatif épithète"},{"id":"b","label":"L''adjectif épithète et la proposition subordonnée relative uniquement"},{"id":"c","label":"L''adjectif épithète, la proposition subordonnée relative, le complément du nom (groupe prépositionnel) et l''adjectif apposé"},{"id":"d","label":"Uniquement les propositions relatives et les compléments du nom prépositionnels"}]'::jsonb,
+'[{"id":"a","label":"Uniquement l''adjectif épithète"},{"id":"b","label":"L''adjectif épithète et la proposition subordonnée relative uniquement"},{"id":"c","label":"L''adjectif épithète, la proposition subordonnée relative, le complément du nom (groupe prépositionnel) et l''adjectif apposé"},{"id":"d","label":"Uniquement les propositions relatives et les compléments du nom prépositionnels"}]'::jsonb,
 '{"mode":"single_choice","value":"c"}'::jsonb,
 'Quatre types d''expansions pour le nom — et ça vaut le coup de toutes les connaître ! Adjectif épithète (« une belle maison »), complément du nom / GP (« la maison de mes parents »), proposition subordonnée relative (« la maison qui se trouve au bout du chemin »), adjectif ou GN en apposition (« la maison, ancienne bâtisse familiale »). Toutes ces expansions enrichissent le GN sans changer sa fonction dans la phrase. La richesse du GN en français, c''est vraiment impressionnant !',
 'valide','CRPE Français V3 — Grammaire','free',true),
@@ -206,9 +206,9 @@ values
 -- Q3 correct=c (inchangé)
 ('66000000-0000-0000-0000-000000000003','Francais','grammaire','grm_gn_gv_structure','Structure du GN et du GV','Intermediaire','qcm',
 'Quel est le noyau du groupe verbal (GV) dans la phrase « Les élèves semblent fatigués. » ?',null,
-'[{"id":"a","label":"« semblent » uniquement"},{"id":"b","label":"« fatigués » uniquement"},{"id":"c","label":"Le verbe copule « semblent » est le noyau du GV, dont l''attribut « fatigués » est un constituant obligatoire"},{"id":"d","label":"Les deux mots « semblent fatigués » forment ensemble un verbe composé à deux noyaux"}]'::jsonb,
+'[{"id":"a","label":"« semblent » uniquement"},{"id":"b","label":"« fatigués » uniquement"},{"id":"c","label":"Le verbe attributif « semblent » est le noyau du GV, dont l''attribut « fatigués » est un constituant obligatoire"},{"id":"d","label":"Les deux mots « semblent fatigués » forment ensemble un verbe composé à deux noyaux"}]'::jsonb,
 '{"mode":"single_choice","value":"c"}'::jsonb,
-'Avec les verbes attributifs comme sembler, paraître, devenir, rester — le noyau du GV c''est bien le verbe, mais l''attribut devient un constituant OBLIGATOIRE. Sans « fatigués », la phrase est incomplète : « Les élèves semblent... » — et alors ? L''attribut est non supprimable ici. C''est différent du verbe transitif (où le COD est essentiel mais de nature différente) et du verbe intransitif (sans complément essentiel). Cette distinction des types de GV est fondamentale.',
+'Avec les verbes attributifs comme sembler, paraître, devenir, rester — le noyau du GV c''est bien le verbe, mais l''attribut devient un constituant OBLIGATOIRE. Sans « fatigués », la phrase est incomplète : « Les élèves semblent... » — et alors ? L''attribut est non supprimable ici. Le terme officiel (Éduscol 2021) est « verbe attributif » (et non « verbe d''état » ou « verbe copule »). C''est différent du verbe transitif (où le COD est essentiel mais de nature différente) et du verbe intransitif (sans complément essentiel).',
 'valide','CRPE Français V3 — Grammaire','free',true),
 
 -- Q4 correct=b (inchangé)

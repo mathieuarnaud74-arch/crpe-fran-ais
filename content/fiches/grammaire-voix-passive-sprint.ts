@@ -43,7 +43,7 @@ export const grammaireVoixPassiveSprint: Fiche = {
           "\"Elle semblait heureuse\" est une forme passive car \"semblait\" est un auxiliaire être.",
         isCorrect: false,
         explanation:
-          "FAUX. \"Sembler\" est un verbe d'état (attributif), pas l'auxiliaire être de la voix passive. \"Heureuse\" est un attribut du sujet, pas un participe passé d'un verbe transitif. Il n'y a pas de complément d'agent possible.",
+          "FAUX. \"Sembler\" est un verbe attributif, pas l'auxiliaire être de la voix passive. \"Heureuse\" est un attribut du sujet, pas un participe passé d'un verbe transitif. Il n'y a pas de complément d'agent possible.",
       },
       {
         sentence:

@@ -27,7 +27,7 @@ values
     'qcm',
     'Dans la phrase "Les eleves ecoutent attentivement la consigne", quelle est la nature du mot "attentivement" ?',
     null,
-    '[{"id":"a","label":"Un adjectif qualificatif"},{"id":"b","label":"Un adverbe"},{"id":"c","label":"Un nom commun"}]'::jsonb,
+    '[{"id":"a","label":"Un adjectif"},{"id":"b","label":"Un adverbe"},{"id":"c","label":"Un nom commun"}]'::jsonb,
     '{"mode":"single_choice","value":"b"}'::jsonb,
     '"Attentivement" précise la manière dont les élèves écoutent — il modifie le verbe "écoutent". C''est donc un adverbe ! Retiens : les adverbes modifient un verbe, un adjectif ou un autre adverbe. Ici, la terminaison en -ment est un bon indice.',
     'valide',
@@ -288,9 +288,9 @@ values
     'qcm',
     'Quelle est la nature du mot "petit" dans la phrase "Le petit chat dort" ?',
     null,
-    '[{"id":"a","label":"Un adverbe"},{"id":"b","label":"Un adjectif qualificatif"},{"id":"c","label":"Un nom commun"}]'::jsonb,
+    '[{"id":"a","label":"Un adverbe"},{"id":"b","label":"Un adjectif"},{"id":"c","label":"Un nom commun"}]'::jsonb,
     '{"mode":"single_choice","value":"b"}'::jsonb,
-    '"Petit" qualifie le nom "chat" en indiquant une de ses caractéristiques — c''est un adjectif qualificatif épithète. Retiens : épithète = l''adjectif est directement placé à côté du nom (avant ou après), sans verbe entre les deux.',
+    '"Petit" qualifie le nom "chat" en indiquant une de ses caractéristiques — c''est un adjectif épithète. Retiens : épithète = l''adjectif est directement placé à côté du nom (avant ou après), sans verbe entre les deux.',
     'valide', 'Creation CRPE Francais V1', 'free', true
   ),
   (
@@ -312,7 +312,7 @@ values
     null,
     '[{"id":"a","label":"Une preposition"},{"id":"b","label":"Une conjonction de coordination"},{"id":"c","label":"Un pronom"}]'::jsonb,
     '{"mode":"single_choice","value":"b"}'::jsonb,
-    '"Et" relie deux groupes nominaux de même fonction — c''est une conjonction de coordination. Retiens les 7 conjonctions de coordination : mais, ou, et, donc, or, ni, car. Un moyen mnémotechnique classique : "Mais ou est donc Ornicar ?"',
+    '"Et" relie deux groupes nominaux de même fonction — c''est une conjonction de coordination. Selon la terminologie officielle (Éduscol 2021), il existe six conjonctions de coordination : mais, ou, et, or, ni, car. Attention : « donc » est classé comme un ADVERBE de liaison, pas comme une conjonction. Le moyen mnémotechnique « Mais où est donc Ornicar ? » reste utile mais « donc » n''y figure pas en tant que conjonction.',
     'valide', 'Creation CRPE Francais V1', 'free', true
   ),
   (
@@ -345,7 +345,7 @@ values
     'Identifiez la fonction du mot souligne : "Il semble <intelligent>."',
     null, null,
     '{"mode":"text","acceptableAnswers":["attribut du sujet"]}'::jsonb,
-    '"Intelligent" est relié au sujet "il" par le verbe d''état "sembler" — c''est un attribut du sujet. Les verbes d''état qui introduisent un attribut : être, paraître, sembler, devenir, rester, avoir l''air… L''attribut dit quelque chose du sujet à travers le verbe.',
+    '"Intelligent" est relié au sujet "il" par le verbe attributif "sembler" — c''est un attribut du sujet. Les verbes d''état qui introduisent un attribut : être, paraître, sembler, devenir, rester, avoir l''air… L''attribut dit quelque chose du sujet à travers le verbe.',
     'valide', 'Creation CRPE Francais V1', 'premium', true
   ),
   (

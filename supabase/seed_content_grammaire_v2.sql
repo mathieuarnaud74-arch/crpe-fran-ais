@@ -19,7 +19,7 @@ values
   null,
   '[{"id":"a","label":"Déclarative"},{"id":"b","label":"Interrogative"},{"id":"c","label":"Exclamative"},{"id":"d","label":"Impérative"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  '« Le soleil brille sur la mer. » énonce un fait, c''est tout — c''est donc une phrase déclarative ! Elle se termine par un point simple, le signe le plus discret. La règle est simple : point simple = déclarative, point d''interrogation = interrogative, point d''exclamation = exclamative. Reconnaître le type d''une phrase, c''est avant tout observer la ponctuation et l''intention de communication. Commence toujours par là !',
+  '« Le soleil brille sur la mer. » énonce un fait, c''est tout — c''est donc une phrase déclarative ! Elle se termine par un point simple. Les trois types de phrases reconnus par la terminologie officielle sont : déclaratif, interrogatif, impératif. L''exclamation n''est pas un type mais une forme de phrase. Reconnaître le type d''une phrase, c''est identifier l''intention de communication.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -120,7 +120,7 @@ values
   null,
   '[{"id":"a","label":"Déclarative"},{"id":"b","label":"Subjective"},{"id":"c","label":"Impérative"},{"id":"d","label":"Interrogative"}]'::jsonb,
   '{"mode":"single_choice","value":"b"}'::jsonb,
-  '« Phrase subjective » — ça n''existe pas ! Les quatre types reconnus en grammaire française sont : déclarative, interrogative, exclamative et impérative. Le subjonctif est un MODE VERBAL, pas un type de phrase. Cette classification repose sur l''intention du locuteur : énoncer un fait, poser une question, exprimer une émotion, ou donner un ordre. Ces quatre types, tu dois les connaître sur le bout des doigts — ils reviennent régulièrement au CRPE.',
+  '« Phrase subjective » — ça n''existe pas ! Selon la terminologie officielle (Éduscol 2021), il existe trois types de phrases : déclarative, interrogative et impérative. L''exclamation est une FORME de phrase, pas un type. Le subjonctif est un MODE VERBAL, pas un type de phrase. Cette classification repose sur l''intention du locuteur : énoncer un fait, poser une question, donner un ordre. L''exclamation est une forme expressive qui se superpose à l''un des trois types.',
   'valide', 'CRPE Français — Grammaire V2', 'free', true
 ),
 
@@ -409,7 +409,7 @@ values
   null,
   '[{"id":"a","label":"Épithète liée"},{"id":"b","label":"Attribut du sujet"},{"id":"c","label":"Apposition"},{"id":"d","label":"Complément du nom"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  'Épithète liée — « petite » est directement accolé au nom « fille » sans verbe intermédiaire. C''est la définition même de l''épithète liée : inséparable du nom dans le GN. L''attribut du sujet, lui, est séparé par un verbe d''état (« La fille est petite »). L''apposition est un nom ou GN ajouté pour préciser le nom. Le complément du nom est introduit par une préposition. La distinction épithète liée / épithète détachée / attribut est fondamentale en analyse grammaticale — et elle revient souvent au CRPE. Retiens : lié = dans le GN, pas de verbe entre les deux.',
+  'Épithète liée — « petite » est directement accolé au nom « fille » sans verbe intermédiaire. C''est la définition même de l''épithète liée : inséparable du nom dans le GN. L''attribut du sujet, lui, est séparé par un verbe attributif (« La fille est petite »). L''apposition est un nom ou GN ajouté pour préciser le nom. Le complément du nom est introduit par une préposition. La distinction épithète liée / apposition (adjectif détaché) / attribut est fondamentale en analyse grammaticale — et elle revient souvent au CRPE. Retiens : lié = dans le GN, pas de verbe entre les deux.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -434,7 +434,7 @@ values
   null,
   '[{"id":"a","label":"Épithète"},{"id":"b","label":"Apposition"},{"id":"c","label":"Épithète détachée"},{"id":"d","label":"Complément du nom"}]'::jsonb,
   '{"mode":"single_choice","value":"d"}'::jsonb,
-  'Complément du nom — la préposition « de » t''indique que tu as bien un GP expansion du nom. Il précise le nom noyau « livre » en indiquant son contenu. Ce n''est pas une épithète (qui serait un adjectif) ni une apposition (qui supposerait une équivalence référentielle et des virgules) ni une épithète détachée (qui serait un adjectif séparé par une virgule). Astuce : le complément du nom peut souvent être paraphrasé par une proposition relative → « un livre qui contient des recettes ». Invariable, introduit par une préposition — voilà les deux caractéristiques à retenir.',
+  'Complément du nom — la préposition « de » t''indique que tu as bien un GP expansion du nom. Il précise le nom noyau « livre » en indiquant son contenu. Ce n''est pas une épithète (qui serait un adjectif) ni une apposition (qui supposerait une équivalence référentielle et des virgules) ni une apposition (adjectif détaché) (qui serait un adjectif séparé par une virgule). Astuce : le complément du nom peut souvent être paraphrasé par une proposition relative → « un livre qui contient des recettes ». Invariable, introduit par une préposition — voilà les deux caractéristiques à retenir.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -446,7 +446,7 @@ values
   null,
   null,
   '{"mode":"boolean","value":false}'::jsonb,
-  'Faux ! « Noir » est ici ATTRIBUT DU SUJET, pas épithète liée. La différence fondamentale : l''attribut est séparé du nom par un verbe d''état (être, paraître, sembler, devenir…). Ici, « est » est ce verbe d''état — il relie le sujet « le chat » à l''attribut « noir ». L''épithète liée, elle, est directement accolée au nom : « Le chat noir dort. » Cette distinction est cruciale parce qu''elle change la fonction syntaxique : attribut = lié au prédicat, épithète = interne au GN. Les deux peuvent être des adjectifs, mais leurs rôles sont complètement différents.',
+  'Faux ! « Noir » est ici ATTRIBUT DU SUJET, pas épithète liée. La différence fondamentale : l''attribut est séparé du nom par un verbe attributif (être, paraître, sembler, devenir…). Ici, « est » est ce verbe attributif — il relie le sujet « le chat » à l''attribut « noir ». L''épithète liée, elle, est directement accolée au nom : « Le chat noir dort. » Cette distinction est cruciale parce qu''elle change la fonction syntaxique : attribut = lié au prédicat, épithète = interne au GN. Les deux peuvent être des adjectifs, mais leurs rôles sont complètement différents.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -480,11 +480,11 @@ values
   '59000000-0000-0000-0000-000000000007',
   'Francais', 'grammaire', 'grm_groupe_nominal_expansions', 'Groupe nominal et ses expansions', 'Intermediaire',
   'vrai_faux',
-  'L''épithète détachée est séparée du nom par une virgule et peut être supprimée sans rendre la phrase agrammaticale.',
+  'L''apposition (adjectif détaché) est séparée du nom par une virgule et peut être supprimée sans rendre la phrase agrammaticale.',
   null,
   null,
   '{"mode":"boolean","value":true}'::jsonb,
-  'Vrai — c''est là toute la différence avec l''épithète liée ! L''épithète détachée est à distance du nom, séparée par une virgule, et facultative. Exemple : « Épuisé, il s''endormit aussitôt. » On peut supprimer « épuisé » : « Il s''endormit aussitôt. » ✓ La phrase reste correcte. L''épithète liée, elle, est directement accolée au nom et souvent plus difficile à supprimer si elle est déterminante pour le sens. Virgule + à distance = détachée, sans virgule + accolée = liée. C''est aussi simple que ça.',
+  'Vrai — c''est là toute la différence avec l''épithète liée ! L''apposition (adjectif détaché) est à distance du nom, séparée par une virgule, et facultative. Exemple : « Épuisé, il s''endormit aussitôt. » On peut supprimer « épuisé » : « Il s''endormit aussitôt. » ✓ La phrase reste correcte. L''épithète liée, elle, est directement accolée au nom et souvent plus difficile à supprimer si elle est déterminante pour le sens. Virgule + à distance = détachée, sans virgule + accolée = liée. C''est aussi simple que ça.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -539,7 +539,7 @@ values
   null,
   '[{"id":"a","label":"Juxtaposition"},{"id":"b","label":"Subordination"},{"id":"c","label":"Corrélation"},{"id":"d","label":"Coordination"}]'::jsonb,
   '{"mode":"single_choice","value":"d"}'::jsonb,
-  '« Car » — coordination ! Et tu la connais, la liste des sept conjonctions de coordination : mais, ou, et, donc, or, ni, car. Le moyen mnémotechnique : « mais ou est donc or ni car ». La coordination unit deux propositions de même niveau syntaxique. La subordination, elle, crée une dépendance hiérarchique (principale → subordonnée). La juxtaposition se fait par la seule ponctuation, sans mot de liaison. Ici, « car » est présent et c''est bien une conjonction de coordination → coordination, pas de doute.',
+  '« Car » — coordination ! La terminologie officielle (Éduscol 2021) reconnaît six conjonctions de coordination : mais, ou, et, or, ni, car. « Donc » est classé comme un adverbe de liaison, et non comme une conjonction. La coordination unit deux propositions de même niveau syntaxique. La subordination, elle, crée une dépendance hiérarchique (principale → subordonnée). La juxtaposition se fait par la seule ponctuation, sans mot de liaison. Ici, « car » est une conjonction de coordination → coordination.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 
@@ -585,11 +585,11 @@ values
   '60000000-0000-0000-0000-000000000005',
   'Francais', 'grammaire', 'grm_coordination_subordination', 'Coordination et subordination', 'Avance',
   'qcm',
-  'Quel lien logique la conjonction de coordination « donc » exprime-t-elle ?',
+  'Quel lien logique l''adverbe de liaison « donc » exprime-t-il ?',
   null,
   '[{"id":"a","label":"Conséquence"},{"id":"b","label":"Opposition"},{"id":"c","label":"Addition"},{"id":"d","label":"Cause"}]'::jsonb,
   '{"mode":"single_choice","value":"a"}'::jsonb,
-  '« Donc » exprime la conséquence : la deuxième proposition DÉCOULE logiquement de la première. Retiens les valeurs des sept conjonctions : et = addition, ou = alternative, mais = opposition, or = transition/opposition, ni = négation additive, car = cause, donc = conséquence. Connaître ces valeurs sémantiques est essentiel pour analyser la structure argumentative d''un texte. Au CRPE, on te demande souvent de repérer les connecteurs logiques — commence par les conjonctions de coordination, c''est la base.',
+  '« Donc » exprime la conséquence : la deuxième proposition DÉCOULE logiquement de la première. Attention : selon la terminologie officielle (Éduscol 2021), « donc » n''est pas une conjonction de coordination mais un ADVERBE de liaison (il peut apparaître en différentes positions dans la phrase). Les six conjonctions de coordination sont : mais (opposition), ou (alternative), et (addition), or (transition), ni (négation additive), car (cause). Connaître la classe grammaticale exacte de ces mots de liaison est essentiel au CRPE.',
   'valide', 'CRPE Français — Grammaire V2', 'premium', true
 ),
 

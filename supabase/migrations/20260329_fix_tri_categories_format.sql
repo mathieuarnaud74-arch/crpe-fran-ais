@@ -248,7 +248,7 @@ VALUES
   '[{"id":"s03q2w1","label":"pour"},{"id":"s03q2w2","label":"et"},{"id":"s03q2w3","label":"lorsque"},{"id":"s03q2w4","label":"chez"},{"id":"s03q2w5","label":"ni"},{"id":"s03q2w6","label":"afin que"}]'::jsonb,
   '{"mode":"categorization","categories":[{"id":"prep","label":"Préposition"},{"id":"coord","label":"Conj. de coordination"},{"id":"subord","label":"Conj. de subordination"}],"mapping":{"s03q2w1":"prep","s03q2w2":"coord","s03q2w3":"subord","s03q2w4":"prep","s03q2w5":"coord","s03q2w6":"subord"}}'::jsonb,
   'Pour et chez introduisent un complément : ce sont des prépositions. Et et ni relient des éléments de même rang : ce sont des conjonctions de coordination. Lorsque et afin que introduisent une subordonnée : ce sont des conjonctions de subordination.',
-  'Oublier que « ni » est une conjonction de coordination. Moyen mnémotechnique : Mais, Ou, Et, Donc, Or, Ni, Car.',
+  'Oublier que « ni » est une conjonction de coordination. Les six conjonctions de coordination (Éduscol 2021) : mais, ou, et, or, ni, car. Attention : « donc » est un adverbe, pas une conjonction.',
   'valide', 'Série CRPE Français — Tri par catégories', 'free', true
 ),
 (
@@ -260,9 +260,9 @@ VALUES
   'tri_categories',
   'Classez ces six mots de liaison selon leur nature : préposition, conjonction de coordination ou conjonction de subordination.',
   null,
-  '[{"id":"s03q3w1","label":"sans"},{"id":"s03q3w2","label":"donc"},{"id":"s03q3w3","label":"quoique"},{"id":"s03q3w4","label":"depuis"},{"id":"s03q3w5","label":"car"},{"id":"s03q3w6","label":"tandis que"}]'::jsonb,
+  '[{"id":"s03q3w1","label":"sans"},{"id":"s03q3w2","label":"or"},{"id":"s03q3w3","label":"quoique"},{"id":"s03q3w4","label":"depuis"},{"id":"s03q3w5","label":"car"},{"id":"s03q3w6","label":"tandis que"}]'::jsonb,
   '{"mode":"categorization","categories":[{"id":"prep","label":"Préposition"},{"id":"coord","label":"Conj. de coordination"},{"id":"subord","label":"Conj. de subordination"}],"mapping":{"s03q3w1":"prep","s03q3w2":"coord","s03q3w3":"subord","s03q3w4":"prep","s03q3w5":"coord","s03q3w6":"subord"}}'::jsonb,
-  'Sans et depuis introduisent un complément : ce sont des prépositions. Donc et car relient deux propositions de même niveau : ce sont des conjonctions de coordination. Quoique et tandis que introduisent une subordonnée : ce sont des conjonctions de subordination.',
+  'Sans et depuis introduisent un complément : ce sont des prépositions. Or et car relient deux propositions de même niveau : ce sont des conjonctions de coordination. Quoique et tandis que introduisent une subordonnée : ce sont des conjonctions de subordination.',
   'Confondre « quoique » (conjonction de subordination = bien que) et « quoi que » (pronom relatif indéfini = quelle que soit la chose que).',
   'valide', 'Série CRPE Français — Tri par catégories', 'free', true
 ),

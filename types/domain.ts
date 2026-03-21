@@ -14,7 +14,8 @@ export type ExerciseType =
   | "identification_grammaticale"
   | "correction_orthographique"
   | "analyse_texte"
-  | "tri_categories";
+  | "tri_categories"
+  | "surlignage_propositions";
 
 export type AccessTier = "free" | "premium";
 export type ValidationStatus = "brouillon" | "valide";
@@ -37,6 +38,12 @@ export type CategorizationCategory = {
   label: string;
 };
 
+export type HighlightGroup = {
+  id: string;
+  label: string;
+  color: string;
+};
+
 export type ExpectedAnswer =
   | {
       mode: "single_choice";
@@ -53,6 +60,11 @@ export type ExpectedAnswer =
   | {
       mode: "categorization";
       categories: CategorizationCategory[];
+      mapping: Record<string, string>;
+    }
+  | {
+      mode: "highlight_groups";
+      groups: HighlightGroup[];
       mapping: Record<string, string>;
     };
 

@@ -563,7 +563,7 @@ export const seriesV3BatchD: RevisionSession[] = [
         "Corrige l'erreur dans cette phrase : « Les enfants semblent content. »",
         ["Les enfants semblent contents."],
         "Le sujet Les enfants est masculin pluriel. L'adjectif attribut s'accorde → contents (ajout de -s).",
-        "Ne pas accorder l'adjectif attribut placé après le verbe d'état, en le traitant comme un adverbe invariable.",
+        "Ne pas accorder l'adjectif attribut placé après le verbe attributif, en le traitant comme un adverbe invariable.",
         "free",
       ),
       correction(
@@ -583,7 +583,7 @@ export const seriesV3BatchD: RevisionSession[] = [
         "Corrige l'erreur dans cette phrase : « Elle semble surpris par la nouvelle. »",
         ["Elle semble surprise par la nouvelle."],
         "Le sujet Elle est féminin singulier. L'adjectif attribut de surpris forme son féminin → surprise.",
-        "Laisser l'adjectif au masculin singulier après un verbe d'état, en oubliant l'accord avec le sujet féminin.",
+        "Laisser l'adjectif au masculin singulier après un verbe attributif, en oubliant l'accord avec le sujet féminin.",
         "free",
       ),
       correction(
@@ -603,7 +603,7 @@ export const seriesV3BatchD: RevisionSession[] = [
         "L'adjectif épithète s'accorde en genre et en nombre avec le nom qu'il qualifie.",
         true,
         "Que l'adjectif soit placé avant (épithète antéposée : une belle maison) ou après le nom (épithète postposée : une maison belle), il s'accorde toujours en genre et en nombre avec ce nom.",
-        "Croire que seul l'adjectif attribut (après un verbe d'état) s'accorde.",
+        "Croire que seul l'adjectif attribut (après un verbe attributif) s'accorde.",
         "free",
       ),
       qcm(
@@ -1074,7 +1074,7 @@ export const seriesV3BatchD: RevisionSession[] = [
         "Intermediaire",
         "Corrige l'erreur dans cette phrase : « Le livre qui j'ai lu est passionnant. »",
         ["Le livre que j'ai lu est passionnant."],
-        "Dans la relative, le pronom remplace 'le livre' en fonction de COD (j'ai lu quoi ? le livre) → que.",
+        "Dans la relative, le pronom relatif reprend 'le livre' en fonction de COD (j'ai lu quoi ? le livre) → que.",
         "Employer qui (sujet) à la place de que (COD) par manque d'analyse de la fonction.",
         "premium",
       ),

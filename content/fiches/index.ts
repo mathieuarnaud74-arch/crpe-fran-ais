@@ -47,6 +47,31 @@ import { texteArgumentatifSprint } from "./comprehension-texte-argumentatif-spri
 import { consciencePhonologiqueSprint } from "./didactique-conscience-phonologique-sprint";
 import { erreursElevesSprint } from "./didactique-erreurs-eleves-sprint";
 import { differentiationSprint } from "./didactique-differentiation-sprint";
+import { dicteeFormesSprint } from "./didactique-dictee-formes-sprint";
+import { ecritureCycle2Sprint } from "./didactique-ecriture-cycle2-sprint";
+import { oralEcoleSprint } from "./didactique-oral-ecole-sprint";
+import { litteratureJeunesseSprint } from "./didactique-litterature-jeunesse-sprint";
+import { strategiesComprehensionSprint } from "./didactique-strategies-comprehension-sprint";
+import { typesFormesPhraseSprint } from "./grammaire-types-formes-phrases-sprint";
+import { expansionsNomSprint } from "./grammaire-expansions-nom-sprint";
+import { groupesVerbesSprint } from "./conjugaison-groupes-verbes-sprint";
+import { imperatifSprint } from "./conjugaison-imperatif-sprint";
+import { passeComposeImparfaitSprint } from "./conjugaison-passe-compose-imparfait-sprint";
+import { determinantsSprint } from "./grammaire-determinants-sprint";
+import { pronomsSprint } from "./grammaire-pronoms-sprint";
+import { attributVerbesAttributifsSprint } from "./grammaire-attribut-verbes-attributifs-sprint";
+import { appositionSprint } from "./grammaire-apposition-sprint";
+import { voixPronominaleSprint } from "./conjugaison-voix-pronominale-sprint";
+import { denotationConnotationSprint } from "./lexique-denotation-connotation-sprint";
+import { synonymieAntonymieSprint } from "./lexique-synonymie-antonymie-sprint";
+import { polysemieHomonymieSprint } from "./lexique-polysemie-homonymie-sprint";
+import { hyperonymieHyponymieSprint } from "./lexique-hyperonymie-hyponymie-sprint";
+import { famillesMotsSprint } from "./lexique-familles-mots-sprint";
+import { coherenceTextuelleSprint } from "./comprehension-texte-coherence-textuelle-sprint";
+import { anaphoresSprint } from "./analyse-langue-anaphores-sprint";
+import { fluenceLectureSprint } from "./didactique-fluence-lecture-sprint";
+import { attributSujetSprint } from "./grammaire-attribut-sujet-sprint";
+import { majusculesPonctuationSprint } from "./orthographe-majuscules-ponctuation-sprint";
 
 export const allFiches: Fiche[] = [
   reperageExpliciteSprint,
@@ -96,4 +121,29 @@ export const allFiches: Fiche[] = [
   consciencePhonologiqueSprint,
   erreursElevesSprint,
   differentiationSprint,
+  dicteeFormesSprint,
+  ecritureCycle2Sprint,
+  oralEcoleSprint,
+  litteratureJeunesseSprint,
+  strategiesComprehensionSprint,
+  typesFormesPhraseSprint,
+  expansionsNomSprint,
+  groupesVerbesSprint,
+  imperatifSprint,
+  passeComposeImparfaitSprint,
+  determinantsSprint,
+  pronomsSprint,
+  attributVerbesAttributifsSprint,
+  appositionSprint,
+  voixPronominaleSprint,
+  denotationConnotationSprint,
+  synonymieAntonymieSprint,
+  polysemieHomonymieSprint,
+  hyperonymieHyponymieSprint,
+  famillesMotsSprint,
+  coherenceTextuelleSprint,
+  anaphoresSprint,
+  fluenceLectureSprint,
+  attributSujetSprint,
+  majusculesPonctuationSprint,
 ];

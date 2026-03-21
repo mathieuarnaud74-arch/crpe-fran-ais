@@ -811,9 +811,9 @@ export const seriesV3BatchC: RevisionSession[] = [
         "analyse_langue",
         "Intermediaire",
         "Citez deux marques linguistiques caractéristiques du type descriptif.",
-        ["présent", "imparfait", "adjectifs qualificatifs", "verbes d'état", "compléments de lieu", "être", "paraître", "sembler", "groupes nominaux expansés"],
-        "Le type descriptif se caractérise par l'emploi de l'imparfait ou du présent de vérité générale, des adjectifs qualificatifs et groupes nominaux expansés, des verbes d'état (être, paraître, sembler), des compléments de lieu, et une progression thématique à thème constant.",
-        "Citer uniquement 'beaucoup d'adjectifs' sans mentionner les verbes d'état ou les temps verbaux.",
+        ["présent", "imparfait", "adjectifs qualificatifs", "verbes attributifs", "compléments de lieu", "être", "paraître", "sembler", "groupes nominaux expansés"],
+        "Le type descriptif se caractérise par l'emploi de l'imparfait ou du présent de vérité générale, des adjectifs qualificatifs et groupes nominaux expansés, des verbes attributifs (être, paraître, sembler), des compléments de lieu, et une progression thématique à thème constant.",
+        "Citer uniquement 'beaucoup d'adjectifs' sans mentionner les verbes attributifs ou les temps verbaux.",
         "free",
       ),
       qcm(

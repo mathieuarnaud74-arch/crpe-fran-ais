@@ -10,6 +10,7 @@ import { OnboardingBanner } from "@/features/dashboard/components/onboarding-ban
 import { SessionProgressCard } from "@/features/dashboard/components/session-progress-card";
 import { getDashboardData } from "@/features/dashboard/server/queries";
 import { getDiagnosticResult } from "@/features/diagnostic/server/queries";
+import { MASTERY_THRESHOLD as MASTERY_THRESHOLD_IMPORT } from "@/lib/dashboard";
 import { env } from "@/lib/env";
 import { cn, formatDate } from "@/lib/utils";
 import { DashboardData, DashboardSessionProgress } from "@/types/domain";
@@ -57,6 +58,46 @@ function TopicFocusList({
           </p>
         </article>
       ))}
+    </div>
+  );
+}
+
+function DailyGoalRing({ current, goal }: { current: number; goal: number }) {
+  const pct = Math.min(current / goal, 1);
+  const radius = 18;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference * (1 - pct);
+  const isComplete = pct >= 1;
+
+  return (
+    <div className="relative h-11 w-11 shrink-0">
+      <svg viewBox="0 0 44 44" className="h-11 w-11 -rotate-90">
+        <circle
+          cx="22"
+          cy="22"
+          r={radius}
+          fill="none"
+          stroke="rgba(245,241,232,0.12)"
+          strokeWidth="3.5"
+        />
+        <circle
+          cx="22"
+          cy="22"
+          r={radius}
+          fill="none"
+          stroke={isComplete ? "#6EE7B7" : "#A46849"}
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeDashoffset}
+          style={{ transition: "stroke-dashoffset 0.5s ease-out" }}
+        />
+      </svg>
+      {isComplete && (
+        <span className="absolute inset-0 flex items-center justify-center text-sm">
+          &#x2714;
+        </span>
+      )}
     </div>
   );
 }
@@ -173,18 +214,44 @@ export default async function DashboardPage() {
           className="pointer-events-none absolute right-24 -bottom-12 h-44 w-44 rounded-full bg-paper/[0.03] select-none"
         />
 
-        <Badge
-          tone={premium ? "accentSecondary" : "neutral"}
-          className="border-paper/20 bg-paper/10 text-paper/80"
-        >
-          {premium ? "Accès premium" : "Accès gratuit"}
-        </Badge>
-        <h1 className="mt-4 font-serif text-4xl sm:text-5xl font-semibold text-paper leading-none">
-          Tableau de bord
-        </h1>
-        <p className="mt-3 text-sm text-paper/60 max-w-lg">
-          Vos progrès, priorités et séries à reprendre — tout en un coup d&apos;œil.
-        </p>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <Badge
+              tone={premium ? "accentSecondary" : "neutral"}
+              className="border-paper/20 bg-paper/10 text-paper/80"
+            >
+              {premium ? "Acc\u00e8s premium" : "Acc\u00e8s gratuit"}
+            </Badge>
+            <h1 className="mt-4 font-serif text-4xl sm:text-5xl font-semibold text-paper leading-none">
+              Tableau de bord
+            </h1>
+            <p className="mt-3 text-sm text-paper/60 max-w-lg">
+              {data.totalAttempts === 0
+                ? "Bienvenue ! Lancez votre premi\u00e8re s\u00e9rie pour commencer \u00e0 progresser."
+                : data.masteredSessions > 0
+                  ? `${data.masteredSessions} s\u00e9rie${data.masteredSessions > 1 ? "s" : ""} ma\u00eetris\u00e9e${data.masteredSessions > 1 ? "s" : ""} \u2014 continuez sur cette lanc\u00e9e !`
+                  : "Vos progr\u00e8s, priorit\u00e9s et s\u00e9ries \u00e0 reprendre \u2014 tout en un coup d\u2019\u0153il."}
+            </p>
+          </div>
+
+          {/* Daily goal indicator */}
+          {data.totalAttempts > 0 && (
+            <div className="flex items-center gap-3 rounded-[1.25rem] border border-paper/10 bg-paper/[0.07] px-4 py-3 backdrop-blur-sm">
+              <DailyGoalRing
+                current={Math.min(data.totalAttempts, 15)}
+                goal={15}
+              />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-paper/50">
+                  Objectif du jour
+                </p>
+                <p className="text-sm font-semibold text-paper">
+                  {Math.min(data.totalAttempts, 15)}/15 questions
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* ── Stats strip + progress bar ── */}
@@ -590,10 +657,13 @@ export default async function DashboardPage() {
             </div>
 
             {data.masteredSessions === 0 ? (
-              <p className="mt-4 text-sm text-muted pl-2">
-                Aucun acquis enregistré pour l&apos;instant. Terminez vos premières séries
-                pour les voir apparaître ici.
-              </p>
+              <div className="mt-4 flex items-center gap-3 rounded-xl border border-accent/15 bg-accent/5 px-4 py-3 pl-4">
+                <span className="text-lg" aria-hidden="true">&#x1F3AF;</span>
+                <p className="text-sm text-muted">
+                  Visez {MASTERY_THRESHOLD_IMPORT}&nbsp;% de bonnes r&eacute;ponses sur une s&eacute;rie pour
+                  d&eacute;bloquer vos premiers acquis. Vous en &ecirc;tes capable !
+                </p>
+              </div>
             ) : (
               <div className="mt-4 space-y-2 pl-2">
                 {data.sessionProgress
@@ -665,9 +735,12 @@ export default async function DashboardPage() {
           </div>
 
           {data.recentActivity.length === 0 ? (
-            <p className="mt-4 text-sm text-muted">
-              Aucune activité récente pour le moment.
-            </p>
+            <div className="mt-4 flex items-center gap-3 rounded-xl border border-[#6B8F80]/20 bg-[rgba(107,143,128,0.05)] px-4 py-3">
+              <span className="text-lg" aria-hidden="true">&#x1F4DA;</span>
+              <p className="text-sm text-muted">
+                Votre historique appara&icirc;tra ici d&egrave;s que vous aurez r&eacute;pondu &agrave; vos premi&egrave;res questions.
+              </p>
+            </div>
           ) : (
             <div className="mt-4 grid gap-2 xl:grid-cols-2">
               {data.recentActivity.slice(0, 4).map((activity) => (

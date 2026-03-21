@@ -44,11 +44,11 @@ values
   'Francais', 'analyse_langue', 'al_types_phrases',
   'Types et formes de phrases', 'Intermediaire',
   'vrai_faux',
-  'Vrai ou faux ? La phrase « Que tu chantes bien ! » est de type exclamatif.',
+  'Vrai ou faux ? Selon la terminologie officielle (Éduscol 2021), la phrase « Que tu chantes bien ! » est de type exclamatif.',
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
-  '{"mode":"boolean","value":true}'::jsonb,
-  'Vrai ! La phrase exclamative exprime une émotion forte — admiration, surprise, joie, indignation. Elle peut être introduite par un mot exclamatif comme « que », « comme » ou « quel » et se termine toujours par un point d''exclamation. Ici, « Que tu chantes bien ! » exprime l''admiration et présente tous les marqueurs de la phrase exclamative. Attention : une phrase peut se terminer par un point d''exclamation sans être exclamative — par exemple une phrase impérative forte !',
+  '{"mode":"boolean","value":false}'::jsonb,
+  'Faux ! Selon la terminologie officielle (Éduscol 2021), l''exclamation n''est pas un TYPE de phrase mais une FORME de phrase. Il n''existe que trois types : déclaratif, interrogatif et impératif. L''exclamation est une forme qui peut se combiner avec n''importe quel type, comme la forme négative ou passive. La phrase « Que tu chantes bien ! » est donc une phrase de forme exclamative, mais son type est déclaratif (elle énonce un jugement). Cette distinction type/forme est un point de vigilance majeur au CRPE.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 
@@ -75,8 +75,8 @@ values
   'Vrai ou faux ? Il existe exactement quatre types de phrases en français : déclaratif, interrogatif, exclamatif et impératif.',
   null,
   '[{"id":"true","label":"Vrai"},{"id":"false","label":"Faux"}]'::jsonb,
-  '{"mode":"boolean","value":true}'::jsonb,
-  'Vrai ! La grammaire scolaire française distingue exactement quatre types de phrases selon l''intention de communication : déclaratif (informer), interrogatif (questionner), exclamatif (exprimer une émotion) et impératif (ordonner/conseiller). Chaque type possède des marques formelles spécifiques : ponctuation, mode verbal, mots introducteurs. Et surtout — retiens-le bien — ne confonds jamais le « type » (intention) et la « forme » (affirmative/négative, active/passive, personnelle/impersonnelle) !',
+  '{"mode":"boolean","value":false}'::jsonb,
+  'Faux ! La terminologie officielle (Éduscol 2021) distingue exactement TROIS types de phrases : déclaratif, interrogatif et impératif. L''exclamation n''est pas un quatrième type mais une FORME de phrase, au même titre que la forme négative, passive, emphatique ou impersonnelle. Une phrase déclarative peut être exclamative (« C''est magnifique ! »), tout comme une phrase impérative (« Tais-toi donc ! »). L''exclamation est une nuance expressive qui se superpose à l''un des trois types.',
   'valide', 'CRPE Français — Analyse de la langue V2', 'free', true
 ),
 

@@ -379,7 +379,7 @@ null,
 'Quel accord est correct dans "des noms ___ (propre)" ?',null,
 '[{"id":"a","label":"propre"},{"id":"b","label":"propres ou propre"},{"id":"c","label":"proprement"},{"id":"d","label":"propres"}]'::jsonb,
 '{"mode":"single_choice","value":"d"}'::jsonb,
-'L''adjectif qualificatif s''accorde toujours en genre et en nombre avec le nom. "Noms" est masculin pluriel → "propres" avec -s. L''adjectif "propre" prend un -s au pluriel qu''il soit masculin ou féminin — règle simple et sans exception ici !',
+'L''adjectif s''accorde toujours en genre et en nombre avec le nom. "Noms" est masculin pluriel → "propres" avec -s. L''adjectif "propre" prend un -s au pluriel qu''il soit masculin ou féminin — règle simple et sans exception ici !',
 'valide','CRPE Français V2','free',true),
 
 ('15000000-0000-0000-0000-000000000010','Francais','orthographe','ort_pluriel_gn','Pluriel dans le groupe nominal','Intermediaire','correction_orthographique',

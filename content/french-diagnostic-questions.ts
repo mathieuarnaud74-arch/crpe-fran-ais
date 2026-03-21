@@ -125,8 +125,8 @@ const grammaireTuples: QuestionTuple[] = [
     "Dans \"Médecin renommé, il comprenait mieux la souffrance\", la fonction de \"Médecin renommé\" est :",
     ["Apposition au sujet détachée", "Attribut du sujet", "Complément circonstanciel de cause", "Épithète détachée"],
     0,
-    "Attention ici — ce groupe nominal est détaché en tête de phrase et apporte une précision sur le sujet \"il\". C'est une apposition, pas un attribut : un attribut exige un verbe d'état, il n'y en a pas !",
-    "Distingue bien les deux : l'apposition donne une précision sans verbe d'état, l'attribut du sujet est relié par être, sembler, paraître…",
+    "Attention ici — ce groupe nominal est détaché en tête de phrase et apporte une précision sur le sujet \"il\". C'est une apposition, pas un attribut : un attribut exige un verbe attributif (être, sembler…), il n'y en a pas !",
+    "Distingue bien les deux : l'apposition donne une précision sans verbe attributif, l'attribut du sujet est relié par un verbe attributif (être, sembler, paraître…).",
   ],
   [
     "diag-gram-3",
@@ -384,8 +384,8 @@ const orthographeTuples: QuestionTuple[] = [
     "Quelle phrase est correcte ?",
     ["Ces fleurs sont bel.", "Ces fleurs sont belles.", "Ces fleurs sont beau.", "Ces fleurs sont beaux."],
     1,
-    "L'adjectif attribut \"belles\" s'accorde avec le sujet \"ces fleurs\", féminin pluriel — beau → belle → belles. L'accord passe par le verbe d'état.",
-    "Avec un verbe d'état, pense à l'accord de l'attribut avec le sujet.",
+    "L'adjectif attribut \"belles\" s'accorde avec le sujet \"ces fleurs\", féminin pluriel — beau → belle → belles. L'accord passe par le verbe attributif.",
+    "Avec un verbe attributif, pense à l'accord de l'attribut avec le sujet.",
   ],
 ];
 const conjugaisonTuples: QuestionTuple[] = [

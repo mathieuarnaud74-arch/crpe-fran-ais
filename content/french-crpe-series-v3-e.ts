@@ -168,11 +168,11 @@ export const seriesV3BatchE: RevisionSession[] = [
       skill: "Distinguer trois mots-outils tres frequents",
       keyPoints: [
         "Le determinant accompagne un nom.",
-        "Le pronom remplace un nom ou un groupe nominal.",
+        "Le pronom tient lieu d'un GN (groupe nominal).",
         "L'adverbe modifie souvent un verbe, un adjectif ou un autre adverbe.",
       ],
       retryAdvice:
-        "Demandez-vous toujours si le mot est suivi d'un nom, s'il remplace quelque chose ou s'il precise un autre mot.",
+        "Demandez-vous toujours si le mot est suivi d'un nom, s'il tient lieu d'un GN ou s'il precise un autre mot.",
     },
     questions: [
       qcm("v3e-dpa-1", "grammaire", "Facile", 'Dans "ce manuel", dans quelle categorie faut-il classer "ce" ?', [{ id: "a", label: "Determinant" }, { id: "b", label: "Pronom" }, { id: "c", label: "Adverbe" }], "a", '"Ce" introduit le nom "manuel" : c\'est un determinant demonstratif.', "Repondre pronom sans voir qu'un nom suit immediatement.", "free"),

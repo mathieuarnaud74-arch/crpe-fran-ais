@@ -67,7 +67,7 @@ UPDATE public.exercises SET
 WHERE id = '11111111-1111-1111-1111-111111111126';
 
 UPDATE public.exercises SET
-  detailed_explanation = '"Et" relie deux groupes nominaux de même fonction — c''est une conjonction de coordination. Retiens les 7 conjonctions de coordination : mais, ou, et, donc, or, ni, car. Un moyen mnémotechnique classique : "Mais ou est donc Ornicar ?"'
+  detailed_explanation = '"Et" relie deux groupes nominaux de même fonction — c''est une conjonction de coordination. Selon la terminologie officielle (Éduscol 2021), il existe six conjonctions de coordination : mais, ou, et, or, ni, car. « Donc » est classé comme adverbe de liaison. Le moyen mnémotechnique « Mais où est donc Ornicar ? » reste un classique mais attention : « donc » n''y figure pas en tant que conjonction.'
 WHERE id = '11111111-1111-1111-1111-111111111127';
 
 UPDATE public.exercises SET
@@ -123,7 +123,7 @@ UPDATE public.exercises SET
 WHERE id = '01000000-0000-0000-0000-000000000004';
 
 UPDATE public.exercises SET
-  detailed_explanation = '"Et" relie deux groupes nominaux de même fonction syntaxique — ce sont deux sujets coordonnés. C''est une conjonction de coordination. Et le moyen mnémotechnique pour les sept conjonctions de coordination : "mais, ou, et, donc, or, ni, car". À apprendre par cœur, elles tombent régulièrement au CRPE !'
+  detailed_explanation = '"Et" relie deux groupes nominaux de même fonction syntaxique — ce sont deux sujets coordonnés. C''est une conjonction de coordination. Selon la terminologie officielle (Éduscol 2021), il existe six conjonctions de coordination : mais, ou, et, or, ni, car. « Donc » est un adverbe de liaison, pas une conjonction. À apprendre par cœur, elles tombent régulièrement au CRPE !'
 WHERE id = '01000000-0000-0000-0000-000000000005';
 
 UPDATE public.exercises SET
@@ -131,11 +131,11 @@ UPDATE public.exercises SET
 WHERE id = '01000000-0000-0000-0000-000000000006';
 
 UPDATE public.exercises SET
-  detailed_explanation = '"Elle" remplace un groupe nominal féminin déjà mentionné — c''est un pronom personnel sujet de 3e personne du singulier. Il assure la reprise anaphorique dans le discours : on évite de répéter le nom. Retiens : les pronoms remplacent un nom ou un GN. "Elle" = quelqu''un de féminin dont on a déjà parlé.'
+  detailed_explanation = '"Elle" tient lieu d''un groupe nominal féminin déjà mentionné — c''est un pronom personnel sujet de 3e personne du singulier. Il assure la reprise anaphorique dans le discours : on évite de répéter le GN. Retiens : les pronoms tiennent lieu d''un GN. "Elle" = quelqu''un de féminin dont on a déjà parlé.'
 WHERE id = '01000000-0000-0000-0000-000000000007';
 
 UPDATE public.exercises SET
-  detailed_explanation = '"Chanter" est à la forme non conjuguée de l''infinitif — et il fonctionne ici comme COD du verbe "aime" (il aime quoi ? → chanter). Ne confonds pas avec le nom verbal "le chant" (nom) ou le participe présent "chantant". L''infinitif se reconnaît à sa terminaison (-er, -ir, -re, -oir) et à l''absence de marque de personne ou de temps.'
+  detailed_explanation = '"Chanter" est un verbe au mode infinitif — et il fonctionne ici comme COD du verbe "aime" (il aime quoi ? → chanter). Ne confonds pas avec le nom verbal "le chant" (nom) ou le participe présent "chantant". L''infinitif est un mode non personnel de la conjugaison (Éduscol 2021) : il se reconnaît à sa terminaison (-er, -ir, -re, -oir).'
 WHERE id = '01000000-0000-0000-0000-000000000008';
 
 UPDATE public.exercises SET
@@ -271,7 +271,7 @@ UPDATE public.exercises SET
 WHERE id = '88000000-0000-0000-0000-000000000003';
 
 UPDATE public.exercises SET
-  detailed_explanation = '« Et » — conjonction de coordination ! Elle relie deux éléments de même nature et de même fonction. Ici deux GN COD : « la danse » et « le chant ». Et le moyen mnémotechnique pour les retenir toutes ? « Mais ou et donc or ni car » — une phrase à apprendre par cœur ! Les conjonctions de subordination (que, si, quand, parce que…) introduisent une subordonnée avec une relation hiérarchique. Les prépositions (à, de, dans, pour…) introduisent un groupe prépositionnel. « Et » = même niveau, même nature → coordination.'
+  detailed_explanation = '« Et » — conjonction de coordination ! Elle relie deux éléments de même nature et de même fonction. Ici deux GN COD : « la danse » et « le chant ». Les six conjonctions de coordination (Éduscol 2021) sont : mais, ou, et, or, ni, car. Attention : « donc » est un adverbe de liaison, pas une conjonction. Les conjonctions de subordination (que, si, quand, parce que…) introduisent une subordonnée avec une relation hiérarchique. Les prépositions (à, de, dans, pour…) introduisent un groupe prépositionnel. « Et » = même niveau, même nature → coordination.'
 WHERE id = '88000000-0000-0000-0000-000000000004';
 
 UPDATE public.exercises SET

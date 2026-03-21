@@ -45,7 +45,7 @@ values
 
 ('87000000-0000-0000-0000-000000000005','Francais','grammaire','grm_subordonnees','Subordonnées relatives et complétives','Difficile','qcm',
 'Dans « Il croit que la Terre est plate », quel mode est employé et pourquoi ?',null,
-'[{"id":"a","label":"Indicatif — car « croire » en phrase affirmative introduit un fait présenté comme réel par le locuteur"},{"id":"b","label":"Subjonctif — car « croire » exprime un doute"},{"id":"c","label":"Conditionnel — car la croyance est hypothétique"},{"id":"d","label":"Impératif — car la phrase exprime une conviction ferme"}]'::jsonb,
+'[{"id":"a","label":"Indicatif — car « croire » en phrase affirmative introduit un fait présenté comme réel par le locuteur"},{"id":"b","label":"Subjonctif — car « croire » exprime un doute"},{"id":"c","label":"Indicatif conditionnel — car la croyance est hypothétique"},{"id":"d","label":"Impératif — car la phrase exprime une conviction ferme"}]'::jsonb,
 '{"mode":"single_choice","value":"a"}'::jsonb,
 'Retiens cette règle d''or : croire, penser, dire, savoir + phrase AFFIRMATIVE → indicatif ! Le locuteur présente le contenu de la complétive comme réel de son point de vue. Maintenant retourne la phrase : « Je ne crois pas qu''il soit là » (phrase négative) ou « Crois-tu qu''il soit là ? » (interrogative) → subjonctif, car le doute s''installe. La bascule affirmatif/négatif-interrogatif est une règle clé. Ici, phrase affirmative → indicatif, même si la croyance est objectivement fausse !',
 'valide','CRPE Français — Enrichissement Grammaire','premium',true),
@@ -58,7 +58,7 @@ values
 
 ('88000000-0000-0000-0000-000000000001','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','qcm',
 'Quelle est la classe grammaticale du mot « rapidement » dans la phrase « Il court rapidement » ?',null,
-'[{"id":"a","label":"Adjectif qualificatif"},{"id":"b","label":"Nom commun"},{"id":"c","label":"Verbe d''état"},{"id":"d","label":"Adverbe de manière"}]'::jsonb,
+'[{"id":"a","label":"Adjectif"},{"id":"b","label":"Nom commun"},{"id":"c","label":"Verbe attributif"},{"id":"d","label":"Adverbe de manière"}]'::jsonb,
 '{"mode":"single_choice","value":"d"}'::jsonb,
 '« Rapidement » — adverbe de manière, formé sur l''adjectif « rapide » avec le suffixe -ment. Retiens la règle de formation : adjectif au féminin + -ment → adverbe. Les adverbes sont INVARIABLES et modifient un verbe, un adjectif ou un autre adverbe. Ici il modifie le verbe « court ». L''adjectif, lui, s''accorde avec un nom (il est rapide). Et le nom désigne des êtres ou des choses. La terminaison -ment est ton signal le plus fiable pour repérer un adverbe de manière !',
 'valide','CRPE Français — Enrichissement Grammaire','free',true),
@@ -81,7 +81,7 @@ values
 'Dans « Elle aime la danse et le chant », quelle est la classe grammaticale de « et » ?',null,
 '[{"id":"a","label":"Conjonction de subordination"},{"id":"b","label":"Conjonction de coordination"},{"id":"c","label":"Préposition"},{"id":"d","label":"Adverbe de liaison"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
-'« Et » — conjonction de coordination ! Elle relie deux éléments de même nature et de même fonction. Ici deux GN COD : « la danse » et « le chant ». Et le moyen mnémotechnique pour les retenir toutes ? « Mais ou et donc or ni car » — une phrase à apprendre par cœur ! Les conjonctions de subordination (que, si, quand, parce que…) introduisent une subordonnée avec une relation hiérarchique. Les prépositions (à, de, dans, pour…) introduisent un groupe prépositionnel. « Et » = même niveau, même nature → coordination.',
+'« Et » — conjonction de coordination ! Elle relie deux éléments de même nature et de même fonction. Ici deux GN COD : « la danse » et « le chant ». Les six conjonctions de coordination (Éduscol 2021) sont : mais, ou, et, or, ni, car. Attention : « donc » est un adverbe de liaison, pas une conjonction. Les conjonctions de subordination (que, si, quand, parce que…) introduisent une subordonnée avec une relation hiérarchique. Les prépositions (à, de, dans, pour…) introduisent un groupe prépositionnel. « Et » = même niveau, même nature → coordination.',
 'valide','CRPE Français — Enrichissement Grammaire','free',true),
 
 ('88000000-0000-0000-0000-000000000005','Francais','grammaire','grm_classes_facile','Classes grammaticales','Facile','vrai_faux',
@@ -99,7 +99,7 @@ values
 
 ('89000000-0000-0000-0000-000000000001','Francais','grammaire','grm_pronoms_intermediaire','Pronoms','Intermediaire','qcm',
 'Quelle est la différence entre « lui » pronom personnel COI et « lui » pronom disjoint (ou tonique) ?',null,
-'[{"id":"a","label":"Ils sont identiques — « lui » a toujours la même fonction"},{"id":"b","label":"« lui » COI remplace un nom introduit par « à » après un verbe (Je lui parle) ; « lui » tonique s''emploie après une préposition ou pour insister (C''est lui / Je pense à lui)"},{"id":"c","label":"« lui » pronom disjoint remplace uniquement des noms féminins"},{"id":"d","label":"« lui » COI ne peut s''employer qu''à l''oral"}]'::jsonb,
+'[{"id":"a","label":"Ils sont identiques — « lui » a toujours la même fonction"},{"id":"b","label":"« lui » COI tient lieu d''un GN introduit par « à » après un verbe (Je lui parle) ; « lui » tonique s''emploie après une préposition ou pour insister (C''est lui / Je pense à lui)"},{"id":"c","label":"« lui » pronom disjoint tient lieu uniquement de GN féminins"},{"id":"d","label":"« lui » COI ne peut s''employer qu''à l''oral"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
 'Deux « lui » qui se ressemblent mais qui jouent des rôles très différents ! « Lui » COI (atone) : avant le verbe, remplace un COI masculin ou féminin singulier introduit par « à » → « Je lui parle » (= à lui ou à elle). « Lui » tonique (disjoint) : après une préposition (« pour lui »), en sujet renforcé (« Lui, il sait »), après « c''est » (« C''est lui »). Et attention : le tonique est TOUJOURS masculin singulier — pour le féminin, c''est « elle ». Cette distinction COI atone / tonique est un classique des questions de classe grammaticale.',
 'valide','CRPE Français — Enrichissement Grammaire','premium',true),
@@ -122,7 +122,7 @@ values
 'Dans « Chacun doit rendre sa copie », quelle est la classe et la fonction de « chacun » ?',null,
 '[{"id":"a","label":"Adjectif indéfini — épithète du sujet"},{"id":"b","label":"Pronom indéfini — sujet du verbe « doit »"},{"id":"c","label":"Déterminant indéfini — déterminant du sujet"},{"id":"d","label":"Pronom personnel — sujet de la proposition principale"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
-'C''est ça ! « Chacun » est un pronom indéfini — il remplace un nom (= chaque personne) sans l''accompagner. Sa fonction : sujet du verbe « doit ». Et retiens la distinction fondamentale : « chacun » = pronom (seul), « chaque » = déterminant (devant un nom : « chaque élève »). « Chacun » distribue individuellement : il renvoie à tous les membres d''un ensemble pris un par un. Et une règle d''accord utile : après « chacun », le possessif se met à la 3e pers. sing. → « sa copie » (pas « leur copie »).',
+'C''est ça ! « Chacun » est un pronom indéfini — il tient lieu d''un GN (= chaque personne) sans accompagner un nom. Sa fonction : sujet du verbe « doit ». Et retiens la distinction fondamentale : « chacun » = pronom (seul), « chaque » = déterminant (devant un nom : « chaque élève »). « Chacun » distribue individuellement : il renvoie à tous les membres d''un ensemble pris un par un. Et une règle d''accord utile : après « chacun », le possessif se met à la 3e pers. sing. → « sa copie » (pas « leur copie »).',
 'valide','CRPE Français — Enrichissement Grammaire','premium',true),
 
 ('89000000-0000-0000-0000-000000000005','Francais','grammaire','grm_pronoms_intermediaire','Pronoms','Intermediaire','vrai_faux',
@@ -134,9 +134,9 @@ values
 
 ('89000000-0000-0000-0000-000000000006','Francais','grammaire','grm_pronoms_intermediaire','Pronoms','Intermediaire','qcm',
 'Quelle est la différence entre le déterminant possessif et le pronom possessif ?',null,
-'[{"id":"a","label":"Aucune différence — les deux expriment la possession de façon identique"},{"id":"b","label":"Le pronom possessif ne s''emploie qu''à l''écrit soutenu"},{"id":"c","label":"Le déterminant possessif (mon, ta, son…) accompagne un nom ; le pronom possessif (le mien, la tienne, les siens…) remplace un nom"},{"id":"d","label":"Le déterminant possessif est invariable, le pronom possessif varie en genre"}]'::jsonb,
+'[{"id":"a","label":"Aucune différence — les deux expriment la possession de façon identique"},{"id":"b","label":"Le pronom possessif ne s''emploie qu''à l''écrit soutenu"},{"id":"c","label":"Le déterminant possessif (mon, ta, son…) accompagne un nom ; le pronom possessif (le mien, la tienne, les siens…) tient lieu d''un GN"},{"id":"d","label":"Le déterminant possessif est invariable, le pronom possessif varie en genre"}]'::jsonb,
 '{"mode":"single_choice","value":"c"}'::jsonb,
-'La distinction fondamentale : le déterminant précède un nom, le pronom le remplace. « Mon livre est intéressant » (mon = déterminant, accompagne « livre ») vs « Le mien est plus intéressant » (le mien = pronom, remplace « mon livre »). Les pronoms possessifs s''accordent en genre et en nombre avec le nom remplacé, ET ils portent l''article défini : le mien / la mienne / les miens / les miennes. Tableau à retenir : mon → le mien, ton → le tien, son → le sien, notre → le nôtre, votre → le vôtre, leur → le leur. Attention à l''accent circonflexe sur nôtre/vôtre — deux pièges classiques des concours !',
+'La distinction fondamentale : le déterminant précède un nom, le pronom tient lieu d''un GN. « Mon livre est intéressant » (mon = déterminant, accompagne « livre ») vs « Le mien est plus intéressant » (le mien = pronom, tient lieu du GN « mon livre »). Les pronoms possessifs s''accordent en genre et en nombre avec le GN qu''ils représentent, ET ils portent l''article défini : le mien / la mienne / les miens / les miennes. Tableau à retenir : mon → le mien, ton → le tien, son → le sien, notre → le nôtre, votre → le vôtre, leur → le leur. Attention à l''accent circonflexe sur nôtre/vôtre — deux pièges classiques des concours !',
 'valide','CRPE Français — Enrichissement Grammaire','premium',true),
 
 ('89000000-0000-0000-0000-000000000007','Francais','grammaire','grm_pronoms_intermediaire','Pronoms','Intermediaire','qcm',

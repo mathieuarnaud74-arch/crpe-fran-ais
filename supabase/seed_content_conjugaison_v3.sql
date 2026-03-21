@@ -32,7 +32,7 @@ values
 
 ('67000000-0000-0000-0000-000000000003','Francais','conjugaison','conj_imperatif','Mode impératif et ses emplois','Facile','qcm',
 'Dans la phrase « Mange tes légumes et tu auras un dessert », quel mode est employé pour « mange » ?',null,
-'[{"id":"a","label":"Indicatif présent"},{"id":"b","label":"Subjonctif présent"},{"id":"c","label":"Impératif présent"},{"id":"d","label":"Conditionnel présent"}]'::jsonb,
+'[{"id":"a","label":"Indicatif présent"},{"id":"b","label":"Subjonctif présent"},{"id":"c","label":"Impératif présent"},{"id":"d","label":"Infinitif"}]'::jsonb,
 '{"mode":"single_choice","value":"c"}'::jsonb,
 'C''est ça ! « Mange » est à l''impératif présent (2e pers. sing.) : pas de pronom sujet, injonction directe. Et regarde la structure « Impératif + et + futur » — c''est une construction conditionnelle équivalente à « Si tu manges… tu auras » ! L''indicatif présent donnerait « tu manges » (avec pronom), et le subjonctif donnerait « que tu manges ». Cette construction impérative à valeur conditionnelle est très caractéristique de la langue familière et de l''oral — un beau sujet d''analyse au CRPE !',
 'valide','CRPE Français V3 — Conjugaison','free',true),
@@ -110,7 +110,7 @@ values
 'Dans la phrase « Les élèves lisant attentivement ont réussi l''épreuve », quelle est la fonction du participe présent « lisant » ?',null,
 '[{"id":"a","label":"CC de temps"},{"id":"b","label":"Expansion du nom « élèves » — équivalent d''une proposition relative"},{"id":"c","label":"Attribut du sujet"},{"id":"d","label":"CC de manière du verbe « réussir »"}]'::jsonb,
 '{"mode":"single_choice","value":"b"}'::jsonb,
-'Exactement ! « Lisant attentivement » modifie le nom « élèves » — il équivaut à « qui lisaient attentivement » (relative déterminative). C''est une expansion du nom, une épithète détachée. Comment le vérifier ? Il est supprimable : « Les élèves ont réussi » reste grammatical. Et il se rapporte à un nom, pas au verbe principal. Contrairement au gérondif, le participe présent peut avoir un sujet différent du sujet de la principale — c''est la construction absolue, une notion avancée !',
+'Exactement ! « Lisant attentivement » modifie le nom « élèves » — il équivaut à « qui lisaient attentivement » (relative déterminative). C''est une expansion du nom, une apposition (adjectif détaché). Comment le vérifier ? Il est supprimable : « Les élèves ont réussi » reste grammatical. Et il se rapporte à un nom, pas au verbe principal. Contrairement au gérondif, le participe présent peut avoir un sujet différent du sujet de la principale — c''est la construction absolue, une notion avancée !',
 'valide','CRPE Français V3 — Conjugaison','premium',true),
 
 ('68000000-0000-0000-0000-000000000004','Francais','conjugaison','conj_participe_gerondif','Participe présent et gérondif','Intermediaire','qcm',

@@ -92,6 +92,22 @@ export function buildExpectedAnswerLabel(
       .join(" — ");
   }
 
+  if (expectedAnswer.mode === "highlight_groups") {
+    const byGroup = new Map<string, string[]>();
+    for (const [itemId, groupId] of Object.entries(expectedAnswer.mapping)) {
+      const item = choices?.find((c) => c.id === itemId);
+      const group = expectedAnswer.groups.find((g) => g.id === groupId);
+      if (item && group) {
+        const current = byGroup.get(group.label) ?? [];
+        current.push(item.label);
+        byGroup.set(group.label, current);
+      }
+    }
+    return Array.from(byGroup.entries())
+      .map(([groupLabel, itemLabels]) => `[${groupLabel} : ${itemLabels.join(" ")}]`)
+      .join(" — ");
+  }
+
   return expectedAnswer.acceptableAnswers.join(" / ");
 }
 
@@ -106,7 +122,7 @@ export function evaluateExerciseAnswer(
   const trimmedValue = submittedValue.trim();
   const expectedAnswerLabel = buildExpectedAnswerLabel(question.expected_answer, question.choices);
 
-  if (question.expected_answer.mode === "categorization") {
+  if (question.expected_answer.mode === "categorization" || question.expected_answer.mode === "highlight_groups") {
     let placement: Record<string, string>;
     try {
       placement = JSON.parse(trimmedValue);

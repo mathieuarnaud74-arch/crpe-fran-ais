@@ -124,11 +124,11 @@ export const seriesV3BatchA: RevisionSession[] = [
     completionSummary: {
       skill: "Analyser la structure d'une phrase complexe par coordination ou juxtaposition",
       keyPoints: [
-        "Les 7 conjonctions de coordination : mais, ou, et, donc, or, ni, car (moyen mnémotechnique : MAIS OU ET DONC OR NI CAR)",
+        "Les 6 conjonctions de coordination (Éduscol 2021) : mais, ou, et, or, ni, car. Attention : « donc » est un adverbe de liaison, pas une conjonction de coordination.",
         "La juxtaposition relie des propositions par la seule ponctuation (virgule, point-virgule, deux-points), sans mot de liaison",
-        "Chaque conjonction exprime une valeur sémantique précise : addition (et), opposition (mais), cause (car), conséquence (donc), alternative (ou), restriction logique (or), négation (ni)",
+        "Chaque conjonction exprime une valeur sémantique précise : addition (et), opposition (mais), cause (car), alternative (ou), restriction logique (or), négation (ni). « Donc » (conséquence) est un adverbe.",
       ],
-      retryAdvice: "Révisez les 7 conjonctions de coordination et entraînez-vous à identifier la valeur sémantique de chacune dans des phrases variées.",
+      retryAdvice: "Révisez les 6 conjonctions de coordination (mais, ou, et, or, ni, car) et entraînez-vous à identifier la valeur sémantique de chacune dans des phrases variées.",
     },
     questions: [
       qcm(
@@ -138,7 +138,7 @@ export const seriesV3BatchA: RevisionSession[] = [
           { id: "a", label: "Coordination par la conjonction 'car'" },
           { id: "b", label: "Juxtaposition" },
           { id: "c", label: "Subordination" },
-          { id: "d", label: "Coordination par la conjonction 'donc'" },
+          { id: "d", label: "Coordination par l'adverbe 'donc'" },
         ],
         "b",
         "Les deux propositions sont simplement séparées par un point-virgule, sans mot de liaison grammatical. Il s'agit donc d'une juxtaposition. La juxtaposition implique un rapport de sens (ici, une relation de cause à conséquence implicite), mais ce rapport n'est pas marqué par un mot grammatical.",
@@ -235,10 +235,10 @@ export const seriesV3BatchA: RevisionSession[] = [
       ),
       reponseCourte(
         "v3a-pcc-10", "grammaire", "Intermediaire",
-        "Citez les sept conjonctions de coordination du français (dans n'importe quel ordre).",
-        ["mais ou et donc or ni car", "mais, ou, et, donc, or, ni, car"],
-        "Les sept conjonctions de coordination sont : mais, ou, et, donc, or, ni, car. Le moyen mnémotechnique classique est la phrase 'Mais où est donc Ornicar ?' (ou son équivalent 'MAIS OU ET DONC OR NI CAR'). Chacune exprime une valeur sémantique distincte : opposition (mais), alternative (ou), addition (et), conséquence (donc), restriction logique (or), négation (ni), cause (car).",
-        "Les candidats oublient fréquemment 'or' et 'ni', ou ajoutent à tort des mots comme 'puis', 'alors', 'cependant' qui sont des adverbes de liaison, non des conjonctions de coordination.",
+        "Citez les six conjonctions de coordination du français selon la terminologie officielle (Éduscol 2021).",
+        ["mais ou et or ni car", "mais, ou, et, or, ni, car"],
+        "Les six conjonctions de coordination (Éduscol 2021) sont : mais, ou, et, or, ni, car. Le moyen mnémotechnique classique 'Mais où est donc Ornicar ?' reste utile, mais attention : « donc » est classé comme un ADVERBE de liaison selon la terminologie officielle, pas comme une conjonction de coordination. Chaque conjonction exprime une valeur sémantique distincte : opposition (mais), alternative (ou), addition (et), restriction logique (or), négation (ni), cause (car).",
+        "Citer « donc » parmi les conjonctions de coordination par habitude du moyen mnémotechnique, alors que la terminologie officielle le classe comme adverbe.",
         "free",
       ),
     ],

@@ -1,5 +1,204 @@
 # Changelog
 
+## [2026-03-21] — Audit terminologique Éduscol 2021 (session 3) — 13 corrections
+
+### Terminologie « donc = adverbe » (6 conjonctions, pas 7)
+- `supabase/seed.sql` — explication « les 7 conjonctions… donc » → 6 conjonctions + donc = adverbe
+- `supabase/migrations/20260316_mocca_voice_explanations.sql` — 3 explications « 7 conjonctions… donc » → 6 + adverbe
+- `supabase/migrations/20260323_seed_v3_series_300_questions.sql` — exercice « Citez les sept conjonctions » → six, donc exclu des réponses
+- `supabase/migrations/20260323_seed_v3_series_300_questions.sql` — distracteur QCM « conjonction 'donc' » → « adverbe 'donc' »
+- `supabase/migrations/20260329_fix_tri_categories_format.sql` — exercice tri : « donc » mappé comme coord → remplacé par « or »
+- `supabase/migrations/20260329_fix_tri_categories_format.sql` — common_mistake « Mais, Ou, Et, Donc, Or, Ni, Car » → 6 conj. + avertissement
+- `supabase/seed_content_grammaire_enrich.sql` — mnémotechnique « Mais ou et donc or ni car » → 6 conj. + donc = adverbe
+- `content/french-crpe-series-v3-a.ts` — distracteur QCM « conjonction 'donc' » → « adverbe 'donc' »
+
+### Terminologie « forme positive / forme active »
+- `content/french-crpe-series-v3-k.ts` — QCM choix « de forme positive, active » → « positive, active » (sans le mot « forme »)
+- `content/french-crpe-series-v3-k.ts` — explication ajout avertissement « on ne dit pas forme positive ni forme active »
+
+### Terminologie « tient lieu d'un GN » (pas « remplace un nom »)
+- `content/french-crpe-series-v3-d.ts` — « le pronom remplace 'le livre' » → « le pronom relatif reprend 'le livre' »
+- `supabase/seed_content_grammaire_enrich.sql` — QCM choix « remplace un nom » → « tient lieu d'un GN »
+
+### Orthographe — accents manquants
+- `content/fiches/analyse-langue-phrase-complexe-types-sprint.ts` — ajout de tous les accents français manquants (≈40 mots corrigés : indépendante, subordonnée, complétive, antécédent, etc.)
+
+## [2026-03-21] — Refonte UX engagement : confetti, streak, Mocca enrichie, dashboard motivationnel
+
+Implémentation des recommandations de l'audit `opus.md` (sections 3, 4, 5.B, 5.I) pour améliorer le ressenti émotionnel, les micro-interactions et la motivation.
+
+### Nouveau composant : Confetti
+- `components/ui/confetti.tsx` — **nouveau** : animation confetti CSS multi-couleurs (60 particules, 3 formes, drift aléatoire) déclenchée sur maîtrise de série (≥85%). Respecte `prefers-reduced-motion`.
+
+### Exercise Player — Streak, Mocca & feedback
+- `features/exercises/components/exercise-player.tsx` — tracking des réponses correctes consécutives avec indicateur visuel (badge "X d'affilée" dès 3, flamme animée dès 5)
+- `features/exercises/components/exercise-player.tsx` — messages contextuels Mocca entre les questions : mi-parcours, dernières questions, streak en cours
+- `features/exercises/components/exercise-player.tsx` — célébration streak à 5 et 10 réponses consécutives (banner animé avec Mocca happy)
+- `features/exercises/components/exercise-player.tsx` — feedback titles variés et chaleureux (4 variantes correct, 3 variantes incorrect, messages streak)
+- `features/exercises/components/exercise-player.tsx` — écran de complétion enrichi : banner célébration maîtrise, confetti, score animé, messages gradués (5 paliers), badge mastery avec shine
+
+### Dashboard — Motivation & chaleur
+- `app/(app)/tableau-de-bord/page.tsx` — hero banner personnalisé : message contextuel (bienvenue / progression / série maîtrisée)
+- `app/(app)/tableau-de-bord/page.tsx` — indicateur "Objectif du jour" (SVG ring animé, 15 questions/jour) dans le hero
+- `app/(app)/tableau-de-bord/page.tsx` — empty states enrichis (acquis : cible + message motivant, activité : icône + message accueillant)
+- `app/(app)/tableau-de-bord/page.tsx` — import `MASTERY_THRESHOLD` pour cohérence des seuils
+
+### Animations CSS
+- `app/globals.css` — 5 nouvelles animations : `confetti-fall`, `streak-pulse`, `score-reveal`, `mastery-shine`, `fire-glow`
+- `app/globals.css` — toutes désactivées via `prefers-reduced-motion: reduce`
+
+---
+
+## [2026-03-21] — 25 nouvelles fiches sprint + 5 séries (50 questions) + audit terminologique Éduscol 2021
+
+### Corrections terminologiques (conformité Éduscol 2021)
+- `content/fiches/grammaire-nature-mots-sprint.ts` — « donc » retiré des conjonctions de coordination (c'est un adverbe)
+- `content/fiches/grammaire-phrase-complexe-sprint.ts` — « donc » retiré du oneLiner + « car » au lieu de « donc »
+- `content/fiches/grammaire-phrase-simple-sprint.ts` — « injonctif » → « impératif », « type exclamatif » → « forme exclamative »
+- `content/fiches/grammaire-types-formes-phrases-sprint.ts` — « forme positive » supprimé (Éduscol : la phrase de base est positive, pas de "forme positive")
+- `content/french-crpe-series-v3-a.ts` — « 7 conjonctions dont donc » → « 6 conjonctions (donc = adverbe) »
+- `content/french-crpe-series-v3-c.ts` — « verbes d'état » → « verbes attributifs »
+- `content/french-crpe-series-v3-e.ts` — « remplace un nom » → « tient lieu d'un GN »
+- `content/french-crpe-series-v3-f.ts` — « forme positive » → « positive »
+- `supabase/seed_content_grammaire.sql` — « forme non conjuguée » → « mode infinitif » ; « remplace un nom » → « tient lieu d'un GN »
+- `supabase/seed_content_grammaire_enrich.sql` — « remplace un nom » → « tient lieu d'un GN »
+
+### Nouvelles séries d'exercices (V3-K : 5 séries, 50 questions)
+- `content/french-crpe-series-v3-k.ts` — **nouveau** : 5 séries variées (QCM + vrai/faux + réponse courte)
+  1. Attribut du sujet et verbes attributifs (grammaire, 10 questions)
+  2. Phrases atypiques et types/formes de phrases (grammaire, 10 questions)
+  3. Polysémie, homonymie et relations sémantiques (lexique, 10 questions)
+  4. Reprises anaphoriques et cohésion textuelle (compréhension de texte, 10 questions)
+  5. L'impératif et les modes non personnels (conjugaison, 10 questions)
+- `content/french-crpe-series.ts` — import et export du batch V3-K
+
+### Nouvelles fiches sprint — Grammaire (10 fiches)
+- `content/fiches/grammaire-types-formes-phrases-sprint.ts` — types (3 seuls) et formes de phrases
+- `content/fiches/grammaire-expansions-nom-sprint.ts` — épithète, complément du nom, apposition
+- `content/fiches/grammaire-determinants-sprint.ts` — 10 sous-catégories de déterminants, pièges partitif/contracté
+- `content/fiches/grammaire-pronoms-sprint.ts` — 6 catégories + pronoms adverbiaux en/y
+- `content/fiches/grammaire-attribut-verbes-attributifs-sprint.ts` — attribut du sujet, verbes attributifs (terme officiel)
+- `content/fiches/grammaire-attribut-sujet-sprint.ts` — fiche complémentaire attribut
+- `content/fiches/grammaire-apposition-sprint.ts` — apposition, relative épithète vs apposée
+- `content/fiches/orthographe-majuscules-ponctuation-sprint.ts` — majuscules et ponctuation
+
+### Nouvelles fiches sprint — Conjugaison (4 fiches)
+- `content/fiches/conjugaison-groupes-verbes-sprint.ts` — 1er/2e/3e groupes, piège « aller »
+- `content/fiches/conjugaison-imperatif-sprint.ts` — mode impératif, pas de -s au 1er groupe
+- `content/fiches/conjugaison-passe-compose-imparfait-sprint.ts` — aspect accompli vs non accompli
+- `content/fiches/conjugaison-voix-pronominale-sprint.ts` — 4 sous-types pronominaux
+
+### Nouvelles fiches sprint — Lexique (5 fiches)
+- `content/fiches/lexique-denotation-connotation-sprint.ts` — dénotation (sens objectif) vs connotation (valeurs subjectives)
+- `content/fiches/lexique-synonymie-antonymie-sprint.ts` — synonymie contextuelle, 3 types d'antonymes
+- `content/fiches/lexique-polysemie-homonymie-sprint.ts` — polysémie vs homonymie, homographes vs homophones
+- `content/fiches/lexique-hyperonymie-hyponymie-sprint.ts` — relation d'inclusion sémantique, co-hyponymes
+- `content/fiches/lexique-familles-mots-sprint.ts` — base, radical, racine, allomorphie
+
+### Nouvelles fiches sprint — Compréhension / Analyse / Didactique (3 fiches)
+- `content/fiches/comprehension-texte-coherence-textuelle-sprint.ts` — cohérence et cohésion textuelle
+- `content/fiches/analyse-langue-anaphores-sprint.ts` — les anaphores
+- `content/fiches/didactique-fluence-lecture-sprint.ts` — fluence en lecture (débit, exactitude, prosodie)
+
+### Intégration
+- `content/fiches/index.ts` — import et enregistrement de toutes les nouvelles fiches dans `allFiches`
+
+## [2026-03-20] — Renforcement Didactique : 5 séries (50 questions) + 5 fiches sprint
+
+### Nouvelles séries didactiques (V3-J)
+- `content/french-crpe-series-v3-j.ts` — **nouveau** : 5 séries Didactique du français (50 questions)
+  1. L'oral à l'école primaire (langage d'évocation, débat réglé, exposé)
+  2. Littérature de jeunesse à l'école (mise en réseau, carnet de lecteur, listes MEN)
+  3. Stratégies de compréhension en lecture (Narramus, Lectorino, enseignement réciproque)
+  4. La dictée et ses formes didactiques (négociée, phrase du jour, ANG, Catach)
+  5. L'écriture au cycle 2 (geste graphique, cursive, écriture inventée Ferreiro)
+- `content/french-crpe-series.ts` — import et export du batch V3-J
+
+### Nouvelles fiches sprint didactiques
+- `content/fiches/didactique-oral-ecole-sprint.ts` — **nouveau** : fiche sprint "L'oral à l'école primaire"
+- `content/fiches/didactique-litterature-jeunesse-sprint.ts` — **nouveau** : fiche sprint "Littérature de jeunesse à l'école"
+- `content/fiches/didactique-strategies-comprehension-sprint.ts` — **nouveau** : fiche sprint "Stratégies de compréhension en lecture"
+- `content/fiches/didactique-dictee-formes-sprint.ts` — **nouveau** : fiche sprint "La dictée et ses formes didactiques"
+- `content/fiches/didactique-ecriture-cycle2-sprint.ts` — **nouveau** : fiche sprint "L'écriture au cycle 2"
+- `content/fiches/index.ts` — import et enregistrement des 5 nouvelles fiches dans `allFiches`
+
+## [2026-03-20] — Audit contenu + 13 nouvelles séries (130 questions) + corrections terminologiques
+
+### Corrections terminologiques Éduscol 2021
+- `content/french-diagnostic-questions.ts` — 4 occurrences de « verbe d'état » → « verbe attributif »
+- `content/french-crpe-series-v3-d.ts` — 3 occurrences de « verbe d'état » → « verbe attributif »
+- `content/fiches/grammaire-fonctions-sprint.ts` — 3 occurrences de « verbe d'état » → « verbe attributif »
+- `content/fiches/grammaire-voix-passive-sprint.ts` — 1 occurrence de « verbe d'état » → « verbe attributif »
+
+### Nouvelles séries d'exercices (4 fichiers, 13 séries, 130 questions)
+- `content/french-crpe-series-v3-f.ts` — **nouveau** : 3 séries Grammaire (30 questions)
+  1. Formes de phrases (négative, passive, emphatique, impersonnelle, exclamative)
+  2. Expansion du nom (épithète, complément du nom, apposition)
+  3. Complément d'agent et attribut du COD
+- `content/french-crpe-series-v3-g.ts` — **nouveau** : 4 séries Conjugaison + Compréhension (40 questions)
+  1. Les trois groupes de verbes
+  2. Transitivité du verbe (transitif direct/indirect, intransitif, attributif)
+  3. Morphologie verbale (radical, désinence, marques)
+  4. Comprendre un texte documentaire
+- `content/french-crpe-series-v3-h.ts` — **nouveau** : 3 séries Lexique (30 questions)
+  1. Hyperonymie, hyponymie et relations sémantiques
+  2. Familles de mots (base, radical, racine)
+  3. Sens figuré et évolution sémantique (métaphore, métonymie, dénotation/connotation)
+- `content/french-crpe-series-v3-i.ts` — **nouveau** : 3 séries Didactique (30 questions)
+  1. Enseignement explicite de la grammaire à l'école
+  2. Didactique de la production d'écrits
+  3. Fluence et lecture à voix haute
+
+### Intégration
+- `content/french-crpe-series.ts` — import et export des 4 nouveaux batches (V3-F, V3-G, V3-H, V3-I)
+
+## [2026-03-20] — 8 nouvelles séries d'exercices variés (80 questions)
+
+- `supabase/migrations/20260334_seed_series_variees.sql` — **nouveau fichier** : 80 exercices répartis en 8 séries, types `tri_categories` et `surlignage_propositions`, conformes à la terminologie Éduscol 2021. Séries :
+  1. **Types et formes de phrases** (tri) — 10 Q, piège exclamation = forme
+  2. **Constituants GS / GV / GC** (surlignage) — 10 Q, formule P = [GS + GV] (+ GC)
+  3. **Formation des mots** (tri) — 10 Q, dérivation / composition / relations sémantiques
+  4. **Les 8 classes de mots** (tri) — 10 Q, piège « donc » = adverbe
+  5. **Voix, modes et temps** (tri) — 10 Q, piège conditionnel = indicatif
+  6. **Nature vs Fonction** (tri) — 10 Q, distinction fondamentale CRPE
+  7. **Phrase complexe : propositions** (surlignage) — 10 Q, subordination / coordination / juxtaposition
+  8. **Fonctions grammaticales** (surlignage) — 10 Q, sujet / COD / COI / attribut / complément d'agent
+
+## [2026-03-19] — Audit terminologique + corrections conformité Éduscol 2021
+
+- `supabase/migrations/20260332_fix_terminology_eduscol_2021.sql` — **nouvelle migration corrective** : mise en conformité des exercices avec la terminologie officielle (Éduscol 2021). Corrige 3 erreurs critiques : (1) exclamation reclassée comme FORME de phrase (3 types, pas 4), (2) « donc » reclassé comme adverbe (6 conjonctions de coordination, pas 7), (3) « verbe copule/d'état » → « verbe attributif »
+- `supabase/seed_content_analyse_langue_v2.sql` — Q3 et Q5 sur les types de phrases : réponses corrigées (vrai→faux) et explications réécrites
+- `supabase/seed_content_grammaire.sql` — explications corrigées (3 types, 6 conjonctions)
+- `supabase/seed_content_grammaire_v2.sql` — série 56 (types/formes) et série 60 (coordination) : explications et instructions corrigées
+- `supabase/seed_content_grammaire_v3.sql` — série 66 Q3 : « verbe copule » → « verbe attributif »
+- `app/(app)/ressources/glossaire/page.tsx` — entrées « Coordination », « Conjonction de coordination » et « Type de phrase » mises à jour selon Éduscol 2021
+- `supabase/migrations/20260333_fix_terminology_eduscol_part2.sql` — **migration complémentaire** : (1) « adjectif qualificatif » → « adjectif » dans ~10 labels de choix QCM, (2) « épithète détachée » → « apposition » dans ~6 exercices, (3) « verbe d'état » → « verbe attributif » dans ~6 exercices, (4) conditionnel = temps de l'indicatif (pas un mode)
+- `supabase/seed.sql` — labels de choix « adjectif qualificatif » → « adjectif », « verbe d'état » → « verbe attributif »
+- `supabase/seed_content_analyse_langue_v3.sql` — séries 92 : « verbe d'état » → « verbe attributif », « épithète détachée » → « apposition »
+- `supabase/seed_content_conjugaison.sql` — conditionnel : « ce mode » → « ce temps » + note Éduscol
+- `supabase/seed_content_conjugaison_v3.sql` — « épithète détachée » → « apposition » + choix QCM « Conditionnel présent » → « Infinitif » (le conditionnel n'est pas un mode)
+- `supabase/seed_content_grammaire_enrich.sql` — « Adjectif qualificatif » → « Adjectif », « Verbe d'état » → « Verbe attributif », « Conditionnel » → « Indicatif conditionnel » dans les choix de modes
+- `supabase/seed_content_orthographe.sql` — « adjectif qualificatif » → « adjectif » dans les explications
+- `supabase/seed_content_orthographe_v2.sql` — « adjectif qualificatif » → « adjectif » dans les explications
+- `supabase/seed_content_comprehension_lexique.sql` — « adjectif qualificatif » → « adjectif » dans les choix QCM
+- `app/(app)/ressources/glossaire/page.tsx` — « Adjectif qualificatif » → « Adjectif », « verbe d'état » → « verbe attributif »
+
+## [2026-03-19] — Référentiel terminologie grammaticale officielle Éduscol
+
+- `Terminologie-officielle-Eduscol.md` — **nouveau fichier** : synthèse structurée de la terminologie grammaticale officielle du Ministère de l'Éducation nationale (source : *La grammaire du français — Terminologie grammaticale*, Éduscol, 2021). Couvre les classes de mots, fonctions grammaticales, conjugaison, types/formes de phrases, lexique, tableaux de synthèse nature/fonction, et points de vigilance terminologique pour le CRPE (termes officiels vs termes non recommandés).
+
+## [2026-03-19] — Nouveau type d'exercice : surlignage / délimitation de propositions
+
+- `types/domain.ts` — ajout du type `surlignage_propositions` et du mode de réponse `highlight_groups` avec `HighlightGroup`
+- `lib/constants.ts` — ajout du label « Délimitation de propositions »
+- `content/french-crpe-series.ts` — ajout du label dans le map local des types d'exercice
+- `features/exercises/components/highlight-propositions-input.tsx` — **nouveau composant** : interface de surlignage interactif — chaque segment de phrase est un chip cliquable qui cycle à travers des couleurs (bleu/ambre/vert/violet), une par proposition
+- `features/exercises/components/exercise-player.tsx` — intégration du nouveau composant dans le player et la section review
+- `features/exercises/shared/evaluation.ts` — support du mode `highlight_groups` dans l'évaluation et le label de correction
+- `supabase/migrations/20260330_add_surlignage_type.sql` — ajout de la valeur enum `surlignage_propositions`
+- `supabase/migrations/20260331_seed_surlignage_propositions.sql` — seed de 10 questions (coordination, juxtaposition, relatives, complétives, circonstancielles, phrases à 3 propositions)
+- `app/(marketing)/offre/page.tsx` — fix lint apostrophe préexistant
+
 ## [2026-03-19] — Correction format tri par catégories : 100 QCM → 60 vrais exercices drag-and-drop
 
 - `supabase/migrations/20260329_fix_tri_categories_format.sql` — suppression des 100 exercices QCM/vrai-faux/réponse courte qui portaient le label « Tri par catégories » sans en respecter le format ; remplacement par 60 vrais exercices `tri_categories` (mode `categorization`, drag-and-drop) répartis sur 10 séries : nom/verbe/adjectif, déterminant/pronom/adverbe, mots de liaison, variable/invariable, familles de déterminants, familles de pronoms, formes verbales, le mot « tout », le mot « que », mots à double nature

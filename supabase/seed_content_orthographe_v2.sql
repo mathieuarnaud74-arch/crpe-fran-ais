@@ -194,7 +194,7 @@ values
   null,
   '[{"id":"a","label":"des voitures mauve"},{"id":"b","label":"des voitures mauves ou mauve"},{"id":"c","label":"des voitures mauves"},{"id":"d","label":"des voitures mauvette"}]'::jsonb,
   '{"mode":"single_choice","value":"c"}'::jsonb,
-  '« Mauve » n''est pas un nom employé adjectivement — c''est un vrai adjectif qualificatif qui s''accorde normalement. Même chose pour « fauve », « pourpre », « écarlate », « vermeil » et « châtain ». La distinction à graver : les vrais adjectifs de couleur s''accordent ; les noms utilisés comme adjectifs de couleur (marron, orange, crème...) sont invariables. Identifie la nature du mot, et l''accord suit !',
+  '« Mauve » n''est pas un nom employé adjectivement — c''est un vrai adjectif qui s''accorde normalement. Même chose pour « fauve », « pourpre », « écarlate », « vermeil » et « châtain ». La distinction à graver : les vrais adjectifs de couleur s''accordent ; les noms utilisés comme adjectifs de couleur (marron, orange, crème...) sont invariables. Identifie la nature du mot, et l''accord suit !',
   'valide', 'CRPE Français — Orthographe V2', 'free', true
 ),
 

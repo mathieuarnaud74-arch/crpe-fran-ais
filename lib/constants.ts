@@ -43,6 +43,7 @@ export const EXERCISE_TYPE_LABELS: Record<ExerciseType, string> = {
   correction_orthographique: "Correction orthographique",
   analyse_texte: "Analyse de texte",
   tri_categories: "Tri par catégories",
+  surlignage_propositions: "Délimitation de propositions",
 };
 
 export const EXERCISE_TYPE_OPTIONS: Array<{
@@ -56,6 +57,7 @@ export const EXERCISE_TYPE_OPTIONS: Array<{
   { value: "correction_orthographique", label: EXERCISE_TYPE_LABELS.correction_orthographique },
   { value: "analyse_texte", label: EXERCISE_TYPE_LABELS.analyse_texte },
   { value: "tri_categories", label: EXERCISE_TYPE_LABELS.tri_categories },
+  { value: "surlignage_propositions", label: EXERCISE_TYPE_LABELS.surlignage_propositions },
 ];
 
 export const LEVEL_LABELS: Record<string, string> = {

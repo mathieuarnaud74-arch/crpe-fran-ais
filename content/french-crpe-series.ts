@@ -7,6 +7,12 @@ import { seriesV3BatchA } from "@/content/french-crpe-series-v3-a";
 import { seriesV3BatchB } from "@/content/french-crpe-series-v3-b";
 import { seriesV3BatchC } from "@/content/french-crpe-series-v3-c";
 import { seriesV3BatchE } from "@/content/french-crpe-series-v3-e";
+import { seriesV3BatchF } from "@/content/french-crpe-series-v3-f";
+import { seriesV3BatchG } from "@/content/french-crpe-series-v3-g";
+import { seriesV3BatchH } from "@/content/french-crpe-series-v3-h";
+import { seriesV3BatchI } from "@/content/french-crpe-series-v3-i";
+import { seriesV3BatchJ } from "@/content/french-crpe-series-v3-j";
+import { seriesV3BatchK } from "@/content/french-crpe-series-v3-k";
 
 const createdAt = "2026-03-12T08:00:00.000Z";
 
@@ -1339,6 +1345,7 @@ const MODULE_EXERCISE_TYPE_LABELS: Record<ExerciseRecord["exercise_type"], strin
   correction_orthographique: "Correction orthographique",
   analyse_texte: "Analyse de texte",
   tri_categories: "Tri par catégories",
+  surlignage_propositions: "Délimitation de propositions",
 };
 
 function buildModuleSession(series: (typeof part4PremierLotSeriesCompletes)[number]): RevisionSession {
@@ -1395,4 +1402,10 @@ export const frenchCrpeSeriesSeed: RevisionSession[] = [
   ...seriesV3BatchB,
   ...seriesV3BatchC,
   ...seriesV3BatchE,
+  ...seriesV3BatchF,
+  ...seriesV3BatchG,
+  ...seriesV3BatchH,
+  ...seriesV3BatchI,
+  ...seriesV3BatchJ,
+  ...seriesV3BatchK,
 ];

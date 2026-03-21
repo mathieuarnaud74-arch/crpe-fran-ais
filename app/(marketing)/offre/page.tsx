@@ -71,7 +71,7 @@ export default async function OfferPage() {
           </h1>
           <p className="mt-4 text-lg leading-8 text-muted">
             Le compte gratuit donne accès au diagnostic et à 20 questions corrigées par jour.
-            Le premium débloque l'accès illimité, les séries complètes et un travail plus régulier.
+            Le premium débloque l&apos;accès illimité, les séries complètes et un travail plus régulier.
           </p>
           <p className="mt-2 text-sm text-muted">
             Sans carte bancaire pour commencer · Paiement sécurisé Stripe pour le premium
