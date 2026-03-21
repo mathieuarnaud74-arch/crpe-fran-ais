@@ -72,6 +72,11 @@ import { anaphoresSprint } from "./analyse-langue-anaphores-sprint";
 import { fluenceLectureSprint } from "./didactique-fluence-lecture-sprint";
 import { attributSujetSprint } from "./grammaire-attribut-sujet-sprint";
 import { majusculesPonctuationSprint } from "./orthographe-majuscules-ponctuation-sprint";
+import { ppAccordOperatoire } from "./orthographe-participe-passe-operatoire";
+import { concordanceTempsReference } from "./conjugaison-concordance-temps-reference";
+import { figuresStyleReference } from "./lexique-figures-style-reference";
+import { schemaNarratifOperatoire } from "./comprehension-texte-schema-narratif-operatoire";
+import { apprentissageLectureReference } from "./didactique-apprentissage-lecture-reference";
 
 export const allFiches: Fiche[] = [
   reperageExpliciteSprint,
@@ -146,4 +151,9 @@ export const allFiches: Fiche[] = [
   fluenceLectureSprint,
   attributSujetSprint,
   majusculesPonctuationSprint,
+  ppAccordOperatoire,
+  concordanceTempsReference,
+  figuresStyleReference,
+  schemaNarratifOperatoire,
+  apprentissageLectureReference,
 ];

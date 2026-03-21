@@ -1,5 +1,24 @@
 # Changelog
 
+## [2026-03-21] — 20 séries d'exercices (200 questions) + 5 fiches
+
+### 20 séries d'exercices (hors grammaire) — 200 questions
+
+- `supabase/migrations/20260336_seed_orthographe_conjugaison_batch1.sql` — **8 séries × 10 questions (Orthographe + Conjugaison)** : accord sujet-verbe (cas complexes), homophones grammaticaux, participe passé, pluriel noms composés, présent indicatif, imparfait/passé simple, subjonctif présent, concordance des temps
+- `supabase/migrations/20260336_seed_lexique_comprehension_batch2.sql` — **7 séries × 10 questions (Lexique + Compréhension)** : champs lexicaux, figures de style, registres de langue, relations de sens (synonymie/antonymie/polysémie), schéma narratif, texte argumentatif, cohérence textuelle
+- `supabase/migrations/20260336_seed_analyse_didactique_batch3.sql` — **5 séries × 10 questions (Analyse + Didactique)** : subordonnées relatives, compléments circonstanciels, voix active/passive, apprentissage de la lecture, conscience phonologique
+
+Types variés (qcm, vrai_faux, reponse_courte, tri_categories), difficulté progressive, terminologie Éduscol 2021, explications pédagogiques CRPE. Chaque série : 5 free + 5 premium.
+
+### 5 fiches reference/operatoire (variété de modèles)
+
+- `content/fiches/orthographe-participe-passe-operatoire.ts` — fiche opératoire avec arbre de décision complet pour l'accord du PP (auxiliaires, pronominaux, EN)
+- `content/fiches/conjugaison-concordance-temps-reference.ts` — fiche de référence sur la concordance des temps (systèmes présent/passé, discours rapporté, cas particuliers)
+- `content/fiches/lexique-figures-style-reference.ts` — fiche de référence sur les figures de style (5 familles, exemples littéraires, pièges courants)
+- `content/fiches/comprehension-texte-schema-narratif-operatoire.ts` — fiche opératoire avec arbre de décision pour analyser un récit via le schéma quinaire
+- `content/fiches/didactique-apprentissage-lecture-reference.ts` — fiche de référence sur l'apprentissage de la lecture (modèle à deux voies, prérequis, fluence, compréhension, difficultés)
+- `content/fiches/index.ts` — ajout des 5 nouvelles fiches dans le registre allFiches (total : 84)
+
 ## [2026-03-21] — Fix tooltips badges coupés + tooltips sur badges verrouillés
 
 - `components/ui/badges-summary.tsx` — suppression `overflow-hidden` du conteneur qui coupait les tooltips sur les bords, ajout `rounded` sur bouton et zone de contenu
