@@ -41,13 +41,10 @@ function TopicFocusList({
       {items.map((item) => (
         <article
           key={item.key}
-          className="relative overflow-hidden rounded-[1.25rem] border border-[#476257]/20 bg-paper pl-6 pr-4 py-4"
+          className="rounded-[1.25rem] border border-border/60 bg-paper px-5 py-4"
         >
-          <span
-            aria-hidden
-            className="absolute left-0 top-0 h-full w-1 rounded-l-[1.25rem] bg-[#476257]"
-          />
           <div className="flex flex-wrap items-center gap-2">
+            <span aria-hidden className="h-2 w-2 rounded-sm bg-[#476257]" />
             <Badge tone="accentSecondary">{item.domainLabel}</Badge>
             {item.correctRate !== null ? (
               <Badge tone="warning">{item.correctRate} %</Badge>
@@ -657,13 +654,10 @@ export default async function DashboardPage() {
                 {data.frequentMistakes.map((mistake) => (
                   <article
                     key={mistake.key}
-                    className="relative overflow-hidden rounded-xl border border-[#6B8F80]/25 bg-paper pl-6 pr-4 py-3"
+                    className="rounded-xl border border-border/60 bg-paper px-5 py-3"
                   >
-                    <span
-                      aria-hidden
-                      className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-[#6B8F80]"
-                    />
                     <div className="flex flex-wrap items-center gap-2">
+                      <span aria-hidden className="h-2 w-2 rounded-sm bg-[#6B8F80]" />
                       <Badge tone="warning">{mistake.occurrences} erreur(s)</Badge>
                       <Badge tone="accentSecondary">{mistake.domainLabel}</Badge>
                     </div>
@@ -686,9 +680,9 @@ export default async function DashboardPage() {
           <Panel className="relative overflow-hidden border-accent/20 bg-card">
             <span
               aria-hidden
-              className="absolute left-0 top-0 h-full w-1.5 rounded-l-[1.85rem] bg-accent"
+              className="absolute left-0 top-0 h-[3px] w-2/5 rounded-tl-[1.85rem] bg-[linear-gradient(90deg,#4A6E8F_0%,#4A6E8F_60%,transparent_100%)]"
             />
-            <div className="flex items-start justify-between gap-4 pl-2">
+            <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-accent">
                   Maîtrisé
@@ -711,7 +705,7 @@ export default async function DashboardPage() {
                 </p>
               </div>
             ) : (
-              <div className="mt-4 space-y-2 pl-2">
+              <div className="mt-4 space-y-2">
                 {data.sessionProgress
                   .filter((s) => s.status === "maitrisee")
                   .slice(0, 3)
