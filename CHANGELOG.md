@@ -1,5 +1,190 @@
 # Changelog
 
+## [2026-03-21] — Section Défi rapide refaite + contenu engageant
+
+### Dashboard — Section Défi rapide refaite
+- `app/(app)/tableau-de-bord/page.tsx` — Sélection intelligente : priorise les faiblesses (a_revoir > non_commencee > en_cours), rotation quotidienne déterministe, affiche domaine/progression/streak, 2 suggestions alternatives, badges contextuels (point faible détecté / série en cours / nouvelle série)
+
+### Mode selector — Filtrage intelligent
+- `features/exercises/components/mode-selector.tsx` — Chrono et Sprint désactivés pour les séries tri_categories/surlignage (pas adaptés aux exercices interactifs longs)
+
+### Contenu
+- `supabase/migrations/20260352_seed_mix_cross_domaines.sql` — 30 questions Mix cross-domaines (3 séries : Révision express, Pièges CRPE, Culture générale)
+- `content/fiches/orthographe-pluriel-irregulier-sprint.ts` — Fiche sprint pluriels irréguliers (-al/-aux, -ail/-aux, -ou/-oux + exceptions)
+- `content/fiches/grammaire-phrase-interrogative-sprint.ts` — Fiche sprint phrase interrogative (totale/partielle, 3 formes, interrogative indirecte)
+
+## [2026-03-21] — 2 fiches sprint : pluriels irréguliers + phrase interrogative
+
+- `content/fiches/orthographe-pluriel-irregulier-sprint.ts` — fiche sprint sur les pluriels irréguliers (-al/-aux, -ail/-aux, -ou/-oux, -eu/-eux) avec 6 quiz items
+- `content/fiches/grammaire-phrase-interrogative-sprint.ts` — fiche sprint sur la phrase interrogative (totale/partielle, 3 registres, interrogative indirecte) avec 5 quiz items
+- `content/fiches/index.ts` — ajout des 2 nouvelles fiches au registre allFiches
+
+## [2026-03-21] — Contenu sérieux & fun : exercices, fiches, badges, Mocca
+
+### Exercices — 40 nouvelles questions (2 migrations)
+- `supabase/migrations/20260350_seed_correction_orthographique.sql` — 20 exercices `correction_orthographique` (type jamais utilisé avant !) : accords PP, homophones grammaticaux — l'élève doit corriger le mot fautif
+- `supabase/migrations/20260351_seed_reponse_courte.sql` — 20 exercices `reponse_courte` : identifier la nature des mots (analyse_langue) + identifier le type de discours (comprehension_texte) avec textes-supports littéraires
+
+### Fiches — 2 nouvelles fiches opératoire (arbres de décision interactifs)
+- `content/fiches/comprehension-texte-type-discours-operatoire.ts` — arbre interactif pour identifier le type de discours (narratif/descriptif/argumentatif/explicatif/injonctif)
+- `content/fiches/didactique-demarche-etude-langue-operatoire.ts` — arbre interactif pour choisir sa démarche pédagogique (inductive/déductive/guidée/explicite)
+
+### Badges — 8 badges secrets/fun ajoutés (total : 124 badges)
+- `components/ui/achievement-badges.tsx` — "Oiseau de nuit" (réviser après 23h), "Lève-tôt" (avant 7h), "Éclair" (sprint <60s), "Perfectionniste" (3 parfaits d'affilée), "Phénix" (comeback après 7j+), "Polyglotte" (8 types d'exercices), "Quinze d'affilée" (15 consécutives), "Dimanche studieux" (3 séries le dimanche)
+
+### Mocca — Personnalité enrichie (31 → 60+ messages)
+- `lib/mocca-messages.ts` — 10 fun facts CRPE, 5 messages score parfait, 4 messages maîtrise, messages de complétion amusants, 10% de chance de fun fact aléatoire, messages contextuels par niveau
+
+### Cosmétique — Effets sonores et animations
+- `features/exercises/components/exercise-player.tsx` — son level-up sur score parfait (100%), son streak sur maîtrise, confettis enrichis
+- `components/ui/badge-unlock-toast.tsx` — déjà amélioré avec framer-motion (session précédente)
+
+## [2026-03-21] — Ajout de 2 fiches opératoires (arbres de décision)
+
+- `content/fiches/comprehension-texte-type-discours-operatoire.ts` — fiche opératoire : identifier le type de discours (narratif, descriptif, argumentatif, explicatif, injonctif) via un arbre de décision interactif
+- `content/fiches/didactique-demarche-etude-langue-operatoire.ts` — fiche opératoire : choisir la démarche en étude de la langue (inductive, déductive, guidée, explicite) via un arbre de décision interactif
+- `content/fiches/index.ts` — import et ajout des 2 nouvelles fiches dans allFiches
+
+## [2026-03-21] — Ajout de 20 exercices réponse courte
+
+- `supabase/migrations/20260351_seed_reponse_courte.sql` — 20 questions reponse_courte : 10 analyse_langue (identifier la nature des mots) + 10 comprehension_texte (identifier le type de discours / figures de style)
+
+## [2026-03-21] — Création massive de contenu : 220 questions + 10 fiches
+
+### 6 migrations SQL — 220 nouvelles questions d'exercices
+- `supabase/migrations/20260344_seed_sprint_extended.sql` — 40 questions Sprint QCM (lexique, compréhension, analyse_langue, didactique)
+- `supabase/migrations/20260345_seed_swipe_extended.sql` — 50 questions Swipe Vrai/Faux (conjugaison, lexique, compréhension, analyse_langue, didactique)
+- `supabase/migrations/20260346_seed_standard_analyse_langue.sql` — 30 questions analyse_langue (propositions subordonnées, anaphores, manipulations syntaxiques)
+- `supabase/migrations/20260347_seed_standard_didactique.sql` — 30 questions didactique (compréhension lecture, production écrits, étude de la langue)
+- `supabase/migrations/20260348_seed_standard_comprehension.sql` — 30 questions compréhension (implicite, argumentation, registres/énonciation)
+- `supabase/migrations/20260349_seed_tri_surlignage.sql` — 40 questions interactives (tri classes grammaticales, tri temps verbaux, surlignage sujets/verbes, surlignage propositions)
+
+### 10 nouvelles fiches
+- 3 fiches Référence (premium) : phrase complexe, homophones grammaticaux, manipulations syntaxiques
+- 4 fiches Opératoire (arbres de décision interactifs) : nature/fonction, choix temps du passé, accord adjectif, sens mot en contexte
+- 3 fiches Sprint : pronoms, évaluation lecture, connecteurs logiques
+- `content/fiches/index.ts` — mis à jour avec les 10 nouvelles fiches (total : 88 fiches)
+
+## [2026-03-21] — 3 fiches reference (phrase complexe, homophones, manipulations syntaxiques)
+
+- `content/fiches/grammaire-phrase-complexe-reference.ts` — fiche reference sur la phrase complexe : juxtaposition, coordination, subordination (3 types de subordonnées), méthodologie d'analyse, 5 quiz
+- `content/fiches/orthographe-homophones-grammaticaux-reference.ts` — fiche reference homophones grammaticaux : a/à, ou/où, et/est, son/sont, ce/se, on/ont avec tests de substitution, 6 quiz
+- `content/fiches/analyse-langue-manipulations-syntaxiques-reference.ts` — fiche reference manipulations syntaxiques : déplacement, suppression, remplacement, encadrement, expansion, 5 quiz
+- `content/fiches/index.ts` — ajout des 3 nouvelles fiches au registre
+
+## [2026-03-21] — 4 fiches opératoires (arbres de décision)
+
+- `content/fiches/grammaire-nature-fonction-operatoire.ts` — arbre de décision nature/fonction : mots variables (nom, adjectif, déterminant, pronom, verbe) vs invariables (adverbe, préposition, conjonction, interjection), 5 quiz, note didactique cycle 3
+- `content/fiches/conjugaison-choix-temps-passe-operatoire.ts` — arbre de décision pour choisir le temps du passé (imparfait, passé simple, passé composé, plus-que-parfait), 5 quiz
+- `content/fiches/orthographe-accord-adjectif-operatoire.ts` — arbre de décision accord de l'adjectif (attribut/épithète, sujets coordonnés, adjectifs de couleur), 5 quiz
+- `content/fiches/lexique-sens-mot-contexte-operatoire.ts` — arbre de décision pour trouver le sens d'un mot en contexte (polysémie, morphologie, indices contextuels), 5 quiz
+- `content/fiches/index.ts` — ajout des 4 nouvelles fiches au registre
+
+## [2026-03-21] — 3 fiches Sprint : pronoms, évaluation lecture, connecteurs logiques
+
+- `content/fiches/analyse-langue-nature-pronoms-sprint.ts` — fiche sprint sur les 7 catégories de pronoms (personnel, possessif, démonstratif, relatif, indéfini, interrogatif, numéral) avec 5 quiz
+- `content/fiches/didactique-evaluation-lecture-sprint.ts` — fiche sprint sur l'évaluation de la lecture (fluence MCLM vs compréhension, outils par cycle) avec 5 quiz
+- `content/fiches/comprehension-texte-connecteurs-logiques-sprint.ts` — fiche sprint sur les connecteurs logiques (cause, conséquence, opposition, concession, addition) avec 5 quiz
+- `content/fiches/index.ts` — ajout des 3 nouvelles fiches au registre
+
+## [2026-03-21] — 4 séries Sprint étendues (40 questions QCM)
+
+- `supabase/migrations/20260344_seed_sprint_extended.sql` — 4 nouvelles séries Sprint : Lexique (formation des mots), Compréhension (inférences), Analyse (fonctions grammaticales), Didactique (cycles et programmes). 10 questions chacune, 40 au total, niveaux Facile/Intermédiaire/Avancé.
+
+## [2026-03-21] — 5 séries Swipe Vrai/Faux étendues (50 questions)
+
+- `supabase/migrations/20260345_seed_swipe_extended.sql` — 5 nouvelles séries Swipe V/F : Conjugaison, Lexique, Compréhension, Analyse langue, Didactique (10 questions chacune, 50 au total)
+
+## [2026-03-21] — Corrections mobile complémentaires (toaster, hero, accordéons, charts)
+
+- `app/layout.tsx` — Toaster repositionné en `top-center` (évite conflit avec bottom nav mobile)
+- `features/homepage/components/renderer.tsx` — Hero gradient vertical sur mobile (meilleur contraste texte), horizontal sur desktop
+- `components/ui/domain-accordion.tsx` — Padding responsive (px-4/py-3 mobile, px-5/py-4 sm)
+- `components/ui/badges-summary.tsx` — Padding et gap responsives
+- `components/ui/score-evolution-chart.tsx` — min-width réduit (320→280px) pour petits écrans
+
+## [2026-03-21] — Intégration gamification complète (12 packages, 6 phases)
+
+### Phase 0 — Fondations
+- `package.json` — ajout de 12 dépendances gamification (framer-motion, use-sound, react-countup, react-countdown-circle-timer, react-circular-progressbar, lottie-react, driver.js, @nivo/radar, @nivo/core, react-type-animation, react-swipeable, @react-pdf/renderer)
+- `supabase/migrations/20260341_add_gamification_tables.sql` — table `user_gamification` (XP, level, streaks, settings) + colonnes `time_spent_ms`, `xp_earned`, `exercise_mode` sur `attempts`
+- `types/domain.ts` — types `UserGamification`, `ExerciseMode`
+- `lib/xp.ts` — système XP complet (calcul, niveaux 1-20, multiplicateurs streak/vitesse/mode, labels)
+- `lib/sounds.ts` — types et mapping des 6 sons de jeu
+- `lib/mocca-messages.ts` — messages contextuels de Mocca (heure, streak, niveau, exercice)
+- `components/hooks/use-game-sounds.ts` — hook `useGameSounds` (wrapper use-sound, respect prefers-reduced-motion)
+- `features/gamification/context.tsx` — `GamificationProvider` + hook `useGamification`
+- `features/gamification/server/queries.ts` — queries serveur (getUserGamification, updateUserXp, updateSprintPersonalBest, completeOnboarding)
+- `features/gamification/components/settings-panel.tsx` — panneau settings (son, animations, objectif quotidien)
+- `features/exercises/server/actions.ts` — `submitAttemptAction` étendu avec XP, temps, mode, streak, level-up detection
+- `app/(app)/layout.tsx` — intégration `GamificationProvider`
+- `public/sounds/` — 6 fichiers sons placeholder (correct, incorrect, streak, level-up, timer-warning, badge-unlock)
+
+### Phase 1 — Système XP + Exercise Player enrichi
+- `components/ui/xp-popup.tsx` — popup "+N XP" animé (framer-motion)
+- `components/ui/xp-bar.tsx` — barre de progression XP avec animation (framer-motion)
+- `components/ui/level-badge.tsx` — badge niveau avec animation spring (framer-motion AnimatePresence)
+- `features/exercises/components/exercise-timer.tsx` — timer par question (react-countdown-circle-timer, vert→jaune→rouge)
+- `features/exercises/components/exercise-player.tsx` — intégration XP popup, barre XP, sons correct/incorrect/streak/level-up, tracking temps par question
+
+### Phase 2 — Nouveaux modes d'exercice
+- `features/exercises/components/swipe-player.tsx` — mode Swipe Vrai/Faux (react-swipeable + framer-motion, drag physics, flash feedback, boutons accessibilité)
+- `features/exercises/components/sprint-player.tsx` — mode Sprint (countdown 3-2-1, timer ascendant, score live react-countup, record personnel, stats fin)
+- `features/exercises/components/mode-selector.tsx` — sélecteur de mode (Standard/Chrono/Sprint/Swipe, multiplicateurs XP, framer-motion)
+- `features/exercises/components/exercise-session-wrapper.tsx` — wrapper orchestrant mode selector + player approprié
+- `app/(app)/exercices/[id]/page.tsx` — remplacement ExercisePlayer par ExerciseSessionWrapper avec données gamification
+
+### Phase 3 — Dashboard enrichi
+- `features/dashboard/components/animated-counter.tsx` — compteur animé (react-countup)
+- `features/dashboard/components/xp-level-card.tsx` — carte XP/niveau avec barre, stats streak (framer-motion + react-countup)
+- `features/dashboard/components/domain-gauge.tsx` — jauge circulaire par domaine (react-circular-progressbar)
+- `features/dashboard/components/nivo-radar.tsx` — radar de compétences interactif (@nivo/radar, tooltips, 2 métriques score/completion)
+- `features/dashboard/components/streak-display.tsx` — affichage streak avec animation feu (framer-motion)
+- `app/(app)/tableau-de-bord/page.tsx` — intégration XpLevelCard, StreakDisplay, AnimatedCounter, NivoRadarChart, DomainGauge, data-tour attributes
+
+### Phase 4 — Onboarding + Mocca amélioré
+- `features/onboarding/components/onboarding-tour.tsx` — tour guidé 7 étapes (driver.js, styles design system)
+- `features/onboarding/components/onboarding-tour-wrapper.tsx` — wrapper client avec API onboarding completion
+- `app/api/gamification/onboarding/route.ts` — API POST pour marquer onboarding complété
+- `app/globals.css` — styles CSS pour driver.js popover (couleurs design system)
+- `components/mascot/mocca-with-message.tsx` — Mocca avec bulle de message + effet typewriter (react-type-animation)
+- `components/mascot/mocca.tsx` — export MoccaWithMessage
+
+### Phase 5 — Fiches enrichies + PDF
+- `features/fiches/components/blocks/block-decision-tree.tsx` — arbre de décision interactif (framer-motion, choix Oui/Non progressif, animation reveal)
+- `features/fiches/components/fiche-quiz.tsx` — mode chrono ajouté (react-countdown-circle-timer 15s/question, toggle chrono, score live react-countup)
+- `features/fiches/components/fiche-pdf.tsx` — document PDF complet (@react-pdf/renderer, 3 modèles reference/sprint/operatoire, styles fidèles)
+- `features/fiches/components/download-fiche-button.tsx` — bouton téléchargement PDF (import dynamique, génération async)
+- `app/(app)/fiches/[slug]/page.tsx` — intégration bouton téléchargement PDF
+
+### Phase 6 — Contenu
+- `supabase/migrations/20260342_seed_sprint_series.sql` — 3 séries Sprint de 10 questions QCM (grammaire, orthographe, conjugaison)
+- `supabase/migrations/20260343_seed_swipe_vrai_faux.sql` — 2 séries Swipe Vrai/Faux de 10 questions (grammaire, orthographe)
+
+---
+
+## [2026-03-21] — Audit terminologie Éduscol 2021 : corrections de conformité
+
+- `content/fiches/analyse-langue-complements-circonstanciels-sprint.ts` — « complément essentiel » remplacé par « complément d'objet (COD/COI) » (tag, oneLiner, quiz)
+- `content/french-crpe-series-v3-b.ts` — Introduction conditionnel : « à la fois un temps et un mode » corrigé en « temps de l'indicatif avec valeurs modales » (Éduscol 2021)
+- `content/french-crpe-series.ts` — « adjectif qualificatif » remplacé par « adjectif » comme nom de classe grammaticale (4 occurrences)
+- `content/french-crpe-series-v3-k.ts` — Idem : QCM et explications attribut du sujet (3 occurrences)
+- `content/french-crpe-series-v3-d.ts` — Série « Accord de l'adjectif qualificatif » renommée « Accord de l'adjectif » (titre, topicKey, topicLabel, skill, explication)
+- `content/french-crpe-series-v3-e.ts` — Explication « adjectif qualificatif » → « adjectif »
+- `content/french-crpe-series-v3-f.ts` — Explication épithète : « adjectif qualificatif » → « adjectif »
+- `supabase/seed_content_conjugaison.sql` — « deux modes distincts » (futur/conditionnel) → « deux temps bien distincts de l'indicatif »
+- `supabase/seed_content_analyse_langue_v3.sql` — « complément essentiel » → « complément d'objet (COD/COI) » ; « prédicat second » → « apposition »
+- `supabase/migrations/20260339_seed_analyse_didactique.sql` — « complément essentiel de lieu » → « COI de lieu » (question, choix, explication, piège)
+- `supabase/seed_content_didactique.sql` — « prédicat » → « groupe verbal »
+- `supabase/seed_content_grammaire_v2.sql` — « prédicat » → « groupe verbal (GV) » ; « quatre types de phrases » → formulation neutre
+- `supabase/seed_content_grammaire.sql` — « forme active » → « voix active » (distinction forme/voix)
+- `supabase/seed_content_analyse_langue_v2.sql` — Commentaire SQL corrigé (4 types → 3 types)
+
+## [2026-03-21] — Vitrine hero : intégration des meilleurs éléments du site
+
+- `features/homepage/components/hero-showcase.tsx` — Nouveau composant vitrine statique (mini radar diagnostic, carte domaine, heatmap activité, barre XP, streak) affiché côté droit du hero sur desktop
+- `features/homepage/components/renderer.tsx` — Hero passé en layout 2 colonnes (texte + vitrine), import HeroShowcase
+
 ## [2026-03-21] — Corrections mobile complémentaires (toaster, hero, accordéons, charts)
 
 - `app/layout.tsx` — Toaster repositionné en `top-center` (évite conflit avec bottom nav mobile)
