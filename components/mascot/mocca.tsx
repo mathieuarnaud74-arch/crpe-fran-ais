@@ -39,3 +39,5 @@ export function Mocca({
     </div>
   );
 }
+
+export { MoccaWithMessage } from "@/components/mascot/mocca-with-message";

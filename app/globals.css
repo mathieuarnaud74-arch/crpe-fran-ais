@@ -2,6 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Driver.js Onboarding Tour ───────────────────────── */
+.driver-popover.onboarding-popover {
+  background: #FDF9F3;
+  border: 1px solid #D8D2C6;
+  border-radius: 1.25rem;
+  box-shadow: 0 12px 24px rgba(44, 36, 32, 0.1);
+  font-family: "Manrope", sans-serif;
+  color: #2C2420;
+  max-width: 360px;
+}
+.driver-popover.onboarding-popover .driver-popover-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #2C2420;
+}
+.driver-popover.onboarding-popover .driver-popover-description {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #6B534A;
+}
+.driver-popover.onboarding-popover .driver-popover-progress-text {
+  font-size: 0.7rem;
+  color: #6B534A;
+}
+.driver-popover.onboarding-popover button {
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.4rem 1rem;
+}
+.driver-popover.onboarding-popover .driver-popover-next-btn {
+  background: #4A6E8F;
+  color: white;
+  border: none;
+}
+.driver-popover.onboarding-popover .driver-popover-next-btn:hover {
+  background: #3A5A7A;
+}
+.driver-popover.onboarding-popover .driver-popover-prev-btn {
+  background: transparent;
+  color: #6B534A;
+  border: 1px solid #D8D2C6;
+}
+.driver-popover.onboarding-popover .driver-popover-close-btn {
+  color: #6B534A;
+}
+.driver-popover.onboarding-popover .driver-popover-close-btn:hover {
+  color: #2C2420;
+}
+
 :root {
   color-scheme: light;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
