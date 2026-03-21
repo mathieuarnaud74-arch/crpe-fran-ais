@@ -29,7 +29,7 @@ function DomainItem({ domain }: { domain: DashboardDomainProgress }) {
       value={domain.domain}
       className="overflow-hidden rounded-[1.25rem] border border-border bg-card shadow-subtle"
     >
-      <Accordion.Trigger className="group flex w-full items-center gap-3 px-5 py-4 text-left transition-colors hover:bg-paper/50">
+      <Accordion.Trigger className="group flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-paper/50 sm:px-5 sm:py-4">
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-4 gap-y-2">
           <span className="font-serif text-lg font-semibold text-ink">{domain.label}</span>
           {domain.attempts === 0 ? (
@@ -51,7 +51,7 @@ function DomainItem({ domain }: { domain: DashboardDomainProgress }) {
       </Accordion.Trigger>
 
       <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-        <div className="border-t border-border px-5 py-4">
+        <div className="border-t border-border px-4 py-3 sm:px-5 sm:py-4">
           {/* Stats inline on mobile */}
           <div className="mb-4 flex flex-wrap gap-4 text-sm sm:hidden">
             {domain.correctRate !== null && (

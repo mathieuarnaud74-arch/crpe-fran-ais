@@ -114,7 +114,7 @@ export function ScoreEvolutionChart({ data, compact = false, className }: ScoreE
       <div className="overflow-x-auto">
         <svg
           viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-          className="block w-full min-w-[320px] animate-chart-fade-in"
+          className="block w-full min-w-[280px] animate-chart-fade-in"
           role="img"
           aria-label="Courbe d'évolution du score"
         >

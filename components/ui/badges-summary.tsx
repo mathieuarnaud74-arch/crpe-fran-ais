@@ -23,7 +23,7 @@ export function BadgesSummary({ earnedBadges }: BadgesSummaryProps) {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex w-full items-center gap-4 rounded-t-[1.25rem] px-5 py-4 text-left transition-colors hover:bg-paper/50"
+        className="flex w-full items-center gap-3 rounded-t-[1.25rem] px-4 py-3 text-left transition-colors hover:bg-paper/50 sm:gap-4 sm:px-5 sm:py-4"
       >
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-4 gap-y-2">
           <span className="text-xs font-semibold uppercase tracking-[0.16em] text-accentSecondary">
@@ -57,7 +57,7 @@ export function BadgesSummary({ earnedBadges }: BadgesSummaryProps) {
       </button>
 
       {open && (
-        <div className="overflow-visible rounded-b-[1.25rem] border-t border-border px-5 py-4">
+        <div className="overflow-visible rounded-b-[1.25rem] border-t border-border px-4 py-3 sm:px-5 sm:py-4">
           <AchievementBadges earnedBadges={earnedBadges} />
         </div>
       )}

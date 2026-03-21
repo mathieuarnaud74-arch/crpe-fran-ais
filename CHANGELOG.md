@@ -1,5 +1,13 @@
 # Changelog
 
+## [2026-03-21] — Corrections mobile complémentaires (toaster, hero, accordéons, charts)
+
+- `app/layout.tsx` — Toaster repositionné en `top-center` (évite conflit avec bottom nav mobile)
+- `features/homepage/components/renderer.tsx` — Hero gradient vertical sur mobile (meilleur contraste texte), horizontal sur desktop
+- `components/ui/domain-accordion.tsx` — Padding responsive (px-4/py-3 mobile, px-5/py-4 sm)
+- `components/ui/badges-summary.tsx` — Padding et gap responsives
+- `components/ui/score-evolution-chart.tsx` — min-width réduit (320→280px) pour petits écrans
+
 ## [2026-03-21] — Audit mobile complet et optimisation responsive
 
 - `app/layout.tsx` — Ajout export `viewport` avec `viewportFit: "cover"` pour safe areas iPhone

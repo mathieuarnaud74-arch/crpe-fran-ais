@@ -40,7 +40,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <NextTopLoader color="#476257" showSpinner={false} height={2} />
         {children}
-        <Toaster position="bottom-right" richColors />
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );

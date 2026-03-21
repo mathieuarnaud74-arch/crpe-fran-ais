@@ -118,7 +118,7 @@ function HeroSection({
         className="object-cover object-center"
         priority
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,#fbf7ef_18%,rgba(251,247,239,0.75)_38%,rgba(251,247,239,0.15)_58%,transparent_78%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#fbf7ef_10%,rgba(251,247,239,0.85)_50%,rgba(251,247,239,0.5)_100%)] sm:bg-[linear-gradient(90deg,#fbf7ef_18%,rgba(251,247,239,0.75)_38%,rgba(251,247,239,0.15)_58%,transparent_78%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(164,104,73,0.08),transparent_30%)]" />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-8 sm:px-6 sm:pb-16 lg:pb-24 lg:pt-16">
