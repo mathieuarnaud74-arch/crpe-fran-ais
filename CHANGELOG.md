@@ -1,5 +1,33 @@
 # Changelog
 
+## [2026-03-21] — Badges compacts : icônes denses + tooltip au survol
+
+- `components/ui/achievement-badges.tsx` — refonte du mode grille : chaque badge est réduit à un cercle d'icône 36px (`h-9 w-9`), flex-wrap avec `gap-1.5`, hover `scale-125` avec tooltip CSS (label + description), badges verrouillés en `grayscale opacity-30`, catégories avec compteur inline
+
+## [2026-03-21] — Toast notification pour badges débloqués
+
+- `components/ui/badge-unlock-toast.tsx` — **nouveau** composant client : notification toast pour les badges nouvellement débloqués. Détection via localStorage, stagger 800ms, auto-dismiss 4.5s, max 3 visibles, animation entrée/sortie, click-to-dismiss, `aria-live="polite"`, responsive (pleine largeur mobile, bas-droite desktop), cleanup on unmount
+- `app/(app)/tableau-de-bord/page.tsx` — intégration `BadgeUnlockToast`
+- `app/(app)/progression/page.tsx` — intégration `BadgeUnlockToast`
+
+## [2026-03-21] — Radar de progression, courbe d'évolution, polish badges & heatmap
+
+- `components/ui/progression-radar-chart.tsx` — nouveau composant : radar chart SVG alimenté par `domainProgress`, couleurs par statut (acquis/en_cours/fragile/prioritaire), légende interactive, animation `radar-fill`, accessibilité ARIA complète avec `<title>` et `<desc>`
+- `components/ui/score-evolution-chart.tsx` — nouveau composant : graphique SVG ligne + aire pour l'évolution du taux de réussite cumulé sur 30 jours, tooltip interactif au survol, grille graduée, labels axes, animation `chart-line-draw`, fallback si < 2 jours de données
+- `types/domain.ts` — ajout du type `ScoreEvolutionEntry` (date, correctRate, cumulativeAttempts) et du champ `scoreEvolution` dans `DashboardData`
+- `lib/dashboard.ts` — ajout de `buildScoreEvolution()` : agrégation cumulative du taux de réussite par jour, import de `ScoreEvolutionEntry`, intégration dans le retour de `buildDashboardData()`
+- `components/ui/achievement-badges.tsx` — polish : animation `badge-pop` staggerée sur badges earned (compact + grid), hover `scale-[1.02]` et `shadow-panel`, barre de progression earned/total remplaçant le compteur texte
+- `components/ui/activity-heatmap.tsx` — polish : animation `heatmap-fade`, `<title>` SVG pour accessibilité, `aria-label` enrichi avec nombre de réponses et période
+- `app/globals.css` — 3 nouvelles animations : `radar-fill` (scale + fade 500ms), `chart-line-draw` (stroke-dashoffset 1.2s), `chart-fade-in` (translateY + fade 400ms) + ajout au bloc `prefers-reduced-motion`
+- `app/(app)/progression/page.tsx` — intégration radar + courbe en grid 2 colonnes au-dessus du heatmap, fix HTML entities (`&eacute;` → caractères Unicode)
+- `Opus.md` — mise à jour statut H. Visualisation enrichie → ✅ Implémenté, ajout session 3
+
+## [2026-03-21] — 100 badges supplémentaires (116 au total)
+
+- `components/ui/achievement-badges.tsx` — extension de 16 à 116 badges répartis en 4 catégories : Jalons (30), Maîtrise (35), Régularité (27), Engagement (24). Ajout du compteur par catégorie dans l'en-tête de section
+- `lib/dashboard.ts` — refonte de `computeEarnedBadges()` : pré-calcul de métriques (bonnes réponses cumulées, erreurs, séries parfaites, jours parfaits, streak consécutif, volume hebdomadaire, retour après absence, activité weekend, diversité de niveaux/domaines), puis évaluation déclarative de 116 conditions
+- `Opus.md` — mise à jour du statut badges
+
 ## [2026-03-21] — Audit qualité contenu : corrections terminologiques, linguistiques et difficulté
 
 - `content/french-crpe-series-v3-a.ts` — types de phrases : 4→3 types (Eduscol 2021), exclamation reclassée en forme ; discours indirect : verbe introducteur passé au passé composé pour cohérence avec la concordance des temps ; retrait de « parataxe » des réponses acceptables (était le contraire de la bonne réponse)
@@ -17,6 +45,8 @@
 - `app/(app)/tableau-de-bord/page.tsx` — message welcome-back Mocca (≥ 3 jours d'absence), carte « Défi rapide » avec CTA, panneau heatmap, section badges compacts, renommage « Activité récente » → « Dernières réponses »
 - `app/(app)/progression/page.tsx` — ajout du calendrier d'activité (heatmap) et de la grille complète des badges avec progression
 - `app/globals.css` — animations `badge-pop` et `heatmap-fade` + support `prefers-reduced-motion`
+- `Opus.md` — mise à jour statuts badges (🔶), heatmap (🔶), Mocca welcome-back (✅), défi rapide (🔶) + ajout section « Implémentations session 2 »
+- `CHANGELOG.md` — entrée de session
 
 ## [2026-03-21] — Audit typographie : cohérence des polices d'écriture
 

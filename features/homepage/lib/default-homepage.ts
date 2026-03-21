@@ -1,5 +1,4 @@
 import {
-  FRENCH_DIAGNOSTIC_BANK_SIZE,
   FRENCH_DIAGNOSTIC_SESSION_SIZE,
 } from "@/content/french-diagnostic-questions";
 import { SUBDOMAIN_LABELS } from "@/lib/constants";
@@ -51,8 +50,8 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
           detail: `${subdomainCount} sous-domaines du programme officiel CRPE 2026`,
         },
         {
-          label: `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions · ~30 min`,
-          detail: `Session tirée d'une banque de ${FRENCH_DIAGNOSTIC_BANK_SIZE} questions, avec profil par sous-domaine`,
+          label: `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions · ~15 min`,
+          detail: `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions niveau CRPE, avec profil par sous-domaine`,
         },
         {
           label: "Gratuit pour commencer",

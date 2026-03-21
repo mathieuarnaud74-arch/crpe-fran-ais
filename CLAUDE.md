@@ -107,8 +107,10 @@ components/
 
 ### Typographie
 
-- **Sans** : `"Avenir Next"`, `"Segoe UI"` → `font-sans`
-- **Serif** : `"Iowan Old Style"`, `"Palatino Linotype"` → `font-serif` (titres, valeurs larges)
+- **Sans** : **Manrope** (Google Fonts, `next/font`) → `font-sans` — corps, labels, navigation, boutons
+  - Fallbacks : `"Avenir Next"`, `"Segoe UI"`, `sans-serif`
+- **Serif** : **Cormorant Garamond** (Google Fonts, `next/font`, poids 500/600/700) → `font-serif` — titres, valeurs larges
+  - Fallbacks : `"Iowan Old Style"`, `"Palatino Linotype"`, `serif`
 
 ### Border-radius tokens
 

@@ -1,6 +1,10 @@
 import Link from "next/link";
 
+import { Mocca } from "@/components/mascot/mocca";
+import { AchievementBadges } from "@/components/ui/achievement-badges";
+import { ActivityHeatmap } from "@/components/ui/activity-heatmap";
 import { Badge } from "@/components/ui/badge";
+import { BadgeUnlockToast } from "@/components/ui/badge-unlock-toast";
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";
@@ -195,13 +199,55 @@ export default async function DashboardPage() {
 
   const plan = buildPlanDuJour(data);
 
+  const daysSinceLastActivity = data.lastActivityDate
+    ? Math.floor(
+        (Date.now() - new Date(data.lastActivityDate).getTime()) /
+          (1000 * 60 * 60 * 24),
+      )
+    : null;
+  const showWelcomeBack =
+    daysSinceLastActivity !== null && daysSinceLastActivity >= 3 && data.totalAttempts > 0;
+
+  const quickChallengeSession =
+    data.sessionProgress.find(
+      (s) => s.access_tier === "free" && s.status !== "maitrisee",
+    ) ?? null;
+
   return (
     <div className="space-y-6">
+      <BadgeUnlockToast earnedBadges={data.earnedBadges} />
+
       <OnboardingBanner
         firstSeriesId={firstFreeSeries?.id ?? null}
         hasAttempts={data.totalAttempts > 0}
         diagnostic={diagnostic}
       />
+
+      {/* ── Welcome back after absence ── */}
+      {showWelcomeBack && (
+        <div className="flex items-center gap-4 rounded-[1.5rem] border border-accentSecondary/25 bg-[linear-gradient(135deg,rgba(164,104,73,0.08),rgba(253,249,243,1)_60%)] px-5 py-4 shadow-subtle">
+          <Mocca variant="happy" size="md" className="hidden shrink-0 sm:block" />
+          <div className="flex-1">
+            <p className="text-sm font-bold text-ink">
+              Content de te revoir !
+            </p>
+            <p className="mt-1 text-sm text-muted">
+              {daysSinceLastActivity! >= 7
+                ? `Cela fait ${daysSinceLastActivity} jours — pas de pression, chaque question compte. Reprends à ton rythme !`
+                : `${daysSinceLastActivity} jours sans réviser — un petit exercice pour se remettre en selle ?`}
+            </p>
+          </div>
+          {quickChallengeSession && (
+            <ButtonLink
+              href={`/exercices/${quickChallengeSession.id}`}
+              variant="primary"
+              className="hidden shrink-0 sm:inline-flex"
+            >
+              Reprendre
+            </ButtonLink>
+          )}
+        </div>
+      )}
 
       {/* ── Hero banner ── */}
       <div className="relative overflow-hidden rounded-[1.75rem] border border-accentSecondary/20 bg-[linear-gradient(135deg,#476257_0%,#394E45_50%,#2C2420_100%)] px-5 py-8 sm:px-8 sm:py-10 shadow-panel">
@@ -717,7 +763,99 @@ export default async function DashboardPage() {
         </div>
       )}
 
-      {/* ── Activité récente ── */}
+      {/* ── Quick challenge + Heatmap row ── */}
+      {data.totalAttempts > 0 && (
+        <div className="grid gap-4 2xl:grid-cols-2">
+          {/* Activity heatmap */}
+          <Panel>
+            <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
+              <div>
+                <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[#476257]">
+                  R&eacute;gularit&eacute;
+                </p>
+                <h2 className="mt-1 font-serif text-xl font-semibold text-ink">
+                  Activit&eacute; r&eacute;cente
+                </h2>
+              </div>
+              <ButtonLink href="/progression" variant="secondary">
+                D&eacute;tail
+              </ButtonLink>
+            </div>
+            <div className="mt-4">
+              <ActivityHeatmap dailyActivity={data.dailyActivity} />
+            </div>
+          </Panel>
+
+          {/* Quick challenge */}
+          {quickChallengeSession ? (
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-accentSecondary/20 bg-[linear-gradient(135deg,#476257_0%,#394E45_60%,#2C2420_100%)] px-6 py-6 shadow-panel">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-paper/[0.04] select-none"
+              />
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/50">
+                D&eacute;fi rapide
+              </p>
+              <h2 className="mt-2 font-serif text-2xl font-semibold text-paper">
+                Envie d&apos;un exercice ?
+              </h2>
+              <p className="mt-2 text-sm text-paper/60 max-w-sm">
+                Lancez une s&eacute;rie rapide pour garder le rythme. Chaque question
+                renforce vos acquis.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <ButtonLink
+                  href={`/exercices/${quickChallengeSession.id}`}
+                  className="border-paper/20 bg-paper text-ink hover:bg-paper/90"
+                >
+                  Lancer le d&eacute;fi &rarr;
+                </ButtonLink>
+                <ButtonLink
+                  href="/exercices"
+                  variant="ghost"
+                  className="text-paper/70 hover:text-paper hover:bg-paper/10"
+                >
+                  Choisir une s&eacute;rie
+                </ButtonLink>
+              </div>
+            </div>
+          ) : (
+            <Panel className="flex flex-col items-center justify-center border-successBorder/30 bg-successBg/30 text-center">
+              <span className="text-3xl" aria-hidden="true">&#x1F389;</span>
+              <p className="mt-3 font-serif text-xl font-semibold text-ink">
+                Toutes les s&eacute;ries sont ma&icirc;tris&eacute;es !
+              </p>
+              <p className="mt-1 text-sm text-muted">
+                De nouvelles s&eacute;ries seront bient&ocirc;t disponibles.
+              </p>
+            </Panel>
+          )}
+        </div>
+      )}
+
+      {/* ── Badges ── */}
+      {data.earnedBadges.length > 0 && (
+        <Panel>
+          <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
+            <div>
+              <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-accentSecondary">
+                R&eacute;compenses
+              </p>
+              <h2 className="mt-1 font-serif text-xl font-semibold text-ink">
+                Badges obtenus
+              </h2>
+            </div>
+            <ButtonLink href="/progression" variant="secondary">
+              Tous les badges
+            </ButtonLink>
+          </div>
+          <div className="mt-4">
+            <AchievementBadges earnedBadges={data.earnedBadges} compact />
+          </div>
+        </Panel>
+      )}
+
+      {/* ── Historique des réponses ── */}
       {data.totalAttempts > 0 && (
         <Panel>
           <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
@@ -726,11 +864,11 @@ export default async function DashboardPage() {
                 Historique
               </p>
               <h2 className="mt-1 font-serif text-xl font-semibold text-ink">
-                Activité récente
+                Derni&egrave;res r&eacute;ponses
               </h2>
             </div>
-            <ButtonLink href="/progression" variant="secondary">
-              Statistiques
+            <ButtonLink href="/historique" variant="secondary">
+              Tout voir
             </ButtonLink>
           </div>
 

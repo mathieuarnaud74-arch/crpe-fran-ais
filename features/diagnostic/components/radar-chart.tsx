@@ -105,7 +105,7 @@ export function DiagnosticRadarChart({ data }: { data: RadarDataPoint[] }) {
                 textAnchor={anchor}
                 dominantBaseline="middle"
                 fontSize={11}
-                fontFamily="'Avenir Next','Segoe UI',sans-serif"
+                fontFamily="var(--font-sans),'Avenir Next','Segoe UI',sans-serif"
                 fontWeight={600}
                 fill="#2C2420"
               >
@@ -118,7 +118,7 @@ export function DiagnosticRadarChart({ data }: { data: RadarDataPoint[] }) {
               textAnchor={anchor}
               dominantBaseline="middle"
               fontSize={10}
-              fontFamily="'Avenir Next','Segoe UI',sans-serif"
+              fontFamily="var(--font-sans),'Avenir Next','Segoe UI',sans-serif"
               fill="#6B534A"
             >
               {d.value === 0 ? "0%" : `${Math.round(d.value * 100)}%`}
@@ -134,7 +134,7 @@ export function DiagnosticRadarChart({ data }: { data: RadarDataPoint[] }) {
           y={cy - r * level - 3}
           fontSize={8.5}
           fill="#6B534A"
-          fontFamily="'Avenir Next','Segoe UI',sans-serif"
+          fontFamily="var(--font-sans),'Avenir Next','Segoe UI',sans-serif"
         >
           {Math.round(level * 100)}%
         </text>

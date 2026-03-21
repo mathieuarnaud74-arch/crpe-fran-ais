@@ -205,6 +205,26 @@ export type DashboardDomainDirectoryItem = {
   lastAnsweredAt: string | null;
 };
 
+export type DailyActivityEntry = {
+  date: string;
+  count: number;
+  correctCount: number;
+};
+
+export type ScoreEvolutionEntry = {
+  date: string;
+  correctRate: number;
+  cumulativeAttempts: number;
+};
+
+export type EarnedBadge = {
+  id: string;
+  label: string;
+  description: string;
+  icon: string;
+  category: "milestone" | "streak" | "mastery" | "engagement";
+};
+
 export type DashboardData = {
   subjectLabel: string;
   totalSeries: number;
@@ -229,4 +249,8 @@ export type DashboardData = {
   resumeSessions: DashboardSessionProgress[];
   frequentMistakes: DashboardFrequentMistake[];
   recentActivity: DashboardActivity[];
+  dailyActivity: DailyActivityEntry[];
+  scoreEvolution: ScoreEvolutionEntry[];
+  earnedBadges: EarnedBadge[];
+  lastActivityDate: string | null;
 };

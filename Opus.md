@@ -165,7 +165,7 @@ L'app est **sérieuse et respectueuse** ~~mais manque de chaleur et de plaisir~~
 - ✅ ~~Messages contextuels pendant l'exercice~~ → Mocca affiche des encouragements entre les questions (mi-parcours, streak en cours, dernières questions)
 - ✅ ~~Célébration animée sur les 5 bonnes réponses consécutives~~ → Banner animé avec Mocca happy + message dédié à 5 et 10 réponses d'affilée
 - ✅ ~~Commentaires encourageants entre les questions ("Plus que 3 !")~~ → Messages contextuels : "Plus que 3 !", "Mi-parcours !", "Dernière question !", "Tu es en forme !"
-- ⬜ Message personnalisé au retour après absence
+- ✅ ~~Message personnalisé au retour après absence~~ → Banner Mocca « Content de te revoir ! » affiché après ≥ 3 jours d'inactivité, message adapté selon la durée
 - **Pourquoi** : Transforme un outil en compagnon. La dimension relationnelle augmente l'engagement.
 
 #### J. Mode "défi rapide"
@@ -186,10 +186,10 @@ L'app est **sérieuse et respectueuse** ~~mais manque de chaleur et de plaisir~~
 | D. Mini-leçon avant série | ★★★★★ | ★★★ | Moyen | **P1** | ⬜ À faire |
 | E. Exercices production | ★★★★★ | ★★★ | Élevé | **P1** | ⬜ À faire |
 | F. Examen blanc | ★★★★ | ★★★ | Moyen | **P2** | ⬜ À faire |
-| G. Badges & achievements | ★★☆ | ★★★★ | Faible | **P2** | ⬜ À faire |
-| H. Visualisation enrichie | ★★☆ | ★★★ | Moyen | **P2** | ⬜ À faire |
-| I. Mocca enrichie | ★★★ | ★★★★ | Moyen | **P2** | 🔶 Partiel — messages contextuels + célébrations |
-| J. Mode défi rapide | ★★★ | ★★★★ | Faible | **P3** | ⬜ À faire |
+| G. Badges & achievements | ★★☆ | ★★★★ | Faible | **P2** | 🔶 Partiel — 16 badges UI implémentés, système de jalons client-side. Manque : persistance backend, Mocca costumes |
+| H. Visualisation enrichie | ★★☆ | ★★★ | Moyen | **P2** | ✅ Implémenté — heatmap 13 semaines, radar chart progression, courbe d'évolution 30 jours |
+| I. Mocca enrichie | ★★★ | ★★★★ | Moyen | **P2** | 🔶 Partiel — messages contextuels + célébrations + welcome-back après absence |
+| J. Mode défi rapide | ★★★ | ★★★★ | Faible | **P3** | 🔶 Partiel — carte d'entrée « Défi rapide » sur le dashboard. Manque : timer, mode sprint dédié |
 
 ---
 
@@ -210,6 +210,30 @@ L'app est **sérieuse et respectueuse** ~~mais manque de chaleur et de plaisir~~
 | **Empty states** | Messages motivants avec icônes (acquis, activité récente) | `app/(app)/tableau-de-bord/page.tsx` |
 | **5 animations CSS** | `confetti-fall`, `streak-pulse`, `score-reveal`, `mastery-shine`, `fire-glow` | `app/globals.css` |
 
+### Implémentations ajoutées (2026-03-21 — session 2)
+
+| Composant | Ce qui a été fait | Fichier(s) |
+|-----------|-------------------|------------|
+| **Heatmap d'activité** | Calendrier SVG 13 semaines type GitHub, 5 niveaux d'intensité, tooltip au survol, labels mois/jours | `components/ui/activity-heatmap.tsx` |
+| **Badges & achievements** | 16 badges en 4 catégories (Jalons, Maîtrise, Régularité, Engagement), état gagné/verrouillé, modes compact et détaillé | `components/ui/achievement-badges.tsx` |
+| **Welcome-back Mocca** | Banner avec message adapté après ≥ 3 jours d'absence, CTA de reprise | `app/(app)/tableau-de-bord/page.tsx` |
+| **Défi rapide** | Carte sombre avec CTA vers une série non maîtrisée, design premium | `app/(app)/tableau-de-bord/page.tsx` |
+| **Daily activity data** | Agrégation des tentatives par jour + calcul des 16 badges | `lib/dashboard.ts`, `types/domain.ts` |
+| **Progression enrichie** | Heatmap + grille complète des badges sur la page progression | `app/(app)/progression/page.tsx` |
+| **Animations CSS** | `badge-pop`, `heatmap-fade` + respect `prefers-reduced-motion` | `app/globals.css` |
+
+### Implémentations ajoutées (2026-03-21 — session 3)
+
+| Composant | Ce qui a été fait | Fichier(s) |
+|-----------|-------------------|------------|
+| **Radar de progression** | SVG radar chart alimenté par `domainProgress`, couleurs par statut (acquis/en_cours/fragile/prioritaire), légende, animation `radar-fill`, labels %, ARIA complet | `components/ui/progression-radar-chart.tsx` |
+| **Courbe d'évolution** | Graphique SVG ligne + aire, 30 derniers jours, tooltip interactif, grille, labels axes, animation `chart-line-draw` | `components/ui/score-evolution-chart.tsx` |
+| **Score evolution data** | Agrégation cumulative correctRate par jour dans `buildScoreEvolution()` | `lib/dashboard.ts`, `types/domain.ts` |
+| **Polish badges** | Animation `badge-pop` staggerée, hover scale, barre de progression earned/total | `components/ui/achievement-badges.tsx` |
+| **Polish heatmap** | Animation `heatmap-fade`, `<title>` SVG, aria-label enrichi | `components/ui/activity-heatmap.tsx` |
+| **3 animations CSS** | `radar-fill`, `chart-line-draw`, `chart-fade-in` + respect `prefers-reduced-motion` | `app/globals.css` |
+| **Page progression enrichie** | Intégration radar + courbe en grid 2 colonnes avant heatmap et badges | `app/(app)/progression/page.tsx` |
+
 ### Ce qui reste à faire (par priorité)
 
 1. **P0 — Répétition espacée (SRS)** : algorithme SM-2, "Révision du jour", backend de planification
@@ -217,9 +241,8 @@ L'app est **sérieuse et respectueuse** ~~mais manque de chaleur et de plaisir~~
 3. **P0 — Objectif quotidien personnalisable** : setting utilisateur en base, choix 10/15/20/30 questions
 4. **P1 — Parcours adaptatif post-diagnostic** : séquencement intelligent, verrouillage progressif
 5. **P1 — Mini-leçon avant série** : intégration fiches sprint dans le flux d'exercice
-6. **P2 — Heatmap d'activité** : visualisation type GitHub contributions
-7. **P2 — Badges & achievements** : système de jalons, Mocca costumes
-8. **P3 — Mode défi rapide** : sprint 5 questions / 2 minutes
+6. **P2 — Badges persistés** : backend Supabase pour persister les badges + Mocca costumes
+7. **P3 — Mode défi rapide complet** : timer, sprint 5 questions / 2 minutes, record personnel
 
 ---
 

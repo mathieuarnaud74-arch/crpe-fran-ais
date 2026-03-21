@@ -5,8 +5,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import {
-  buildBalancedFrenchDiagnosticSession,
-  FRENCH_DIAGNOSTIC_BANK_SIZE,
+  buildDiagnosticSession,
   FRENCH_DIAGNOSTIC_SESSION_SIZE,
   type FrenchDiagnosticQuestion,
   type FrenchDiagnosticSubdomainKey,
@@ -95,7 +94,7 @@ function getMasteryTone(mastery: SubdomainSummary["mastery"]) {
 
 export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?: boolean }) {
   const [questions] = useState<FrenchDiagnosticQuestion[]>(() =>
-    buildBalancedFrenchDiagnosticSession(),
+    buildDiagnosticSession(),
   );
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() =>
@@ -245,7 +244,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
                   {Math.round((score / questions.length) * 100)} % de réussite
                 </Badge>
                 <Badge tone="neutral" size="sm">
-                  {questions.length} questions tirées d&apos;une banque de {FRENCH_DIAGNOSTIC_BANK_SIZE}
+                  {questions.length} questions
                 </Badge>
               </div>
             </div>
@@ -350,7 +349,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
           <div className="mx-auto max-w-2xl">
             <Badge tone="accentSecondary">Diagnostic gratuit</Badge>
             <h1 className="mt-5 font-serif text-3xl font-semibold text-ink sm:text-4xl">
-              Identifiez vos lacunes en 20 minutes
+              Identifiez vos lacunes en 15 minutes
             </h1>
             <p className="mt-4 text-sm leading-7 text-muted">
               {FRENCH_DIAGNOSTIC_SESSION_SIZE} questions couvrant les sous-domaines du CRPE Français.
@@ -362,13 +361,13 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
                 <BookOpen className="h-5 w-5 shrink-0 text-accentSecondaryDark" />
                 <div>
                   <p className="text-sm font-semibold text-ink">{FRENCH_DIAGNOSTIC_SESSION_SIZE} questions</p>
-                  <p className="text-xs text-muted">Tirées d&apos;une banque de {FRENCH_DIAGNOSTIC_BANK_SIZE}</p>
+                  <p className="text-xs text-muted">Niveau CRPE, tous sous-domaines</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-[1.25rem] border border-border bg-paper px-4 py-3">
                 <Clock className="h-5 w-5 shrink-0 text-accentSecondaryDark" />
                 <div>
-                  <p className="text-sm font-semibold text-ink">~20 minutes</p>
+                  <p className="text-sm font-semibold text-ink">~15 minutes</p>
                   <p className="text-xs text-muted">Durée estimée de la passation</p>
                 </div>
               </div>
