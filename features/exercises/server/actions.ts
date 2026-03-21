@@ -11,8 +11,10 @@ import {
   getAttemptsCountToday,
   getExerciseById,
 } from "@/features/exercises/server/queries";
+import { updateUserXp } from "@/features/gamification/server/queries";
 import { canSubmitAttempt } from "@/lib/freemium";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { calculateXpEarned, type ExerciseMode } from "@/lib/xp";
 
 type AttemptActionState = {
   status: "idle" | "success" | "error";
@@ -20,6 +22,9 @@ type AttemptActionState = {
   explanation?: string;
   isCorrect?: boolean;
   expectedAnswerLabel?: string;
+  xpEarned?: number;
+  newLevel?: number;
+  previousLevel?: number;
 };
 
 export async function submitAttemptAction(
@@ -29,6 +34,9 @@ export async function submitAttemptAction(
   const exerciseId = String(formData.get("exerciseId") ?? "");
   const submittedValue = String(formData.get("answer") ?? "");
   const sessionId = String(formData.get("sessionId") ?? "");
+  const timeSpentMs = formData.get("timeSpentMs") ? Number(formData.get("timeSpentMs")) : null;
+  const exerciseMode = (formData.get("exerciseMode") as ExerciseMode) ?? "standard";
+  const streak = formData.get("streak") ? Number(formData.get("streak")) : 0;
 
   const supabase = await createSupabaseServerClient();
   const user = (await supabase.auth.getUser()).data.user;
@@ -70,12 +78,23 @@ export async function submitAttemptAction(
 
   const evaluation = evaluateExerciseAnswer(exercise, submittedValue);
 
+  // Calculate XP
+  const xpEarned = calculateXpEarned(
+    evaluation.isCorrect,
+    streak,
+    timeSpentMs,
+    exerciseMode,
+  );
+
   const { error } = await supabase.from("attempts").insert({
     user_id: user.id,
     exercise_id: exercise.id,
     submitted_answer: { value: submittedValue },
     is_correct: evaluation.isCorrect,
     score: evaluation.isCorrect ? 1 : 0,
+    time_spent_ms: timeSpentMs,
+    xp_earned: xpEarned,
+    exercise_mode: exerciseMode,
   });
 
   if (error) {
@@ -83,6 +102,22 @@ export async function submitAttemptAction(
       status: "error",
       message: "Impossible d'enregistrer votre tentative.",
     };
+  }
+
+  // Update XP & streak in gamification table
+  const currentStreak = evaluation.isCorrect ? streak + 1 : 0;
+  let newLevel: number | undefined;
+  let previousLevel: number | undefined;
+
+  try {
+    const { getLevelForXp } = await import("@/lib/xp");
+    const gamification = await import("@/features/gamification/server/queries");
+    const userGamification = await gamification.getUserGamification(user.id);
+    previousLevel = userGamification.level;
+    const result = await updateUserXp(user.id, xpEarned, currentStreak);
+    newLevel = result.newLevel;
+  } catch {
+    // Gamification table may not exist yet, fail gracefully
   }
 
   revalidatePath("/tableau-de-bord");
@@ -101,5 +136,8 @@ export async function submitAttemptAction(
     explanation: exercise.detailed_explanation,
     isCorrect: evaluation.isCorrect,
     expectedAnswerLabel: buildExpectedAnswerLabel(exercise.expected_answer, exercise.choices),
+    xpEarned,
+    newLevel,
+    previousLevel,
   };
 }

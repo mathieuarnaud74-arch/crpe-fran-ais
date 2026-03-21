@@ -1,0 +1,314 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
+import { useSwipeable } from "react-swipeable";
+import { AnimatePresence, motion, useMotionValue, useTransform } from "framer-motion";
+import { toast } from "sonner";
+
+import { useGameSounds } from "@/components/hooks/use-game-sounds";
+import { Badge } from "@/components/ui/badge";
+import { Button, ButtonLink } from "@/components/ui/button";
+import { Confetti } from "@/components/ui/confetti";
+import { Mocca } from "@/components/mascot/mocca";
+import { Panel } from "@/components/ui/panel";
+import { XpBar } from "@/components/ui/xp-bar";
+import { XpPopup } from "@/components/ui/xp-popup";
+import { submitAttemptAction } from "@/features/exercises/server/actions";
+import { evaluateExerciseAnswer } from "@/features/exercises/shared/evaluation";
+import { MASTERY_THRESHOLD } from "@/lib/dashboard";
+import { cn } from "@/lib/utils";
+import { calculateXpEarned, getXpForNextLevel } from "@/lib/xp";
+import type { RevisionSession } from "@/types/domain";
+
+type SwipePlayerProps = {
+  session: RevisionSession;
+  initialXp?: number;
+  nextSession?: { id: string; title: string } | null;
+};
+
+type SwipeResult = {
+  questionId: string;
+  isCorrect: boolean;
+  userAnswer: string;
+  expectedAnswer: string;
+};
+
+export function SwipePlayer({ session, initialXp = 0, nextSession = null }: SwipePlayerProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [results, setResults] = useState<SwipeResult[]>([]);
+  const [, startTransition] = useTransition();
+  const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(null);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [sessionXp, setSessionXp] = useState(0);
+  const [lastXpEarned, setLastXpEarned] = useState(0);
+  const [xpTrigger, setXpTrigger] = useState(0);
+  const [runningXp, setRunningXp] = useState(initialXp);
+  const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
+  const questionStartRef = useRef(Date.now());
+  const { playSound } = useGameSounds();
+
+  const completed = currentIndex >= session.questions.length;
+  const currentQuestion = session.questions[currentIndex];
+  const score = results.filter((r) => r.isCorrect).length;
+  const correctPercent = results.length > 0 ? (score / results.length) * 100 : 0;
+
+  const x = useMotionValue(0);
+  const rotate = useTransform(x, [-200, 200], [-15, 15]);
+  const bgOpacity = useTransform(x, [-200, -50, 0, 50, 200], [0.3, 0, 0, 0, 0.3]);
+  const bgColor = useTransform(x, [-200, 0, 200], [
+    "rgba(220, 38, 38, 0.15)",
+    "rgba(0,0,0,0)",
+    "rgba(34, 197, 94, 0.15)",
+  ]);
+
+  const handleSwipe = useCallback(
+    (answer: "true" | "false") => {
+      if (!currentQuestion || completed) return;
+
+      const evaluation = evaluateExerciseAnswer(currentQuestion, answer);
+      const timeSpentMs = Date.now() - questionStartRef.current;
+      const streak = evaluation.isCorrect ? consecutiveCorrect : 0;
+      const xp = calculateXpEarned(evaluation.isCorrect, streak, timeSpentMs, "swipe");
+
+      const expectedValue = currentQuestion.expected_answer.mode === "boolean"
+        ? String(currentQuestion.expected_answer.value)
+        : "";
+
+      setResults((prev) => [
+        ...prev,
+        {
+          questionId: currentQuestion.id,
+          isCorrect: evaluation.isCorrect,
+          userAnswer: answer === "true" ? "Vrai" : "Faux",
+          expectedAnswer: expectedValue === "true" ? "Vrai" : "Faux",
+        },
+      ]);
+
+      setSessionXp((prev) => prev + xp);
+      setLastXpEarned(xp);
+      setXpTrigger((t) => t + 1);
+      setRunningXp((prev) => prev + xp);
+
+      if (evaluation.isCorrect) {
+        setConsecutiveCorrect((c) => c + 1);
+        playSound("correct");
+      } else {
+        setConsecutiveCorrect(0);
+        playSound("incorrect");
+      }
+
+      setFeedback(evaluation.isCorrect ? "correct" : "incorrect");
+      setTimeout(() => {
+        setFeedback(null);
+        setCurrentIndex((i) => i + 1);
+        questionStartRef.current = Date.now();
+      }, 600);
+
+      // Persist to server
+      startTransition(async () => {
+        const formData = new FormData();
+        formData.append("exerciseId", currentQuestion.id);
+        formData.append("answer", answer);
+        formData.append("sessionId", session.id);
+        formData.append("timeSpentMs", String(timeSpentMs));
+        formData.append("exerciseMode", "swipe");
+        formData.append("streak", String(streak));
+        try {
+          await submitAttemptAction({ status: "idle" }, formData);
+        } catch {
+          toast.error("Réponse non enregistrée.");
+        }
+      });
+    },
+    [currentQuestion, completed, consecutiveCorrect, playSound, session.id, startTransition],
+  );
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => handleSwipe("false"),
+    onSwipedRight: () => handleSwipe("true"),
+    preventScrollOnSwipe: true,
+    trackMouse: true,
+  });
+
+  useEffect(() => {
+    if (completed && correctPercent >= MASTERY_THRESHOLD) {
+      setShowConfetti(true);
+    }
+  }, [completed, correctPercent]);
+
+  const xpInfo = getXpForNextLevel(runningXp);
+
+  if (completed) {
+    return (
+      <div className="space-y-6">
+        <Confetti trigger={showConfetti} />
+        <Panel className="border-border bg-card">
+          <div className="flex items-start gap-5">
+            <Mocca
+              variant={correctPercent >= 80 ? "happy" : correctPercent >= 50 ? "neutral" : "grumpy"}
+              size="xl"
+              className="hidden shrink-0 sm:block"
+            />
+            <div className="space-y-4">
+              <h2 className="animate-score-reveal font-serif text-2xl font-semibold text-ink sm:text-3xl">
+                Score : {score} / {session.questions.length}
+              </h2>
+              <p className="text-sm text-muted">
+                +{sessionXp} XP gagnés en mode Swipe
+              </p>
+              <XpBar
+                currentLevel={xpInfo.currentLevel}
+                xpInCurrentLevel={xpInfo.xpInCurrentLevel}
+                xpNeededForNext={xpInfo.xpNeededForNext}
+                progress={xpInfo.progress}
+                totalXp={runningXp}
+                size="sm"
+              />
+
+              {/* Review */}
+              <div className="space-y-2 pt-4">
+                {results.map((r, i) => (
+                  <div
+                    key={r.questionId}
+                    className={cn(
+                      "flex items-center gap-2 rounded-inner border px-3 py-2 text-sm",
+                      r.isCorrect ? "border-successBorder bg-successBg" : "border-errorBorder bg-errorBg",
+                    )}
+                  >
+                    <span className="font-semibold text-ink">Q{i + 1}</span>
+                    <span className={r.isCorrect ? "text-pine" : "text-error"}>
+                      {r.isCorrect ? "✓" : `✗ (${r.userAnswer} → ${r.expectedAnswer})`}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-3 pt-4">
+                {nextSession && (
+                  <ButtonLink href={`/exercices/${nextSession.id}`}>
+                    Série suivante →
+                  </ButtonLink>
+                )}
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => {
+                    setResults([]);
+                    setCurrentIndex(0);
+                    setSessionXp(0);
+                    setConsecutiveCorrect(0);
+                    setShowConfetti(false);
+                  }}
+                >
+                  Recommencer
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Panel>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* XP Bar */}
+      <div className="relative">
+        <XpBar
+          currentLevel={xpInfo.currentLevel}
+          xpInCurrentLevel={xpInfo.xpInCurrentLevel}
+          xpNeededForNext={xpInfo.xpNeededForNext}
+          progress={xpInfo.progress}
+          totalXp={runningXp}
+          size="sm"
+        />
+        <XpPopup xp={lastXpEarned} trigger={xpTrigger} />
+      </div>
+
+      {/* Progress */}
+      <div className="flex items-center justify-between text-sm text-muted">
+        <span>Question {currentIndex + 1} / {session.questions.length}</span>
+        <span>{score} correct{score > 1 ? "es" : "e"}</span>
+      </div>
+
+      {/* Swipe area */}
+      <div className="relative flex min-h-[320px] items-center justify-center" {...swipeHandlers}>
+        {/* Direction labels */}
+        <div className="pointer-events-none absolute inset-x-0 top-2 flex justify-between px-6 text-sm font-bold">
+          <span className="rounded-pill bg-errorBg px-3 py-1 text-error">← FAUX</span>
+          <span className="rounded-pill bg-successBg px-3 py-1 text-pine">VRAI →</span>
+        </div>
+
+        {/* Feedback flash */}
+        <AnimatePresence>
+          {feedback && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className={cn(
+                "absolute inset-0 z-20 flex items-center justify-center rounded-panel text-5xl font-bold",
+                feedback === "correct" ? "bg-successBg/80 text-pine" : "bg-errorBg/80 text-error",
+              )}
+            >
+              {feedback === "correct" ? "✓" : "✗"}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Card stack */}
+        <AnimatePresence mode="popLayout">
+          {currentQuestion && (
+            <motion.div
+              key={currentQuestion.id}
+              style={{ x, rotate, backgroundColor: bgColor }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.8}
+              onDragEnd={(_, info) => {
+                if (info.offset.x > 100) {
+                  handleSwipe("true");
+                } else if (info.offset.x < -100) {
+                  handleSwipe("false");
+                }
+              }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ x: 300, opacity: 0, rotate: 15 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="w-full max-w-lg cursor-grab rounded-panel border border-border bg-card p-8 shadow-elevated active:cursor-grabbing"
+            >
+              <p className="text-center font-serif text-xl font-semibold leading-8 text-ink sm:text-2xl">
+                {currentQuestion.instruction}
+              </p>
+              {currentQuestion.support_text && (
+                <p className="mt-4 rounded-inner border border-border bg-paper p-4 text-sm text-muted">
+                  {currentQuestion.support_text}
+                </p>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Accessibility buttons */}
+      <div className="flex justify-center gap-4">
+        <Button
+          type="button"
+          variant="destructive"
+          onClick={() => handleSwipe("false")}
+          className="w-32"
+        >
+          Faux
+        </Button>
+        <Button
+          type="button"
+          onClick={() => handleSwipe("true")}
+          className="w-32 bg-pine text-white hover:bg-pine/90"
+        >
+          Vrai
+        </Button>
+      </div>
+    </div>
+  );
+}

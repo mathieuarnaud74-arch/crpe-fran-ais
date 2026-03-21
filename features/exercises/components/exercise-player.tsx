@@ -3,12 +3,16 @@
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { toast } from "sonner";
 
+import { useGameSounds } from "@/components/hooks/use-game-sounds";
 import { Mocca } from "@/components/mascot/mocca";
 import { Badge } from "@/components/ui/badge";
 import { Confetti } from "@/components/ui/confetti";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { Textarea } from "@/components/ui/textarea";
+import { XpBar } from "@/components/ui/xp-bar";
+import { XpPopup } from "@/components/ui/xp-popup";
+import { ExerciseTimer } from "@/features/exercises/components/exercise-timer";
 import { submitAttemptAction } from "@/features/exercises/server/actions";
 import {
   evaluateExerciseAnswer,
@@ -23,7 +27,8 @@ import {
 } from "@/lib/constants";
 import { MASTERY_THRESHOLD } from "@/lib/dashboard";
 import { cn } from "@/lib/utils";
-import { RevisionSession } from "@/types/domain";
+import { calculateXpEarned, getXpForNextLevel } from "@/lib/xp";
+import { RevisionSession, type ExerciseMode } from "@/types/domain";
 
 type SessionResult = {
   answer: string;
@@ -37,12 +42,18 @@ type ExercisePlayerProps = {
   session: RevisionSession;
   disabledReason?: string | null;
   nextSession?: { id: string; title: string } | null;
+  mode?: ExerciseMode;
+  timerDuration?: number; // seconds, for timed mode
+  initialXp?: number;
 };
 
 export function ExercisePlayer({
   session,
   disabledReason = null,
   nextSession = null,
+  mode = "standard",
+  timerDuration = 60,
+  initialXp = 0,
 }: ExercisePlayerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [draftAnswer, setDraftAnswer] = useState("");
@@ -55,9 +66,15 @@ export function ExercisePlayer({
   const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
   const [streakCelebration, setStreakCelebration] = useState<number | null>(null);
+  const [sessionXp, setSessionXp] = useState(0);
+  const [lastXpEarned, setLastXpEarned] = useState(0);
+  const [xpTrigger, setXpTrigger] = useState(0);
+  const [runningXp, setRunningXp] = useState(initialXp);
+  const [questionStartTime, setQuestionStartTime] = useState(Date.now());
   const prevResultsCount = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const feedbackRef = useRef<HTMLDivElement>(null);
+  const { playSound } = useGameSounds();
 
   const currentQuestion = session.questions[currentIndex];
   const currentResult = currentQuestion ? results[currentQuestion.id] : undefined;
@@ -81,6 +98,7 @@ export function ExercisePlayer({
 
   useEffect(() => {
     setShowFullExplanation(false);
+    setQuestionStartTime(Date.now());
   }, [currentQuestion?.id]);
 
   // Scroll to top when series is completed
@@ -109,12 +127,15 @@ export function ExercisePlayer({
     if (lastResult?.isCorrect) {
       const newStreak = consecutiveCorrect + 1;
       setConsecutiveCorrect(newStreak);
+      playSound("correct");
       if (newStreak === 5 || newStreak === 10) {
         setStreakCelebration(newStreak);
+        playSound("streak");
         setTimeout(() => setStreakCelebration(null), 2500);
       }
     } else {
       setConsecutiveCorrect(0);
+      if (lastResult) playSound("incorrect");
     }
 
     // Trigger confetti when series is completed with mastery
@@ -123,6 +144,10 @@ export function ExercisePlayer({
       const finalPercent = (finalScore / session.questions.length) * 100;
       if (finalPercent >= MASTERY_THRESHOLD) {
         setShowConfetti(true);
+        playSound("streak");
+      }
+      if (finalPercent === 100) {
+        playSound("levelUp");
       }
     }
   }, [results, session.questions, consecutiveCorrect]);
@@ -144,6 +169,19 @@ export function ExercisePlayer({
     }
 
     const evaluation = evaluateExerciseAnswer(currentQuestion, draftAnswer);
+    const timeSpentMs = Date.now() - questionStartTime;
+
+    // Calculate XP locally for instant feedback
+    const xp = calculateXpEarned(
+      evaluation.isCorrect,
+      evaluation.isCorrect ? consecutiveCorrect : 0,
+      timeSpentMs,
+      mode,
+    );
+    setSessionXp((prev) => prev + xp);
+    setLastXpEarned(xp);
+    setXpTrigger((t) => t + 1);
+    setRunningXp((prev) => prev + xp);
 
     setResults((previous) => ({
       ...previous,
@@ -163,8 +201,15 @@ export function ExercisePlayer({
       formData.append("exerciseId", currentQuestion.id);
       formData.append("answer", draftAnswer);
       formData.append("sessionId", session.id);
+      formData.append("timeSpentMs", String(timeSpentMs));
+      formData.append("exerciseMode", mode);
+      formData.append("streak", String(evaluation.isCorrect ? consecutiveCorrect : 0));
       try {
-        await submitAttemptAction({ status: "idle" }, formData);
+        const result = await submitAttemptAction({ status: "idle" }, formData);
+        if (result.previousLevel && result.newLevel && result.newLevel > result.previousLevel) {
+          playSound("levelUp");
+          toast.success(`🎉 Niveau ${result.newLevel} atteint !`, { duration: 3000 });
+        }
       } catch {
         toast.error("Votre réponse n'a pas pu être enregistrée.");
       }
@@ -307,9 +352,29 @@ export function ExercisePlayer({
 
   const moccaEncouragement = getMoccaEncouragement();
 
+  const xpInfo = getXpForNextLevel(runningXp);
+
   return (
     <div ref={containerRef} className="scroll-mt-20 space-y-6">
       <Confetti trigger={showConfetti} />
+
+      {/* XP Bar */}
+      <div className="relative">
+        <XpBar
+          currentLevel={xpInfo.currentLevel}
+          xpInCurrentLevel={xpInfo.xpInCurrentLevel}
+          xpNeededForNext={xpInfo.xpNeededForNext}
+          progress={xpInfo.progress}
+          totalXp={runningXp}
+          size="sm"
+        />
+        <XpPopup xp={lastXpEarned} trigger={xpTrigger} />
+        {sessionXp > 0 && (
+          <p className="mt-1 text-right text-xs text-muted">
+            +{sessionXp} XP cette série
+          </p>
+        )}
+      </div>
 
       <Panel className="border-border bg-card">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
@@ -602,9 +667,24 @@ export function ExercisePlayer({
           )}
 
           <div key={currentQuestion.id} className="animate-question-stage space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <Badge>{SUBDOMAIN_LABELS[currentQuestion.subdomain]}</Badge>
-              <Badge>{EXERCISE_TYPE_LABELS[currentQuestion.exercise_type]}</Badge>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-3">
+                <Badge>{SUBDOMAIN_LABELS[currentQuestion.subdomain]}</Badge>
+                <Badge>{EXERCISE_TYPE_LABELS[currentQuestion.exercise_type]}</Badge>
+                {mode === "timed" && <Badge tone="accent">Chrono</Badge>}
+              </div>
+              {mode === "timed" && !currentResult && (
+                <ExerciseTimer
+                  key={currentQuestion.id}
+                  duration={timerDuration}
+                  isPlaying={!currentResult}
+                  size={60}
+                  onComplete={() => {
+                    if (!currentResult) submitCurrentQuestion();
+                  }}
+                  onWarning={() => playSound("timerWarning")}
+                />
+              )}
             </div>
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-muted">

@@ -5,12 +5,13 @@ import { Badge } from "@/components/ui/badge";
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";
 import { isPremiumUser } from "@/features/billing/server/queries";
-import { ExercisePlayer } from "@/features/exercises/components/exercise-player";
+import { ExerciseSessionWrapper } from "@/features/exercises/components/exercise-session-wrapper";
 import {
   getAttemptsCountToday,
   getExercises,
   getExerciseSessionById,
 } from "@/features/exercises/server/queries";
+import { getUserGamification } from "@/features/gamification/server/queries";
 import { env } from "@/lib/env";
 import { canSubmitAttempt } from "@/lib/freemium";
 import { formatLevelLabel } from "@/lib/constants";
@@ -38,6 +39,11 @@ export default async function ExerciseDetailPage({
   if (!session) {
     notFound();
   }
+
+  let gamification = { xp: 0, personal_best_sprint_time: null as number | null };
+  try {
+    gamification = await getUserGamification(user.id);
+  } catch {}
 
   const [attemptsToday, allSessions] = await Promise.all([
     getAttemptsCountToday(user.id),
@@ -108,10 +114,12 @@ export default async function ExerciseDetailPage({
           )}
         </Panel>
       ) : null}
-      <ExercisePlayer
+      <ExerciseSessionWrapper
         session={session}
         disabledReason={disabledReason}
         nextSession={nextSession ? { id: nextSession.id, title: nextSession.title } : null}
+        initialXp={gamification.xp}
+        personalBest={gamification.personal_best_sprint_time}
       />
     </div>
   );
