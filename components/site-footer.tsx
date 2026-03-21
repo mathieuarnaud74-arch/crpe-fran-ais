@@ -25,7 +25,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-secondary">
       {/* Main grid */}
-      <div className="mx-auto max-w-6xl px-6 py-14 lg:py-16">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
           {/* About */}
           <div>
@@ -55,7 +55,7 @@ export function SiteFooter() {
 
       {/* Bottom bar */}
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p className="text-xs text-muted">© 2026 CRPE Prep — Tous droits réservés</p>
           <p className="text-xs text-muted">
             Conforme programme CRPE 2026 · Exercices ajoutés régulièrement

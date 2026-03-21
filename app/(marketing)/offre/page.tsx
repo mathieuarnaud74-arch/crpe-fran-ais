@@ -63,10 +63,10 @@ export default async function OfferPage() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <div className="mx-auto max-w-6xl px-6 py-10 sm:py-16">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-16">
         {/* Header */}
         <div className="max-w-2xl">
-          <h1 className="font-serif text-3xl sm:text-5xl font-semibold text-ink">
+          <h1 className="font-serif text-[1.75rem] font-semibold leading-tight text-ink sm:text-5xl">
             Commencez gratuitement, passez au premium si vous voulez aller plus vite
           </h1>
           <p className="mt-4 text-lg leading-8 text-muted">
@@ -81,7 +81,7 @@ export default async function OfferPage() {
         {/* Comparatif principal : Gratuit vs Premium */}
         <div className="mx-auto mt-12 grid max-w-3xl gap-6 lg:grid-cols-2">
           {/* Free */}
-          <div className="flex flex-col rounded-[2rem] border border-border bg-card p-6 shadow-panel">
+          <div className="flex flex-col rounded-[1.5rem] border border-border bg-card p-5 shadow-panel sm:rounded-[2rem] sm:p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">Gratuit</p>
             <p className="mt-3 font-serif text-4xl font-semibold text-ink">0 €</p>
             <p className="mt-1 text-xs text-muted">Inscription gratuite · aucune carte requise</p>
@@ -104,7 +104,7 @@ export default async function OfferPage() {
           </div>
 
           {/* Premium mensuel — recommandé */}
-          <div className="flex flex-col rounded-[2rem] border border-white/10 bg-premiumDark p-6 text-paper shadow-panel">
+          <div className="flex flex-col rounded-[1.5rem] border border-white/10 bg-premiumDark p-5 text-paper shadow-panel sm:rounded-[2rem] sm:p-6">
             <div className="flex items-start justify-between gap-3">
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-paper/60">
                 Premium mensuel

@@ -15,7 +15,7 @@ export function AppShell({ children, userEmail }: AppShellProps) {
   return (
     <div className="min-h-screen bg-paper">
       <header className="border-b border-ink/20 bg-[linear-gradient(135deg,#2C2420,#394E45)]">
-        <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-3 px-4 py-3 sm:px-6 sm:py-4 md:flex-row md:items-center md:justify-between">
           <Link href="/tableau-de-bord" className="flex min-w-0 items-center">
             <div className="h-14 overflow-hidden">
               <Image
@@ -33,7 +33,7 @@ export function AppShell({ children, userEmail }: AppShellProps) {
             <MobileNav />
             <Link
               href="/"
-              className="rounded-full border border-paper/20 bg-paper/10 px-4 py-2 text-sm font-medium text-paper transition hover:bg-paper/20"
+              className="hidden rounded-full border border-paper/20 bg-paper/10 px-4 py-2 text-sm font-medium text-paper transition hover:bg-paper/20 sm:inline-flex"
             >
               Accueil
             </Link>
@@ -41,12 +41,14 @@ export function AppShell({ children, userEmail }: AppShellProps) {
               Espace de révision
             </div>
             <p className="hidden md:block max-w-[280px] truncate text-sm text-paper/60">{userEmail}</p>
-            <LogoutButton />
+            <div className="hidden sm:block">
+              <LogoutButton />
+            </div>
           </div>
         </div>
       </header>
 
-      <div className="mx-auto grid max-w-[1440px] gap-8 px-6 py-8 xl:grid-cols-[292px,1fr]">
+      <div className="mx-auto grid max-w-[1440px] gap-5 px-4 py-5 sm:gap-6 sm:px-6 sm:py-6 md:gap-8 md:py-8 xl:grid-cols-[292px,1fr]">
         <aside className="hidden xl:sticky xl:top-6 xl:block xl:self-start">
           <div className="overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-panel">
             <div className="border-b border-border bg-[linear-gradient(135deg,#476257,#394E45)] px-5 py-4">
@@ -62,7 +64,7 @@ export function AppShell({ children, userEmail }: AppShellProps) {
             </div>
           </div>
         </aside>
-        <main className="min-w-0 space-y-6">{children}</main>
+        <main className="min-w-0 space-y-5 pb-16 sm:space-y-6 lg:pb-0">{children}</main>
       </div>
     </div>
   );

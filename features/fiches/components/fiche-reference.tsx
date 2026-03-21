@@ -24,8 +24,8 @@ export function FicheReference({ content }: { content: FicheContentReference }) 
           </div>
 
           {section.collapsible ? (
-            <details className="group rounded-[1.75rem] border border-border bg-card shadow-panel">
-              <summary className="cursor-pointer list-none px-6 py-5">
+            <details className="group rounded-[1.25rem] border border-border bg-card shadow-panel sm:rounded-[1.75rem]">
+              <summary className="cursor-pointer list-none px-4 py-4 sm:px-6 sm:py-5">
                 <div className="flex items-center justify-between gap-4">
                   <p className="text-sm font-medium text-muted">
                     Cliquer pour afficher les cas avancés

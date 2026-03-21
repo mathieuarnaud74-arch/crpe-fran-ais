@@ -1,5 +1,41 @@
 # Changelog
 
+## [2026-03-21] — Audit mobile complet et optimisation responsive
+
+- `app/layout.tsx` — Ajout export `viewport` avec `viewportFit: "cover"` pour safe areas iPhone
+- `app/globals.css` — Ajout variables CSS `--safe-bottom/top/left/right` (safe-area-inset)
+- `components/nav-links.tsx` — Bottom nav : safe area padding, texte agrandi (0.65→0.7rem)
+- `components/app-shell.tsx` — Spacing responsive (gap/padding réduits sur mobile), padding bottom pour bottom nav
+- `components/site-header.tsx` — Padding latéral réduit sur mobile (px-4 → px-6 au sm)
+- `components/site-footer.tsx` — Padding responsive (px-4/py-10 mobile, px-6/py-14 sm)
+- `components/ui/panel.tsx` — Padding et border-radius responsives (p-4/rounded-1.25rem mobile, p-6/1.75rem sm)
+- `components/ui/card.tsx` — Padding et border-radius responsives sur Card, CardHeader, CardContent, CardFooter
+- `features/homepage/components/renderer.tsx` — Hero : titre 2.5rem mobile (→6xl desktop), CTA pleine largeur mobile, spacing réduit. Trust bar, benefits, features, FAQ, domains, final CTA : padding px-4 mobile, spacing adapté
+- `features/exercises/components/exercise-player.tsx` — Progress card : min-w supprimé mobile, padding réduit
+- `features/diagnostic/components/diagnostic-client.tsx` — Passation : padding réduit (px-4/py-5), feedback plus compact
+- `features/dashboard/components/collapsible-panel.tsx` — Padding et border-radius responsives
+- `features/dashboard/components/session-progress-card.tsx` — Padding et border-radius responsives
+- `features/fiches/components/blocks/block-table.tsx` — min-width réduit (400→300px) pour mobile
+- `features/fiches/components/blocks/block-decision-tree.tsx` — Indentation réduite sur mobile (ml-3 vs ml-6)
+- `features/fiches/components/fiche-reference.tsx` — Collapsible details : padding et radius responsives
+- `app/(auth)/layout.tsx` — Padding réduit sur mobile (p-5/px-4, rounded-1.5rem)
+- `app/(app)/tableau-de-bord/page.tsx` — Hero banner : padding réduit, titre 3xl mobile, plan du jour padding responsive
+- `app/(app)/exercices/page.tsx` — Titre responsive, filtre grille sm:grid-cols-2, meta cells responsives
+- `app/(app)/fiches/page.tsx` — Titre responsive
+- `app/(app)/francais/page.tsx` — Titre responsive
+- `app/(app)/profil/page.tsx` — Titre responsive
+- `app/(app)/abonnement/page.tsx` — Titre responsive
+- `app/(app)/progression/page.tsx` — Texte 0.65→0.7rem
+- `app/(marketing)/offre/page.tsx` — Padding réduit, titre responsive, cards padding/radius responsives
+- `app/(marketing)/cgu/page.tsx` — Padding et titre responsives
+- `app/(marketing)/mentions-legales/page.tsx` — Padding responsive
+- `app/(marketing)/politique-confidentialite/page.tsx` — Padding et titre responsives
+- `app/(marketing)/_showcase.tsx` — Cards padding et border-radius responsives
+
+## [2026-03-21] — Rapport des séries d'exercices
+
+- `séries.md` — Création du rapport complet des séries : inventaire des 59 séries (590 questions), classement par sous-domaine, convention de numérotation V3/V4, répartition par type d'exercice et par migration SQL
+
 ## [2026-03-21] — Audit global et correction de bugs (API, UI, exercices, billing)
 
 - `app/api/_stripe/webhook/route.ts` — Ajout error handling sur tous les upsert Supabase (retour 500 → Stripe retry), accès metadata sécurisé (`metadata?.user_id`), logs d'erreur

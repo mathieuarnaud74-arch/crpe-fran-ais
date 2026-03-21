@@ -352,7 +352,7 @@ export function ExercisePlayer({
               </div>
             </div>
           </div>
-          <div className="min-w-[220px] rounded-[1.5rem] border border-border bg-paper px-5 py-4">
+          <div className="w-full rounded-[1.5rem] border border-border bg-paper px-4 py-3 sm:min-w-[220px] sm:w-auto sm:px-5 sm:py-4">
             <p className="text-sm font-semibold text-ink" id="progress-label">
               Progression de la s&eacute;rie
             </p>

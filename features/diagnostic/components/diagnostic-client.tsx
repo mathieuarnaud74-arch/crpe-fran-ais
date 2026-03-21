@@ -427,7 +427,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-4xl flex-1 px-6 py-8">
+      <div className="mx-auto w-full max-w-4xl flex-1 px-4 py-5 sm:px-6 sm:py-8">
       <Panel>
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
@@ -479,14 +479,14 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
         </div>
 
         {hasAnswered ? (
-          <div className="mt-6 rounded-[1.25rem] border border-border bg-secondary px-5 py-4">
-            <div className="flex items-start gap-4">
+          <div className="mt-5 rounded-[1.25rem] border border-border bg-secondary px-4 py-3 sm:mt-6 sm:px-5 sm:py-4">
+            <div className="flex items-start gap-3 sm:gap-4">
               <Mocca
                 variant={isCorrect ? "happy" : "grumpy"}
                 size="portrait"
                 className="hidden shrink-0 sm:block"
               />
-              <div className="flex-1 space-y-5">
+              <div className="flex-1 space-y-4 sm:space-y-5">
                 <div className="flex flex-wrap items-center gap-3">
                   <Badge tone={isCorrect ? "accentSecondary" : "warning"} size="sm">
                     {isCorrect ? "Bonne réponse" : "Point de vigilance"}

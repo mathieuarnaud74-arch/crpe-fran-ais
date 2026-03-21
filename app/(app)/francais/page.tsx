@@ -33,7 +33,7 @@ export default async function FrenchPage() {
         <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
           <div>
             <Badge tone="accentSecondary">{data.subjectLabel}</Badge>
-            <h1 className="mt-4 font-serif text-4xl font-semibold text-ink">Français</h1>
+            <h1 className="mt-3 font-serif text-3xl font-semibold text-ink sm:mt-4 sm:text-4xl">Français</h1>
           </div>
           <div className="flex flex-wrap gap-3">
             <ButtonLink href="/tableau-de-bord" variant="secondary">

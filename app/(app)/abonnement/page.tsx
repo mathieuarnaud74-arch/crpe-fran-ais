@@ -55,7 +55,7 @@ export default async function SubscriptionPage() {
         <Badge tone={premium ? "accent" : "neutral"}>
           {premium ? `Premium actif — ${planLabel}` : "Accès gratuit"}
         </Badge>
-        <h1 className="mt-3 font-serif text-4xl font-semibold text-ink">Abonnement</h1>
+        <h1 className="mt-3 font-serif text-3xl font-semibold text-ink sm:text-4xl">Abonnement</h1>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-ink/72">
           {premium
             ? "Gérez votre accès, consultez la date de fin ou résiliez depuis le portail Stripe."

@@ -38,7 +38,7 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/50 bg-paper/80 backdrop-blur-xl supports-[backdrop-filter]:bg-paper/75">
-      <div className="mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center px-6 py-3">
+      <div className="mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center px-4 py-3 sm:px-6">
 
         {/* Logo */}
         <Link href="/" className="flex min-w-0 items-center">

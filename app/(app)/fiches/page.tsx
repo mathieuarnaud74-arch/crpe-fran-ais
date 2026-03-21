@@ -46,7 +46,7 @@ export default async function FichesPage({
           <div className="space-y-3">
             <Badge tone="accentSecondary">Révision</Badge>
             <div>
-              <h1 className="font-serif text-4xl font-semibold text-ink">
+              <h1 className="font-serif text-3xl font-semibold text-ink sm:text-4xl">
                 Fiches CRPE
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">

@@ -106,13 +106,13 @@ export function ShowcaseQCM() {
   const isCorrect = selectedChoice?.correct ?? false;
 
   return (
-    <div className="overflow-hidden rounded-[2rem] border border-border bg-card shadow-panel">
+    <div className="overflow-hidden rounded-[1.5rem] border border-border bg-card shadow-panel sm:rounded-[2rem]">
       {/* Progress bar */}
       <div className="h-[3px] bg-border">
         <div className="h-full w-3/5 bg-accentSecondary" />
       </div>
 
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {/* Header */}
         <div className="flex items-center justify-between gap-4">
           <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">
@@ -252,13 +252,13 @@ export function ShowcaseAnalyse() {
   const isCorrect = selectedChoice?.correct ?? false;
 
   return (
-    <div className="overflow-hidden rounded-[2rem] border border-border bg-card shadow-panel">
+    <div className="overflow-hidden rounded-[1.5rem] border border-border bg-card shadow-panel sm:rounded-[2rem]">
       {/* Progress bar */}
       <div className="h-[3px] bg-border">
         <div className="h-full w-2/5 bg-accentSecondaryDark" />
       </div>
 
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {/* Header */}
         <div className="flex items-center justify-between gap-4">
           <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">

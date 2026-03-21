@@ -121,36 +121,36 @@ function HeroSection({
       <div className="absolute inset-0 bg-[linear-gradient(90deg,#fbf7ef_18%,rgba(251,247,239,0.75)_38%,rgba(251,247,239,0.15)_58%,transparent_78%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(164,104,73,0.08),transparent_30%)]" />
 
-      <div className="relative mx-auto max-w-6xl px-6 pb-14 pt-10 sm:pb-16 lg:pb-24 lg:pt-16">
+      <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-8 sm:px-6 sm:pb-16 lg:pb-24 lg:pt-16">
         <div className="max-w-3xl">
           <FadeIn className="relative z-10">
             <Badge tone="accentSecondary" className="border-white/60 bg-card/90">
               {props.badgeText}
             </Badge>
 
-            <h1 className="mt-6 max-w-3xl text-balance font-serif text-5xl font-semibold leading-[0.96] text-ink sm:text-6xl lg:text-[4.8rem]">
+            <h1 className="mt-5 max-w-3xl text-balance font-serif text-[2.5rem] font-semibold leading-[0.96] text-ink sm:mt-6 sm:text-6xl lg:text-[4.8rem]">
               {props.title}
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted sm:text-xl">
+            <p className="mt-4 max-w-2xl text-base leading-7 text-muted sm:mt-6 sm:text-xl sm:leading-8">
               {props.description}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center">
               <ButtonLink
                 href={primaryHref}
                 size="lg"
-                className="shadow-[0_18px_42px_rgba(71,98,87,0.22)] ring-1 ring-accentSecondary/20"
+                className="w-full shadow-[0_18px_42px_rgba(71,98,87,0.22)] ring-1 ring-accentSecondary/20 sm:w-auto"
               >
                 {props.primaryCtaLabel}
                 <ArrowRight className="h-4 w-4" />
               </ButtonLink>
-              <ButtonLink href={props.secondaryCtaHref} variant="secondary" size="lg">
+              <ButtonLink href={props.secondaryCtaHref} variant="secondary" size="lg" className="w-full sm:w-auto">
                 {props.secondaryCtaLabel}
               </ButtonLink>
             </div>
 
-            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted sm:mt-5">
               {props.metaItems.map((item) => (
                 <span key={item}>{item}</span>
               ))}
@@ -165,7 +165,7 @@ function HeroSection({
 
 function TrustBarSection({ props }: { props: TrustBarSectionProps }) {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-10 lg:py-12">
+    <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:py-12">
       <FadeIn>
         <SectionEyebrow>{props.eyebrow}</SectionEyebrow>
       </FadeIn>
@@ -192,7 +192,7 @@ function TrustBarSection({ props }: { props: TrustBarSectionProps }) {
 
 function BenefitsSection({ props }: { props: BenefitsSectionProps }) {
   return (
-    <section id="methode" className="mx-auto max-w-6xl px-6 py-14 lg:py-20">
+    <section id="methode" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:py-20">
       <FadeIn>
         <SectionEyebrow>{props.eyebrow}</SectionEyebrow>
         <div className="mt-4 max-w-3xl">
@@ -235,7 +235,7 @@ function BenefitsSection({ props }: { props: BenefitsSectionProps }) {
 function FeaturesSection({ props }: { props: FeaturesSectionProps }) {
   return (
     <section className="border-y border-border/70 bg-card/60">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 lg:grid-cols-[0.78fr,1.22fr] lg:py-20">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:gap-10 sm:px-6 sm:py-14 lg:grid-cols-[0.78fr,1.22fr] lg:py-20">
         <FadeIn>
           <SectionEyebrow>{props.eyebrow}</SectionEyebrow>
           <h2 className="mt-4 text-balance font-serif text-4xl font-semibold text-ink sm:text-[2.8rem]">
@@ -272,7 +272,7 @@ function FeaturesSection({ props }: { props: FeaturesSectionProps }) {
 
 function DomainsSection({ props }: { props: DomainsSectionProps }) {
   return (
-    <section id="domaines" className="mx-auto max-w-6xl px-6 py-14 lg:py-20">
+    <section id="domaines" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:py-20">
       <FadeIn>
         <SectionEyebrow>{props.eyebrow}</SectionEyebrow>
         <div className="mt-4 max-w-3xl">
@@ -336,7 +336,7 @@ function FaqSection({ props }: { props: FaqSectionProps }) {
       id="faq"
       className="border-y border-border/70 bg-[linear-gradient(180deg,rgba(234,228,216,0.45),rgba(253,249,243,0.92))]"
     >
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 lg:grid-cols-[0.82fr,1.18fr] lg:py-20">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:gap-10 sm:px-6 sm:py-14 lg:grid-cols-[0.82fr,1.18fr] lg:py-20">
         <FadeIn>
           <SectionEyebrow>{props.eyebrow}</SectionEyebrow>
           <h2 className="mt-4 text-balance font-serif text-4xl font-semibold text-ink sm:text-[2.8rem]">
@@ -398,10 +398,10 @@ function FinalCtaSection({
     : props.secondaryCtaHrefGuest;
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-14 lg:py-20">
+    <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:py-20">
       <FadeIn>
-        <div className="overflow-hidden rounded-[2rem] border border-ink/10 bg-ink text-paper shadow-[0_30px_80px_rgba(44,36,32,0.18)]">
-          <div className="grid gap-10 p-8 lg:grid-cols-[1.08fr,0.92fr] lg:p-10">
+        <div className="overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-ink/10 bg-ink text-paper shadow-[0_30px_80px_rgba(44,36,32,0.18)]">
+          <div className="grid gap-8 p-5 sm:p-8 lg:grid-cols-[1.08fr,0.92fr] lg:p-10">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/65">
                 {props.eyebrow}

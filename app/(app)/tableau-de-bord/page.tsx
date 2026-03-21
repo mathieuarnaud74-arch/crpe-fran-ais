@@ -247,7 +247,7 @@ export default async function DashboardPage() {
       )}
 
       {/* ── Hero banner ── */}
-      <div className="relative overflow-hidden rounded-[1.75rem] border border-accentSecondary/20 bg-[linear-gradient(135deg,#476257_0%,#394E45_50%,#2C2420_100%)] px-5 py-8 sm:px-8 sm:py-10 shadow-panel">
+      <div className="relative overflow-hidden rounded-[1.25rem] border border-accentSecondary/20 bg-[linear-gradient(135deg,#476257_0%,#394E45_50%,#2C2420_100%)] px-4 py-6 shadow-panel sm:rounded-[1.75rem] sm:px-8 sm:py-10">
         <span
           aria-hidden
           className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 rounded-full bg-paper/[0.04] select-none"
@@ -265,7 +265,7 @@ export default async function DashboardPage() {
             >
               {premium ? "Acc\u00e8s premium" : "Acc\u00e8s gratuit"}
             </Badge>
-            <h1 className="mt-4 font-serif text-4xl sm:text-5xl font-semibold text-paper leading-none">
+            <h1 className="mt-3 font-serif text-3xl font-semibold text-paper leading-none sm:mt-4 sm:text-5xl">
               Tableau de bord
             </h1>
             <p className="mt-3 text-sm text-paper/60 max-w-lg">
@@ -361,7 +361,7 @@ export default async function DashboardPage() {
       {/* ── Plan du jour ── */}
       {data.totalAttempts > 0 && (
         <div className="overflow-hidden rounded-2xl border border-accentSecondary/25 shadow-subtle">
-          <div className="border-b border-accentSecondary/20 bg-[linear-gradient(135deg,rgba(164,104,73,0.12),rgba(252,250,246,1)_60%)] px-6 py-4">
+          <div className="border-b border-accentSecondary/20 bg-[linear-gradient(135deg,rgba(164,104,73,0.12),rgba(252,250,246,1)_60%)] px-4 py-3 sm:px-6 sm:py-4">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accentSecondary">
@@ -377,7 +377,7 @@ export default async function DashboardPage() {
             </div>
           </div>
 
-          <div className="bg-card px-6 py-5">
+          <div className="bg-card px-4 py-4 sm:px-6 sm:py-5">
             {plan.length === 0 ? (
               <div className="rounded-xl border border-border bg-paper px-4 py-3">
                 <p className="text-sm text-muted">
@@ -469,7 +469,7 @@ export default async function DashboardPage() {
       <section>
         <div className="mb-3 flex items-end justify-between gap-4">
           <div>
-            <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[#476257]">
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-[#476257]">
               Français
             </p>
             <h2 className="mt-1 font-serif text-2xl font-semibold text-ink">Domaines</h2>
@@ -765,7 +765,7 @@ export default async function DashboardPage() {
           <Panel>
             <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
               <div>
-                <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[#476257]">
+                <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-[#476257]">
                   R&eacute;gularit&eacute;
                 </p>
                 <h2 className="mt-1 font-serif text-xl font-semibold text-ink">

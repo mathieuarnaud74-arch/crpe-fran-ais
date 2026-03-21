@@ -90,7 +90,7 @@ function SessionCard({ session, premium }: { session: RevisionSession; premium: 
       </CardHeader>
 
       <CardContent>
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-2 sm:gap-3 sm:grid-cols-2 md:grid-cols-3">
           <MetaCell label="Notion" value={session.topicLabel} />
           <MetaCell label="Objectif" value={session.objective} />
           <MetaCell label="Formats" value={session.exerciseTypeLabel} />
@@ -180,7 +180,7 @@ export default async function ExercisesPage({
           <Badge tone={premium ? "accent" : "neutral"}>
             {premium ? "Catalogue complet" : "Parcours gratuit + approfondissements premium"}
           </Badge>
-          <h1 className="mt-3 font-serif text-4xl font-semibold text-ink">Séries de révision</h1>
+          <h1 className="mt-3 font-serif text-3xl font-semibold text-ink sm:text-4xl">Séries de révision</h1>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
             Le catalogue suit une progression éditoriale simple : fondations gratuites d&apos;abord,
             approfondissements premium ensuite. Chaque série correspond à une vraie séance de
@@ -228,7 +228,7 @@ export default async function ExercisesPage({
       )}
 
       <Panel>
-        <form className="grid gap-4 md:grid-cols-4">
+        <form className="grid gap-3 sm:gap-4 sm:grid-cols-2 md:grid-cols-4">
           <SelectField label="Sous-domaine" name="subdomain" defaultValue={subdomain ?? ""}>
             <option value="">Tous</option>
             {SUBDOMAIN_OPTIONS.map((option) => (

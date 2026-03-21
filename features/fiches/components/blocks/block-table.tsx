@@ -9,7 +9,7 @@ export function BlockTable({ block }: { block: BlockTable }) {
         </p>
       )}
       <div className="overflow-x-auto rounded-[1.25rem] border border-border">
-        <table className="w-full min-w-[400px] text-sm">
+        <table className="w-full min-w-[300px] text-sm">
           <thead>
             <tr className="border-b border-border bg-secondary">
               {block.headers.map((h) => (

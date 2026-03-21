@@ -3,9 +3,9 @@ import { Panel } from "@/components/ui/panel";
 export default function PolitiqueConfidentialitePage() {
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-4xl px-6 py-16">
+      <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-16">
         <Panel>
-          <h1 className="font-serif text-4xl font-semibold text-ink">Politique de confidentialité</h1>
+          <h1 className="font-serif text-2xl font-semibold text-ink sm:text-4xl">Politique de confidentialité</h1>
           <div className="mt-6 space-y-4 text-sm leading-7 text-ink/75">
             <p>
               Les données collectées servent à l&apos;authentification, au suivi des résultats et à la

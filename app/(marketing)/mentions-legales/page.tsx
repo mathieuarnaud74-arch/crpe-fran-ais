@@ -12,7 +12,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 export default function MentionsLegalesPage() {
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-4xl px-6 py-16">
+      <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-16">
         <Panel>
           <h1 className="font-serif text-4xl font-semibold text-ink">Mentions légales</h1>
           <p className="mt-3 text-sm text-muted">

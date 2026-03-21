@@ -7,7 +7,7 @@ function TreeNode({ node, depth = 0 }: { node: DecisionNode; depth?: number }) {
       <div
         className={cn(
           "rounded-[1rem] border border-accent/20 bg-card px-4 py-3 shadow-subtle",
-          depth > 0 && "ml-6",
+          depth > 0 && "ml-3 sm:ml-6",
         )}
       >
         <p className="text-xs font-semibold uppercase tracking-[0.10em] text-accent">

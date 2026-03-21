@@ -64,9 +64,9 @@ export function CollapsiblePanel({
   const t = TONE[tone];
 
   return (
-    <div className={cn("overflow-hidden rounded-[1.75rem] border shadow-panel", t.border, className)}>
-      <span aria-hidden className={cn("block h-[3px] rounded-t-[1.75rem]", t.topBar)} />
-      <div className={cn("relative flex items-start justify-between gap-4 border-b px-6 py-5", t.border, t.header)}>
+    <div className={cn("overflow-hidden rounded-[1.25rem] border shadow-panel sm:rounded-[1.75rem]", t.border, className)}>
+      <span aria-hidden className={cn("block h-[3px] rounded-t-[1.25rem] sm:rounded-t-[1.75rem]", t.topBar)} />
+      <div className={cn("relative flex items-start justify-between gap-3 border-b px-4 py-4 sm:gap-4 sm:px-6 sm:py-5", t.border, t.header)}>
         <button
           type="button"
           onClick={() => setOpen((prev) => !prev)}
@@ -97,7 +97,7 @@ export function CollapsiblePanel({
         {action ? <div className="shrink-0">{action}</div> : null}
       </div>
 
-      {open ? <div className="bg-card px-6 py-6">{children}</div> : null}
+      {open ? <div className="bg-card px-4 py-4 sm:px-6 sm:py-6">{children}</div> : null}
     </div>
   );
 }

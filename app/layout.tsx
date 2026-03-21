@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "sonner";
@@ -22,6 +22,12 @@ export const metadata: Metadata = {
   title: "CRPE Français",
   description:
     "Plateforme de révision du CRPE centrée sur le français : exercices, corrections immédiates et abonnement premium.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

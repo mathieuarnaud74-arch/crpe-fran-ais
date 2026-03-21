@@ -137,7 +137,7 @@ function NavGroup({
         onClick={onToggle}
         aria-expanded={isOpen}
         className={cn(
-          "flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-xs font-semibold uppercase tracking-[0.18em] transition",
+          "flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] transition active:scale-[0.98]",
           groupActive
             ? "bg-secondary text-ink"
             : "text-muted hover:bg-secondary hover:text-ink",
@@ -149,10 +149,11 @@ function NavGroup({
 
       <div
         className={cn(
-          "overflow-hidden transition-all duration-200",
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
+          "grid transition-[grid-template-rows] duration-200",
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
       >
+        <div className="overflow-hidden">
         <div className="mt-1 space-y-0.5 pb-1">
           {group.links.map((link) => {
             const active = isLinkActive(pathname, link.href, link.exact);
@@ -162,7 +163,7 @@ function NavGroup({
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm transition",
+                  "flex items-center gap-2.5 rounded-xl px-3 py-3 text-sm transition active:scale-[0.98]",
                   active
                     ? "bg-accent font-semibold text-paper shadow-subtle"
                     : "font-medium text-muted hover:bg-secondary hover:text-ink",
@@ -181,6 +182,7 @@ function NavGroup({
             );
           })}
         </div>
+        </div>
       </div>
     </div>
   );
@@ -194,7 +196,7 @@ function NavStandalone({ item, pathname }: { item: NavigationStandalone; pathnam
     <Link
       href={item.href}
       className={cn(
-        "flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition",
+        "flex w-full items-center justify-between rounded-xl px-3 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition active:scale-[0.98]",
         active
           ? "bg-accent text-paper shadow-subtle"
           : "text-muted hover:bg-secondary hover:text-ink",

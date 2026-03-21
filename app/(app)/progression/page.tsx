@@ -84,7 +84,7 @@ export default async function ProgressPage() {
       {/* ── Radar + Évolution — panneau fusionné ── */}
       {data.totalAttempts > 0 && (
         <Panel className="p-4 sm:p-5">
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[#476257]">
+          <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-[#476257]">
             Vue d&apos;ensemble
           </p>
           <h2 className="mt-1 font-serif text-xl font-semibold text-ink">

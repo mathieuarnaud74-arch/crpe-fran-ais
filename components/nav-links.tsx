@@ -42,7 +42,7 @@ export function MobileNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-border bg-card lg:hidden">
+    <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-border bg-card lg:hidden" style={{ paddingBottom: "var(--safe-bottom)" }}>
       <div className="flex items-stretch">
         {links.map((link) => {
           const active = pathname.startsWith(link.href);
@@ -51,7 +51,7 @@ export function MobileNav() {
               key={link.href}
               href={link.href}
               className={cn(
-                "flex flex-1 flex-col items-center justify-center gap-1 py-3 text-[0.65rem] font-semibold uppercase tracking-wide transition",
+                "flex flex-1 flex-col items-center justify-center gap-1 py-2.5 text-[0.7rem] font-semibold uppercase tracking-wide transition",
                 active ? "text-ink" : "text-muted",
               )}
             >
