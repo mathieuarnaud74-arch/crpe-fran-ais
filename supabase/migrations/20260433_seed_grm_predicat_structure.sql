@@ -1,6 +1,6 @@
 -- Migration: série grm_predicat_structure (10 questions)
 -- Le prédicat et la structure de la phrase — Grammaire CRPE
--- UUID prefix: t0310000
+-- UUID prefix: a0310000
 -- Types : qcm, vrai_faux, reponse_courte, tri_categories
 -- Niveaux : 3 Facile + 4 Intermediaire + 3 Difficile
 -- Access : 5 free + 5 premium
@@ -14,7 +14,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0310000-0000-0000-0000-000000000001',
+  'a0310000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'grm_predicat_structure',
@@ -41,7 +41,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0310000-0000-0000-0000-000000000002',
+  'a0310000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'grm_predicat_structure',
@@ -68,7 +68,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0310000-0000-0000-0000-000000000003',
+  'a0310000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'grm_predicat_structure',
@@ -95,7 +95,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0310000-0000-0000-0000-000000000004',
+  'a0310000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'grm_predicat_structure',
@@ -122,7 +122,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0310000-0000-0000-0000-000000000005',
+  'a0310000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'grm_predicat_structure',
@@ -149,7 +149,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0310000-0000-0000-0000-000000000006',
+  'a0310000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'grm_predicat_structure',
@@ -176,7 +176,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0310000-0000-0000-0000-000000000007',
+  'a0310000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'grm_predicat_structure',
@@ -203,7 +203,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0310000-0000-0000-0000-000000000008',
+  'a0310000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'grm_predicat_structure',
@@ -230,7 +230,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0310000-0000-0000-0000-000000000009',
+  'a0310000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'grm_predicat_structure',
@@ -257,7 +257,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0310000-0000-0000-0000-00000000000a',
+  'a0310000-0000-0000-0000-00000000000a',
   'Francais',
   'grammaire',
   'grm_predicat_structure',

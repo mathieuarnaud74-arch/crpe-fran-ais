@@ -1,6 +1,6 @@
 -- Migration: série math_chasse_erreurs_calcul (10 questions)
 -- Chasse aux erreurs — Calcul et fractions — Mathématiques CRPE
--- UUID prefix: m0010000
+-- UUID prefix: b0010000
 -- Types : qcm, vrai_faux, reponse_courte
 -- Niveau : Intermediaire
 -- Access : free
@@ -13,7 +13,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0010000-0000-0000-0000-000000000001',
+  'b0010000-0000-0000-0000-000000000001',
   'Mathematiques',
   'nombres_calcul',
   'math_chasse_erreurs_calcul',
@@ -40,7 +40,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0010000-0000-0000-0000-000000000002',
+  'b0010000-0000-0000-0000-000000000002',
   'Mathematiques',
   'nombres_calcul',
   'math_chasse_erreurs_calcul',
@@ -67,7 +67,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0010000-0000-0000-0000-000000000003',
+  'b0010000-0000-0000-0000-000000000003',
   'Mathematiques',
   'nombres_calcul',
   'math_chasse_erreurs_calcul',
@@ -94,7 +94,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0010000-0000-0000-0000-000000000004',
+  'b0010000-0000-0000-0000-000000000004',
   'Mathematiques',
   'nombres_calcul',
   'math_chasse_erreurs_calcul',
@@ -121,7 +121,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0010000-0000-0000-0000-000000000005',
+  'b0010000-0000-0000-0000-000000000005',
   'Mathematiques',
   'nombres_calcul',
   'math_chasse_erreurs_calcul',
@@ -148,7 +148,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0010000-0000-0000-0000-000000000006',
+  'b0010000-0000-0000-0000-000000000006',
   'Mathematiques',
   'nombres_calcul',
   'math_chasse_erreurs_calcul',
@@ -175,7 +175,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0010000-0000-0000-0000-000000000007',
+  'b0010000-0000-0000-0000-000000000007',
   'Mathematiques',
   'nombres_calcul',
   'math_chasse_erreurs_calcul',
@@ -202,7 +202,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0010000-0000-0000-0000-000000000008',
+  'b0010000-0000-0000-0000-000000000008',
   'Mathematiques',
   'nombres_calcul',
   'math_chasse_erreurs_calcul',
@@ -229,7 +229,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0010000-0000-0000-0000-000000000009',
+  'b0010000-0000-0000-0000-000000000009',
   'Mathematiques',
   'nombres_calcul',
   'math_chasse_erreurs_calcul',
@@ -256,7 +256,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0010000-0000-0000-0000-000000000010',
+  'b0010000-0000-0000-0000-000000000010',
   'Mathematiques',
   'nombres_calcul',
   'math_chasse_erreurs_calcul',

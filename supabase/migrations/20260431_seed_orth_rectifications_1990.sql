@@ -1,6 +1,6 @@
 -- Migration: série orth_rectifications_1990 (10 questions)
 -- Rectifications orthographiques de 1990 — Orthographe CRPE
--- UUID prefix: t0510000
+-- UUID prefix: a0510000
 -- Types : qcm, vrai_faux, reponse_courte, tri_categories
 -- Niveaux : 3 Facile + 4 Intermediaire + 3 Difficile
 -- Access : 5 free + 5 premium
@@ -14,7 +14,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0510000-0000-0000-0000-000000000001',
+  'a0510000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'orth_rectifications_1990',
@@ -41,7 +41,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0510000-0000-0000-0000-000000000002',
+  'a0510000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'orth_rectifications_1990',
@@ -68,7 +68,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0510000-0000-0000-0000-000000000003',
+  'a0510000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'orth_rectifications_1990',
@@ -95,7 +95,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0510000-0000-0000-0000-000000000004',
+  'a0510000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'orth_rectifications_1990',
@@ -122,7 +122,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0510000-0000-0000-0000-000000000005',
+  'a0510000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'orth_rectifications_1990',
@@ -149,7 +149,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0510000-0000-0000-0000-000000000006',
+  'a0510000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'orth_rectifications_1990',
@@ -176,7 +176,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0510000-0000-0000-0000-000000000007',
+  'a0510000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'orth_rectifications_1990',
@@ -203,7 +203,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0510000-0000-0000-0000-000000000008',
+  'a0510000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'orth_rectifications_1990',
@@ -230,7 +230,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0510000-0000-0000-0000-000000000009',
+  'a0510000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'orth_rectifications_1990',
@@ -257,7 +257,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0510000-0000-0000-0000-00000000000a',
+  'a0510000-0000-0000-0000-00000000000a',
   'Francais',
   'orthographe',
   'orth_rectifications_1990',

@@ -1,6 +1,6 @@
 -- Migration: série orth_accents_trema (10 questions)
 -- Accents et tréma — règles et exceptions — Orthographe CRPE
--- UUID prefix: t0610000
+-- UUID prefix: a0610000
 -- Types : qcm, vrai_faux, reponse_courte, tri_categories
 -- Niveaux : 3 Facile + 4 Intermediaire + 3 Difficile
 -- Access : 5 free + 5 premium
@@ -13,7 +13,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0610000-0000-0000-0000-000000000001',
+  'a0610000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'orth_accents_trema',
@@ -40,7 +40,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0610000-0000-0000-0000-000000000002',
+  'a0610000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'orth_accents_trema',
@@ -67,7 +67,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0610000-0000-0000-0000-000000000003',
+  'a0610000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'orth_accents_trema',
@@ -94,7 +94,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0610000-0000-0000-0000-000000000004',
+  'a0610000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'orth_accents_trema',
@@ -121,7 +121,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0610000-0000-0000-0000-000000000005',
+  'a0610000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'orth_accents_trema',
@@ -148,7 +148,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0610000-0000-0000-0000-000000000006',
+  'a0610000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'orth_accents_trema',
@@ -175,7 +175,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0610000-0000-0000-0000-000000000007',
+  'a0610000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'orth_accents_trema',
@@ -202,7 +202,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0610000-0000-0000-0000-000000000008',
+  'a0610000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'orth_accents_trema',
@@ -229,7 +229,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0610000-0000-0000-0000-000000000009',
+  'a0610000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'orth_accents_trema',
@@ -256,7 +256,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0610000-0000-0000-0000-00000000000a',
+  'a0610000-0000-0000-0000-00000000000a',
   'Francais',
   'orthographe',
   'orth_accents_trema',

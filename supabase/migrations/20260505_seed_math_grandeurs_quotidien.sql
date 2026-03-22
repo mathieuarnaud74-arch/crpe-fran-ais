@@ -1,6 +1,6 @@
 -- Migration: série math_grandeurs_quotidien (10 questions)
 -- Maths du quotidien — Grandeurs et proportionnalité
--- UUID prefix: m0030000
+-- UUID prefix: b0030000
 -- Types : qcm (4), reponse_courte (3), vrai_faux (3)
 -- Niveau : Facile
 -- Access : free
@@ -13,7 +13,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0030000-0000-0000-0000-000000000001',
+  'b0030000-0000-0000-0000-000000000001',
   'Mathematiques',
   'grandeurs_mesures',
   'math_grandeurs_quotidien',
@@ -40,7 +40,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0030000-0000-0000-0000-000000000002',
+  'b0030000-0000-0000-0000-000000000002',
   'Mathematiques',
   'grandeurs_mesures',
   'math_grandeurs_quotidien',
@@ -67,7 +67,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0030000-0000-0000-0000-000000000003',
+  'b0030000-0000-0000-0000-000000000003',
   'Mathematiques',
   'grandeurs_mesures',
   'math_grandeurs_quotidien',
@@ -94,7 +94,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0030000-0000-0000-0000-000000000004',
+  'b0030000-0000-0000-0000-000000000004',
   'Mathematiques',
   'grandeurs_mesures',
   'math_grandeurs_quotidien',
@@ -121,7 +121,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0030000-0000-0000-0000-000000000005',
+  'b0030000-0000-0000-0000-000000000005',
   'Mathematiques',
   'grandeurs_mesures',
   'math_grandeurs_quotidien',
@@ -148,7 +148,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0030000-0000-0000-0000-000000000006',
+  'b0030000-0000-0000-0000-000000000006',
   'Mathematiques',
   'grandeurs_mesures',
   'math_grandeurs_quotidien',
@@ -175,7 +175,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0030000-0000-0000-0000-000000000007',
+  'b0030000-0000-0000-0000-000000000007',
   'Mathematiques',
   'grandeurs_mesures',
   'math_grandeurs_quotidien',
@@ -202,7 +202,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0030000-0000-0000-0000-000000000008',
+  'b0030000-0000-0000-0000-000000000008',
   'Mathematiques',
   'grandeurs_mesures',
   'math_grandeurs_quotidien',
@@ -229,7 +229,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0030000-0000-0000-0000-000000000009',
+  'b0030000-0000-0000-0000-000000000009',
   'Mathematiques',
   'grandeurs_mesures',
   'math_grandeurs_quotidien',
@@ -256,7 +256,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'm0030000-0000-0000-0000-000000000010',
+  'b0030000-0000-0000-0000-000000000010',
   'Mathematiques',
   'grandeurs_mesures',
   'math_grandeurs_quotidien',

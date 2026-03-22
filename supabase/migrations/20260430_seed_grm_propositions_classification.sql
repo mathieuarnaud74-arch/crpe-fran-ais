@@ -1,6 +1,6 @@
 -- Migration: série grm_propositions_classification (10 questions)
 -- Propositions indépendantes, principales et subordonnées — Grammaire CRPE
--- UUID prefix: t0410000
+-- UUID prefix: a0410000
 -- Types : qcm, vrai_faux, reponse_courte, tri_categories, surlignage_propositions
 -- Niveaux : 3 Facile + 4 Intermediaire + 3 Difficile
 -- Access : 5 free + 5 premium
@@ -15,7 +15,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0410000-0000-0000-0000-000000000001',
+  'a0410000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'grm_propositions_classification',
@@ -42,7 +42,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0410000-0000-0000-0000-000000000002',
+  'a0410000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'grm_propositions_classification',
@@ -69,7 +69,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0410000-0000-0000-0000-000000000003',
+  'a0410000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'grm_propositions_classification',
@@ -96,7 +96,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0410000-0000-0000-0000-000000000004',
+  'a0410000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'grm_propositions_classification',
@@ -123,7 +123,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0410000-0000-0000-0000-000000000005',
+  'a0410000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'grm_propositions_classification',
@@ -150,7 +150,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0410000-0000-0000-0000-000000000006',
+  'a0410000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'grm_propositions_classification',
@@ -177,7 +177,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0410000-0000-0000-0000-000000000007',
+  'a0410000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'grm_propositions_classification',
@@ -204,7 +204,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0410000-0000-0000-0000-000000000008',
+  'a0410000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'grm_propositions_classification',
@@ -231,7 +231,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0410000-0000-0000-0000-000000000009',
+  'a0410000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'grm_propositions_classification',
@@ -258,7 +258,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  't0410000-0000-0000-0000-00000000000a',
+  'a0410000-0000-0000-0000-00000000000a',
   'Francais',
   'grammaire',
   'grm_propositions_classification',
