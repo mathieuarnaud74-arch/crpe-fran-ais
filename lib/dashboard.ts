@@ -4,7 +4,6 @@ import {
   FRENCH_DOMAIN_ORDER,
   SUBDOMAIN_LABELS,
   SUBJECT_LABEL,
-  formatLevelLabel,
   getFrenchDomainKey,
 } from "@/lib/constants";
 import { getDailyRemainingQuota } from "@/lib/freemium";
@@ -401,7 +400,7 @@ export function buildDashboardData(
         domainLabel: FRENCH_DOMAIN_CONFIG[domainKey].label,
         subdomain: session.subdomain,
         subdomainLabel: SUBDOMAIN_LABELS[session.subdomain],
-        level: formatLevelLabel(session.level),
+        level: session.level,
         questionCount: session.questionCount,
         estimatedMinutes: session.estimatedMinutes,
         access_tier: session.access_tier,

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-import { LEVEL_LABELS } from "@/lib/xp";
+import { XP_LEVEL_LABELS } from "@/lib/xp";
 import { cn } from "@/lib/utils";
 
 type XpBarProps = {
@@ -26,7 +26,7 @@ export function XpBar({
   compact = false,
   className,
 }: XpBarProps) {
-  const label = LEVEL_LABELS[currentLevel] ?? `Niveau ${currentLevel}`;
+  const label = XP_LEVEL_LABELS[currentLevel] ?? `Niveau ${currentLevel}`;
   const heights = { sm: "h-1.5", md: "h-2.5", lg: "h-3.5" };
 
   if (compact) {

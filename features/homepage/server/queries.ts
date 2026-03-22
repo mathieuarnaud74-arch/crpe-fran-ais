@@ -136,7 +136,10 @@ async function insertDefaultHomepageData(pageId?: string) {
       last_published_at: defaultPage.lastPublishedAt,
     };
 
-    const { data: page } = await supabase.from("pages").insert(pageInsert).select("*").single();
+    const { data: page, error: pageError } = await supabase.from("pages").insert(pageInsert).select("*").single();
+    if (pageError || !page) {
+      throw new Error(`Failed to create homepage: ${pageError?.message ?? "no data returned"}`);
+    }
     targetPageId = (page as PageRow).id;
   }
 

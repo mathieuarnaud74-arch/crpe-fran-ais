@@ -103,6 +103,9 @@ import { grammaireComplementsCirconstancielsReference } from "./grammaire-comple
 import { analyseLanguePhonologieCycle2Sprint } from "./analyse-langue-phonologie-cycle2-sprint";
 import { analyseLangueIdentifierSubordonneesOperatoire } from "./analyse-langue-identifier-subordonnees-operatoire";
 import { lexiqueFiguresStyleCrpeSprint } from "./lexique-figures-style-crpe-sprint";
+import { grammaireEmphatiqueSprint } from "./grammaire-phrase-emphatique-neutre-sprint";
+import { grammaireComplementsObjetSprint } from "./grammaire-complements-objet-sprint";
+import { grammairePredicatStructureSprint } from "./grammaire-predicat-structure-sprint";
 
 export const allFiches: Fiche[] = [
   reperageExpliciteSprint,
@@ -208,4 +211,7 @@ export const allFiches: Fiche[] = [
   analyseLanguePhonologieCycle2Sprint,
   analyseLangueIdentifierSubordonneesOperatoire,
   lexiqueFiguresStyleCrpeSprint,
+  grammaireEmphatiqueSprint,
+  grammaireComplementsObjetSprint,
+  grammairePredicatStructureSprint,
 ];

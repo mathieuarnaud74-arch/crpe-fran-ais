@@ -133,7 +133,9 @@ export function SprintPlayer({
               });
             }
           }
-        } catch {}
+        } catch (err) {
+          console.error("[sprint] submitAttemptAction failed:", err);
+        }
       });
 
       // Move to next question
@@ -152,7 +154,7 @@ export function SprintPlayer({
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ timeMs: finalTime }),
-            }).catch(() => {});
+            }).catch((err) => console.error("[sprint] persist personal best failed:", err));
           }
         } else {
           setCurrentIndex((i) => i + 1);

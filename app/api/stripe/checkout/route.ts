@@ -12,6 +12,12 @@ const bodySchema = z.object({
   priceId: z.string().optional(),
 });
 
+const VALID_PRICES = new Set([
+  env.stripePricePremiumDailyId,
+  env.stripePricePremiumWeeklyId,
+  env.stripePricePremiumMonthlyId,
+]);
+
 export async function POST(request: Request) {
   if (!isStripeConfigured()) {
     return NextResponse.json(
@@ -51,13 +57,7 @@ export async function POST(request: Request) {
 
   const priceId = result.data.priceId ?? env.stripePricePremiumMonthlyId;
 
-  const validPrices = new Set([
-    env.stripePricePremiumDailyId,
-    env.stripePricePremiumWeeklyId,
-    env.stripePricePremiumMonthlyId,
-  ]);
-
-  if (!validPrices.has(priceId)) {
+  if (!VALID_PRICES.has(priceId)) {
     return NextResponse.json({ error: "Prix non reconnu." }, { status: 400 });
   }
 
@@ -82,12 +82,11 @@ export async function POST(request: Request) {
   const stripe = getStripeServerClient();
   const customerId = existingSubscription?.stripe_customer_id ?? null;
 
-  const subscriptionData = {
-    cancel_at_period_end: isLimitedAccess,
+  const subscriptionData: Stripe.Checkout.SessionCreateParams.SubscriptionData = {
     metadata: {
       user_id: user.id,
     },
-  } as unknown as Stripe.Checkout.SessionCreateParams.SubscriptionData;
+  };
 
   try {
     const session = await stripe.checkout.sessions.create({

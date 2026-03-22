@@ -1,13 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import { LEARNING_STATUS_LABELS } from "@/lib/constants";
+import { LEARNING_STATUS_LABELS, PROGRESS_STATUS_LABELS } from "@/lib/constants";
 import { LearningStatus, ProgressStatus } from "@/types/domain";
-
-const PROGRESS_STATUS_LABELS: Record<ProgressStatus, string> = {
-  prioritaire: "Prioritaire",
-  fragile: "Fragile",
-  en_cours: "En cours",
-  acquis: "Acquis",
-};
 
 export function LearningStatusBadge({ status }: { status: LearningStatus }) {
   if (status === "maitrisee") return <Badge tone="success">{LEARNING_STATUS_LABELS[status]}</Badge>;

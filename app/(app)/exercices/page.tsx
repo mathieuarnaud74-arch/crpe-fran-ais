@@ -10,16 +10,7 @@ export const metadata: Metadata = {
 import { EmptyState } from "@/components/empty-state";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Panel } from "@/components/ui/panel";
-import { Separator } from "@/components/ui/separator";
 import { requireUser } from "@/features/auth/server/guards";
 import { isPremiumUser } from "@/features/billing/server/queries";
 import { getExercises } from "@/features/exercises/server/queries";
@@ -28,7 +19,6 @@ import {
   LEVEL_OPTIONS,
   SUBDOMAIN_LABELS,
   SUBDOMAIN_OPTIONS,
-  formatLevelLabel,
 } from "@/lib/constants";
 import { ExerciseSubdomain, ExerciseType, RevisionSession } from "@/types/domain";
 
@@ -67,64 +57,47 @@ function SelectField({
   );
 }
 
-function MetaCell({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-xl border border-border bg-paper px-4 py-3">
-      <p className="text-xs font-medium tracking-[0.10em] text-muted">{label}</p>
-      <p className="mt-1.5 text-sm font-medium text-ink">{value}</p>
-    </div>
-  );
-}
-
 function SessionCard({ session, premium }: { session: RevisionSession; premium: boolean }) {
   const locked = session.access_tier === "premium" && !premium;
 
   return (
-    <Card>
-      <CardHeader>
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge tone={session.access_tier === "premium" ? "accent" : "neutral"}>
-            {session.access_tier === "premium" ? "Premium" : "Gratuit"}
-          </Badge>
-          <Badge>{formatLevelLabel(session.level)}</Badge>
-          <Badge>{session.questionCount} questions</Badge>
-        </div>
-        <p className="text-xs font-medium tracking-[0.10em] text-muted">
-          Étape {session.recommendedOrder} · {SUBDOMAIN_LABELS[session.subdomain]}
-        </p>
-        <CardTitle>{session.title}</CardTitle>
-        <CardDescription>{session.summary}</CardDescription>
-      </CardHeader>
+    <div className="group flex flex-col gap-3 rounded-[1.25rem] border border-border bg-card p-4 shadow-subtle transition-colors hover:border-accent/40 sm:p-5">
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge tone={session.access_tier === "premium" ? "accent" : "neutral"} size="sm">
+          {session.access_tier === "premium" ? "Premium" : "Gratuit"}
+        </Badge>
+        <Badge size="sm">{session.level}</Badge>
+        <Badge size="sm">{session.questionCount} questions</Badge>
+        <span className="text-xs text-muted">
+          · {SUBDOMAIN_LABELS[session.subdomain]}
+        </span>
+      </div>
 
-      <CardContent>
-        <div className="grid gap-2 sm:gap-3 sm:grid-cols-2 md:grid-cols-3">
-          <MetaCell label="Notion" value={session.topicLabel} />
-          <MetaCell label="Objectif" value={session.objective} />
-          <MetaCell label="Formats" value={session.exerciseTypeLabel} />
-        </div>
-      </CardContent>
+      <div>
+        <h3 className="text-[0.95rem] font-semibold leading-snug text-ink">{session.title}</h3>
+        <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">{session.summary}</p>
+      </div>
 
-      <Separator className="mx-6 w-auto" />
-
-      <CardFooter className="justify-between">
+      <div className="flex items-center justify-between gap-3 pt-1">
+        <p className="hidden text-xs text-muted sm:block">{session.exerciseTypeLabel} · ~{session.estimatedMinutes} min</p>
         {locked ? (
-          <>
-            <div className="flex items-center gap-2 text-sm text-muted">
-              <Lock className="h-4 w-4" />
-              <span>Disponible avec l&apos;offre premium.</span>
-            </div>
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1.5 text-xs text-muted">
+              <Lock className="h-3.5 w-3.5" />
+              Premium
+            </span>
             <ButtonLink href="/abonnement" variant="secondary" size="sm">
               Voir l&apos;offre
             </ButtonLink>
-          </>
+          </div>
         ) : (
-          <ButtonLink href={`/exercices/${session.id}`}>
-            <PlayCircle className="h-4 w-4" />
+          <ButtonLink href={`/exercices/${session.id}`} size="sm">
+            <PlayCircle className="h-3.5 w-3.5" />
             Commencer
           </ButtonLink>
         )}
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -149,7 +122,7 @@ function SessionSection({
         <h2 className="font-serif text-3xl font-semibold text-ink">{title}</h2>
         <p className="mt-2 max-w-3xl text-sm leading-7 text-muted">{description}</p>
       </div>
-      <div className="grid gap-5">
+      <div className="grid gap-4 sm:grid-cols-2">
         {sessions.map((session) => (
           <SessionCard key={session.id} session={session} premium={premium} />
         ))}

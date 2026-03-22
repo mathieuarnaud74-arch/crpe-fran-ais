@@ -1,11 +1,14 @@
+import { cache } from "react";
+
 import { computeDailyStreakUpdate, getParisToday, type DailyStreakUpdate } from "@/lib/daily-streak";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { UserGamification } from "@/types/domain";
 
 /**
  * Fetches user gamification data, creating a default row if none exists.
+ * Cached per-request via React.cache() to avoid redundant DB calls.
  */
-export async function getUserGamification(userId: string): Promise<UserGamification> {
+export const getUserGamification = cache(async function getUserGamification(userId: string): Promise<UserGamification> {
   const supabase = await createSupabaseServerClient();
 
   const { data, error } = await supabase
@@ -47,7 +50,7 @@ export async function getUserGamification(userId: string): Promise<UserGamificat
   }
 
   return newData as UserGamification;
-}
+});
 
 /**
  * Updates XP and streak after an attempt.

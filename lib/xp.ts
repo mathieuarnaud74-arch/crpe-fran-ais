@@ -29,7 +29,7 @@ export const LEVEL_THRESHOLDS = [
   36000, // Level 20
 ];
 
-export const LEVEL_LABELS: Record<number, string> = {
+export const XP_LEVEL_LABELS: Record<number, string> = {
   1: "Débutant",
   2: "Apprenti",
   3: "Élève",

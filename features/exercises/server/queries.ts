@@ -330,13 +330,17 @@ async function fetchAllExercises(filters: ExerciseFilters): Promise<ExerciseReco
   return allRows;
 }
 
-const fetchExercisesCached = cache(async (filters: ExerciseFilters) => {
+function filtersToKey(filters: ExerciseFilters): string {
+  return `${filters.subdomain ?? ""}|${filters.type ?? ""}|${filters.level ?? ""}|${filters.subject ?? ""}`;
+}
+
+const fetchExercisesCachedByKey = cache(async (_key: string, filters: ExerciseFilters) => {
   const rows = await fetchAllExercises(filters);
   return buildSessionsFromExercises(rows.map(normalizeExerciseRecord));
 });
 
 export async function getExercises(filters: ExerciseFilters = {}) {
-  return fetchExercisesCached(filters);
+  return fetchExercisesCachedByKey(filtersToKey(filters), filters);
 }
 
 export async function getExerciseById(id: string) {
@@ -379,25 +383,27 @@ export async function getAttemptsForHistory(userId: string, limit?: number) {
  */
 export async function getRandomExercises(count = 10) {
   const supabase = await createSupabaseServerClient();
+  const POOL_SIZE = 100;
+
   const { data } = await supabase
     .from("exercises")
     .select("*")
     .eq("is_published", true)
     .eq("subject", DEFAULT_SUBJECT)
-    .eq("access_tier", "free");
+    .eq("access_tier", "free")
+    .limit(POOL_SIZE);
 
   if (!data || data.length === 0) return [];
 
   const normalized = (data as ExerciseRecord[]).map(normalizeExerciseRecord);
 
-  // Fisher–Yates shuffle
-  const shuffled = [...normalized];
-  for (let i = shuffled.length - 1; i > 0; i--) {
+  // Fisher–Yates shuffle on limited pool
+  for (let i = normalized.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    [normalized[i], normalized[j]] = [normalized[j], normalized[i]];
   }
 
-  return shuffled.slice(0, count);
+  return normalized.slice(0, count);
 }
 
 export async function getAttemptsCountToday(userId: string) {

@@ -233,20 +233,25 @@ export default async function DashboardPage() {
   const showWelcomeBack =
     daysSinceLastActivity !== null && daysSinceLastActivity >= 3 && data.totalAttempts > 0;
 
-  // Smart challenge: prioritize weak areas, then not-started, then in-progress — with randomization
-  const challengePool = data.sessionProgress.filter(
-    (s) => s.access_tier === "free" && s.status !== "maitrisee",
-  );
-  const prioritySessions = challengePool.filter((s) => s.status === "a_revoir");
-  const notStartedSessions = challengePool.filter((s) => s.status === "non_commencee");
-  const inProgressSessions = challengePool.filter((s) => s.status === "en_cours");
+  // Smart challenge: single-pass grouping by status
+  const STATUS_ORDER: Record<string, number> = { a_revoir: 0, non_commencee: 1, en_cours: 2 };
+  const buckets: { a_revoir: typeof data.sessionProgress; non_commencee: typeof data.sessionProgress; en_cours: typeof data.sessionProgress } = {
+    a_revoir: [],
+    non_commencee: [],
+    en_cours: [],
+  };
+  for (const s of data.sessionProgress) {
+    if (s.access_tier === "free" && s.status !== "maitrisee" && s.status in buckets) {
+      buckets[s.status as keyof typeof buckets].push(s);
+    }
+  }
 
   // Pick from priority first, then not-started, then in-progress
-  const challengeBucket = prioritySessions.length > 0
-    ? prioritySessions
-    : notStartedSessions.length > 0
-      ? notStartedSessions
-      : inProgressSessions;
+  const challengeBucket = buckets.a_revoir.length > 0
+    ? buckets.a_revoir
+    : buckets.non_commencee.length > 0
+      ? buckets.non_commencee
+      : buckets.en_cours;
 
   // Deterministic daily rotation based on date (so it changes each day but stays stable within a day)
   const today = new Date();
@@ -256,13 +261,10 @@ export default async function DashboardPage() {
     : null;
 
   // Pick 2 more suggestions from other buckets for variety
+  const challengePool = [...buckets.a_revoir, ...buckets.non_commencee, ...buckets.en_cours];
   const otherSuggestions = challengePool
     .filter((s) => s.id !== quickChallengeSession?.id)
-    .sort((a, b) => {
-      // Prioritize: a_revoir > non_commencee > en_cours
-      const statusOrder = { a_revoir: 0, non_commencee: 1, en_cours: 2 } as Record<string, number>;
-      return (statusOrder[a.status] ?? 3) - (statusOrder[b.status] ?? 3);
-    })
+    .sort((a, b) => (STATUS_ORDER[a.status] ?? 3) - (STATUS_ORDER[b.status] ?? 3))
     .slice(0, 2);
 
   return (

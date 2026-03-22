@@ -24,7 +24,7 @@ export const env = {
     process.env.STRIPE_PRICE_PREMIUM_WEEKLY_ID ?? fallbackPriceId,
   stripePricePremiumMonthlyId:
     process.env.STRIPE_PRICE_PREMIUM_MONTHLY_ID ?? fallbackPriceId,
-  freeDailyQuestionLimit: Number(process.env.FREE_DAILY_QUESTION_LIMIT) || 20,
+  freeDailyQuestionLimit: Number(process.env.FREE_DAILY_QUESTION_LIMIT ?? 20),
 };
 
 export function isSupabaseConfigured() {

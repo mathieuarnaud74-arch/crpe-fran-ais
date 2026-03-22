@@ -10,6 +10,7 @@ import {
   LayoutDashboard,
   Search,
   Stethoscope,
+  Trophy,
   User,
 } from "lucide-react";
 import Link from "next/link";
@@ -49,6 +50,7 @@ const navigationItems: NavigationItem[] = [
       { href: "/tableau-de-bord", label: "Tableau de bord", exact: true, icon: LayoutDashboard },
       { href: "/diagnostic", label: "Diagnostic", exact: true, icon: Stethoscope },
       { href: "/progression", label: "Progression", exact: true, icon: BarChart3 },
+      { href: "/classement", label: "Classement", exact: true, icon: Trophy },
     ],
   },
   {

@@ -15,8 +15,10 @@ import {
 import { getUserGamification } from "@/features/gamification/server/queries";
 import { env } from "@/lib/env";
 import { canSubmitAttempt } from "@/lib/freemium";
-import { formatLevelLabel } from "@/lib/constants";
+
 import { ExerciseSubdomain } from "@/types/domain";
+
+const VALID_MODES = new Set(["standard", "timed", "sprint", "swipe"]);
 
 const CRPE_CONTEXT: Partial<Record<ExerciseSubdomain, string>> = {
   didactique_francais:
@@ -53,8 +55,7 @@ export default async function ExerciseDetailPage({
   const { id } = await params;
   const resolvedSearchParams = await searchParams;
   const modeParam = typeof resolvedSearchParams.mode === "string" ? resolvedSearchParams.mode : null;
-  const validModes = new Set(["standard", "timed", "sprint", "swipe"]);
-  const initialMode = modeParam && validModes.has(modeParam) ? modeParam as "standard" | "timed" | "sprint" | "swipe" : undefined;
+  const initialMode = modeParam && VALID_MODES.has(modeParam) ? modeParam as "standard" | "timed" | "sprint" | "swipe" : undefined;
   const user = await requireUser();
   const premium = await isPremiumUser(user.id);
   const session = await getExerciseSessionById(id);
@@ -99,7 +100,7 @@ export default async function ExerciseDetailPage({
         <Badge tone={session.access_tier === "premium" ? "accent" : "neutral"}>
           {session.access_tier === "premium" ? "Premium" : "Gratuit"}
         </Badge>
-        <Badge>{formatLevelLabel(session.level)}</Badge>
+        <Badge>{session.level}</Badge>
         <Badge>{session.questionCount} questions</Badge>
       </div>
       {crpeContext ? (

@@ -23,7 +23,6 @@ import { TriCategoriesInput } from "@/features/exercises/components/tri-categori
 import {
   EXERCISE_TYPE_LABELS,
   SUBDOMAIN_LABELS,
-  formatLevelLabel,
 } from "@/lib/constants";
 import { MASTERY_THRESHOLD } from "@/lib/dashboard";
 import { cn } from "@/lib/utils";
@@ -98,7 +97,9 @@ export function ExercisePlayer({
       groups.set(label, (groups.get(label) ?? 0) + 1);
     }
     return Array.from(groups.entries()).map(([label, count]) => ({ label, count }));
-  }, [results, session.questions]);
+    // session.id is stable — avoids re-memo when session.questions ref changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [results, session.id]);
 
   useEffect(() => {
     setShowFullExplanation(false);
@@ -421,7 +422,7 @@ export function ExercisePlayer({
               <Badge tone={session.access_tier === "premium" ? "accent" : "neutral"}>
                 {session.access_tier === "premium" ? "Premium" : "Gratuit"}
               </Badge>
-              <Badge>{formatLevelLabel(session.level)}</Badge>
+              <Badge>{session.level}</Badge>
               <Badge>{session.questionCount} questions</Badge>
               {consecutiveCorrect >= 3 && !completed && (
                 <span className={cn(

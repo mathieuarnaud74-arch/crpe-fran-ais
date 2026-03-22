@@ -1,5 +1,57 @@
 # Changelog
 
+## [2026-03-22] — Classement hebdomadaire (Leaderboard)
+
+- `supabase/migrations/20260429_add_leaderboard_function.sql` — Fonction SQL `get_weekly_leaderboard` (SECURITY DEFINER) : agrège les XP de la semaine ISO en cours par utilisateur, retourne top N + position de l'appelant
+- `features/leaderboard/server/queries.ts` — Query serveur `getWeeklyLeaderboard` appelant le RPC Supabase, type `LeaderboardEntry`
+- `features/leaderboard/components/leaderboard-table.tsx` — Composant client : podium animé top 3 (médailles or/argent/bronze), tableau responsive rangs 4+, mise en évidence de l'utilisateur courant, état vide
+- `app/(app)/classement/page.tsx` — Page `/classement` : résumé personnel (niveau, position, XP semaine) + classement complet
+- `components/app-navigation.tsx` — Ajout lien "Classement" (icône Trophy) dans le groupe "Mon parcours"
+
+## [2026-03-22] — Fiche sprint : Le predicat et la structure de la phrase
+
+- `content/fiches/grammaire-predicat-structure-sprint.ts` — Nouvelle fiche sprint grammaire couvrant P = [GS + GV] (+ GC), le predicat = GV, les niveaux d'analyse, les tests du GC ; 6 quiz items vrai/faux avec explications detaillees
+- `content/fiches/index.ts` — Import et ajout de `grammairePredicatStructureSprint` dans `allFiches`
+
+## [2026-03-22] — Bug fix : null dereference dans insertDefaultHomepageData
+
+- `features/homepage/server/queries.ts` — Ajout garde `if (pageError || !page)` avant accès à `page.id` après insert Supabase : évite un crash si l'insertion de la page homepage échoue
+
+## [2026-03-22] — Code quality : suppression double-formatage formatLevelLabel
+
+- `app/(app)/exercices/page.tsx`, `app/(app)/exercices/[id]/page.tsx`, `features/exercises/components/exercise-player.tsx`, `lib/dashboard.ts` — Suppression de 4 appels redondants à `formatLevelLabel(session.level)` : `session.level` est déjà formaté dans `buildSessionsFromExercises`. Imports `formatLevelLabel` inutilisés nettoyés
+
+## [2026-03-22] — Code quality : dédoublonnage constantes, renommages
+
+- `lib/xp.ts` — `LEVEL_LABELS` renommé en `XP_LEVEL_LABELS` pour éviter la collision avec `LEVEL_LABELS` de `lib/constants.ts` (types différents : `Record<number>` vs `Record<string>`)
+- `components/ui/xp-bar.tsx`, `features/dashboard/components/xp-level-card.tsx` — Mise à jour des imports vers `XP_LEVEL_LABELS`
+- `features/dashboard/components/learning-status-badge.tsx` — Suppression du `PROGRESS_STATUS_LABELS` local dupliqué, import depuis `@/lib/constants`
+
+## [2026-03-22] — Bugs : 4 correctifs (Stripe, sprint, errors silencieux)
+
+- `app/api/stripe/checkout/route.ts` — Suppression cast `as unknown as` sur `subscriptionData` (propriété `cancel_at_period_end` inexistante sur le type Stripe, déjà gérée dans le webhook). `VALID_PRICES` hoisted en constante module
+- `features/exercises/components/sprint-player.tsx` — 2 catch blocks silencieux (`catch {}` et `.catch(() => {})`) remplacés par `console.error` pour rendre les erreurs de submit et de persist personal best visibles
+- Corrections mineures liées à l'audit bugs (homepage actions, type casts) : pas de bug réel, `redirectToAdmin` correctement typé `never`
+
+## [2026-03-22] — Performance : 3 optimisations render/query
+
+- `features/dashboard/components/nivo-radar.tsx` — Objets instables (legends, theme, data) hoistés en constantes module + `useMemo` sur data : supprime les re-renders inutiles du chart Nivo
+- `app/(app)/tableau-de-bord/page.tsx` — challengePool : 4 passes `.filter()` remplacées par un groupement single-pass en buckets `{ a_revoir, non_commencee, en_cours }`
+- `features/exercises/components/exercise-player.tsx` — `weakAreas` useMemo : dépendance `session.questions` (ref instable) remplacée par `session.id` (stable)
+
+## [2026-03-22] — Audit performance, bugs & qualité — 5 correctifs critiques
+
+- `lib/env.ts` — Fix bug falsy zero : `Number(...) || 20` remplacé par `Number(... ?? 20)` pour gérer correctement `FREE_DAILY_QUESTION_LIMIT=0`
+- `features/gamification/context.tsx` — Fix stale closure dans `addXp` : ajout de `gamification.xp` aux dépendances du `useCallback`
+- `features/gamification/server/queries.ts` — Ajout de `cache()` React sur `getUserGamification` pour dédupliquer les requêtes DB intra-request
+- `features/exercises/server/queries.ts` — `getRandomExercises` : ajout `.limit(100)` au lieu de charger tous les exercices free en mémoire
+- `app/(app)/exercices/[id]/page.tsx` — `VALID_MODES` Set hoisted en constante module au lieu d'être recréé à chaque requête
+
+## [2026-03-22] — Optimisation séries : cache fix, cards compactes, grille 2 colonnes
+
+- `features/exercises/server/queries.ts` — Fix cache React `cache()` : sérialisation des filtres en clé string stable (`filtersToKey`) pour éviter les miss de cache par référence objet, corrigeant le bug intermittent "pas dans votre espace de révision"
+- `app/(app)/exercices/page.tsx` — SessionCard redessinée : suppression MetaCells/Separator, layout compact (badges inline, résumé limité 2 lignes, footer inline). Grille passée de 1 à 2 colonnes (`sm:grid-cols-2`). Imports inutilisés nettoyés (Card, Separator)
+
 ## [2026-03-22] — Section "Sujets blancs CRPE" sur /exercices
 
 - `app/(app)/exercices/page.tsx` — Nouvelle section dédiée "Sujets blancs CRPE" avec cards distinctives (badge "Sujet blanc", bordure accent, mention "7 sous-domaines"). Sujets blancs isolés des séries régulières via filtre `topicKey.startsWith("sujet_blanc")`

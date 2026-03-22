@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 import { XpBar } from "@/components/ui/xp-bar";
-import { LEVEL_LABELS, getXpForNextLevel } from "@/lib/xp";
+import { XP_LEVEL_LABELS, getXpForNextLevel } from "@/lib/xp";
 import { cn } from "@/lib/utils";
 import type { UserGamification } from "@/types/domain";
 
@@ -13,7 +13,7 @@ type XpLevelCardProps = {
 
 export function XpLevelCard({ gamification }: XpLevelCardProps) {
   const xpInfo = getXpForNextLevel(gamification.xp);
-  const label = LEVEL_LABELS[gamification.level] ?? `Niveau ${gamification.level}`;
+  const label = XP_LEVEL_LABELS[gamification.level] ?? `Niveau ${gamification.level}`;
   const isStreakActive = gamification.daily_streak > 0;
 
   return (
