@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-22] — Ignore .claude/ dans git
+
+- `.gitignore` — Ajout de `.claude/` pour ignorer les fichiers internes de Claude Code (scheduled_tasks.lock, etc.)
+
 ## [2026-03-22] — Fix tressautement dev : désactiver Strict Mode + guard timer
 
 - `next.config.ts` — `reactStrictMode: false` pour empêcher le double-mount/unmount en dev qui causait un flash visible des questions (mount → unmount → remount)

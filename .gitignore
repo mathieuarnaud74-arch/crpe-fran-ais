@@ -21,3 +21,6 @@ Nouveau Document texte.txt
 
 *storybook.log
 storybook-static
+
+# Claude Code
+.claude/
