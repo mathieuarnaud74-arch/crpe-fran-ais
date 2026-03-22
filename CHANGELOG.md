@@ -4,7 +4,7 @@
 
 - `features/exercises/components/exercise-player.tsx` — "Question suivante" saute directement à la prochaine question non répondue au lieu d'avancer séquentiellement (évite les sauts inutiles)
 - `features/exercises/components/exercise-player.tsx` — "Question précédente" ne navigue plus que vers les questions déjà répondues (empêche de tomber sur des questions vierges)
-- `features/exercises/components/exercise-player.tsx` — En mode Chrono, quand le temps expire sans réponse, la question est marquée incorrecte et le joueur passe automatiquement à la suivante (au lieu de rester bloqué)
+- `features/exercises/components/exercise-player.tsx` — En mode Chrono, quand le temps expire sans réponse, la question est marquée incorrecte et le joueur passe automatiquement à la suivante via `setCurrentIndex` fonctionnel (évite les closures stale dans le setTimeout)
 
 ## [2026-03-22] — Refonte exercice aléatoire : questions individuelles + 2 modes
 

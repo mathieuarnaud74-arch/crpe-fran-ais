@@ -706,10 +706,12 @@ export function ExercisePlayer({
                       if (draftAnswer.trim()) {
                         submitCurrentQuestion();
                       } else {
-                        // Time's up with no answer — mark as incorrect and move on
+                        // Time's up with no answer — mark as incorrect
+                        const qId = currentQuestion.id;
+                        const qIdx = currentIndex;
                         setResults((prev) => ({
                           ...prev,
-                          [currentQuestion.id]: {
+                          [qId]: {
                             answer: "",
                             isCorrect: false,
                             reason: "incorrect",
@@ -719,7 +721,16 @@ export function ExercisePlayer({
                         }));
                         playSound("incorrect");
                         setConsecutiveCorrect(0);
-                        setTimeout(() => goToNextQuestion(), 800);
+                        // Advance after a short delay — use captured index to avoid stale closure
+                        setTimeout(() => {
+                          setCurrentIndex((idx) => {
+                            // Only advance if we're still on the same question
+                            if (idx !== qIdx) return idx;
+                            return Math.min(idx + 1, session.questions.length - 1);
+                          });
+                          setDraftAnswer("");
+                          scrollToContainer();
+                        }, 800);
                       }
                     }
                   }}
