@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-22] — Fix tressautement dev : désactiver Strict Mode + guard timer
+
+- `next.config.ts` — `reactStrictMode: false` pour empêcher le double-mount/unmount en dev qui causait un flash visible des questions (mount → unmount → remount)
+- `features/exercises/components/exercise-player.tsx` — Ajout de `timerFiredRef` pour empêcher le callback `onComplete` du timer de se déclencher plusieurs fois (reset à chaque changement de question)
+
 ## [2026-03-22] — Fix double-clic qui saute la correction
 
 - `features/exercises/components/exercise-player.tsx` — Guard anti-double-clic de 600ms entre la soumission et le clic "Question suivante" (le bouton apparaît au même endroit que "Corriger", un double-clic sur Corriger tapait aussi sur Suivante)

@@ -73,6 +73,7 @@ export function ExercisePlayer({
   const [questionStartTime, setQuestionStartTime] = useState(Date.now());
   const prevResultsCount = useRef(0);
   const lastSubmitTime = useRef(0);
+  const timerFiredRef = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const feedbackRef = useRef<HTMLDivElement>(null);
   const { playSound } = useGameSounds();
@@ -100,6 +101,7 @@ export function ExercisePlayer({
   useEffect(() => {
     setShowFullExplanation(false);
     setQuestionStartTime(Date.now());
+    timerFiredRef.current = false;
   }, [currentQuestion?.id]);
 
   // Scroll to top when series is completed
@@ -710,6 +712,8 @@ export function ExercisePlayer({
                   isPlaying={!currentResult}
                   size={60}
                   onComplete={() => {
+                    if (timerFiredRef.current) return;
+                    timerFiredRef.current = true;
                     if (!currentResult) {
                       if (draftAnswer.trim()) {
                         submitCurrentQuestion();
