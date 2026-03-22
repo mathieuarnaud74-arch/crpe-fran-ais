@@ -633,49 +633,56 @@ export function ExercisePlayer({
                 </div>
               </div>
               <div className="space-y-4">
-                {session.questions.map((question, index) => (
-                  <div key={question.id} className="rounded-[1.5rem] border border-border bg-paper p-5">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <Badge tone={results[question.id]?.isCorrect ? "success" : "warning"}>
-                        {results[question.id]?.isCorrect ? "Correct" : "\u00c0 revoir"}
-                      </Badge>
-                      <span className="text-sm font-medium text-muted">Question {index + 1}</span>
-                    </div>
-                    <p className="mt-4 text-base font-medium leading-7 text-ink">
-                      {question.instruction}
-                    </p>
+                {session.questions.map((question, index) => {
+                  const qResult = results[question.id];
+                  const isExpanded = expandedReviewCard === question.id;
+                  return (
                     <button
+                      key={question.id}
                       type="button"
-                      className="mt-2 text-xs font-semibold text-accent underline sm:hidden"
                       onClick={() => setExpandedReviewCard((v) => (v === question.id ? null : question.id))}
+                      className="w-full rounded-[1.5rem] border border-border bg-paper p-5 text-left transition-colors hover:bg-card"
                     >
-                      {expandedReviewCard === question.id ? "Masquer ▴" : "Voir la correction ▾"}
-                    </button>
-                    <div className={cn("mt-4", expandedReviewCard !== question.id && "hidden sm:block")}>
-                      {question.support_text ? (
-                        <div className="mb-4 rounded-xl border border-border bg-card px-4 py-4 text-sm leading-7 text-muted">
-                          {question.support_text}
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <Badge tone={qResult?.isCorrect ? "success" : "warning"}>
+                            {qResult?.isCorrect ? "Correct" : "\u00c0 revoir"}
+                          </Badge>
+                          <span className="text-sm font-medium text-muted">Question {index + 1}</span>
                         </div>
-                      ) : null}
-                      <p className="text-sm leading-7 text-muted">
-                        <span className="font-semibold text-ink">Votre r&eacute;ponse :</span>{" "}
-                        {question.exercise_type === "tri_categories" || question.exercise_type === "surlignage_propositions"
-                          ? "Classement soumis"
-                          : results[question.id]?.answer}
+                        <span className="text-xs text-muted">{isExpanded ? "▴" : "▾"}</span>
+                      </div>
+                      <p className="mt-3 text-sm font-medium leading-7 text-ink line-clamp-2">
+                        {question.instruction}
                       </p>
-                      <p className="mt-2 text-sm leading-7 text-muted">
-                        <span className="font-semibold text-ink">Correction :</span>{" "}
-                        {question.detailed_explanation}
-                      </p>
-                      {question.common_mistake ? (
-                        <p className="mt-2 text-sm leading-7 text-muted">
-                          <span className="font-semibold text-ink">Erreur fr&eacute;quente :</span>{" "}
-                          {question.common_mistake}
-                        </p>
-                      ) : null}
-                    </div>
-                  </div>
-                ))}
+                      {isExpanded && (
+                        <div className="mt-4 space-y-2 border-t border-border pt-4">
+                          {question.support_text ? (
+                            <div className="rounded-xl border border-border bg-card px-4 py-4 text-sm leading-7 text-muted">
+                              {question.support_text}
+                            </div>
+                          ) : null}
+                          <p className="text-sm leading-7 text-muted">
+                            <span className="font-semibold text-ink">Votre r&eacute;ponse :</span>{" "}
+                            {question.exercise_type === "tri_categories" || question.exercise_type === "surlignage_propositions"
+                              ? "Classement soumis"
+                              : qResult?.answer}
+                          </p>
+                          <p className="text-sm leading-7 text-muted">
+                            <span className="font-semibold text-ink">Correction :</span>{" "}
+                            {question.detailed_explanation}
+                          </p>
+                          {question.common_mistake ? (
+                            <p className="text-sm leading-7 text-muted">
+                              <span className="font-semibold text-ink">Erreur fr&eacute;quente :</span>{" "}
+                              {question.common_mistake}
+                            </p>
+                          ) : null}
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>

@@ -1,5 +1,28 @@
 # Changelog
 
+## [2026-03-22] — Écran de fin : corrections repliées par défaut
+
+- `features/exercises/components/exercise-player.tsx` — Les corrections de chaque question sont repliées par défaut sur l'écran de fin (clic pour déplier). Réduit drastiquement le scroll. L'instruction est tronquée à 2 lignes, chevron ▾/▴ indique l'état
+
+## [2026-03-22] — Audit pédagogique + création de 200 exercices premium (20 séries)
+
+- `supabase/migrations/20260357_seed_didactique_part1.sql` — 4 séries Didactique (40 questions) : Enseignement de la compréhension, Enseignement de la grammaire, Enseignement du vocabulaire, Différenciation et évaluation
+- `supabase/migrations/20260357_seed_didactique_part2.sql` — 3 séries Didactique (30 questions) : Étude de la langue aux cycles 2-3, Littérature de jeunesse, Fluence et automatisation en lecture
+- `supabase/migrations/20260358_seed_grammaire_nouvelles.sql` — 5 séries Grammaire (50 questions) : Nature et fonction, Groupe nominal, Groupe verbal, Subordonnées relatives, Transformations de la phrase
+- `supabase/migrations/20260359_seed_comprehension_nouvelles.sql` — 5 séries Compréhension de texte (50 questions) : Inférences et implicite, Énonciation et point de vue, Texte explicatif, Texte poétique, Mise en réseau
+- `supabase/migrations/20260360_seed_conjugaison_nouvelles.sql` — 3 séries Conjugaison (30 questions) : Temps simples/composés, Verbes irréguliers 3e groupe, Participe présent vs adjectif verbal
+- Toutes les séries sont `premium`, terminologie Éduscol 2021, mix 4 QCM + 3 V/F + 3 réponse courte par série
+
+## [2026-03-22] — Seed 5 séries Compréhension de texte (50 exercices)
+
+- `supabase/migrations/20260359_seed_comprehension_nouvelles.sql` — Création de 50 exercices premium répartis en 5 séries : Inférences et implicite, Énonciation et point de vue, Le texte explicatif et documentaire, Le texte poétique, Analyse comparative et mise en réseau. Mix par série : 4 QCM + 3 vrai/faux + 3 réponse courte, 3 Facile + 4 Intermédiaire + 3 Difficile. UUIDs f5010000–f5050000.
+
+## [2026-03-22] — Nettoyage fichiers .md obsolètes
+
+- `Rapport Codex.md` — Supprimé (audit marketing terminé, recommandations appliquées)
+- `contenu/sources/eduscol/COLLECTE-SOURCES.md` — Supprimé (rapport de collecte URLs terminé, aucune valeur résiduelle)
+- `MULTITASK/` — Supprimé (19 fichiers : INDEX, AGENT-1→8, RAPPORT-1→8, HANDOFF-8). Missions des 8 agents terminées. Les TODO de HANDOFF-8 (refactoring constantes lib/pricing.ts, lib/crpe-context.ts, lib/constants.ts) sont conservés pour une session future.
+
 ## [2026-03-22] — Fix persistance réponses + stabilité XP
 
 - `features/exercises/server/actions.ts` — Wrap global try/catch dans `submitAttemptAction` pour ne plus jamais throw (retourne toujours un objet d'état). Log console de l'erreur réelle côté serveur
