@@ -11,14 +11,17 @@ export const metadata: Metadata = {
 };
 import { getUserSubscription, isPremiumUser } from "@/features/billing/server/queries";
 import { getDashboardData } from "@/features/dashboard/server/queries";
+import { DisplayNameForm } from "@/features/leaderboard/components/display-name-form";
+import { getUserDisplayName } from "@/features/leaderboard/server/queries";
 import { formatDate } from "@/lib/utils";
 
 export default async function ProfilePage() {
   const user = await requireUser();
   const premium = await isPremiumUser(user.id);
-  const [subscription, dashboard] = await Promise.all([
+  const [subscription, dashboard, displayName] = await Promise.all([
     getUserSubscription(user.id),
     getDashboardData(user.id, premium),
+    getUserDisplayName(user.id),
   ]);
 
   return (
@@ -54,6 +57,7 @@ export default async function ProfilePage() {
               </span>
             </p>
           </div>
+          <DisplayNameForm currentName={displayName} />
         </Panel>
 
         <Panel>

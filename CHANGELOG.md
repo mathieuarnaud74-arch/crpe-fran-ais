@@ -1,5 +1,16 @@
 # Changelog
 
+## [2026-03-22] — Édition du pseudo sur la page Profil
+
+- `features/leaderboard/server/actions.ts` — Server action `updateDisplayNameAction` pour mettre à jour le `display_name` en base (validation 2-30 chars)
+- `features/leaderboard/components/display-name-form.tsx` — Formulaire client "Pseudo (visible dans le classement)" avec feedback succès/erreur
+- `app/(app)/profil/page.tsx` — Intégration du formulaire de pseudo dans la section Compte
+
+## [2026-03-22] — Classement : affichage du nom utilisateur
+
+- `features/leaderboard/server/queries.ts` — Ajout de `getUserDisplayName` (cachée via `cache()`) pour récupérer le nom d'affichage depuis la table profiles
+- `app/(app)/classement/page.tsx` — Affichage du nom utilisateur au lieu du label de niveau dans la carte personnelle du classement
+
 ## [2026-03-22] — Classement hebdomadaire (Leaderboard)
 
 - `supabase/migrations/20260429_add_leaderboard_function.sql` — Fonction SQL `get_weekly_leaderboard` (SECURITY DEFINER) : agrège les XP de la semaine ISO en cours par utilisateur, retourne top N + position de l'appelant
