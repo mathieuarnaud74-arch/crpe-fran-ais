@@ -1,6 +1,6 @@
 -- ============================================================
 -- Migration : 3 séries Conjugaison (30 exercices)
--- UUID prefix : g501–g503
+-- UUID prefix : a601–a603
 -- ============================================================
 
 -- ============================================================
@@ -15,7 +15,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5010000-0000-0000-0000-000000000001',
+  'a6010000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'conj_temps_simples_composes',
@@ -40,7 +40,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5010000-0000-0000-0000-000000000002',
+  'a6010000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'conj_temps_simples_composes',
@@ -65,7 +65,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5010000-0000-0000-0000-000000000003',
+  'a6010000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'conj_temps_simples_composes',
@@ -90,7 +90,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5010000-0000-0000-0000-000000000004',
+  'a6010000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'conj_temps_simples_composes',
@@ -115,7 +115,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5010000-0000-0000-0000-000000000005',
+  'a6010000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'conj_temps_simples_composes',
@@ -140,7 +140,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5010000-0000-0000-0000-000000000006',
+  'a6010000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'conj_temps_simples_composes',
@@ -165,7 +165,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5010000-0000-0000-0000-000000000007',
+  'a6010000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'conj_temps_simples_composes',
@@ -190,7 +190,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5010000-0000-0000-0000-000000000008',
+  'a6010000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'conj_temps_simples_composes',
@@ -215,7 +215,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5010000-0000-0000-0000-000000000009',
+  'a6010000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'conj_temps_simples_composes',
@@ -240,7 +240,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5010000-0000-0000-0000-00000000000a',
+  'a6010000-0000-0000-0000-00000000000a',
   'Francais',
   'conjugaison',
   'conj_temps_simples_composes',
@@ -272,7 +272,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5020000-0000-0000-0000-000000000001',
+  'a6020000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'conj_verbes_irreguliers',
@@ -297,7 +297,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5020000-0000-0000-0000-000000000002',
+  'a6020000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'conj_verbes_irreguliers',
@@ -322,7 +322,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5020000-0000-0000-0000-000000000003',
+  'a6020000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'conj_verbes_irreguliers',
@@ -347,7 +347,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5020000-0000-0000-0000-000000000004',
+  'a6020000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'conj_verbes_irreguliers',
@@ -372,7 +372,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5020000-0000-0000-0000-000000000005',
+  'a6020000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'conj_verbes_irreguliers',
@@ -397,7 +397,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5020000-0000-0000-0000-000000000006',
+  'a6020000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'conj_verbes_irreguliers',
@@ -422,7 +422,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5020000-0000-0000-0000-000000000007',
+  'a6020000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'conj_verbes_irreguliers',
@@ -447,7 +447,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5020000-0000-0000-0000-000000000008',
+  'a6020000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'conj_verbes_irreguliers',
@@ -472,7 +472,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5020000-0000-0000-0000-000000000009',
+  'a6020000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'conj_verbes_irreguliers',
@@ -497,7 +497,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5020000-0000-0000-0000-00000000000a',
+  'a6020000-0000-0000-0000-00000000000a',
   'Francais',
   'conjugaison',
   'conj_verbes_irreguliers',
@@ -529,7 +529,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5030000-0000-0000-0000-000000000001',
+  'a6030000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'conj_participe_adjectif_verbal',
@@ -554,7 +554,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5030000-0000-0000-0000-000000000002',
+  'a6030000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'conj_participe_adjectif_verbal',
@@ -579,7 +579,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5030000-0000-0000-0000-000000000003',
+  'a6030000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'conj_participe_adjectif_verbal',
@@ -604,7 +604,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5030000-0000-0000-0000-000000000004',
+  'a6030000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'conj_participe_adjectif_verbal',
@@ -629,7 +629,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5030000-0000-0000-0000-000000000005',
+  'a6030000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'conj_participe_adjectif_verbal',
@@ -654,7 +654,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5030000-0000-0000-0000-000000000006',
+  'a6030000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'conj_participe_adjectif_verbal',
@@ -679,7 +679,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5030000-0000-0000-0000-000000000007',
+  'a6030000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'conj_participe_adjectif_verbal',
@@ -704,7 +704,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5030000-0000-0000-0000-000000000008',
+  'a6030000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'conj_participe_adjectif_verbal',
@@ -729,7 +729,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5030000-0000-0000-0000-000000000009',
+  'a6030000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'conj_participe_adjectif_verbal',
@@ -754,7 +754,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'g5030000-0000-0000-0000-00000000000a',
+  'a6030000-0000-0000-0000-00000000000a',
   'Francais',
   'conjugaison',
   'conj_participe_adjectif_verbal',

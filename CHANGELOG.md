@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-03-22] — Renommage migrations + mise à jour CLAUDE.md
+
+- `CLAUDE.md` — Mise à jour des règles projet
+- `supabase/migrations/` — Renommage des migrations pour éviter les conflits de version (20260336→20260362/63/64, 20260357001→20260361)
+- `supabase/migrations/20260360_seed_conjugaison_nouvelles.sql` — Correction du contenu
+
 ## [2026-03-22] — Bouton "Nouvelle série aléatoire" + "Recommencer" raccourci
 
 - `features/exercises/components/exercise-player.tsx` — Nouveau prop `onNewSession` : affiche un bouton CTA sur l'écran de fin pour relancer une nouvelle série. Texte "Recommencer la série" raccourci en "Recommencer"

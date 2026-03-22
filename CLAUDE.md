@@ -185,6 +185,8 @@ When making UI/design changes, make bold, meaningful improvements — not margin
 
 When asked for UI/design changes, propose a concrete visual direction with specific colors/components BEFORE implementing. Never make marginal or superficial tweaks — go bold or present options first.
 
+Always ensure visual coherence across components and consistent sizing/spacing. When in doubt, propose a complete palette or design system change rather than incremental color adjustments.
+
 ---
 
 ## Content & Copy
@@ -213,6 +215,7 @@ When creating SQL migrations, always validate:
 2. Column count matches INSERT statements
 3. No duplicate migration version numbers
 4. Test migration locally before pushing
+5. CLI command compatibility with installed Supabase version — use `supabase migration new` instead of `db execute` if unsure
 
 ---
 
@@ -241,7 +244,9 @@ After completing work, always run `npm run build` to verify no errors before com
 
 ## Changelog
 
-À la fin de **chaque session** ayant modifié du code, l'agent doit ajouter une entrée dans `CHANGELOG.md` avec :
+À la fin de **chaque session** ayant modifié du code, l'agent **doit impérativement** ajouter une entrée dans `CHANGELOG.md`. Ne jamais sauter cette étape, y compris après des suppressions de fichiers ou des modifications de contenu.
+
+Format :
 - la date (format `YYYY-MM-DD`)
 - une ligne par fichier modifié ou créé, avec le motif du changement
 
