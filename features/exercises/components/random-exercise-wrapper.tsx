@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { ExercisePlayer } from "@/features/exercises/components/exercise-player";
 import { RandomModePicker } from "@/features/exercises/components/random-mode-picker";
@@ -8,7 +8,7 @@ import type { ExerciseMode, ExerciseRecord, RevisionSession } from "@/types/doma
 
 function buildVirtualSession(questions: ExerciseRecord[]): RevisionSession {
   return {
-    id: `random-${Date.now()}`,
+    id: "random-session",
     title: "Exercice aléatoire",
     summary: "Questions piochées aléatoirement dans toutes les séries.",
     objective: "Réviser des notions variées en mode aléatoire.",
@@ -48,11 +48,12 @@ export function RandomExerciseWrapper({
 }: RandomExerciseWrapperProps) {
   const [selectedMode, setSelectedMode] = useState<ExerciseMode | null>(null);
 
+  // Memoize so that ExercisePlayer always receives the same reference
+  const session = useMemo(() => buildVirtualSession(questions), [questions]);
+
   if (!selectedMode) {
     return <RandomModePicker onSelect={(mode) => setSelectedMode(mode)} />;
   }
-
-  const session = buildVirtualSession(questions);
 
   return (
     <ExercisePlayer

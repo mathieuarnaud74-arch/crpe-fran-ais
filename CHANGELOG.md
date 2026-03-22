@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-03-22] — Fix tressautement : session memoizée + suppression boucle useEffect
+
+- `features/exercises/components/random-exercise-wrapper.tsx` — `useMemo` sur `buildVirtualSession` pour que l'ExercisePlayer reçoive toujours la même référence (empêche les re-renders qui recréaient la session à chaque changement de state)
+- `features/exercises/components/random-exercise-wrapper.tsx` — ID session fixe `"random-session"` au lieu de `random-${Date.now()}` (changeait à chaque render)
+- `features/exercises/components/exercise-player.tsx` — Suppression de `consecutiveCorrect` des dépendances du useEffect de suivi de streak (causait un cycle render → effect → setState → render → effect). Utilisation de `setConsecutiveCorrect(prev => ...)` fonctionnel à la place
+
 ## [2026-03-22] — Fix navigation exercices : saut de questions et retour arrière
 
 - `features/exercises/components/exercise-player.tsx` — "Question suivante" saute directement à la prochaine question non répondue au lieu d'avancer séquentiellement (évite les sauts inutiles)

@@ -124,14 +124,16 @@ export function ExercisePlayer({
     const lastResult = orderedResults[orderedResults.length - 1];
 
     if (lastResult?.isCorrect) {
-      const newStreak = consecutiveCorrect + 1;
-      setConsecutiveCorrect(newStreak);
+      setConsecutiveCorrect((prev) => {
+        const newStreak = prev + 1;
+        if (newStreak === 5 || newStreak === 10) {
+          setStreakCelebration(newStreak);
+          playSound("streak");
+          setTimeout(() => setStreakCelebration(null), 2500);
+        }
+        return newStreak;
+      });
       playSound("correct");
-      if (newStreak === 5 || newStreak === 10) {
-        setStreakCelebration(newStreak);
-        playSound("streak");
-        setTimeout(() => setStreakCelebration(null), 2500);
-      }
     } else {
       setConsecutiveCorrect(0);
       if (lastResult) playSound("incorrect");
@@ -149,7 +151,8 @@ export function ExercisePlayer({
         playSound("levelUp");
       }
     }
-  }, [results, session.questions, consecutiveCorrect, playSound]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [results, session.questions, playSound]);
 
   if (!currentQuestion) {
     return null;
