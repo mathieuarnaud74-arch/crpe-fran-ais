@@ -1,5 +1,85 @@
 # Changelog
 
+## [2026-03-22] — Sujets blancs v3 : 20 questions, 2 parties, textes allongés
+
+- `supabase/migrations/20260507_seed_sujets_blancs_v3.sql` — Refonte des 3 sujets blancs : 20 questions par sujet (au lieu de 15), textes littéraires allongés, 2 parties (Étude de la langue + Analyse du lexique), questions de réécriture, niveau Intermédiaire-Difficile uniquement
+- `app/(app)/exercices/page.tsx` — Description et cartes mises à jour (2 parties, nombre de questions dynamique)
+- `features/exercises/server/queries.ts` — Textes de session adaptés au nouveau format 2 parties
+
+## [2026-03-22] — Batch 8 : 3 nouvelles séries + sujet blanc n°2 (22 questions)
+
+- `supabase/migrations/20260531_seed_math_angles_mesures_proprietes.sql` — Série « Angles — Mesures et propriétés » : 7 exercices (vocabulaire, complémentaires/supplémentaires, alternes-internes, angle inscrit/au centre, somme des angles d'un polygone). Niveau intermédiaire, free.
+- `supabase/migrations/20260532_seed_math_mise_en_equation.sql` — Série « Mise en équation — Du problème à l'équation » : 7 exercices (traduction d'énoncé, résolution 1er degré, périmètre avec inconnue, entiers consécutifs, inéquation, problème de mélange, poules et lapins). Niveau intermédiaire, premium.
+- `supabase/migrations/20260533_seed_math_sujet_blanc_2.sql` — Série « Sujet blanc CRPE — Mini-épreuve n°2 » : 8 exercices multi-domaines (fractions, trapèze, échelle/aire, médiane, erreur périmètre/aire cercle, programmes division, réservoir cubique, raisonnement divisibilité). Niveau avancé, premium.
+
+## [2026-03-22] — Batch 7 : 6 nouvelles séries mathématiques (42 questions)
+
+- `supabase/migrations/20260527_seed_math_sujet_blanc_maths.sql` — Série « Sujet blanc CRPE — Épreuve de maths n°1 » : 7 exercices multi-domaines simulant une épreuve CRPE (PGCD, aire médiane, réservoir/bidons, vitesse/temps, statistiques, erreur décimale, trapèze). Niveau avancé, premium.
+- `supabase/migrations/20260528_seed_math_aires_perimetres_composees.sql` — Série « Aires et périmètres — Figures composées » : 7 exercices (triangle, cercle, terrain+piscine, piste d'athlétisme, losange, quart de cercle, rectangle+triangle). Niveau intermédiaire, free.
+- `supabase/migrations/20260529_seed_math_numeration_bases.sql` — Série « Numération — Bases et systèmes positionnels » : 7 exercices (valeur positionnelle, rôle du zéro, base 2→10, base 10→5, chiffres en base 8, système maya, intérêt didactique des bases). Niveau intermédiaire, premium.
+- `supabase/migrations/20260530_seed_math_vitesses_moyennes.sql` — Série « Vitesses moyennes et pièges » : 7 exercices avancés sur le piège classique de la moyenne harmonique vs arithmétique (aller-retour, conversion km/h↔m/s, arrêts, avance, deux vitesses). Niveau avancé, premium.
+- `supabase/migrations/20260531_seed_math_didactique_manuels.sql` — Série « Didactique — Analyse de manuels et séquences » : 7 exercices avancés (Vergnaud multiplicatif, fractions multi-représentations, quotition/partage, progression aires, conflit cognitif périmètre/aire, obstacle décimaux, programmes cycle 3). Niveau avancé, premium.
+- `supabase/migrations/20260532_seed_math_durees_horaires.sql` — Série « Grandeurs — Durées et horaires » : 7 exercices sur le système sexagésimal (heures→minutes, 1h30≠1,30h, addition de durées, conversion décimale, calcul d'intervalles, cumul horaire, passage par minuit). Niveau facile, free.
+
+## [2026-03-22] — Batch 6 : 4 nouvelles séries + 1er sujet blanc CRPE (29 questions)
+
+- `supabase/migrations/20260525_seed_math_arithmetique_pgcd_ppcm.sql` — Série « Arithmétique — Divisibilité, PGCD et PPCM » : 7 exercices avancés (critères de divisibilité, décomposition en facteurs premiers, PGCD, PPCM, applications concrètes : fleuriste, bus, carrelage). Niveau avancé, premium.
+- `supabase/migrations/20260526_seed_math_symetries_transformations.sql` — Série « Symétries et transformations géométriques » : 7 exercices (axes de symétrie, symétrie axiale/centrale, translation, composition de symétries, homothétie et aires). Niveau intermédiaire, premium.
+- `supabase/migrations/20260527_seed_math_nombres_relatifs_puissances.sql` — Série « Nombres relatifs et puissances » : 7 exercices (opérations sur les relatifs, règle des signes, puissances de 10, notation scientifique, puissance d'un négatif, comparaison). Niveau intermédiaire, free.
+- `supabase/migrations/20260528_seed_math_sujet_blanc_mini_epreuve.sql` — Série « Sujet blanc CRPE — Mini-épreuve n°1 » : 8 exercices type annale (arithmétique PGCD, géométrie Pythagore, pourcentages inverses, statistiques moyenne, 2 questions didactiques, problème citerne cylindrique, problème chemin autour d'un terrain). Niveau avancé, premium.
+
+## [2026-03-22] — Batch 5 : 4 nouvelles séries mathématiques (28 questions) + enrichissement batch 4
+
+- `supabase/migrations/20260520_seed_math_didactique_variables_situations.sql` — Série « Didactique — Variables et situations » (NOUVELLE) : 7 exercices avancés sur Vergnaud (structures additives), contrat didactique (âge du capitaine), dévolution, institutionnalisation, remédiation ciblée. Niveau avancé, premium.
+- `supabase/migrations/20260522_seed_math_solides_patrons.sql` — Série « Solides et patrons » (enrichie) : 7 exercices (Euler, patrons de cube, volume pavé/prisme/pyramide, aire latérale cylindre, agrandissement k³). Niveau intermédiaire, free.
+- `supabase/migrations/20260523_seed_math_problemes_transversaux.sql` — Série « Problèmes transversaux — Multi-domaines » (enrichie) : 7 exercices avancés type annale CRPE croisant 2+ domaines (échelle+vitesse, fractions+proportionnalité, Pythagore+coût, statistiques+pourcentages, volume cylindre+fractions). Niveau avancé, premium.
+- `supabase/migrations/20260519_seed_math_pourcentages_avances.sql` — Série « Proportionnalité avancée — Pourcentages successifs » (enrichie) : 7 exercices (coefficient multiplicateur, taux réciproque, TVA+marge, croissance composée sur 3 ans). Niveau avancé, premium.
+
+## [2026-03-22] — Batch 4 : 6 séries d'exercices mathématiques (42 questions)
+
+- `supabase/migrations/20260519_seed_math_pourcentages_avances.sql` — Série « Proportionnalité avancée — Pourcentages successifs » : 7 exercices avancés. Premium.
+- `supabase/migrations/20260520_seed_math_didactique_variables.sql` — Série « Didactique — Variables didactiques » : 7 exercices avancés (Brousseau). Premium.
+- `supabase/migrations/20260521_seed_math_geometrie_coordonnees.sql` — Série « Géométrie — Repérage et coordonnées » : 7 exercices. Premium.
+- `supabase/migrations/20260522_seed_math_transversales_multidomaines.sql` — Série « Problèmes transversaux — Multi-domaines » : 7 exercices avancés. Premium.
+- `supabase/migrations/20260523_seed_math_solides_patrons.sql` — Série « Solides et patrons » : 7 exercices. Free.
+- `supabase/migrations/20260524_seed_math_programmes_construction.sql` — Série « Programmes de construction » : 7 exercices. Premium.
+
+## [2026-03-22] — 8 nouvelles séries d'exercices mathématiques — batch 3 (56 questions)
+
+- `supabase/migrations/20260507_seed_math_chasse_erreurs_geometrie.sql` — Série « Chasse aux erreurs — Géométrie » : 7 exercices d'analyse d'erreurs en géométrie (quadrilatères, triangles, diagonales, symétrie, Pythagore, Thalès, agrandissement). Niveau intermédiaire, free.
+- `supabase/migrations/20260508_seed_math_chasse_erreurs_mesures.sql` — Série « Chasse aux erreurs — Mesures et conversions » : 7 exercices d'analyse d'erreurs sur les conversions (longueurs, aires, heures, contenances, vitesses, volumes). Niveau intermédiaire, free.
+- `supabase/migrations/20260509_seed_math_proportionnalite_etapes.sql` — Série « Problèmes à étapes — Proportionnalité » : 7 exercices contextualisés (proportionnalité, pourcentages successifs, vitesse moyenne, échelle, TVA, partage proportionnel). Niveau intermédiaire, premium.
+- `supabase/migrations/20260510_seed_math_analyse_productions_numeration.sql` — Série « Analyse de productions d'élèves — Numération » : 7 exercices de didactique (conception entière des décimaux, transcodage, chiffre/nombre, remédiation, variables didactiques). Niveau intermédiaire, premium.
+- `supabase/migrations/20260511_seed_math_statistiques_graphiques.sql` — Série « Statistiques et graphiques — Lecture critique » : 7 exercices sur les statistiques (fréquences, moyenne/médiane, lecture critique de graphiques, diagramme circulaire, probabilité). Niveau intermédiaire, free.
+- `supabase/migrations/20260512_seed_math_fractions_decimaux_pieges.sql` — Série « Fractions et décimaux — Passages et pièges » : 7 exercices avancés (décimaux finis/infinis, comparaison, intercalation, irréductibilité, multiplication par décimal < 1). Niveau avancé, premium.
+- `supabase/migrations/20260513_seed_math_quadrilateres_demonstrations.sql` — Série « Quadrilatères — Propriétés et démonstrations » : 7 exercices sur la hiérarchie, diagonales, nature d'un quadrilatère, aire du losange, théorème de Varignon. Niveau intermédiaire, premium.
+- `supabase/migrations/20260514_seed_math_conversions_systematiques.sql` — Série « Grandeurs — Conversions systématiques » : 7 exercices de conversion (longueurs, masses, contenances, temps, aires, vitesses, hectares). Niveau facile, free.
+
+## [2026-03-22] — 6 nouvelles séries d'exercices mathématiques — batch 2 (42 questions)
+
+- `supabase/migrations/20260513_seed_math_grandeurs_composees.sql` — Série « Problèmes à étapes — Grandeurs composées » : 7 exercices avancés sur vitesse, débit, masse volumique, consommation (contextes : route, piscine, usine). Niveau avancé, premium.
+- `supabase/migrations/20260514_seed_math_quadrilateres_demonstrations.sql` — Série « Quadrilatères — Propriétés et démonstrations » : 7 exercices sur la hiérarchie des quadrilatères, propriétés minimales, démonstrations avec coordonnées. Niveau intermédiaire, premium.
+- `supabase/migrations/20260515_seed_math_conversions_systematiques.sql` — Série « Grandeurs — Conversions systématiques » : 7 exercices de conversion (longueurs, masses, aires, volumes, vitesses, hectares). Niveau facile, free.
+- `supabase/migrations/20260516_seed_math_probabilites_composees.sql` — Série « Probabilités — Situations composées » : 7 exercices avancés (dés, tirages sans remise, inclusion-exclusion, Bayes, loterie). Niveau avancé, premium.
+- `supabase/migrations/20260517_seed_math_pythagore_thales.sql` — Série « Pythagore et Thalès — Applications » : 7 exercices avancés (réciproque de Pythagore, application de Thalès, ombre/hauteur, parallélisme). Niveau avancé, premium.
+- `supabase/migrations/20260518_seed_math_calcul_mental_strategies.sql` — Série « Calcul mental — Stratégies » : 7 exercices sur les stratégies de calcul mental (distributivité, compensation, conservation des écarts, décomposition du diviseur). Niveau facile, free.
+
+## [2026-03-22] — 6 nouvelles séries d'exercices mathématiques (42 questions)
+
+- `supabase/migrations/20260507_seed_math_geometrie_chasse_erreurs.sql` — Série « Chasse aux erreurs — Géométrie » : 7 exercices d'analyse d'erreurs géométriques (propriétés des quadrilatères, symétrie, Pythagore, Thalès, angles). Personnage : Emma. Niveau intermédiaire, free.
+- `supabase/migrations/20260508_seed_math_mesures_chasse_erreurs.sql` — Série « Chasse aux erreurs — Mesures et conversions » : 7 exercices sur les erreurs classiques de conversion (km/m, m²/cm², heures décimales, dm³/L, km/h→m/s, hectares, volumes). Personnage : Noah. Niveau intermédiaire, free.
+- `supabase/migrations/20260509_seed_math_proportionnalite_etapes.sql` — Série « Problèmes à étapes — Proportionnalité » : 7 exercices contextualisés avec progression (situations proportionnelles, recettes, pourcentages successifs, échelles, vitesses, comparaison d'offres, budget de sortie scolaire). Niveau intermédiaire, premium.
+- `supabase/migrations/20260510_seed_math_fractions_decimaux.sql` — Série « Fractions et décimaux — Passages et pièges » : 7 exercices avancés (conversion fraction/décimal, ordre des fractions, décimaux périodiques, opérations fractionnaires, analyse d'erreurs, problème de partage, irréductibilité). Niveau avancé, premium.
+- `supabase/migrations/20260511_seed_math_statistiques_graphiques.sql` — Série « Statistiques et graphiques — Lecture critique » : 7 exercices sur l'organisation de données (médiane, moyenne pondérée, lecture de graphiques, probabilités, comparaison de distributions, analyse critique de statistiques). Niveau intermédiaire, free.
+- `supabase/migrations/20260512_seed_math_didactique_numeration.sql` — Série « Analyse de productions d'élèves — Numération » : 7 exercices de didactique (erreurs de numération positionnelle, obstacle du nombre entier, soustraction avec retenue, variables didactiques, remédiation, cadre de Vergnaud). Niveau intermédiaire, premium.
+
+## [2026-03-22] — Correction UUIDs migrations + refonte sujets blancs CRPE
+
+- `supabase/migrations/20260429_seed_grm_predicat_structure.sql` → renommé `20260433` pour éviter conflit de version avec leaderboard
+- `supabase/migrations/20260430,431,432` — Préfixes UUID corrigés (t → a, hex valide)
+- `supabase/migrations/20260503,504,505` — Préfixes UUID corrigés (m → b, hex valide)
+- Toutes les migrations pending poussées sur Supabase (20260430 à 20260506)
+
 ## [2026-03-22] — Refonte complète des sujets blancs CRPE (modèle annales)
 
 - `supabase/migrations/20260506_seed_sujets_blancs_v2.sql` — 3 sujets blancs refaits sur le modèle réel du CRPE : chaque sujet est basé sur un texte littéraire (Le Grand Meaulnes, Sido, L'Enfant) avec 15 questions structurées en 3 parties (étude de la langue sur le texte, compréhension et interprétation, didactique). Remplace les anciens sujets qui étaient de simples paquets de QCM sans rapport avec le format des annales.

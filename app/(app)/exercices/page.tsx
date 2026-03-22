@@ -269,8 +269,8 @@ export default async function ExercisesPage({
               Sujets blancs CRPE
             </h2>
             <p className="mt-2 max-w-3xl text-sm leading-7 text-muted">
-              Épreuves sur texte littéraire : étude de la langue, compréhension et interprétation,
-              didactique — sur le modèle de l&apos;épreuve écrite du CRPE.
+              Épreuves sur texte littéraire en 2 parties — étude de la langue et analyse du lexique —
+              sur le modèle de l&apos;épreuve écrite du CRPE.
             </p>
           </div>
           <div className="mt-5 grid gap-4 sm:grid-cols-3">
@@ -291,7 +291,7 @@ export default async function ExercisesPage({
                     {session.topicLabel}
                   </span>
                   <span className="text-xs text-muted">
-                    7 sous-domaines · ~{session.estimatedMinutes} min
+                    2 parties · {session.questionCount} questions · ~{session.estimatedMinutes} min
                   </span>
                 </Link>
               );

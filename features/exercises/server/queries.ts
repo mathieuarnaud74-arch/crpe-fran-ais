@@ -288,10 +288,10 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
           ? topicLabel
           : `Série ${groupIndex + 1}.${chunkNumber} - ${topicLabel}`,
         summary: isSujetBlanc
-          ? `Épreuve sur texte littéraire : étude de la langue, compréhension et didactique.`
+          ? `Épreuve sur texte littéraire en 2 parties : étude de la langue et analyse du lexique.`
           : "Série construite automatiquement à partir des questions disponibles.",
         objective: isSujetBlanc
-          ? `Analyser un texte littéraire sous l'angle linguistique, interprétatif et didactique, comme au CRPE.`
+          ? `Analyser un texte littéraire : grammaire, subordonnées, réécriture, lexique — comme au CRPE.`
           : `Maîtriser ${topicLabel} — compétence attendue au CRPE de ${subjectName}.`,
         introduction: isSujetBlanc
           ? `Ce sujet blanc est construit autour d'un texte littéraire, sur le modèle de l'épreuve écrite du CRPE. Lisez attentivement le texte support avant de répondre aux questions.`
