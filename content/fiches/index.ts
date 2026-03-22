@@ -94,6 +94,15 @@ import { phraseInterrogativeSprint } from "./grammaire-phrase-interrogative-spri
 import { tempsIndicatifReference } from "./conjugaison-temps-indicatif-reference";
 import { typesTextesReference } from "./comprehension-texte-types-textes-reference";
 import { formationMotsReference } from "./lexique-formation-mots-reference";
+import { productionEcritsReference } from "./didactique-production-ecrits-reference";
+import { classesMotsSprint } from "./grammaire-classes-mots-sprint";
+import { accordGnOperatoire } from "./orthographe-accord-gn-operatoire";
+import { registresLangueReference } from "./lexique-registres-langue-reference";
+import { orthographeHomophonesGrammaticauxSprint } from "./orthographe-homophones-grammaticaux-sprint";
+import { grammaireComplementsCirconstancielsReference } from "./grammaire-complements-circonstanciels-reference";
+import { analyseLanguePhonologieCycle2Sprint } from "./analyse-langue-phonologie-cycle2-sprint";
+import { analyseLangueIdentifierSubordonneesOperatoire } from "./analyse-langue-identifier-subordonnees-operatoire";
+import { lexiqueFiguresStyleCrpeSprint } from "./lexique-figures-style-crpe-sprint";
 
 export const allFiches: Fiche[] = [
   reperageExpliciteSprint,
@@ -190,4 +199,13 @@ export const allFiches: Fiche[] = [
   tempsIndicatifReference,
   typesTextesReference,
   formationMotsReference,
+  productionEcritsReference,
+  classesMotsSprint,
+  accordGnOperatoire,
+  registresLangueReference,
+  orthographeHomophonesGrammaticauxSprint,
+  grammaireComplementsCirconstancielsReference,
+  analyseLanguePhonologieCycle2Sprint,
+  analyseLangueIdentifierSubordonneesOperatoire,
+  lexiqueFiguresStyleCrpeSprint,
 ];

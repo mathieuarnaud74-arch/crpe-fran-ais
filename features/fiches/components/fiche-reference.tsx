@@ -75,7 +75,7 @@ export function FicheReference({ content }: { content: FicheContentReference }) 
           </h2>
           <p className="text-sm leading-7 text-muted">
             Chaque phrase est-elle correcte ou incorrecte ? Un feedback explicatif
-            s'affiche après ta réponse.
+            s&apos;affiche après ta réponse.
           </p>
           <FicheQuiz items={content.quiz} />
         </section>

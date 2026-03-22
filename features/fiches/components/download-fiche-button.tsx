@@ -25,9 +25,8 @@ export function DownloadFicheButton({ fiche, className }: DownloadFicheButtonPro
         import("@/features/fiches/components/fiche-pdf"),
       ]);
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const doc = (FichePdfDocument as any)({ fiche });
-      const blob = await pdf(doc).toBlob();
+      const doc = (FichePdfDocument as unknown as (props: { fiche: Fiche }) => unknown)({ fiche });
+      const blob = await pdf(doc as any).toBlob();
 
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");

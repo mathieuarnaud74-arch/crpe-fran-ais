@@ -74,7 +74,7 @@ export function FicheSprint({ content }: { content: FicheContentSprint }) {
       {content.quiz.length > 0 && (
         <div className="space-y-4">
           <h2 className="font-serif text-xl font-semibold text-ink">
-            Test d'activation
+            Test d&apos;activation
           </h2>
           <p className="text-xs leading-5 text-muted">
             Ces questions valident que la notion est activée en mémoire. Réponds

@@ -3,71 +3,84 @@ import type { Fiche } from "@/features/fiches/types";
 export const oralEcoleSprint: Fiche = {
   id: "didactique-oral-ecole-sprint",
   slug: "oral-ecole-sprint",
-  title: "L'oral \u00e0 l'\u00e9cole primaire",
+  title: "L'oral à l'école",
   domaine: "didactique_francais",
   model: "sprint",
-  accessTier: "free",
+  accessTier: "premium",
   difficulte: "intermediaire",
-  utilite: "haute",
+  utilite: "moyenne",
   estimatedMinutes: 5,
-  tags: ["oral", "langage", "cycle 1", "d\u00e9bat", "expos\u00e9", "langage d'\u00e9vocation"],
-  notionsLiees: ["conscience-phonologique-sprint", "apprendre-a-lire-sprint"],
-  exercicesAssocies: ["oral_ecole"],
+  tags: [
+    "oral",
+    "langage",
+    "débat",
+    "exposé",
+    "récit",
+    "étayage",
+    "cycle 2",
+    "cycle 3",
+  ],
+  notionsLiees: [
+    "didactique-apprendre-a-lire-sprint",
+    "didactique-conscience-phonologique-sprint",
+    "didactique-programmes-cycles-reference",
+  ],
+  exercicesAssocies: [],
   content: {
     model: "sprint",
     disclaimer:
-      "Fiche incontournable pour la partie didactique du CRPE. L\u2019oral est au c\u0153ur des programmes de maternelle (cycle 1) et traverse tous les cycles. Les sujets de concours interrogent fr\u00e9quemment la distinction entre oral-outil et oral-objet, ainsi que les dispositifs p\u00e9dagogiques sp\u00e9cifiques (d\u00e9bat r\u00e9gl\u00e9, expos\u00e9, langage d\u2019\u00e9vocation).",
+      "L'oral est au cœur des programmes de tous les cycles. Au CRPE, les sujets interrogent fréquemment la distinction entre oral intégré (outil) et oral objet d'enseignement, les genres oraux formels et les dispositifs d'étayage. Cette fiche synthétise l'essentiel en format sprint.",
     oneLiner:
-      "L\u2019oral est un objet d\u2019enseignement \u00e0 part enti\u00e8re, pas seulement un outil de communication en classe. Il faut distinguer l\u2019oral spontan\u00e9, l\u2019oral scriptural (structur\u00e9 comme l\u2019\u00e9crit) et l\u2019oral r\u00e9flexif (m\u00e9talinguistique). Au cycle 1, le langage d\u2019\u00e9vocation \u2014 raconter au pass\u00e9 un \u00e9v\u00e9nement v\u00e9cu \u2014 est central. Au cycle 3, le d\u00e9bat r\u00e9gl\u00e9 et l\u2019expos\u00e9 structur\u00e9 sont les genres oraux vis\u00e9s.",
+      "L'oral est à la fois un outil de communication quotidien en classe (oral intégré) et un objet d'enseignement à part entière (oral scriptural). L'enseigner suppose de travailler des genres oraux identifiés (exposé, débat réglé, récit oral, compte rendu), de distinguer langage oral et langage écrit (syntaxe, lexique, prosodie), et de mettre en place un étayage différencié (reformulation, relance, modélisation).",
     exampleCorrect: {
       sentence:
-        "Un enseignant de GS propose une activit\u00e9 de langage d\u2019\u00e9vocation : les \u00e9l\u00e8ves racontent collectivement la sortie au zoo faite la veille, en utilisant le pass\u00e9 compos\u00e9 et des connecteurs temporels.",
+        "En CM1, l'enseignant organise un débat réglé sur un dilemme moral. Il distribue les rôles (modérateur, rapporteur, participants), affiche les règles du débat, fixe un objectif langagier (utiliser des connecteurs argumentatifs : car, en revanche, certes… mais) et prévoit une phase de bilan oral collectif.",
       explanation:
-        "Le langage d\u2019\u00e9vocation (Boisseau) est une comp\u00e9tence-cl\u00e9 du cycle 1 : l\u2019\u00e9l\u00e8ve quitte le langage en situation (ici et maintenant) pour \u00e9voquer un \u00e9v\u00e9nement absent. L\u2019enseignant \u00e9tayage la production par des relances et des reformulations, et l\u2019activit\u00e9 est un enseignement explicite de l\u2019oral, pas un simple \u00e9change informel.",
+        "L'oral est ici un objet d'enseignement : le genre oral (débat réglé) est identifié, les critères de réussite sont explicites (connecteurs argumentatifs), les rôles structurent l'interaction et l'étayage est planifié. Ce n'est pas un simple échange spontané.",
     },
     exampleWrong: {
       sentence:
-        "Consid\u00e9rer que l\u2019oral \u00ab s\u2019apprend naturellement \u00bb au fil des interactions quotidiennes et ne n\u00e9cessite pas d\u2019enseignement explicite.",
+        "Considérer que l'oral se travaille naturellement à travers les échanges quotidiens en classe, sans séance dédiée ni objectif langagier.",
       explanation:
-        "FAUX. Les programmes insistent sur l\u2019enseignement explicite de l\u2019oral. Sans enseignement structur\u00e9, les \u00e9carts langagiers entre \u00e9l\u00e8ves se creusent. L\u2019oral n\u00e9cessite des s\u00e9ances d\u00e9di\u00e9es avec des objectifs langagiers pr\u00e9cis, des crit\u00e8res d\u2019\u00e9valuation et un \u00e9tayage diff\u00e9renci\u00e9.",
+        "FAUX. Sans enseignement explicite, les écarts langagiers entre élèves se creusent. L'oral spontané en classe (répondre à une question, participer à un échange) ne suffit pas à développer les compétences orales visées par les programmes. Il faut des séances planifiées avec des objectifs langagiers précis, des genres oraux identifiés et des critères d'évaluation.",
     },
     mainTrap:
-      "Confondre \u00ab parler en classe \u00bb (l\u2019oral comme m\u00e9dium \u2014 l\u2019\u00e9l\u00e8ve r\u00e9pond \u00e0 des questions, participe \u00e0 un \u00e9change) et \u00ab enseigner l\u2019oral \u00bb (l\u2019oral comme objet \u2014 l\u2019\u00e9l\u00e8ve apprend \u00e0 structurer un propos, argumenter, reformuler). Le CRPE teste syst\u00e9matiquement cette distinction. L\u2019oral-objet suppose des s\u00e9ances planifi\u00e9es, des genres oraux identifi\u00e9s (r\u00e9cit, expos\u00e9, d\u00e9bat) et des crit\u00e8res d\u2019\u00e9valuation explicites.",
+      "Confondre oral intégré et oral objet d'enseignement. L'oral intégré est l'oral utilisé comme médium (l'élève parle pour apprendre, répondre, échanger). L'oral objet est l'oral enseigné pour lui-même (l'élève apprend à structurer un exposé, argumenter dans un débat, raconter avec cohérence). Le CRPE teste systématiquement cette distinction. En outre, ne pas confondre langage oral et langage écrit oralisé : lire un texte à voix haute n'est pas produire de l'oral.",
     quiz: [
       {
         sentence:
-          "\u00c9valuer l\u2019oral est impossible car il est \u00e9ph\u00e9m\u00e8re et subjectif.",
+          "L'exposé oral au cycle 3 est un genre oral qui nécessite une préparation écrite (plan, notes) et travaille la compétence « organiser et structurer un propos ».",
+        isCorrect: true,
+        explanation:
+          "VRAI. L'exposé est un genre oral formel qui articule écrit et oral : l'élève planifie son propos par écrit (notes, plan), puis le présente oralement en s'appuyant sur ses notes sans les lire. Les programmes de cycle 3 visent explicitement la capacité à « réaliser une courte présentation orale en prenant appui sur des notes ».",
+      },
+      {
+        sentence:
+          "L'étayage de l'oral par l'enseignant se limite à corriger les erreurs de syntaxe des élèves.",
         isCorrect: false,
         explanation:
-          "FAUX. L\u2019\u00e9valuation de l\u2019oral est exigeante mais r\u00e9alisable : grilles d\u2019observation crit\u00e9ri\u00e9es, enregistrements audio/vid\u00e9o, auto-\u00e9valuation guid\u00e9e. Les programmes pr\u00e9voient des attendus de fin de cycle pour l\u2019oral (clart\u00e9, coh\u00e9rence, prise en compte de l\u2019interlocuteur). L\u2019enjeu est de d\u00e9finir des crit\u00e8res observables en amont.",
+          "FAUX. L'étayage (Bruner) de l'oral est bien plus large : il inclut la reformulation corrective implicite (reprendre l'énoncé en le corrigeant sans stigmatiser), la relance (poser des questions ouvertes pour approfondir), la modélisation (offrir un modèle syntaxique ou lexical), l'encouragement et la réduction de la complexité de la tâche. L'étayage vise à développer l'autonomie langagière, pas à sanctionner les erreurs.",
       },
       {
         sentence:
-          "Les interactions entre pairs (travail en groupe, d\u00e9bat) contribuent au d\u00e9veloppement des comp\u00e9tences orales si elles sont pilot\u00e9es par l\u2019enseignant.",
-        isCorrect: true,
-        explanation:
-          "Exact. Les interactions entre \u00e9l\u00e8ves sont un levier majeur (Vygotski, conflit sociocognitif), \u00e0 condition que l\u2019enseignant structure le dispositif : r\u00e8gles du d\u00e9bat, r\u00f4les distribu\u00e9s (rapporteur, mod\u00e9rateur), relances cibl\u00e9es, temps de reformulation. Sans pilotage, les \u00e9changes restent superficiels et profitent surtout aux \u00e9l\u00e8ves d\u00e9j\u00e0 \u00e0 l\u2019aise.",
-      },
-      {
-        sentence:
-          "Le continuum oral-\u00e9crit signifie qu\u2019il existe une fronti\u00e8re nette entre langue orale et langue \u00e9crite.",
+          "Le débat réglé et le débat interprétatif en littérature développent les mêmes compétences orales.",
         isCorrect: false,
         explanation:
-          "FAUX. Le continuum oral-\u00e9crit (Blanche-Benveniste) montre que les deux modalit\u00e9s ne sont pas oppos\u00e9es mais forment un continuum. L\u2019oral scriptural (un expos\u00e9 pr\u00e9par\u00e9, un r\u00e9cit structur\u00e9) emprunte des traits de l\u2019\u00e9crit (syntaxe complexe, connecteurs). L\u2019\u00e9crit conversationnel (SMS, chat) emprunte des traits de l\u2019oral.",
+          "FAUX. Le débat réglé (débat à visée philosophique, débat sur un dilemme moral) travaille l'argumentation et la prise en compte de l'interlocuteur. Le débat interprétatif en littérature travaille la justification d'une interprétation par des indices textuels. Les deux développent l'oral argumentatif, mais avec des objets et des enjeux différents.",
       },
       {
         sentence:
-          "Le d\u00e9bat interpr\u00e9tatif en litt\u00e9rature de jeunesse est un genre oral qui d\u00e9veloppe \u00e0 la fois les comp\u00e9tences langagi\u00e8res et la compr\u00e9hension de texte.",
+          "Les programmes des cycles 2 et 3 prévoient des attendus de fin de cycle pour l'oral, portant sur la clarté, la cohérence et la prise en compte de l'auditoire.",
         isCorrect: true,
         explanation:
-          "Exact. Le d\u00e9bat interpr\u00e9tatif (programmes cycle 3) articule oral et lecture litt\u00e9raire : les \u00e9l\u00e8ves confrontent leurs interpr\u00e9tations d\u2019un texte, argumentent, \u00e9tayent leur lecture par des indices textuels. C\u2019est un dispositif doublement formateur qui travaille l\u2019oral argumentatif et la compr\u00e9hension fine.",
+          "VRAI. Les programmes fixent des attendus explicites : en fin de cycle 2, « dire pour être entendu et compris, participer à des échanges » ; en fin de cycle 3, « réaliser une courte présentation orale, interagir de façon constructive, réciter un texte ». La prise en compte du destinataire est transversale.",
       },
       {
         sentence:
-          "La reformulation par l\u2019enseignant (reprise en \u00e9cho corrective) est une strat\u00e9gie d\u2019\u00e9tayage fondamentale pour le d\u00e9veloppement du langage oral, notamment au cycle 1.",
-        isCorrect: true,
+          "Évaluer l'oral est impossible car les productions orales sont éphémères et subjectives.",
+        isCorrect: false,
         explanation:
-          "Exact. La reformulation corrective (\u00ab feed-back correctif implicite \u00bb) consiste \u00e0 reprendre l\u2019\u00e9nonc\u00e9 de l\u2019\u00e9l\u00e8ve en le corrigeant sans stigmatiser l\u2019erreur : l\u2019\u00e9l\u00e8ve dit \u00ab il a mett\u00e9 \u00bb, l\u2019enseignant r\u00e9pond \u00ab oui, il a mis son manteau \u00bb. C\u2019est une strat\u00e9gie cl\u00e9 de l\u2019\u00e9tayage (Bruner) au cycle 1.",
+          "FAUX. L'évaluation de l'oral est exigeante mais réalisable : grilles d'observation critériées (construites avec les élèves), enregistrements audio ou vidéo, auto-évaluation guidée. Les critères doivent être définis en amont (volume, clarté, cohérence, lexique, prise en compte de l'interlocuteur) et communiqués aux élèves.",
       },
     ],
   },

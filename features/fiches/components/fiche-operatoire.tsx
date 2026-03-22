@@ -8,7 +8,7 @@ export function FicheOperatoire({ content }: { content: FicheContentOperatoire }
     <div className="space-y-8">
       <Panel className="bg-accent text-paper">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-paper/60">
-          Premier réflexe en situation d'examen
+          Premier réflexe en situation d&apos;examen
         </p>
         <p className="mt-2 font-serif text-xl font-semibold leading-8 text-paper">
           {content.startingQuestion}
@@ -20,8 +20,8 @@ export function FicheOperatoire({ content }: { content: FicheContentOperatoire }
           Arbre de décision
         </h2>
         <p className="text-sm leading-7 text-muted">
-          Parcours l'arbre à voix haute ou mentalement pour chaque participe que
-          tu rencontres, jusqu'à ce que le chemin devienne automatique.
+          Parcours l&apos;arbre à voix haute ou mentalement pour chaque participe que
+          tu rencontres, jusqu&apos;à ce que le chemin devienne automatique.
         </p>
         <BlockDecisionTree
           block={{ kind: "decision-tree", root: content.decisionTree }}
@@ -68,8 +68,8 @@ export function FicheOperatoire({ content }: { content: FicheContentOperatoire }
             Entraînement procédural
           </h2>
           <p className="text-sm leading-7 text-muted">
-            Pour chaque phrase, trace mentalement le chemin dans l'arbre AVANT de
-            répondre. Le feedback t'indique si tu as suivi le bon raisonnement.
+            Pour chaque phrase, trace mentalement le chemin dans l&apos;arbre AVANT de
+            répondre. Le feedback t&apos;indique si tu as suivi le bon raisonnement.
           </p>
           <FicheQuiz items={content.quiz} />
         </section>

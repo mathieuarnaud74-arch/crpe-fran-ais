@@ -33,7 +33,7 @@ export function BlockRelated({ block }: { block: BlockRelated }) {
       {hasExercises && (
         <div>
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted">
-            S'entraîner
+            S&apos;entraîner
           </p>
           <div className="flex flex-wrap gap-2">
             {block.exercises!.map((ex) => (
