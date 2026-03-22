@@ -238,9 +238,16 @@ export function ExercisePlayer({
 
   function goToNextQuestion() {
     if (currentIndex < session.questions.length - 1) {
-      const nextQuestion = session.questions[currentIndex + 1];
-      setCurrentIndex((index) => index + 1);
-      setDraftAnswer(results[nextQuestion.id]?.answer ?? "");
+      // Skip forward to the next unanswered question (or the very next one if all are answered)
+      let nextIdx = currentIndex + 1;
+      const unansweredAfter = session.questions.findIndex(
+        (q, i) => i > currentIndex && !results[q.id],
+      );
+      if (unansweredAfter !== -1) {
+        nextIdx = unansweredAfter;
+      }
+      setCurrentIndex(nextIdx);
+      setDraftAnswer(results[session.questions[nextIdx].id]?.answer ?? "");
       scrollToContainer();
     } else {
       // Last question — navigate to first unanswered question if any
@@ -255,9 +262,16 @@ export function ExercisePlayer({
 
   function goToPreviousQuestion() {
     if (currentIndex > 0) {
-      const previousQuestion = session.questions[currentIndex - 1];
-      setCurrentIndex((index) => index - 1);
-      setDraftAnswer(results[previousQuestion.id]?.answer ?? "");
+      // Go back to the nearest previously answered question
+      let prevIdx = currentIndex - 1;
+      for (let i = currentIndex - 1; i >= 0; i--) {
+        if (results[session.questions[i].id]) {
+          prevIdx = i;
+          break;
+        }
+      }
+      setCurrentIndex(prevIdx);
+      setDraftAnswer(results[session.questions[prevIdx].id]?.answer ?? "");
       scrollToContainer();
     }
   }
@@ -688,7 +702,26 @@ export function ExercisePlayer({
                   isPlaying={!currentResult}
                   size={60}
                   onComplete={() => {
-                    if (!currentResult) submitCurrentQuestion();
+                    if (!currentResult) {
+                      if (draftAnswer.trim()) {
+                        submitCurrentQuestion();
+                      } else {
+                        // Time's up with no answer — mark as incorrect and move on
+                        setResults((prev) => ({
+                          ...prev,
+                          [currentQuestion.id]: {
+                            answer: "",
+                            isCorrect: false,
+                            reason: "incorrect",
+                            expectedAnswerLabel: "",
+                            validationRule: null,
+                          },
+                        }));
+                        playSound("incorrect");
+                        setConsecutiveCorrect(0);
+                        setTimeout(() => goToNextQuestion(), 800);
+                      }
+                    }
                   }}
                   onWarning={() => playSound("timerWarning")}
                 />
@@ -936,7 +969,7 @@ export function ExercisePlayer({
               <Button
                 type="button"
                 variant="ghost"
-                disabled={currentIndex === 0}
+                disabled={currentIndex === 0 || !session.questions.slice(0, currentIndex).some((q) => results[q.id])}
                 onClick={goToPreviousQuestion}
                 className="w-full sm:w-auto"
               >
