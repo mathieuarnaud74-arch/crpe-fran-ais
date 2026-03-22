@@ -1,5 +1,138 @@
 # Changelog
 
+## [2026-03-22] — 35 nouvelles fiches de révision mathématiques CRPE (62 → 97 fiches)
+
+### Dernière itération (5 fiches)
+- `content/fiches-maths/nombres-inequations-sprint.ts` — Sprint : inéquations, inversion du sens, intervalles, encadrements
+- `content/fiches-maths/geometrie-rotation-translation-sprint.ts` — Sprint : rotation et translation, isométries, propriétés de conservation
+- `content/fiches-maths/grandeurs-mesurer-construire-angle-operatoire.ts` — Opératoire : rapporteur, mesurer/construire un angle, erreurs élèves
+- `content/fiches-maths/didactique-jeu-calcul-mental-sprint.ts` — Sprint : calcul mental automatisé vs réfléchi, rituels, jeux (Mathador)
+- `content/fiches-maths/donnees-frequences-cumulees-quartiles-sprint.ts` — Sprint : fréquences cumulées, quartiles, écart interquartile, boîte à moustaches
+- Voir entrée détaillée des 30 premières fiches plus bas dans le changelog
+
+## [2026-03-22] — Batch 12 : 6 séries mathématiques + sujet blanc n°5 (42 questions)
+
+- `supabase/migrations/20260613_seed_math_calcul_litteral.sql` — Série « Calcul littéral — Identités remarquables » : 7 exercices (développement (a+b)², factorisation a²-b², identités 3e degré, calcul mental 101², résolution x²-9x+20=0, problème géométrique). Niveau intermédiaire, premium.
+- `supabase/migrations/20260614_seed_math_decimaux_operations.sql` — Série « Nombres décimaux — Opérations posées et pièges » : 7 exercices (addition avec alignement, multiplication décimaux, soustraction avec retenue, division par décimal, comparaison/rangement). Niveau facile, free.
+- `supabase/migrations/20260615_seed_math_geometrie_espace_sections.sql` — Série « Géométrie dans l'espace — Sections et perspectives » : 7 exercices avancés (sections cube/cylindre/cône, perspective cavalière, prisme pentagonal/Euler, section par sommet). Niveau avancé, premium.
+- `supabase/migrations/20260616_seed_math_didactique_differenciation.sql` — Série « Didactique — Différenciation pédagogique » : 7 exercices avancés (définition, supports/processus, étayage, évaluation formative, successive vs simultanée, plan de travail). Niveau avancé, premium.
+- `supabase/migrations/20260617_seed_math_equations_droites.sql` — Série « Équations de droites et repères » : 7 exercices (droite par origine, coefficient directeur, équation par un point, parallélisme, intersection, perpendicularité). Niveau intermédiaire, premium.
+- `supabase/migrations/20260618_seed_math_sujet_blanc_5.sql` — Série « Sujet blanc CRPE maths n°5 » : 7 exercices multi-domaines (calcul littéral, cône/Pythagore, dé truqué, proportionnalité imprimante, Héron, didactique cycle 2, statistiques descriptives). Niveau avancé, premium.
+
+## [2026-03-22] — 30 nouvelles fiches de révision mathématiques CRPE (62 → 92 fiches)
+
+### Nombres et calcul (8 fiches)
+- `content/fiches-maths/nombres-pourcentages-sprint.ts` — Sprint : pourcentages, coefficients multiplicateurs, pourcentages successifs
+- `content/fiches-maths/nombres-pourcentages-operatoire.ts` — Opératoire : arbre de décision hausse/baisse/taux/valeur initiale/pourcentages successifs
+- `content/fiches-maths/nombres-equations-premier-degre-sprint.ts` — Sprint : résolution par opérations inverses, erreurs de signe, vérification
+- `content/fiches-maths/nombres-relatifs-operations-sprint.ts` — Sprint : règles des signes addition vs multiplication, piège −5² vs (−5)²
+- `content/fiches-maths/nombres-divisibilite-operatoire.ts` — Opératoire : critères de divisibilité, décomposition facteurs premiers
+- `content/fiches-maths/nombres-fonctions-lineaires-affines-sprint.ts` — Sprint : distinction linéaire/affine = proportionnel/non-proportionnel
+- `content/fiches-maths/nombres-numeration-bases-sprint.ts` — Sprint : numération en bases, conversion, intérêt didactique
+
+### Géométrie (7 fiches)
+- `content/fiches-maths/geometrie-thales-sprint.ts` — Sprint : configurations triangle et papillon, réciproque
+- `content/fiches-maths/geometrie-thales-operatoire.ts` — Opératoire : calculer une longueur ou prouver un parallélisme
+- `content/fiches-maths/geometrie-programmes-construction-sprint.ts` — Sprint : rédiger et interpréter un programme de construction
+- `content/fiches-maths/geometrie-trigonometrie-sprint.ts` — Sprint : SOH-CAH-TOA, confusion adjacent/opposé
+- `content/fiches-maths/geometrie-agrandissement-reduction-sprint.ts` — Sprint : coefficient k, règle L×k A×k² V×k³
+- `content/fiches-maths/geometrie-angles-paralleles-sprint.ts` — Sprint : alternes-internes, correspondants, co-internes
+- `content/fiches-maths/geometrie-reperage-operatoire.ts` — Opératoire : coordonnées, distances, milieux dans le plan
+
+### Grandeurs et mesures (7 fiches)
+- `content/fiches-maths/grandeurs-unites-composees-sprint.ts` — Sprint : km/h ↔ m/s, densité, débits
+- `content/fiches-maths/grandeurs-vitesse-temps-distance-operatoire.ts` — Opératoire : problèmes v/t/d à étapes, piège vitesse moyenne
+- `content/fiches-maths/grandeurs-echelles-operatoire.ts` — Opératoire : distance réelle/plan, échelle, k²/k³
+- `content/fiches-maths/grandeurs-durees-horaires-sprint.ts` — Sprint : système sexagésimal, piège 2h45 ≠ 2,45h
+- `content/fiches-maths/grandeurs-perimetre-aire-confusion-sprint.ts` — Sprint : indépendance périmètre/aire
+- `content/fiches-maths/grandeurs-volumes-contenances-operatoire.ts` — Opératoire : cube, pavé, cylindre, pyramide, conversion dm³=L
+
+### Organisation de données (5 fiches)
+- `content/fiches-maths/donnees-lecture-graphiques-sprint.ts` — Sprint : lecture critique, diagramme en barres vs histogramme
+- `content/fiches-maths/donnees-probabilites-composees-sprint.ts` — Sprint : 2 épreuves, avec/sans remise, arbres
+- `content/fiches-maths/donnees-moyenne-ponderee-operatoire.ts` — Opératoire : moyenne pondérée, médiane, étendue
+- `content/fiches-maths/donnees-denombrement-combinatoire-sprint.ts` — Sprint : principe multiplicatif, arrangements vs combinaisons
+- `content/fiches-maths/donnees-proportionnalite-graphique-sprint.ts` — Sprint : droite passant par l'origine = proportionnel
+
+### Didactique des mathématiques (6 fiches)
+- `content/fiches-maths/didactique-obstacles-geometrie-sprint.ts` — Sprint : obstacle prototypique (Houdement & Kuzniak)
+- `content/fiches-maths/didactique-vergnaud-structures-sprint.ts` — Sprint : structures additives et multiplicatives
+- `content/fiches-maths/didactique-brousseau-contrat-situations-sprint.ts` — Sprint : contrat didactique, dévolution, effet Topaze
+- `content/fiches-maths/didactique-evaluation-remediation-sprint.ts` — Sprint : évaluation formative, diagnostic d'erreur, remédiation
+- `content/fiches-maths/didactique-materiel-manipulation-sprint.ts` — Sprint : matériel et manipulation, parcours manipuler→représenter→symboliser
+
+### Index
+- `content/fiches-maths/index.ts` — Ajout des 30 imports et entrées dans allFichesMaths (92 fiches total)
+
+## [2026-03-22] — Batch 11 : 6 nouvelles séries mathématiques (42 questions)
+
+- `supabase/migrations/20260607_seed_math_inequations_encadrements.sql` — Série « Inéquations et encadrements » : 7 exercices (résolution inéquations, inversion du sens, encadrement √50, encadrement 2π, division par négatif, problème contextualisé artisan, encadrement a-b). Niveau intermédiaire, premium.
+- `supabase/migrations/20260608_seed_math_lecture_graphique.sql` — Série « Lecture graphique de fonctions » : 7 exercices (amplitude thermique, sens de variation, distance-temps avec arrêt, fonction linéaire, tarifs postaux escalier, débit piscine, comparaison forfaits). Niveau intermédiaire, free.
+- `supabase/migrations/20260609_seed_math_divisibilite_criteres.sql` — Série « Multiples, diviseurs et critères de divisibilité » : 7 exercices (critère div par 3, div par 6→2 et 3, diviseurs de 36, critère par 4, PPCM, PGCD bouquets, chiffre manquant div par 9). Niveau facile, free.
+- `supabase/migrations/20260610_seed_math_didactique_resolution_problemes.sql` — Série « Didactique — Résolution de problèmes » : 7 exercices avancés (Polya 4 étapes, problème ouvert IREM, obstacle « perdre »/Vergnaud, application vs recherche, données inutiles, champ additif, rôle enseignant/dévolution). Niveau avancé, premium.
+- `supabase/migrations/20260611_seed_math_agrandissement_reduction.sql` — Série « Agrandissement et réduction » : 7 exercices (dimensions ×k, aire ×k² piège, aire triangle réduit, photocopie 150%, volume ×k³, échelle maquette, périmètre réduit). Niveau intermédiaire, premium.
+- `supabase/migrations/20260612_seed_math_perimetre_aire_volume_confusions.sql` — Série « Périmètre, aire, volume — Confusions et pièges » : 7 exercices (même P ≠ même A, incomparabilité unités, carré vs rectangle isopérimétrique, doublement dimensions, aquarium verre+eau, optimisation grillage→carré). Niveau intermédiaire, free.
+
+## [2026-03-22] — Batch 10 (final) : 2 séries + sujet blanc n°4 (15 questions)
+
+- `supabase/migrations/20260537_seed_math_proportionnel_ou_non.sql` — Série « Proportionnel ou non ? — Distinguer les situations » : 7 exercices (proportionnalité directe/inverse, relation affine vs proportionnelle, graphique, illusion de linéarité, obstacle didactique). Niveau intermédiaire, free.
+- `supabase/migrations/20260538_seed_math_sujet_blanc_4.sql` — Série « Sujet blanc CRPE — Mini-épreuve n°4 » : 8 exercices multi-domaines (priorités fractionnaires, cercle inscrit, hectares, linéarité de la moyenne, confusion périmètre/aire, lettre-inconnue au cycle 3, partage inégal, nombres premiers). Niveau avancé, premium.
+
+## [2026-03-22] — 25 nouvelles fiches de révision mathématiques CRPE (62 → 87 fiches)
+
+### Nombres et calcul (6 fiches)
+- `content/fiches-maths/nombres-pourcentages-sprint.ts` — Sprint : pourcentages, coefficients multiplicateurs, pourcentages successifs
+- `content/fiches-maths/nombres-pourcentages-operatoire.ts` — Opératoire : arbre de décision hausse/baisse/taux/valeur initiale/pourcentages successifs
+- `content/fiches-maths/nombres-equations-premier-degre-sprint.ts` — Sprint : résolution par opérations inverses, erreurs de signe, vérification
+- `content/fiches-maths/nombres-relatifs-operations-sprint.ts` — Sprint : règles des signes addition vs multiplication, piège −5² vs (−5)²
+- `content/fiches-maths/nombres-divisibilite-operatoire.ts` — Opératoire : critères de divisibilité, décomposition en facteurs premiers, liste des diviseurs
+- `content/fiches-maths/nombres-fonctions-lineaires-affines-sprint.ts` — Sprint : distinction linéaire/affine = proportionnel/non-proportionnel
+
+### Géométrie (6 fiches)
+- `content/fiches-maths/geometrie-thales-sprint.ts` — Sprint : configurations triangle et papillon, réciproque de Thalès
+- `content/fiches-maths/geometrie-thales-operatoire.ts` — Opératoire : calculer une longueur ou prouver un parallélisme pas à pas
+- `content/fiches-maths/geometrie-programmes-construction-sprint.ts` — Sprint : rédiger et interpréter un programme de construction
+- `content/fiches-maths/geometrie-trigonometrie-sprint.ts` — Sprint : SOH-CAH-TOA, confusion adjacent/opposé, complémentarité cos/sin
+- `content/fiches-maths/geometrie-agrandissement-reduction-sprint.ts` — Sprint : coefficient k, règle L×k A×k² V×k³
+- `content/fiches-maths/geometrie-angles-paralleles-sprint.ts` — Sprint : alternes-internes, correspondants, co-internes
+
+### Grandeurs et mesures (5 fiches)
+- `content/fiches-maths/grandeurs-unites-composees-sprint.ts` — Sprint : km/h ↔ m/s, densité, débits
+- `content/fiches-maths/grandeurs-vitesse-temps-distance-operatoire.ts` — Opératoire : problèmes v/t/d à étapes, piège vitesse moyenne
+- `content/fiches-maths/grandeurs-echelles-operatoire.ts` — Opératoire : distance réelle/plan, échelle, agrandissement-réduction
+- `content/fiches-maths/grandeurs-durees-horaires-sprint.ts` — Sprint : système sexagésimal, piège 2h45 ≠ 2,45h
+- `content/fiches-maths/grandeurs-perimetre-aire-confusion-sprint.ts` — Sprint : indépendance périmètre/aire, obstacle didactique
+
+### Organisation de données (4 fiches)
+- `content/fiches-maths/donnees-lecture-graphiques-sprint.ts` — Sprint : lecture critique, distinction diagramme en barres / histogramme
+- `content/fiches-maths/donnees-probabilites-composees-sprint.ts` — Sprint : situations à 2 épreuves, avec/sans remise, arbres
+- `content/fiches-maths/donnees-moyenne-ponderee-operatoire.ts` — Opératoire : moyenne pondérée, médiane, étendue, centres de classes
+- `content/fiches-maths/donnees-denombrement-combinatoire-sprint.ts` — Sprint : principe multiplicatif vs additif, arrangements vs combinaisons
+
+### Didactique des mathématiques (4 fiches)
+- `content/fiches-maths/didactique-obstacles-geometrie-sprint.ts` — Sprint : obstacle prototypique, géométrie perceptive vs déductive (Houdement & Kuzniak)
+- `content/fiches-maths/didactique-vergnaud-structures-sprint.ts` — Sprint : structures additives et multiplicatives de Vergnaud
+- `content/fiches-maths/didactique-brousseau-contrat-situations-sprint.ts` — Sprint : contrat didactique, situation a-didactique, dévolution, effet Topaze
+- `content/fiches-maths/didactique-evaluation-remediation-sprint.ts` — Sprint : évaluation formative, diagnostic d'erreur, remédiation par changement de registre
+
+### Index
+- `content/fiches-maths/index.ts` — Ajout des 25 imports et entrées dans allFichesMaths (87 fiches total)
+
+## [2026-03-22] — Batch 10 : 6 nouvelles séries mathématiques (42 questions)
+
+- `supabase/migrations/20260534_seed_math_logique_raisonnement.sql` — Série « Logique et raisonnement — Contre-exemples et démonstrations » : 7 exercices avancés (contre-exemples, preuve par l'absurde, généralisation abusive, quantificateurs, démonstration algébrique). Niveau avancé, premium.
+- `supabase/migrations/20260535_seed_math_tableaux_proportionnalite.sql` — Série « Tableaux et proportionnalité — Organisation de données » : 7 exercices (reconnaissance proportionnalité, coefficient unitaire, diagramme circulaire, pourcentage global, croissance vs proportionnalité). Niveau intermédiaire, free.
+- `supabase/migrations/20260536_seed_math_division_euclidienne.sql` — Série « Division euclidienne — Problèmes et sens » : 7 exercices (reste, propriété r<d, arrondi supérieur bus, distribution bonbons, forme 7k+3, corde, calendrier modulo). Niveau intermédiaire, free.
+- `supabase/migrations/20260537_seed_math_didactique_geometrie.sql` — Série « Didactique — Erreurs et remédiations en géométrie » : 7 exercices avancés (van Hiele niveaux 1-3, prototype géométrique, hauteur vs verticale, axes de symétrie rectangle, classification des figures). Niveau avancé, premium.
+- `supabase/migrations/20260538_seed_math_masses_contenances.sql` — Série « Masses, contenances et ordres de grandeur » : 7 exercices (masse baguette, eau=1kg/L, cL→L, chargement camion, unité adaptée, masse recette, erreur d'ordre de grandeur). Niveau facile, free.
+- `supabase/migrations/20260539_seed_math_sujet_blanc_3.sql` — Série « Sujet blanc CRPE maths n°3 » : 7 exercices multi-domaines (facteurs premiers, Pythagore+aire, probabilité complémentaire, robinets/débits, moyenne pondérée, multiplication posée erreur, échelle et surface). Niveau avancé, premium.
+
+## [2026-03-22] — Batch 9 : 3 séries finales + sujet blanc n°3 (22 questions)
+
+- `supabase/migrations/20260534_seed_math_cercles_disques.sql` — Série « Cercles et disques — Propriétés et calculs » : 7 exercices (vocabulaire, périmètre, aire du disque, longueur d'arc, effet du doublement du rayon, couronne, roue de vélo). Niveau intermédiaire, free.
+- `supabase/migrations/20260535_seed_math_logique_raisonnement.sql` — Série « Logique et raisonnement — Problèmes ouverts » : 7 exercices avancés (contre-exemple, contraposée, combinatoire/permutations, logique déductive, problème de chiffres, raisonnement par l'absurde, dénombrement de matchs). Niveau avancé, premium.
+- `supabase/migrations/20260536_seed_math_sujet_blanc_3.sql` — Série « Sujet blanc CRPE — Mini-épreuve n°3 » : 8 exercices multi-domaines (PPCM, ombre/Thalès, robinets/débit, probabilité deux dés, proportionnalité inverse, introduction de l'aire, clôture circulaire, trains qui se croisent). Niveau avancé, premium.
+
 ## [2026-03-22] — Sujets blancs v3 : 20 questions, 2 parties, textes allongés
 
 - `supabase/migrations/20260507_seed_sujets_blancs_v3.sql` — Refonte des 3 sujets blancs : 20 questions par sujet (au lieu de 15), textes littéraires allongés, 2 parties (Étude de la langue + Analyse du lexique), questions de réécriture, niveau Intermédiaire-Difficile uniquement
