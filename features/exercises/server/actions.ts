@@ -148,10 +148,15 @@ export async function submitAttemptAction(
     // SRS table may not exist yet, fail gracefully
   }
 
-  revalidatePath("/tableau-de-bord");
-  revalidatePath("/historique");
-  if (sessionId) {
-    revalidatePath(`/exercices/${sessionId}`);
+  // Only revalidate for real sessions — skip for random/virtual sessions
+  // to avoid refetching the force-dynamic page with new random questions
+  const isVirtualSession = sessionId.startsWith("random");
+  if (!isVirtualSession) {
+    revalidatePath("/tableau-de-bord");
+    revalidatePath("/historique");
+    if (sessionId) {
+      revalidatePath(`/exercices/${sessionId}`);
+    }
   }
 
   return {

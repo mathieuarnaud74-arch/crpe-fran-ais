@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-22] — Fix critique : revalidatePath causait le rechargement des questions aléatoires
+
+- `features/exercises/server/actions.ts` — Skip `revalidatePath` pour les sessions virtuelles (id commençant par "random"). La revalidation du layout `(app)` via `/tableau-de-bord` refetchait la page `force-dynamic` `/exercice-aleatoire`, générant 10 nouvelles questions et remplaçant celles en cours de jeu
+
 ## [2026-03-22] — Ignore .claude/ dans git
 
 - `.gitignore` — Ajout de `.claude/` pour ignorer les fichiers internes de Claude Code (scheduled_tasks.lock, etc.)
