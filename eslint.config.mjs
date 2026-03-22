@@ -11,6 +11,11 @@ const compat = new FlatCompat({
 
 const config = [{
   ignores: [".next/**", "node_modules/**"],
-}, ...compat.extends("next/core-web-vitals"), ...storybook.configs["flat/recommended"]];
+}, ...compat.extends("next/core-web-vitals"), ...storybook.configs["flat/recommended"], {
+  files: ["**/*.stories.@(ts|tsx|js|jsx)"],
+  rules: {
+    "storybook/no-renderer-packages": "off",
+  },
+}];
 
 export default config;

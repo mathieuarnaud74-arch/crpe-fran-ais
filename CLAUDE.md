@@ -54,7 +54,7 @@ app/
   api/
     diagnostic/
       complete/      # POST — finalise et persiste un diagnostic
-    _stripe/
+    stripe/
       checkout/      # POST — crée une session Stripe
       portal/        # POST — portail client Stripe
       webhook/       # POST — événements Stripe (abonnement, paiement one-time)
@@ -183,6 +183,8 @@ Table secondaire : `public.diagnostic_results` — persiste les résultats du di
 
 When making UI/design changes, make bold, meaningful improvements — not marginal tweaks. If changing colors or layouts, ensure the difference is visually significant and professional-quality.
 
+When asked for UI/design changes, propose a concrete visual direction with specific colors/components BEFORE implementing. Never make marginal or superficial tweaks — go bold or present options first.
+
 ---
 
 ## Content & Copy
@@ -201,6 +203,28 @@ When editing content or copy, use compelling marketing language with real benefi
 ## Workflow Preferences
 
 When asked to audit or review code, apply fixes directly rather than producing lengthy reports. Bias toward action over analysis unless explicitly asked for a report.
+
+---
+
+## Database Migrations
+
+When creating SQL migrations, always validate:
+1. UUID format correctness
+2. Column count matches INSERT statements
+3. No duplicate migration version numbers
+4. Test migration locally before pushing
+
+---
+
+## Content Standards
+
+All educational content (exercises, fiches, diagnostics) MUST use official Éduscol/CRPE terminology. Never use informal or generic grammar terms. Reference `/content/eduscol-terminology.md` when writing questions.
+
+---
+
+## Git & Deployment Workflow
+
+After completing work, always run `npm run build` to verify no errors before committing. Use thematic git commits (group related changes). Always push to main when work is complete unless told otherwise.
 
 ---
 

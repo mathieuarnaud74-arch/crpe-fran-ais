@@ -1,5 +1,72 @@
 # Changelog
 
+## [2026-03-21] — Audit global + quick wins (3 agents parallèles)
+
+### P2 — Agent 1 : Rate limiting API
+- `lib/rate-limit.ts` — Nouveau rate limiter in-memory (sliding window, cleanup auto)
+- `app/api/diagnostic/complete/route.ts` — Rate limit 10 req/60s par user
+- `app/api/gamification/sprint-best/route.ts` — Rate limit 30 req/60s par user
+- `app/api/gamification/onboarding/route.ts` — Rate limit 5 req/60s par user
+- `app/api/random-exercise/route.ts` — Rate limit 60 req/60s par IP
+- `app/api/_stripe/checkout/route.ts` — Rate limit 5 req/60s par user
+
+### P2 — Agent 2 : Accessibilité complète
+- `components/site-header.tsx` — Skip-to-content link ("Aller au contenu principal")
+- `components/app-shell.tsx` — Ajout id="main-content" sur le <main>
+- `app/(app)/exercices/page.tsx` — Labels form associés (htmlFor/id), aria-label sur <form>
+- `app/(app)/francais/[domain]/page.tsx` — Labels form associés, aria-label sur <form>
+- `features/exercises/components/exercise-timer.tsx` — role="timer", aria-label, aria-live="off"
+
+### P2 — Agent 3 : E2E tests Playwright
+- `playwright.config.ts` — Configuration Playwright (Chromium, webServer auto-start)
+- `e2e/homepage.spec.ts` — Tests homepage (titre, header, footer, CTA, navigation)
+- `e2e/navigation.spec.ts` — Tests navigation publique (offre, cgu, mentions, 404)
+- `e2e/seo.spec.ts` — Tests SEO (meta, OG, robots.txt, sitemap.xml)
+- `e2e/responsive.spec.ts` — Tests responsive (mobile hamburger, desktop nav)
+
+### P1 — Agent 1 : Validation Zod API
+- `app/api/diagnostic/complete/route.ts` — Schema Zod (score, total, profileLabel, subdomains record)
+- `app/api/gamification/sprint-best/route.ts` — Schema Zod (timeMs positif, max 300000)
+- `app/api/_stripe/checkout/route.ts` — Schema Zod (priceId optionnel)
+
+### P1 — Agent 3 : Storybook stories + config
+- `components/ui/button.stories.tsx` — Stories: Primary, Secondary, Ghost, Destructive, sizes, disabled
+- `components/ui/badge.stories.tsx` — Stories: 6 tones, 2 sizes
+- `components/ui/xp-bar.stories.tsx` — Stories: low/mid/near-level-up XP, compact
+- `components/ui/level-badge.stories.tsx` — Stories: niveaux 1, 5, 10
+- `components/mascot/mocca.stories.tsx` — Stories: happy, neutral, grumpy + tailles
+- `features/dashboard/components/domain-gauge.stories.tsx` — Stories: 0%, 33%, 67%, 100%
+- `components/ui/achievement-badges.stories.tsx` — Stories: badges sample, compact, empty
+- `.storybook/main.ts` — Ajout globs pour stories co-localisées
+- `eslint.config.mjs` — Désactivation règle `storybook/no-renderer-packages` pour fichiers stories
+
+### P0 — Agent 1 : Types, API & Config
+- `types/database.ts` — Ajout table `user_gamification` + colonnes manquantes `attempts` (`time_spent_ms`, `xp_earned`, `exercise_mode`)
+- `next.config.ts` — Ajout security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy)
+- `app/robots.ts` — Nouveau fichier SEO robots.txt (bloque /api/, /admin/, pages protégées)
+- `app/sitemap.ts` — Nouveau fichier sitemap dynamique (pages marketing + fiches)
+- `app/layout.tsx` — Metadata SEO enrichie (metadataBase, OpenGraph, keywords CRPE, title template)
+- `features/gamification/server/queries.ts` — Ajout error handling sur toutes les opérations Supabase (update/upsert)
+
+### Agent 2 — UX : Loading, Error & Accessibilité
+- `app/(app)/abonnement/loading.tsx` — Nouveau skeleton loading
+- `app/(app)/profil/loading.tsx` — Nouveau skeleton loading
+- `app/(app)/historique/loading.tsx` — Nouveau skeleton loading
+- `app/(app)/exercices/[id]/loading.tsx` — Nouveau skeleton loading
+- `app/(app)/abonnement/error.tsx` — Nouveau error boundary (Mocca grumpy)
+- `app/(app)/profil/error.tsx` — Nouveau error boundary (Mocca grumpy)
+- `app/(app)/historique/error.tsx` — Nouveau error boundary (Mocca grumpy)
+- `components/ui/xp-popup.tsx` — Ajout aria-live="polite" + role="status"
+- `components/ui/badge-unlock-toast.tsx` — Ajout aria-live="assertive" + role="alert"
+- `components/ui/xp-bar.tsx` — Ajout role="progressbar" + aria-valuenow/min/max
+
+### Agent 3 — Performance
+- `features/dashboard/components/nivo-radar.tsx` — Vérification/ajout lazy-loading Nivo (dynamic import, ssr: false)
+- `features/dashboard/components/domain-gauge.tsx` — Vérification/ajout lazy-loading Nivo
+- `features/exercises/components/sprint-player.tsx` — Lazy-loading framer-motion (LazyMotion + m)
+- `features/exercises/components/swipe-player.tsx` — Lazy-loading framer-motion
+- `features/exercises/components/mode-selector.tsx` — Lazy-loading framer-motion
+
 ## [2026-03-21] — Création du système MULTITASK (8 agents parallèles)
 
 - `MULTITASK/INDEX.md` — Index central avec carte des agents, règles globales, prompt de lancement sécurisé

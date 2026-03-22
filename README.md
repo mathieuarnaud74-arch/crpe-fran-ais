@@ -134,7 +134,7 @@ npm run generate:french-module-seed  # génère le seed SQL du module français
 3. Configurer le webhook Stripe vers :
 
 ```text
-http://localhost:3000/api/_stripe/webhook
+http://localhost:3000/api/stripe/webhook
 ```
 
 4. Écouter au minimum :
