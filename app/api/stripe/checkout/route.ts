@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { z } from "zod";
 
+import { rateLimit } from "@/lib/rate-limit";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { env, isStripeConfigured } from "@/lib/env";
 import { getStripeServerClient } from "@/lib/stripe/server";
+
+const bodySchema = z.object({
+  priceId: z.string().optional(),
+});
 
 export async function POST(request: Request) {
   if (!isStripeConfigured()) {
@@ -26,8 +32,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Utilisateur non authentifié." }, { status: 401 });
   }
 
-  const body = await request.json().catch(() => ({})) as { priceId?: string };
-  const priceId = body.priceId ?? env.stripePricePremiumMonthlyId;
+  const rl = rateLimit(`stripe-checkout:${user.id}`, { limit: 5, windowSeconds: 60 });
+  if (!rl.success) {
+    return NextResponse.json(
+      { error: "Trop de requêtes. Réessaie dans quelques instants." },
+      { status: 429, headers: { "Retry-After": String(Math.ceil((rl.resetAt - Date.now()) / 1000)) } },
+    );
+  }
+
+  const rawBody = await request.json().catch(() => ({}));
+  const result = bodySchema.safeParse(rawBody);
+  if (!result.success) {
+    return NextResponse.json(
+      { error: "Données invalides", details: result.error.issues },
+      { status: 400 },
+    );
+  }
+
+  const priceId = result.data.priceId ?? env.stripePricePremiumMonthlyId;
 
   const validPrices = new Set([
     env.stripePricePremiumDailyId,
