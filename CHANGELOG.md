@@ -1,5 +1,22 @@
 # Changelog
 
+## [2026-03-22] — Nettoyage du code mort
+
+- `lib/demo-data.ts` — Supprimé (données de démo jamais importées)
+- `lib/mocca-messages.ts` — Supprimé (messages Mocca jamais importés)
+- `lib/crpe-context.ts` — Supprimé (constantes dupliquées localement dans la page exercices)
+- `lib/pricing.ts` — Supprimé (objet PRICING jamais importé)
+- `components/demo-banner.tsx` — Supprimé (composant jamais utilisé)
+- `components/nav-links.tsx` — Supprimé (composant jamais utilisé)
+- `components/ui/level-badge.tsx` — Supprimé (uniquement en Storybook, jamais en production)
+- `components/ui/level-badge.stories.tsx` — Supprimé (story du composant supprimé)
+- `components/ui/select.tsx` — Supprimé (wrapper Radix Select jamais utilisé)
+- `features/dashboard/components/domain-summary-card.tsx` — Supprimé (composant jamais utilisé)
+- `features/dashboard/components/streak-display.tsx` — Supprimé (composant jamais utilisé)
+- `features/gamification/components/settings-panel.tsx` — Supprimé (composant jamais utilisé)
+- `app/api/srs/due/route.ts` — Supprimé (route orpheline, le SRS utilise des server queries directement)
+- `features/fiches/lib/get-fiche.ts` — Retiré `getFichesByDomaine()` et `getFichesByModel()` (jamais appelées), nettoyé les imports
+
 ## [2026-03-22] — Écran de fin : corrections repliées par défaut
 
 - `features/exercises/components/exercise-player.tsx` — Les corrections de chaque question sont repliées par défaut sur l'écran de fin (clic pour déplier). Réduit drastiquement le scroll. L'instruction est tronquée à 2 lignes, chevron ▾/▴ indique l'état
