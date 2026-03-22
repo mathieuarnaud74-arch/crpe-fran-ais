@@ -4,6 +4,7 @@ import { useState } from "react";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 
 import { Badge } from "@/components/ui/badge";
+import { FAST_MODE_EXERCISE_TYPES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import type { ExerciseMode, RevisionSession } from "@/types/domain";
 
@@ -23,15 +24,8 @@ type ModeOption = {
   compatibleCount: (session: RevisionSession) => number;
 };
 
-/** Types d'exercices compatibles avec les modes rapides (chrono/sprint) */
-export const FAST_MODE_TYPES = new Set([
-  "qcm",
-  "vrai_faux",
-  "reponse_courte",
-  "identification_grammaticale",
-  "correction_orthographique",
-  "analyse_texte",
-]);
+/** @deprecated Use FAST_MODE_EXERCISE_TYPES from @/lib/constants */
+export const FAST_MODE_TYPES = FAST_MODE_EXERCISE_TYPES;
 
 function countFastModeCompatible(session: RevisionSession): number {
   return session.questions.filter((q) => FAST_MODE_TYPES.has(q.exercise_type)).length;
@@ -110,8 +104,9 @@ export function ModeSelector({ session, onSelect }: ModeSelectorProps) {
       <div className="grid gap-4 sm:grid-cols-2">
         {MODES.map((opt) => {
           const count = opt.compatibleCount(session);
-          const disabled = count === 0;
-          const partial = count < session.questions.length && count > 0 && opt.mode !== "standard";
+          const minQuestions = opt.mode === "standard" ? 1 : 3;
+          const disabled = count < minQuestions;
+          const partial = count < session.questions.length && count >= minQuestions && opt.mode !== "standard";
 
           return (
             <m.button
@@ -144,7 +139,9 @@ export function ModeSelector({ session, onSelect }: ModeSelectorProps) {
                   <p className="text-xs text-accentSecondary">{count}/{session.questions.length} questions</p>
                 )}
                 {disabled && (
-                  <p className="text-xs text-muted">Aucune question compatible</p>
+                  <p className="text-xs text-muted">
+                    {count === 0 ? "Aucune question compatible" : `Trop peu de questions (${count})`}
+                  </p>
                 )}
               </div>
             </m.button>

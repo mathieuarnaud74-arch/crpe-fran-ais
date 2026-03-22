@@ -14,7 +14,8 @@ import {
 import { updateUserXp } from "@/features/gamification/server/queries";
 import { canSubmitAttempt } from "@/lib/freemium";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { calculateXpEarned, type ExerciseMode } from "@/lib/xp";
+import { calculateXpEarned } from "@/lib/xp";
+import type { ExerciseMode } from "@/types/domain";
 
 type AttemptActionState = {
   status: "idle" | "success" | "error";

@@ -50,6 +50,7 @@ type ExerciseSessionWrapperProps = {
   nextSession?: { id: string; title: string } | null;
   initialXp?: number;
   personalBest?: number | null;
+  initialMode?: ExerciseMode;
 };
 
 export function ExerciseSessionWrapper({
@@ -58,8 +59,9 @@ export function ExerciseSessionWrapper({
   nextSession = null,
   initialXp = 0,
   personalBest = null,
+  initialMode,
 }: ExerciseSessionWrapperProps) {
-  const [selectedMode, setSelectedMode] = useState<ExerciseMode | null>(null);
+  const [selectedMode, setSelectedMode] = useState<ExerciseMode | null>(initialMode ?? null);
   const [timerDuration, setTimerDuration] = useState(60);
 
   if (!selectedMode) {

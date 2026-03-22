@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
-import { useSwipeable } from "react-swipeable";
 import { LazyMotion, domAnimation, m, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { toast } from "sonner";
 
@@ -44,7 +43,9 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
   const [xpTrigger, setXpTrigger] = useState(0);
   const [runningXp, setRunningXp] = useState(initialXp);
   const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
+  const [lastSwipeDirection, setLastSwipeDirection] = useState<"left" | "right">("right");
   const questionStartRef = useRef(Date.now());
+  const isProcessingRef = useRef(false);
   const { playSound } = useGameSounds();
 
   const completed = currentIndex >= session.questions.length;
@@ -54,7 +55,6 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
 
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-200, 200], [-15, 15]);
-  const bgOpacity = useTransform(x, [-200, -50, 0, 50, 200], [0.3, 0, 0, 0, 0.3]);
   const bgColor = useTransform(x, [-200, 0, 200], [
     "rgba(220, 38, 38, 0.15)",
     "rgba(0,0,0,0)",
@@ -63,12 +63,15 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
 
   const handleSwipe = useCallback(
     (answer: "true" | "false") => {
-      if (!currentQuestion || completed) return;
+      if (!currentQuestion || completed || isProcessingRef.current) return;
+      isProcessingRef.current = true;
+
+      setLastSwipeDirection(answer === "true" ? "right" : "left");
 
       const evaluation = evaluateExerciseAnswer(currentQuestion, answer);
       const timeSpentMs = Date.now() - questionStartRef.current;
       const streak = evaluation.isCorrect ? consecutiveCorrect : 0;
-      const xp = calculateXpEarned(evaluation.isCorrect, streak, timeSpentMs, "swipe");
+      const xp = calculateXpEarned(evaluation.isCorrect, streak, timeSpentMs, "swipe", 60_000);
 
       const expectedValue = currentQuestion.expected_answer.mode === "boolean"
         ? String(currentQuestion.expected_answer.value)
@@ -102,6 +105,7 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
         setFeedback(null);
         setCurrentIndex((i) => i + 1);
         questionStartRef.current = Date.now();
+        isProcessingRef.current = false;
       }, 600);
 
       // Persist to server
@@ -131,13 +135,6 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
     },
     [currentQuestion, completed, consecutiveCorrect, playSound, session.id, startTransition],
   );
-
-  const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => handleSwipe("false"),
-    onSwipedRight: () => handleSwipe("true"),
-    preventScrollOnSwipe: true,
-    trackMouse: true,
-  });
 
   useEffect(() => {
     if (completed && correctPercent >= MASTERY_THRESHOLD) {
@@ -207,6 +204,7 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
                     setSessionXp(0);
                     setConsecutiveCorrect(0);
                     setShowConfetti(false);
+                    questionStartRef.current = Date.now();
                   }}
                 >
                   Recommencer
@@ -242,7 +240,7 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
       </div>
 
       {/* Swipe area */}
-      <div className="relative flex min-h-[320px] items-center justify-center" {...swipeHandlers}>
+      <div className="relative flex min-h-[320px] touch-none items-center justify-center">
         {/* Direction labels */}
         <div className="pointer-events-none absolute inset-x-0 top-2 flex justify-between px-6 text-sm font-bold">
           <span className="rounded-pill bg-errorBg px-3 py-1 text-error">← FAUX</span>
@@ -284,7 +282,7 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
               }}
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ x: 300, opacity: 0, rotate: 15 }}
+              exit={{ x: lastSwipeDirection === "right" ? 300 : -300, opacity: 0, rotate: lastSwipeDirection === "right" ? 15 : -15 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="w-full max-w-lg cursor-grab rounded-panel border border-border bg-card p-8 shadow-elevated active:cursor-grabbing"
             >

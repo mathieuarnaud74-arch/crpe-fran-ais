@@ -53,7 +53,7 @@ const navigationItems: NavigationItem[] = [
   },
   {
     kind: "standalone",
-    href: "/api/random-exercise",
+    href: "/exercice-aleatoire",
     label: "Exercice aléatoire",
     exact: true,
     icon: Dices,
@@ -81,7 +81,7 @@ const navigationItems: NavigationItem[] = [
     kind: "standalone",
     href: "/exercices",
     label: "Recherche avancée",
-    exact: false,
+    exact: true,
   },
   {
     kind: "group",

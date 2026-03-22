@@ -8,11 +8,17 @@
 - `app/(app)/exercice-aleatoire/page.tsx` — Réécriture : fetche 10 questions aléatoires côté serveur (`force-dynamic`), passe au wrapper avec XP initial
 - `app/api/random-exercise/route.ts` — Supprimé (plus de redirection vers des séries existantes)
 
-## [2026-03-22] — Fix double-comptage swipe + séries trop courtes
+## [2026-03-22] — Fix swipe, centralisation types, support mode initial, suppression react-swipeable
 
-- `features/exercises/components/swipe-player.tsx` — Suppression de `react-swipeable` (doublon avec le drag framer-motion qui causait un double appel de `handleSwipe` par geste). Ajout d'un guard `isProcessingRef` + `touch-none` CSS pour empêcher le scroll pendant le drag
-- `features/exercises/components/mode-selector.tsx` — Les modes non-standard sont désactivés si < 3 questions compatibles (au lieu de 0), avec message explicatif
-- `app/api/random-exercise/route.ts` — Seuil minimum de 5 questions compatibles pour qu'une session soit proposée en aléatoire
+- `features/exercises/components/swipe-player.tsx` — Suppression de `react-swipeable` (doublon avec framer-motion drag), ajout guard `isProcessingRef` + `touch-none`, animation de sortie selon la direction du swipe, reset `questionStartRef` au recommencement
+- `features/exercises/components/mode-selector.tsx` — Centralise `FAST_MODE_TYPES` → `FAST_MODE_EXERCISE_TYPES` depuis `@/lib/constants`, seuil minimum 3 questions pour modes non-standard avec message explicatif
+- `features/exercises/components/exercise-session-wrapper.tsx` — Support de `initialMode` prop pour pré-sélectionner un mode (utilisé par `?mode=` query param)
+- `app/(app)/exercices/[id]/page.tsx` — Lecture du query param `?mode=` et passage en `initialMode` au wrapper
+- `features/exercises/server/actions.ts` — Import `ExerciseMode` depuis `@/types/domain` (centralisation)
+- `lib/constants.ts` — Ajout `FAST_MODE_EXERCISE_TYPES` (Set centralisé des types compatibles chrono/sprint)
+- `lib/xp.ts` — Import `ExerciseMode` depuis `@/types/domain` au lieu de le re-déclarer localement
+- `components/app-navigation.tsx` — Lien "Exercice aléatoire" pointe vers `/exercice-aleatoire` au lieu de `/api/random-exercise`
+- `package.json` / `package-lock.json` — Suppression de `react-swipeable`
 - `package.json` — Suppression de la dépendance `react-swipeable` (plus utilisée)
 
 ## [2026-03-22] — Refonte du flux "Exercice aléatoire" : mode d'abord, exo ensuite

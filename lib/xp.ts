@@ -1,9 +1,9 @@
 // ─── XP & Leveling System ─────────────────────────────────
 
+import type { ExerciseMode } from "@/types/domain";
+
 export const XP_PER_CORRECT = 10;
 export const XP_PER_INCORRECT = 2; // participation XP
-
-export type ExerciseMode = "standard" | "timed" | "sprint" | "swipe";
 
 /** Level thresholds: index = level number, value = cumulative XP needed */
 export const LEVEL_THRESHOLDS = [

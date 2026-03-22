@@ -179,3 +179,15 @@ export const ACCESS_TIER_LABELS: Record<string, string> = {
   free: "Gratuit",
   premium: "Premium",
 };
+
+// ─── Exercise Mode Compatibility ──────────────────────────
+
+/** Types d'exercices compatibles avec les modes rapides (chrono/sprint) */
+export const FAST_MODE_EXERCISE_TYPES = new Set<ExerciseType>([
+  "qcm",
+  "vrai_faux",
+  "reponse_courte",
+  "identification_grammaticale",
+  "correction_orthographique",
+  "analyse_texte",
+]);
