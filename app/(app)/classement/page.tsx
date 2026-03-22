@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { requireUser } from "@/features/auth/server/guards";
-import { getWeeklyLeaderboard } from "@/features/leaderboard/server/queries";
+import { getWeeklyLeaderboard, getUserDisplayName } from "@/features/leaderboard/server/queries";
 import { LeaderboardTable } from "@/features/leaderboard/components/leaderboard-table";
 import { getUserGamification } from "@/features/gamification/server/queries";
 import { XP_LEVEL_LABELS, getXpForNextLevel } from "@/lib/xp";
@@ -34,14 +34,15 @@ function WeekRange() {
 
 export default async function ClassementPage() {
   const user = await requireUser();
-  const [entries, gamification] = await Promise.all([
+  const [entries, gamification, displayName] = await Promise.all([
     getWeeklyLeaderboard(user.id, 50),
     getUserGamification(user.id),
+    getUserDisplayName(user.id),
   ]);
 
   const currentUserEntry = entries.find((e) => e.is_current_user);
   const levelLabel = XP_LEVEL_LABELS[gamification.level] ?? `Niveau ${gamification.level}`;
-  const xpInfo = getXpForNextLevel(gamification.xp);
+  const userName = displayName ?? user.email?.split("@")[0] ?? "Candidat";
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
@@ -66,9 +67,9 @@ export default async function ClassementPage() {
               {gamification.level}
             </div>
             <div>
-              <p className="text-sm font-semibold text-ink">{levelLabel}</p>
+              <p className="text-sm font-semibold text-ink">{userName}</p>
               <p className="text-xs text-muted">
-                {gamification.xp.toLocaleString("fr-FR")} XP total
+                {levelLabel} · {gamification.xp.toLocaleString("fr-FR")} XP
               </p>
             </div>
           </div>

@@ -34,3 +34,20 @@ export const getWeeklyLeaderboard = cache(async function getWeeklyLeaderboard(
 
   return (data ?? []) as LeaderboardEntry[];
 });
+
+/**
+ * Fetches the display name of a user from the profiles table.
+ */
+export const getUserDisplayName = cache(async function getUserDisplayName(
+  userId: string,
+): Promise<string | null> {
+  const supabase = await createSupabaseServerClient();
+
+  const { data } = await supabase
+    .from("profiles")
+    .select("display_name")
+    .eq("id", userId)
+    .single();
+
+  return data?.display_name ?? null;
+});
