@@ -1,5 +1,33 @@
 # Changelog
 
+## [2026-03-22] — Section "Sujets blancs CRPE" sur /exercices
+
+- `app/(app)/exercices/page.tsx` — Nouvelle section dédiée "Sujets blancs CRPE" avec cards distinctives (badge "Sujet blanc", bordure accent, mention "7 sous-domaines"). Sujets blancs isolés des séries régulières via filtre `topicKey.startsWith("sujet_blanc")`
+- `features/exercises/server/queries.ts` — Groupement spécifique des sujets blancs (pas de split par level), titre/résumé/introduction/objectif adaptés au format examen
+
+## [2026-03-22] — 100 exercices interactifs premium (10 séries immersives, 5 domaines)
+
+- `supabase/migrations/20260412_seed_grammaire_surlignage_groupes.sql` — 10× surlignage : découper GN/GV/CC sur des phrases de Hugo, Colette, Saint-Exupéry, Proust, Zola
+- `supabase/migrations/20260413_seed_grammaire_copies_eleves.sql` — Analyser des copies d'élèves CE2-CM2 : correction, tri d'erreurs, identification grammaticale
+- `supabase/migrations/20260414_seed_orthographe_dictees_eleves.sql` — Corriger des dictées d'élèves : typologie Catach (phonographique/morphographique/logographique)
+- `supabase/migrations/20260415_seed_orthographe_homophones_contexte.sql` — Homophones dans des extraits littéraires (La Fontaine, Maupassant, Perrault) : tri + surlignage
+- `supabase/migrations/20260416_seed_conjugaison_temps_recit.sql` — Surlignage passé simple vs imparfait dans Le Petit Prince, Les Misérables, Le Petit Nicolas
+- `supabase/migrations/20260417_seed_conjugaison_tri_formes.sql` — Tri des formes verbales par temps/mode/voix dans des textes complets
+- `supabase/migrations/20260418_seed_lexique_figures_style_textes.sql` — Surlignage des figures de style dans Baudelaire, Verlaine, Éluard, Desnos
+- `supabase/migrations/20260419_seed_lexique_sens_contexte.sql` — Polysémie : tri sens propre/figuré/technique (glace, tableau, pied, opération...)
+- `supabase/migrations/20260420_seed_didactique_scenarios_classe.sql` — Scénarios de classe : le candidat choisit la remédiation face aux erreurs d'élèves
+- `supabase/migrations/20260421_seed_didactique_evaluation_productions.sql` — Évaluer des productions d'élèves : critères, différenciation, acquis/en cours/non acquis
+- Zéro support_text NULL — chaque exercice a un texte littéraire, une copie d'élève, ou un scénario de classe
+- Types interactifs dominants : 34 surlignage, 28 tri_categories, 9 correction, 21 QCM contextualisés, 6 réponse courte, 2 V/F
+
+## [2026-03-22] — 10 séries interactives tri_categories + surlignage (100 exercices)
+
+- `supabase/migrations/20260422_seed_conjugaison_interactives.sql` — Tri participe présent/adj. verbal (free) + Surlignage temps du récit (premium)
+- `supabase/migrations/20260423_seed_analyse_langue_interactives.sql` — Tri nature/fonction (free) + Surlignage propositions phrase complexe (premium)
+- `supabase/migrations/20260424_seed_lexique_interactives.sql` — Tri formation des mots (free) + Surlignage champs lexicaux (premium)
+- `supabase/migrations/20260425_seed_orthographe_interactives.sql` — Tri chaînes d'accords (free) + Surlignage accords dans la phrase (premium)
+- `supabase/migrations/20260426_seed_grammaire_interactives.sql` — Tri phrase neutre/emphatique (free) + Surlignage expansions du nom (premium)
+
 ## [2026-03-22] — Fix critique : séries manquantes (pagination PostgREST)
 
 - `features/exercises/server/queries.ts` — Ajout de la pagination pour la requête d'exercices. PostgREST limite à 1000 lignes par défaut, mais la base contient 1593 exercices publiés. Les sous-domaines en fin d'enum (analyse_langue, comprehension_texte, didactique_francais) étaient tronqués.

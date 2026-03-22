@@ -222,7 +222,11 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
 
   for (const exercise of exercises) {
     const { topicKey } = getTopicMetadata(exercise);
-    const key = `${topicKey}::${exercise.level}::${exercise.access_tier}`;
+    // Sujets blancs : grouper par topicKey seul (pas de split par level)
+    const isSujetBlanc = topicKey.startsWith("sujet_blanc");
+    const key = isSujetBlanc
+      ? `${topicKey}::Difficile::${exercise.access_tier}`
+      : `${topicKey}::${exercise.level}::${exercise.access_tier}`;
     const current = groups.get(key) ?? [];
     current.push(exercise);
     groups.set(key, current);
@@ -238,14 +242,23 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
       const questions = rows.slice(i, i + 10);
       const chunkNumber = Math.floor(i / 10) + 1;
 
+      const isSujetBlanc = topicKey.startsWith("sujet_blanc");
+
       chunks.push({
         id: `session-${topicKey}-${level}-${chunkNumber}`,
-        title: `Série ${groupIndex + 1}.${chunkNumber} - ${topicLabel}`,
-        summary: "Série construite automatiquement à partir des questions disponibles.",
-        objective: `Maîtriser ${topicLabel} — compétence attendue au CRPE de français.`,
-        introduction:
-          SUBDOMAIN_INTRO[firstQuestion.subdomain] ??
-          `Cette série porte sur la notion « ${topicLabel} ». Répondez avec méthode.`,
+        title: isSujetBlanc
+          ? topicLabel
+          : `Série ${groupIndex + 1}.${chunkNumber} - ${topicLabel}`,
+        summary: isSujetBlanc
+          ? "Épreuve complète couvrant les 7 sous-domaines du français au CRPE."
+          : "Série construite automatiquement à partir des questions disponibles.",
+        objective: isSujetBlanc
+          ? "Se tester en conditions d'examen sur l'ensemble du programme de français."
+          : `Maîtriser ${topicLabel} — compétence attendue au CRPE de français.`,
+        introduction: isSujetBlanc
+          ? "Ce sujet blanc simule une épreuve de français du CRPE. Les questions couvrent grammaire, orthographe, conjugaison, lexique, compréhension, analyse de la langue et didactique. Gérez votre temps comme à l'examen."
+          : (SUBDOMAIN_INTRO[firstQuestion.subdomain] ??
+            `Cette série porte sur la notion « ${topicLabel} ». Répondez avec méthode.`),
         subdomain: firstQuestion.subdomain as ExerciseSubdomain,
         topicKey,
         topicLabel,

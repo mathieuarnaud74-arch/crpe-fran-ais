@@ -174,8 +174,10 @@ export default async function ExercisesPage({
     })
   ).sort((left, right) => left.recommendedOrder - right.recommendedOrder);
 
-  const freeSessions = sessions.filter((session) => session.access_tier === "free");
-  const premiumSessions = sessions.filter((session) => session.access_tier === "premium");
+  const sujetsBlancs = sessions.filter((session) => session.topicKey.startsWith("sujet_blanc"));
+  const regularSessions = sessions.filter((session) => !session.topicKey.startsWith("sujet_blanc"));
+  const freeSessions = regularSessions.filter((session) => session.access_tier === "free");
+  const premiumSessions = regularSessions.filter((session) => session.access_tier === "premium");
 
   const noFiltersActive = !subdomain && !type && !level;
   const nextSeries = noFiltersActive ? freeSessions.slice(0, 3) : [];
@@ -273,6 +275,47 @@ export default async function ExercisesPage({
           </div>
         </form>
       </Panel>
+
+      {sujetsBlancs.length > 0 && (
+        <Panel className="border-accent/25 bg-gradient-to-br from-card to-surface">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+              Entraînement examen
+            </p>
+            <h2 className="mt-2 font-serif text-2xl font-semibold text-ink">
+              Sujets blancs CRPE
+            </h2>
+            <p className="mt-2 max-w-3xl text-sm leading-7 text-muted">
+              Épreuves complètes de 15 questions couvrant les 7 sous-domaines du français au CRPE.
+              Testez-vous en conditions proches de l&apos;examen.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-4 sm:grid-cols-3">
+            {sujetsBlancs.map((session) => {
+              const locked = session.access_tier === "premium" && !premium;
+              return (
+                <Link
+                  key={session.id}
+                  href={locked ? "/abonnement" : `/exercices/${session.id}`}
+                  className="group flex flex-col gap-2 rounded-[1.25rem] border border-accent/20 bg-paper px-5 py-5 transition-all hover:border-accent hover:shadow-elevated"
+                >
+                  <div className="flex items-center gap-2">
+                    <Badge tone="accent">Sujet blanc</Badge>
+                    <Badge>{session.questionCount} questions</Badge>
+                    {locked && <Lock className="h-3.5 w-3.5 text-muted" />}
+                  </div>
+                  <span className="font-serif text-lg font-semibold text-ink">
+                    {session.topicLabel}
+                  </span>
+                  <span className="text-xs text-muted">
+                    7 sous-domaines · ~{session.estimatedMinutes} min
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </Panel>
+      )}
 
       {sessions.length === 0 ? (
         <EmptyState
