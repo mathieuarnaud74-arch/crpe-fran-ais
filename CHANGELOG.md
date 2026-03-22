@@ -1,34 +1,23 @@
 # Changelog
 
-## [2026-03-22] — 10 nouvelles séries d'exercices (100 questions) — 5 domaines
+## [2026-03-22] — Fix critique : séries manquantes (pagination PostgREST)
 
-- `supabase/migrations/20260394_seed_grammaire_nouvelles2.sql` — Phrase emphatique et mise en relief (free, 10 q.) + Compléments du nom et expansions nominales (premium, 10 q.)
-- `supabase/migrations/20260395_seed_conjugaison_nouvelles2.sql` — Impératif présent (free, 10 q.) + Participe présent, adjectif verbal et gérondif (premium, 10 q.)
-- `supabase/migrations/20260396_seed_comprehension_nouvelles2.sql` — Genres littéraires (free, 10 q.) + Chronologie et temps du récit (premium, 10 q.)
-- `supabase/migrations/20260397_seed_didactique_nouvelles2.sql` — Enseignement de l'oral (free, 10 q.) + Littérature de jeunesse à l'école (premium, 10 q.)
-- `supabase/migrations/20260398_seed_orthographe_nouvelles2.sql` — Consonnes doubles (free, 10 q.) + Trait d'union (premium, 10 q.)
+- `features/exercises/server/queries.ts` — Ajout de la pagination pour la requête d'exercices. PostgREST limite à 1000 lignes par défaut, mais la base contient 1593 exercices publiés. Les sous-domaines en fin d'enum (analyse_langue, comprehension_texte, didactique_francais) étaient tronqués.
+- Réparation de l'historique de migrations (14 migrations orphelines marquées comme revertées)
+- Push des 6 migrations pendantes (20260406–20260411)
 
-## [2026-03-22] — Phase 3 : Orthographe +2, Sujets blancs CRPE x3, migrations bonus
+## [2026-03-22] — 100 exercices premium supplémentaires (10 nouvelles séries, 5 domaines)
 
-- `supabase/migrations/20260366_seed_orthographe_nouvelles.sql` — 2 séries Orthographe (20 questions) : homophones grammaticaux, PP avec être/pronominaux
-- `supabase/migrations/20260367_seed_sujet_blanc_1.sql` — Sujet blanc CRPE n°1 (15 questions cross-domaines)
-- `supabase/migrations/20260368_seed_sujet_blanc_2.sql` — Sujet blanc CRPE n°2 (15 questions cross-domaines)
-- `supabase/migrations/20260369_seed_sujet_blanc_3.sql` — Sujet blanc CRPE n°3 (15 questions cross-domaines)
-- `supabase/migrations/20260370-373` — 4 séries bonus (conjugaison subjonctif, orthographe pluriels, lexique champs lexicaux, grammaire fonctions syntaxiques)
-- Renommage migrations conflictuelles pour versions Supabase uniques
-
-## [2026-03-22] — 100 exercices premium supplémentaires (10 nouvelles séries)
-
-- `supabase/migrations/20260366_seed_grammaire_fonctions_syntaxiques.sql` — Série Grammaire : fonctions syntaxiques (COD, COI, CC, attribut) — 10 questions
-- `supabase/migrations/20260367_seed_grammaire_determinants.sql` — Série Grammaire : déterminants (articles, possessifs, démonstratifs) — 10 questions
-- `supabase/migrations/20260368_seed_orthographe_pluriels_irreguliers.sql` — Série Orthographe : pluriels irréguliers et exceptions — 10 questions
-- `supabase/migrations/20260369_seed_orthographe_participe_passe.sql` — Série Orthographe : accord du participe passé — 10 questions
-- `supabase/migrations/20260370_seed_conjugaison_subjonctif.sql` — Série Conjugaison : subjonctif présent — 10 questions
-- `supabase/migrations/20260371_seed_conjugaison_temps_composes.sql` — Série Conjugaison : temps composés de l'indicatif — 10 questions
-- `supabase/migrations/20260372_seed_lexique_champs_lexicaux.sql` — Série Lexique : champs lexicaux et réseaux de sens — 10 questions
-- `supabase/migrations/20260373_seed_lexique_formation_mots.sql` — Série Lexique : formation des mots (préfixes, suffixes) — 10 questions
-- `supabase/migrations/20260374_seed_didactique_apprentissage_lecture.sql` — Série Didactique : apprentissage de la lecture cycle 2 — 10 questions
-- `supabase/migrations/20260375_seed_didactique_production_ecrite.sql` — Série Didactique : production d'écrits cycles 2-3 — 10 questions
+- `supabase/migrations/20260400_seed_conjugaison_subjonctif.sql` — Série Conjugaison : subjonctif présent et ses emplois — 10 questions
+- `supabase/migrations/20260401_seed_orthographe_pluriels_irreguliers.sql` — Série Orthographe : pluriels irréguliers et cas particuliers — 10 questions
+- `supabase/migrations/20260402_seed_lexique_champs_lexicaux.sql` — Série Lexique : champs lexicaux et réseaux de sens — 10 questions
+- `supabase/migrations/20260403_seed_grammaire_fonctions_syntaxiques.sql` — Série Grammaire : fonctions syntaxiques (COD, COI, CC, attribut) — 10 questions
+- `supabase/migrations/20260404_seed_didactique_apprentissage_lecture.sql` — Série Didactique : apprentissage de la lecture cycle 2 — 10 questions
+- `supabase/migrations/20260405_seed_orthographe_participe_passe.sql` — Série Orthographe : accord du participe passé — 10 questions
+- `supabase/migrations/20260406_seed_conjugaison_temps_composes.sql` — Série Conjugaison : temps composés de l'indicatif — 10 questions
+- `supabase/migrations/20260407_seed_lexique_formation_mots.sql` — Série Lexique : formation des mots (préfixes, suffixes, familles) — 10 questions
+- `supabase/migrations/20260408_seed_didactique_production_ecrite.sql` — Série Didactique : production d'écrits cycles 2-3 — 10 questions
+- `supabase/migrations/20260409_seed_grammaire_determinants.sql` — Série Grammaire : déterminants (articles, possessifs, démonstratifs) — 10 questions
 - Mix de types variés : QCM, vrai/faux, réponse courte, tri catégories, correction orthographique
 - Toutes premium, terminologie Éduscol 2021
 

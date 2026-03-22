@@ -276,31 +276,50 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
   });
 }
 
-const fetchExercisesCached = cache(async (filters: ExerciseFilters) => {
+const PAGE_SIZE = 1000;
+
+async function fetchAllExercises(filters: ExerciseFilters): Promise<ExerciseRecord[]> {
   const supabase = await createSupabaseServerClient();
   const subject = filters.subject ?? DEFAULT_SUBJECT;
-  let query = supabase
-    .from("exercises")
-    .select("*")
-    .eq("is_published", true)
-    .eq("subject", subject)
-    .order("subdomain")
-    .order("created_at", { ascending: true });
+  const allRows: ExerciseRecord[] = [];
+  let from = 0;
 
-  if (filters.subdomain) {
-    query = query.eq("subdomain", filters.subdomain);
+  while (true) {
+    let query = supabase
+      .from("exercises")
+      .select("*")
+      .eq("is_published", true)
+      .eq("subject", subject)
+      .order("subdomain")
+      .order("created_at", { ascending: true })
+      .range(from, from + PAGE_SIZE - 1);
+
+    if (filters.subdomain) {
+      query = query.eq("subdomain", filters.subdomain);
+    }
+
+    if (filters.type) {
+      query = query.eq("exercise_type", filters.type);
+    }
+
+    if (filters.level) {
+      query = query.eq("level", filters.level);
+    }
+
+    const { data } = await query;
+    const rows = (data ?? []) as ExerciseRecord[];
+    allRows.push(...rows);
+
+    if (rows.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
   }
 
-  if (filters.type) {
-    query = query.eq("exercise_type", filters.type);
-  }
+  return allRows;
+}
 
-  if (filters.level) {
-    query = query.eq("level", filters.level);
-  }
-
-  const { data } = await query;
-  return buildSessionsFromExercises(((data ?? []) as ExerciseRecord[]).map(normalizeExerciseRecord));
+const fetchExercisesCached = cache(async (filters: ExerciseFilters) => {
+  const rows = await fetchAllExercises(filters);
+  return buildSessionsFromExercises(rows.map(normalizeExerciseRecord));
 });
 
 export async function getExercises(filters: ExerciseFilters = {}) {
