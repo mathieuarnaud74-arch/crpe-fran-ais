@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-03-22] — Fix persistance réponses + stabilité XP
+
+- `features/exercises/server/actions.ts` — Wrap global try/catch dans `submitAttemptAction` pour ne plus jamais throw (retourne toujours un objet d'état). Log console de l'erreur réelle côté serveur
+- `features/exercises/components/exercise-player.tsx` — Log de l'erreur réelle côté client quand l'action échoue. Rollback de l'XP optimiste en cas d'échec (empêche le décalage XP entre sessions)
+- `features/exercises/server/queries.ts` — `getRandomExercises` ne pioche que dans les exercices `free` (évite le rejet premium côté action)
+
 ## [2026-03-22] — Fix critique : revalidatePath causait le rechargement des questions aléatoires
 
 - `features/exercises/server/actions.ts` — Skip `revalidatePath` pour les sessions virtuelles (id commençant par "random"). La revalidation du layout `(app)` via `/tableau-de-bord` refetchait la page `force-dynamic` `/exercice-aleatoire`, générant 10 nouvelles questions et remplaçant celles en cours de jeu

@@ -351,7 +351,8 @@ export async function getRandomExercises(count = 10) {
     .from("exercises")
     .select("*")
     .eq("is_published", true)
-    .eq("subject", DEFAULT_SUBJECT);
+    .eq("subject", DEFAULT_SUBJECT)
+    .eq("access_tier", "free");
 
   if (!data || data.length === 0) return [];
 

@@ -225,7 +225,11 @@ export function ExercisePlayer({
             });
           }
         }
-      } catch {
+      } catch (err) {
+        console.error("[ExercisePlayer] submitAttemptAction failed:", err);
+        // Rollback optimistic XP
+        setSessionXp((prev) => Math.max(0, prev - xp));
+        setRunningXp((prev) => Math.max(0, prev - xp));
         toast.error("Votre réponse n'a pas pu être enregistrée.");
       }
     });

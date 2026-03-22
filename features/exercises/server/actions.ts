@@ -35,6 +35,20 @@ export async function submitAttemptAction(
   _previousState: AttemptActionState,
   formData: FormData,
 ): Promise<AttemptActionState> {
+  try {
+    return await submitAttemptActionInner(formData);
+  } catch (err) {
+    console.error("[submitAttemptAction] Unhandled error:", err);
+    return {
+      status: "error",
+      message: "Une erreur inattendue est survenue.",
+    };
+  }
+}
+
+async function submitAttemptActionInner(
+  formData: FormData,
+): Promise<AttemptActionState> {
   const exerciseId = String(formData.get("exerciseId") ?? "");
   const submittedValue = String(formData.get("answer") ?? "");
   const sessionId = String(formData.get("sessionId") ?? "");
