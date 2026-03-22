@@ -74,7 +74,7 @@ INSERT INTO public.exercises (
   'Les oiseaux chantaient dans les arbres du parc.',
   NULL,
   '{"mode":"text","acceptableAnswers":["verbe"]}'::jsonb,
-  '« Chantaient » est un verbe conjugué (verbe « chanter », 3ᵉ groupe à l''imparfait de l''indicatif). Le verbe est le noyau du groupe verbal ; il exprime une action ou un état et se conjugue en personne, nombre, temps et mode.',
+  '« Chantaient » est un verbe conjugué (verbe « chanter », 1ᵉʳ groupe, à l''imparfait de l''indicatif). Le verbe est le noyau du groupe verbal ; il exprime une action ou un état et se conjugue en personne, nombre, temps et mode.',
   'Confondre le participe présent « chantant » (forme adjective ou gérondif) avec le verbe conjugué. Ici, « chantaient » est bien conjugué à l''imparfait.',
   'valide', 'free', true
 ) ON CONFLICT (id) DO NOTHING;

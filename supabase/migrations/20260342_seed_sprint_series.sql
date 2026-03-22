@@ -6,61 +6,61 @@
 -- ── Sprint Grammaire ──────────────────────────────────────
 
 INSERT INTO public.exercises (id, subject, subdomain, topic_key, topic_label, level, exercise_type, instruction, choices, expected_answer, detailed_explanation, validation_status, access_tier, is_published) VALUES
-('b1010000-0000-0000-0000-000000000001', 'Francais', 'grammaire', 'sprint_grammaire_nature', 'Sprint — Nature des mots', 'Facile', 'qcm',
+('b1010000-0000-0000-0000-000000000001', 'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Facile', 'qcm',
  'Dans « Le chat dort paisiblement », quelle est la nature de « paisiblement » ?',
  '[{"id":"a","label":"Adjectif"},{"id":"b","label":"Adverbe"},{"id":"c","label":"Nom"},{"id":"d","label":"Verbe"}]'::jsonb,
  '{"mode":"single_choice","value":"b"}'::jsonb,
  '« Paisiblement » est un adverbe (modifie le verbe « dort »). Il répond à la question « comment ? ».', 'valide', 'free', true),
 
-('b1010000-0000-0000-0000-000000000002', 'Francais', 'grammaire', 'sprint_grammaire_nature', 'Sprint — Nature des mots', 'Facile', 'qcm',
+('b1010000-0000-0000-0000-000000000002', 'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Facile', 'qcm',
  'Quelle est la fonction du groupe « dans le jardin » dans « Il joue dans le jardin » ?',
  '[{"id":"a","label":"Sujet"},{"id":"b","label":"COD"},{"id":"c","label":"Complément circonstanciel de lieu"},{"id":"d","label":"Attribut du sujet"}]'::jsonb,
  '{"mode":"single_choice","value":"c"}'::jsonb,
  '« Dans le jardin » indique le lieu : c''est un complément circonstanciel de lieu (CCL).', 'valide', 'free', true),
 
-('b1010000-0000-0000-0000-000000000003', 'Francais', 'grammaire', 'sprint_grammaire_nature', 'Sprint — Nature des mots', 'Facile', 'qcm',
+('b1010000-0000-0000-0000-000000000003', 'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Facile', 'qcm',
  'Dans « Marie mange une pomme », quel est le COD ?',
  '[{"id":"a","label":"Marie"},{"id":"b","label":"mange"},{"id":"c","label":"une pomme"},{"id":"d","label":"une"}]'::jsonb,
  '{"mode":"single_choice","value":"c"}'::jsonb,
  'Le COD répond à la question « quoi ? » après le verbe : Marie mange quoi ? → une pomme.', 'valide', 'free', true),
 
-('b1010000-0000-0000-0000-000000000004', 'Francais', 'grammaire', 'sprint_grammaire_nature', 'Sprint — Nature des mots', 'Facile', 'qcm',
- 'Quel est le type de la phrase « Comme ce paysage est beau ! » ?',
- '[{"id":"a","label":"Déclarative"},{"id":"b","label":"Interrogative"},{"id":"c","label":"Exclamative"},{"id":"d","label":"Impérative"}]'::jsonb,
+('b1010000-0000-0000-0000-000000000004', 'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Facile', 'qcm',
+ 'Selon la terminologie Éduscol 2021, « Comme ce paysage est beau ! » est une phrase de type déclaratif et de forme :',
+ '[{"id":"a","label":"Négative"},{"id":"b","label":"Passive"},{"id":"c","label":"Exclamative"},{"id":"d","label":"Emphatique"}]'::jsonb,
  '{"mode":"single_choice","value":"c"}'::jsonb,
- 'Le point d''exclamation et le mot « comme » marquent l''exclamation. C''est une phrase exclamative.', 'valide', 'free', true),
+ 'Selon Éduscol 2021, l''exclamation est une FORME de phrase, pas un type. Les trois types sont : déclaratif, interrogatif, impératif. Ici la phrase est de type déclaratif et de forme exclamative (marquée par « comme » et le point d''exclamation).', 'valide', 'free', true),
 
-('b1010000-0000-0000-0000-000000000005', 'Francais', 'grammaire', 'sprint_grammaire_nature', 'Sprint — Nature des mots', 'Intermediaire', 'qcm',
+('b1010000-0000-0000-0000-000000000005', 'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Intermediaire', 'qcm',
  'Dans « Les fleurs que j''ai cueillies sont fanées », quel est l''antécédent de « que » ?',
  '[{"id":"a","label":"je"},{"id":"b","label":"Les fleurs"},{"id":"c","label":"fanées"},{"id":"d","label":"cueillies"}]'::jsonb,
  '{"mode":"single_choice","value":"b"}'::jsonb,
  '« Que » est un pronom relatif dont l''antécédent est « Les fleurs ». Le participe passé s''accorde avec le COD antéposé.', 'valide', 'free', true),
 
-('b1010000-0000-0000-0000-000000000006', 'Francais', 'grammaire', 'sprint_grammaire_nature', 'Sprint — Nature des mots', 'Intermediaire', 'qcm',
+('b1010000-0000-0000-0000-000000000006', 'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Intermediaire', 'qcm',
  'Quelle proposition contient un attribut du sujet ?',
  '[{"id":"a","label":"Il mange une pomme."},{"id":"b","label":"Elle semble fatiguée."},{"id":"c","label":"Nous partons demain."},{"id":"d","label":"Tu regardes le ciel."}]'::jsonb,
  '{"mode":"single_choice","value":"b"}'::jsonb,
  '« Fatiguée » est attribut du sujet « elle » via le verbe d''état « semble ».', 'valide', 'free', true),
 
-('b1010000-0000-0000-0000-000000000007', 'Francais', 'grammaire', 'sprint_grammaire_nature', 'Sprint — Nature des mots', 'Intermediaire', 'qcm',
+('b1010000-0000-0000-0000-000000000007', 'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Intermediaire', 'qcm',
  'Dans « Pierre et Marie chantent », le sujet est :',
  '[{"id":"a","label":"Pierre"},{"id":"b","label":"Marie"},{"id":"c","label":"Pierre et Marie"},{"id":"d","label":"chantent"}]'::jsonb,
  '{"mode":"single_choice","value":"c"}'::jsonb,
  'Le sujet est « Pierre et Marie » (sujet composé coordonné par « et »), d''où le verbe au pluriel.', 'valide', 'free', true),
 
-('b1010000-0000-0000-0000-000000000008', 'Francais', 'grammaire', 'sprint_grammaire_nature', 'Sprint — Nature des mots', 'Intermediaire', 'qcm',
+('b1010000-0000-0000-0000-000000000008', 'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Intermediaire', 'qcm',
  'Quel mot est une conjonction de subordination ?',
  '[{"id":"a","label":"mais"},{"id":"b","label":"donc"},{"id":"c","label":"lorsque"},{"id":"d","label":"car"}]'::jsonb,
  '{"mode":"single_choice","value":"c"}'::jsonb,
- '« Lorsque » introduit une subordonnée circonstancielle de temps. « Mais », « donc » et « car » sont des conjonctions de coordination.', 'valide', 'free', true),
+ '« Lorsque » introduit une subordonnée circonstancielle de temps — c''est une conjonction de subordination. « Mais » et « car » sont des conjonctions de coordination. Attention : « donc » est un adverbe de liaison (et non une conjonction de coordination selon la terminologie Éduscol).', 'valide', 'free', true),
 
-('b1010000-0000-0000-0000-000000000009', 'Francais', 'grammaire', 'sprint_grammaire_nature', 'Sprint — Nature des mots', 'Avance', 'qcm',
+('b1010000-0000-0000-0000-000000000009', 'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Avance', 'qcm',
  'Dans « Il faut que tu viennes », à quel mode est conjugué « viennes » ?',
  '[{"id":"a","label":"Indicatif"},{"id":"b","label":"Subjonctif"},{"id":"c","label":"Conditionnel"},{"id":"d","label":"Impératif"}]'::jsonb,
  '{"mode":"single_choice","value":"b"}'::jsonb,
  'Après « il faut que », on utilise le subjonctif. « Viennes » est au subjonctif présent.', 'valide', 'free', true),
 
-('b1010000-0000-0000-0000-000000000010', 'Francais', 'grammaire', 'sprint_grammaire_nature', 'Sprint — Nature des mots', 'Avance', 'qcm',
+('b1010000-0000-0000-0000-000000000010', 'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Avance', 'qcm',
  'Quelle phrase contient une proposition subordonnée relative ?',
  '[{"id":"a","label":"Je pense qu''il viendra."},{"id":"b","label":"L''homme qui court est mon voisin."},{"id":"c","label":"Si tu viens, préviens-moi."},{"id":"d","label":"Il pleut donc je reste."}]'::jsonb,
  '{"mode":"single_choice","value":"b"}'::jsonb,
@@ -125,7 +125,7 @@ INSERT INTO public.exercises (id, subject, subdomain, topic_key, topic_label, le
 
 ('b1020000-0000-0000-0000-000000000010', 'Francais', 'orthographe', 'sprint_orthographe_accords', 'Sprint — Accords', 'Avance', 'qcm',
  '« Les couleurs ___ elle a ___ sa robe sont vives. »',
- '[{"id":"a","label":"dont — teinte"},{"id":"b","label":"dont — teint"},{"id":"c","label":"don''t — teintes"},{"id":"d","label":"dont — teinte"}]'::jsonb,
+ '[{"id":"a","label":"dont — teinte"},{"id":"b","label":"dont — teint"},{"id":"c","label":"don''t — teintes"},{"id":"d","label":"dont — teintes"}]'::jsonb,
  '{"mode":"single_choice","value":"a"}'::jsonb,
  '« Dont » est un pronom relatif. Le participe « teint » s''accorde avec le COD « sa robe » (fém. sing.) → « teinte ».', 'valide', 'free', true);
 
