@@ -72,6 +72,7 @@ export function ExercisePlayer({
   const [runningXp, setRunningXp] = useState(initialXp);
   const [questionStartTime, setQuestionStartTime] = useState(Date.now());
   const prevResultsCount = useRef(0);
+  const lastSubmitTime = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const feedbackRef = useRef<HTMLDivElement>(null);
   const { playSound } = useGameSounds();
@@ -169,6 +170,7 @@ export function ExercisePlayer({
     if (!draftAnswer.trim()) {
       return;
     }
+    lastSubmitTime.current = Date.now();
 
     const evaluation = evaluateExerciseAnswer(currentQuestion, draftAnswer);
     const timeSpentMs = Date.now() - questionStartTime;
@@ -240,6 +242,9 @@ export function ExercisePlayer({
   }
 
   function goToNextQuestion() {
+    // Prevent double-click: ignore if called within 600ms of submission
+    if (Date.now() - lastSubmitTime.current < 600) return;
+
     if (currentIndex < session.questions.length - 1) {
       // Skip forward to the next unanswered question (or the very next one if all are answered)
       let nextIdx = currentIndex + 1;

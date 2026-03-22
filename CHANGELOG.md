@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-22] — Fix double-clic qui saute la correction
+
+- `features/exercises/components/exercise-player.tsx` — Guard anti-double-clic de 600ms entre la soumission et le clic "Question suivante" (le bouton apparaît au même endroit que "Corriger", un double-clic sur Corriger tapait aussi sur Suivante)
+
 ## [2026-03-22] — Fix tressautement : session memoizée + suppression boucle useEffect
 
 - `features/exercises/components/random-exercise-wrapper.tsx` — `useMemo` sur `buildVirtualSession` pour que l'ExercisePlayer reçoive toujours la même référence (empêche les re-renders qui recréaient la session à chaque changement de state)
