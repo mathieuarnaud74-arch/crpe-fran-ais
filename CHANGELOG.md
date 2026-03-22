@@ -1,5 +1,16 @@
 # Changelog
 
+## [2026-03-22] — Audit pédagogique + 240 exercices premium (24 séries)
+
+- `supabase/migrations/20260357_seed_didactique_part1.sql` — 4 séries Didactique (40 questions) : Enseignement compréhension, grammaire, vocabulaire, différenciation/évaluation
+- `supabase/migrations/20260361_seed_didactique_part2.sql` — 3 séries Didactique (30 questions) : Étude de la langue cycles 2-3, littérature jeunesse, fluence
+- `supabase/migrations/20260358_seed_grammaire_nouvelles.sql` — 5 séries Grammaire (50 questions) : Nature/fonction, GN, GV, subordonnées relatives, transformations
+- `supabase/migrations/20260359_seed_comprehension_nouvelles.sql` — 5 séries Compréhension (50 questions) : Inférences, énonciation, texte explicatif, poétique, mise en réseau
+- `supabase/migrations/20260360_seed_conjugaison_nouvelles.sql` — 3 séries Conjugaison (30 questions) : Temps simples/composés, verbes irréguliers 3e groupe, participe/adjectif verbal
+- `supabase/migrations/20260365_seed_lexique_nouvelles.sql` — 4 séries Lexique (40 questions) : Étymologie, figures de style, sens propre/figuré, néologie/emprunts
+- Toutes premium, terminologie Éduscol 2021, mix 4 QCM + 3 V/F + 3 réponse courte par série
+- Renommage migrations conflictuelles (20260322→20260362-364, 20260357001→20260361)
+
 ## [2026-03-22] — Renommage migrations + mise à jour CLAUDE.md
 
 - `CLAUDE.md` — Mise à jour des règles projet
