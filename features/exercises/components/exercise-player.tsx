@@ -45,6 +45,7 @@ type ExercisePlayerProps = {
   mode?: ExerciseMode;
   timerDuration?: number; // seconds, for timed mode
   initialXp?: number;
+  onNewSession?: () => void;
 };
 
 export function ExercisePlayer({
@@ -54,6 +55,7 @@ export function ExercisePlayer({
   mode = "standard",
   timerDuration = 60,
   initialXp = 0,
+  onNewSession,
 }: ExercisePlayerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [draftAnswer, setDraftAnswer] = useState("");
@@ -577,13 +579,18 @@ export function ExercisePlayer({
                 </div>
               </div>
               <div className="flex flex-wrap gap-3">
+                {onNewSession && (
+                  <Button type="button" onClick={onNewSession} className="w-full sm:w-auto">
+                    Nouvelle s&eacute;rie al&eacute;atoire &rarr;
+                  </Button>
+                )}
                 {nextSession && (
                   <ButtonLink href={`/exercices/${nextSession.id}`} className="w-full sm:w-auto">
                     Série suivante &rarr;
                   </ButtonLink>
                 )}
                 <Button type="button" onClick={resetSession} variant="secondary" className="w-full sm:w-auto">
-                  Recommencer la s&eacute;rie
+                  Recommencer
                 </Button>
               </div>
             </div>

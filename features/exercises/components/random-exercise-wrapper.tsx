@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 import { ExercisePlayer } from "@/features/exercises/components/exercise-player";
@@ -46,6 +47,7 @@ export function RandomExerciseWrapper({
   initialXp = 0,
   disabledReason = null,
 }: RandomExerciseWrapperProps) {
+  const router = useRouter();
   const [selectedMode, setSelectedMode] = useState<ExerciseMode | null>(null);
 
   // Memoize so that ExercisePlayer always receives the same reference
@@ -62,6 +64,7 @@ export function RandomExerciseWrapper({
       timerDuration={60}
       initialXp={initialXp}
       disabledReason={disabledReason}
+      onNewSession={() => router.refresh()}
     />
   );
 }

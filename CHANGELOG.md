@@ -1,5 +1,14 @@
 # Changelog
 
+## [2026-03-22] — Bouton "Nouvelle série aléatoire" + "Recommencer" raccourci
+
+- `features/exercises/components/exercise-player.tsx` — Nouveau prop `onNewSession` : affiche un bouton CTA sur l'écran de fin pour relancer une nouvelle série. Texte "Recommencer la série" raccourci en "Recommencer"
+- `features/exercises/components/random-exercise-wrapper.tsx` — Branche `onNewSession` sur `router.refresh()` pour recharger 10 nouvelles questions aléatoires sans navigation pleine page
+
+## [2026-03-22] — Renforcement des règles CLAUDE.md (insights)
+
+- `CLAUDE.md` — Renforcé la section Changelog (ne jamais sauter), ajout compatibilité CLI Supabase dans Database Migrations, ajout cohérence sizing/spacing dans UI/Design Guidelines
+
 ## [2026-03-22] — Nettoyage du code mort
 
 - `lib/demo-data.ts` — Supprimé (données de démo jamais importées)
