@@ -341,6 +341,32 @@ export async function getAttemptsForHistory(userId: string, limit?: number) {
   return data ?? [];
 }
 
+/**
+ * Fetches N random published exercises (individual questions, not grouped into sessions).
+ * Used by the random exercise mode.
+ */
+export async function getRandomExercises(count = 10) {
+  const supabase = await createSupabaseServerClient();
+  const { data } = await supabase
+    .from("exercises")
+    .select("*")
+    .eq("is_published", true)
+    .eq("subject", DEFAULT_SUBJECT);
+
+  if (!data || data.length === 0) return [];
+
+  const normalized = (data as ExerciseRecord[]).map(normalizeExerciseRecord);
+
+  // Fisher–Yates shuffle
+  const shuffled = [...normalized];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  return shuffled.slice(0, count);
+}
+
 export async function getAttemptsCountToday(userId: string) {
   const supabase = await createSupabaseServerClient();
   const startOfDay = new Date();

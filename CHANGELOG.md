@@ -1,5 +1,45 @@
 # Changelog
 
+## [2026-03-22] — Refonte exercice aléatoire : questions individuelles + 2 modes
+
+- `features/exercises/server/queries.ts` — Ajout de `getRandomExercises(count)` : pioche N questions aléatoires individuelles (Fisher–Yates shuffle), indépendamment des séries
+- `features/exercises/components/random-mode-picker.tsx` — Réécriture : 2 modes seulement (Standard, Chrono), émet la sélection au parent au lieu de naviguer vers l'API
+- `features/exercises/components/random-exercise-wrapper.tsx` — Nouveau composant client : construit une session virtuelle à partir de questions individuelles, sélection du mode puis `ExercisePlayer`
+- `app/(app)/exercice-aleatoire/page.tsx` — Réécriture : fetche 10 questions aléatoires côté serveur (`force-dynamic`), passe au wrapper avec XP initial
+- `app/api/random-exercise/route.ts` — Supprimé (plus de redirection vers des séries existantes)
+
+## [2026-03-22] — Fix double-comptage swipe + séries trop courtes
+
+- `features/exercises/components/swipe-player.tsx` — Suppression de `react-swipeable` (doublon avec le drag framer-motion qui causait un double appel de `handleSwipe` par geste). Ajout d'un guard `isProcessingRef` + `touch-none` CSS pour empêcher le scroll pendant le drag
+- `features/exercises/components/mode-selector.tsx` — Les modes non-standard sont désactivés si < 3 questions compatibles (au lieu de 0), avec message explicatif
+- `app/api/random-exercise/route.ts` — Seuil minimum de 5 questions compatibles pour qu'une session soit proposée en aléatoire
+- `package.json` — Suppression de la dépendance `react-swipeable` (plus utilisée)
+
+## [2026-03-22] — Refonte du flux "Exercice aléatoire" : mode d'abord, exo ensuite
+
+- `app/(app)/exercice-aleatoire/page.tsx` — Nouvelle page dédiée avec sélection du mode avant le tirage aléatoire
+- `features/exercises/components/random-mode-picker.tsx` — Sélecteur de mode simplifié (sans session), redirige vers l'API avec `?mode=X`
+- `app/api/random-exercise/route.ts` — Accepte `?mode=X`, filtre les sessions compatibles avant de tirer au hasard, passe le mode en query param de la redirection
+- `app/(app)/exercices/[id]/page.tsx` — Lit `?mode=X` depuis searchParams et le passe en `initialMode` au wrapper
+- `features/exercises/components/exercise-session-wrapper.tsx` — Nouvelle prop `initialMode` pour sauter le mode selector quand le mode est déjà choisi
+- `components/app-navigation.tsx` — Lien "Exercice aléatoire" pointe vers `/exercice-aleatoire` (page Next.js) au lieu de `/api/random-exercise`, suppression de la branche `isApiRoute` devenue inutile
+- `lib/constants.ts` — Extraction de `FAST_MODE_EXERCISE_TYPES` (source unique partagée serveur/client)
+- `features/exercises/components/mode-selector.tsx` — `FAST_MODE_TYPES` réexporté depuis constants pour rétrocompatibilité
+
+## [2026-03-22] — Audit du mode Swipe : 5 bugs corrigés
+
+- `features/exercises/components/swipe-player.tsx` — Suppression de `bgOpacity` (variable motion inutilisée)
+- `features/exercises/components/swipe-player.tsx` — L'animation de sortie de carte suit désormais la direction du swipe (gauche/droite) au lieu de toujours partir à droite
+- `features/exercises/components/swipe-player.tsx` — Reset de `questionStartRef` lors du clic "Recommencer" pour un calcul de temps correct sur la première question
+- `features/exercises/components/swipe-player.tsx` — Passage explicite de `maxTimeMs` à `calculateXpEarned` pour clarifier le contrat d'appel
+- `lib/xp.ts` — Suppression du type `ExerciseMode` dupliqué, import depuis `types/domain.ts` (source unique de vérité)
+- `features/exercises/server/actions.ts` — Import de `ExerciseMode` depuis `types/domain.ts` au lieu de `lib/xp.ts`
+
+## [2026-03-22] — Fix navigation "Exercice aléatoire"
+
+- `components/app-navigation.tsx` — Utilisation d'une balise `<a>` native au lieu de `<Link>` pour les liens vers `/api/`, corrigeant le 404 sur "Exercice aléatoire" (la navigation client ne suivait pas la redirection serveur)
+- `components/app-navigation.tsx` — Passage de "Recherche avancée" en `exact: true` pour éviter qu'elle s'affiche comme active sur les pages d'exercices individuels
+
 ## [2026-03-21] — Audit global + quick wins (3 agents parallèles)
 
 ### P2 — Agent 1 : Rate limiting API
