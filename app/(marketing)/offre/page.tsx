@@ -237,7 +237,7 @@ export default async function OfferPage() {
                 Diagnostic de positionnement
               </h3>
               <p className="mt-3 text-sm leading-7 text-muted">
-                40 questions tirées d&apos;une banque de {" "}
+                40 questions tirées d&apos;une banque de{" "}
                 <strong className="text-ink">plus de 100 questions</strong> pour repérer vos
                 fragilités sous-domaine par sous-domaine, puis prioriser les révisions les plus rentables.
               </p>

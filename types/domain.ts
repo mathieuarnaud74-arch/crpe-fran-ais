@@ -258,6 +258,10 @@ export type UserGamification = {
   daily_goal: number;
   personal_best_sprint_time: number | null;
   onboarding_completed: boolean;
+  daily_streak: number;
+  longest_daily_streak: number;
+  streak_freeze_remaining: number;
+  streak_frozen_on: string | null;
 };
 
 export type DashboardData = {
@@ -268,6 +272,7 @@ export type DashboardData = {
   masteredSessions: number;
   notStartedSessions: number;
   totalAttempts: number;
+  attemptsToday: number;
   overallCorrectRate: number | null;
   remainingToday: number;
   domainProgress: DashboardDomainProgress[];

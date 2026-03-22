@@ -1,7 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
+import { rateLimit } from "@/lib/rate-limit";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import type { DiagnosticResult } from "@/features/diagnostic/types";
+
+const bodySchema = z.object({
+  score: z.number(),
+  total: z.number(),
+  profileLabel: z.string(),
+  profileDetail: z.string().optional(),
+  completedAt: z.string().optional(),
+  subdomains: z.record(z.string(), z.object({
+    score: z.number(),
+    total: z.number(),
+    label: z.string().optional(),
+  })),
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,20 +30,30 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    let body: DiagnosticResult;
+    const rl = rateLimit(`diagnostic-complete:${user.id}`, { limit: 10, windowSeconds: 60 });
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: "Trop de requêtes. Réessaie dans quelques instants." },
+        { status: 429, headers: { "Retry-After": String(Math.ceil((rl.resetAt - Date.now()) / 1000)) } },
+      );
+    }
+
+    let rawBody: unknown;
     try {
-      body = await request.json();
+      rawBody = await request.json();
     } catch {
       return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
     }
 
-    if (typeof body.score !== "number" || typeof body.total !== "number") {
-      return NextResponse.json({ error: "score and total are required numbers" }, { status: 400 });
+    const result = bodySchema.safeParse(rawBody);
+    if (!result.success) {
+      return NextResponse.json(
+        { error: "Données invalides", details: result.error.issues },
+        { status: 400 },
+      );
     }
 
-    if (!body.profileLabel || !body.subdomains) {
-      return NextResponse.json({ error: "profileLabel and subdomains are required" }, { status: 400 });
-    }
+    const body = result.data;
 
     const { error } = await supabase.from("diagnostic_results").insert({
       user_id: user.id,

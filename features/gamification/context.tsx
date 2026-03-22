@@ -19,6 +19,7 @@ type GamificationContextValue = {
   addXp: (amount: number) => { leveledUp: boolean; newLevel: number };
   playSound: (id: SoundId) => void;
   setStreak: (streak: number) => void;
+  setDailyStreak: (streak: number) => void;
   xpProgress: ReturnType<typeof getXpForNextLevel>;
 };
 
@@ -59,14 +60,22 @@ export function GamificationProvider({
     }));
   }, []);
 
+  const setDailyStreak = useCallback((streak: number) => {
+    setGamification((prev) => ({
+      ...prev,
+      daily_streak: streak,
+      longest_daily_streak: Math.max(prev.longest_daily_streak, streak),
+    }));
+  }, []);
+
   const xpProgress = useMemo(
     () => getXpForNextLevel(gamification.xp),
     [gamification.xp],
   );
 
   const value = useMemo(
-    () => ({ gamification, addXp, playSound, setStreak, xpProgress }),
-    [gamification, addXp, playSound, setStreak, xpProgress],
+    () => ({ gamification, addXp, playSound, setStreak, setDailyStreak, xpProgress }),
+    [gamification, addXp, playSound, setStreak, setDailyStreak, xpProgress],
   );
 
   return (

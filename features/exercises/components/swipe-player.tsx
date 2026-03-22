@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import { useSwipeable } from "react-swipeable";
-import { AnimatePresence, motion, useMotionValue, useTransform } from "framer-motion";
+import { LazyMotion, domAnimation, m, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { toast } from "sonner";
 
 import { useGameSounds } from "@/components/hooks/use-game-sounds";
@@ -114,9 +114,18 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
         formData.append("exerciseMode", "swipe");
         formData.append("streak", String(streak));
         try {
-          await submitAttemptAction({ status: "idle" }, formData);
+          const result = await submitAttemptAction({ status: "idle" }, formData);
+          if (result.dailyStreakIncremented && result.newDailyStreak) {
+            const { isStreakMilestone } = await import("@/lib/daily-streak");
+            if (isStreakMilestone(result.newDailyStreak)) {
+              toast(`🔥 ${result.newDailyStreak} jours d'affilée !`, {
+                description: "Votre régularité paie, continuez comme ça !",
+                duration: 4000,
+              });
+            }
+          }
         } catch {
-          toast.error("Réponse non enregistrée.");
+          toast.error("Votre réponse n'a pas pu être enregistrée.");
         }
       });
     },
@@ -211,6 +220,7 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
   }
 
   return (
+    <LazyMotion features={domAnimation}>
     <div className="space-y-6">
       {/* XP Bar */}
       <div className="relative">
@@ -228,7 +238,7 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
       {/* Progress */}
       <div className="flex items-center justify-between text-sm text-muted">
         <span>Question {currentIndex + 1} / {session.questions.length}</span>
-        <span>{score} correct{score > 1 ? "es" : "e"}</span>
+        <span>{score} {score > 1 ? "correctes" : "correcte"}</span>
       </div>
 
       {/* Swipe area */}
@@ -242,7 +252,7 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
         {/* Feedback flash */}
         <AnimatePresence>
           {feedback && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -252,14 +262,14 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
               )}
             >
               {feedback === "correct" ? "✓" : "✗"}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
         {/* Card stack */}
         <AnimatePresence mode="popLayout">
           {currentQuestion && (
-            <motion.div
+            <m.div
               key={currentQuestion.id}
               style={{ x, rotate, backgroundColor: bgColor }}
               drag="x"
@@ -286,7 +296,7 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
                   {currentQuestion.support_text}
                 </p>
               )}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>
@@ -310,5 +320,6 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
         </Button>
       </div>
     </div>
+    </LazyMotion>
   );
 }

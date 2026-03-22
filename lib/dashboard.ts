@@ -587,6 +587,7 @@ export function buildDashboardData(
     masteredSessions: masteredCount,
     notStartedSessions: sessionProgress.filter((session) => session.status === "non_commencee").length,
     totalAttempts,
+    attemptsToday,
     overallCorrectRate: getCorrectRate(totalAttempts, totalCorrect),
     remainingToday: getDailyRemainingQuota(attemptsToday, isPremium),
     domainProgress,

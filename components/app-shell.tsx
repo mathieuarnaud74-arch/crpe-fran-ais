@@ -9,9 +9,10 @@ import { LogoutButton } from "@/features/auth/components/logout-button";
 type AppShellProps = {
   children: ReactNode;
   userEmail: string;
+  dailyStreak?: number;
 };
 
-export function AppShell({ children, userEmail }: AppShellProps) {
+export function AppShell({ children, userEmail, dailyStreak }: AppShellProps) {
   return (
     <div className="min-h-screen bg-paper">
       <header className="border-b border-ink/20 bg-[linear-gradient(135deg,#2C2420,#394E45)]">
@@ -31,6 +32,14 @@ export function AppShell({ children, userEmail }: AppShellProps) {
 
           <div className="flex items-center gap-2 md:gap-4">
             <MobileNav />
+            {dailyStreak !== undefined && (
+              <div className="flex items-center gap-1.5 rounded-full border border-paper/20 bg-paper/10 px-3 py-1.5">
+                <span className="text-sm">{dailyStreak > 0 ? "\u{1F525}" : "\u{1F4A4}"}</span>
+                <span className="text-xs font-bold tabular-nums text-paper">
+                  {dailyStreak}j
+                </span>
+              </div>
+            )}
             <Link
               href="/"
               className="hidden rounded-full border border-paper/20 bg-paper/10 px-4 py-2 text-sm font-medium text-paper transition hover:bg-paper/20 sm:inline-flex"
@@ -64,7 +73,7 @@ export function AppShell({ children, userEmail }: AppShellProps) {
             </div>
           </div>
         </aside>
-        <main className="min-w-0 space-y-5 pb-16 sm:space-y-6 lg:pb-0">{children}</main>
+        <main id="main-content" className="min-w-0 space-y-5 pb-16 sm:space-y-6 lg:pb-0">{children}</main>
       </div>
     </div>
   );

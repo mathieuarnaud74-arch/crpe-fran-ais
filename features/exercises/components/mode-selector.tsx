@@ -117,6 +117,7 @@ export function ModeSelector({ session, onSelect }: ModeSelectorProps) {
             <m.button
               key={opt.mode}
               type="button"
+              disabled={disabled}
               onClick={() => !disabled && setSelectedMode(opt.mode)}
               whileHover={!disabled ? { scale: 1.02 } : undefined}
               whileTap={!disabled ? { scale: 0.98 } : undefined}

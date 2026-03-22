@@ -33,11 +33,15 @@ export default async function PrivateLayout({ children }: { children: ReactNode 
       daily_goal: 20,
       personal_best_sprint_time: null,
       onboarding_completed: false,
+      daily_streak: 0,
+      longest_daily_streak: 0,
+      streak_freeze_remaining: 1,
+      streak_frozen_on: null,
     };
   }
 
   return (
-    <AppShell userEmail={user.email ?? "Utilisateur connecté"}>
+    <AppShell userEmail={user.email ?? "Utilisateur connecté"} dailyStreak={gamification.daily_streak}>
       <GamificationProvider initial={gamification}>
         {children}
       </GamificationProvider>

@@ -95,7 +95,7 @@ export function ScoreEvolutionChart({ data, compact = false, className }: ScoreE
         chartWidth: w,
         chartHeight: h,
       };
-    }, [data]);
+    }, [data, compact]);
 
   if (data.length < 2) {
     return (

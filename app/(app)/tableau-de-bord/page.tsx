@@ -27,6 +27,8 @@ import { getDashboardData } from "@/features/dashboard/server/queries";
 import { getDiagnosticResult } from "@/features/diagnostic/server/queries";
 import { getUserGamification } from "@/features/gamification/server/queries";
 import { OnboardingTourWrapper } from "@/features/onboarding/components/onboarding-tour-wrapper";
+import { SrsReviewCard } from "@/features/srs/components/srs-review-card";
+import { getDueExercises, getDueCount } from "@/features/srs/server/queries";
 import { MASTERY_THRESHOLD as MASTERY_THRESHOLD_IMPORT } from "@/lib/dashboard";
 import { env } from "@/lib/env";
 import { cn, formatDate } from "@/lib/utils";
@@ -195,11 +197,14 @@ export default async function DashboardPage() {
       user_id: user.id, xp: 0, level: 1, current_streak: 0, longest_streak: 0,
       last_activity_date: null, sound_enabled: true, reduced_animations: false,
       daily_goal: 20, personal_best_sprint_time: null, onboarding_completed: false,
+      daily_streak: 0, longest_daily_streak: 0, streak_freeze_remaining: 1, streak_frozen_on: null,
     };
   }
-  const [data, diagnostic] = await Promise.all([
+  const [data, diagnostic, srsDueExercises, srsDueCount] = await Promise.all([
     getDashboardData(user.id, premium),
     getDiagnosticResult(user.id),
+    getDueExercises(user.id, 20).catch(() => []),
+    getDueCount(user.id).catch(() => 0),
   ]);
 
   const completionRate =
@@ -283,7 +288,7 @@ export default async function DashboardPage() {
             typewriter
             message={
               daysSinceLastActivity! >= 7
-                ? `Cela fait ${daysSinceLastActivity} jours — pas de pression, chaque question compte. Reprends à ton rythme !`
+                ? `Cela fait ${daysSinceLastActivity} jours — pas de pression, chaque question compte. Reprenez à votre rythme !`
                 : `${daysSinceLastActivity} jours sans réviser — un petit exercice pour se remettre en selle ?`
             }
             className="flex-1"
@@ -335,7 +340,7 @@ export default async function DashboardPage() {
           {data.totalAttempts > 0 && (
             <div className="flex items-center gap-3 rounded-[1.25rem] border border-paper/10 bg-paper/[0.07] px-4 py-3 backdrop-blur-sm">
               <DailyGoalRing
-                current={Math.min(data.totalAttempts, 15)}
+                current={Math.min(data.attemptsToday, 15)}
                 goal={15}
               />
               <div>
@@ -343,7 +348,7 @@ export default async function DashboardPage() {
                   Objectif du jour
                 </p>
                 <p className="text-sm font-semibold text-paper">
-                  {Math.min(data.totalAttempts, 15)}/15 questions
+                  {Math.min(data.attemptsToday, 15)}/15 questions
                 </p>
               </div>
             </div>
@@ -523,6 +528,19 @@ export default async function DashboardPage() {
           </div>
         </div>
       )}
+
+      {/* ── Révision intelligente (SRS) ── */}
+      <SrsReviewCard
+        dueCount={srsDueCount}
+        exercises={srsDueExercises.map((e) => ({
+          exerciseId: e.exercise_id,
+          subdomain: e.exercise?.subdomain ?? null,
+          topicLabel: e.exercise?.topic_label ?? null,
+          level: e.exercise?.level ?? null,
+          state: e.state,
+          lapses: e.lapses,
+        }))}
+      />
 
       {/* ── Domaines — compact table ── */}
       <section>
@@ -899,9 +917,9 @@ export default async function DashboardPage() {
                     {quickChallengeSession.title}
                   </h2>
                 </div>
-                {gamification.current_streak > 0 && (
+                {gamification.daily_streak > 0 && (
                   <span className="shrink-0 rounded-pill border border-paper/15 bg-paper/10 px-2.5 py-1 text-xs font-bold text-paper/80">
-                    \uD83D\uDD25 {gamification.current_streak}j
+                    \uD83D\uDD25 {gamification.daily_streak}j
                   </span>
                 )}
               </div>

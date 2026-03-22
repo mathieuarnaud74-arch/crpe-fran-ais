@@ -99,17 +99,27 @@ const MODE_MULTIPLIERS: Record<ExerciseMode, number> = {
   swipe: 1.2,
 };
 
+export function calculateDailyStreakMultiplier(dailyStreak: number): number {
+  if (dailyStreak >= 30) return 1.5;
+  if (dailyStreak >= 14) return 1.3;
+  if (dailyStreak >= 7) return 1.2;
+  if (dailyStreak >= 3) return 1.1;
+  return 1;
+}
+
 export function calculateXpEarned(
   isCorrect: boolean,
   streak: number,
   timeSpentMs: number | null,
   mode: ExerciseMode = "standard",
   maxTimeMs: number = 60_000,
+  dailyStreak: number = 0,
 ): number {
   const base = isCorrect ? XP_PER_CORRECT : XP_PER_INCORRECT;
   const streakMult = isCorrect ? calculateStreakMultiplier(streak) : 1;
   const speedBonus = isCorrect ? calculateSpeedBonus(timeSpentMs, maxTimeMs) : 0;
   const modeMult = MODE_MULTIPLIERS[mode];
+  const dailyMult = isCorrect ? calculateDailyStreakMultiplier(dailyStreak) : 1;
 
-  return Math.round((base * streakMult + speedBonus) * modeMult);
+  return Math.round((base * streakMult + speedBonus) * modeMult * dailyMult);
 }

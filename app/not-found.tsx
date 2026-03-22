@@ -11,7 +11,7 @@ export default function NotFound() {
       </h1>
 
       <p className="mt-3 max-w-md text-muted">
-        La page que tu cherches est introuvable. Elle a peut-être été déplacée
+        La page que vous cherchez est introuvable. Elle a peut-être été déplacée
         ou supprimée.
       </p>
 

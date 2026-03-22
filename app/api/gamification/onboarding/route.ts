@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+
+import { rateLimit } from "@/lib/rate-limit";
 import { completeOnboarding } from "@/features/gamification/server/queries";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -9,6 +11,14 @@ export async function POST() {
 
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const rl = rateLimit(`onboarding:${user.id}`, { limit: 5, windowSeconds: 60 });
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: "Trop de requêtes. Réessaie dans quelques instants." },
+        { status: 429, headers: { "Retry-After": String(Math.ceil((rl.resetAt - Date.now()) / 1000)) } },
+      );
     }
 
     await completeOnboarding(user.id);

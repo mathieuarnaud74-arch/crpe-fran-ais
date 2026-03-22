@@ -19,9 +19,29 @@ const serif = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "CRPE Français",
+  metadataBase: new URL("https://crpe-francais.fr"),
+  title: {
+    default: "CRPE Français — Révise le français pour le concours",
+    template: "%s | CRPE Français",
+  },
   description:
-    "Plateforme de révision du CRPE centrée sur le français : exercices, corrections immédiates et abonnement premium.",
+    "Prépare le CRPE avec des centaines d'exercices de français corrigés, des fiches de révision ciblées et un suivi de progression personnalisé.",
+  keywords: [
+    "CRPE",
+    "concours professeur des écoles",
+    "français",
+    "révision",
+    "exercices CRPE",
+    "QCM français",
+  ],
+  openGraph: {
+    title: "CRPE Français — Révise le français pour le concours",
+    description:
+      "Prépare le CRPE avec des centaines d'exercices de français corrigés, des fiches de révision ciblées et un suivi de progression personnalisé.",
+    siteName: "CRPE Français",
+    locale: "fr_FR",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {

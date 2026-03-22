@@ -35,7 +35,11 @@ export function ExerciseTimer({
   className,
 }: ExerciseTimerProps) {
   return (
-    <div className={cn("flex items-center justify-center", className)}>
+    <div
+      className={cn("flex items-center justify-center", className)}
+      role="timer"
+      aria-label="Temps restant pour l'exercice"
+    >
       <CountdownCircleTimer
         isPlaying={isPlaying}
         duration={duration}
@@ -62,8 +66,7 @@ export function ExerciseTimer({
                 remainingTime <= 10 && "animate-pulse",
               )}
               style={{ color }}
-              role="timer"
-              aria-live="polite"
+              aria-live="off"
               aria-label={`${remainingTime} secondes restantes`}
             >
               {remainingTime}

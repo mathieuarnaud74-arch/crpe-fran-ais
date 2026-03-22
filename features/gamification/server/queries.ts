@@ -1,3 +1,4 @@
+import { computeDailyStreakUpdate, getParisToday, type DailyStreakUpdate } from "@/lib/daily-streak";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { UserGamification } from "@/types/domain";
 
@@ -38,6 +39,10 @@ export async function getUserGamification(userId: string): Promise<UserGamificat
       daily_goal: 20,
       personal_best_sprint_time: null,
       onboarding_completed: false,
+      daily_streak: 0,
+      longest_daily_streak: 0,
+      streak_freeze_remaining: 1,
+      streak_frozen_on: null,
     };
   }
 
@@ -47,22 +52,38 @@ export async function getUserGamification(userId: string): Promise<UserGamificat
 /**
  * Updates XP and streak after an attempt.
  */
+export type DailyStreakInfo = {
+  justIncremented: boolean;
+  newDailyStreak: number;
+  freezeUsed: boolean;
+};
+
 export async function updateUserXp(
   userId: string,
   xpDelta: number,
   currentStreak: number,
-): Promise<{ newXp: number; newLevel: number }> {
+): Promise<{ newXp: number; newLevel: number; dailyStreakInfo: DailyStreakInfo }> {
   const { getLevelForXp } = await import("@/lib/xp");
   const supabase = await createSupabaseServerClient();
 
   const gamification = await getUserGamification(userId);
   const newXp = gamification.xp + xpDelta;
   const newLevel = getLevelForXp(newXp);
-  const today = new Date().toISOString().split("T")[0];
+  const today = getParisToday();
 
   const longestStreak = Math.max(gamification.longest_streak, currentStreak);
 
-  await supabase
+  // Compute daily streak update
+  const streakUpdate: DailyStreakUpdate = computeDailyStreakUpdate(
+    gamification.last_activity_date,
+    gamification.daily_streak,
+    gamification.longest_daily_streak,
+    gamification.streak_freeze_remaining,
+    gamification.streak_frozen_on,
+    today,
+  );
+
+  const { error: updateError } = await supabase
     .from("user_gamification")
     .update({
       xp: newXp,
@@ -70,10 +91,26 @@ export async function updateUserXp(
       current_streak: currentStreak,
       longest_streak: longestStreak,
       last_activity_date: today,
+      daily_streak: streakUpdate.daily_streak,
+      longest_daily_streak: streakUpdate.longest_daily_streak,
+      streak_freeze_remaining: streakUpdate.streak_freeze_remaining,
+      streak_frozen_on: streakUpdate.streak_frozen_on,
     })
     .eq("user_id", userId);
 
-  return { newXp, newLevel };
+  if (updateError) {
+    console.error("[gamification]", updateError.message);
+  }
+
+  return {
+    newXp,
+    newLevel,
+    dailyStreakInfo: {
+      justIncremented: streakUpdate.justIncremented,
+      newDailyStreak: streakUpdate.daily_streak,
+      freezeUsed: streakUpdate.freezeUsed,
+    },
+  };
 }
 
 /**
@@ -85,10 +122,14 @@ export async function updateGamificationSettings(
 ): Promise<void> {
   const supabase = await createSupabaseServerClient();
 
-  await supabase
+  const { error } = await supabase
     .from("user_gamification")
     .update(settings)
     .eq("user_id", userId);
+
+  if (error) {
+    console.error("[gamification]", error.message);
+  }
 }
 
 /**
@@ -104,10 +145,15 @@ export async function updateSprintPersonalBest(
   }
 
   const supabase = await createSupabaseServerClient();
-  await supabase
+
+  const { error } = await supabase
     .from("user_gamification")
     .update({ personal_best_sprint_time: timeMs })
     .eq("user_id", userId);
+
+  if (error) {
+    console.error("[gamification]", error.message);
+  }
 
   return true;
 }
@@ -117,8 +163,13 @@ export async function updateSprintPersonalBest(
  */
 export async function completeOnboarding(userId: string): Promise<void> {
   const supabase = await createSupabaseServerClient();
-  await supabase
+
+  const { error } = await supabase
     .from("user_gamification")
     .update({ onboarding_completed: true })
     .eq("user_id", userId);
+
+  if (error) {
+    console.error("[gamification]", error.message);
+  }
 }

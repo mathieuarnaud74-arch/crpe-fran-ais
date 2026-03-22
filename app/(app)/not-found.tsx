@@ -7,11 +7,11 @@ export default function AppNotFound() {
       <Mocca variant="grumpy" size="lg" className="mb-6" />
 
       <h1 className="font-serif text-3xl font-semibold text-ink">
-        Cette page n&apos;existe pas dans ton espace de révision
+        Cette page n&apos;existe pas dans votre espace de révision
       </h1>
 
       <p className="mt-3 max-w-md text-muted">
-        Vérifie l&apos;adresse ou retourne au tableau de bord pour continuer tes
+        Vérifiez l&apos;adresse ou retournez au tableau de bord pour continuer vos
         révisions.
       </p>
 

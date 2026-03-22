@@ -1,9 +1,19 @@
 import { type NextRequest, NextResponse } from "next/server";
 
+import { rateLimit } from "@/lib/rate-limit";
 import { getExercises } from "@/features/exercises/server/queries";
 
 export async function GET(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for") ?? "unknown";
+    const rl = rateLimit(`random-exercise:${ip}`, { limit: 60, windowSeconds: 60 });
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: "Trop de requêtes. Réessaie dans quelques instants." },
+        { status: 429, headers: { "Retry-After": String(Math.ceil((rl.resetAt - Date.now()) / 1000)) } },
+      );
+    }
+
     const sessions = await getExercises();
     const base = request.nextUrl.origin;
 

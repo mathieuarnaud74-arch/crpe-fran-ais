@@ -14,7 +14,7 @@ type XpLevelCardProps = {
 export function XpLevelCard({ gamification }: XpLevelCardProps) {
   const xpInfo = getXpForNextLevel(gamification.xp);
   const label = LEVEL_LABELS[gamification.level] ?? `Niveau ${gamification.level}`;
-  const isStreakActive = gamification.current_streak > 0;
+  const isStreakActive = gamification.daily_streak > 0;
 
   return (
     <motion.div
@@ -50,14 +50,14 @@ export function XpLevelCard({ gamification }: XpLevelCardProps) {
               "text-xs font-bold tabular-nums",
               isStreakActive ? "text-accentSecondary" : "text-muted",
             )}>
-              {gamification.current_streak}j
+              {gamification.daily_streak}j
             </span>
           </div>
-          {gamification.longest_streak > 0 && (
+          {gamification.longest_daily_streak > 0 && (
             <div className="flex items-center gap-1 rounded-pill border border-border bg-paper px-2.5 py-1">
               <span className="text-xs text-muted">🏆</span>
               <span className="text-xs font-bold tabular-nums text-muted">
-                {gamification.longest_streak}j
+                {gamification.longest_daily_streak}j
               </span>
             </div>
           )}
@@ -72,12 +72,12 @@ export function XpLevelCard({ gamification }: XpLevelCardProps) {
             "text-xs font-bold tabular-nums",
             isStreakActive ? "text-accentSecondary" : "text-muted",
           )}>
-            {gamification.current_streak} jour{gamification.current_streak > 1 ? "s" : ""}
+            {gamification.daily_streak} jour{gamification.daily_streak > 1 ? "s" : ""}
           </span>
         </div>
-        {gamification.longest_streak > 0 && (
+        {gamification.longest_daily_streak > 0 && (
           <span className="text-[10px] text-muted">
-            Record : {gamification.longest_streak}j
+            Record : {gamification.longest_daily_streak}j
           </span>
         )}
       </div>

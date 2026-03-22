@@ -3,7 +3,7 @@
 import { Mocca } from "@/components/mascot/mocca";
 import { Button, ButtonLink } from "@/components/ui/button";
 
-export default function ProgressionError({
+export default function AbonnementError({
   reset,
 }: {
   error: Error & { digest?: string };
@@ -14,11 +14,11 @@ export default function ProgressionError({
       <Mocca variant="grumpy" size="lg" className="mb-6" />
 
       <h1 className="font-serif text-3xl font-semibold text-ink">
-        Votre progression n&apos;a pas pu être chargée
+        Impossible de charger l&apos;abonnement
       </h1>
 
       <p className="mt-3 max-w-md text-muted">
-        Un problème est survenu lors du chargement de votre progression. Vous pouvez
+        Une erreur est survenue lors du chargement de votre abonnement. Vous pouvez
         réessayer ou retourner au tableau de bord.
       </p>
 

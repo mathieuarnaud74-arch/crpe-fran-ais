@@ -25,6 +25,9 @@ type AttemptActionState = {
   xpEarned?: number;
   newLevel?: number;
   previousLevel?: number;
+  dailyStreakIncremented?: boolean;
+  newDailyStreak?: number;
+  streakFreezeUsed?: boolean;
 };
 
 export async function submitAttemptAction(
@@ -78,12 +81,26 @@ export async function submitAttemptAction(
 
   const evaluation = evaluateExerciseAnswer(exercise, submittedValue);
 
-  // Calculate XP
+  // Fetch gamification for daily streak multiplier
+  let currentDailyStreak = 0;
+  let previousLevel: number | undefined;
+  try {
+    const gamification = await import("@/features/gamification/server/queries");
+    const userGamification = await gamification.getUserGamification(user.id);
+    currentDailyStreak = userGamification.daily_streak;
+    previousLevel = userGamification.level;
+  } catch {
+    // Gamification table may not exist yet
+  }
+
+  // Calculate XP with daily streak multiplier
   const xpEarned = calculateXpEarned(
     evaluation.isCorrect,
     streak,
     timeSpentMs,
     exerciseMode,
+    60_000,
+    currentDailyStreak,
   );
 
   const { error } = await supabase.from("attempts").insert({
@@ -107,17 +124,27 @@ export async function submitAttemptAction(
   // Update XP & streak in gamification table
   const currentStreak = evaluation.isCorrect ? streak + 1 : 0;
   let newLevel: number | undefined;
-  let previousLevel: number | undefined;
+
+  let dailyStreakIncremented: boolean | undefined;
+  let newDailyStreak: number | undefined;
+  let streakFreezeUsed: boolean | undefined;
 
   try {
-    const { getLevelForXp } = await import("@/lib/xp");
-    const gamification = await import("@/features/gamification/server/queries");
-    const userGamification = await gamification.getUserGamification(user.id);
-    previousLevel = userGamification.level;
     const result = await updateUserXp(user.id, xpEarned, currentStreak);
     newLevel = result.newLevel;
+    dailyStreakIncremented = result.dailyStreakInfo.justIncremented;
+    newDailyStreak = result.dailyStreakInfo.newDailyStreak;
+    streakFreezeUsed = result.dailyStreakInfo.freezeUsed;
   } catch {
     // Gamification table may not exist yet, fail gracefully
+  }
+
+  // Update SRS card for spaced repetition scheduling
+  try {
+    const { recordSrsReview } = await import("@/features/srs/server/queries");
+    await recordSrsReview(user.id, exerciseId, evaluation.isCorrect, timeSpentMs);
+  } catch {
+    // SRS table may not exist yet, fail gracefully
   }
 
   revalidatePath("/tableau-de-bord");
@@ -139,5 +166,8 @@ export async function submitAttemptAction(
     xpEarned,
     newLevel,
     previousLevel,
+    dailyStreakIncremented,
+    newDailyStreak,
+    streakFreezeUsed,
   };
 }

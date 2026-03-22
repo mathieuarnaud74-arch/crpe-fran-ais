@@ -18,8 +18,8 @@ export default function DashboardError({
       </h1>
 
       <p className="mt-3 max-w-md text-muted">
-        Un problème est survenu lors du chargement de ton tableau de bord.
-        Réessaie dans quelques instants.
+        Un problème est survenu lors du chargement de votre tableau de bord.
+        Réessayez dans quelques instants.
       </p>
 
       <Button variant="primary" className="mt-8" onClick={() => reset()}>

@@ -106,7 +106,6 @@ export function ExercisePlayer({
     if (completed) {
       scrollToContainer();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [completed]);
 
   // Track consecutive correct answers and trigger celebrations
@@ -150,7 +149,7 @@ export function ExercisePlayer({
         playSound("levelUp");
       }
     }
-  }, [results, session.questions, consecutiveCorrect]);
+  }, [results, session.questions, consecutiveCorrect, playSound]);
 
   if (!currentQuestion) {
     return null;
@@ -209,6 +208,15 @@ export function ExercisePlayer({
         if (result.previousLevel && result.newLevel && result.newLevel > result.previousLevel) {
           playSound("levelUp");
           toast.success(`🎉 Niveau ${result.newLevel} atteint !`, { duration: 3000 });
+        }
+        if (result.dailyStreakIncremented && result.newDailyStreak) {
+          const { isStreakMilestone } = await import("@/lib/daily-streak");
+          if (isStreakMilestone(result.newDailyStreak)) {
+            toast(`🔥 ${result.newDailyStreak} jours d'affilée !`, {
+              description: "Votre régularité paie, continuez comme ça !",
+              duration: 4000,
+            });
+          }
         }
       } catch {
         toast.error("Votre réponse n'a pas pu être enregistrée.");
@@ -339,13 +347,13 @@ export function ExercisePlayer({
   function getMoccaEncouragement(): string | null {
     if (currentResult) return null;
     const remaining = session.questionCount - answeredCount;
-    if (remaining === 1) return "Derni\u00e8re question, donne tout !";
-    if (remaining === 2) return "Plus que 2 questions, tu y es presque !";
+    if (remaining === 1) return "Derni\u00e8re question, donnez tout !";
+    if (remaining === 2) return "Plus que 2 questions, vous y \u00eates presque !";
     if (remaining === 3) return "Plus que 3 ! La fin est proche.";
-    if (consecutiveCorrect >= 5) return "S\u00e9rie en or ! Continue comme \u00e7a.";
-    if (consecutiveCorrect >= 3) return "Tu es en forme ! Continue.";
+    if (consecutiveCorrect >= 5) return "S\u00e9rie en or ! Continuez comme \u00e7a.";
+    if (consecutiveCorrect >= 3) return "Vous \u00eates en forme ! Continuez.";
     if (answeredCount === Math.floor(session.questionCount / 2) && answeredCount > 0) {
-      return "Mi-parcours ! Tu avances bien.";
+      return "Mi-parcours ! Vous avancez bien.";
     }
     return null;
   }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
 import { toast } from "sonner";
 
@@ -123,7 +123,16 @@ export function SprintPlayer({
         formData.append("exerciseMode", "sprint");
         formData.append("streak", String(streak));
         try {
-          await submitAttemptAction({ status: "idle" }, formData);
+          const result = await submitAttemptAction({ status: "idle" }, formData);
+          if (result.dailyStreakIncremented && result.newDailyStreak) {
+            const { isStreakMilestone } = await import("@/lib/daily-streak");
+            if (isStreakMilestone(result.newDailyStreak)) {
+              toast(`🔥 ${result.newDailyStreak} jours d'affilée !`, {
+                description: "Votre régularité paie, continuez comme ça !",
+                duration: 4000,
+              });
+            }
+          }
         } catch {}
       });
 
@@ -165,53 +174,56 @@ export function SprintPlayer({
   // Countdown screen
   if (phase === "countdown") {
     return (
-      <div className="flex min-h-[400px] flex-col items-center justify-center gap-6">
-        <Mocca variant="happy" size="xl" />
-        <h2 className="font-serif text-2xl font-semibold text-ink">Mode Sprint</h2>
-        <p className="text-sm text-muted">{session.questionCount} questions le plus vite possible</p>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={countdownValue}
-            initial={{ scale: 2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.5, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="font-serif text-7xl font-bold text-accent"
-          >
-            {countdownValue || "GO!"}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      <LazyMotion features={domAnimation}>
+        <div className="flex min-h-[400px] flex-col items-center justify-center gap-6">
+          <Mocca variant="happy" size="xl" />
+          <h2 className="font-serif text-2xl font-semibold text-ink">Mode Sprint</h2>
+          <p className="text-sm text-muted">{session.questionCount} questions le plus vite possible</p>
+          <AnimatePresence mode="wait">
+            <m.div
+              key={countdownValue}
+              initial={{ scale: 2, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="font-serif text-7xl font-bold text-accent"
+            >
+              {countdownValue || "GO!"}
+            </m.div>
+          </AnimatePresence>
+        </div>
+      </LazyMotion>
     );
   }
 
   // Done screen
   if (phase === "done") {
     return (
-      <div className="space-y-6">
-        <Confetti trigger={showConfetti} />
-        <Panel className="border-border bg-card">
-          <div className="space-y-6">
-            <div className="flex items-start gap-5">
-              <Mocca
-                variant={correctPercent >= 80 ? "happy" : correctPercent >= 50 ? "neutral" : "grumpy"}
-                size="xl"
-                className="hidden shrink-0 sm:block"
-              />
-              <div className="space-y-4 flex-1">
-                <h2 className="animate-score-reveal font-serif text-2xl font-semibold text-ink sm:text-3xl">
-                  Sprint terminé !
-                </h2>
+      <LazyMotion features={domAnimation}>
+        <div className="space-y-6">
+          <Confetti trigger={showConfetti} />
+          <Panel className="border-border bg-card">
+            <div className="space-y-6">
+              <div className="flex items-start gap-5">
+                <Mocca
+                  variant={correctPercent >= 80 ? "happy" : correctPercent >= 50 ? "neutral" : "grumpy"}
+                  size="xl"
+                  className="hidden shrink-0 sm:block"
+                />
+                <div className="space-y-4 flex-1">
+                  <h2 className="animate-score-reveal font-serif text-2xl font-semibold text-ink sm:text-3xl">
+                    Sprint terminé !
+                  </h2>
 
-                {isNewRecord && (
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    className="inline-flex items-center gap-2 rounded-pill bg-accentSecondarySoft px-4 py-2 text-sm font-bold text-accentSecondaryDark"
-                  >
-                    🏆 Nouveau record personnel !
-                  </motion.div>
-                )}
+                  {isNewRecord && (
+                    <m.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="inline-flex items-center gap-2 rounded-pill bg-accentSecondarySoft px-4 py-2 text-sm font-bold text-accentSecondaryDark"
+                    >
+                      🏆 Nouveau record personnel !
+                    </m.div>
+                  )}
 
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                   <div className="rounded-card border border-border bg-paper p-4 text-center">
@@ -282,13 +294,15 @@ export function SprintPlayer({
               </div>
             </div>
           </div>
-        </Panel>
-      </div>
+          </Panel>
+        </div>
+      </LazyMotion>
     );
   }
 
   // Playing
   return (
+    <LazyMotion features={domAnimation}>
     <div className="space-y-4">
       {/* Timer + Score bar */}
       <div className="flex items-center justify-between rounded-card border border-border bg-card px-5 py-3">
@@ -310,7 +324,7 @@ export function SprintPlayer({
       <div className="relative">
         <AnimatePresence>
           {flash && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -320,7 +334,7 @@ export function SprintPlayer({
               )}
             >
               {flash === "correct" ? "✓" : "✗"}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
@@ -380,5 +394,6 @@ export function SprintPlayer({
         </Panel>
       </div>
     </div>
+    </LazyMotion>
   );
 }

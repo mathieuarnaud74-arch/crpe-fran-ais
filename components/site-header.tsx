@@ -37,6 +37,13 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
 
   return (
+    <>
+    <a
+      href="#main-content"
+      className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded"
+    >
+      Aller au contenu principal
+    </a>
     <header className="sticky top-0 z-40 border-b border-border/50 bg-paper/80 backdrop-blur-xl supports-[backdrop-filter]:bg-paper/75">
       <div className="mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center px-4 py-3 sm:px-6">
 
@@ -166,5 +173,6 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
         </div>
       </div>
     </header>
+    </>
   );
 }

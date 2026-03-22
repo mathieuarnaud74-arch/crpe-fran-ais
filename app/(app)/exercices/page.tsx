@@ -51,9 +51,10 @@ function SelectField({
 }) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-ink">{label}</label>
+      <label htmlFor={`filter-${name}`} className="text-sm font-medium text-ink">{label}</label>
       <div className="relative">
         <select
+          id={`filter-${name}`}
           name={name}
           defaultValue={defaultValue}
           className="h-11 w-full appearance-none rounded-xl border border-border bg-card px-4 pr-9 text-sm text-ink shadow-subtle outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/15"
@@ -234,7 +235,7 @@ export default async function ExercisesPage({
       )}
 
       <Panel>
-        <form className="grid gap-3 sm:gap-4 sm:grid-cols-2 md:grid-cols-4">
+        <form aria-label="Filtres des séries de révision" className="grid gap-3 sm:gap-4 sm:grid-cols-2 md:grid-cols-4">
           <SelectField label="Sous-domaine" name="subdomain" defaultValue={subdomain ?? ""}>
             <option value="">Tous</option>
             {SUBDOMAIN_OPTIONS.map((option) => (

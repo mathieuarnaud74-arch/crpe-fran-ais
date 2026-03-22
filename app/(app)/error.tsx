@@ -18,7 +18,7 @@ export default function AppError({
       </h1>
 
       <p className="mt-3 max-w-md text-muted">
-        Une erreur inattendue est survenue. Tu peux réessayer ou retourner au
+        Une erreur inattendue est survenue. Vous pouvez réessayer ou retourner au
         tableau de bord.
       </p>
 

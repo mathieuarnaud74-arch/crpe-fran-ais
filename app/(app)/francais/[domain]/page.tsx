@@ -273,10 +273,11 @@ export default async function FrenchDomainPage({
           </ButtonLink>
         </div>
 
-        <form className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
-          <label className="space-y-1.5 text-sm text-muted">
+        <form aria-label="Filtres des séries" className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+          <label htmlFor="filter-status" className="space-y-1.5 text-sm text-muted">
             <span>Statut</span>
             <select
+              id="filter-status"
               name="status"
               defaultValue={selectedStatus}
               className="w-full rounded-xl border border-border bg-paper px-4 py-2.5 text-sm text-ink outline-none focus:border-accent"
@@ -290,9 +291,10 @@ export default async function FrenchDomainPage({
             </select>
           </label>
 
-          <label className="space-y-1.5 text-sm text-muted">
+          <label htmlFor="filter-subdomain" className="space-y-1.5 text-sm text-muted">
             <span>Sous-domaine</span>
             <select
+              id="filter-subdomain"
               name="subdomain"
               defaultValue={selectedSubdomain}
               className="w-full rounded-xl border border-border bg-paper px-4 py-2.5 text-sm text-ink outline-none focus:border-accent"
@@ -306,9 +308,10 @@ export default async function FrenchDomainPage({
             </select>
           </label>
 
-          <label className="space-y-1.5 text-sm text-muted">
+          <label htmlFor="filter-level" className="space-y-1.5 text-sm text-muted">
             <span>Niveau</span>
             <select
+              id="filter-level"
               name="level"
               defaultValue={selectedLevel}
               className="w-full rounded-xl border border-border bg-paper px-4 py-2.5 text-sm text-ink outline-none focus:border-accent"
@@ -322,10 +325,11 @@ export default async function FrenchDomainPage({
             </select>
           </label>
 
-          <label className="space-y-1.5 text-sm text-muted xl:col-span-2">
+          <label htmlFor="filter-search" className="space-y-1.5 text-sm text-muted xl:col-span-2">
             <span>Recherche</span>
             <div className="flex gap-2">
               <input
+                id="filter-search"
                 type="search"
                 name="q"
                 defaultValue={query}

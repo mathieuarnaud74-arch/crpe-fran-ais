@@ -115,7 +115,8 @@ export function BadgeUnlockToast({
 
   return (
     <div
-      aria-live="polite"
+      role="alert"
+      aria-live="assertive"
       className="pointer-events-none fixed bottom-4 left-3 right-3 z-50 flex flex-col gap-2.5 sm:left-auto sm:right-6 sm:bottom-6 sm:w-[22rem]"
     >
       <AnimatePresence mode="popLayout">
