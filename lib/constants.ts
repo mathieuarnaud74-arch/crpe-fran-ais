@@ -1,4 +1,9 @@
-import { ExerciseSubdomain, ExerciseType, FrenchDomainKey, LearningStatus, ProgressStatus } from "@/types/domain";
+import { ExerciseSubdomain, ExerciseType, FrenchDomainKey, FrenchSubdomain, LearningStatus, MathDomainKey, MathSubdomain, ProgressStatus, Subject } from "@/types/domain";
+
+export const SUBJECT_LABELS: Record<Subject, string> = {
+  Francais: "Français",
+  Mathematiques: "Mathématiques",
+};
 
 export const SUBJECT_LABEL = "Français";
 
@@ -10,6 +15,11 @@ export const SUBDOMAIN_LABELS: Record<ExerciseSubdomain, string> = {
   comprehension_texte: "Compréhension de texte",
   analyse_langue: "Analyse de la langue",
   didactique_francais: "Didactique du français",
+  nombres_calcul: "Nombres et calcul",
+  geometrie: "Géométrie",
+  grandeurs_mesures: "Grandeurs et mesures",
+  organisation_donnees: "Organisation et gestion de données",
+  didactique_maths: "Didactique des mathématiques",
 };
 
 export const DASHBOARD_SUBDOMAINS: ExerciseSubdomain[] = [
@@ -20,6 +30,24 @@ export const DASHBOARD_SUBDOMAINS: ExerciseSubdomain[] = [
   "comprehension_texte",
   "analyse_langue",
   "didactique_francais",
+];
+
+export const FRENCH_DASHBOARD_SUBDOMAINS: FrenchSubdomain[] = [
+  "grammaire",
+  "orthographe",
+  "conjugaison",
+  "lexique",
+  "comprehension_texte",
+  "analyse_langue",
+  "didactique_francais",
+];
+
+export const MATH_DASHBOARD_SUBDOMAINS: MathSubdomain[] = [
+  "nombres_calcul",
+  "geometrie",
+  "grandeurs_mesures",
+  "organisation_donnees",
+  "didactique_maths",
 ];
 
 export const SUBDOMAIN_OPTIONS: Array<{
@@ -33,6 +61,22 @@ export const SUBDOMAIN_OPTIONS: Array<{
   { value: "comprehension_texte", label: SUBDOMAIN_LABELS.comprehension_texte },
   { value: "analyse_langue", label: SUBDOMAIN_LABELS.analyse_langue },
   { value: "didactique_francais", label: SUBDOMAIN_LABELS.didactique_francais },
+];
+
+export const FRENCH_SUBDOMAIN_OPTIONS: Array<{
+  value: ExerciseSubdomain;
+  label: string;
+}> = SUBDOMAIN_OPTIONS;
+
+export const MATH_SUBDOMAIN_OPTIONS: Array<{
+  value: ExerciseSubdomain;
+  label: string;
+}> = [
+  { value: "nombres_calcul", label: SUBDOMAIN_LABELS.nombres_calcul },
+  { value: "geometrie", label: SUBDOMAIN_LABELS.geometrie },
+  { value: "grandeurs_mesures", label: SUBDOMAIN_LABELS.grandeurs_mesures },
+  { value: "organisation_donnees", label: SUBDOMAIN_LABELS.organisation_donnees },
+  { value: "didactique_maths", label: SUBDOMAIN_LABELS.didactique_maths },
 ];
 
 export const EXERCISE_TYPE_LABELS: Record<ExerciseType, string> = {
@@ -148,6 +192,103 @@ export function getFrenchDomainKey(subdomain: ExerciseSubdomain): FrenchDomainKe
 
 export function getFrenchDomainLabel(subdomain: ExerciseSubdomain) {
   return FRENCH_DOMAIN_CONFIG[getFrenchDomainKey(subdomain)].label;
+}
+
+// ─── Mathématiques — Domaines ──────────────────────────────────
+
+export const MATH_DOMAIN_ORDER: MathDomainKey[] = [
+  "nombres-et-calcul",
+  "geometrie",
+  "grandeurs-et-mesures",
+  "organisation-de-donnees",
+  "didactique-des-maths",
+];
+
+export const MATH_DOMAIN_CONFIG: Record<
+  MathDomainKey,
+  {
+    label: string;
+    description: string;
+    href: string;
+    subdomains: ExerciseSubdomain[];
+  }
+> = {
+  "nombres-et-calcul": {
+    label: "Nombres et calcul",
+    description:
+      "Entiers, décimaux, fractions, divisibilité, PGCD/PPCM, proportionnalité.",
+    href: "/maths/nombres-et-calcul",
+    subdomains: ["nombres_calcul"],
+  },
+  "geometrie": {
+    label: "Géométrie",
+    description:
+      "Figures planes, solides, transformations, symétries, théorèmes.",
+    href: "/maths/geometrie",
+    subdomains: ["geometrie"],
+  },
+  "grandeurs-et-mesures": {
+    label: "Grandeurs et mesures",
+    description:
+      "Périmètres, aires, volumes, conversions d'unités, échelles.",
+    href: "/maths/grandeurs-et-mesures",
+    subdomains: ["grandeurs_mesures"],
+  },
+  "organisation-de-donnees": {
+    label: "Organisation de données",
+    description:
+      "Tableaux, graphiques, probabilités, statistiques descriptives.",
+    href: "/maths/organisation-de-donnees",
+    subdomains: ["organisation_donnees"],
+  },
+  "didactique-des-maths": {
+    label: "Didactique des maths",
+    description:
+      "Analyse d'erreurs d'élèves, progressions, programmes officiels.",
+    href: "/maths/didactique-des-maths",
+    subdomains: ["didactique_maths"],
+  },
+};
+
+export function getMathDomainKey(subdomain: ExerciseSubdomain): MathDomainKey {
+  for (const key of MATH_DOMAIN_ORDER) {
+    if (MATH_DOMAIN_CONFIG[key].subdomains.includes(subdomain)) {
+      return key;
+    }
+  }
+  return "nombres-et-calcul";
+}
+
+export function getMathDomainLabel(subdomain: ExerciseSubdomain) {
+  return MATH_DOMAIN_CONFIG[getMathDomainKey(subdomain)].label;
+}
+
+const MATH_SUBDOMAINS: Set<ExerciseSubdomain> = new Set([
+  "nombres_calcul",
+  "geometrie",
+  "grandeurs_mesures",
+  "organisation_donnees",
+  "didactique_maths",
+]);
+
+export function isMathSubdomain(subdomain: ExerciseSubdomain): boolean {
+  return MATH_SUBDOMAINS.has(subdomain);
+}
+
+export function getSubjectFromSubdomain(subdomain: ExerciseSubdomain): Subject {
+  return isMathSubdomain(subdomain) ? "Mathematiques" : "Francais";
+}
+
+export function getDomainKey(subdomain: ExerciseSubdomain, subject: Subject) {
+  return subject === "Mathematiques"
+    ? getMathDomainKey(subdomain)
+    : getFrenchDomainKey(subdomain);
+}
+
+export function getDomainLabel(subdomain: ExerciseSubdomain, subject: Subject) {
+  return subject === "Mathematiques"
+    ? getMathDomainLabel(subdomain)
+    : getFrenchDomainLabel(subdomain);
 }
 
 // ─── Exercise Types List ──────────────────────────────────

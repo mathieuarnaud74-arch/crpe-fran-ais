@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Exercices",
-  description: "Banque d'exercices corrigés pour le CRPE Français.",
+  description: "Banque d'exercices corrigés pour le CRPE.",
 };
 
 import { EmptyState } from "@/components/empty-state";
@@ -17,15 +17,17 @@ import { getExercises } from "@/features/exercises/server/queries";
 import {
   EXERCISE_TYPE_OPTIONS,
   LEVEL_OPTIONS,
+  MATH_SUBDOMAIN_OPTIONS,
   SUBDOMAIN_LABELS,
   SUBDOMAIN_OPTIONS,
 } from "@/lib/constants";
-import { ExerciseSubdomain, ExerciseType, RevisionSession } from "@/types/domain";
+import { ExerciseSubdomain, ExerciseType, RevisionSession, Subject } from "@/types/domain";
 
 type SearchParams = Promise<{
   subdomain?: string;
   type?: string;
   level?: string;
+  subject?: string;
 }>;
 
 function SelectField({
@@ -138,21 +140,25 @@ export default async function ExercisesPage({
 }) {
   const user = await requireUser();
   const premium = await isPremiumUser(user.id);
-  const { subdomain, type, level } = await searchParams;
+  const { subdomain, type, level, subject: rawSubject } = await searchParams;
+  const subject: Subject = rawSubject === "Mathematiques" ? "Mathematiques" : "Francais";
   const sessions = (
     await getExercises({
       subdomain: subdomain as ExerciseSubdomain | undefined,
       type: type as ExerciseType | undefined,
       level,
+      subject,
     })
   ).sort((left, right) => left.recommendedOrder - right.recommendedOrder);
+
+  const subdomainOptions = subject === "Mathematiques" ? MATH_SUBDOMAIN_OPTIONS : SUBDOMAIN_OPTIONS;
 
   const sujetsBlancs = sessions.filter((session) => session.topicKey.startsWith("sujet_blanc"));
   const regularSessions = sessions.filter((session) => !session.topicKey.startsWith("sujet_blanc"));
   const freeSessions = regularSessions.filter((session) => session.access_tier === "free");
   const premiumSessions = regularSessions.filter((session) => session.access_tier === "premium");
 
-  const noFiltersActive = !subdomain && !type && !level;
+  const noFiltersActive = !subdomain && !type && !level && subject === "Francais";
   const nextSeries = noFiltersActive ? freeSessions.slice(0, 3) : [];
 
   return (
@@ -210,10 +216,14 @@ export default async function ExercisesPage({
       )}
 
       <Panel>
-        <form aria-label="Filtres des séries de révision" className="grid gap-3 sm:gap-4 sm:grid-cols-2 md:grid-cols-4">
+        <form aria-label="Filtres des séries de révision" className="grid gap-3 sm:gap-4 sm:grid-cols-2 md:grid-cols-5">
+          <SelectField label="Matière" name="subject" defaultValue={subject}>
+            <option value="Francais">Français</option>
+            <option value="Mathematiques">Mathématiques</option>
+          </SelectField>
           <SelectField label="Sous-domaine" name="subdomain" defaultValue={subdomain ?? ""}>
             <option value="">Tous</option>
-            {SUBDOMAIN_OPTIONS.map((option) => (
+            {subdomainOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -259,8 +269,8 @@ export default async function ExercisesPage({
               Sujets blancs CRPE
             </h2>
             <p className="mt-2 max-w-3xl text-sm leading-7 text-muted">
-              Épreuves complètes de 15 questions couvrant les 7 sous-domaines du français au CRPE.
-              Testez-vous en conditions proches de l&apos;examen.
+              Épreuves sur texte littéraire : étude de la langue, compréhension et interprétation,
+              didactique — sur le modèle de l&apos;épreuve écrite du CRPE.
             </p>
           </div>
           <div className="mt-5 grid gap-4 sm:grid-cols-3">

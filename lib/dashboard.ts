@@ -2,9 +2,13 @@ import {
   DASHBOARD_SUBDOMAINS,
   FRENCH_DOMAIN_CONFIG,
   FRENCH_DOMAIN_ORDER,
+  MATH_DASHBOARD_SUBDOMAINS,
+  MATH_DOMAIN_CONFIG,
+  MATH_DOMAIN_ORDER,
   SUBDOMAIN_LABELS,
-  SUBJECT_LABEL,
+  SUBJECT_LABELS,
   getFrenchDomainKey,
+  getMathDomainKey,
 } from "@/lib/constants";
 import { getDailyRemainingQuota } from "@/lib/freemium";
 import {
@@ -13,13 +17,16 @@ import {
   DashboardData,
   DashboardDomainDirectoryItem,
   DashboardDomainProgress,
+  DomainKey,
   DashboardFrequentMistake,
   DashboardSessionProgress,
   DashboardSubdomainProgress,
   EarnedBadge,
+  ExerciseSubdomain,
   ProgressStatus,
   RevisionSession,
   ScoreEvolutionEntry,
+  Subject,
 } from "@/types/domain";
 
 type AttemptInput = {
@@ -162,7 +169,14 @@ export function buildDashboardData(
   sessions: RevisionSession[],
   attempts: AttemptInput[],
   isPremium: boolean,
+  subject: Subject = "Francais",
 ): DashboardData {
+  type DomainConfigEntry = { label: string; description: string; href: string; subdomains: ExerciseSubdomain[] };
+  const dashboardSubdomains = subject === "Mathematiques" ? MATH_DASHBOARD_SUBDOMAINS : DASHBOARD_SUBDOMAINS;
+  const domainOrder: DomainKey[] = subject === "Mathematiques" ? [...MATH_DOMAIN_ORDER] : [...FRENCH_DOMAIN_ORDER];
+  const domainConfig: Record<string, DomainConfigEntry> = subject === "Mathematiques" ? MATH_DOMAIN_CONFIG : FRENCH_DOMAIN_CONFIG;
+  const resolveDomainKey = (subdomain: RevisionSession["subdomain"]): DomainKey =>
+    (subject === "Mathematiques" ? getMathDomainKey(subdomain) : getFrenchDomainKey(subdomain)) as DomainKey;
   const visibleSessions = isPremium
     ? sessions
     : sessions.filter((session) => session.access_tier === "free");
@@ -180,7 +194,7 @@ export function buildDashboardData(
   const subdomainStats = new Map<string, SubdomainStats>();
   const domainStats = new Map<RevisionSession["subdomain"], DomainStats>();
 
-  for (const domain of DASHBOARD_SUBDOMAINS) {
+  for (const domain of dashboardSubdomains) {
     domainStats.set(domain, {
       domain,
       totalSeries: 0,
@@ -340,7 +354,7 @@ export function buildDashboardData(
       return left.label.localeCompare(right.label);
     });
 
-  const domainProgress: DashboardDomainProgress[] = DASHBOARD_SUBDOMAINS.map((domain) => {
+  const domainProgress: DashboardDomainProgress[] = dashboardSubdomains.map((domain) => {
     const currentDomain =
       domainStats.get(domain) ??
       ({
@@ -388,7 +402,7 @@ export function buildDashboardData(
       const correctAnswers = stats?.correct ?? 0;
       const attemptsCount = stats?.attempts ?? 0;
       const correctRate = getCorrectRate(attemptsCount, correctAnswers);
-      const domainKey = getFrenchDomainKey(session.subdomain);
+      const domainKey = resolveDomainKey(session.subdomain);
 
       return {
         id: session.id,
@@ -397,7 +411,7 @@ export function buildDashboardData(
         topicKey: session.topicKey,
         topicLabel: session.topicLabel,
         domainKey,
-        domainLabel: FRENCH_DOMAIN_CONFIG[domainKey].label,
+        domainLabel: domainConfig[domainKey ].label,
         subdomain: session.subdomain,
         subdomainLabel: SUBDOMAIN_LABELS[session.subdomain],
         level: session.level,
@@ -415,7 +429,8 @@ export function buildDashboardData(
     })
     .sort((left, right) => left.recommendedOrder - right.recommendedOrder);
 
-  const domainDirectory: DashboardDomainDirectoryItem[] = FRENCH_DOMAIN_ORDER.map((domainKey) => {
+  const domainDirectory: DashboardDomainDirectoryItem[] = domainOrder.map((domainKey) => {
+    const cfg = domainConfig[domainKey ];
     const domainSessions = sessionProgress.filter((session) => session.domainKey === domainKey);
     const attemptsCount = domainSessions.reduce((total, session) => total + session.attempts, 0);
     const correctCount = domainSessions.reduce((total, session) => total + session.correctAnswers, 0);
@@ -427,10 +442,10 @@ export function buildDashboardData(
 
     return {
       key: domainKey,
-      label: FRENCH_DOMAIN_CONFIG[domainKey].label,
-      description: FRENCH_DOMAIN_CONFIG[domainKey].description,
-      href: FRENCH_DOMAIN_CONFIG[domainKey].href,
-      subdomainLabels: FRENCH_DOMAIN_CONFIG[domainKey].subdomains.map(
+      label: cfg.label,
+      description: cfg.description,
+      href: cfg.href,
+      subdomainLabels: cfg.subdomains.map(
         (subdomain) => SUBDOMAIN_LABELS[subdomain],
       ),
       totalSeries: domainSessions.length,
@@ -516,7 +531,7 @@ export function buildDashboardData(
       exampleInstruction: questionEntry.instruction,
       occurrences: 1,
       lastAnsweredAt: attempt.answered_at,
-      domainLabel: FRENCH_DOMAIN_CONFIG[getFrenchDomainKey(questionEntry.session.subdomain)].label,
+      domainLabel: domainConfig[resolveDomainKey(questionEntry.session.subdomain) ].label,
       subdomainLabel: questionEntry.session.topicLabel,
     });
   }
@@ -542,7 +557,7 @@ export function buildDashboardData(
       {
         attemptId: attempt.id,
         instruction: questionEntry.instruction,
-        domainLabel: FRENCH_DOMAIN_CONFIG[getFrenchDomainKey(questionEntry.session.subdomain)].label,
+        domainLabel: domainConfig[resolveDomainKey(questionEntry.session.subdomain) ].label,
         subdomainLabel: questionEntry.session.topicLabel,
         sessionTitle: questionEntry.session.title,
         isCorrect: attempt.is_correct,
@@ -579,7 +594,7 @@ export function buildDashboardData(
     scopedAttempts.length > 0 ? scopedAttempts[0].answered_at : null;
 
   return {
-    subjectLabel: SUBJECT_LABEL,
+    subjectLabel: SUBJECT_LABELS[subject],
     totalSeries: visibleSessions.length,
     completedSeries,
     inProgressSeries,

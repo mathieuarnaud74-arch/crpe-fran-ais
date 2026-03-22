@@ -1,4 +1,4 @@
-import { ExerciseSubdomain, ExerciseType } from "@/types/domain";
+import { ExerciseSubdomain, ExerciseType, FrenchSubdomain } from "@/types/domain";
 
 type FrenchLevel = "Facile" | "Intermediaire" | "Difficile";
 
@@ -106,7 +106,7 @@ export type FrenchModuleSeriesIntegration = {
   sourceLabel: string;
 };
 
-const DOMAIN_LABELS: Record<ExerciseSubdomain, string> = {
+const DOMAIN_LABELS: Record<FrenchSubdomain, string> = {
   grammaire: "Grammaire",
   orthographe: "Orthographe",
   conjugaison: "Conjugaison",

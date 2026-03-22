@@ -1,5 +1,32 @@
 # Changelog
 
+## [2026-03-22] — Refonte complète des sujets blancs CRPE (modèle annales)
+
+- `supabase/migrations/20260506_seed_sujets_blancs_v2.sql` — 3 sujets blancs refaits sur le modèle réel du CRPE : chaque sujet est basé sur un texte littéraire (Le Grand Meaulnes, Sido, L'Enfant) avec 15 questions structurées en 3 parties (étude de la langue sur le texte, compréhension et interprétation, didactique). Remplace les anciens sujets qui étaient de simples paquets de QCM sans rapport avec le format des annales.
+- `app/(app)/exercices/page.tsx` — Description de la section sujets blancs mise à jour pour refléter le nouveau format (épreuve sur texte littéraire)
+- `features/exercises/server/queries.ts` — Textes de session (summary, objective, introduction) mis à jour pour les sujets blancs
+
+## [2026-03-22] — 3 séries d'exercices de mathématiques (30 questions)
+
+- `supabase/migrations/20260503_seed_math_nombres_chasse_erreurs.sql` — Série « Chasse aux erreurs — Calcul et fractions » : 10 exercices où l'élève fictif Liam fait des erreurs de calcul à identifier (fractions, décimaux, priorités, PGCD, proportionnalité)
+- `supabase/migrations/20260504_seed_math_geometrie_vrai_faux.sql` — Série « Géométrie : vrai ou faux ? » : 10 affirmations sur les propriétés des figures (carré/rectangle, losange, symétrie, Pythagore) mêlant évidences et pièges
+- `supabase/migrations/20260505_seed_math_grandeurs_quotidien.sql` — Série « Maths du quotidien » : 10 exercices en contexte réel (cuisine, courses, voyage, bricolage, échelle) sur grandeurs, mesures et proportionnalité
+
+## [2026-03-22] — Infrastructure multi-matières : ajout des Mathématiques
+
+- `types/domain.ts` — Ajout types `Subject`, `MathDomainKey`, `MathSubdomain`, `FrenchSubdomain`, `DomainKey`
+- `lib/constants.ts` — Ajout `MATH_DOMAIN_CONFIG`, `MATH_DOMAIN_ORDER`, `MATH_SUBDOMAIN_OPTIONS`, labels et helpers maths (`getMathDomainKey`, `isMathSubdomain`, `getSubjectFromSubdomain`)
+- `lib/dashboard.ts` — Paramétrage de `buildDashboardData` par `subject` pour isoler Français et Maths
+- `features/dashboard/server/queries.ts` — Paramétrage de `getDashboardData` par `subject`
+- `features/exercises/server/queries.ts` — Ajout intros/keypoints maths, textes de session dynamiques, `getExerciseById` sans filtre subject hardcodé
+- `content/french-crpe-module.ts` — Correction type `DOMAIN_LABELS` vers `FrenchSubdomain`
+- `components/app-navigation.tsx` — Ajout groupe "Mathématiques" avec 5 domaines et icône Calculator
+- `app/(app)/maths/page.tsx` — Nouveau portail Mathématiques (miroir de /francais)
+- `app/(app)/maths/[domain]/page.tsx` — Nouvelle page domaine maths avec filtres
+- `app/(app)/exercices/page.tsx` — Ajout filtre "Matière" (Français / Mathématiques) dans la recherche avancée
+- `app/(app)/tableau-de-bord/page.tsx` — Section "Mathématiques — Domaines" ajoutée au dashboard (masquée si vide)
+- `supabase/migrations/20260501_add_math_subdomains.sql` — Migration : ajout des 5 sous-domaines maths à l'enum `exercise_subdomain`
+
 ## [2026-03-22] — Édition du pseudo sur la page Profil
 
 - `features/leaderboard/server/actions.ts` — Server action `updateDisplayNameAction` pour mettre à jour le `display_name` en base (validation 2-30 chars)

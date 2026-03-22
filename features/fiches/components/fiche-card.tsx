@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, Lock } from "lucide-react";
+import { Check, ChevronRight, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Fiche } from "@/features/fiches/types";
 
@@ -11,6 +11,11 @@ export const DOMAINE_LABELS: Record<string, string> = {
   comprehension_texte: "Compréhension",
   analyse_langue: "Analyse",
   didactique_francais: "Didactique",
+  nombres_calcul: "Nombres et calcul",
+  geometrie: "Géométrie",
+  grandeurs_mesures: "Grandeurs et mesures",
+  organisation_donnees: "Données",
+  didactique_maths: "Didactique maths",
 };
 
 export const MODEL_LABELS: Record<string, string> = {
@@ -25,13 +30,17 @@ const DIFFICULTE_LABELS: Record<string, string> = {
   avance: "Avancé",
 };
 
-export function FicheRow({ fiche }: { fiche: Fiche }) {
+export function FicheRow({ fiche, completed }: { fiche: Fiche; completed?: boolean }) {
   return (
     <Link
       href={`/fiches/${fiche.slug}`}
       className="group flex items-center gap-2.5 py-1.5 transition-colors"
     >
-      <ChevronRight className="h-3.5 w-3.5 shrink-0 -translate-x-0.5 text-transparent transition-all group-hover:translate-x-0 group-hover:text-accent" aria-hidden="true" />
+      {completed ? (
+        <Check className="h-3.5 w-3.5 shrink-0 text-pine" aria-label="Lue" />
+      ) : (
+        <ChevronRight className="h-3.5 w-3.5 shrink-0 -translate-x-0.5 text-transparent transition-all group-hover:translate-x-0 group-hover:text-accent" aria-hidden="true" />
+      )}
       <span className="font-serif text-[1.08rem] font-medium leading-snug text-ink transition-colors group-hover:text-accent">
         {fiche.title}
       </span>

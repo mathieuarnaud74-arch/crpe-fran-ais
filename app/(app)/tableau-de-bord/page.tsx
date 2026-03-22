@@ -200,12 +200,14 @@ export default async function DashboardPage() {
       daily_streak: 0, longest_daily_streak: 0, streak_freeze_remaining: 1, streak_frozen_on: null,
     };
   }
-  const [data, diagnostic, srsDueExercises, srsDueCount] = await Promise.all([
-    getDashboardData(user.id, premium),
+  const [data, mathData, diagnostic, srsDueExercises, srsDueCount] = await Promise.all([
+    getDashboardData(user.id, premium, "Francais"),
+    getDashboardData(user.id, premium, "Mathematiques"),
     getDiagnosticResult(user.id),
     getDueExercises(user.id, 20).catch(() => []),
     getDueCount(user.id).catch(() => 0),
   ]);
+  const hasMathData = mathData.totalSeries > 0;
 
   const completionRate =
     data.totalSeries === 0
@@ -653,6 +655,78 @@ export default async function DashboardPage() {
           })}
         </div>
       </section>
+
+      {/* ── Domaines Maths — compact table ── */}
+      {hasMathData && (
+        <section>
+          <div className="mb-3 flex items-end justify-between gap-4">
+            <div>
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent">
+                Mathématiques
+              </p>
+              <h2 className="mt-1 font-serif text-2xl font-semibold text-ink">Domaines</h2>
+            </div>
+            <ButtonLink href="/maths" variant="secondary">
+              Vue matière
+            </ButtonLink>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-border">
+            <div className="hidden border-b border-border bg-secondary/50 px-5 py-2.5 md:grid md:grid-cols-[1fr_8rem_5rem_5rem_5rem_4.5rem_5rem] md:gap-3 md:items-center">
+              <span className="text-xs font-semibold uppercase tracking-widest text-muted">Domaine</span>
+              <span className="text-xs font-semibold uppercase tracking-widest text-muted">Progression</span>
+              <span className="text-center text-xs font-semibold uppercase tracking-widest text-muted">Score</span>
+              <span className="text-center text-xs font-semibold uppercase tracking-widest text-muted">En c.</span>
+              <span className="text-center text-xs font-semibold uppercase tracking-widest text-muted">À rev.</span>
+              <span className="text-center text-xs font-semibold uppercase tracking-widest text-muted">Maîtr.</span>
+              <span />
+            </div>
+            {mathData.domainDirectory.map((domain, i) => {
+              const pct =
+                domain.totalSeries > 0
+                  ? Math.round((domain.masteredSeries / domain.totalSeries) * 100)
+                  : 0;
+              return (
+                <Link
+                  key={domain.key}
+                  href={domain.href}
+                  className={cn(
+                    "flex flex-col gap-2 bg-card px-5 py-4 transition-colors hover:bg-paper md:grid md:grid-cols-[1fr_8rem_5rem_5rem_5rem_4.5rem_5rem] md:items-center md:gap-3",
+                    i < mathData.domainDirectory.length - 1 && "border-b border-border",
+                  )}
+                >
+                  <div>
+                    <span className="text-sm font-semibold text-ink">{domain.label}</span>
+                    <span className="ml-2 text-xs text-muted md:hidden">{domain.totalSeries} séries</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 flex-1 overflow-hidden rounded-full bg-secondary">
+                      <div className="h-full rounded-full bg-gradient-to-r from-accent to-pine transition-all" style={{ width: `${pct}%` }} />
+                    </div>
+                    <span className="w-8 text-right text-xs tabular-nums text-muted">{pct}%</span>
+                  </div>
+                  <span className="text-sm tabular-nums text-muted md:text-center">
+                    <span className="text-xs md:hidden">Score : </span>
+                    {domain.correctRate !== null ? `${domain.correctRate}%` : "—"}
+                  </span>
+                  <span className="text-sm tabular-nums text-muted md:text-center">
+                    <span className="text-xs md:hidden">En cours : </span>
+                    {domain.inProgressSeries}
+                  </span>
+                  <span className={cn("text-sm tabular-nums md:text-center", domain.toReviewSeries > 0 ? "font-semibold text-warning" : "text-muted")}>
+                    <span className="text-xs font-normal text-muted md:hidden">À revoir : </span>
+                    {domain.toReviewSeries}
+                  </span>
+                  <span className="text-sm tabular-nums text-pine md:text-center">
+                    <span className="text-xs text-muted md:hidden">Maîtrisées : </span>
+                    {domain.masteredSeries}
+                  </span>
+                  <span className="hidden text-xs font-semibold text-accent md:block md:text-right">Explorer &rarr;</span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* ── Radar compétences + Jauges ── */}
       {data.totalAttempts > 0 && (

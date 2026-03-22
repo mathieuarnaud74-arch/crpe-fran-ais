@@ -1,6 +1,7 @@
 import { buildDashboardData } from "@/lib/dashboard";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getExercises } from "@/features/exercises/server/queries";
+import { Subject } from "@/types/domain";
 
 type AttemptRow = {
   id: string;
@@ -9,9 +10,9 @@ type AttemptRow = {
   answered_at: string;
 };
 
-export async function getDashboardData(userId: string, isPremium: boolean) {
+export async function getDashboardData(userId: string, isPremium: boolean, subject: Subject = "Francais") {
   const supabase = await createSupabaseServerClient();
-  const sessions = await getExercises({ subject: "Francais" });
+  const sessions = await getExercises({ subject });
   const { data } = await supabase
     .from("attempts")
     .select("id, exercise_id, is_correct, answered_at")
@@ -30,5 +31,6 @@ export async function getDashboardData(userId: string, isPremium: boolean) {
       answered_at: attempt.answered_at,
     })),
     isPremium,
+    subject,
   );
 }

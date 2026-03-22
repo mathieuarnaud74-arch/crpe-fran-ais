@@ -106,6 +106,9 @@ import { lexiqueFiguresStyleCrpeSprint } from "./lexique-figures-style-crpe-spri
 import { grammaireEmphatiqueSprint } from "./grammaire-phrase-emphatique-neutre-sprint";
 import { grammaireComplementsObjetSprint } from "./grammaire-complements-objet-sprint";
 import { grammairePredicatStructureSprint } from "./grammaire-predicat-structure-sprint";
+import { grammairePropositionsClassificationSprint } from "./grammaire-propositions-classification-sprint";
+import { rectifications1990Sprint } from "./orthographe-rectifications-1990-sprint";
+import { accentsThremaSprint } from "./orthographe-accents-trema-sprint";
 
 export const allFiches: Fiche[] = [
   reperageExpliciteSprint,
@@ -214,4 +217,7 @@ export const allFiches: Fiche[] = [
   grammaireEmphatiqueSprint,
   grammaireComplementsObjetSprint,
   grammairePredicatStructureSprint,
+  grammairePropositionsClassificationSprint,
+  rectifications1990Sprint,
+  accentsThremaSprint,
 ];

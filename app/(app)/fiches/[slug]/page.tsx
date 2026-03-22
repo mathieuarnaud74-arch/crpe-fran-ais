@@ -7,12 +7,13 @@ import { FicheHeader } from "@/features/fiches/components/fiche-header";
 import { FicheReference } from "@/features/fiches/components/fiche-reference";
 import { FicheSprint } from "@/features/fiches/components/fiche-sprint";
 import { FicheOperatoire } from "@/features/fiches/components/fiche-operatoire";
-import { getFicheBySlug, getAllFiches } from "@/features/fiches/lib/get-fiche";
+import { MarkFicheRead } from "@/features/fiches/components/mark-fiche-read";
+import { getFicheBySlug, getAllFiches, getAllFichesMaths } from "@/features/fiches/lib/get-fiche";
 
 type Params = Promise<{ slug: string }>;
 
 export async function generateStaticParams() {
-  const fiches = getAllFiches();
+  const fiches = [...getAllFiches(), ...getAllFichesMaths()];
   return fiches.map((f) => ({ slug: f.slug }));
 }
 
@@ -36,6 +37,7 @@ export default async function FichePage({ params }: { params: Params }) {
 
   return (
     <div className="space-y-8">
+      <MarkFicheRead slug={fiche.slug} />
       <Panel>
         <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
           <FicheHeader fiche={fiche} />

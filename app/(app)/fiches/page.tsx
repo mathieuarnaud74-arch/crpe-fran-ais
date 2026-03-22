@@ -9,7 +9,9 @@ export const metadata: Metadata = {
   title: "Fiches de révision",
   description: "Fiches synthétiques pour réviser le CRPE Français.",
 };
+import { requireUser } from "@/features/auth/server/guards";
 import { getAllFiches } from "@/features/fiches/lib/get-fiche";
+import { getCompletedFicheSlugs } from "@/features/fiches/server/queries";
 import type { FicheModel } from "@/features/fiches/types";
 
 type SearchParams = Promise<{
@@ -22,8 +24,9 @@ export default async function FichesPage({
 }: {
   searchParams: SearchParams;
 }) {
-  const { domaine, model } = await searchParams;
+  const [{ domaine, model }, user] = await Promise.all([searchParams, requireUser()]);
   const allFiches = getAllFiches();
+  const completedSlugs = await getCompletedFicheSlugs(user.id);
 
   const filtered = allFiches.filter((f) => {
     if (domaine && f.domaine !== domaine) return false;
@@ -150,7 +153,7 @@ export default async function FichesPage({
                 </div>
                 <div className="grid gap-x-8 gap-y-0 sm:grid-cols-2">
                   {fiches.map((fiche) => (
-                    <FicheRow key={fiche.id} fiche={fiche} />
+                    <FicheRow key={fiche.id} fiche={fiche} completed={completedSlugs.has(fiche.slug)} />
                   ))}
                 </div>
               </section>

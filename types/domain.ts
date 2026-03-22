@@ -1,5 +1,8 @@
+/** Matières couvertes par la plateforme */
+export type Subject = "Francais" | "Mathematiques";
+
 /** Sous-domaines du Français couverts par la plateforme */
-export type ExerciseSubdomain =
+export type FrenchSubdomain =
   | "grammaire"
   | "orthographe"
   | "conjugaison"
@@ -7,6 +10,17 @@ export type ExerciseSubdomain =
   | "comprehension_texte"
   | "analyse_langue"
   | "didactique_francais";
+
+/** Sous-domaines des Mathématiques couverts par la plateforme */
+export type MathSubdomain =
+  | "nombres_calcul"
+  | "geometrie"
+  | "grandeurs_mesures"
+  | "organisation_donnees"
+  | "didactique_maths";
+
+/** Tous les sous-domaines (Français + Mathématiques) */
+export type ExerciseSubdomain = FrenchSubdomain | MathSubdomain;
 
 /** Types d'exercices disponibles */
 export type ExerciseType =
@@ -44,6 +58,17 @@ export type FrenchDomainKey =
   | "orthographe"
   | "analyse-de-la-langue"
   | "didactique-du-francais";
+
+/** Clés des domaines des Mathématiques (utilisées dans les URLs) */
+export type MathDomainKey =
+  | "nombres-et-calcul"
+  | "geometrie"
+  | "grandeurs-et-mesures"
+  | "organisation-de-donnees"
+  | "didactique-des-maths";
+
+/** Clé de domaine toutes matières confondues */
+export type DomainKey = FrenchDomainKey | MathDomainKey;
 
 export type ExerciseChoice = {
   id: string;
@@ -190,7 +215,7 @@ export type DashboardSessionProgress = {
   summary: string;
   topicKey: string;
   topicLabel: string;
-  domainKey: FrenchDomainKey;
+  domainKey: DomainKey;
   domainLabel: string;
   subdomain: ExerciseSubdomain;
   subdomainLabel: string;
@@ -208,7 +233,7 @@ export type DashboardSessionProgress = {
 };
 
 export type DashboardDomainDirectoryItem = {
-  key: FrenchDomainKey;
+  key: DomainKey;
   label: string;
   description: string;
   href: string;

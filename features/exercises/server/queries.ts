@@ -4,6 +4,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import {
   EXERCISE_TYPE_LABELS,
   formatLevelLabel,
+  isMathSubdomain,
 } from "@/lib/constants";
 import {
   ExerciseChoice,
@@ -177,6 +178,16 @@ const SUBDOMAIN_INTRO: Record<string, string> = {
     "Cette série développe la compréhension de textes variés. Lisez attentivement avant de répondre et repérez les indices du texte.",
   didactique_francais:
     "Cette série porte sur la didactique de l'enseignement du français. Mobilisez vos connaissances pédagogiques et institutionnelles.",
+  nombres_calcul:
+    "Cette série porte sur les nombres et le calcul. Mobilisez vos connaissances arithmétiques et votre sens du nombre.",
+  geometrie:
+    "Cette série porte sur la géométrie. Visualisez les figures, appliquez les propriétés et les théorèmes avec rigueur.",
+  grandeurs_mesures:
+    "Cette série porte sur les grandeurs et mesures. Convertissez avec méthode et vérifiez la cohérence de vos résultats.",
+  organisation_donnees:
+    "Cette série porte sur l'organisation et la gestion de données. Lisez attentivement les tableaux et graphiques avant de répondre.",
+  didactique_maths:
+    "Cette série porte sur la didactique des mathématiques. Analysez les erreurs d'élèves et mobilisez vos connaissances des programmes.",
 };
 
 const SUBDOMAIN_KEYPOINTS: Record<string, string[]> = {
@@ -215,6 +226,31 @@ const SUBDOMAIN_KEYPOINTS: Record<string, string[]> = {
     "Distinguez les approches pédagogiques recommandées des approches déconseillées.",
     "Relisez les corrections en pensant à leur application en classe.",
   ],
+  nombres_calcul: [
+    "Posez les calculs par écrit pour éviter les erreurs de calcul mental.",
+    "Vérifiez la cohérence de votre résultat par un ordre de grandeur.",
+    "Relisez les propriétés utilisées pour consolider vos automatismes.",
+  ],
+  geometrie: [
+    "Faites un schéma clair avant de raisonner.",
+    "Identifiez les propriétés géométriques applicables avant de calculer.",
+    "Relisez les théorèmes utilisés pour consolider votre raisonnement.",
+  ],
+  grandeurs_mesures: [
+    "Convertissez toutes les grandeurs dans la même unité avant de calculer.",
+    "Vérifiez la cohérence dimensionnelle de votre résultat.",
+    "Relisez les formules d'aire et de volume pour les consolider.",
+  ],
+  organisation_donnees: [
+    "Lisez attentivement les titres, légendes et unités des graphiques.",
+    "Distinguez fréquence, effectif et proportion dans les énoncés.",
+    "Relisez les calculs de moyenne et médiane pour consolider la méthode.",
+  ],
+  didactique_maths: [
+    "Reliez chaque notion didactique aux attendus des programmes officiels.",
+    "Analysez les erreurs d'élèves en identifiant le type de difficulté.",
+    "Relisez les corrections en pensant à la progression des apprentissages.",
+  ],
 };
 
 function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSession[] {
@@ -237,6 +273,8 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
     const firstQuestion = rows[0];
     const { topicLabel } = getTopicMetadata(firstQuestion);
     const chunks: RevisionSession[] = [];
+    const isMath = isMathSubdomain(firstQuestion.subdomain);
+    const subjectName = isMath ? "mathématiques" : "français";
 
     for (let i = 0; i < rows.length; i += 10) {
       const questions = rows.slice(i, i + 10);
@@ -250,13 +288,13 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
           ? topicLabel
           : `Série ${groupIndex + 1}.${chunkNumber} - ${topicLabel}`,
         summary: isSujetBlanc
-          ? "Épreuve complète couvrant les 7 sous-domaines du français au CRPE."
+          ? `Épreuve sur texte littéraire : étude de la langue, compréhension et didactique.`
           : "Série construite automatiquement à partir des questions disponibles.",
         objective: isSujetBlanc
-          ? "Se tester en conditions d'examen sur l'ensemble du programme de français."
-          : `Maîtriser ${topicLabel} — compétence attendue au CRPE de français.`,
+          ? `Analyser un texte littéraire sous l'angle linguistique, interprétatif et didactique, comme au CRPE.`
+          : `Maîtriser ${topicLabel} — compétence attendue au CRPE de ${subjectName}.`,
         introduction: isSujetBlanc
-          ? "Ce sujet blanc simule une épreuve de français du CRPE. Les questions couvrent grammaire, orthographe, conjugaison, lexique, compréhension, analyse de la langue et didactique. Gérez votre temps comme à l'examen."
+          ? `Ce sujet blanc est construit autour d'un texte littéraire, sur le modèle de l'épreuve écrite du CRPE. Lisez attentivement le texte support avant de répondre aux questions.`
           : (SUBDOMAIN_INTRO[firstQuestion.subdomain] ??
             `Cette série porte sur la notion « ${topicLabel} ». Répondez avec méthode.`),
         subdomain: firstQuestion.subdomain as ExerciseSubdomain,
@@ -272,7 +310,9 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
         recommendedOrder: groupIndex * 10 + chunkNumber,
         questions,
         completionSummary: {
-          skill: `Consolider ${topicLabel} par la relecture attentive des corrections.`,
+          skill: isMath
+            ? `Consolider ${topicLabel} par la reprise méthodique des corrections.`
+            : `Consolider ${topicLabel} par la relecture attentive des corrections.`,
           keyPoints:
             SUBDOMAIN_KEYPOINTS[firstQuestion.subdomain] ?? [
               "Relire la consigne avant de répondre.",
@@ -349,7 +389,6 @@ export async function getExerciseById(id: string) {
     .from("exercises")
     .select("*")
     .eq("id", id)
-    .eq("subject", DEFAULT_SUBJECT)
     .eq("is_published", true)
     .maybeSingle();
 
@@ -357,8 +396,12 @@ export async function getExerciseById(id: string) {
 }
 
 export async function getExerciseSessionById(id: string) {
-  const sessions = await getExercises();
-  return sessions.find((session) => session.id === id) ?? null;
+  const frenchSessions = await getExercises({ subject: "Francais" });
+  const found = frenchSessions.find((session) => session.id === id);
+  if (found) return found;
+
+  const mathSessions = await getExercises({ subject: "Mathematiques" });
+  return mathSessions.find((session) => session.id === id) ?? null;
 }
 
 export async function getAttemptsForHistory(userId: string, limit?: number) {
@@ -381,7 +424,7 @@ export async function getAttemptsForHistory(userId: string, limit?: number) {
  * Fetches N random published exercises (individual questions, not grouped into sessions).
  * Used by the random exercise mode.
  */
-export async function getRandomExercises(count = 10) {
+export async function getRandomExercises(count = 10, subject?: string) {
   const supabase = await createSupabaseServerClient();
   const POOL_SIZE = 100;
 
@@ -389,7 +432,7 @@ export async function getRandomExercises(count = 10) {
     .from("exercises")
     .select("*")
     .eq("is_published", true)
-    .eq("subject", DEFAULT_SUBJECT)
+    .eq("subject", subject ?? DEFAULT_SUBJECT)
     .eq("access_tier", "free")
     .limit(POOL_SIZE);
 
