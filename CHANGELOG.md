@@ -1,5 +1,37 @@
 # Changelog
 
+## [2026-03-22] — 10 nouvelles séries d'exercices (100 questions) — 5 domaines
+
+- `supabase/migrations/20260394_seed_grammaire_nouvelles2.sql` — Phrase emphatique et mise en relief (free, 10 q.) + Compléments du nom et expansions nominales (premium, 10 q.)
+- `supabase/migrations/20260395_seed_conjugaison_nouvelles2.sql` — Impératif présent (free, 10 q.) + Participe présent, adjectif verbal et gérondif (premium, 10 q.)
+- `supabase/migrations/20260396_seed_comprehension_nouvelles2.sql` — Genres littéraires (free, 10 q.) + Chronologie et temps du récit (premium, 10 q.)
+- `supabase/migrations/20260397_seed_didactique_nouvelles2.sql` — Enseignement de l'oral (free, 10 q.) + Littérature de jeunesse à l'école (premium, 10 q.)
+- `supabase/migrations/20260398_seed_orthographe_nouvelles2.sql` — Consonnes doubles (free, 10 q.) + Trait d'union (premium, 10 q.)
+
+## [2026-03-22] — Phase 3 : Orthographe +2, Sujets blancs CRPE x3, migrations bonus
+
+- `supabase/migrations/20260366_seed_orthographe_nouvelles.sql` — 2 séries Orthographe (20 questions) : homophones grammaticaux, PP avec être/pronominaux
+- `supabase/migrations/20260367_seed_sujet_blanc_1.sql` — Sujet blanc CRPE n°1 (15 questions cross-domaines)
+- `supabase/migrations/20260368_seed_sujet_blanc_2.sql` — Sujet blanc CRPE n°2 (15 questions cross-domaines)
+- `supabase/migrations/20260369_seed_sujet_blanc_3.sql` — Sujet blanc CRPE n°3 (15 questions cross-domaines)
+- `supabase/migrations/20260370-373` — 4 séries bonus (conjugaison subjonctif, orthographe pluriels, lexique champs lexicaux, grammaire fonctions syntaxiques)
+- Renommage migrations conflictuelles pour versions Supabase uniques
+
+## [2026-03-22] — 100 exercices premium supplémentaires (10 nouvelles séries)
+
+- `supabase/migrations/20260366_seed_grammaire_fonctions_syntaxiques.sql` — Série Grammaire : fonctions syntaxiques (COD, COI, CC, attribut) — 10 questions
+- `supabase/migrations/20260367_seed_grammaire_determinants.sql` — Série Grammaire : déterminants (articles, possessifs, démonstratifs) — 10 questions
+- `supabase/migrations/20260368_seed_orthographe_pluriels_irreguliers.sql` — Série Orthographe : pluriels irréguliers et exceptions — 10 questions
+- `supabase/migrations/20260369_seed_orthographe_participe_passe.sql` — Série Orthographe : accord du participe passé — 10 questions
+- `supabase/migrations/20260370_seed_conjugaison_subjonctif.sql` — Série Conjugaison : subjonctif présent — 10 questions
+- `supabase/migrations/20260371_seed_conjugaison_temps_composes.sql` — Série Conjugaison : temps composés de l'indicatif — 10 questions
+- `supabase/migrations/20260372_seed_lexique_champs_lexicaux.sql` — Série Lexique : champs lexicaux et réseaux de sens — 10 questions
+- `supabase/migrations/20260373_seed_lexique_formation_mots.sql` — Série Lexique : formation des mots (préfixes, suffixes) — 10 questions
+- `supabase/migrations/20260374_seed_didactique_apprentissage_lecture.sql` — Série Didactique : apprentissage de la lecture cycle 2 — 10 questions
+- `supabase/migrations/20260375_seed_didactique_production_ecrite.sql` — Série Didactique : production d'écrits cycles 2-3 — 10 questions
+- Mix de types variés : QCM, vrai/faux, réponse courte, tri catégories, correction orthographique
+- Toutes premium, terminologie Éduscol 2021
+
 ## [2026-03-22] — Audit pédagogique + 240 exercices premium (24 séries)
 
 - `supabase/migrations/20260357_seed_didactique_part1.sql` — 4 séries Didactique (40 questions) : Enseignement compréhension, grammaire, vocabulaire, différenciation/évaluation
