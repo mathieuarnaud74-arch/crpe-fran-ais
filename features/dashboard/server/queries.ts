@@ -1,7 +1,8 @@
 import { buildDashboardData } from "@/lib/dashboard";
+import { syncBadges } from "@/features/badges/server/queries";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getExercises } from "@/features/exercises/server/queries";
-import { Subject } from "@/types/domain";
+import type { EarnedBadge, Subject } from "@/types/domain";
 
 type AttemptRow = {
   id: string;
@@ -10,7 +11,15 @@ type AttemptRow = {
   answered_at: string;
 };
 
-export async function getDashboardData(userId: string, isPremium: boolean, subject: Subject = "Francais") {
+export type DashboardDataWithNewBadges = ReturnType<typeof buildDashboardData> & {
+  newlyUnlockedBadges: EarnedBadge[];
+};
+
+export async function getDashboardData(
+  userId: string,
+  isPremium: boolean,
+  subject: Subject = "Francais",
+): Promise<DashboardDataWithNewBadges> {
   const supabase = await createSupabaseServerClient();
   const sessions = await getExercises({ subject });
   const { data } = await supabase
@@ -22,7 +31,7 @@ export async function getDashboardData(userId: string, isPremium: boolean, subje
 
   const attempts = (data ?? []) as AttemptRow[];
 
-  return buildDashboardData(
+  const dashboardData = buildDashboardData(
     sessions,
     attempts.map((attempt) => ({
       id: attempt.id,
@@ -33,4 +42,17 @@ export async function getDashboardData(userId: string, isPremium: boolean, subje
     isPremium,
     subject,
   );
+
+  // Persist newly earned badges and get the list of just-unlocked ones
+  let newlyUnlockedBadges: EarnedBadge[] = [];
+  try {
+    newlyUnlockedBadges = await syncBadges(userId, dashboardData.earnedBadges);
+  } catch {
+    // user_badges table may not exist yet, fail gracefully
+  }
+
+  return {
+    ...dashboardData,
+    newlyUnlockedBadges,
+  };
 }

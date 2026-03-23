@@ -7,17 +7,24 @@ import { useGameSounds } from "@/components/hooks/use-game-sounds";
 import { cn } from "@/lib/utils";
 import { EarnedBadge } from "@/types/domain";
 
-const STORAGE_KEY = "crpe-seen-badge-ids";
 const TOAST_DURATION = 4500;
 const STAGGER_MS = 800;
 const MAX_VISIBLE = 3;
 
 type ToastEntry = EarnedBadge & { leaving: boolean };
 
+/**
+ * Shows toast notifications for newly unlocked badges.
+ *
+ * Receives `newlyUnlockedBadges` from the server (determined by DB diff),
+ * so no localStorage tracking is needed.
+ */
 export function BadgeUnlockToast({
-  earnedBadges,
+  newlyUnlockedBadges,
 }: {
-  earnedBadges: EarnedBadge[];
+  /** @deprecated Use newlyUnlockedBadges instead */
+  earnedBadges?: EarnedBadge[];
+  newlyUnlockedBadges?: EarnedBadge[];
 }) {
   const [toasts, setToasts] = useState<ToastEntry[]>([]);
   const mountedRef = useRef(true);
@@ -51,40 +58,11 @@ export function BadgeUnlockToast({
   }, [clearAllTimers]);
 
   useEffect(() => {
-    if (initializedRef.current || earnedBadges.length === 0) return;
+    const badges = newlyUnlockedBadges ?? [];
+    if (initializedRef.current || badges.length === 0) return;
     initializedRef.current = true;
 
-    let seenIds: string[] = [];
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) seenIds = JSON.parse(raw);
-    } catch {
-      /* ignore */
-    }
-
-    const currentIds = earnedBadges.map((b) => b.id);
-
-    if (seenIds.length === 0) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(currentIds));
-      } catch {
-        /* ignore */
-      }
-      return;
-    }
-
-    const seenSet = new Set(seenIds);
-    const newBadges = earnedBadges.filter((b) => !seenSet.has(b.id));
-
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(currentIds));
-    } catch {
-      /* ignore */
-    }
-
-    if (newBadges.length === 0) return;
-
-    const toShow = newBadges.slice(0, MAX_VISIBLE + 3);
+    const toShow = badges.slice(0, MAX_VISIBLE + 3);
 
     toShow.forEach((badge, i) => {
       const showTimer = setTimeout(() => {
@@ -109,7 +87,7 @@ export function BadgeUnlockToast({
       }, i * STAGGER_MS);
       timersRef.current.push(showTimer);
     });
-  }, [earnedBadges, dismiss, playSound]);
+  }, [newlyUnlockedBadges, dismiss, playSound]);
 
   if (toasts.length === 0) return null;
 

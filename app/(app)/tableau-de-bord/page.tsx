@@ -275,7 +275,7 @@ export default async function DashboardPage() {
         completed={gamification.onboarding_completed}
         userId={user.id}
       />
-      <BadgeUnlockToast earnedBadges={data.earnedBadges} />
+      <BadgeUnlockToast newlyUnlockedBadges={[...data.newlyUnlockedBadges, ...mathData.newlyUnlockedBadges]} />
 
       <OnboardingBanner
         firstSeriesId={firstFreeSeries?.id ?? null}

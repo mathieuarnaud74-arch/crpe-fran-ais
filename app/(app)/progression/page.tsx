@@ -34,7 +34,7 @@ export default async function ProgressPage() {
 
   return (
     <div className="space-y-4">
-      <BadgeUnlockToast earnedBadges={data.earnedBadges} />
+      <BadgeUnlockToast newlyUnlockedBadges={data.newlyUnlockedBadges} />
 
       {/* ── Header allégé ── */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

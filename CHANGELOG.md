@@ -1,5 +1,14 @@
 # Changelog
 
+## [2026-03-23] — Persistance des badges en base de données
+
+- `supabase/migrations/20260787_create_user_badges.sql` — Nouvelle table `user_badges` (user_id, badge_id, earned_at) avec RLS pour persister les badges débloqués
+- `features/badges/server/queries.ts` — Module serveur : getUserBadgeIds, getUserBadgesWithDates, syncBadges (compare badges calculés vs DB, insère les nouveaux)
+- `features/dashboard/server/queries.ts` — getDashboardData appelle syncBadges après computeEarnedBadges et retourne `newlyUnlockedBadges`
+- `components/ui/badge-unlock-toast.tsx` — Utilise `newlyUnlockedBadges` (venant de la DB) au lieu de localStorage pour détecter les nouveaux badges
+- `app/(app)/tableau-de-bord/page.tsx` — Passe `newlyUnlockedBadges` (FR + Maths combinés) au toast
+- `app/(app)/progression/page.tsx` — Passe `newlyUnlockedBadges` au toast
+
 ## [2026-03-23] — Améliorations accessibilité, SEO et UX (loop automatique)
 
 ### Accessibilité
