@@ -3,8 +3,8 @@
 ## Projet
 
 Plateforme de révision pour le CRPE (Certificat de Recrutement des Professeurs des Écoles).
-Matière couverte : **Français**.
-Modèle : accès gratuit limité (20 questions/jour) + abonnement premium (Stripe).
+Matières couvertes : **Français** et **Mathématiques**.
+Modèle : accès gratuit limité (20 questions/jour) + abonnement premium (Stripe, plomberie prête mais non connectée — pas de compte Stripe actif).
 
 ---
 
@@ -37,6 +37,7 @@ npm run typecheck                    # tsc --noEmit
 npm run lint                         # eslint
 npm run storybook                    # Storybook sur :6006
 npm run generate:french-module-seed  # génère le seed SQL du module français
+npx vitest run -c __tests__/vitest.unit.config.ts  # tests unitaires (201 tests)
 ```
 
 ---
@@ -72,12 +73,40 @@ features/
   billing/           # checkout-button
   dashboard/         # domain-summary-card, session-progress-card, learning-status-badge, collapsible-panel
   diagnostic/        # components/ (UI diagnostic), server/ (logique + persistance en base)
-  exercises/         # exercise-player
+  exercises/
+    components/
+      exercise-player.tsx          # orchestrateur (~350 lignes, useReducer)
+      exercise-reducer.ts          # état + actions typées
+      exercise-xp-header.tsx       # barre XP + popup
+      exercise-session-header.tsx  # en-tête série (badges, titre, progression)
+      exercise-results-panel.tsx   # écran de fin (score, bilan, axes de reprise)
+      exercise-review-card.tsx     # carte review par question
+      exercise-question-panel.tsx  # phase passation (question + inputs + navigation)
+      exercise-feedback.tsx        # feedback après réponse (Mocca t'explique)
+      exercise-choice-list.tsx     # rendu QCM / vrai_faux
+      status-glyph.tsx             # icône ✓ / ✗ / ⚠
+      exercise-timer.tsx           # timer mode chrono
+      highlight-propositions-input.tsx  # input surlignage
+      tri-categories-input.tsx     # input tri catégories
+    shared/
+      evaluation.ts                # évaluation des réponses
+      normalize.ts                 # normalisation expected_answer / choices
+    server/
+      actions.ts                   # submitAttemptAction (server action)
+      queries.ts                   # getExercises, getExerciseById, etc.
+  fiches/            # fiches de révision (composants, lib, server)
+  gamification/      # XP, niveaux, badges, streaks
   homepage/          # renderer, admin-shell, default-homepage
+  leaderboard/       # classements
+  onboarding/        # tutoriels
+  srs/               # révision espacée
+  badges/            # requêtes badges
 components/
-  ui/                # button, badge, card, input, label, select, separator, textarea
+  ui/                # button, badge, card, input, label, select, separator, textarea, panel, confetti, xp-bar, xp-popup
   mascot/
     mocca.tsx        # mascotte Mocca — affichée dans les corrections (états : happy, neutral, grumpy)
+  hooks/             # use-game-sounds
+  marketing/         # composants marketing
   site-header.tsx
   site-footer.tsx
   app-shell.tsx
@@ -176,6 +205,58 @@ Table principale : `public.exercises`
 | `is_published` | bool | |
 
 Table secondaire : `public.diagnostic_results` — persiste les résultats du diagnostic par utilisateur.
+
+---
+
+## Logique métier (lib/)
+
+```
+lib/
+  dashboard/                # logique tableau de bord (découpé en modules)
+    types.ts                # AttemptInput, SessionStats, SubdomainStats, DomainStats
+    utils.ts                # MASTERY_THRESHOLD (85%), getCorrectRate, getLatestTimestamp
+    status.ts               # getStatus, getReviewReason, getSessionStatus
+    badges.ts               # computeEarnedBadges
+    activity.ts             # buildDailyActivity, buildScoreEvolution
+    build-dashboard-data.ts # buildDashboardData (fonction principale)
+    index.ts                # barrel export — importer depuis @/lib/dashboard
+  supabase/
+    server.ts               # client Supabase SSR (unique source)
+    admin.ts                # client admin (service role)
+    client.ts               # client navigateur
+  stripe/
+    server.ts               # client Stripe serveur
+  utils.ts                  # cn(), formatDate(), normalizeText(), stripDiacritics()
+  constants.ts              # domaines, sous-domaines, labels, configs
+  xp.ts                     # calcul XP et niveaux
+  daily-streak.ts           # streak quotidien + freeze
+  freemium.ts               # quotas gratuits (20 questions/jour)
+  rate-limit.ts             # rate limiter in-memory
+  env.ts                    # variables d'environnement + guards isStripeConfigured()
+```
+
+---
+
+## Tests
+
+```
+__tests__/
+  vitest.unit.config.ts             # config Vitest (alias @/, include __tests__/**/*.test.ts)
+  evaluation.test.ts                # évaluation réponses (QCM, vrai/faux, texte, catégorisation)
+  xp.test.ts                       # calcul XP et niveaux
+  utils.test.ts                    # utilitaires (cn, formatDate, normalizeText)
+  freemium.test.ts                 # quotas gratuits
+  rate-limit.test.ts               # rate limiter
+  daily-streak.test.ts             # streak quotidien + freeze + milestones
+  billing.test.ts                  # isPremiumUser (abonnement actif/expiré/etc.)
+  normalize-expected-answer.test.ts # normalisation expected_answer JSONB → types stricts
+  api-diagnostic-complete.test.ts  # POST /api/diagnostic/complete
+  api-stripe-webhook.test.ts       # POST /api/stripe/webhook
+  api-stripe-checkout.test.ts      # POST /api/stripe/checkout
+  submit-attempt-action.test.ts    # server action submitAttemptAction
+```
+
+Convention : `import { describe, it, expect, vi } from "vitest"` (pas de globals). Mocks Supabase/Stripe/Next.js dans chaque fichier.
 
 ---
 
