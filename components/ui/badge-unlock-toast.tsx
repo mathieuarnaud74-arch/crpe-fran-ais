@@ -22,8 +22,6 @@ type ToastEntry = EarnedBadge & { leaving: boolean };
 export function BadgeUnlockToast({
   newlyUnlockedBadges,
 }: {
-  /** @deprecated Use newlyUnlockedBadges instead */
-  earnedBadges?: EarnedBadge[];
   newlyUnlockedBadges?: EarnedBadge[];
 }) {
   const [toasts, setToasts] = useState<ToastEntry[]>([]);

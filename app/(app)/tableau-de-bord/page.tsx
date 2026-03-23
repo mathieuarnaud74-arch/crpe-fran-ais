@@ -273,7 +273,6 @@ export default async function DashboardPage() {
     <div className="space-y-6">
       <OnboardingTourWrapper
         completed={gamification.onboarding_completed}
-        userId={user.id}
       />
       <BadgeUnlockToast newlyUnlockedBadges={[...data.newlyUnlockedBadges, ...mathData.newlyUnlockedBadges]} />
 

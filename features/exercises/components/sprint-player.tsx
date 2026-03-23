@@ -94,7 +94,12 @@ export function SprintPlayer({
     (answer: string) => {
       if (!currentQuestion || phase !== "playing") return;
 
-      const evaluation = evaluateExerciseAnswer(currentQuestion, answer);
+      let evaluation: { isCorrect: boolean; reason?: string };
+      try {
+        evaluation = evaluateExerciseAnswer(currentQuestion, answer);
+      } catch {
+        evaluation = { isCorrect: false };
+      }
       const timeMs = Date.now() - questionStartRef.current;
       const streak = evaluation.isCorrect ? consecutiveCorrect : 0;
       const xp = calculateXpEarned(evaluation.isCorrect, streak, timeMs, "sprint");

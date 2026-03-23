@@ -142,23 +142,23 @@ export async function updateSprintPersonalBest(
   userId: string,
   timeMs: number,
 ): Promise<boolean> {
-  const gamification = await getUserGamification(userId);
-  if (gamification.personal_best_sprint_time !== null && gamification.personal_best_sprint_time <= timeMs) {
-    return false; // not a new record
-  }
-
   const supabase = await createSupabaseServerClient();
 
-  const { error } = await supabase
+  // Atomic update: only set if new time is strictly better (or no previous record)
+  const { data, error } = await supabase
     .from("user_gamification")
     .update({ personal_best_sprint_time: timeMs })
-    .eq("user_id", userId);
+    .eq("user_id", userId)
+    .or(`personal_best_sprint_time.is.null,personal_best_sprint_time.gt.${timeMs}`)
+    .select("user_id")
+    .maybeSingle();
 
   if (error) {
     console.error("[gamification]", error.message);
+    return false;
   }
 
-  return true;
+  return data !== null;
 }
 
 /**

@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { DashboardDomainProgress } from "@/types/domain";
 
 const STATUS_COLOR = {
+  non_commencee: "#9CA3AF",
   acquis: "#059669",
   en_cours: "#4A6E8F",
   fragile: "#F59E0B",
@@ -11,6 +12,7 @@ const STATUS_COLOR = {
 } as const;
 
 const STATUS_LABEL = {
+  non_commencee: "Non commencé",
   acquis: "Solide",
   en_cours: "En cours",
   fragile: "Fragile",

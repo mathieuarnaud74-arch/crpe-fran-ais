@@ -1,4 +1,4 @@
-import { ExerciseSubdomain, ExerciseType, FrenchDomainKey, FrenchSubdomain, LearningStatus, MathDomainKey, MathSubdomain, ProgressStatus, Subject } from "@/types/domain";
+import { ExerciseSubdomain, ExerciseType, FrenchDomainKey, LearningStatus, MathDomainKey, MathSubdomain, ProgressStatus, Subject } from "@/types/domain";
 
 export const SUBJECT_LABELS: Record<Subject, string> = {
   Francais: "Français",
@@ -23,16 +23,6 @@ export const SUBDOMAIN_LABELS: Record<ExerciseSubdomain, string> = {
 };
 
 export const DASHBOARD_SUBDOMAINS: ExerciseSubdomain[] = [
-  "grammaire",
-  "orthographe",
-  "conjugaison",
-  "lexique",
-  "comprehension_texte",
-  "analyse_langue",
-  "didactique_francais",
-];
-
-export const FRENCH_DASHBOARD_SUBDOMAINS: FrenchSubdomain[] = [
   "grammaire",
   "orthographe",
   "conjugaison",
@@ -308,6 +298,7 @@ export const EXERCISE_TYPES: ExerciseType[] = [
 // ─── Progress Status Labels ──────────────────────────────────
 
 export const PROGRESS_STATUS_LABELS: Record<ProgressStatus, string> = {
+  non_commencee: "Non commencé",
   prioritaire: "Prioritaire",
   fragile: "Fragile",
   en_cours: "En cours",

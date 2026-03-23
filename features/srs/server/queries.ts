@@ -99,17 +99,15 @@ export async function recordSrsReview(
 
   const supabase = await createSupabaseServerClient();
 
-  if (isNew) {
-    await supabase.from("srs_cards").insert({
-      user_id: userId,
-      exercise_id: exerciseId,
-      ...fields,
-    });
-  } else {
-    await supabase
-      .from("srs_cards")
-      .update({ ...fields, updated_at: new Date().toISOString() })
-      .eq("user_id", userId)
-      .eq("exercise_id", exerciseId);
-  }
+  await supabase
+    .from("srs_cards")
+    .upsert(
+      {
+        user_id: userId,
+        exercise_id: exerciseId,
+        ...fields,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "user_id,exercise_id" },
+    );
 }

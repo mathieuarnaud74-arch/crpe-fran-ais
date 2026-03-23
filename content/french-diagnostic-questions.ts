@@ -49,7 +49,7 @@ const SUBDOMAIN_META: Record<
   },
   comprehension_texte: {
     label: "Compréhension de texte",
-    href: "/francais/analyse-de-la-langue",
+    href: "/francais/analyse-de-la-langue?subdomain=comprehension_texte",
   },
   didactique_francais: {
     label: "Didactique du français",

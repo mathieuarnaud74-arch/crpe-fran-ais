@@ -54,7 +54,8 @@ async function submitAttemptActionInner(
   const sessionId = String(formData.get("sessionId") ?? "");
   const timeSpentMs = formData.get("timeSpentMs") ? Number(formData.get("timeSpentMs")) : null;
   const exerciseMode = (formData.get("exerciseMode") as ExerciseMode) ?? "standard";
-  const streak = formData.get("streak") ? Number(formData.get("streak")) : 0;
+  const rawStreak = formData.get("streak") ? Number(formData.get("streak")) : 0;
+  const streak = Math.min(Math.max(Math.floor(rawStreak) || 0, 0), 10);
 
   const supabase = await createSupabaseServerClient();
   const user = (await supabase.auth.getUser()).data.user;

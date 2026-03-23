@@ -16,6 +16,7 @@ import { getUserGamification } from "@/features/gamification/server/queries";
 import { env } from "@/lib/env";
 import { canSubmitAttempt } from "@/lib/freemium";
 
+import { getSubjectFromSubdomain } from "@/lib/constants";
 import { ExerciseSubdomain } from "@/types/domain";
 
 const VALID_MODES = new Set(["standard", "timed", "sprint", "swipe"]);
@@ -71,7 +72,7 @@ export default async function ExerciseDetailPage({
 
   const [attemptsToday, allSessions] = await Promise.all([
     getAttemptsCountToday(user.id),
-    getExercises({ subdomain: session.subdomain }),
+    getExercises({ subdomain: session.subdomain, subject: getSubjectFromSubdomain(session.subdomain as ExerciseSubdomain) }),
   ]);
   const crpeContext = CRPE_CONTEXT[session.subdomain as ExerciseSubdomain] ?? null;
 

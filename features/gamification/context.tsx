@@ -49,7 +49,7 @@ export function GamificationProvider({
 
       return { leveledUp, newLevel };
     },
-    [gamification.level, gamification.xp],
+    [gamification.level],
   );
 
   const setStreak = useCallback((streak: number) => {

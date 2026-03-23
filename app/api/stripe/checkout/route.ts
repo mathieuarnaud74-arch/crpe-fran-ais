@@ -86,6 +86,7 @@ export async function POST(request: Request) {
     metadata: {
       user_id: user.id,
     },
+    ...(isLimitedAccess && { cancel_at_period_end: true }),
   };
 
   try {

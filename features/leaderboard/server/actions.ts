@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { requireUser } from "@/features/auth/server/guards";
+import { rateLimit } from "@/lib/rate-limit";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function updateDisplayNameAction(
@@ -10,6 +11,11 @@ export async function updateDisplayNameAction(
   formData: FormData,
 ): Promise<{ success: boolean; error?: string }> {
   const user = await requireUser();
+
+  const rl = rateLimit(`display-name:${user.id}`, { limit: 5, windowSeconds: 60 });
+  if (!rl.success) {
+    return { success: false, error: "Trop de modifications. Réessayez dans quelques instants." };
+  }
   const raw = formData.get("display_name");
 
   if (typeof raw !== "string") {

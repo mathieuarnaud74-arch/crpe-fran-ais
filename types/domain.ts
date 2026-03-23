@@ -43,7 +43,7 @@ export type AccessTier = "free" | "premium";
 export type ValidationStatus = "brouillon" | "valide";
 
 /** Statut de progression d'un domaine */
-export type ProgressStatus = "prioritaire" | "fragile" | "en_cours" | "acquis";
+export type ProgressStatus = "non_commencee" | "prioritaire" | "fragile" | "en_cours" | "acquis";
 
 /** Statut d'apprentissage d'une série */
 export type LearningStatus = "non_commencee" | "en_cours" | "a_revoir" | "maitrisee";

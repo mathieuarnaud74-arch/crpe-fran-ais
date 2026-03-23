@@ -73,7 +73,12 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
 
       setLastSwipeDirection(answer === "true" ? "right" : "left");
 
-      const evaluation = evaluateExerciseAnswer(currentQuestion, answer);
+      let evaluation: { isCorrect: boolean; reason?: string };
+      try {
+        evaluation = evaluateExerciseAnswer(currentQuestion, answer);
+      } catch {
+        evaluation = { isCorrect: false };
+      }
       const timeSpentMs = Date.now() - questionStartRef.current;
       const streak = evaluation.isCorrect ? consecutiveCorrect : 0;
       const xp = calculateXpEarned(evaluation.isCorrect, streak, timeSpentMs, "swipe", 60_000);

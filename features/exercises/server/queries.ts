@@ -55,7 +55,7 @@ function normalizeExpectedAnswer(
     };
   }
 
-  if (rawMode === "single_choice" && typeof rawExpected.value === "string") {
+  if ((rawMode === "single_choice" || rawMode === "single") && typeof rawExpected.value === "string") {
     return {
       mode: "single_choice",
       value: rawExpected.value,
@@ -437,7 +437,7 @@ export async function getAttemptsForHistory(userId: string, limit?: number) {
     .eq("user_id", userId)
     .order("answered_at", { ascending: false });
 
-  if (limit) {
+  if (limit !== undefined) {
     query = query.limit(limit);
   }
 
@@ -476,8 +476,14 @@ export async function getRandomExercises(count = 10, subject?: string) {
 
 export async function getAttemptsCountToday(userId: string) {
   const supabase = await createSupabaseServerClient();
-  const startOfDay = new Date();
-  startOfDay.setHours(0, 0, 0, 0);
+  const parisDate = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Paris" });
+  const noonUtc = new Date(`${parisDate}T12:00:00Z`);
+  const parisHour = parseInt(
+    noonUtc.toLocaleString("en-US", { timeZone: "Europe/Paris", hour: "numeric", hour12: false }),
+    10,
+  );
+  const startOfDay = new Date(`${parisDate}T00:00:00Z`);
+  startOfDay.setUTCHours(-(parisHour - 12));
 
   const { count } = await supabase
     .from("attempts")

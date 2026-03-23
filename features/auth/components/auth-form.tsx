@@ -70,6 +70,20 @@ export function AuthForm({ mode }: AuthFormProps) {
         return;
       }
 
+      try {
+        const savedDiagnostic = localStorage.getItem("guest_diagnostic_result");
+        if (savedDiagnostic) {
+          await fetch("/api/diagnostic/complete", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: savedDiagnostic,
+          });
+          localStorage.removeItem("guest_diagnostic_result");
+        }
+      } catch {
+        // Non critique
+      }
+
       setMessage(
         "Compte créé. Si la confirmation email est activée, validez votre adresse puis connectez-vous pour retrouver votre diagnostic et vos révisions.",
       );

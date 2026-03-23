@@ -66,8 +66,19 @@ export function getXpForNextLevel(currentXp: number): {
   progress: number;
 } {
   const level = getLevelForXp(currentXp);
+  const isMaxLevel = level >= LEVEL_THRESHOLDS.length;
   const currentThreshold = LEVEL_THRESHOLDS[level - 1] ?? 0;
-  const nextThreshold = LEVEL_THRESHOLDS[level] ?? LEVEL_THRESHOLDS[LEVEL_THRESHOLDS.length - 1] + 5000;
+
+  if (isMaxLevel) {
+    return {
+      currentLevel: level,
+      xpInCurrentLevel: currentXp - currentThreshold,
+      xpNeededForNext: 0,
+      progress: 1,
+    };
+  }
+
+  const nextThreshold = LEVEL_THRESHOLDS[level];
   const xpInCurrentLevel = currentXp - currentThreshold;
   const xpNeededForNext = nextThreshold - currentThreshold;
 

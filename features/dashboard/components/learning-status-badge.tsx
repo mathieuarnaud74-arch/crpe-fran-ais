@@ -12,5 +12,6 @@ export function ProgressStatusBadge({ status }: { status: ProgressStatus }) {
   if (status === "acquis") return <Badge tone="success">{PROGRESS_STATUS_LABELS[status]}</Badge>;
   if (status === "prioritaire") return <Badge tone="warning">{PROGRESS_STATUS_LABELS[status]}</Badge>;
   if (status === "fragile") return <Badge tone="warning" size="sm">{PROGRESS_STATUS_LABELS[status]}</Badge>;
+  if (status === "non_commencee") return <Badge tone="neutral" size="sm">{PROGRESS_STATUS_LABELS[status]}</Badge>;
   return <Badge size="sm">{PROGRESS_STATUS_LABELS[status]}</Badge>;
 }

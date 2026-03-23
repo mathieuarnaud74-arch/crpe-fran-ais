@@ -21,12 +21,12 @@ describe("getDailyRemainingQuota", () => {
     expect(getDailyRemainingQuota(25, false)).toBe(0);
   });
 
-  it("returns Infinity for premium user", () => {
-    expect(getDailyRemainingQuota(0, true)).toBe(Infinity);
+  it("returns -1 sentinel for premium user", () => {
+    expect(getDailyRemainingQuota(0, true)).toBe(-1);
   });
 
-  it("returns Infinity for premium user even with high attempts", () => {
-    expect(getDailyRemainingQuota(999, true)).toBe(Infinity);
+  it("returns -1 sentinel for premium user even with high attempts", () => {
+    expect(getDailyRemainingQuota(999, true)).toBe(-1);
   });
 
   it("returns full quota when attempts is 0", () => {

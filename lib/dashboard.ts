@@ -70,6 +70,7 @@ type DomainStats = {
 export const MASTERY_THRESHOLD = 85;
 
 const STATUS_ORDER: Record<ProgressStatus, number> = {
+  non_commencee: -1,
   prioritaire: 0,
   fragile: 1,
   en_cours: 2,
@@ -95,7 +96,7 @@ function getStatus(
   totalSeries: number,
 ): ProgressStatus {
   if (totalSeries === 0 || attempts === 0) {
-    return "en_cours";
+    return "non_commencee";
   }
 
   const accuracy = (correct / attempts) * 100;

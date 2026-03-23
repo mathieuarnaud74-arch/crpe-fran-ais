@@ -15,6 +15,7 @@ import { XpPopup } from "@/components/ui/xp-popup";
 import { ExerciseTimer } from "@/features/exercises/components/exercise-timer";
 import { submitAttemptAction } from "@/features/exercises/server/actions";
 import {
+  buildExpectedAnswerLabel,
   evaluateExerciseAnswer,
   getAnswerValidationRule,
 } from "@/features/exercises/shared/evaluation";
@@ -157,7 +158,6 @@ export function ExercisePlayer({
         playSound("levelUp");
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [results, session.questions, playSound]);
 
   if (!currentQuestion) {
@@ -746,7 +746,7 @@ export function ExercisePlayer({
                             answer: "",
                             isCorrect: false,
                             reason: "incorrect",
-                            expectedAnswerLabel: "",
+                            expectedAnswerLabel: buildExpectedAnswerLabel(currentQuestion.expected_answer, currentQuestion.choices),
                             validationRule: null,
                           },
                         }));

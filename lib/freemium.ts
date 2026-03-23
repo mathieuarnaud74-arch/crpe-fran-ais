@@ -2,7 +2,7 @@ import { env } from "@/lib/env";
 
 export function getDailyRemainingQuota(attemptsToday: number, isPremium: boolean) {
   if (isPremium) {
-    return Infinity;
+    return -1;
   }
 
   return Math.max(env.freeDailyQuestionLimit - attemptsToday, 0);
