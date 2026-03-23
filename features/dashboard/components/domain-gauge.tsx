@@ -41,11 +41,12 @@ const DomainGaugeInner = dynamic(
 type DomainGaugeProps = {
   label: string;
   percentage: number;
-  status: "prioritaire" | "fragile" | "en_cours" | "acquis";
+  status: "non_commencee" | "prioritaire" | "fragile" | "en_cours" | "acquis";
   className?: string;
 };
 
 const STATUS_COLORS: Record<DomainGaugeProps["status"], { path: string; trail: string; text: string }> = {
+  non_commencee: { path: "#9CA3AF", trail: "#F3F4F6", text: "#9CA3AF" },
   prioritaire: { path: "#DC2626", trail: "#FEF2F2", text: "#DC2626" },
   fragile: { path: "#F5A623", trail: "#FFF8EB", text: "#F5A623" },
   en_cours: { path: "#4A6E8F", trail: "#EAE4D8", text: "#4A6E8F" },

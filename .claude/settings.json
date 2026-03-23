@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/changelog-check.sh"
+            "command": "powershell -ExecutionPolicy Bypass -File .claude/hooks/changelog-check.ps1"
           }
         ]
       }

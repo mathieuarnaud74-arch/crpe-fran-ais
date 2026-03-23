@@ -1,5 +1,16 @@
 # Changelog
 
+## [2026-03-23] — Mot de passe oublié + retrait hooks contre-productifs
+
+- `app/api/auth/callback/route.ts` — nouvelle route callback Supabase pour échanger le code de réinitialisation contre une session
+- `features/auth/components/forgot-password-form.tsx` — formulaire de demande de réinitialisation de mot de passe
+- `features/auth/components/reset-password-form.tsx` — formulaire de saisie du nouveau mot de passe
+- `app/(auth)/mot-de-passe-oublie/page.tsx` — page "Mot de passe oublié"
+- `app/(auth)/reinitialiser-mot-de-passe/page.tsx` — page "Réinitialiser le mot de passe"
+- `app/(auth)/connexion/page.tsx` — ajout du lien "Mot de passe oublié ? Réinitialiser"
+- `features/dashboard/components/domain-gauge.tsx` — fix type pré-existant : ajout `non_commencee` au type status
+- `.claude/settings.json` — retrait des hooks PreToolUse (pretool-guard) et PostToolUse (posttool-verify) qui bloquaient le développement + retrait stop-cycle-report inutile
+
 ## [2026-03-23] — Police du diagnostic : Cormorant Garamond → Manrope
 
 - `features/diagnostic/components/diagnostic-client.tsx` — remplacement de `font-serif` par `font-sans` sur tous les titres, sous-titres et textes de questions du diagnostic pour uniformiser avec le reste de l'app

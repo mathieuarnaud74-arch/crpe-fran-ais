@@ -12,12 +12,20 @@ export default function ConnexionPage() {
       <div className="mt-8">
         <AuthForm mode="signin" />
       </div>
-      <p className="mt-6 text-sm text-ink/70">
-        Pas encore de compte ?{" "}
-        <Link href="/inscription" className="font-semibold text-accent">
-          Créer un compte
-        </Link>
-      </p>
+      <div className="mt-6 space-y-3 text-sm text-ink/70">
+        <p>
+          Mot de passe oublié ?{" "}
+          <Link href="/mot-de-passe-oublie" className="font-semibold text-accent">
+            Réinitialiser
+          </Link>
+        </p>
+        <p>
+          Pas encore de compte ?{" "}
+          <Link href="/inscription" className="font-semibold text-accent">
+            Créer un compte
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
