@@ -1,5 +1,18 @@
+import type { Metadata } from "next";
+
 import { ButtonLink } from "@/components/ui/button";
 import { getOptionalUser } from "@/features/auth/server/guards";
+
+export const metadata: Metadata = {
+  title: "Nos offres — Accès premium CRPE Français",
+  description:
+    "Débloquez l'accès illimité aux exercices, fiches et sujets blancs du CRPE. Pass journalier, hebdomadaire ou mensuel.",
+  openGraph: {
+    title: "Offres Premium — CRPE Français",
+    description:
+      "Débloquez l'accès illimité aux exercices, fiches et sujets blancs du CRPE.",
+  },
+};
 import { isPremiumUser } from "@/features/billing/server/queries";
 import { CheckoutButton } from "@/features/billing/components/checkout-button";
 import { env, isStripeConfigured } from "@/lib/env";

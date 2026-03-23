@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const MASTERY_COLOR = {
   solide: "#059669",
   a_consolider: "#F59E0B",
@@ -17,7 +19,11 @@ function splitLabel(label: string): string[] {
   return [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];
 }
 
-export function DiagnosticRadarChart({ data }: { data: RadarDataPoint[] }) {
+export const DiagnosticRadarChart = memo(function DiagnosticRadarChart({
+  data,
+}: {
+  data: RadarDataPoint[];
+}) {
   const cx = 210;
   const cy = 200;
   const r = 130;
@@ -41,7 +47,12 @@ export function DiagnosticRadarChart({ data }: { data: RadarDataPoint[] }) {
   }));
 
   return (
-    <svg viewBox="0 0 420 405" className="mx-auto w-full max-w-md">
+    <svg
+      viewBox="0 0 420 405"
+      className="mx-auto w-full max-w-md"
+      role="img"
+      aria-label={`Profil de maîtrise : ${data.map((d) => `${d.label} ${d.value === 0 ? "0" : Math.round(d.value * 100)}%`).join(", ")}`}
+    >
       {levels.map((level) => (
         <polygon
           key={level}
@@ -141,4 +152,4 @@ export function DiagnosticRadarChart({ data }: { data: RadarDataPoint[] }) {
       ))}
     </svg>
   );
-}
+});

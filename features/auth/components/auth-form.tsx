@@ -46,12 +46,19 @@ export function AuthForm({ mode }: AuthFormProps) {
     setMessage("");
 
     if (mode === "signup") {
+      const trimmed = displayName.trim();
+      if (trimmed.length < 2 || trimmed.length > 30) {
+        setMessage("Le prénom ou pseudo doit contenir entre 2 et 30 caractères.");
+        setIsLoading(false);
+        return;
+      }
+
       const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: {
-            display_name: displayName,
+            display_name: trimmed,
           },
           emailRedirectTo: undefined,
         },
@@ -92,9 +99,14 @@ export function AuthForm({ mode }: AuthFormProps) {
           <Label htmlFor="displayName">Prénom ou pseudo</Label>
           <Input
             id="displayName"
+            autoComplete="name"
+            autoFocus
             value={displayName}
             onChange={(event) => setDisplayName(event.target.value)}
             placeholder="Ex. Camille"
+            required
+            minLength={2}
+            maxLength={30}
           />
         </div>
       ) : null}
@@ -103,6 +115,8 @@ export function AuthForm({ mode }: AuthFormProps) {
         <Input
           id="email"
           type="email"
+          autoComplete="email"
+          autoFocus={mode === "signin"}
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
@@ -114,6 +128,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         <Input
           id="password"
           type="password"
+          autoComplete={mode === "signup" ? "new-password" : "current-password"}
           required
           minLength={mode === "signup" ? 8 : undefined}
           value={password}
@@ -126,7 +141,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           {message}
         </p>
       ) : null}
-      <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+      <Button type="submit" className="w-full" size="lg" disabled={isLoading} aria-busy={isLoading}>
         {isLoading
           ? "Traitement en cours..."
           : mode === "signup"

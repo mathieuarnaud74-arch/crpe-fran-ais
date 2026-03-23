@@ -203,9 +203,14 @@ export default async function FrenchPage() {
         </div>
 
         {activeSessions.length === 0 ? (
-          <p className="mt-4 text-sm text-muted">
-            Aucune série commencée pour le moment.
-          </p>
+          <div className="mt-4 space-y-3">
+            <p className="text-sm text-muted">
+              Aucune série commencée pour le moment.
+            </p>
+            <ButtonLink href="/exercices" variant="secondary" size="sm">
+              Découvrir les exercices
+            </ButtonLink>
+          </div>
         ) : (
           <div className="mt-4 space-y-2">
             {activeSessions.map((session) => (

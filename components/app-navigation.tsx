@@ -165,6 +165,7 @@ function NavGroup({
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
+        aria-controls={`nav-group-${group.title.toLowerCase().replace(/\s+/g, "-")}`}
         className={cn(
           "flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] transition active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
           groupActive
@@ -177,6 +178,8 @@ function NavGroup({
       </button>
 
       <div
+        id={`nav-group-${group.title.toLowerCase().replace(/\s+/g, "-")}`}
+        role="region"
         className={cn(
           "grid transition-[grid-template-rows] duration-200",
           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",

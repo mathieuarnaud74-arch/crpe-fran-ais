@@ -42,6 +42,12 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "CRPE Français — Révise le français pour le concours",
+    description:
+      "Exercices corrigés, fiches de révision et diagnostic personnalisé pour le CRPE.",
+  },
 };
 
 export const viewport: Viewport = {

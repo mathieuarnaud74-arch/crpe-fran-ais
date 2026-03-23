@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 import { ChevronDown } from "lucide-react";
 
@@ -61,6 +61,7 @@ export function CollapsiblePanel({
   className?: string;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const contentId = useId();
   const t = TONE[tone];
 
   return (
@@ -72,6 +73,7 @@ export function CollapsiblePanel({
           onClick={() => setOpen((prev) => !prev)}
           className="flex flex-1 items-start gap-3 text-left"
           aria-expanded={open}
+          aria-controls={contentId}
         >
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-2.5">
@@ -97,7 +99,7 @@ export function CollapsiblePanel({
         {action ? <div className="shrink-0">{action}</div> : null}
       </div>
 
-      {open ? <div className="bg-card px-4 py-4 sm:px-6 sm:py-6">{children}</div> : null}
+      {open ? <div id={contentId} role="region" className="bg-card px-4 py-4 sm:px-6 sm:py-6">{children}</div> : null}
     </div>
   );
 }

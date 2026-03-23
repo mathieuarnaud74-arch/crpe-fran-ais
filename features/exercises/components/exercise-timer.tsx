@@ -66,7 +66,8 @@ export function ExerciseTimer({
                 remainingTime <= 10 && "animate-pulse",
               )}
               style={{ color }}
-              aria-live="off"
+              aria-live="polite"
+              aria-atomic="true"
               aria-label={`${remainingTime} secondes restantes`}
             >
               {remainingTime}

@@ -1,6 +1,19 @@
+import type { Metadata } from "next";
+
 import { getOptionalUser } from "@/features/auth/server/guards";
 import { HomepageRenderer } from "@/features/homepage/components/renderer";
 import { getHomepageForStage } from "@/features/homepage/server/queries";
+
+export const metadata: Metadata = {
+  title: "CRPE Français — Révise efficacement le concours professeur des écoles",
+  description:
+    "Exercices corrigés, fiches de révision et diagnostic personnalisé pour préparer l'épreuve de français du CRPE. Gratuit pour commencer.",
+  openGraph: {
+    title: "CRPE Français — Révise efficacement le concours",
+    description:
+      "Exercices corrigés, fiches de révision et diagnostic personnalisé pour préparer l'épreuve de français du CRPE.",
+  },
+};
 
 export default async function HomePage() {
   const [user, homepage] = await Promise.all([

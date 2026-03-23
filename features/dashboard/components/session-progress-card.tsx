@@ -22,7 +22,7 @@ function formatSessionMeta(session: DashboardSessionProgress) {
 
 export function SessionProgressCard({ session, compact = false }: SessionProgressCardProps) {
   return (
-    <article className="rounded-[1.25rem] border border-border bg-paper p-4 shadow-subtle sm:rounded-[1.5rem] sm:p-5">
+    <article className="rounded-[1.25rem] border border-border bg-paper p-4 shadow-subtle transition-shadow duration-200 hover:shadow-elevated sm:rounded-[1.5rem] sm:p-5">
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="space-y-3">
           <div className="flex flex-wrap items-center gap-2">
@@ -54,7 +54,7 @@ export function SessionProgressCard({ session, compact = false }: SessionProgres
           <p>
             {session.answeredQuestions}/{session.questionCount} question
             {session.questionCount > 1 ? "s" : ""} traitée
-            {session.answeredQuestions > 1 ? "s" : ""}
+            {session.questionCount > 1 ? "s" : ""}
           </p>
         ) : null}
         {session.status === "a_revoir" && session.correctRate !== null ? (

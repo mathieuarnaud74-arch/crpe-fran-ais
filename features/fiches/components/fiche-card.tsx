@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Check, ChevronRight, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import type { Fiche } from "@/features/fiches/types";
 
 export const DOMAINE_LABELS: Record<string, string> = {
@@ -34,14 +35,26 @@ export function FicheRow({ fiche, completed }: { fiche: Fiche; completed?: boole
   return (
     <Link
       href={`/fiches/${fiche.slug}`}
-      className="group flex items-center gap-2.5 py-1.5 transition-colors"
+      className={cn(
+        "group flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 transition-colors",
+        completed
+          ? "bg-successBg/60"
+          : "hover:bg-paper",
+      )}
     >
       {completed ? (
-        <Check className="h-3.5 w-3.5 shrink-0 text-pine" aria-label="Lue" />
+        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-pine/15">
+          <Check className="h-3 w-3 text-pine" strokeWidth={3} aria-label="Lue" />
+        </span>
       ) : (
-        <ChevronRight className="h-3.5 w-3.5 shrink-0 -translate-x-0.5 text-transparent transition-all group-hover:translate-x-0 group-hover:text-accent" aria-hidden="true" />
+        <span className="flex h-5 w-5 shrink-0 items-center justify-center">
+          <ChevronRight className="h-3.5 w-3.5 -translate-x-0.5 text-transparent transition-all group-hover:translate-x-0 group-hover:text-accent" aria-hidden="true" />
+        </span>
       )}
-      <span className="font-serif text-[1.08rem] font-medium leading-snug text-ink transition-colors group-hover:text-accent">
+      <span className={cn(
+        "font-serif text-[1.08rem] font-medium leading-snug transition-colors group-hover:text-accent",
+        completed ? "text-pine/80" : "text-ink",
+      )}>
         {fiche.title}
       </span>
       {fiche.accessTier === "premium" && (

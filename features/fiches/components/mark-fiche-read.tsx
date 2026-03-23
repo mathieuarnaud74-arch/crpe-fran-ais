@@ -9,7 +9,11 @@ export function MarkFicheRead({ slug }: { slug: string }) {
   useEffect(() => {
     if (called.current) return;
     called.current = true;
-    markFicheReadAction(slug);
+
+    markFicheReadAction(slug).catch(() => {
+      // Reset so a re-render can retry
+      called.current = false;
+    });
   }, [slug]);
 
   return null;

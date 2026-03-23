@@ -61,6 +61,11 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
     "rgba(34, 197, 94, 0.15)",
   ]);
 
+  // Reset x position when question changes to prevent stale drag offset
+  useEffect(() => {
+    x.set(0);
+  }, [currentIndex, x]);
+
   const handleSwipe = useCallback(
     (answer: "true" | "false") => {
       if (!currentQuestion || completed || isProcessingRef.current) return;
@@ -280,8 +285,8 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
                   handleSwipe("false");
                 }
               }}
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
+              initial={{ scale: 0.95, opacity: 0, x: 0 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
               exit={{ x: lastSwipeDirection === "right" ? 300 : -300, opacity: 0, rotate: lastSwipeDirection === "right" ? 15 : -15 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="w-full max-w-lg cursor-grab rounded-panel border border-border bg-card p-8 shadow-elevated active:cursor-grabbing"
@@ -306,6 +311,7 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
           variant="destructive"
           onClick={() => handleSwipe("false")}
           className="w-32"
+          aria-label="Répondre Faux"
         >
           Faux
         </Button>
@@ -313,6 +319,7 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
           type="button"
           onClick={() => handleSwipe("true")}
           className="w-32 bg-pine text-white hover:bg-pine/90"
+          aria-label="Répondre Vrai"
         >
           Vrai
         </Button>

@@ -887,10 +887,16 @@ export function ExercisePlayer({
                 <Textarea
                   value={draftAnswer}
                   onChange={(event) => setDraftAnswer(event.target.value)}
+                  onKeyDown={(e) => {
+                    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                      e.preventDefault();
+                      if (draftAnswer.trim()) submitCurrentQuestion();
+                    }
+                  }}
                   disabled={Boolean(disabledReason) || Boolean(currentResult)}
                   rows={4}
                   className="leading-7"
-                  placeholder={"Saisissez votre r\u00e9ponse"}
+                  placeholder={"Saisissez votre r\u00e9ponse (Ctrl+Entr\u00e9e pour valider)"}
                 />
                 {validationHint ? (
                   <p className="text-xs leading-6 text-muted">{validationHint}</p>
