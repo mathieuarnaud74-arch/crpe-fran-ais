@@ -85,6 +85,7 @@ export const benefitsSectionPropsSchema = z.object({
         eyebrow: shortTextSchema,
         title: shortTextSchema,
         description: richTextSchema,
+        stat: shortTextSchema.optional(),
       }),
     )
     .min(1)

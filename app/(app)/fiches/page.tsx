@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
@@ -10,8 +11,11 @@ export const metadata: Metadata = {
   description: "Fiches synthétiques pour réviser le CRPE Français.",
 };
 import { requireUser } from "@/features/auth/server/guards";
+import { isPremiumUser } from "@/features/billing/server/queries";
 import { getAllFiches } from "@/features/fiches/lib/get-fiche";
-import { getCompletedFicheSlugs } from "@/features/fiches/server/queries";
+import { getCompletedFicheSlugs, getFicheReadsCountToday } from "@/features/fiches/server/queries";
+import { canReadFiche, getDailyRemainingFicheQuota } from "@/lib/freemium";
+import { env } from "@/lib/env";
 import type { FicheModel } from "@/features/fiches/types";
 
 type SearchParams = Promise<{
@@ -25,8 +29,17 @@ export default async function FichesPage({
   searchParams: SearchParams;
 }) {
   const [{ domaine, model }, user] = await Promise.all([searchParams, requireUser()]);
-  const allFiches = getAllFiches();
-  const completedSlugs = await getCompletedFicheSlugs(user.id);
+  const [premium, allFiches] = await Promise.all([
+    isPremiumUser(user.id),
+    Promise.resolve(getAllFiches()),
+  ]);
+  const [completedSlugs, ficheReadsToday] = await Promise.all([
+    getCompletedFicheSlugs(user.id),
+    getFicheReadsCountToday(user.id),
+  ]);
+
+  const remainingFiches = getDailyRemainingFicheQuota(ficheReadsToday, premium);
+  const quotaReached = !premium && !canReadFiche(ficheReadsToday, premium);
 
   const filtered = allFiches.filter((f) => {
     if (domaine && f.domaine !== domaine) return false;
@@ -48,6 +61,17 @@ export default async function FichesPage({
   const groupedDomains = domaine
     ? [domaine]
     : [...new Set(filtered.map((f) => f.domaine))];
+
+  function getFicheLockState(fiche: { accessTier: string; slug: string }) {
+    const isCompleted = completedSlugs.has(fiche.slug);
+    if (fiche.accessTier === "premium" && !premium) {
+      return { locked: true, lockReason: "premium" as const };
+    }
+    if (quotaReached && !isCompleted) {
+      return { locked: true, lockReason: "quota" as const };
+    }
+    return { locked: false, lockReason: undefined };
+  }
 
   return (
     <div className="space-y-8">
@@ -71,6 +95,33 @@ export default async function FichesPage({
           </p>
         </div>
       </Panel>
+
+      {!premium && (
+        <Panel className="border-border bg-secondary">
+          {remainingFiches > 0 ? (
+            <p className="text-sm leading-7 text-ink">
+              Il vous reste{" "}
+              <span className="font-semibold">
+                {remainingFiches} fiche{remainingFiches > 1 ? "s" : ""} gratuite{remainingFiches > 1 ? "s" : ""}
+              </span>{" "}
+              aujourd&apos;hui —{" "}
+              <Link href="/abonnement" className="underline underline-offset-2">
+                accès illimité dès 0,99 €
+              </Link>
+              .
+            </p>
+          ) : (
+            <p className="text-sm leading-7 text-ink">
+              Quota de fiches atteint ({env.freeDailyFicheLimit} par jour). Les fiches déjà lues restent
+              accessibles. Votre quota se réinitialise demain matin —{" "}
+              <Link href="/abonnement" className="font-semibold underline underline-offset-2">
+                accès illimité dès 0,99 €
+              </Link>
+              .
+            </p>
+          )}
+        </Panel>
+      )}
 
       <div className="space-y-4">
         <div>
@@ -152,9 +203,18 @@ export default async function FichesPage({
                   </span>
                 </div>
                 <div className="grid gap-x-8 gap-y-0 sm:grid-cols-2">
-                  {fiches.map((fiche) => (
-                    <FicheRow key={fiche.id} fiche={fiche} completed={completedSlugs.has(fiche.slug)} />
-                  ))}
+                  {fiches.map((fiche) => {
+                    const { locked, lockReason } = getFicheLockState(fiche);
+                    return (
+                      <FicheRow
+                        key={fiche.id}
+                        fiche={fiche}
+                        completed={completedSlugs.has(fiche.slug)}
+                        locked={locked}
+                        lockReason={lockReason}
+                      />
+                    );
+                  })}
                 </div>
               </section>
             );

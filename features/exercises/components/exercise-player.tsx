@@ -202,11 +202,7 @@ export function ExercisePlayer({
   function goToNextQuestion() {
     if (Date.now() - lastSubmitTime.current < 600) return;
     if (currentIndex < session.questions.length - 1) {
-      let nextIdx = currentIndex + 1;
-      const unansweredAfter = session.questions.findIndex(
-        (q, i) => i > currentIndex && !results[q.id],
-      );
-      if (unansweredAfter !== -1) nextIdx = unansweredAfter;
+      const nextIdx = currentIndex + 1;
       dispatch({
         type: "GO_TO_NEXT",
         nextIndex: nextIdx,
@@ -224,13 +220,7 @@ export function ExercisePlayer({
 
   function goToPreviousQuestion() {
     if (currentIndex > 0) {
-      let prevIdx = currentIndex - 1;
-      for (let i = currentIndex - 1; i >= 0; i--) {
-        if (results[session.questions[i].id]) {
-          prevIdx = i;
-          break;
-        }
-      }
+      const prevIdx = currentIndex - 1;
       dispatch({
         type: "GO_TO_PREVIOUS",
         prevIndex: prevIdx,

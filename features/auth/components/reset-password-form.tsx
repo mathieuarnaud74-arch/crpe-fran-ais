@@ -46,7 +46,6 @@ export function ResetPasswordForm() {
     setMessage("Mot de passe modifié avec succès. Redirection...");
     setTimeout(() => {
       router.push("/tableau-de-bord");
-      router.refresh();
     }, 2000);
   }
 

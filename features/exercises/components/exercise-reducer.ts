@@ -91,6 +91,10 @@ export function exerciseReducer(state: ExerciseState, action: ExerciseAction): E
         consecutiveCorrect: 0,
         showConfetti: false,
         streakCelebration: null,
+        sessionXp: 0,
+        lastXpEarned: 0,
+        xpTrigger: 0,
+        runningXp: state.runningXp,
       };
     case "SET_DRAFT":
       return { ...state, draftAnswer: action.value };

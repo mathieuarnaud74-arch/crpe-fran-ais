@@ -83,7 +83,7 @@ export default async function OfferPage() {
             Commencez gratuitement, passez au premium si vous voulez aller plus vite
           </h1>
           <p className="mt-4 text-lg leading-8 text-muted">
-            Le compte gratuit donne accès au diagnostic et à 20 questions corrigées par jour.
+            Le compte gratuit donne accès au diagnostic et à 30 questions corrigées par jour.
             Le premium débloque l&apos;accès illimité, les séries complètes et un travail plus régulier.
           </p>
           <p className="mt-2 text-sm text-muted">
@@ -102,7 +102,7 @@ export default async function OfferPage() {
               Pour démarrer, obtenir votre profil de départ et travailler un peu chaque jour sans engagement.
             </p>
             <ul className="mt-5 space-y-2">
-              {["Diagnostic initial gratuit", "20 questions corrigées par jour", "Corrections et explications immédiates"].map((feature) => (
+              {["Diagnostic initial gratuit", "30 questions corrigées par jour", "Corrections et explications immédiates"].map((feature) => (
                 <li key={feature} className="flex items-start gap-2 text-sm text-muted">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accentSecondaryDark" />
                   {feature}

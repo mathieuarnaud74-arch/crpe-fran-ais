@@ -129,7 +129,7 @@ export default async function ExerciseDetailPage({
             </p>
           ) : (
             <p className="text-sm leading-7 text-ink">
-              Séance gratuite du jour terminée — 20 questions corrigées. Votre quota se
+              Séance gratuite du jour terminée — {env.freeDailyQuestionLimit} questions corrigées. Votre quota se
               réinitialise demain matin. Pour continuer maintenant :{" "}
               <Link href="/abonnement" className="font-semibold underline underline-offset-2">
                 accès 24 h pour 0,99 €

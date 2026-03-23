@@ -1,7 +1,8 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import type { DiagnosticResult, DiagnosticSubdomainResult } from "@/features/diagnostic/types";
+import type { DiagnosticResult, DiagnosticSubdomainResult, DiagnosticSubject } from "@/features/diagnostic/types";
 
 const SUBDOMAIN_HREFS: Record<string, string> = {
+  // French
   grammaire: "/francais/grammaire",
   orthographe: "/francais/orthographe",
   conjugaison: "/francais/grammaire?subdomain=conjugaison",
@@ -9,6 +10,12 @@ const SUBDOMAIN_HREFS: Record<string, string> = {
   analyse_langue: "/francais/analyse-de-la-langue",
   comprehension_texte: "/francais/analyse-de-la-langue?subdomain=comprehension_texte",
   didactique_francais: "/francais/didactique-du-francais",
+  // Math
+  nombres_calcul: "/maths/nombres-et-calcul",
+  geometrie: "/maths/geometrie",
+  grandeurs_mesures: "/maths/grandeurs-et-mesures",
+  organisation_donnees: "/maths/organisation-de-donnees",
+  didactique_maths: "/maths/didactique-des-maths",
 };
 
 function computeMastery(correct: number, total: number): DiagnosticSubdomainResult["mastery"] {
@@ -37,7 +44,7 @@ function normalizeSubdomains(raw: unknown): DiagnosticSubdomainResult[] {
         return {
           key,
           label,
-          href: SUBDOMAIN_HREFS[key] ?? `/francais/${key}`,
+          href: SUBDOMAIN_HREFS[key] ?? `/${key}`,
           correct,
           total,
           mastery,
@@ -50,23 +57,55 @@ function normalizeSubdomains(raw: unknown): DiagnosticSubdomainResult[] {
   return [];
 }
 
-export async function getDiagnosticResult(userId: string): Promise<DiagnosticResult | null> {
+function rowToResult(row: {
+  subject?: string;
+  completed_at: string;
+  score: number;
+  total: number;
+  profile_label: string;
+  profile_detail: string;
+  subdomains: unknown;
+}): DiagnosticResult {
+  return {
+    subject: (row.subject ?? "francais") as DiagnosticSubject,
+    completedAt: row.completed_at,
+    score: row.score,
+    total: row.total,
+    profileLabel: row.profile_label,
+    profileDetail: row.profile_detail,
+    subdomains: normalizeSubdomains(row.subdomains),
+  };
+}
+
+export async function getDiagnosticResult(
+  userId: string,
+  subject: DiagnosticSubject = "francais",
+): Promise<DiagnosticResult | null> {
   const supabase = await createSupabaseServerClient();
 
   const { data } = await supabase
     .from("diagnostic_results")
-    .select("completed_at, score, total, profile_label, profile_detail, subdomains")
+    .select("subject, completed_at, score, total, profile_label, profile_detail, subdomains")
     .eq("user_id", userId)
+    .eq("subject", subject)
     .maybeSingle();
 
   if (!data) return null;
 
-  return {
-    completedAt: data.completed_at,
-    score: data.score,
-    total: data.total,
-    profileLabel: data.profile_label,
-    profileDetail: data.profile_detail,
-    subdomains: normalizeSubdomains(data.subdomains),
-  };
+  return rowToResult(data);
+}
+
+export async function getAllDiagnosticResults(
+  userId: string,
+): Promise<DiagnosticResult[]> {
+  const supabase = await createSupabaseServerClient();
+
+  const { data } = await supabase
+    .from("diagnostic_results")
+    .select("subject, completed_at, score, total, profile_label, profile_detail, subdomains")
+    .eq("user_id", userId);
+
+  if (!data) return [];
+
+  return data.map(rowToResult);
 }

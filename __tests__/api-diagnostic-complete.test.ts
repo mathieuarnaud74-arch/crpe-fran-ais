@@ -26,6 +26,7 @@ function makeRequest(body: unknown): NextRequest {
 
 function makeValidBody() {
   return {
+    subject: "francais",
     score: 15,
     total: 20,
     profileLabel: "Bon niveau",

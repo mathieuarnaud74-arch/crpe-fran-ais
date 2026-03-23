@@ -7,20 +7,64 @@ import { toast } from "sonner";
 import {
   buildDiagnosticSession,
   FRENCH_DIAGNOSTIC_SESSION_SIZE,
-  type FrenchDiagnosticQuestion,
-  type FrenchDiagnosticSubdomainKey,
 } from "@/content/french-diagnostic-questions";
-import { ArrowRight, BookOpen, Clock, ShieldCheck, Target } from "lucide-react";
+import {
+  buildMathDiagnosticSession,
+  MATH_DIAGNOSTIC_SESSION_SIZE,
+} from "@/content/math-diagnostic-questions";
+import { ArrowRight, BookOpen, Calculator, Clock, Languages, ShieldCheck, Target } from "lucide-react";
 import { Mocca } from "@/components/mascot/mocca";
 import { Badge } from "@/components/ui/badge";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { cn } from "@/lib/utils";
+import type { DiagnosticQuestion, DiagnosticSubject } from "@/features/diagnostic/types";
 
 import { DiagnosticRadarChart } from "./radar-chart";
 
+// ── Subject configuration ───────────────────────────────────────────
+
+type SubjectConfig = {
+  key: DiagnosticSubject;
+  label: string;
+  shortLabel: string;
+  sessionSize: number;
+  estimatedMinutes: number;
+  buildSession: () => DiagnosticQuestion[];
+  moduleHref: string;
+  moduleLabel: string;
+  description: string;
+};
+
+const SUBJECT_CONFIGS: Record<DiagnosticSubject, SubjectConfig> = {
+  francais: {
+    key: "francais",
+    label: "Français",
+    shortLabel: "CRPE Français",
+    sessionSize: FRENCH_DIAGNOSTIC_SESSION_SIZE,
+    estimatedMinutes: 15,
+    buildSession: buildDiagnosticSession as () => DiagnosticQuestion[],
+    moduleHref: "/francais",
+    moduleLabel: "Explorer le module Français",
+    description: "Grammaire, orthographe, conjugaison, lexique, analyse de la langue, compréhension et didactique.",
+  },
+  maths: {
+    key: "maths",
+    label: "Mathématiques",
+    shortLabel: "CRPE Maths",
+    sessionSize: MATH_DIAGNOSTIC_SESSION_SIZE,
+    estimatedMinutes: 12,
+    buildSession: buildMathDiagnosticSession as () => DiagnosticQuestion[],
+    moduleHref: "/maths",
+    moduleLabel: "Explorer le module Maths",
+    description: "Nombres et calcul, géométrie, grandeurs et mesures, organisation de données et didactique.",
+  },
+};
+
+// ── Helpers ─────────────────────────────────────────────────────────
+
 type SubdomainSummary = {
-  key: FrenchDiagnosticSubdomainKey;
+  key: string;
   label: string;
   href: string;
   correct: number;
@@ -92,21 +136,27 @@ function getMasteryTone(mastery: SubdomainSummary["mastery"]) {
   return "warning" as const;
 }
 
-export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?: boolean }) {
-  const [questions] = useState<FrenchDiagnosticQuestion[]>(() =>
-    buildDiagnosticSession(),
-  );
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>(() =>
-    Array(FRENCH_DIAGNOSTIC_SESSION_SIZE).fill(null),
-  );
-  const [phase, setPhase] = useState<'intro' | 'passation' | 'results'>('intro');
+// ── Component ───────────────────────────────────────────────────────
 
+export function DiagnosticClient({
+  isAuthenticated = true,
+  completedSubjects = [],
+}: {
+  isAuthenticated?: boolean;
+  completedSubjects?: DiagnosticSubject[];
+}) {
+  const [subject, setSubject] = useState<DiagnosticSubject | null>(null);
+  const [questions, setQuestions] = useState<DiagnosticQuestion[]>([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<(number | null)[]>([]);
+  const [phase, setPhase] = useState<"select" | "intro" | "passation" | "results">("select");
+
+  const config = subject ? SUBJECT_CONFIGS[subject] : null;
   const question = questions[currentQuestion];
-  const selectedIndex = answers[currentQuestion];
+  const selectedIndex = question ? answers[currentQuestion] : null;
   const hasAnswered = selectedIndex !== null;
   const isLast = currentQuestion === questions.length - 1;
-  const isCorrect = selectedIndex === question.correctIndex;
+  const isCorrect = question ? selectedIndex === question.correctIndex : false;
   const score = answers.reduce<number>((total, answer, index) => {
     if (answer === questions[index]?.correctIndex) {
       return total + 1;
@@ -114,7 +164,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
 
     return total;
   }, 0);
-  const profile = getProfileLabel(score, questions.length);
+  const profile = questions.length > 0 ? getProfileLabel(score, questions.length) : { label: "", detail: "" };
 
   const summaries = questions.reduce<SubdomainSummary[]>((acc, item, index) => {
     const existing = acc.find((entry) => entry.key === item.subdomain);
@@ -154,9 +204,18 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
       return order[left.mastery] - order[right.mastery];
     });
 
-  const strengths = subdomainSummaries.filter((item) => item.mastery === "solide");
-  const priorities = subdomainSummaries.filter((item) => item.mastery !== "solide");
-  const progressValue = ((currentQuestion + (hasAnswered ? 1 : 0)) / questions.length) * 100;
+  const progressValue = questions.length > 0
+    ? ((currentQuestion + (hasAnswered ? 1 : 0)) / questions.length) * 100
+    : 0;
+
+  function handleSelectSubject(s: DiagnosticSubject) {
+    const cfg = SUBJECT_CONFIGS[s];
+    setSubject(s);
+    setQuestions(cfg.buildSession());
+    setAnswers(Array(cfg.sessionSize).fill(null));
+    setCurrentQuestion(0);
+    setPhase("intro");
+  }
 
   function handleSelect(index: number) {
     if (hasAnswered) {
@@ -170,9 +229,10 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
 
   async function handleNext() {
     if (isLast) {
-      setPhase('results');
+      setPhase("results");
 
       const apiPayload = {
+        subject,
         completedAt: new Date().toISOString(),
         score,
         total: questions.length,
@@ -201,7 +261,8 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
         }
       } else {
         try {
-          localStorage.setItem("guest_diagnostic_result", JSON.stringify(apiPayload));
+          const storageKey = subject === "maths" ? "guest_diagnostic_result_maths" : "guest_diagnostic_result";
+          localStorage.setItem(storageKey, JSON.stringify(apiPayload));
         } catch {
           // localStorage indisponible — pas critique
         }
@@ -213,7 +274,83 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
     setCurrentQuestion((value) => value + 1);
   }
 
-  if (phase === 'results') {
+  const otherSubject: DiagnosticSubject = subject === "maths" ? "francais" : "maths";
+  const otherConfig = SUBJECT_CONFIGS[otherSubject];
+  const otherAlreadyDone = completedSubjects.includes(otherSubject);
+
+  // ── Phase : sélection de la matière ─────────────────────────────
+
+  if (phase === "select") {
+    return (
+      <div className="space-y-6">
+        <Panel>
+          <div className="mx-auto max-w-2xl text-center">
+            <Badge tone="accentSecondary">Diagnostic gratuit</Badge>
+            <h1 className="mt-5 font-sans text-3xl font-semibold text-ink sm:text-4xl">
+              Identifiez vos lacunes avant de réviser
+            </h1>
+            <p className="mt-4 text-sm leading-7 text-muted">
+              Choisissez une matière pour commencer. Chaque diagnostic dure entre 12 et 15 minutes
+              et vous donne un profil personnalisé avec vos priorités de révision.
+            </p>
+          </div>
+        </Panel>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          {(["francais", "maths"] as const).map((s) => {
+            const cfg = SUBJECT_CONFIGS[s];
+            const isDone = completedSubjects.includes(s);
+            const Icon = s === "francais" ? Languages : Calculator;
+
+            return (
+              <button
+                key={s}
+                onClick={() => handleSelectSubject(s)}
+                className={cn(
+                  "group relative rounded-[1.5rem] border p-6 text-left transition-all hover:shadow-elevated",
+                  isDone
+                    ? "border-accent/30 bg-accent/5"
+                    : "border-border bg-card hover:border-accent",
+                )}
+              >
+                {isDone && (
+                  <Badge tone="accent" size="sm" className="absolute right-4 top-4">
+                    Terminé
+                  </Badge>
+                )}
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary">
+                    <Icon className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <p className="font-sans text-lg font-semibold text-ink">{cfg.label}</p>
+                    <p className="text-xs text-muted">
+                      {cfg.sessionSize} questions · ~{cfg.estimatedMinutes} min
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  {cfg.description}
+                </p>
+                <div className="mt-4 flex items-center gap-1 text-sm font-medium text-accent">
+                  {isDone ? "Refaire le diagnostic" : "Commencer"}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        <p className="text-center text-xs text-muted">
+          Aucune inscription requise. Vos résultats s&apos;affichent immédiatement à la fin.
+        </p>
+      </div>
+    );
+  }
+
+  // ── Phase : résultats ───────────────────────────────────────────
+
+  if (phase === "results" && config) {
     return (
       <div className="space-y-8">
         <Panel>
@@ -230,7 +367,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
               className="hidden shrink-0 sm:block"
             />
             <div className="space-y-4">
-              <Badge tone="accentSecondary">Résultats</Badge>
+              <Badge tone="accentSecondary">Résultats — {config.label}</Badge>
               <h1 className="font-sans text-4xl font-semibold text-ink">Votre profil de départ</h1>
               <p className="max-w-3xl text-sm leading-7 text-muted">
                 Vous avez réussi{" "}
@@ -314,9 +451,17 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
           <Panel>
             <div className="flex flex-wrap gap-3">
               <ButtonLink href="/tableau-de-bord">Voir mon tableau de bord</ButtonLink>
-              <ButtonLink href="/francais" variant="secondary">
-                Explorer le module Français
+              <ButtonLink href={config.moduleHref} variant="secondary">
+                {config.moduleLabel}
               </ButtonLink>
+              {!otherAlreadyDone && (
+                <Button
+                  variant="secondary"
+                  onClick={() => handleSelectSubject(otherSubject)}
+                >
+                  Passer le diagnostic {otherConfig.label}
+                </Button>
+              )}
             </div>
           </Panel>
         ) : (
@@ -338,6 +483,14 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
               <ButtonLink href="/connexion" variant="secondary">
                 J&apos;ai déjà un compte
               </ButtonLink>
+              {!otherAlreadyDone && (
+                <Button
+                  variant="secondary"
+                  onClick={() => handleSelectSubject(otherSubject)}
+                >
+                  Passer le diagnostic {otherConfig.label}
+                </Button>
+              )}
             </div>
           </Panel>
         )}
@@ -345,17 +498,19 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
     );
   }
 
-  if (phase === 'intro') {
+  // ── Phase : intro ───────────────────────────────────────────────
+
+  if (phase === "intro" && config) {
     return (
       <div className="space-y-6">
         <Panel>
           <div className="mx-auto max-w-2xl">
-            <Badge tone="accentSecondary">Diagnostic gratuit</Badge>
+            <Badge tone="accentSecondary">Diagnostic — {config.label}</Badge>
             <h1 className="mt-5 font-sans text-3xl font-semibold text-ink sm:text-4xl">
-              Identifiez vos lacunes en 15 minutes
+              Identifiez vos lacunes en {config.estimatedMinutes} minutes
             </h1>
             <p className="mt-4 text-sm leading-7 text-muted">
-              {FRENCH_DIAGNOSTIC_SESSION_SIZE} questions couvrant les sous-domaines du CRPE Français.
+              {config.sessionSize} questions couvrant les sous-domaines du CRPE {config.label}.
               À la fin, vous obtenez un profil personnalisé avec vos priorités de révision — pas une note globale.
             </p>
 
@@ -363,14 +518,14 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
               <div className="flex items-center gap-3 rounded-[1.25rem] border border-border bg-paper px-4 py-3">
                 <BookOpen className="h-5 w-5 shrink-0 text-accentSecondaryDark" />
                 <div>
-                  <p className="text-sm font-semibold text-ink">{FRENCH_DIAGNOSTIC_SESSION_SIZE} questions</p>
+                  <p className="text-sm font-semibold text-ink">{config.sessionSize} questions</p>
                   <p className="text-xs text-muted">Niveau CRPE, tous sous-domaines</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-[1.25rem] border border-border bg-paper px-4 py-3">
                 <Clock className="h-5 w-5 shrink-0 text-accentSecondaryDark" />
                 <div>
-                  <p className="text-sm font-semibold text-ink">~15 minutes</p>
+                  <p className="text-sm font-semibold text-ink">~{config.estimatedMinutes} minutes</p>
                   <p className="text-xs text-muted">Durée estimée de la passation</p>
                 </div>
               </div>
@@ -390,10 +545,19 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
               </div>
             </div>
 
-            <div className="mt-8">
-              <Button onClick={() => setPhase('passation')} size="lg">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Button onClick={() => setPhase("passation")} size="lg">
                 Commencer le diagnostic
                 <ArrowRight className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setSubject(null);
+                  setPhase("select");
+                }}
+              >
+                Changer de matière
               </Button>
             </div>
 
@@ -406,16 +570,21 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
     );
   }
 
+  // ── Phase : passation ───────────────────────────────────────────
+
+  if (!question || !config) return null;
+
   return (
     <div className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-paper">
       <div className="sticky top-0 z-10 border-b border-border/50 bg-paper/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-3">
-          <span className="font-sans text-lg font-semibold text-ink">CRPE Français</span>
+          <span className="font-sans text-lg font-semibold text-ink">{config.shortLabel}</span>
           <button
             onClick={() => {
-              setPhase('intro');
+              setPhase("select");
+              setSubject(null);
               setCurrentQuestion(0);
-              setAnswers(Array(FRENCH_DIAGNOSTIC_SESSION_SIZE).fill(null));
+              setAnswers([]);
             }}
             className="rounded-full px-4 py-2 text-sm text-muted transition-colors hover:bg-secondary hover:text-ink"
           >

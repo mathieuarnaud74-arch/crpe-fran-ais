@@ -24,10 +24,10 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     type: "hero",
     visible: true,
     props: {
-      badgeText: "CRPE Français 2026",
-      title: "Préparez le français du CRPE avec méthode.",
+      badgeText: "CRPE 2026 · Français & Maths",
+      title: "Préparez le CRPE avec méthode.",
       description:
-        "Diagnostic gratuit pour cibler vos lacunes, séries d'exercices par priorité et corrections détaillées avec la règle applicable.",
+        "Français et mathématiques réunis. Diagnostic gratuit, séries d'exercices par priorité et corrections détaillées avec la règle applicable.",
       primaryCtaLabel: "Tester mon niveau gratuitement",
       primaryCtaHrefGuest: "/diagnostic",
       primaryCtaHrefAuth: "/diagnostic",
@@ -65,28 +65,38 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     type: "benefits",
     visible: true,
     props: {
-      eyebrow: "Comment ça marche",
-      title: "Trois étapes, pas de superflu.",
+      eyebrow: "La preuve par les chiffres",
+      title: "Une plateforme taillée pour le CRPE 2026.",
       description:
-        "Un parcours en trois temps pour progresser vite sur les points qui comptent le jour du concours.",
+        "Français et mathématiques réunis. Des contenus alignés sur le programme officiel, conçus pour maximiser vos points le jour J.",
       cards: [
         {
-          eyebrow: "01 — Diagnostic",
-          title: "Identifiez vos lacunes.",
+          stat: "216+",
+          eyebrow: "Fiches de révision",
+          title: "Français & maths.",
           description:
-            `${FRENCH_DIAGNOSTIC_SESSION_SIZE} questions couvrent grammaire, orthographe, conjugaison, lexique et analyse. Vous repartez avec un profil clair.`,
+            "114 fiches en français, 102 en maths. Sprint, référence, opératoire — chaque fiche cible un point précis du programme.",
         },
         {
-          eyebrow: "02 — Séries ciblées",
-          title: "Révisez par priorité.",
+          stat: "12",
+          eyebrow: "Sous-domaines couverts",
+          title: "100 % du programme.",
           description:
-            "Les séries remontent selon votre profil : vous travaillez d'abord ce qui rapporte le plus de points.",
+            "Grammaire, orthographe, conjugaison, lexique, géométrie, calcul, grandeurs… Rien n'est laissé de côté.",
         },
         {
-          eyebrow: "03 — Corrections",
-          title: "Comprenez chaque erreur.",
+          stat: "3 300+",
+          eyebrow: "Exercices · 360+ séries",
+          title: "De quoi s'entraîner vraiment.",
           description:
-            "Chaque correction cite la règle applicable. Vous ne voyez pas juste un verdict, vous retenez le raisonnement.",
+            "QCM, vrai/faux, tri, surlignage, analyse… 8 types d'exercices répartis en séries courtes et ciblées sur chaque point du programme.",
+        },
+        {
+          stat: "117",
+          eyebrow: "Badges · XP · streaks",
+          title: "Progression motivante.",
+          description:
+            "Gagnez de l'XP, débloquez des badges de maîtrise, maintenez votre streak quotidien. Un système qui vous garde engagé sur la durée.",
         },
       ],
       steps: [],

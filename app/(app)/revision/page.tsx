@@ -57,11 +57,11 @@ export default async function RevisionPage() {
     );
   }
 
-  // Fetch full exercise records for due items
+  // Fetch full exercise records for due items (filter out premium for free users)
   const exercises: ExerciseRecord[] = [];
   for (const item of dueItems) {
     const ex = await getExerciseById(item.exercise_id);
-    if (ex) exercises.push(ex);
+    if (ex && (ex.access_tier === "free" || premium)) exercises.push(ex);
   }
 
   if (exercises.length === 0) {

@@ -73,12 +73,12 @@ export function AuthForm({ mode }: AuthFormProps) {
       try {
         const savedDiagnostic = localStorage.getItem("guest_diagnostic_result");
         if (savedDiagnostic) {
-          await fetch("/api/diagnostic/complete", {
+          const resp = await fetch("/api/diagnostic/complete", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: savedDiagnostic,
           });
-          localStorage.removeItem("guest_diagnostic_result");
+          if (resp.ok) localStorage.removeItem("guest_diagnostic_result");
         }
       } catch {
         // Non critique
@@ -105,19 +105,18 @@ export function AuthForm({ mode }: AuthFormProps) {
     try {
       const savedDiagnostic = localStorage.getItem("guest_diagnostic_result");
       if (savedDiagnostic) {
-        await fetch("/api/diagnostic/complete", {
+        const resp = await fetch("/api/diagnostic/complete", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: savedDiagnostic,
         });
-        localStorage.removeItem("guest_diagnostic_result");
+        if (resp.ok) localStorage.removeItem("guest_diagnostic_result");
       }
     } catch {
       // Non critique — le diagnostic invité n'a pas pu être récupéré
     }
 
     router.push("/tableau-de-bord");
-    router.refresh();
   }
 
   return (

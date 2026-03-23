@@ -203,7 +203,7 @@ export default async function DashboardPage() {
   const [data, mathData, diagnostic, srsDueExercises, srsDueCount] = await Promise.all([
     getDashboardData(user.id, premium, "Francais"),
     getDashboardData(user.id, premium, "Mathematiques"),
-    getDiagnosticResult(user.id),
+    getDiagnosticResult(user.id, "francais"),
     getDueExercises(user.id, 20).catch(() => []),
     getDueCount(user.id).catch(() => 0),
   ]);

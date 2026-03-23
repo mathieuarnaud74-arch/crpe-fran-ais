@@ -191,6 +191,8 @@ function TrustBarSection({ props }: { props: TrustBarSectionProps }) {
 }
 
 function BenefitsSection({ props }: { props: BenefitsSectionProps }) {
+  const hasStats = props.cards.some((card) => card.stat);
+
   return (
     <section id="methode" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:py-20">
       <FadeIn>
@@ -203,7 +205,12 @@ function BenefitsSection({ props }: { props: BenefitsSectionProps }) {
         </div>
       </FadeIn>
 
-      <div className="mt-10 grid gap-5 lg:grid-cols-3">
+      <div
+        className={[
+          "mt-10 grid gap-5",
+          hasStats ? "sm:grid-cols-2 lg:grid-cols-4" : "lg:grid-cols-3",
+        ].join(" ")}
+      >
         {props.cards.map((card, index) => {
           const Icon = benefitIcons[index % benefitIcons.length];
 
@@ -211,13 +218,21 @@ function BenefitsSection({ props }: { props: BenefitsSectionProps }) {
             <FadeIn key={`${card.title}-${index}`} delay={0.06 * index}>
               <Card className="h-full border-white/70 bg-card/90">
                 <CardHeader>
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary text-accentSecondaryDark">
-                    <Icon className="h-5 w-5" />
-                  </div>
+                  {card.stat ? (
+                    <p className="font-serif text-[3.2rem] font-bold leading-none text-accentSecondary">
+                      {card.stat}
+                    </p>
+                  ) : (
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary text-accentSecondaryDark">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                  )}
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
                     {card.eyebrow}
                   </p>
-                  <CardTitle className="text-[1.9rem] leading-tight">{card.title}</CardTitle>
+                  <CardTitle className={hasStats ? "text-[1.4rem] leading-tight" : "text-[1.9rem] leading-tight"}>
+                    {card.title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-sm leading-7">{card.description}</CardDescription>

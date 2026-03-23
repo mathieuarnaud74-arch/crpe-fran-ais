@@ -6,7 +6,8 @@ import { env } from "@/lib/env";
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("next") ?? "/tableau-de-bord";
+  const rawNext = searchParams.get("next") ?? "/tableau-de-bord";
+  const next = rawNext.startsWith("/") ? rawNext : "/tableau-de-bord";
 
   if (code) {
     const response = NextResponse.redirect(new URL(next, request.url));

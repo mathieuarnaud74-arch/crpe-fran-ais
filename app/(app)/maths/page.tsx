@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
@@ -127,7 +128,7 @@ export default async function MathPage() {
                 ? Math.round((domain.masteredSeries / domain.totalSeries) * 100)
                 : 0;
             return (
-              <a
+              <Link
                 key={domain.key}
                 href={domain.href}
                 className={cn(
@@ -186,7 +187,7 @@ export default async function MathPage() {
                 <span className="hidden text-xs font-semibold text-accent md:block md:text-right">
                   Explorer &rarr;
                 </span>
-              </a>
+              </Link>
             );
           })}
         </div>

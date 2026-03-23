@@ -333,10 +333,11 @@ export async function getAttemptsCountToday(userId: string) {
   const supabase = await createSupabaseServerClient();
   const parisDate = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Paris" });
   const noonUtc = new Date(`${parisDate}T12:00:00Z`);
-  const parisHour = parseInt(
-    noonUtc.toLocaleString("en-US", { timeZone: "Europe/Paris", hour: "numeric", hour12: false }),
-    10,
-  );
+  const parisHour =
+    parseInt(
+      noonUtc.toLocaleString("en-US", { timeZone: "Europe/Paris", hour: "numeric", hour12: false }),
+      10,
+    ) % 24;
   const startOfDay = new Date(`${parisDate}T00:00:00Z`);
   startOfDay.setUTCHours(-(parisHour - 12));
 

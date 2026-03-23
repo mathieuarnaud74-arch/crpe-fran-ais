@@ -5,6 +5,7 @@ import { rateLimit } from "@/lib/rate-limit";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 const bodySchema = z.object({
+  subject: z.enum(["francais", "maths"]).default("francais"),
   score: z.number(),
   total: z.number(),
   profileLabel: z.string(),
@@ -57,6 +58,7 @@ export async function POST(request: NextRequest) {
 
     const { error } = await supabase.from("diagnostic_results").insert({
       user_id: user.id,
+      subject: body.subject,
       completed_at: body.completedAt,
       score: body.score,
       total: body.total,

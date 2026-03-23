@@ -31,7 +31,37 @@ const DIFFICULTE_LABELS: Record<string, string> = {
   avance: "Avancé",
 };
 
-export function FicheRow({ fiche, completed }: { fiche: Fiche; completed?: boolean }) {
+type FicheRowProps = {
+  fiche: Fiche;
+  completed?: boolean;
+  locked?: boolean;
+  lockReason?: "premium" | "quota";
+};
+
+export function FicheRow({ fiche, completed, locked, lockReason }: FicheRowProps) {
+  if (locked) {
+    return (
+      <span
+        className="group flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 opacity-55 cursor-default"
+        title={
+          lockReason === "premium"
+            ? "Fiche réservée aux abonnés premium"
+            : "Quota de fiches gratuites atteint pour aujourd'hui"
+        }
+      >
+        <span className="flex h-5 w-5 shrink-0 items-center justify-center">
+          <Lock className="h-3.5 w-3.5 text-muted" aria-label="Verrouillée" />
+        </span>
+        <span className="font-serif text-[1.08rem] font-medium leading-snug text-muted">
+          {fiche.title}
+        </span>
+        {lockReason === "premium" && (
+          <Badge size="sm" tone="accent">Premium</Badge>
+        )}
+      </span>
+    );
+  }
+
   return (
     <Link
       href={`/fiches/${fiche.slug}`}
