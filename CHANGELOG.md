@@ -1,5 +1,42 @@
 # Changelog
 
+## [2026-03-23] — Tests unitaires sur les chemins critiques
+
+- `features/exercises/shared/normalize.ts` — extraction de `normalizeExpectedAnswer` et `normalizeChoices` depuis `features/exercises/server/queries.ts` pour permettre les tests directs
+- `features/exercises/server/queries.ts` — import depuis le nouveau module partagé (pas de changement de comportement)
+- `__tests__/rate-limit.test.ts` — tests du rate limiter in-memory (sliding window, reset, clés indépendantes)
+- `__tests__/daily-streak.test.ts` — tests de `computeDailyStreakUpdate` (consécutif, freeze, reset, première activité) et `isStreakMilestone`
+- `__tests__/billing.test.ts` — tests de `isPremiumUser` (active, trialing, expired, canceled, date invalide)
+- `__tests__/api-diagnostic-complete.test.ts` — tests de la route POST diagnostic (auth, validation Zod, insert, duplicate 23505, rate limit)
+- `__tests__/api-stripe-webhook.test.ts` — tests du webhook Stripe (signature, checkout subscription/payment, subscription updated/deleted, upsert fail)
+- `__tests__/api-stripe-checkout.test.ts` — tests de la route checkout (auth, priceId invalide, happy path, customer existant, rate limit, erreur Stripe)
+- `__tests__/submit-attempt-action.test.ts` — tests de la server action submitAttemptAction (auth, exercice introuvable, premium, quota, QCM correct/incorrect, insert fail, level up, daily streak, revalidatePath virtual/normal, gamification graceful fail)
+- `__tests__/normalize-expected-answer.test.ts` — tests de normalizeExpectedAnswer (vrai_faux, single_choice, text, free_text, categorization, highlight_groups, fallbacks) et normalizeChoices
+
+## [2026-03-23] — Refactor lib/dashboard.ts : découpage en modules
+
+- `lib/dashboard.ts` — supprimé (982 lignes → 7 fichiers dans `lib/dashboard/`)
+- `lib/dashboard/types.ts` — types locaux : AttemptInput, SessionStats, SubdomainStats, DomainStats
+- `lib/dashboard/utils.ts` — utilitaires : MASTERY_THRESHOLD, STATUS_ORDER, getCorrectRate, getLatestTimestamp
+- `lib/dashboard/status.ts` — fonctions de statut : getStatus, getReviewReason, getSessionStatus
+- `lib/dashboard/badges.ts` — computeEarnedBadges (calcul des badges gagnés)
+- `lib/dashboard/activity.ts` — buildDailyActivity, buildScoreEvolution
+- `lib/dashboard/build-dashboard-data.ts` — fonction principale buildDashboardData
+- `lib/dashboard/index.ts` — barrel export (les imports `@/lib/dashboard` existants continuent de fonctionner)
+
+## [2026-03-23] — Refactor exercise-player.tsx : découpage en sous-composants + useReducer
+
+- `features/exercises/components/exercise-reducer.ts` — nouveau fichier : types (SessionResult, ExerciseState, ExerciseAction) + reducer consolidant les 16 useState
+- `features/exercises/components/status-glyph.tsx` — nouveau fichier : composant SVG partagé (check, warning, error)
+- `features/exercises/components/exercise-xp-header.tsx` — nouveau fichier : barre XP + popup + compteur de session
+- `features/exercises/components/exercise-session-header.tsx` — nouveau fichier : panel session (badges, titre, détails, barre de progression)
+- `features/exercises/components/exercise-review-card.tsx` — nouveau fichier : carte de review par question dans l'écran de résultats
+- `features/exercises/components/exercise-choice-list.tsx` — nouveau fichier : rendu des choix QCM/vrai_faux avec états visuels
+- `features/exercises/components/exercise-feedback.tsx` — nouveau fichier : bloc de feedback post-réponse (titre, corps, Mocca, explication, règle)
+- `features/exercises/components/exercise-results-panel.tsx` — nouveau fichier : écran de fin complet (score, mastery, bilan, axes de reprise, review cards)
+- `features/exercises/components/exercise-question-panel.tsx` — nouveau fichier : phase passation (streak, encouragement, question, inputs, feedback, navigation)
+- `features/exercises/components/exercise-player.tsx` — réduit de 1 101 lignes à ~250 lignes : remplacé 16 useState par useReducer, composition des sous-composants
+
 ## [2026-03-23] — Correction de 23 bugs issus de l'audit automatisé
 
 ### Critiques (2)
