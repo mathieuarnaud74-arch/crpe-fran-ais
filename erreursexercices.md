@@ -580,3 +580,197 @@ Apres trois passes, **~65 fichiers de fiches** et **~20 fichiers de migrations S
 | **Total** | **6** | **10** | **8** |
 
 Les 6 erreurs critiques meritent une correction prioritaire car elles transmettent un savoir errone ou ambigu a des candidats CRPE.
+
+---
+
+## Passe 4 — Audit du 2026-03-23
+
+Echantillon couvrant : 10 migrations SQL non auditees (conjugaison, grammaire, didactique maths, lexique interactif, sujets blancs, equations), 6 fiches didactiques recemment creees (non commites), et verification des index mis a jour.
+
+---
+
+### ERREURS CRITIQUES (contenu pedagogiquement faux ou trompeur)
+
+Aucune erreur critique identifiee dans cet echantillon.
+
+---
+
+### ERREURS IMPORTANTES (terminologie, formulation, precision)
+
+#### P4-1. Fiche `didactique-soustraction-sprint.ts` — Espace insecable dans "remediation s'appuyant"
+
+- **Fichier** : `content/fiches-maths/didactique-soustraction-sprint.ts`, ligne 35
+- **Texte problematique** :
+  > "proposer des remediation s'appuyant sur la manipulation"
+- **Nature** : Coquille grammaticale — accord pluriel manquant + espace parasite
+- **Explication** : "des remediation" manque le -s du pluriel. Le texte devrait etre "des remediations s'appuyant". De plus, il semble y avoir un espace insecable/parasite avant le "s'" qui separe visuellement "remediation" du "s'appuyant" mais la coquille est bien l'absence d'accord au pluriel sur "remediation".
+- **Correction** : Remplacer `des remediation s'appuyant` par `des remediations s'appuyant`.
+
+---
+
+#### P4-2. Fiche `didactique-multiplication-sprint.ts` — Terminologie "produit scalaire" inappropriee en contexte CRPE
+
+- **Fichier** : `content/fiches-maths/didactique-multiplication-sprint.ts`, lignes 18 et 39
+- **Texte problematique** :
+  > Tag: "produit scalaire"
+  > oneLiner: "l'ADDITION ITEREE (3 fois 4 = 4 + 4 + 4) et le PRODUIT SCALAIRE / proportionnalite"
+- **Nature** : Terminologie inadaptee — confusion avec le produit scalaire vectoriel
+- **Explication** : Le terme "produit scalaire" en mathematiques designe exclusivement l'operation sur les vecteurs (u.v = ||u|| × ||v|| × cos(theta)). Ce que Vergnaud appelle les structures multiplicatives de type proportionnalite simple correspond a l'"isomorphisme de mesures" (operateur scalaire entre deux espaces de mesures), PAS au "produit scalaire". L'usage de "produit scalaire" dans ce contexte est trompeur pour un candidat CRPE qui confondrait avec le produit scalaire de geometrie analytique, notion au programme du CRPE maths. Le terme correct serait "operateur scalaire" ou plus simplement "proportionnalite simple / isomorphisme de mesures".
+- **Correction** : Remplacer le tag `"produit scalaire"` par `"operateur scalaire"` ou `"isomorphisme de mesures"`. Dans le oneLiner, remplacer `le PRODUIT SCALAIRE / proportionnalite` par `l'ISOMORPHISME DE MESURES (proportionnalite simple entre deux grandeurs)`.
+
+---
+
+#### P4-3. Migration `20260424_seed_lexique_interactives.sql` — Classification de "courage" comme derive par suffixation
+
+- **Fichier** : `supabase/migrations/20260424_seed_lexique_interactives.sql`, lignes 74-77 (Q3)
+- **Texte problematique** :
+  > "courage (suffixe -age sur le radical cour- issu de coeur) [...] sont des derives"
+- **Nature** : Analyse etymologique contestable presentee comme certaine
+- **Explication** : Classer "courage" comme un derive par suffixation (cour- + -age) est etymologiquement defensible (du latin cor/cordis via l'ancien francais corage), mais en synchronie — la seule approche pertinente pour les exercices de morphologie lexicale au cycle 3 et au CRPE — "courage" n'est PAS analysable comme derive par un locuteur moderne. Le locuteur francophone actuel ne percoit pas *cour- comme un radical productif (il ne produit pas *courir → courage, *courbe → courage). La majorite des linguistes classerait "courage" comme un mot simple en synchronie, ou au mieux comme un derive opaque (non transparent). Presenter cette analyse sans nuance peut induire en erreur un candidat.
+- **Correction** : Remplacer "courage" dans Q3 par un derive plus transparent, par exemple "bricolage" (bricol-er + -age), "affichage" (affich-er + -age), ou "nettoyage" (nettoy-er + -age). Si "courage" est conserve, l'explication devrait preciser : "courage est un derive etymologique (cor + -age, du latin cor), mais son analyse morphologique n'est plus transparente en francais moderne."
+
+---
+
+#### P4-4. Migration `20260424_seed_lexique_interactives.sql` — "ensoleille" classe comme suffixe
+
+- **Fichier** : `supabase/migrations/20260424_seed_lexique_interactives.sql`, ligne 175 (Q7)
+- **Texte problematique** :
+  > "Ensoleill-e (suffixe -e) [...] sont des suffixes"
+  > Mapping: `"s1q7w1":"suffixation"`
+- **Nature** : Erreur de classification morphologique
+- **Explication** : "Ensoleille" est un cas classique de PARASYNTHESE, pas de simple suffixation. Le mot est forme de en- + soleil + -e simultanement. Le mot *soleille n'existe pas en francais, ce qui est le critere definitoire de la parasynthese (le prefixe et le suffixe s'ajoutent simultanement a la base, aucun des deux derives intermediaires n'existant). La migration elle-meme definit et utilise correctement la parasynthese dans les Q8, Q9 et Q10. Classer "ensoleille" comme suffixe en Q7 est une incoherence interne au sein du meme fichier.
+- **Correction** : Soit (a) deplacer "ensoleille" dans la categorie "parasynthese" (mais Q7 n'a que 3 categories : prefixation/suffixation/composition), soit (b) remplacer "ensoleille" par un vrai suffixe transparent comme "lenteur" (lent + -eur), "fierement" (fier-e + -ment), ou "chansonnier" (chanson + -ier).
+
+---
+
+#### P4-5. Migration `20260424_seed_lexique_interactives.sql` — "semaine" classe comme suffixe
+
+- **Fichier** : `supabase/migrations/20260424_seed_lexique_interactives.sql`, ligne 175 (Q7)
+- **Texte problematique** :
+  > "Semain-e est un suffixe issu du latin septimana avec evolution morphologique"
+  > Mapping: `"s1q7w6":"suffixation"`
+- **Nature** : Erreur de classification morphologique
+- **Explication** : "Semaine" n'est PAS un derive par suffixation en francais. C'est un mot herite directement du latin septimana, transmis par evolution phonetique reguliere. Le -e final n'est pas un suffixe : c'est la marque du feminin heritee du latin -a. En synchronie comme en diachronie, aucun linguiste ne classerait "semaine" comme un derive par suffixation. L'explication de la migration tente de justifier ce classement par l'etymologie latine, mais cette justification est incorrecte : l'evolution phonetique (septimana → semaine) n'est pas de la suffixation.
+- **Correction** : Remplacer "semaine" par un vrai suffixe, par exemple "semainier" (semaine + -ier), "annuel" (ann-ee + -el), "journalier" (journal + -ier), ou "gentillesse" (gentil + -esse).
+
+---
+
+### IMPRECISIONS MINEURES / FORMULATIONS AMELIORABLES
+
+#### P4-6. Fiche `didactique-graphophonologie-cgp-sprint.ts` — Nombre de phonemes imprecis
+
+- **Fichier** : `content/fiches/didactique-graphophonologie-cgp-sprint.ts`, ligne 84
+- **Texte problematique** :
+  > "Le francais compte 37 phonemes environ (selon les variantes dialectales)"
+- **Nature** : Imprecision chiffree
+- **Explication** : Le nombre le plus couramment cite dans les travaux de reference pour le francais standard est 36 phonemes (16 voyelles + 3 semi-voyelles + 17 consonnes) dans le systeme maximal. Certaines descriptions reduisent a 32-34 phonemes en excluant les voyelles rares ou en voie de disparition (/oe~/ "brun", opposition /a/ ~ /ɑ/ "patte" vs "pate"). Le chiffre de 37 est inhabituel et ne correspond a aucune reference standard (Martinet, Sauvageot, Malmberg). Le chiffre le plus suivi par Eduscol et les manuels de preparation au CRPE est 36.
+- **Correction** : Remplacer "37 phonemes" par "36 phonemes" ou "entre 33 et 36 phonemes selon les locuteurs".
+
+---
+
+#### P4-7. Fiche `didactique-graphophonologie-cgp-sprint.ts` — Quiz 3 : analyse partiellement imprecise du mot "feto"
+
+- **Fichier** : `content/fiches/didactique-graphophonologie-cgp-sprint.ts`, ligne 70
+- **Texte problematique** :
+  > "L'eleve a tente de transcrire les phonemes entendus (/ʃ/ → f est une erreur sur le phoneme /ʃ/, /a/ → e, /to/ → to correct)"
+- **Nature** : Imprecision dans l'analyse phonetique
+- **Explication** : L'analyse dit "/ʃ/ → f" mais l'eleve qui ecrit "f" pour "ch" ne fait pas une erreur sur le phoneme /ʃ/ : il fait une erreur d'encodage du phoneme /ʃ/ en choisissant le grapheme "f" (qui correspond au phoneme /f/). La formulation est confuse car elle melange phoneme et grapheme. De plus, "/to/ → to correct" est discutable : "chateau" se termine par /to/ (avec /o/ ferme), et l'eleve ecrit effectivement "to", mais l'absence du grapheme "eau" pour /o/ devrait etre signalees — l'eleve utilise "o" pour /o/, ce qui est une transcription phonologiquement correcte mais orthographiquement fausse ("chateau" s'ecrit avec "eau", pas "o").
+- **Correction** : Reformuler : "L'eleve a transcrit les sons entendus avec les graphemes les plus simples : /ʃ/ → 'f' (erreur : le phoneme /ʃ/ se transcrit 'ch', pas 'f'), /a/ → 'e' (erreur de vocalisme), /o/ → 'o' (grapheme regulier mais incorrect pour ce mot : 'chateau' exige le trigramme 'eau')."
+
+---
+
+#### P4-8. Fiche `didactique-soustraction-sprint.ts` — Trois sens de la soustraction : "retrait, complement, comparaison" alors que Vergnaud decrit trois types de problemes additifs
+
+- **Fichier** : `content/fiches-maths/didactique-soustraction-sprint.ts`, ligne 37
+- **Texte problematique** :
+  > "La soustraction recouvre trois structures de problemes distinctes (Vergnaud) : le RETRAIT [...], le COMPLEMENT [...] et la COMPARAISON"
+- **Nature** : Imprecision terminologique (mais pas erreur grave)
+- **Explication** : Vergnaud ne parle pas de "retrait, complement, comparaison" comme trois "structures" distinctes. Il identifie trois types de relations additives : la COMPOSITION (reunion/partition de deux parties en un tout), la TRANSFORMATION (changement d'un etat initial en un etat final), et la COMPARAISON (mise en relation de deux etats). Le "retrait" est un cas particulier de la transformation (transformation negative), et le "complement" est un cas ou l'etat final est connu et l'on cherche la transformation. La fiche simplifie la terminologie de Vergnaud, ce qui est defensible pour une fiche "sprint" mais pourrait induire en erreur un candidat qui devrait citer la classification exacte de Vergnaud a l'epreuve.
+- **Correction** : Optionnel — preciser entre parentheses : "le RETRAIT (cas de la transformation negative), le COMPLEMENT (transformation inconnue) et la COMPARAISON (ecart entre deux quantites). Vergnaud classe ces situations en trois categories : composition, transformation et comparaison."
+
+---
+
+#### P4-9. Migration `20260424_seed_lexique_interactives.sql` — "antibrouillard" classe en prefixation : defensible mais discutable
+
+- **Fichier** : `supabase/migrations/20260424_seed_lexique_interactives.sql`, ligne 150 (Q6)
+- **Texte problematique** :
+  > Mapping: `"s1q6w1":"prefixation"` pour "antibrouillard"
+  > Explication : "Anti-brouillard [...] sont formes par prefixation"
+- **Nature** : Classification discutable
+- **Explication** : Le statut de "anti-" est debattu en linguistique. Certains le considèrent comme un prefixe (Corbin, 1987), d'autres comme un element de composition savante (Darmesteter). Le fait que "anti-" puisse se combiner avec des syntagmes (anti-voiture, anti-tabac) sans modification morphologique penche vers la composition. Cependant, la classification en prefixation est la plus repandue dans les manuels scolaires et est defendable au CRPE. L'explication de la migration le justifie correctement. C'est un detail.
+
+---
+
+### PROBLEMES TECHNIQUES
+
+#### P4-10. Migration `20260360_seed_conjugaison_nouvelles.sql` — Coexistence de deux formats `expected_answer` dans le meme fichier
+
+- **Fichier** : `supabase/migrations/20260360_seed_conjugaison_nouvelles.sql`
+- **Texte problematique** : Les exercices QCM utilisent `"mode":"single_choice"` (ex : lignes 28, 103, 203) tandis que les exercices vrai_faux utilisent `"mode":"boolean"` (ex : ligne 53, 153, 228). Ce format est coherent au sein du fichier, mais il differe du format `"mode":"single"` utilise dans les migrations maths.
+- **Nature** : Incoherence technique inter-fichiers (meme remarque que P2-2)
+- **Explication** : Ce fichier utilise `single_choice` (avec underscore) pour les QCM, alors que les migrations maths utilisent `single` (sans underscore). Les deux formats doivent etre geres par le front-end. Pas d'impact de contenu mais un risque de regression.
+
+---
+
+### FICHIERS AUDITES EN PASSE 4
+
+**Migrations SQL (10 fichiers)** :
+- `20260360_seed_conjugaison_nouvelles.sql` — OK (contenu solide sur temps simples/composes, verbes irreguliers, passé surcomposé), 1 remarque technique (P4-10)
+- `20260399_seed_grammaire_nouvelles2.sql` — OK (excellent contenu sur phrase emphatique et complements du nom, terminologie Eduscol 2021 impeccable)
+- `20260394_seed_didactique_nouvelles2.sql` — Fichier placeholder vide (1 ligne)
+- `20260411_seed_orthographe_nouvelles2.sql` — Fichier placeholder vide (1 ligne)
+- `20260423_seed_analyse_langue_interactives.sql` — OK (exercices tri nature/fonction tres bien construits, progression de difficulte pertinente)
+- `20260424_seed_lexique_interactives.sql` — 3 erreurs de classification morphologique (P4-3, P4-4, P4-5) + 1 detail (P4-9)
+- `20260506_seed_sujets_blancs_v2.sql` — OK (excellent sujet blanc base sur Le Grand Meaulnes, analyses grammaticales rigoureuses)
+- `20260617_seed_math_equations_droites.sql` — OK (exercices mathematiquement corrects, explications claires)
+- `20260713_seed_math_didactique_situations_brousseau.sql` — OK (contenu Brousseau exemplaire : adidactique, devolution, milieu, contrat didactique, effet Topaze/Jourdain, variables didactiques — tout est conforme)
+- `20260727_seed_math_didactique_multiplication.sql` — OK (Vergnaud correctement cite, distributivite bien expliquee, progression Eduscol conforme)
+- `20260712_seed_math_didactique_soustraction.sql` — OK (Brown & Burton, Vergnaud, Bruner correctement references)
+- `20260742_seed_math_didactique_division.sql` — OK (partition/quotition bien distinguees, interpretation du reste, relation euclidienne)
+- `20260728_seed_math_didactique_geometrie_plane.sql` — OK (Van Hiele, Laborde & Capponi, obstacle du prototype — excellent contenu)
+- `20260729_seed_math_didactique_programmes_cycles.sql` — OK (reperes de programmes corrects, progression spiralaire bien decrite)
+
+**Fiches didactiques recemment creees (6 fichiers)** :
+- `content/fiches/didactique-graphophonologie-cgp-sprint.ts` — 2 imprecisions mineures (P4-6, P4-7)
+- `content/fiches/didactique-langage-oral-maternelle-sprint.ts` — OK (contenu excellent, references recherche solides : Florin, Bernstein, Bourdieu)
+- `content/fiches-maths/didactique-addition-sprint.ts` — OK (Vergnaud, Bruner, Brissiaud correctement cites)
+- `content/fiches-maths/didactique-division-sprint.ts` — OK (partition/quotition, relation euclidienne, interpretation du reste — tout est correct)
+- `content/fiches-maths/didactique-multiplication-sprint.ts` — 1 erreur terminologique (P4-2, "produit scalaire")
+- `content/fiches-maths/didactique-soustraction-sprint.ts` — 1 coquille (P4-1) + 1 imprecision (P4-8)
+
+**Index (2 fichiers)** :
+- `content/fiches/index.ts` — Les coquilles identifiees en passes precedentes (`grammairePhraseCOmplexeSprint` ligne 26/141, `accentsThremaSprint` ligne 111/226) sont toujours presentes. Les nouvelles fiches (`graphophonologieCgpSprint`, `langageOralMaternelleSprint`) sont correctement importees et referencees.
+- `content/fiches-maths/index.ts` — Les coquilles identifiees en passes precedentes (`geometriThalesSprint` ligne 48/161, `geometrieClasserQurilateresOperatoire` ligne 114/225) sont toujours presentes. Les nouvelles fiches (`didactiqueAdditionSprint`, `didactiqueSoustractionSprint`, `didactiqueMultiplicationSprint`, `didactiqueDivisionSprint`) sont correctement importees et referencees.
+
+---
+
+### RESUME PASSE 4
+
+| Severite | Nombre | Fichiers principaux |
+|---|---|---|
+| Critique (contenu faux) | 0 | — |
+| Important (terminologie/classification) | 5 | `didactique-multiplication-sprint.ts` (P4-2, "produit scalaire"), `20260424_...lexique_interactives.sql` (P4-3 courage, P4-4 ensoleille, P4-5 semaine), `didactique-soustraction-sprint.ts` (P4-1 coquille) |
+| Mineur (imprecision) | 4 | `didactique-graphophonologie-cgp-sprint.ts` (P4-6 nb phonemes, P4-7 analyse feto), `didactique-soustraction-sprint.ts` (P4-8 terminologie Vergnaud), `20260424_...lexique_interactives.sql` (P4-9 antibrouillard) |
+| Technique | 1 | `20260360_...conjugaison_nouvelles.sql` (P4-10 format single_choice vs single) |
+
+### Note globale passe 4
+
+La qualite du contenu est **excellente** sur l'ensemble de l'echantillon de la passe 4. Les migrations SQL de didactique des mathematiques (Brousseau, Vergnaud, geometrie plane, programmes par cycle, soustraction, multiplication, division) sont d'un niveau pedagogique remarquable, avec des explications detaillees, des exemples concrets et une terminologie Eduscol rigoureuse. Les exercices de sujets blancs v2 (Le Grand Meaulnes) sont d'une qualite comparable aux vrais annales CRPE.
+
+Les 6 fiches didactiques recemment creees sont globalement tres bonnes. La fiche `didactique-langage-oral-maternelle-sprint.ts` est particulierement reussie. L'erreur la plus notable est l'usage du terme "produit scalaire" dans la fiche multiplication (P4-2), qui cree une confusion avec le produit scalaire vectoriel — un candidat CRPE pourrait se retrouver en difficulte a l'epreuve de maths s'il confond les deux notions.
+
+La migration `20260424_seed_lexique_interactives.sql` concentre trois erreurs de classification morphologique (courage, ensoleille, semaine) qui, bien que situees dans des exercices de niveaux facile/intermediaire, transmettent une analyse linguistique incorrecte ou contestable. La presence de la parasynthese correctement traitee dans les Q8-Q10 du meme fichier rend l'erreur sur "ensoleille" en Q7 d'autant plus notable.
+
+### Couverture totale de l'audit (passes 1 + 2 + 3 + 4)
+
+Apres quatre passes, **~75 fichiers de fiches** et **~35 fichiers de migrations SQL** ont ete audites.
+
+| Passe | Erreurs critiques | Erreurs importantes | Mineures |
+|---|---|---|---|
+| 1 | 3 | 4 | 4 |
+| 2 | 1 | 2 | 2 |
+| 3 | 2 | 4 | 2 |
+| 4 | 0 | 5 | 4 |
+| **Total** | **6** | **15** | **12** |
+
+Les 6 erreurs critiques (passes 1-3) restent a corriger en priorite. Les 5 erreurs importantes de la passe 4 meritent egalement une correction, en particulier P4-2 (confusion produit scalaire) et P4-4/P4-5 (classifications morphologiques fausses).
