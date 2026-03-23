@@ -29,7 +29,7 @@ INSERT INTO public.exercises (
   'Dans un triangle ABC, la médiane issue de A coupe le segment [BC] en son milieu M. Sachant que l''aire du triangle ABC est 48 cm², quelle est l''aire du triangle ABM ?',
   NULL,
   '[{"id":"a","label":"12 cm²"},{"id":"b","label":"24 cm²"},{"id":"c","label":"16 cm²"},{"id":"d","label":"32 cm²"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Une médiane d''un triangle partage celui-ci en deux triangles de même aire.\n\nDémonstration : les triangles ABM et ACM partagent la même hauteur issue de A (perpendiculaire à BC). Leurs bases respectives BM et MC sont égales (M est le milieu de [BC]).\n\nAire(ABM) = ½ × BM × h et Aire(ACM) = ½ × MC × h.\nComme BM = MC, on a Aire(ABM) = Aire(ACM) = 48 ÷ 2 = 24 cm².',
   'Erreur fréquente : confondre la médiane avec la hauteur ou croire que la médiane divise l''aire en quatre parties égales, ce qui conduirait à répondre 12 cm².',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -62,7 +62,7 @@ INSERT INTO public.exercises (
   'Un train parcourt 315 km en 2 h 15 min à vitesse constante. Combien de temps mettra-t-il pour parcourir 490 km à la même vitesse ?',
   NULL,
   '[{"id":"a","label":"3 h 15 min"},{"id":"b","label":"3 h 30 min"},{"id":"c","label":"3 h 45 min"},{"id":"d","label":"4 h"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Étape 1 — Convertir la durée : 2 h 15 min = 2,25 h.\n\nÉtape 2 — Calculer la vitesse : v = d ÷ t = 315 ÷ 2,25 = 140 km/h.\n\nVérification : 140 × 2,25 = 140 × 2 + 140 × 0,25 = 280 + 35 = 315 ✓\n\nÉtape 3 — Calculer le temps pour 490 km : t = d ÷ v = 490 ÷ 140 = 3,5 h = 3 h 30 min.\n\nOn peut aussi raisonner par proportionnalité : 490/315 = 14/9, donc t = 2,25 × 14/9 = 31,5/9 = 3,5 h.',
   'Erreur fréquente : convertir 2 h 15 min en 2,15 h au lieu de 2,25 h (confusion entre notation décimale et notation sexagésimale du temps), ce qui fausse toute la suite du calcul.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -79,7 +79,7 @@ INSERT INTO public.exercises (
   'Dans une série statistique, si on ajoute la même constante k (avec k > 0) à toutes les valeurs, alors la médiane augmente de k mais l''étendue reste inchangée.',
   NULL,
   '[{"id":"vrai","label":"Vrai"},{"id":"faux","label":"Faux"}]'::jsonb,
-  '{"mode":"boolean","value":true}'::jsonb,
+  '{"mode":"single","value":"vrai"}'::jsonb,
   'L''affirmation est VRAIE.\n\n• Effet sur la médiane : ajouter k à chaque valeur translate toute la série de k. L''ordre des valeurs est préservé, donc la valeur médiane augmente exactement de k. Si Med était la médiane, la nouvelle médiane est Med + k.\n\n• Effet sur l''étendue : l''étendue = max − min. Après transformation : (max + k) − (min + k) = max − min. L''étendue est donc inchangée.\n\nPlus généralement, une translation (ajout d''une constante) modifie les indicateurs de position (moyenne, médiane, quartiles) mais pas les indicateurs de dispersion (étendue, écart-type, variance).',
   'Erreur fréquente : penser que l''étendue augmente aussi de k, en calculant (max + k) − min au lieu de (max + k) − (min + k). L''oubli d''ajouter k à TOUTES les valeurs fausse le raisonnement sur la dispersion.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -112,7 +112,7 @@ INSERT INTO public.exercises (
   'Un terrain en forme de trapèze rectangle a pour grande base 30 m, petite base 18 m et hauteur 15 m. On trace un segment parallèle aux bases pour diviser ce terrain en deux parties de même aire. À quelle distance de la grande base (arrondie au dixième) faut-il tracer ce segment ?',
   NULL,
   '[{"id":"a","label":"7,5 m"},{"id":"b","label":"6,6 m"},{"id":"c","label":"5,0 m"},{"id":"d","label":"8,0 m"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Étape 1 — Aire totale du trapèze : A = (B + b) × h / 2 = (30 + 18) × 15 / 2 = 48 × 15 / 2 = 360 m².\n\nÉtape 2 — On cherche x, la distance à la grande base, telle que le trapèze partiel ait une aire de 180 m².\n\nLa longueur du segment parallèle à la distance x de la grande base vaut : l(x) = 30 − (30 − 18)/15 × x = 30 − 0,8x.\n\nÉtape 3 — Aire du trapèze partiel (entre la grande base et le segment) :\nA(x) = (30 + 30 − 0,8x) × x / 2 = (60 − 0,8x) × x / 2 = 180\n\nSoit : (60 − 0,8x) × x = 360\n60x − 0,8x² = 360\n0,8x² − 60x + 360 = 0\nx² − 75x + 450 = 0\n\nÉtape 4 — Discriminant : Δ = 75² − 4 × 450 = 5 625 − 1 800 = 3 825.\n√3 825 ≈ 61,85.\n\nDeux solutions : x = (75 − 61,85) / 2 ≈ 6,6 m ou x = (75 + 61,85) / 2 ≈ 68,4 m.\n\nSeule x ≈ 6,6 m est compatible avec la hauteur du trapèze (15 m).\n\nRéponse : le segment doit être tracé à environ 6,6 m de la grande base.',
   'Erreur fréquente : répondre 7,5 m (la moitié de la hauteur) en pensant qu''il suffit de couper le trapèze à mi-hauteur pour obtenir deux aires égales. Ce raisonnement ne fonctionne que pour un rectangle, pas pour un trapèze dont les bases sont inégales.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true

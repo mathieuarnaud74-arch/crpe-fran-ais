@@ -13,7 +13,7 @@ INSERT INTO public.exercises (
   'Calcul mental — Stratégies', 'Facile', 'qcm',
   'Pour calculer mentalement 99 × 7, quelle stratégie est la plus efficace ?', NULL,
   '[{"id":"a","label":"Poser la multiplication en colonnes mentalement"},{"id":"b","label":"Calculer 100 × 7 − 1 × 7 = 693"},{"id":"c","label":"Calculer 90 × 7 + 9 × 7"},{"id":"d","label":"Additionner 99 sept fois"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'La stratégie la plus efficace consiste à utiliser la distributivité de la multiplication par rapport à la soustraction en s''appuyant sur un nombre « rond » proche :
 
 99 × 7 = (100 − 1) × 7 = 100 × 7 − 1 × 7 = 700 − 7 = 693.
@@ -41,7 +41,7 @@ INSERT INTO public.exercises (
   'Calcul mental — Stratégies', 'Facile', 'vrai_faux',
   'Pour calculer 25 × 32, on peut calculer 25 × 4 × 8 = 100 × 8 = 800.', NULL,
   '[{"id":"vrai","label":"Vrai"},{"id":"faux","label":"Faux"}]'::jsonb,
-  '{"mode":"boolean","value":true}'::jsonb,
+  '{"mode":"single","value":"vrai"}'::jsonb,
   'L''affirmation est vraie.
 
 La stratégie repose sur deux propriétés fondamentales :
@@ -103,7 +103,7 @@ INSERT INTO public.exercises (
   'Calcul mental — Stratégies', 'Facile', 'qcm',
   'Lucas calcule 156 − 98 en faisant : 156 − 100 + 2 = 58. Quelle propriété mathématique utilise-t-il ?', NULL,
   '[{"id":"a","label":"La commutativité de la soustraction"},{"id":"b","label":"La distributivité"},{"id":"c","label":"La conservation des écarts"},{"id":"d","label":"La compensation (ajustement du nombre soustrait puis correction)"}]'::jsonb,
-  '{"mode":"single_choice","value":"d"}'::jsonb,
+  '{"mode":"single","value":"d"}'::jsonb,
   'Lucas utilise la stratégie de compensation (aussi appelée « ajustement »).
 
 Son raisonnement :
@@ -133,7 +133,7 @@ INSERT INTO public.exercises (
   'Calcul mental — Stratégies', 'Facile', 'qcm',
   'Quelle décomposition permet de calculer le plus rapidement 35 × 12 ?', NULL,
   '[{"id":"a","label":"35 × 10 + 35 × 2 = 350 + 70 = 420"},{"id":"b","label":"30 × 12 + 5 × 12 = 360 + 60 = 420"},{"id":"c","label":"35 × 6 × 2 = 210 × 2 = 420"},{"id":"d","label":"Les trois sont correctes et donnent le même résultat"}]'::jsonb,
-  '{"mode":"single_choice","value":"d"}'::jsonb,
+  '{"mode":"single","value":"d"}'::jsonb,
   'Les trois décompositions sont correctes et donnent toutes 420.
 
 Analyse de chaque stratégie :
@@ -197,7 +197,7 @@ INSERT INTO public.exercises (
   'Calcul mental — Stratégies', 'Facile', 'qcm',
   'Un élève de CM2 calcule 72 ÷ 4 en faisant : 72 ÷ 2 = 36, puis 36 ÷ 2 = 18. Cette stratégie est valide car…', NULL,
   '[{"id":"a","label":"Diviser par 4 revient à diviser deux fois par 2 (décomposition du diviseur)"},{"id":"b","label":"Il a appliqué la distributivité de la division"},{"id":"c","label":"Il a utilisé la commutativité de la division"},{"id":"d","label":"C''est un hasard, cette méthode ne fonctionne pas toujours"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
+  '{"mode":"single","value":"a"}'::jsonb,
   'La stratégie est valide car diviser par 4 revient à diviser deux fois par 2.
 
 Fondement mathématique :

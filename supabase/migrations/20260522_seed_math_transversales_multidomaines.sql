@@ -12,7 +12,7 @@ INSERT INTO public.exercises (
   'Problèmes transversaux — Multi-domaines', 'Avance', 'qcm',
   'Une carte à l''échelle 1/25 000 montre un lac rectangulaire mesurant 4 cm × 3 cm. Quelle est l''aire réelle du lac en hectares ?', NULL,
   '[{"id":"a","label":"12 ha"},{"id":"b","label":"75 ha"},{"id":"c","label":"7 500 ha"},{"id":"d","label":"30 ha"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'L''échelle 1/25 000 signifie que 1 cm sur la carte représente 25 000 cm en réalité, soit 250 m. La longueur réelle du lac est donc 4 × 250 = 1 000 m = 1 km. La largeur réelle est 3 × 250 = 750 m = 0,75 km. L''aire réelle vaut 1 000 × 750 = 750 000 m². Or 1 hectare = 10 000 m², donc 750 000 ÷ 10 000 = 75 ha. Attention : avec une échelle, les distances sont multipliées par le facteur d''échelle, mais les aires sont multipliées par le carré de ce facteur (25 000² = 625 000 000). Aire sur la carte : 12 cm² × 625 000 000 = 7 500 000 000 cm² = 750 000 m² = 75 ha.',
   'Erreur fréquente : multiplier l''aire sur la carte par le facteur d''échelle au lieu de son carré (12 × 25 000 = 300 000 cm² = 30 m², résultat incohérent), ou oublier la conversion en hectares.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -28,7 +28,7 @@ INSERT INTO public.exercises (
   'Problèmes transversaux — Multi-domaines', 'Avance', 'vrai_faux',
   'Pour peindre un mur circulaire (tour cylindrique) de 3 m de rayon sur 2,5 m de haut, il faut la même quantité de peinture que pour un mur rectangulaire de 18,85 m × 2,5 m.', NULL,
   '[{"id":"vrai","label":"Vrai"},{"id":"faux","label":"Faux"}]'::jsonb,
-  '{"mode":"boolean","value":true}'::jsonb,
+  '{"mode":"single","value":"vrai"}'::jsonb,
   'La surface latérale d''un cylindre de rayon r et de hauteur h est donnée par la formule S = 2πr × h. Ici, le périmètre du cercle (la base de la tour) est 2π × 3 = 6π ≈ 18,85 m. La surface du mur circulaire est donc 18,85 × 2,5 = 47,125 m². La surface du mur rectangulaire est également 18,85 × 2,5 = 47,125 m². Les deux surfaces étant égales, il faut la même quantité de peinture. Ce problème illustre le lien entre le développement d''une surface cylindrique et un rectangle.',
   'Erreur fréquente : confondre la surface latérale du cylindre (2πrh) avec l''aire du disque (πr²), ou oublier que le mur circulaire correspond au périmètre du cercle et non à son diamètre.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -60,7 +60,7 @@ INSERT INTO public.exercises (
   'Problèmes transversaux — Multi-domaines', 'Avance', 'qcm',
   'Dans une école de 300 élèves, 45 % pratiquent un sport. Parmi les sportifs, 2/3 font un sport collectif. Combien d''élèves font un sport individuel ?', NULL,
   '[{"id":"a","label":"45"},{"id":"b","label":"90"},{"id":"c","label":"135"},{"id":"d","label":"60"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
+  '{"mode":"single","value":"a"}'::jsonb,
   'Étape 1 : Calculer le nombre de sportifs. 45 % de 300 = 300 × 45/100 = 135 élèves pratiquent un sport. Étape 2 : Calculer le nombre de sportifs en sport collectif. 2/3 de 135 = 135 × 2/3 = 90 élèves font un sport collectif. Étape 3 : En déduire le nombre de sportifs en sport individuel. 135 − 90 = 45 élèves font un sport individuel. Ce problème combine le calcul de pourcentages (proportionnalité) et la lecture de données statistiques (répartition d''un effectif en sous-groupes).',
   'Erreur fréquente : calculer 2/3 de 300 au lieu de 2/3 des sportifs (obtenir 200 au lieu de 90), ou confondre la part des sportifs collectifs avec celle des sportifs individuels.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -92,7 +92,7 @@ INSERT INTO public.exercises (
   'Problèmes transversaux — Multi-domaines', 'Avance', 'qcm',
   'Un jardinier veut entourer une parcelle en forme de trapèze (grande base 12 m, petite base 8 m, côtés obliques de 5 m chacun) d''une clôture coûtant 15 €/m. Il veut aussi semer du gazon à 3 €/m² sur toute la parcelle (hauteur du trapèze : 4 m). Quel est le coût total ?', NULL,
   '[{"id":"a","label":"450 €"},{"id":"b","label":"570 €"},{"id":"c","label":"690 €"},{"id":"d","label":"480 €"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Étape 1 : Calculer le périmètre du trapèze pour la clôture. P = 12 + 8 + 5 + 5 = 30 m. Coût de la clôture : 30 × 15 = 450 €. Étape 2 : Calculer l''aire du trapèze pour le gazon. A = (grande base + petite base) × hauteur / 2 = (12 + 8) × 4 / 2 = 20 × 4 / 2 = 40 m². Coût du gazon : 40 × 3 = 120 €. Étape 3 : Coût total = 450 + 120 = 570 €. Ce problème combine le calcul du périmètre (pour la clôture) et de l''aire (pour le gazon) d''un trapèze, ainsi que la proportionnalité (prix unitaire × quantité).',
   'Erreur fréquente : oublier de diviser par 2 dans la formule de l''aire du trapèze (obtenir 80 m² au lieu de 40 m², soit un coût total de 690 €), ou ne calculer que le coût de la clôture sans le gazon (450 €).',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true

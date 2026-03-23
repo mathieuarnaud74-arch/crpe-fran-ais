@@ -10,7 +10,7 @@ INSERT INTO public.exercises (
   'Numération — Bases et systèmes positionnels', 'Intermediaire', 'qcm',
   'Que signifie le chiffre 3 dans le nombre 4 372 ?', NULL,
   '[{"id":"a","label":"3 unités"},{"id":"b","label":"3 dizaines"},{"id":"c","label":"3 centaines"},{"id":"d","label":"3 milliers"}]'::jsonb,
-  '{"mode":"single_choice","value":"c"}'::jsonb,
+  '{"mode":"single","value":"c"}'::jsonb,
   'Dans notre système de numération décimale positionnelle, la valeur d''un chiffre dépend de sa position dans l''écriture du nombre. En décomposant 4 372 : 4 milliers + 3 centaines + 7 dizaines + 2 unités, soit 4 × 1 000 + 3 × 100 + 7 × 10 + 2 × 1. Le chiffre 3 occupe le rang des centaines : il représente donc 300, c''est-à-dire 3 centaines. Ce principe fondamental — chaque position correspond à une puissance de la base — est au cœur de la numération positionnelle.',
   'Confondre le chiffre (3) avec sa valeur positionnelle (300), ou se tromper de rang en comptant les positions à partir de la gauche au lieu de la droite.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -25,7 +25,7 @@ INSERT INTO public.exercises (
   'Numération — Bases et systèmes positionnels', 'Intermediaire', 'vrai_faux',
   'Dans le nombre 205, le 0 ne sert à rien et peut être supprimé.', NULL,
   '[{"id":"vrai","label":"Vrai"},{"id":"faux","label":"Faux"}]'::jsonb,
-  '{"mode":"boolean","value":false}'::jsonb,
+  '{"mode":"single","value":"faux"}'::jsonb,
   'Le zéro joue un rôle essentiel dans la numération positionnelle : il sert de marqueur de position (on parle parfois de « place-holder »). Dans 205, le 0 indique qu''il n''y a aucune dizaine. Si on le supprimait, on obtiendrait 25, un nombre totalement différent (25 ≠ 205). C''est précisément l''invention du zéro positionnel qui a permis au système décimal de fonctionner efficacement. En didactique, la compréhension du rôle du zéro est un palier fondamental dans l''apprentissage de la numération : les élèves doivent saisir que le zéro « tient la place » d''un rang vide.',
   'Penser que le zéro est « inutile » parce qu''il ne représente aucune quantité, en confondant la valeur nulle du chiffre avec son rôle positionnel indispensable.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -55,7 +55,7 @@ INSERT INTO public.exercises (
   'Numération — Bases et systèmes positionnels', 'Intermediaire', 'qcm',
   'Comment s''écrit le nombre 25 (en base 10) dans le système de numération en base 5 ?', NULL,
   '[{"id":"a","label":"50"},{"id":"b","label":"100"},{"id":"c","label":"25"},{"id":"d","label":"45"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Pour convertir 25 en base 5, on effectue des divisions successives par 5. 25 ÷ 5 = 5, reste 0 ; 5 ÷ 5 = 1, reste 0 ; 1 ÷ 5 = 0, reste 1. En lisant les restes de bas en haut : 100 en base 5. Vérification : 1 × 5² + 0 × 5¹ + 0 × 5⁰ = 1 × 25 + 0 + 0 = 25. On remarque que 25 = 5², ce qui donne une écriture très simple en base 5 : « 100 ». Ce type d''exercice illustre parfaitement le fonctionnement de la numération positionnelle et permet aux futurs enseignants de comprendre les difficultés que rencontrent les élèves face aux groupements et échanges.',
   'Répondre 50 en pensant que « 25 = 5 × 5 » donne deux paquets de 5 (ce qui serait 2 × 5 + 0, soit 20 en base 5 — pour le nombre 10, pas 25). Ou garder « 25 » tel quel en oubliant de convertir.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -70,7 +70,7 @@ INSERT INTO public.exercises (
   'Numération — Bases et systèmes positionnels', 'Intermediaire', 'qcm',
   'En base 8 (système octal), combien de chiffres différents utilise-t-on pour écrire les nombres ?', NULL,
   '[{"id":"a","label":"7"},{"id":"b","label":"8"},{"id":"c","label":"9"},{"id":"d","label":"10"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Dans un système de numération en base b, on utilise exactement b chiffres différents, allant de 0 à b − 1. En base 8, les chiffres utilisés sont donc : 0, 1, 2, 3, 4, 5, 6 et 7, soit 8 chiffres au total. Il n''y a pas de chiffre « 8 » en base 8, tout comme il n''y a pas de chiffre « 10 » en base 10 : lorsqu''on atteint la base, on crée un groupement et on passe au rang supérieur. Cette règle universelle est un invariant de tous les systèmes de numération positionnelle.',
   'Répondre 7 en oubliant de compter le 0 parmi les chiffres utilisés, ou répondre 9 en incluant le chiffre 8 qui n''existe pas en base 8.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -100,7 +100,7 @@ INSERT INTO public.exercises (
   'Numération — Bases et systèmes positionnels', 'Intermediaire', 'qcm',
   'Pourquoi l''étude des bases autres que 10 est-elle recommandée en didactique des mathématiques pour enseigner la numération ?', NULL,
   '[{"id":"a","label":"Pour montrer que notre système n''est pas le seul possible et révéler les mécanismes de la numération positionnelle"},{"id":"b","label":"Pour préparer les élèves à l''informatique"},{"id":"c","label":"Pour apprendre l''histoire des mathématiques"},{"id":"d","label":"Pour rendre les cours plus ludiques"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
+  '{"mode":"single","value":"a"}'::jsonb,
   'L''étude de bases non décimales est un outil didactique majeur, théorisé notamment par Guy Brousseau dans le cadre de la théorie des situations didactiques. En plaçant les élèves dans une base inconnue, on provoque un effet de « dépaysement » qui les oblige à reconstruire les principes de la numération positionnelle : groupements, échanges, rôle du zéro, valeur positionnelle des chiffres. Ces mécanismes, devenus transparents en base 10 par l''habitude, redeviennent visibles et questionnables. Les programmes d''Éduscol recommandent cette approche pour consolider la compréhension du système décimal. Les autres propositions (informatique, histoire, aspect ludique) peuvent être des bénéfices secondaires, mais ne constituent pas la raison didactique fondamentale de cette pratique.',
   'Choisir la réponse « préparer à l''informatique » en confondant l''objectif didactique (comprendre la numération positionnelle) avec une application pratique (le binaire en informatique).',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true

@@ -13,7 +13,7 @@ INSERT INTO public.exercises (
   'Grandeurs — Conversions systématiques', 'Facile', 'qcm',
   'Convertir 3,5 km en mètres.', NULL,
   '[{"id":"a","label":"350 m"},{"id":"b","label":"3 500 m"},{"id":"c","label":"35 000 m"},{"id":"d","label":"0,35 m"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Pour convertir des kilomètres en mètres, on multiplie par 1 000 car 1 km = 1 000 m.
 
 Tableau de conversion des longueurs :
@@ -42,7 +42,7 @@ INSERT INTO public.exercises (
   'Grandeurs — Conversions systématiques', 'Facile', 'vrai_faux',
   '4 500 g = 4,5 kg', NULL,
   '[{"id":"vrai","label":"Vrai"},{"id":"faux","label":"Faux"}]'::jsonb,
-  '{"mode":"boolean","value":true}'::jsonb,
+  '{"mode":"single","value":"vrai"}'::jsonb,
   'L''affirmation est vraie.
 
 Pour convertir des grammes en kilogrammes, on divise par 1 000 car 1 kg = 1 000 g.
@@ -70,7 +70,7 @@ INSERT INTO public.exercises (
   'Grandeurs — Conversions systématiques', 'Facile', 'qcm',
   'Convertir 2,5 m² en cm².', NULL,
   '[{"id":"a","label":"250 cm²"},{"id":"b","label":"2 500 cm²"},{"id":"c","label":"25 000 cm²"},{"id":"d","label":"2 500 000 cm²"}]'::jsonb,
-  '{"mode":"single_choice","value":"c"}'::jsonb,
+  '{"mode":"single","value":"c"}'::jsonb,
   'Pour les unités d''aire, chaque rang du tableau comporte DEUX colonnes (et non une seule comme pour les longueurs).
 
 Tableau de conversion des aires :
@@ -129,7 +129,7 @@ INSERT INTO public.exercises (
   'Grandeurs — Conversions systématiques', 'Facile', 'qcm',
   'Convertir 72 km/h en m/s.', NULL,
   '[{"id":"a","label":"72 m/s"},{"id":"b","label":"7,2 m/s"},{"id":"c","label":"20 m/s"},{"id":"d","label":"2 m/s"}]'::jsonb,
-  '{"mode":"single_choice","value":"c"}'::jsonb,
+  '{"mode":"single","value":"c"}'::jsonb,
   'Pour convertir des km/h en m/s, on utilise la relation :
 1 km/h = 1 000 m / 3 600 s = 1/3,6 m/s.
 
@@ -190,7 +190,7 @@ INSERT INTO public.exercises (
   'Grandeurs — Conversions systématiques', 'Facile', 'qcm',
   'Pour peindre un mur de 3 m × 2,5 m, on utilise 0,5 L de peinture par m². Il reste un pot de 3 L. A-t-on assez de peinture pour peindre ce mur et un second mur identique ?', NULL,
   '[{"id":"a","label":"Oui, il reste même de la peinture"},{"id":"b","label":"Oui, pile la bonne quantité"},{"id":"c","label":"Non, il manque 4,5 L"},{"id":"d","label":"Non, il manque 0,75 L"}]'::jsonb,
-  '{"mode":"single_choice","value":"c"}'::jsonb,
+  '{"mode":"single","value":"c"}'::jsonb,
   'Étape 1 — Aire d''un mur :
 Aire = 3 × 2,5 = 7,5 m².
 

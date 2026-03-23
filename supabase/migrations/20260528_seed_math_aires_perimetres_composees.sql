@@ -12,7 +12,7 @@ INSERT INTO public.exercises (
   'Aires et périmètres — Figures composées', 'Intermediaire', 'qcm',
   'Quelle est l''aire d''un triangle de base 8 cm et de hauteur 5 cm ?', NULL,
   '[{"id":"a","label":"40 cm²"},{"id":"b","label":"13 cm²"},{"id":"c","label":"20 cm²"},{"id":"d","label":"25 cm²"}]'::jsonb,
-  '{"mode":"single_choice","value":"c"}'::jsonb,
+  '{"mode":"single","value":"c"}'::jsonb,
   'L''aire d''un triangle se calcule avec la formule : A = (base × hauteur) / 2. Ici : A = (8 × 5) / 2 = 40 / 2 = 20 cm².',
   'Oublier de diviser par 2 et répondre 40 cm² (aire du rectangle correspondant).',
   'valide', 'Génération Claude — Terminologie Éduscol', 'free', true
@@ -28,7 +28,7 @@ INSERT INTO public.exercises (
   'Aires et périmètres — Figures composées', 'Intermediaire', 'vrai_faux',
   'Le périmètre d''un cercle de rayon 7 cm est 44 cm.', NULL,
   '[{"id":"vrai","label":"Vrai"},{"id":"faux","label":"Faux"}]'::jsonb,
-  '{"mode":"boolean","value":true}'::jsonb,
+  '{"mode":"single","value":"vrai"}'::jsonb,
   'Le périmètre (circonférence) d''un cercle se calcule avec la formule P = 2 × π × r. Ici : P = 2 × 3,14 × 7 = 43,96 cm, que l''on arrondit à 44 cm. L''affirmation est donc vraie.',
   'Confondre rayon et diamètre, ou utiliser la formule de l''aire (π × r²) au lieu de celle du périmètre.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'free', true
@@ -60,7 +60,7 @@ INSERT INTO public.exercises (
   'Aires et périmètres — Figures composées', 'Intermediaire', 'qcm',
   'Une piste d''athlétisme est composée d''un rectangle de 100 m × 60 m et de deux demi-cercles de diamètre 60 m aux extrémités. Quel est le périmètre de la piste ? Arrondir au m.', NULL,
   '[{"id":"a","label":"320 m"},{"id":"b","label":"389 m"},{"id":"c","label":"508 m"},{"id":"d","label":"440 m"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Le périmètre de la piste se compose des deux longueurs du rectangle et des deux demi-cercles (qui forment un cercle complet de diamètre 60 m). P = 2 × 100 + π × 60 = 200 + 3,14 × 60 = 200 + 188,4 = 388,4 m ≈ 389 m.',
   'Additionner les quatre côtés du rectangle (320 m) sans tenir compte des demi-cercles, ou ajouter le périmètre complet du rectangle plus les demi-cercles.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'free', true
@@ -92,7 +92,7 @@ INSERT INTO public.exercises (
   'Aires et périmètres — Figures composées', 'Intermediaire', 'qcm',
   'On découpe un quart de cercle de rayon 6 cm dans un carré de côté 6 cm. Quelle est l''aire de la partie restante ? Arrondir au dixième.', NULL,
   '[{"id":"a","label":"7,7 cm²"},{"id":"b","label":"9,0 cm²"},{"id":"c","label":"28,3 cm²"},{"id":"d","label":"14,1 cm²"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
+  '{"mode":"single","value":"a"}'::jsonb,
   'Aire du carré : 6 × 6 = 36 cm². Aire du quart de cercle : (π × 6²) / 4 = (3,14 × 36) / 4 = 113,04 / 4 = 28,26 cm². Aire restante : 36 − 28,26 = 7,74 cm² ≈ 7,7 cm².',
   'Calculer l''aire d''un demi-cercle au lieu d''un quart de cercle, ou soustraire dans le mauvais sens.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'free', true

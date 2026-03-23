@@ -11,7 +11,7 @@ INSERT INTO public.exercises (
   'Logique et raisonnement — Contre-exemples et démonstrations', 'Avance', 'vrai_faux',
   'Pour prouver qu''une affirmation est fausse, un seul contre-exemple suffit.', NULL,
   '[{"id":"vrai","label":"Vrai"},{"id":"faux","label":"Faux"}]'::jsonb,
-  '{"mode":"boolean","value":true}'::jsonb,
+  '{"mode":"single","value":"vrai"}'::jsonb,
   'C''est un principe fondamental de la logique mathématique. Une affirmation universelle (« pour tout… ») est réfutée dès qu''on exhibe un seul cas qui ne la vérifie pas. En revanche, pour prouver qu''une affirmation est vraie pour tous les cas, il faut une démonstration générale : tester des exemples, même très nombreux, ne constitue jamais une preuve.',
   'Confondre la démarche de preuve et la démarche de réfutation : certains élèves pensent qu''il faut « beaucoup » de contre-exemples pour invalider une affirmation, alors qu''un seul suffit.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -26,7 +26,7 @@ INSERT INTO public.exercises (
   'Logique et raisonnement — Contre-exemples et démonstrations', 'Avance', 'qcm',
   'L''affirmation « Tout nombre pair est divisible par 4 » est fausse. Quel contre-exemple le prouve ?', NULL,
   '[{"id":"a","label":"8"},{"id":"b","label":"6"},{"id":"c","label":"12"},{"id":"d","label":"16"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Le nombre 6 est pair (divisible par 2) mais n''est pas divisible par 4 (6 ÷ 4 = 1,5). C''est donc un contre-exemple valide à l''affirmation « tout nombre pair est divisible par 4 ». Les autres propositions (8, 12 et 16) sont toutes divisibles par 4, elles ne contredisent donc pas l''affirmation. Pour invalider une proposition universelle, il faut trouver un élément qui satisfait l''hypothèse (être pair) mais pas la conclusion (être divisible par 4).',
   'Choisir un nombre qui est à la fois pair ET divisible par 4 (comme 8 ou 16), ce qui confirme l''affirmation au lieu de la réfuter. L''élève confond exemple et contre-exemple.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -41,7 +41,7 @@ INSERT INTO public.exercises (
   'Logique et raisonnement — Contre-exemples et démonstrations', 'Avance', 'qcm',
   '« Si un quadrilatère a ses diagonales perpendiculaires, alors c''est un losange. » Cette affirmation est :', NULL,
   '[{"id":"a","label":"Toujours vraie"},{"id":"b","label":"Fausse — un cerf-volant a aussi des diagonales perpendiculaires"},{"id":"c","label":"Vraie seulement pour les carrés"},{"id":"d","label":"Indécidable"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Un losange possède bien des diagonales perpendiculaires, mais cette propriété n''est pas suffisante pour caractériser un losange. Un cerf-volant (quadrilatère ayant un axe de symétrie passant par deux sommets opposés) possède également des diagonales perpendiculaires sans être un losange. Pour qu''un quadrilatère à diagonales perpendiculaires soit un losange, il faut en plus que les diagonales se coupent en leur milieu (propriété de parallélogramme). Cette distinction entre condition nécessaire et condition suffisante est essentielle en raisonnement mathématique.',
   'Croire que la propriété « diagonales perpendiculaires » est exclusive au losange, en oubliant d''autres quadrilatères comme le cerf-volant qui vérifient aussi cette propriété.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -71,7 +71,7 @@ INSERT INTO public.exercises (
   'Logique et raisonnement — Contre-exemples et démonstrations', 'Avance', 'qcm',
   'Parmi ces raisonnements, lequel est une démonstration valide que √2 est irrationnel ?', NULL,
   '[{"id":"a","label":"On a calculé beaucoup de décimales et on n''a pas trouvé de période"},{"id":"b","label":"On suppose que √2 = p/q avec p, q entiers premiers entre eux et on aboutit à une contradiction"},{"id":"c","label":"√2 ≈ 1,414 et ce n''est pas une fraction"},{"id":"d","label":"Mon professeur me l''a dit"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'La démonstration par l''absurde (ou raisonnement par contradiction) est la méthode valide. On suppose que √2 est rationnel, c''est-à-dire qu''il existe deux entiers p et q, premiers entre eux, tels que √2 = p/q. En élevant au carré : 2 = p²/q², soit p² = 2q². Donc p² est pair, ce qui implique que p est pair (p = 2k). En substituant : 4k² = 2q², soit q² = 2k², donc q est aussi pair. Contradiction : p et q seraient tous deux pairs, donc pas premiers entre eux. Les autres propositions ne sont pas des démonstrations : (a) est une observation empirique, (c) est une approximation, et (d) est un argument d''autorité.',
   'Confondre une observation empirique (« on n''a pas trouvé de période ») avec une preuve mathématique rigoureuse. En mathématiques, seul un raisonnement logique déductif constitue une démonstration.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -101,7 +101,7 @@ INSERT INTO public.exercises (
   'Logique et raisonnement — Contre-exemples et démonstrations', 'Avance', 'qcm',
   'Un élève teste que 41, 43, 47 sont premiers et conclut « tous les nombres impairs supérieurs à 40 sont premiers ». Quelle erreur de raisonnement commet-il ?', NULL,
   '[{"id":"a","label":"Généralisation abusive à partir de cas particuliers"},{"id":"b","label":"Erreur de calcul"},{"id":"c","label":"Confusion entre pair et impair"},{"id":"d","label":"Il a raison"}]'::jsonb,
-  '{"mode":"single_choice","value":"a"}'::jsonb,
+  '{"mode":"single","value":"a"}'::jsonb,
   'L''élève commet une généralisation abusive (ou raisonnement inductif invalide). Il a vérifié l''affirmation sur trois cas particuliers (41, 43, 47) et en tire une conclusion universelle (« tous les nombres impairs supérieurs à 40 »). Or, 45 = 9 × 5 est impair, supérieur à 40, et n''est pas premier. De même, 49 = 7 × 7, 51 = 3 × 17, etc. En mathématiques, vérifier quelques cas ne constitue jamais une preuve. Ce type d''erreur est fréquent chez les élèves du primaire et constitue un point de vigilance didactique important pour l''enseignant.',
   'Ne pas identifier l''erreur logique et se concentrer uniquement sur la vérification numérique, sans comprendre que le problème fondamental est méthodologique : aucun nombre fini d''exemples ne peut prouver une affirmation universelle.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true

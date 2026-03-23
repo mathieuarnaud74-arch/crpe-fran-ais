@@ -12,7 +12,7 @@ INSERT INTO public.exercises (
   'Vitesses moyennes et pièges', 'Avance', 'qcm',
   'Un cycliste parcourt 45 km en 1 h 30 min. Quelle est sa vitesse moyenne ?', NULL,
   '[{"id":"a","label":"33,3 km/h"},{"id":"b","label":"30 km/h"},{"id":"c","label":"22,5 km/h"},{"id":"d","label":"45 km/h"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'La vitesse moyenne se calcule par la formule : v = d / t. Ici, la distance est de 45 km et le temps de 1 h 30 min = 1,5 h. Donc v = 45 / 1,5 = 30 km/h. Attention : 1 h 30 min ne vaut pas 1,3 h mais bien 1,5 h (30 min = 0,5 h).',
   'Convertir 1 h 30 min en 1,3 h au lieu de 1,5 h, ce qui donnerait environ 34,6 km/h.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -28,7 +28,7 @@ INSERT INTO public.exercises (
   'Vitesses moyennes et pièges', 'Avance', 'vrai_faux',
   'Un marcheur fait l''aller à 4 km/h et le retour à 6 km/h sur le même trajet. Sa vitesse moyenne sur l''aller-retour est de 5 km/h.', NULL,
   '[{"id":"vrai","label":"Vrai"},{"id":"faux","label":"Faux"}]'::jsonb,
-  '{"mode":"boolean","value":false}'::jsonb,
+  '{"mode":"single","value":"faux"}'::jsonb,
   'C''est FAUX. C''est le piège classique des vitesses moyennes ! La moyenne arithmétique (4 + 6) / 2 = 5 km/h ne donne PAS la vitesse moyenne. Il faut utiliser la moyenne harmonique. Soit d la distance d''un trajet simple. Temps aller = d / 4, temps retour = d / 6. Temps total = d/4 + d/6 = 3d/12 + 2d/12 = 5d/12. Distance totale = 2d. Vitesse moyenne = 2d / (5d/12) = 2d × 12 / (5d) = 24/5 = 4,8 km/h. La vitesse moyenne est de 4,8 km/h, et non 5 km/h. Règle fondamentale : quand on parcourt la même distance à deux vitesses différentes, la vitesse moyenne est la moyenne harmonique, toujours inférieure à la moyenne arithmétique.',
   'Calculer la moyenne arithmétique des deux vitesses : (4 + 6) / 2 = 5 km/h. C''est le piège le plus fréquent au CRPE sur ce thème.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -60,7 +60,7 @@ INSERT INTO public.exercises (
   'Vitesses moyennes et pièges', 'Avance', 'qcm',
   'Un TGV roule à 320 km/h. En combien de temps parcourt-il 480 km, en comptant un arrêt de 12 minutes en gare ?', NULL,
   '[{"id":"a","label":"1 h 30 min"},{"id":"b","label":"1 h 42 min"},{"id":"c","label":"1 h 50 min"},{"id":"d","label":"2 h"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Temps de roulage : t = d / v = 480 / 320 = 1,5 h = 1 h 30 min. En ajoutant l''arrêt de 12 minutes en gare : 1 h 30 min + 12 min = 1 h 42 min. Attention : le temps total inclut les arrêts. La vitesse moyenne effective sur l''ensemble du voyage serait alors : 480 / (102/60) ≈ 282,4 km/h, bien inférieure à la vitesse de croisière.',
   'Oublier d''ajouter le temps d''arrêt et répondre 1 h 30 min, ou mal convertir 1,5 h en 1 h 50 min.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
@@ -92,7 +92,7 @@ INSERT INTO public.exercises (
   'Vitesses moyennes et pièges', 'Avance', 'qcm',
   'Un automobiliste parcourt la première moitié d''un trajet à 60 km/h et la seconde moitié à 90 km/h. Quelle est sa vitesse moyenne sur l''ensemble du trajet ?', NULL,
   '[{"id":"a","label":"75 km/h"},{"id":"b","label":"72 km/h"},{"id":"c","label":"70 km/h"},{"id":"d","label":"80 km/h"}]'::jsonb,
-  '{"mode":"single_choice","value":"b"}'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
   'Soit d la distance totale du trajet. Temps pour la 1re moitié : t₁ = (d/2) / 60 = d / 120. Temps pour la 2e moitié : t₂ = (d/2) / 90 = d / 180. Temps total : t = d/120 + d/180 = 3d/360 + 2d/360 = 5d/360 = d/72. Vitesse moyenne : v = d / (d/72) = 72 km/h. PIÈGE : la moyenne arithmétique (60 + 90) / 2 = 75 km/h est fausse ! Quand on parcourt deux distances égales à des vitesses différentes, la vitesse moyenne est la moyenne harmonique : Vmoy = 2 × v₁ × v₂ / (v₁ + v₂) = 2 × 60 × 90 / (60 + 90) = 10 800 / 150 = 72 km/h.',
   'Faire la moyenne arithmétique (60 + 90) / 2 = 75 km/h. C''est le piège n°1 du CRPE sur les vitesses.',
   'valide', 'Génération Claude — Terminologie Éduscol', 'premium', true
