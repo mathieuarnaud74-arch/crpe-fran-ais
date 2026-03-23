@@ -1,6 +1,37 @@
 # Changelog
 
-## [2026-03-23] — Mot de passe oublié + retrait hooks contre-productifs
+## [2026-03-23] — Correction de 23 bugs issus de l'audit automatisé
+
+### Critiques (2)
+- `app/api/stripe/checkout/route.ts` — BUG-021 : plans daily/weekly créaient des abonnements récurrents indéfiniment ; ajout `cancel_at_period_end: true`
+- `features/exercises/server/queries.ts` — BUG-036 : seeds maths `mode:"single"` non reconnu → crash QCM ; mapping `"single"` → `"single_choice"` dans `normalizeExpectedAnswer`
+
+### Majeurs (6)
+- `app/(app)/exercices/[id]/page.tsx` — BUG-001 : bouton "Série suivante" absent pour les maths → ajout `getSubjectFromSubdomain()`
+- `features/exercises/server/queries.ts` — BUG-004 : quotas réinitialisés en UTC au lieu de Europe/Paris
+- `features/exercises/server/actions.ts` — BUG-022 : streak client manipulable → capé à [0, 10] côté serveur
+- `features/srs/server/queries.ts` — BUG-023 : race condition INSERT sur srs_cards → `upsert` atomique
+- `features/diagnostic/server/queries.ts` — BUG-032 : mismatch schéma diagnostic (objet stocké, tableau attendu) → transformation correcte
+- `features/exercises/components/sprint-player.tsx` + `swipe-player.tsx` — BUG-041 : crash client sur mode legacy → try-catch
+
+### Mineurs (15)
+- `lib/env.ts` — BUG-014 : `Number()` pouvait produire NaN → fallback `|| 20`
+- `lib/freemium.ts` — BUG-028 : `Infinity` non sérialisable JSON → sentinel `-1`
+- `content/french-diagnostic-questions.ts` — BUG-040 : href `comprehension_texte` pointait vers le mauvais domaine
+- `features/exercises/components/exercise-player.tsx` — BUG-008 : timeout sans réponse attendue → `buildExpectedAnswerLabel`
+- `features/exercises/components/exercise-player.tsx` — BUG-017 : eslint-disable caduque supprimée
+- `lib/xp.ts` — BUG-026 : barre progression fantôme au niveau 20 → cap à `progress: 1`
+- `features/auth/components/auth-form.tsx` — BUG-033 : diagnostic invité perdu à l'inscription → récupération localStorage après signup
+- `features/gamification/server/queries.ts` — BUG-031 : race condition personal best sprint → update atomique WHERE
+- `types/domain.ts` + `lib/dashboard.ts` + `lib/constants.ts` — BUG-029 : sous-domaines non commencés → statut `non_commencee`
+- `features/onboarding/components/onboarding-tour-wrapper.tsx` — BUG-034 : userId inutile supprimé du body
+- `features/exercises/server/queries.ts` — BUG-038 : `if (limit)` → `if (limit !== undefined)`
+- `components/ui/badge-unlock-toast.tsx` — BUG-013 : prop dépréciée `earnedBadges` supprimée
+- `features/leaderboard/server/actions.ts` — BUG-030 : rate limiting ajouté sur changement de pseudo
+- `lib/constants.ts` — BUG-027 : `FRENCH_DASHBOARD_SUBDOMAINS` dead code supprimé
+- `features/gamification/context.tsx` — BUG-006 : dépendance `gamification.xp` superflue dans `addXp`
+
+## [2026-03-23] — Mot de passe oublié
 
 - `app/api/auth/callback/route.ts` — nouvelle route callback Supabase pour échanger le code de réinitialisation contre une session
 - `features/auth/components/forgot-password-form.tsx` — formulaire de demande de réinitialisation de mot de passe
@@ -9,8 +40,6 @@
 - `app/(auth)/reinitialiser-mot-de-passe/page.tsx` — page "Réinitialiser le mot de passe"
 - `app/(auth)/connexion/page.tsx` — ajout du lien "Mot de passe oublié ? Réinitialiser"
 - `features/dashboard/components/domain-gauge.tsx` — fix type pré-existant : ajout `non_commencee` au type status
-- `.claude/settings.json` — retrait des hooks PreToolUse (pretool-guard) et PostToolUse (posttool-verify) qui bloquaient le développement + retrait stop-cycle-report inutile
-
 ## [2026-03-23] — Police du diagnostic : Cormorant Garamond → Manrope
 
 - `features/diagnostic/components/diagnostic-client.tsx` — remplacement de `font-serif` par `font-sans` sur tous les titres, sous-titres et textes de questions du diagnostic pour uniformiser avec le reste de l'app
@@ -84,15 +113,6 @@
 ### SEO
 - `app/sitemap.ts` — Retrait des pages auth `/connexion` et `/inscription` du sitemap (non indexables)
 - `app/robots.ts` — Ajout des routes privées manquantes au disallow : `/francais`, `/maths`, `/exercices`, `/exercice-aleatoire`, `/revision`, `/abonnement`, `/classement`, `/ressources`, `/fiches-maths`, `/connexion`, `/inscription`
-
-## [2026-03-23] - Garde-fous Claude /loop et rapport d'audit exporte
-
-- `.claude/settings.json` - Ajout des hooks `PreToolUse`, `PostToolUse` et `Stop` en version PowerShell pour encadrer l'execution en `/loop`
-- `.claude/hooks/pretool-guard.ps1` - Blocage des fichiers sensibles, commandes destructrices et remplacements de masse avant execution
-- `.claude/hooks/posttool-verify.ps1` - Lancement automatique de `lint`, `tests` et `build` apres edition de code, avec blocage si un check echoue
-- `.claude/hooks/stop-cycle-report.ps1` - Generation automatique d'un rapport de cycle dans `.claude/reports/` a la fin d'un tour
-- `.claude/hooks/changelog-check.ps1` - Portage PowerShell du controle de `CHANGELOG.md` pour compatibilite Windows
-- `23032026Rapport.md` - Ajout d'une annexe operationnelle sur les hooks Claude pour execution autonome en `/loop`
 
 ## [2026-03-23] — Persistance des badges en base de données
 
@@ -1727,13 +1747,6 @@ Entrées en ordre chronologique inverse (plus récent en haut).
 - Architecture proposée : route `/fiches/[slug]`, 3 modèles (Référence Didactique / Sprint d'Activation / Carte Opératoire), types TypeScript complets, plan d'implémentation séquentiel en 8 étapes
 - Décision technique : données statiques TypeScript pour le MVP, migration Supabase planifiée sur critères explicites
 - Aucun fichier existant modifié ; modification future minimale : `components/app-navigation.tsx` (1 entrée)
-
----
-
-## [2026-03-17] — Hook Stop : rappel automatique CHANGELOG
-
-- `.claude/settings.json` — création du fichier de config hooks (projet)
-- `.claude/hooks/changelog-check.sh` — script Stop hook : bloque la fin de session si des fichiers ont été modifiés sans entrée dans CHANGELOG.md
 
 ---
 
