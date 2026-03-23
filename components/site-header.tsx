@@ -88,9 +88,17 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
               Tableau de bord
             </ButtonLink>
           ) : (
-            <ButtonLink href="/connexion" className="shadow-subtle">
-              Connexion
-            </ButtonLink>
+            <>
+              <Link
+                href="/connexion"
+                className="rounded-full px-5 py-2 text-[0.9375rem] font-medium text-muted transition-colors hover:bg-secondary hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              >
+                Connexion
+              </Link>
+              <ButtonLink href="/inscription" className="shadow-subtle">
+                Créer mon compte gratuit
+              </ButtonLink>
+            </>
           )}
         </div>
 
@@ -161,11 +169,18 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
                     </SheetClose>
                   </>
                 ) : (
-                  <SheetClose asChild>
-                    <Button size="lg" asChild>
-                      <Link href="/connexion">Connexion</Link>
-                    </Button>
-                  </SheetClose>
+                  <>
+                    <SheetClose asChild>
+                      <Button size="lg" asChild>
+                        <Link href="/inscription">Créer mon compte gratuit</Link>
+                      </Button>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Button variant="secondary" size="lg" asChild>
+                        <Link href="/connexion">Connexion</Link>
+                      </Button>
+                    </SheetClose>
+                  </>
                 )}
               </SheetFooter>
             </SheetContent>

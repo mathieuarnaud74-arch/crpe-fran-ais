@@ -9,8 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     "/offre",
     "/diagnostic",
-    "/connexion",
-    "/inscription",
     "/cgu",
     "/mentions-legales",
     "/politique-confidentialite",

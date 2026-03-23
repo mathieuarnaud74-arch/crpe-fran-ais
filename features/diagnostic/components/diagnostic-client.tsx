@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { cn } from "@/lib/utils";
-import type { DiagnosticResult } from "@/features/diagnostic/types";
+
 import { DiagnosticRadarChart } from "./radar-chart";
 
 type SubdomainSummary = {
@@ -172,35 +172,38 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
     if (isLast) {
       setPhase('results');
 
-      if (isAuthenticated) {
-        const result: DiagnosticResult = {
-          completedAt: new Date().toISOString(),
-          score,
-          total: questions.length,
-          profileLabel: profile.label,
-          profileDetail: profile.detail,
-          subdomains: subdomainSummaries.map((item) => ({
-            key: item.key,
-            label: item.label,
-            href: item.href,
-            correct: item.correct,
-            total: item.total,
-            mastery: item.mastery,
-            recommendation: item.recommendation,
-          })),
-        };
+      const apiPayload = {
+        completedAt: new Date().toISOString(),
+        score,
+        total: questions.length,
+        profileLabel: profile.label,
+        profileDetail: profile.detail,
+        subdomains: Object.fromEntries(
+          subdomainSummaries.map((item) => [
+            item.key,
+            { score: item.correct, total: item.total, label: item.label },
+          ]),
+        ),
+      };
 
+      if (isAuthenticated) {
         try {
           const res = await fetch("/api/diagnostic/complete", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(result),
+            body: JSON.stringify(apiPayload),
           });
           if (!res.ok) {
             toast.error("Vos résultats sont affichés mais n'ont pas pu être sauvegardés.");
           }
         } catch {
           toast.error("Erreur de connexion — résultats non sauvegardés.");
+        }
+      } else {
+        try {
+          localStorage.setItem("guest_diagnostic_result", JSON.stringify(apiPayload));
+        } catch {
+          // localStorage indisponible — pas critique
         }
       }
 

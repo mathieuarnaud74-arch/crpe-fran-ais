@@ -10,7 +10,7 @@ export default async function MarketingLayout({ children }: { children: ReactNod
   return (
     <>
       <SiteHeader authenticated={Boolean(user)} />
-      {children}
+      <main id="main-content">{children}</main>
       <SiteFooter />
     </>
   );

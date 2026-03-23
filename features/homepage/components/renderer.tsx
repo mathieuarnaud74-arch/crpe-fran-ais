@@ -50,7 +50,7 @@ const domainIcons: Record<(typeof FRENCH_DOMAIN_ORDER)[number], LucideIcon> = {
 
 export function HomepageRenderer({ sections, authenticated }: HomepageRendererProps) {
   return (
-    <main>
+    <div>
       {sections
         .filter((section) => section.visible)
         .sort((left, right) => left.orderIndex - right.orderIndex)
@@ -61,7 +61,7 @@ export function HomepageRenderer({ sections, authenticated }: HomepageRendererPr
             authenticated={authenticated}
           />
         ))}
-    </main>
+    </div>
   );
 }
 
@@ -114,7 +114,7 @@ function HeroSection({
         alt=""
         fill
         sizes="100vw"
-        quality={100}
+        quality={75}
         className="object-cover object-center"
         priority
       />

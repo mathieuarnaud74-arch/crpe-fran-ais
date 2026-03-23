@@ -88,6 +88,20 @@ export function AuthForm({ mode }: AuthFormProps) {
       return;
     }
 
+    try {
+      const savedDiagnostic = localStorage.getItem("guest_diagnostic_result");
+      if (savedDiagnostic) {
+        await fetch("/api/diagnostic/complete", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: savedDiagnostic,
+        });
+        localStorage.removeItem("guest_diagnostic_result");
+      }
+    } catch {
+      // Non critique — le diagnostic invité n'a pas pu être récupéré
+    }
+
     router.push("/tableau-de-bord");
     router.refresh();
   }

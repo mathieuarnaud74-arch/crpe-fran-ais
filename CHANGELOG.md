@@ -1,5 +1,50 @@
 # Changelog
 
+## [2026-03-23] — Fix tunnel diagnostic P0 + optimisations performance
+
+### Tunnel diagnostic (P0 critique)
+- `features/diagnostic/components/diagnostic-client.tsx` — Correction du format envoyé à l'API : subdomains convertis d'array en record, `correct` → `score` (le format précédent ne passait pas la validation Zod)
+- `features/diagnostic/components/diagnostic-client.tsx` — Sauvegarde des résultats en localStorage pour les invités (`guest_diagnostic_result`) afin de tenir la promesse "retrouver vos résultats"
+- `features/auth/components/auth-form.tsx` — Après connexion, récupération automatique du diagnostic invité depuis localStorage, POST vers l'API, puis nettoyage du stockage
+
+### Exercices — normalisation des formats expected_answer
+- `features/exercises/server/queries.ts` — Support des modes `acceptableAnswers`, `exact`, `categories` (items+categories) et `free_text` (avec tableau) qui provoquaient des warnings et un fallback en tableau vide
+
+### Performance
+- `features/homepage/components/renderer.tsx` — Hero image quality réduite de 100 à 75 (gain de poids significatif sans perte visible)
+- `next.config.ts` — Réactivation de `reactStrictMode: true` pour détecter les effets de bord en dev
+
+## [2026-03-23] — Quick wins audit : acquisition, SEO, accessibilité, cohérence marque
+
+### Homepage
+- `features/homepage/lib/default-homepage.ts` — Activation des sections `trust_bar` et `domains` (visible: true) pour exposer la profondeur du produit
+- `features/homepage/lib/default-homepage.ts` — Unification email contact `crpe-prep.fr` → `crpe-francais.fr` dans la FAQ
+- `features/homepage/components/renderer.tsx` — Remplacement `<main>` par `<div>` pour éviter un double `<main>` imbriqué avec le layout marketing
+
+### Header & navigation
+- `components/site-header.tsx` — CTA desktop : ajout bouton "Créer mon compte gratuit" comme action principale, "Connexion" rétrogradé en lien textuel
+- `components/site-header.tsx` — Menu mobile : ajout "Créer mon compte gratuit" + "Connexion" en secondaire pour les non-connectés
+
+### Cohérence marque
+- `components/site-footer.tsx` — Copyright "CRPE Prep" → "CRPE Français" pour cohérence avec le header et le logo
+- `components/site-footer.tsx` — Email contact `crpe-prep.fr` → `crpe-francais.fr`
+
+### Accessibilité
+- `app/(marketing)/layout.tsx` — Ajout `<main id="main-content">` englobant les pages marketing (cible du skip link existant)
+
+### SEO
+- `app/sitemap.ts` — Retrait des pages auth `/connexion` et `/inscription` du sitemap (non indexables)
+- `app/robots.ts` — Ajout des routes privées manquantes au disallow : `/francais`, `/maths`, `/exercices`, `/exercice-aleatoire`, `/revision`, `/abonnement`, `/classement`, `/ressources`, `/fiches-maths`, `/connexion`, `/inscription`
+
+## [2026-03-23] - Garde-fous Claude /loop et rapport d'audit exporte
+
+- `.claude/settings.json` - Ajout des hooks `PreToolUse`, `PostToolUse` et `Stop` en version PowerShell pour encadrer l'execution en `/loop`
+- `.claude/hooks/pretool-guard.ps1` - Blocage des fichiers sensibles, commandes destructrices et remplacements de masse avant execution
+- `.claude/hooks/posttool-verify.ps1` - Lancement automatique de `lint`, `tests` et `build` apres edition de code, avec blocage si un check echoue
+- `.claude/hooks/stop-cycle-report.ps1` - Generation automatique d'un rapport de cycle dans `.claude/reports/` a la fin d'un tour
+- `.claude/hooks/changelog-check.ps1` - Portage PowerShell du controle de `CHANGELOG.md` pour compatibilite Windows
+- `23032026Rapport.md` - Ajout d'une annexe operationnelle sur les hooks Claude pour execution autonome en `/loop`
+
 ## [2026-03-23] — Persistance des badges en base de données
 
 - `supabase/migrations/20260787_create_user_badges.sql` — Nouvelle table `user_badges` (user_id, badge_id, earned_at) avec RLS pour persister les badges débloqués

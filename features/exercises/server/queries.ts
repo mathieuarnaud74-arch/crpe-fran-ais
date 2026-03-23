@@ -63,7 +63,18 @@ function normalizeExpectedAnswer(
   }
 
   if (
-    rawMode === "text" &&
+    (rawMode === "text" || rawMode === "acceptableAnswers" || rawMode === "exact") &&
+    Array.isArray(rawExpected.acceptableAnswers) &&
+    rawExpected.acceptableAnswers.every((answer) => typeof answer === "string")
+  ) {
+    return {
+      mode: "text",
+      acceptableAnswers: rawExpected.acceptableAnswers as string[],
+    };
+  }
+
+  if (
+    rawMode === "free_text" &&
     Array.isArray(rawExpected.acceptableAnswers) &&
     rawExpected.acceptableAnswers.every((answer) => typeof answer === "string")
   ) {
@@ -91,6 +102,20 @@ function normalizeExpectedAnswer(
       mode: "categorization",
       categories: rawExpected.categories as { id: string; label: string }[],
       mapping: rawExpected.mapping as Record<string, string>,
+    };
+  }
+
+  if (
+    rawMode === "categories" &&
+    Array.isArray(rawExpected.items) &&
+    Array.isArray(rawExpected.categories)
+  ) {
+    const items = rawExpected.items as { text: string; category: string }[];
+    const categories = rawExpected.categories as string[];
+    return {
+      mode: "categorization",
+      categories: categories.map((cat) => ({ id: cat, label: cat })),
+      mapping: Object.fromEntries(items.map((item) => [item.text, item.category])),
     };
   }
 

@@ -18,7 +18,7 @@ const LEGAL_LINKS = [
   { label: "Conditions générales", href: "/cgu" },
   { label: "Politique de confidentialité", href: "/politique-confidentialite" },
   { label: "Mentions légales", href: "/mentions-legales" },
-  { label: "Contact", href: "mailto:contact@crpe-prep.fr" },
+  { label: "Contact", href: "mailto:contact@crpe-francais.fr" },
 ];
 
 export function SiteFooter() {
@@ -56,7 +56,7 @@ export function SiteFooter() {
       {/* Bottom bar */}
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p className="text-xs text-muted">© 2026 CRPE Prep — Tous droits réservés</p>
+          <p className="text-xs text-muted">© 2026 CRPE Français — Tous droits réservés</p>
           <p className="text-xs text-muted">
             Conforme programme CRPE 2026 · Exercices ajoutés régulièrement
           </p>

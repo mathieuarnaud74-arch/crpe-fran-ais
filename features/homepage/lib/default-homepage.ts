@@ -42,7 +42,7 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
   },
   {
     type: "trust_bar",
-    visible: false,
+    visible: true,
     props: {
       eyebrow: "Concret dès l'arrivée",
       items: [
@@ -107,7 +107,7 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
   },
   {
     type: "domains",
-    visible: false,
+    visible: true,
     props: {
       eyebrow: "Domaines couverts",
       title: "Trois domaines, sept sous-domaines, un parcours de révision cohérent.",
@@ -123,8 +123,8 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
       title: "Questions fréquentes.",
       description: "Les réponses courtes aux hésitations les plus courantes.",
       noteTitle: "Une autre question ?",
-      noteDescription: "Écrivez à contact@crpe-prep.fr",
-      noteLinkHref: "mailto:contact@crpe-prep.fr",
+      noteDescription: "Écrivez à contact@crpe-francais.fr",
+      noteLinkHref: "mailto:contact@crpe-francais.fr",
       items: [
         {
           question: "C'est vraiment gratuit pour commencer ?",
