@@ -17,6 +17,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { AuthDialog } from "@/features/auth/components/auth-dialog";
 
 type SiteHeaderProps = {
   authenticated?: boolean;
@@ -35,6 +36,8 @@ const allMobileLinks = [
 
 export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<"signin" | "signup">("signup");
 
   return (
     <>
@@ -89,15 +92,16 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
             </ButtonLink>
           ) : (
             <>
-              <Link
-                href="/connexion"
+              <button
+                type="button"
                 className="rounded-full px-5 py-2 text-[0.9375rem] font-medium text-muted transition-colors hover:bg-secondary hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                onClick={() => { setAuthMode("signin"); setAuthOpen(true); }}
               >
                 Connexion
-              </Link>
-              <ButtonLink href="/inscription" className="shadow-subtle">
+              </button>
+              <Button className="shadow-subtle" onClick={() => { setAuthMode("signup"); setAuthOpen(true); }}>
                 Créer mon compte gratuit
-              </ButtonLink>
+              </Button>
             </>
           )}
         </div>
@@ -170,16 +174,27 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
                   </>
                 ) : (
                   <>
-                    <SheetClose asChild>
-                      <Button size="lg" asChild>
-                        <Link href="/inscription">Créer mon compte gratuit</Link>
-                      </Button>
-                    </SheetClose>
-                    <SheetClose asChild>
-                      <Button variant="secondary" size="lg" asChild>
-                        <Link href="/connexion">Connexion</Link>
-                      </Button>
-                    </SheetClose>
+                    <Button
+                      size="lg"
+                      onClick={() => {
+                        setOpen(false);
+                        setAuthMode("signup");
+                        setTimeout(() => setAuthOpen(true), 200);
+                      }}
+                    >
+                      Créer mon compte gratuit
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      onClick={() => {
+                        setOpen(false);
+                        setAuthMode("signin");
+                        setTimeout(() => setAuthOpen(true), 200);
+                      }}
+                    >
+                      Connexion
+                    </Button>
                   </>
                 )}
               </SheetFooter>
@@ -188,6 +203,9 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
         </div>
       </div>
     </header>
+    {!authenticated && (
+      <AuthDialog open={authOpen} onOpenChange={setAuthOpen} defaultMode={authMode} />
+    )}
     </>
   );
 }

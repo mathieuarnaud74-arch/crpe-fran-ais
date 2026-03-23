@@ -1,5 +1,53 @@
 # Changelog
 
+## [2026-03-23] — Popup auth central (inscription + connexion)
+
+- `features/auth/components/auth-dialog.tsx` — nouveau composant popup centré pour inscription et connexion, avec bascule entre les deux modes sans fermer le dialog
+- `components/site-header.tsx` — les boutons "Connexion" et "Créer mon compte" ouvrent le popup au lieu de naviguer vers des pages dédiées
+- `features/auth/components/signup-sheet.tsx` — supprimé (remplacé par auth-dialog)
+
+## [2026-03-23] — Audit contenu pédagogique + création 6 fiches + 2 migrations
+
+### Audit
+- Inventaire complet : 110 fiches FR + 98 fiches Maths + ~350 séries d'exercices (Français & Maths)
+- Lacunes identifiées : graphophonologie/CGP absent (FR didactique), langage oral maternelle absent (FR didactique), 4 opérations sans fiche dédiée (Maths didactique), série `math_didactique_addition` inexistante
+
+### Nouvelles fiches (Français)
+- `content/fiches/didactique-graphophonologie-cgp-sprint.ts` — Graphophonologie et CGP : correspondances graphèmes-phonèmes, décodage/encodage, voie phonologique, progression CP
+- `content/fiches/didactique-langage-oral-maternelle-sprint.ts` — Langage oral en maternelle : développement du langage PS/MS/GS, dictée à l'adulte, langage évoqué, ateliers langagiers
+- `content/fiches/index.ts` — ajout des 2 imports et exports
+
+### Nouvelles fiches (Mathématiques)
+- `content/fiches-maths/didactique-addition-sprint.ts` — Didactique de l'addition : structures additives (réunion/ajout), commutativité, stratégies de calcul réfléchi, progression CP-CE1
+- `content/fiches-maths/didactique-soustraction-sprint.ts` — Didactique de la soustraction : retrait/complément/comparaison, bug du plus petit au plus grand, algorithmes emprunt/compensation
+- `content/fiches-maths/didactique-multiplication-sprint.ts` — Didactique de la multiplication : addition itérée, produit scalaire, tables, commutativité, distributivité
+- `content/fiches-maths/didactique-division-sprint.ts` — Didactique de la division : partition vs quotition, division euclidienne, reste, interprétation contextuelle
+- `content/fiches-maths/index.ts` — ajout des 4 imports et exports
+
+### Nouvelles migrations SQL
+- `supabase/migrations/20260720_seed_graphophonologie_cgp.sql` — 10 exercices sur les CGP (topic_key: graphophonologie_cgp, subdomain: didactique_francais)
+- `supabase/migrations/20260721_seed_math_didactique_addition.sql` — 10 exercices sur la didactique de l'addition (topic_key: math_didactique_addition, subdomain: didactique_maths)
+
+## [2026-03-23] — Audit passe 5 : micro-audit ciblé (types, états d'erreur, cookies, flux end-to-end, routes admin, migrations)
+
+- `bugreport.md` — ajout de 8 nouveaux bugs (CRIT-005, MAJ-017–018, MIN-024–028) ; résumé exécutif mis à jour (5 critiques, 18 majeurs, 27 mineurs)
+
+## [2026-03-23] — Quotas freemium : exercices 30/jour, fiches 5/jour + verrouillage premium
+
+- `lib/env.ts` — quota exercices monté de 20 à 30, ajout `freeDailyFicheLimit` (5)
+- `lib/freemium.ts` — ajout `getDailyRemainingFicheQuota()` et `canReadFiche()` pour le quota fiches
+- `features/fiches/server/queries.ts` — ajout `getFicheReadsCountToday()` (comptage lectures du jour, timezone Paris)
+- `features/fiches/server/actions.ts` — `markFicheReadAction` vérifie désormais le tier premium et le quota quotidien
+- `app/(app)/fiches/[slug]/page.tsx` — page fiche détail : gate premium (CTA abonnement) + gate quota (limite atteinte) + compteur restant pour free users
+- `features/fiches/components/fiche-card.tsx` — `FicheRow` accepte `locked` / `lockReason` pour afficher les fiches verrouillées (premium ou quota) en grisé avec icône cadenas
+- `app/(app)/fiches/page.tsx` — listing fiches français : affiche quota restant, verrouille fiches premium et hors-quota
+- `app/(app)/fiches-maths/page.tsx` — listing fiches maths : idem
+- `app/(marketing)/offre/page.tsx` — textes mis à jour : 20 → 30 questions/jour
+- `features/homepage/lib/default-homepage.ts` — idem
+- `app/(app)/exercices/[id]/page.tsx` — texte quota dynamique via `env.freeDailyQuestionLimit`
+- `__tests__/freemium.test.ts` — tests mis à jour pour quota 30 + ajout 11 tests pour `getDailyRemainingFicheQuota` et `canReadFiche`
+- `CLAUDE.md` — documentation mise à jour (quotas 30 questions + 5 fiches)
+
 ## [2026-03-23] — Tests unitaires sur les chemins critiques
 
 - `features/exercises/shared/normalize.ts` — extraction de `normalizeExpectedAnswer` et `normalizeChoices` depuis `features/exercises/server/queries.ts` pour permettre les tests directs
