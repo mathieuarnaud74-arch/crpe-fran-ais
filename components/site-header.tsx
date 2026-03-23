@@ -131,12 +131,12 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
                 </SheetDescription>
               </SheetHeader>
 
-              <nav aria-label="Navigation mobile" className="mt-8 space-y-2">
+              <nav aria-label="Navigation mobile" className="mt-5 space-y-1.5">
                 {allMobileLinks.map((link) => (
                   <SheetClose asChild key={link.href}>
                     <Link
                       href={link.href}
-                      className="flex items-center justify-between rounded-[1.35rem] border border-border bg-card px-4 py-4 text-sm font-semibold text-ink shadow-subtle transition-colors hover:border-accentSecondary/30"
+                      className="flex items-center justify-between rounded-[1.35rem] border border-border bg-card px-4 py-3 text-sm font-semibold text-ink shadow-subtle transition-colors hover:border-accentSecondary/30"
                     >
                       <span>{link.label}</span>
                       <ArrowRight className="h-4 w-4 text-muted" />
@@ -145,12 +145,12 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
                 ))}
               </nav>
 
-              <div className="mt-8 rounded-[1.6rem] border border-border bg-card p-5 shadow-subtle">
+              <div className="mt-5 rounded-[1.6rem] border border-border bg-card p-4 shadow-subtle">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
                   Point d&apos;entrée conseillé
                 </p>
-                <p className="mt-3 font-serif text-2xl font-semibold text-ink">Commencer par le diagnostic</p>
-                <p className="mt-2 text-sm leading-7 text-muted">
+                <p className="mt-2 font-serif text-xl font-semibold text-ink">Commencer par le diagnostic</p>
+                <p className="mt-1 text-sm leading-6 text-muted">
                   Quelques minutes pour clarifier vos priorités avant de choisir vos séries.
                 </p>
               </div>
