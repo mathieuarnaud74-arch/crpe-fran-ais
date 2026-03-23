@@ -1,7 +1,7 @@
 -- ============================================================
 -- Migration : Série Orthographe — Accord du participe passé
 -- Topic : orthographe_participe_passe
--- UUID prefix : d2020000
+-- UUID prefix : d20c0000
 -- 10 exercices : 5 qcm, 2 reponse_courte, 3 correction_orthographique
 -- Niveaux : 3 Facile, 4 Intermédiaire, 3 Avancé
 -- ============================================================
@@ -12,7 +12,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2020000-0000-0000-0000-000000000001',
+  'd20c0000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'orthographe_participe_passe',
@@ -37,7 +37,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2020000-0000-0000-0000-000000000002',
+  'd20c0000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'orthographe_participe_passe',
@@ -62,7 +62,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2020000-0000-0000-0000-000000000003',
+  'd20c0000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'orthographe_participe_passe',
@@ -87,7 +87,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2020000-0000-0000-0000-000000000004',
+  'd20c0000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'orthographe_participe_passe',
@@ -112,7 +112,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2020000-0000-0000-0000-000000000005',
+  'd20c0000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'orthographe_participe_passe',
@@ -137,7 +137,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2020000-0000-0000-0000-000000000006',
+  'd20c0000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'orthographe_participe_passe',
@@ -162,7 +162,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2020000-0000-0000-0000-000000000007',
+  'd20c0000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'orthographe_participe_passe',
@@ -187,7 +187,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2020000-0000-0000-0000-000000000008',
+  'd20c0000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'orthographe_participe_passe',
@@ -212,7 +212,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2020000-0000-0000-0000-000000000009',
+  'd20c0000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'orthographe_participe_passe',
@@ -237,7 +237,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2020000-0000-0000-0000-00000000000a',
+  'd20c0000-0000-0000-0000-00000000000a',
   'Francais',
   'orthographe',
   'orthographe_participe_passe',

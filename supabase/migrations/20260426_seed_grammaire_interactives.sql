@@ -1,6 +1,6 @@
 -- Migration: 2 séries interactives grammaire (tri_categories + surlignage_propositions)
--- Série 1 : tri_phrase_emphatique (10 questions, free) — UUID prefix f1010000
--- Série 2 : surlignage_expansions_nom (10 questions, premium) — UUID prefix f1020000
+-- Série 1 : tri_phrase_emphatique (10 questions, free) — UUID prefix fa1e0000
+-- Série 2 : surlignage_expansions_nom (10 questions, premium) — UUID prefix fa1f0000
 
 -- ============================================================================
 -- SÉRIE 1 : Tri — Phrase neutre vs phrase emphatique
@@ -12,7 +12,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1010000-0000-0000-0000-000000000001',
+  'fa1e0000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'tri_phrase_emphatique',
@@ -37,7 +37,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1010000-0000-0000-0000-000000000002',
+  'fa1e0000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'tri_phrase_emphatique',
@@ -62,7 +62,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1010000-0000-0000-0000-000000000003',
+  'fa1e0000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'tri_phrase_emphatique',
@@ -87,7 +87,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1010000-0000-0000-0000-000000000004',
+  'fa1e0000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'tri_phrase_emphatique',
@@ -112,7 +112,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1010000-0000-0000-0000-000000000005',
+  'fa1e0000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'tri_phrase_emphatique',
@@ -137,7 +137,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1010000-0000-0000-0000-000000000006',
+  'fa1e0000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'tri_phrase_emphatique',
@@ -162,7 +162,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1010000-0000-0000-0000-000000000007',
+  'fa1e0000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'tri_phrase_emphatique',
@@ -187,7 +187,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1010000-0000-0000-0000-000000000008',
+  'fa1e0000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'tri_phrase_emphatique',
@@ -212,7 +212,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1010000-0000-0000-0000-000000000009',
+  'fa1e0000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'tri_phrase_emphatique',
@@ -237,7 +237,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1010000-0000-0000-0000-000000000010',
+  'fa1e0000-0000-0000-0000-000000000010',
   'Francais',
   'grammaire',
   'tri_phrase_emphatique',
@@ -266,7 +266,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1020000-0000-0000-0000-000000000001',
+  'fa1f0000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'surlignage_expansions_nom',
@@ -291,7 +291,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1020000-0000-0000-0000-000000000002',
+  'fa1f0000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'surlignage_expansions_nom',
@@ -316,7 +316,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1020000-0000-0000-0000-000000000003',
+  'fa1f0000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'surlignage_expansions_nom',
@@ -341,7 +341,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1020000-0000-0000-0000-000000000004',
+  'fa1f0000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'surlignage_expansions_nom',
@@ -366,7 +366,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1020000-0000-0000-0000-000000000005',
+  'fa1f0000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'surlignage_expansions_nom',
@@ -391,7 +391,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1020000-0000-0000-0000-000000000006',
+  'fa1f0000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'surlignage_expansions_nom',
@@ -416,7 +416,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1020000-0000-0000-0000-000000000007',
+  'fa1f0000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'surlignage_expansions_nom',
@@ -441,7 +441,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1020000-0000-0000-0000-000000000008',
+  'fa1f0000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'surlignage_expansions_nom',
@@ -466,7 +466,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1020000-0000-0000-0000-000000000009',
+  'fa1f0000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'surlignage_expansions_nom',
@@ -491,7 +491,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f1020000-0000-0000-0000-000000000010',
+  'fa1f0000-0000-0000-0000-000000000010',
   'Francais',
   'grammaire',
   'surlignage_expansions_nom',

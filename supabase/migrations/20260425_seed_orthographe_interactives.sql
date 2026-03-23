@@ -14,7 +14,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5010000-0000-0000-0000-000000000001',
+  'fa210000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'tri_accords_chaines',
@@ -39,7 +39,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5010000-0000-0000-0000-000000000002',
+  'fa210000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'tri_accords_chaines',
@@ -64,7 +64,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5010000-0000-0000-0000-000000000003',
+  'fa210000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'tri_accords_chaines',
@@ -89,7 +89,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5010000-0000-0000-0000-000000000004',
+  'fa210000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'tri_accords_chaines',
@@ -114,7 +114,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5010000-0000-0000-0000-000000000005',
+  'fa210000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'tri_accords_chaines',
@@ -139,7 +139,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5010000-0000-0000-0000-000000000006',
+  'fa210000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'tri_accords_chaines',
@@ -164,7 +164,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5010000-0000-0000-0000-000000000007',
+  'fa210000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'tri_accords_chaines',
@@ -189,7 +189,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5010000-0000-0000-0000-000000000008',
+  'fa210000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'tri_accords_chaines',
@@ -214,7 +214,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5010000-0000-0000-0000-000000000009',
+  'fa210000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'tri_accords_chaines',
@@ -239,7 +239,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5010000-0000-0000-0000-000000000010',
+  'fa210000-0000-0000-0000-000000000010',
   'Francais',
   'orthographe',
   'tri_accords_chaines',
@@ -270,7 +270,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5020000-0000-0000-0000-000000000001',
+  'fa220000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'surlignage_accords_phrase',
@@ -295,7 +295,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5020000-0000-0000-0000-000000000002',
+  'fa220000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'surlignage_accords_phrase',
@@ -320,7 +320,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5020000-0000-0000-0000-000000000003',
+  'fa220000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'surlignage_accords_phrase',
@@ -345,7 +345,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5020000-0000-0000-0000-000000000004',
+  'fa220000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'surlignage_accords_phrase',
@@ -370,7 +370,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5020000-0000-0000-0000-000000000005',
+  'fa220000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'surlignage_accords_phrase',
@@ -395,7 +395,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5020000-0000-0000-0000-000000000006',
+  'fa220000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'surlignage_accords_phrase',
@@ -420,7 +420,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5020000-0000-0000-0000-000000000007',
+  'fa220000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'surlignage_accords_phrase',
@@ -445,7 +445,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5020000-0000-0000-0000-000000000008',
+  'fa220000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'surlignage_accords_phrase',
@@ -470,7 +470,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5020000-0000-0000-0000-000000000009',
+  'fa220000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'surlignage_accords_phrase',
@@ -495,7 +495,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f5020000-0000-0000-0000-000000000010',
+  'fa220000-0000-0000-0000-000000000010',
   'Francais',
   'orthographe',
   'surlignage_accords_phrase',

@@ -8,7 +8,7 @@
 -- ============================================================
 -- SÉRIE 1 : Identifier la nature des mots
 -- Topic : analyse_identifier_nature
--- UUID prefix : g1010000
+-- UUID prefix : fa010000
 -- Subdomain : analyse_langue
 -- 3 Facile, 4 Intermédiaire, 3 Avancé
 -- ============================================================
@@ -19,7 +19,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1010000-0000-0000-0000-000000000001',
+  'fa010000-0000-0000-0000-000000000001',
   'Francais',
   'analyse_langue',
   'analyse_identifier_nature',
@@ -41,7 +41,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1010000-0000-0000-0000-000000000002',
+  'fa010000-0000-0000-0000-000000000002',
   'Francais',
   'analyse_langue',
   'analyse_identifier_nature',
@@ -63,7 +63,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1010000-0000-0000-0000-000000000003',
+  'fa010000-0000-0000-0000-000000000003',
   'Francais',
   'analyse_langue',
   'analyse_identifier_nature',
@@ -85,7 +85,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1010000-0000-0000-0000-000000000004',
+  'fa010000-0000-0000-0000-000000000004',
   'Francais',
   'analyse_langue',
   'analyse_identifier_nature',
@@ -107,7 +107,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1010000-0000-0000-0000-000000000005',
+  'fa010000-0000-0000-0000-000000000005',
   'Francais',
   'analyse_langue',
   'analyse_identifier_nature',
@@ -129,7 +129,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1010000-0000-0000-0000-000000000006',
+  'fa010000-0000-0000-0000-000000000006',
   'Francais',
   'analyse_langue',
   'analyse_identifier_nature',
@@ -151,7 +151,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1010000-0000-0000-0000-000000000007',
+  'fa010000-0000-0000-0000-000000000007',
   'Francais',
   'analyse_langue',
   'analyse_identifier_nature',
@@ -173,7 +173,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1010000-0000-0000-0000-000000000008',
+  'fa010000-0000-0000-0000-000000000008',
   'Francais',
   'analyse_langue',
   'analyse_identifier_nature',
@@ -195,7 +195,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1010000-0000-0000-0000-000000000009',
+  'fa010000-0000-0000-0000-000000000009',
   'Francais',
   'analyse_langue',
   'analyse_identifier_nature',
@@ -217,7 +217,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1010000-0000-0000-0000-00000000000a',
+  'fa010000-0000-0000-0000-00000000000a',
   'Francais',
   'analyse_langue',
   'analyse_identifier_nature',
@@ -236,7 +236,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 2 : Identifier le type de discours
 -- Topic : comprehension_type_discours
--- UUID prefix : g1020000
+-- UUID prefix : fa020000
 -- Subdomain : comprehension_texte
 -- 3 Facile, 4 Intermédiaire, 3 Avancé
 -- ============================================================
@@ -247,7 +247,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1020000-0000-0000-0000-000000000001',
+  'fa020000-0000-0000-0000-000000000001',
   'Francais',
   'comprehension_texte',
   'comprehension_type_discours',
@@ -269,7 +269,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1020000-0000-0000-0000-000000000002',
+  'fa020000-0000-0000-0000-000000000002',
   'Francais',
   'comprehension_texte',
   'comprehension_type_discours',
@@ -291,7 +291,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1020000-0000-0000-0000-000000000003',
+  'fa020000-0000-0000-0000-000000000003',
   'Francais',
   'comprehension_texte',
   'comprehension_type_discours',
@@ -313,7 +313,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1020000-0000-0000-0000-000000000004',
+  'fa020000-0000-0000-0000-000000000004',
   'Francais',
   'comprehension_texte',
   'comprehension_type_discours',
@@ -335,7 +335,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1020000-0000-0000-0000-000000000005',
+  'fa020000-0000-0000-0000-000000000005',
   'Francais',
   'comprehension_texte',
   'comprehension_type_discours',
@@ -357,7 +357,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1020000-0000-0000-0000-000000000006',
+  'fa020000-0000-0000-0000-000000000006',
   'Francais',
   'comprehension_texte',
   'comprehension_type_discours',
@@ -379,7 +379,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1020000-0000-0000-0000-000000000007',
+  'fa020000-0000-0000-0000-000000000007',
   'Francais',
   'comprehension_texte',
   'comprehension_type_discours',
@@ -401,7 +401,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1020000-0000-0000-0000-000000000008',
+  'fa020000-0000-0000-0000-000000000008',
   'Francais',
   'comprehension_texte',
   'comprehension_type_discours',
@@ -423,7 +423,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1020000-0000-0000-0000-000000000009',
+  'fa020000-0000-0000-0000-000000000009',
   'Francais',
   'comprehension_texte',
   'comprehension_type_discours',
@@ -445,7 +445,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'g1020000-0000-0000-0000-00000000000a',
+  'fa020000-0000-0000-0000-00000000000a',
   'Francais',
   'comprehension_texte',
   'comprehension_type_discours',

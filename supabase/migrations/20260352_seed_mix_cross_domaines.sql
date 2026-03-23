@@ -9,7 +9,7 @@
 -- ============================================================
 -- SÉRIE 1 : Mix — Révision express (1)
 -- Topic : mix_revision_express_1
--- UUID prefix : h1010000
+-- UUID prefix : ab010000
 -- Mix de TOUS les sous-domaines
 -- 3 Facile, 4 Intermédiaire, 3 Avancé
 -- ============================================================
@@ -20,7 +20,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1010000-0000-0000-0000-000000000001',
+  'ab010000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'mix_revision_express_1',
@@ -42,7 +42,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1010000-0000-0000-0000-000000000002',
+  'ab010000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'mix_revision_express_1',
@@ -64,7 +64,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1010000-0000-0000-0000-000000000003',
+  'ab010000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'mix_revision_express_1',
@@ -86,7 +86,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1010000-0000-0000-0000-000000000004',
+  'ab010000-0000-0000-0000-000000000004',
   'Francais',
   'lexique',
   'mix_revision_express_1',
@@ -108,7 +108,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1010000-0000-0000-0000-000000000005',
+  'ab010000-0000-0000-0000-000000000005',
   'Francais',
   'lexique',
   'mix_revision_express_1',
@@ -130,7 +130,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1010000-0000-0000-0000-000000000006',
+  'ab010000-0000-0000-0000-000000000006',
   'Francais',
   'comprehension_texte',
   'mix_revision_express_1',
@@ -152,7 +152,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1010000-0000-0000-0000-000000000007',
+  'ab010000-0000-0000-0000-000000000007',
   'Francais',
   'comprehension_texte',
   'mix_revision_express_1',
@@ -174,7 +174,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1010000-0000-0000-0000-000000000008',
+  'ab010000-0000-0000-0000-000000000008',
   'Francais',
   'analyse_langue',
   'mix_revision_express_1',
@@ -196,7 +196,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1010000-0000-0000-0000-000000000009',
+  'ab010000-0000-0000-0000-000000000009',
   'Francais',
   'analyse_langue',
   'mix_revision_express_1',
@@ -218,7 +218,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1010000-0000-0000-0000-00000000000a',
+  'ab010000-0000-0000-0000-00000000000a',
   'Francais',
   'didactique_francais',
   'mix_revision_express_1',
@@ -238,7 +238,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 2 : Mix — Les pièges classiques du CRPE
 -- Topic : mix_piege_du_jour
--- UUID prefix : h1020000
+-- UUID prefix : ab020000
 -- Questions pièges de tous les domaines
 -- 0 Facile, 5 Intermédiaire, 5 Avancé
 -- ============================================================
@@ -249,7 +249,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1020000-0000-0000-0000-000000000001',
+  'ab020000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'mix_piege_du_jour',
@@ -271,7 +271,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1020000-0000-0000-0000-000000000002',
+  'ab020000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'mix_piege_du_jour',
@@ -293,7 +293,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1020000-0000-0000-0000-000000000003',
+  'ab020000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'mix_piege_du_jour',
@@ -315,7 +315,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1020000-0000-0000-0000-000000000004',
+  'ab020000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'mix_piege_du_jour',
@@ -337,7 +337,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1020000-0000-0000-0000-000000000005',
+  'ab020000-0000-0000-0000-000000000005',
   'Francais',
   'lexique',
   'mix_piege_du_jour',
@@ -359,7 +359,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1020000-0000-0000-0000-000000000006',
+  'ab020000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'mix_piege_du_jour',
@@ -381,7 +381,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1020000-0000-0000-0000-000000000007',
+  'ab020000-0000-0000-0000-000000000007',
   'Francais',
   'analyse_langue',
   'mix_piege_du_jour',
@@ -403,7 +403,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1020000-0000-0000-0000-000000000008',
+  'ab020000-0000-0000-0000-000000000008',
   'Francais',
   'didactique_francais',
   'mix_piege_du_jour',
@@ -425,7 +425,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1020000-0000-0000-0000-000000000009',
+  'ab020000-0000-0000-0000-000000000009',
   'Francais',
   'comprehension_texte',
   'mix_piege_du_jour',
@@ -447,7 +447,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1020000-0000-0000-0000-00000000000a',
+  'ab020000-0000-0000-0000-00000000000a',
   'Francais',
   'conjugaison',
   'mix_piege_du_jour',
@@ -467,7 +467,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 3 : Mix — Culture générale CRPE
 -- Topic : mix_culture_crpe
--- UUID prefix : h1030000
+-- UUID prefix : ab030000
 -- Questions culture linguistique + CRPE
 -- 4 Facile, 3 Intermédiaire, 3 Avancé
 -- ============================================================
@@ -478,7 +478,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1030000-0000-0000-0000-000000000001',
+  'ab030000-0000-0000-0000-000000000001',
   'Francais',
   'lexique',
   'mix_culture_crpe',
@@ -500,7 +500,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1030000-0000-0000-0000-000000000002',
+  'ab030000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'mix_culture_crpe',
@@ -522,7 +522,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1030000-0000-0000-0000-000000000003',
+  'ab030000-0000-0000-0000-000000000003',
   'Francais',
   'comprehension_texte',
   'mix_culture_crpe',
@@ -544,7 +544,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1030000-0000-0000-0000-000000000004',
+  'ab030000-0000-0000-0000-000000000004',
   'Francais',
   'didactique_francais',
   'mix_culture_crpe',
@@ -566,7 +566,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1030000-0000-0000-0000-000000000005',
+  'ab030000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'mix_culture_crpe',
@@ -588,7 +588,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1030000-0000-0000-0000-000000000006',
+  'ab030000-0000-0000-0000-000000000006',
   'Francais',
   'lexique',
   'mix_culture_crpe',
@@ -610,7 +610,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1030000-0000-0000-0000-000000000007',
+  'ab030000-0000-0000-0000-000000000007',
   'Francais',
   'comprehension_texte',
   'mix_culture_crpe',
@@ -632,7 +632,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1030000-0000-0000-0000-000000000008',
+  'ab030000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'mix_culture_crpe',
@@ -654,7 +654,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1030000-0000-0000-0000-000000000009',
+  'ab030000-0000-0000-0000-000000000009',
   'Francais',
   'didactique_francais',
   'mix_culture_crpe',
@@ -676,7 +676,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, access_tier, is_published
 ) VALUES (
-  'h1030000-0000-0000-0000-00000000000a',
+  'ab030000-0000-0000-0000-00000000000a',
   'Francais',
   'analyse_langue',
   'mix_culture_crpe',

@@ -11,7 +11,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e4010000-0000-0000-0000-000000000001',
+  'fa170000-0000-0000-0000-000000000001',
   'Francais',
   'lexique',
   'lexique_figures_style_textes',
@@ -36,7 +36,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e4010000-0000-0000-0000-000000000002',
+  'fa170000-0000-0000-0000-000000000002',
   'Francais',
   'lexique',
   'lexique_figures_style_textes',
@@ -61,7 +61,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e4010000-0000-0000-0000-000000000003',
+  'fa170000-0000-0000-0000-000000000003',
   'Francais',
   'lexique',
   'lexique_figures_style_textes',
@@ -86,7 +86,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e4010000-0000-0000-0000-000000000004',
+  'fa170000-0000-0000-0000-000000000004',
   'Francais',
   'lexique',
   'lexique_figures_style_textes',
@@ -111,7 +111,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e4010000-0000-0000-0000-000000000005',
+  'fa170000-0000-0000-0000-000000000005',
   'Francais',
   'lexique',
   'lexique_figures_style_textes',
@@ -136,7 +136,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e4010000-0000-0000-0000-000000000006',
+  'fa170000-0000-0000-0000-000000000006',
   'Francais',
   'lexique',
   'lexique_figures_style_textes',
@@ -161,7 +161,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e4010000-0000-0000-0000-000000000007',
+  'fa170000-0000-0000-0000-000000000007',
   'Francais',
   'lexique',
   'lexique_figures_style_textes',
@@ -186,7 +186,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e4010000-0000-0000-0000-000000000008',
+  'fa170000-0000-0000-0000-000000000008',
   'Francais',
   'lexique',
   'lexique_figures_style_textes',
@@ -211,7 +211,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e4010000-0000-0000-0000-000000000009',
+  'fa170000-0000-0000-0000-000000000009',
   'Francais',
   'lexique',
   'lexique_figures_style_textes',
@@ -236,7 +236,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e4010000-0000-0000-0000-00000000000a',
+  'fa170000-0000-0000-0000-00000000000a',
   'Francais',
   'lexique',
   'lexique_figures_style_textes',

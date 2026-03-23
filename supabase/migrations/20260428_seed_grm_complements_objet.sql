@@ -193,7 +193,7 @@ INSERT INTO public.exercises (
   'Classez chaque complément souligné dans la catégorie qui convient : COD (interne au GV), COI (interne au GV) ou CC (au niveau de P).',
   '1. « Il songeait à son pays. » → à son pays\n2. « Elle écrivait une lettre. » → une lettre\n3. « Il marchait dans la nuit. » → dans la nuit\n4. « Le corbeau obéit au renard. » → au renard',
   '[{"id":"cod","label":"COD"},{"id":"coi","label":"COI"},{"id":"cc","label":"CC"}]'::jsonb,
-  '{"mode":"categories","value":{"cod":["2"],"coi":["1","4"],"cc":["3"]}}'::jsonb,
+  '{"mode":"categorization","value":{"cod":["2"],"coi":["1","4"],"cc":["3"]}}'::jsonb,
   'Phrase 1 : « à son pays » est un COI — le verbe « songer à » exige ce complément prépositionnel (lié au sens du verbe, non supprimable). Phrase 2 : « une lettre » est un COD — GN sans préposition, interne au GV, remplaçable par « la » (« Elle l''écrivait »). Phrase 3 : « dans la nuit » est un CC de temps/lieu — il est facultatif, supprimable et déplaçable (« Dans la nuit, il marchait »). Phrase 4 : « au renard » est un COI — le verbe « obéir à » exige ce GNP, remplaçable par « lui » (« Le corbeau lui obéit »). Le critère clé : le CC est au niveau de P (supprimable, déplaçable), les CO sont internes au GV (liés au verbe).',
   'Confondre COI et CC quand les deux sont introduits par une préposition. Le critère décisif est le lien avec le verbe : le COI est exigé par le verbe (songer à, obéir à), le CC apporte une information circonstancielle facultative.',
   'valide',

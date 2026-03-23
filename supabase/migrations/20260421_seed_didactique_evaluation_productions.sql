@@ -1,7 +1,7 @@
 -- Migration: Évaluer des productions d'élèves — critères et différenciation (10 exercices)
 -- Subdomain: didactique_francais
 -- topic_key: didactique_evaluation_productions
--- UUID prefix: e5020000
+-- UUID prefix: e50f0000
 -- All exercises have rich support_text with realistic student productions
 
 -- Q1 — QCM — Évaluation positive d'un récit CE2 (Intermédiaire)
@@ -10,7 +10,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000001',
+  'e50f0000-0000-0000-0000-000000000001',
   'Francais',
   'didactique_francais',
   'didactique_evaluation_productions',
@@ -35,7 +35,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000002',
+  'e50f0000-0000-0000-0000-000000000002',
   'Francais',
   'didactique_francais',
   'didactique_evaluation_productions',
@@ -60,7 +60,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000003',
+  'e50f0000-0000-0000-0000-000000000003',
   'Francais',
   'didactique_francais',
   'didactique_evaluation_productions',
@@ -85,7 +85,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000004',
+  'e50f0000-0000-0000-0000-000000000004',
   'Francais',
   'didactique_francais',
   'didactique_evaluation_productions',
@@ -110,7 +110,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000005',
+  'e50f0000-0000-0000-0000-000000000005',
   'Francais',
   'didactique_francais',
   'didactique_evaluation_productions',
@@ -135,7 +135,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000006',
+  'e50f0000-0000-0000-0000-000000000006',
   'Francais',
   'didactique_francais',
   'didactique_evaluation_productions',
@@ -160,7 +160,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000007',
+  'e50f0000-0000-0000-0000-000000000007',
   'Francais',
   'didactique_francais',
   'didactique_evaluation_productions',
@@ -185,7 +185,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000008',
+  'e50f0000-0000-0000-0000-000000000008',
   'Francais',
   'didactique_francais',
   'didactique_evaluation_productions',
@@ -210,7 +210,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000009',
+  'e50f0000-0000-0000-0000-000000000009',
   'Francais',
   'didactique_francais',
   'didactique_evaluation_productions',
@@ -235,7 +235,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-00000000000a',
+  'e50f0000-0000-0000-0000-00000000000a',
   'Francais',
   'didactique_francais',
   'didactique_evaluation_productions',

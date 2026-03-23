@@ -755,7 +755,7 @@ INSERT INTO public.exercises (
 
 -- ************************************************************
 -- SÉRIE 6 : Sprint — Grammaire de phrase [QCM rapide]
--- UUID prefix : b3010000
+-- UUID prefix : fa070000
 -- Subdomain : grammaire
 -- ************************************************************
 
@@ -767,7 +767,7 @@ INSERT INTO public.exercises (
 
 -- Q1
 (
-  'b3010000-0000-0000-0000-000000000001',
+  'fa070000-0000-0000-0000-000000000001',
   'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Facile',
   'qcm',
   'Dans « Le chat dort sur le toit », quelle est la fonction de « sur le toit » ?',
@@ -781,7 +781,7 @@ INSERT INTO public.exercises (
 
 -- Q2
 (
-  'b3010000-0000-0000-0000-000000000002',
+  'fa070000-0000-0000-0000-000000000002',
   'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Facile',
   'qcm',
   'Quelle est la nature du mot « rapidement » ?',
@@ -795,7 +795,7 @@ INSERT INTO public.exercises (
 
 -- Q3
 (
-  'b3010000-0000-0000-0000-000000000003',
+  'fa070000-0000-0000-0000-000000000003',
   'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Facile',
   'vrai_faux',
   'Dans « Pierre mange une pomme », « une pomme » est COI.',
@@ -809,7 +809,7 @@ INSERT INTO public.exercises (
 
 -- Q4
 (
-  'b3010000-0000-0000-0000-000000000004',
+  'fa070000-0000-0000-0000-000000000004',
   'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Facile',
   'qcm',
   'Dans « Elle semble heureuse », quelle est la fonction de « heureuse » ?',
@@ -823,7 +823,7 @@ INSERT INTO public.exercises (
 
 -- Q5
 (
-  'b3010000-0000-0000-0000-000000000005',
+  'fa070000-0000-0000-0000-000000000005',
   'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Facile',
   'vrai_faux',
   'Une phrase peut contenir plusieurs verbes conjugués et être une phrase simple.',
@@ -837,7 +837,7 @@ INSERT INTO public.exercises (
 
 -- Q6
 (
-  'b3010000-0000-0000-0000-000000000006',
+  'fa070000-0000-0000-0000-000000000006',
   'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Intermediaire',
   'qcm',
   'Dans « Le livre dont je parle est célèbre », quelle est la nature de « dont » ?',
@@ -851,7 +851,7 @@ INSERT INTO public.exercises (
 
 -- Q7
 (
-  'b3010000-0000-0000-0000-000000000007',
+  'fa070000-0000-0000-0000-000000000007',
   'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Intermediaire',
   'vrai_faux',
   '« Bien que » est une conjonction de coordination.',
@@ -865,7 +865,7 @@ INSERT INTO public.exercises (
 
 -- Q8
 (
-  'b3010000-0000-0000-0000-000000000008',
+  'fa070000-0000-0000-0000-000000000008',
   'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Intermediaire',
   'qcm',
   'Quel type de déterminant est « chaque » dans « chaque élève » ?',
@@ -879,7 +879,7 @@ INSERT INTO public.exercises (
 
 -- Q9
 (
-  'b3010000-0000-0000-0000-000000000009',
+  'fa070000-0000-0000-0000-000000000009',
   'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Intermediaire',
   'vrai_faux',
   'Le complément circonstanciel est toujours supprimable et déplaçable.',
@@ -893,7 +893,7 @@ INSERT INTO public.exercises (
 
 -- Q10
 (
-  'b3010000-0000-0000-0000-000000000010',
+  'fa070000-0000-0000-0000-000000000010',
   'Francais', 'grammaire', 'sprint_grammaire_phrase', 'Sprint — Grammaire de phrase', 'Intermediaire',
   'qcm',
   'Dans « Il faut que tu viennes », quel est le mode du verbe « viennes » ?',
@@ -907,13 +907,13 @@ INSERT INTO public.exercises (
 
 -- ************************************************************
 -- SÉRIE 7 : Swipe — Orthographe d'usage [Vrai/Faux]
--- UUID prefix : c4010000
+-- UUID prefix : fa230000
 -- Subdomain : orthographe
 -- ************************************************************
 
 -- Q1
 (
-  'c4010000-0000-0000-0000-000000000001',
+  'fa230000-0000-0000-0000-000000000001',
   'Francais', 'orthographe', 'swipe_orthographe_usage', 'Swipe — Orthographe d''usage', 'Facile',
   'vrai_faux',
   'La phrase « Les enfants manges leur goûter » est correctement orthographiée.',
@@ -927,7 +927,7 @@ INSERT INTO public.exercises (
 
 -- Q2
 (
-  'c4010000-0000-0000-0000-000000000002',
+  'fa230000-0000-0000-0000-000000000002',
   'Francais', 'orthographe', 'swipe_orthographe_usage', 'Swipe — Orthographe d''usage', 'Facile',
   'vrai_faux',
   '« Quoiqu''il en soit » s''écrit en un seul mot : « quoique ».',
@@ -941,7 +941,7 @@ INSERT INTO public.exercises (
 
 -- Q3
 (
-  'c4010000-0000-0000-0000-000000000003',
+  'fa230000-0000-0000-0000-000000000003',
   'Francais', 'orthographe', 'swipe_orthographe_usage', 'Swipe — Orthographe d''usage', 'Intermediaire',
   'vrai_faux',
   '« Cent » prend un -s quand il est multiplié et non suivi d''un autre nombre : « deux cents euros ».',
@@ -955,7 +955,7 @@ INSERT INTO public.exercises (
 
 -- Q4
 (
-  'c4010000-0000-0000-0000-000000000004',
+  'fa230000-0000-0000-0000-000000000004',
   'Francais', 'orthographe', 'swipe_orthographe_usage', 'Swipe — Orthographe d''usage', 'Facile',
   'vrai_faux',
   '« Ils ont mangé des pommes » : le participe passé « mangé » est correctement orthographié.',
@@ -969,7 +969,7 @@ INSERT INTO public.exercises (
 
 -- Q5
 (
-  'c4010000-0000-0000-0000-000000000005',
+  'fa230000-0000-0000-0000-000000000005',
   'Francais', 'orthographe', 'swipe_orthographe_usage', 'Swipe — Orthographe d''usage', 'Intermediaire',
   'vrai_faux',
   '« Quelque soit votre avis » est correctement orthographié.',
@@ -983,7 +983,7 @@ INSERT INTO public.exercises (
 
 -- Q6
 (
-  'c4010000-0000-0000-0000-000000000006',
+  'fa230000-0000-0000-0000-000000000006',
   'Francais', 'orthographe', 'swipe_orthographe_usage', 'Swipe — Orthographe d''usage', 'Facile',
   'vrai_faux',
   '« Cet homme là-bas » prend un trait d''union entre « là » et « bas ».',
@@ -997,7 +997,7 @@ INSERT INTO public.exercises (
 
 -- Q7
 (
-  'c4010000-0000-0000-0000-000000000007',
+  'fa230000-0000-0000-0000-000000000007',
   'Francais', 'orthographe', 'swipe_orthographe_usage', 'Swipe — Orthographe d''usage', 'Intermediaire',
   'vrai_faux',
   '« Les girafes que j''ai vu courir » : « vu » est invariable car suivi d''un infinitif.',
@@ -1011,7 +1011,7 @@ INSERT INTO public.exercises (
 
 -- Q8
 (
-  'c4010000-0000-0000-0000-000000000008',
+  'fa230000-0000-0000-0000-000000000008',
   'Francais', 'orthographe', 'swipe_orthographe_usage', 'Swipe — Orthographe d''usage', 'Facile',
   'vrai_faux',
   '« Parmis les candidats » est correctement orthographié.',
@@ -1025,7 +1025,7 @@ INSERT INTO public.exercises (
 
 -- Q9
 (
-  'c4010000-0000-0000-0000-000000000009',
+  'fa230000-0000-0000-0000-000000000009',
   'Francais', 'orthographe', 'swipe_orthographe_usage', 'Swipe — Orthographe d''usage', 'Intermediaire',
   'vrai_faux',
   '« Malgré que » est considéré comme correct en français soutenu.',
@@ -1039,7 +1039,7 @@ INSERT INTO public.exercises (
 
 -- Q10
 (
-  'c4010000-0000-0000-0000-000000000010',
+  'fa230000-0000-0000-0000-000000000010',
   'Francais', 'orthographe', 'swipe_orthographe_usage', 'Swipe — Orthographe d''usage', 'Intermediaire',
   'vrai_faux',
   '« Les pommes de terre » prend un -s uniquement à « pomme » au pluriel.',

@@ -13,7 +13,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3010000-0000-0000-0000-000000000001',
+  'fa130000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'conj_passe_simple_irreguliers',
@@ -38,7 +38,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3010000-0000-0000-0000-000000000002',
+  'fa130000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'conj_passe_simple_irreguliers',
@@ -63,7 +63,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3010000-0000-0000-0000-000000000003',
+  'fa130000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'conj_passe_simple_irreguliers',
@@ -88,7 +88,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3010000-0000-0000-0000-000000000004',
+  'fa130000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'conj_passe_simple_irreguliers',
@@ -113,7 +113,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3010000-0000-0000-0000-000000000005',
+  'fa130000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'conj_passe_simple_irreguliers',
@@ -138,7 +138,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3010000-0000-0000-0000-000000000006',
+  'fa130000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'conj_passe_simple_irreguliers',
@@ -163,7 +163,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3010000-0000-0000-0000-000000000007',
+  'fa130000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'conj_passe_simple_irreguliers',
@@ -188,7 +188,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3010000-0000-0000-0000-000000000008',
+  'fa130000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'conj_passe_simple_irreguliers',
@@ -213,7 +213,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3010000-0000-0000-0000-000000000009',
+  'fa130000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'conj_passe_simple_irreguliers',
@@ -238,7 +238,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3010000-0000-0000-0000-000000000010',
+  'fa130000-0000-0000-0000-000000000010',
   'Francais',
   'conjugaison',
   'conj_passe_simple_irreguliers',
@@ -267,7 +267,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000001',
+  'fa140000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'conj_imperatif_pieges',
@@ -292,7 +292,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000002',
+  'fa140000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'conj_imperatif_pieges',
@@ -317,7 +317,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000003',
+  'fa140000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'conj_imperatif_pieges',
@@ -342,7 +342,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000004',
+  'fa140000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'conj_imperatif_pieges',
@@ -367,7 +367,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000005',
+  'fa140000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'conj_imperatif_pieges',
@@ -392,7 +392,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000006',
+  'fa140000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'conj_imperatif_pieges',
@@ -417,7 +417,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000007',
+  'fa140000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'conj_imperatif_pieges',
@@ -442,7 +442,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000008',
+  'fa140000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'conj_imperatif_pieges',
@@ -467,7 +467,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000009',
+  'fa140000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'conj_imperatif_pieges',
@@ -492,7 +492,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000010',
+  'fa140000-0000-0000-0000-000000000010',
   'Francais',
   'conjugaison',
   'conj_imperatif_pieges',

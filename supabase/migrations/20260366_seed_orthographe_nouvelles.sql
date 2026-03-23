@@ -13,7 +13,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c6010000-0000-0000-0000-000000000001',
+  'fa0d0000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'orth_homophones_grammaticaux',
@@ -38,7 +38,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c6010000-0000-0000-0000-000000000002',
+  'fa0d0000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'orth_homophones_grammaticaux',
@@ -63,7 +63,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c6010000-0000-0000-0000-000000000003',
+  'fa0d0000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'orth_homophones_grammaticaux',
@@ -88,7 +88,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c6010000-0000-0000-0000-000000000004',
+  'fa0d0000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'orth_homophones_grammaticaux',
@@ -113,7 +113,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c6010000-0000-0000-0000-000000000005',
+  'fa0d0000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'orth_homophones_grammaticaux',
@@ -138,7 +138,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c6010000-0000-0000-0000-000000000006',
+  'fa0d0000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'orth_homophones_grammaticaux',
@@ -163,7 +163,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c6010000-0000-0000-0000-000000000007',
+  'fa0d0000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'orth_homophones_grammaticaux',
@@ -188,7 +188,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c6010000-0000-0000-0000-000000000008',
+  'fa0d0000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'orth_homophones_grammaticaux',
@@ -213,7 +213,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c6010000-0000-0000-0000-000000000009',
+  'fa0d0000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'orth_homophones_grammaticaux',
@@ -238,7 +238,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c6010000-0000-0000-0000-00000000000a',
+  'fa0d0000-0000-0000-0000-00000000000a',
   'Francais',
   'orthographe',
   'orth_homophones_grammaticaux',

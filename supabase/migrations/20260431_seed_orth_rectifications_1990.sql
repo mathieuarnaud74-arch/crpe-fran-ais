@@ -105,7 +105,7 @@ INSERT INTO public.exercises (
   'Classez chaque mot selon qu''il s''agit de la graphie traditionnelle (ancienne) ou de la graphie rectifiée (1990).',
   NULL,
   NULL,
-  '{"mode":"categories","categories":["Graphie traditionnelle","Graphie rectifiée"],"items":[{"text":"Paraître","category":"Graphie traditionnelle"},{"text":"Connaitre","category":"Graphie rectifiée"},{"text":"Cout","category":"Graphie rectifiée"},{"text":"Entraîner","category":"Graphie traditionnelle"},{"text":"Ile","category":"Graphie rectifiée"},{"text":"Maîtrise","category":"Graphie traditionnelle"}]}'::jsonb,
+  '{"mode":"categorization","categories":["Graphie traditionnelle","Graphie rectifiée"],"items":[{"text":"Paraître","category":"Graphie traditionnelle"},{"text":"Connaitre","category":"Graphie rectifiée"},{"text":"Cout","category":"Graphie rectifiée"},{"text":"Entraîner","category":"Graphie traditionnelle"},{"text":"Ile","category":"Graphie rectifiée"},{"text":"Maîtrise","category":"Graphie traditionnelle"}]}'::jsonb,
   'Les rectifications de 1990 suppriment l''accent circonflexe sur i et u (sauf cas d''homonymie). Ainsi : « paraître » → « paraitre », « coût » → « cout », « entraîner » → « entrainer », « île » → « ile », « maîtrise » → « maitrise », « connaître » → « connaitre ». Les formes avec accent sont les graphies traditionnelles, celles sans accent sont les graphies rectifiées. Au CRPE, un candidat doit être capable d''identifier les deux formes et de savoir que les deux sont acceptées.',
   'Confondre graphie traditionnelle et graphie rectifiée, ou croire que la suppression du circonflexe concerne toutes les voyelles. Elle ne concerne que le i et le u, pas le a, le e ou le o (« pâte », « forêt », « côte » gardent leur accent).',
   'valide',

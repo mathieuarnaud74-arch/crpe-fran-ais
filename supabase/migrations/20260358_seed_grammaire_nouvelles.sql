@@ -13,7 +13,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000001',
+  'fa1c0000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'gram_nature_fonction',
@@ -38,7 +38,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000002',
+  'fa1c0000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'gram_nature_fonction',
@@ -63,7 +63,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000003',
+  'fa1c0000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'gram_nature_fonction',
@@ -88,7 +88,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000004',
+  'fa1c0000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'gram_nature_fonction',
@@ -113,7 +113,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000005',
+  'fa1c0000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'gram_nature_fonction',
@@ -138,7 +138,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000006',
+  'fa1c0000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'gram_nature_fonction',
@@ -163,7 +163,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000007',
+  'fa1c0000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'gram_nature_fonction',
@@ -188,7 +188,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000008',
+  'fa1c0000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'gram_nature_fonction',
@@ -213,7 +213,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000009',
+  'fa1c0000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'gram_nature_fonction',
@@ -238,7 +238,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-00000000000a',
+  'fa1c0000-0000-0000-0000-00000000000a',
   'Francais',
   'grammaire',
   'gram_nature_fonction',
@@ -267,7 +267,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000001',
+  'fa1d0000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'gram_groupe_nominal',
@@ -292,7 +292,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000002',
+  'fa1d0000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'gram_groupe_nominal',
@@ -317,7 +317,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000003',
+  'fa1d0000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'gram_groupe_nominal',
@@ -342,7 +342,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000004',
+  'fa1d0000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'gram_groupe_nominal',
@@ -367,7 +367,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000005',
+  'fa1d0000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'gram_groupe_nominal',
@@ -392,7 +392,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000006',
+  'fa1d0000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'gram_groupe_nominal',
@@ -417,7 +417,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000007',
+  'fa1d0000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'gram_groupe_nominal',
@@ -442,7 +442,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000008',
+  'fa1d0000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'gram_groupe_nominal',
@@ -467,7 +467,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000009',
+  'fa1d0000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'gram_groupe_nominal',
@@ -492,7 +492,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-00000000000a',
+  'fa1d0000-0000-0000-0000-00000000000a',
   'Francais',
   'grammaire',
   'gram_groupe_nominal',
@@ -521,7 +521,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5030000-0000-0000-0000-000000000001',
+  'fa190000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'gram_groupe_verbal',
@@ -546,7 +546,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5030000-0000-0000-0000-000000000002',
+  'fa190000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'gram_groupe_verbal',
@@ -571,7 +571,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5030000-0000-0000-0000-000000000003',
+  'fa190000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'gram_groupe_verbal',
@@ -596,7 +596,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5030000-0000-0000-0000-000000000004',
+  'fa190000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'gram_groupe_verbal',
@@ -621,7 +621,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5030000-0000-0000-0000-000000000005',
+  'fa190000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'gram_groupe_verbal',
@@ -646,7 +646,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5030000-0000-0000-0000-000000000006',
+  'fa190000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'gram_groupe_verbal',
@@ -671,7 +671,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5030000-0000-0000-0000-000000000007',
+  'fa190000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'gram_groupe_verbal',
@@ -696,7 +696,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5030000-0000-0000-0000-000000000008',
+  'fa190000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'gram_groupe_verbal',
@@ -721,7 +721,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5030000-0000-0000-0000-000000000009',
+  'fa190000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'gram_groupe_verbal',
@@ -746,7 +746,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5030000-0000-0000-0000-00000000000a',
+  'fa190000-0000-0000-0000-00000000000a',
   'Francais',
   'grammaire',
   'gram_groupe_verbal',
@@ -775,7 +775,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5040000-0000-0000-0000-000000000001',
+  'fa1a0000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'gram_subordonnees_relatives',
@@ -800,7 +800,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5040000-0000-0000-0000-000000000002',
+  'fa1a0000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'gram_subordonnees_relatives',
@@ -825,7 +825,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5040000-0000-0000-0000-000000000003',
+  'fa1a0000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'gram_subordonnees_relatives',
@@ -850,7 +850,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5040000-0000-0000-0000-000000000004',
+  'fa1a0000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'gram_subordonnees_relatives',
@@ -875,7 +875,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5040000-0000-0000-0000-000000000005',
+  'fa1a0000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'gram_subordonnees_relatives',
@@ -900,7 +900,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5040000-0000-0000-0000-000000000006',
+  'fa1a0000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'gram_subordonnees_relatives',
@@ -925,7 +925,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5040000-0000-0000-0000-000000000007',
+  'fa1a0000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'gram_subordonnees_relatives',
@@ -950,7 +950,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5040000-0000-0000-0000-000000000008',
+  'fa1a0000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'gram_subordonnees_relatives',
@@ -975,7 +975,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5040000-0000-0000-0000-000000000009',
+  'fa1a0000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'gram_subordonnees_relatives',
@@ -1000,7 +1000,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5040000-0000-0000-0000-00000000000a',
+  'fa1a0000-0000-0000-0000-00000000000a',
   'Francais',
   'grammaire',
   'gram_subordonnees_relatives',
@@ -1029,7 +1029,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5050000-0000-0000-0000-000000000001',
+  'fa1b0000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'gram_transformations_phrase',
@@ -1054,7 +1054,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5050000-0000-0000-0000-000000000002',
+  'fa1b0000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'gram_transformations_phrase',
@@ -1079,7 +1079,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5050000-0000-0000-0000-000000000003',
+  'fa1b0000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'gram_transformations_phrase',
@@ -1104,7 +1104,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5050000-0000-0000-0000-000000000004',
+  'fa1b0000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'gram_transformations_phrase',
@@ -1129,7 +1129,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5050000-0000-0000-0000-000000000005',
+  'fa1b0000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'gram_transformations_phrase',
@@ -1154,7 +1154,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5050000-0000-0000-0000-000000000006',
+  'fa1b0000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'gram_transformations_phrase',
@@ -1179,7 +1179,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5050000-0000-0000-0000-000000000007',
+  'fa1b0000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'gram_transformations_phrase',
@@ -1204,7 +1204,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5050000-0000-0000-0000-000000000008',
+  'fa1b0000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'gram_transformations_phrase',
@@ -1229,7 +1229,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5050000-0000-0000-0000-000000000009',
+  'fa1b0000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'gram_transformations_phrase',
@@ -1254,7 +1254,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5050000-0000-0000-0000-00000000000a',
+  'fa1b0000-0000-0000-0000-00000000000a',
   'Francais',
   'grammaire',
   'gram_transformations_phrase',

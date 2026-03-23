@@ -13,7 +13,7 @@ INSERT INTO public.exercises (
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES
 (
-  'd1010000-0000-0000-0000-000000000001',
+  'fa100000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'gram_attribut_du_sujet',
@@ -32,7 +32,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1010000-0000-0000-0000-000000000002',
+  'fa100000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'gram_attribut_du_sujet',
@@ -51,7 +51,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1010000-0000-0000-0000-000000000003',
+  'fa100000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'gram_attribut_du_sujet',
@@ -70,7 +70,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1010000-0000-0000-0000-000000000004',
+  'fa100000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'gram_attribut_du_sujet',
@@ -89,7 +89,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1010000-0000-0000-0000-000000000005',
+  'fa100000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'gram_attribut_du_sujet',
@@ -108,7 +108,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1010000-0000-0000-0000-000000000006',
+  'fa100000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'gram_attribut_du_sujet',
@@ -127,7 +127,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1010000-0000-0000-0000-000000000007',
+  'fa100000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'gram_attribut_du_sujet',
@@ -146,7 +146,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1010000-0000-0000-0000-000000000008',
+  'fa100000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'gram_attribut_du_sujet',
@@ -165,7 +165,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1010000-0000-0000-0000-000000000009',
+  'fa100000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'gram_attribut_du_sujet',
@@ -184,7 +184,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1010000-0000-0000-0000-000000000010',
+  'fa100000-0000-0000-0000-000000000010',
   'Francais',
   'grammaire',
   'gram_attribut_du_sujet',
@@ -214,7 +214,7 @@ INSERT INTO public.exercises (
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES
 (
-  'd1020000-0000-0000-0000-000000000001',
+  'fa110000-0000-0000-0000-000000000001',
   'Francais',
   'grammaire',
   'gram_expansions_nom',
@@ -233,7 +233,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1020000-0000-0000-0000-000000000002',
+  'fa110000-0000-0000-0000-000000000002',
   'Francais',
   'grammaire',
   'gram_expansions_nom',
@@ -252,7 +252,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1020000-0000-0000-0000-000000000003',
+  'fa110000-0000-0000-0000-000000000003',
   'Francais',
   'grammaire',
   'gram_expansions_nom',
@@ -271,7 +271,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1020000-0000-0000-0000-000000000004',
+  'fa110000-0000-0000-0000-000000000004',
   'Francais',
   'grammaire',
   'gram_expansions_nom',
@@ -290,7 +290,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1020000-0000-0000-0000-000000000005',
+  'fa110000-0000-0000-0000-000000000005',
   'Francais',
   'grammaire',
   'gram_expansions_nom',
@@ -309,7 +309,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1020000-0000-0000-0000-000000000006',
+  'fa110000-0000-0000-0000-000000000006',
   'Francais',
   'grammaire',
   'gram_expansions_nom',
@@ -328,7 +328,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1020000-0000-0000-0000-000000000007',
+  'fa110000-0000-0000-0000-000000000007',
   'Francais',
   'grammaire',
   'gram_expansions_nom',
@@ -347,7 +347,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1020000-0000-0000-0000-000000000008',
+  'fa110000-0000-0000-0000-000000000008',
   'Francais',
   'grammaire',
   'gram_expansions_nom',
@@ -366,7 +366,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1020000-0000-0000-0000-000000000009',
+  'fa110000-0000-0000-0000-000000000009',
   'Francais',
   'grammaire',
   'gram_expansions_nom',
@@ -385,7 +385,7 @@ INSERT INTO public.exercises (
   true
 ),
 (
-  'd1020000-0000-0000-0000-000000000010',
+  'fa110000-0000-0000-0000-000000000010',
   'Francais',
   'grammaire',
   'gram_expansions_nom',

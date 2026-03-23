@@ -1,5 +1,85 @@
 # Changelog
 
+## [2026-03-23] — Améliorations accessibilité, SEO et UX (loop automatique)
+
+### Accessibilité
+- `features/exercises/components/swipe-player.tsx` — Ajout `aria-label="Répondre Vrai/Faux"` sur les boutons de réponse
+- `components/app-navigation.tsx` — Ajout `aria-controls` + `id` + `role="region"` sur les groupes dépliables du menu latéral
+- `components/ui/input.tsx` — Focus ring plus visible (opacité 15% → 30%, ajout ring-offset)
+- `features/dashboard/components/collapsible-panel.tsx` — Ajout `aria-controls`, `id` et `role="region"` pour lier bouton ↔ contenu
+- `features/exercises/components/exercise-timer.tsx` — Ajout `aria-atomic="true"` + `aria-live="polite"` pour annonce complète du temps restant aux lecteurs d'écran
+- `features/auth/components/auth-form.tsx` — Ajout `aria-busy` sur le bouton submit pendant le chargement
+- `features/auth/components/auth-form.tsx` — Ajout `autoComplete` (name, email, new-password/current-password) pour gestionnaires de mots de passe
+- `features/diagnostic/components/radar-chart.tsx` — Ajout `role="img"` et `aria-label` avec scores par sous-domaine sur le SVG du radar
+- `features/exercises/components/exercise-player.tsx` — Raccourci Ctrl+Entrée pour soumettre une réponse courte + indication dans le placeholder
+
+### Performance
+- `features/diagnostic/components/radar-chart.tsx` — Wrappé avec `React.memo` pour éviter les re-renders SVG inutiles
+
+### Validation
+- `features/auth/components/auth-form.tsx` — Ajout `required`, `minLength={2}`, `maxLength={30}` + validation JS + trim sur le champ displayName
+
+### Grammaire
+- `features/dashboard/components/session-progress-card.tsx` — Fix accord : "traitée(s)" s'accorde avec "question(s)" (basé sur `questionCount`)
+
+### SEO & Metadata
+- `app/(marketing)/page.tsx` — Ajout metadata title, description et OpenGraph pour la homepage
+- `app/(marketing)/offre/page.tsx` — Ajout metadata SEO et OpenGraph pour la page offres
+- `app/(marketing)/diagnostic/page.tsx` — Ajout metadata SEO et OpenGraph pour la page diagnostic
+- `app/layout.tsx` — Ajout Twitter card `summary_large_image`
+
+### UX
+- `features/dashboard/components/session-progress-card.tsx` — Ajout hover shadow (transition-shadow + hover:shadow-elevated)
+- `features/auth/components/auth-form.tsx` — Autofocus sur le premier champ (prénom en inscription, email en connexion)
+- `app/(app)/francais/page.tsx` — CTA "Découvrir les exercices" dans l'état vide (aucune série commencée)
+- `app/(app)/maths/page.tsx` — Idem, CTA dans l'état vide
+- ~~`features/diagnostic/components/diagnostic-client.tsx` — Touche Escape~~ **REVERTÉ** (supprimait la progression sans confirmation)
+- ~~`app/api/stripe/webhook/route.ts` — Guard payment_intent~~ **REVERTÉ** (cassait les abonnements Stripe mode subscription)
+
+## [2026-03-23] — 87 nouvelles séries d'exercices maths (609 questions) — de 63 à 150 séries
+
+### Résumé — 5 domaines, 87 séries, 609 exercices
+
+| Domaine | Séries | Questions |
+|---|---|---|
+| nombres_calcul | +18 | 126 |
+| geometrie | +18 | 126 |
+| grandeurs_mesures | +17 | 119 |
+| organisation_donnees | +17 | 119 |
+| didactique_maths | +17 | 119 |
+
+- `supabase/migrations/20260619_*.sql` à `20260786_*.sql` — 87 fichiers SQL de seed, 7 exercices chacun
+- Chaque série suit la progression SERIESMATHS.md : amorce → consolidation → approfondissement
+- 3+ formats par série (QCM, vrai/faux, réponse courte), distracteurs diagnostiques
+- Terminologie Éduscol, références Vergnaud/Brousseau/Duval/Pólya pour la didactique
+- Mix free/premium selon le niveau (facile=free, avancé/didactique=premium)
+
+### organisation_donnees (4 séries — 28 questions)
+- `supabase/migrations/20260619_seed_math_moyennes_medianes.sql` — Moyenne, médiane et étendue : 7 exercices (moyenne simple, médiane série impaire/paire, étendue, moyenne pondérée, comparaison moyenne/médiane, tableau d'effectifs). Intermédiaire, premium.
+- `supabase/migrations/20260620_seed_math_tableaux_donnees.sql` — Tableaux de données — Lecture et interprétation : 7 exercices (tableau double entrée, proportions, tendances, fréquences relatives, croisement de données). Intermédiaire, free.
+- `supabase/migrations/20260621_seed_math_probabilites_evenements.sql` — Probabilités — Événements et calculs : 7 exercices (événement simple, complémentaire, union disjointe, cartes, arbre, événements indépendants, probabilité conditionnelle). Intermédiaire, premium.
+- `supabase/migrations/20260622_seed_math_diagrammes_representation.sql` — Diagrammes et représentations graphiques : 7 exercices (diagramme en barres, circulaire, histogramme vs barres, graphiques trompeurs, lecture d'échelle). Facile, free.
+
+### didactique_maths (2 séries — 14 questions)
+- `supabase/migrations/20260623_seed_math_didactique_fractions.sql` — Didactique des fractions — Erreurs et remédiations : 7 exercices (erreurs d'addition, rôle dénominateur, champs conceptuels Vergnaud, simplification, fractions équivalentes, fractions impropres, comparaison). Intermédiaire, premium.
+- `supabase/migrations/20260624_seed_math_didactique_proportionnalite.sql` — Didactique de la proportionnalité — Situations et obstacles : 7 exercices (raisonnement additif vs multiplicatif, situations non proportionnelles, isomorphisme de mesures Vergnaud, proportionnalité directe/inverse, linéaire vs affine, variables didactiques). Difficile, premium.
+
+### nombres_calcul (2 séries — 14 questions)
+- `supabase/migrations/20260625_seed_math_multiples_diviseurs.sql` — Multiples, diviseurs et nombres premiers : 7 exercices (identification diviseurs, critères de divisibilité, primalité 91, décomposition 180, PGCD, fraction irréductible, problème bouquets). Intermédiaire, free.
+- `supabase/migrations/20260626_seed_math_operations_priorites.sql` — Priorités opératoires et expressions complexes : 7 exercices (PEMDAS, non-associativité division, parenthèses/exposants, crochets imbriqués, analyse erreur élève, distributivité calcul mental, traduction problème→expression). Difficile, premium.
+
+### geometrie (2 séries — 14 questions)
+- `supabase/migrations/20260627_seed_math_triangles_proprietes.sql` — Triangles — Propriétés, angles et cas remarquables : 7 exercices (somme angles, types de triangles, triangle 30-60-90, angle extérieur, inégalité triangulaire, hypoténuse 45-45-90, médiane/hauteur isocèle). Intermédiaire, premium.
+- `supabase/migrations/20260628_seed_math_figures_complexes_aires.sql` — Figures complexes — Calculs d'aires composées : 7 exercices (rectangle+demi-cercle, cadre rectangulaire, forme en L, anneau, jardin, hexagone par décomposition, trapèze multi-étapes). Difficile, premium.
+
+### grandeurs_mesures (2 séries — 14 questions)
+- `supabase/migrations/20260629_seed_math_echelles_plans.sql` — Échelles, plans et cartes — Applications : 7 exercices (distance réelle, formats d'échelle, trouver une échelle, aires avec échelle², carte, plan architectural, problème multi-étapes). Intermédiaire, premium.
+- `supabase/migrations/20260630_seed_math_unites_aire_volume.sql` — Unités d'aire et de volume — Conversions avancées : 7 exercices (cm²↔m², dm³=L, m³↔L, hectares↔m², aquarium, erreur km², peinture multi-étapes). Difficile, premium.
+
+## [2026-03-23] — Fix : carte Vrai/Faux ne se recentre pas après réponse
+
+- `features/exercises/components/swipe-player.tsx` — Reset de la motion value `x` à chaque changement de question + ajout de `x: 0` dans initial/animate pour éviter que la carte hérite de la position de sortie précédente (causait des réponses involontaires)
+
 ## [2026-03-22] — 35 nouvelles fiches de révision mathématiques CRPE (62 → 97 fiches)
 
 ### Dernière itération (5 fiches)

@@ -1,7 +1,7 @@
 -- ============================================================
 -- Migration : Série Orthographe — Pluriels irréguliers et exceptions
 -- Topic : orthographe_pluriels_irreguliers
--- UUID prefix : d2010000
+-- UUID prefix : d20b0000
 -- 10 exercices : 4 qcm, 3 reponse_courte, 3 vrai_faux
 -- Niveaux : 3 Facile, 4 Intermédiaire, 3 Avancé
 -- ============================================================
@@ -12,7 +12,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2010000-0000-0000-0000-000000000001',
+  'd20b0000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'orthographe_pluriels_irreguliers',
@@ -37,7 +37,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2010000-0000-0000-0000-000000000002',
+  'd20b0000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'orthographe_pluriels_irreguliers',
@@ -62,7 +62,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2010000-0000-0000-0000-000000000003',
+  'd20b0000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'orthographe_pluriels_irreguliers',
@@ -87,7 +87,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2010000-0000-0000-0000-000000000004',
+  'd20b0000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'orthographe_pluriels_irreguliers',
@@ -112,7 +112,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2010000-0000-0000-0000-000000000005',
+  'd20b0000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'orthographe_pluriels_irreguliers',
@@ -137,7 +137,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2010000-0000-0000-0000-000000000006',
+  'd20b0000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'orthographe_pluriels_irreguliers',
@@ -162,7 +162,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2010000-0000-0000-0000-000000000007',
+  'd20b0000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'orthographe_pluriels_irreguliers',
@@ -187,7 +187,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2010000-0000-0000-0000-000000000008',
+  'd20b0000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'orthographe_pluriels_irreguliers',
@@ -212,7 +212,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2010000-0000-0000-0000-000000000009',
+  'd20b0000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'orthographe_pluriels_irreguliers',
@@ -237,7 +237,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd2010000-0000-0000-0000-00000000000a',
+  'd20b0000-0000-0000-0000-00000000000a',
   'Francais',
   'orthographe',
   'orthographe_pluriels_irreguliers',

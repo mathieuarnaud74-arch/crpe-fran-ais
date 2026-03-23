@@ -2,12 +2,12 @@
 -- Description: Ajout de 2 nouvelles séries d'exercices en orthographe (20 questions)
 --
 -- SÉRIE 1 : ortho_consonnes_doubles — "Les consonnes doubles"
---   UUID prefix : e2010000  (e2010000-0000-0000-0000-00000000000N)
+--   UUID prefix : fa150000  (fa150000-0000-0000-0000-00000000000N)
 --   access_tier : free
 --   10 questions : 5 qcm, 2 vrai_faux, 3 correction_orthographique
 --
 -- SÉRIE 2 : ortho_trait_union — "Le trait d''union : règles et emplois"
---   UUID prefix : e2020000  (e2020000-0000-0000-0000-00000000000N)
+--   UUID prefix : fa160000  (fa160000-0000-0000-0000-00000000000N)
 --   access_tier : premium
 --   10 questions : 6 qcm, 2 vrai_faux, 2 reponse_courte
 
@@ -21,7 +21,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2010000-0000-0000-0000-000000000001',
+  'fa150000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'ortho_consonnes_doubles',
@@ -46,7 +46,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2010000-0000-0000-0000-000000000002',
+  'fa150000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'ortho_consonnes_doubles',
@@ -71,7 +71,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2010000-0000-0000-0000-000000000003',
+  'fa150000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'ortho_consonnes_doubles',
@@ -96,7 +96,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2010000-0000-0000-0000-000000000004',
+  'fa150000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'ortho_consonnes_doubles',
@@ -121,7 +121,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2010000-0000-0000-0000-000000000005',
+  'fa150000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'ortho_consonnes_doubles',
@@ -146,7 +146,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2010000-0000-0000-0000-000000000006',
+  'fa150000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'ortho_consonnes_doubles',
@@ -171,7 +171,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2010000-0000-0000-0000-000000000007',
+  'fa150000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'ortho_consonnes_doubles',
@@ -196,7 +196,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2010000-0000-0000-0000-000000000008',
+  'fa150000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'ortho_consonnes_doubles',
@@ -221,7 +221,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2010000-0000-0000-0000-000000000009',
+  'fa150000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'ortho_consonnes_doubles',
@@ -246,7 +246,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2010000-0000-0000-0000-000000000010',
+  'fa150000-0000-0000-0000-000000000010',
   'Francais',
   'orthographe',
   'ortho_consonnes_doubles',
@@ -275,7 +275,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2020000-0000-0000-0000-000000000001',
+  'fa160000-0000-0000-0000-000000000001',
   'Francais',
   'orthographe',
   'ortho_trait_union',
@@ -300,7 +300,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2020000-0000-0000-0000-000000000002',
+  'fa160000-0000-0000-0000-000000000002',
   'Francais',
   'orthographe',
   'ortho_trait_union',
@@ -325,7 +325,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2020000-0000-0000-0000-000000000003',
+  'fa160000-0000-0000-0000-000000000003',
   'Francais',
   'orthographe',
   'ortho_trait_union',
@@ -350,7 +350,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2020000-0000-0000-0000-000000000004',
+  'fa160000-0000-0000-0000-000000000004',
   'Francais',
   'orthographe',
   'ortho_trait_union',
@@ -375,7 +375,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2020000-0000-0000-0000-000000000005',
+  'fa160000-0000-0000-0000-000000000005',
   'Francais',
   'orthographe',
   'ortho_trait_union',
@@ -400,7 +400,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2020000-0000-0000-0000-000000000006',
+  'fa160000-0000-0000-0000-000000000006',
   'Francais',
   'orthographe',
   'ortho_trait_union',
@@ -425,7 +425,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2020000-0000-0000-0000-000000000007',
+  'fa160000-0000-0000-0000-000000000007',
   'Francais',
   'orthographe',
   'ortho_trait_union',
@@ -450,7 +450,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2020000-0000-0000-0000-000000000008',
+  'fa160000-0000-0000-0000-000000000008',
   'Francais',
   'orthographe',
   'ortho_trait_union',
@@ -475,7 +475,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2020000-0000-0000-0000-000000000009',
+  'fa160000-0000-0000-0000-000000000009',
   'Francais',
   'orthographe',
   'ortho_trait_union',
@@ -500,7 +500,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e2020000-0000-0000-0000-000000000010',
+  'fa160000-0000-0000-0000-000000000010',
   'Francais',
   'orthographe',
   'ortho_trait_union',

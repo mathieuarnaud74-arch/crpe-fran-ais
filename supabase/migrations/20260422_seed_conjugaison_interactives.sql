@@ -12,7 +12,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f2010000-0000-0000-0000-000000000001',
+  'fa200000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'tri_participe_adj_verbal',
@@ -37,7 +37,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f2010000-0000-0000-0000-000000000002',
+  'fa200000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'tri_participe_adj_verbal',
@@ -62,7 +62,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f2010000-0000-0000-0000-000000000003',
+  'fa200000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'tri_participe_adj_verbal',
@@ -87,7 +87,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f2010000-0000-0000-0000-000000000004',
+  'fa200000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'tri_participe_adj_verbal',
@@ -112,7 +112,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f2010000-0000-0000-0000-000000000005',
+  'fa200000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'tri_participe_adj_verbal',
@@ -137,7 +137,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f2010000-0000-0000-0000-000000000006',
+  'fa200000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'tri_participe_adj_verbal',
@@ -162,7 +162,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f2010000-0000-0000-0000-000000000007',
+  'fa200000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'tri_participe_adj_verbal',
@@ -187,7 +187,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f2010000-0000-0000-0000-000000000008',
+  'fa200000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'tri_participe_adj_verbal',
@@ -212,7 +212,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f2010000-0000-0000-0000-000000000009',
+  'fa200000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'tri_participe_adj_verbal',
@@ -237,7 +237,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'f2010000-0000-0000-0000-000000000010',
+  'fa200000-0000-0000-0000-000000000010',
   'Francais',
   'conjugaison',
   'tri_participe_adj_verbal',

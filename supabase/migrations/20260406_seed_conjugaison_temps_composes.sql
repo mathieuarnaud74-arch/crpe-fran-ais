@@ -1,6 +1,6 @@
 -- ============================================================
 -- Migration : Série Conjugaison — Les temps composés de l'indicatif (10 exercices)
--- UUID prefix : d3020000
+-- UUID prefix : d30b0000
 -- topic_key  : conjugaison_temps_composes
 -- ============================================================
 
@@ -10,7 +10,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000001',
+  'd30b0000-0000-0000-0000-000000000001',
   'Francais',
   'conjugaison',
   'conjugaison_temps_composes',
@@ -35,7 +35,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000002',
+  'd30b0000-0000-0000-0000-000000000002',
   'Francais',
   'conjugaison',
   'conjugaison_temps_composes',
@@ -60,7 +60,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000003',
+  'd30b0000-0000-0000-0000-000000000003',
   'Francais',
   'conjugaison',
   'conjugaison_temps_composes',
@@ -85,7 +85,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000004',
+  'd30b0000-0000-0000-0000-000000000004',
   'Francais',
   'conjugaison',
   'conjugaison_temps_composes',
@@ -110,7 +110,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000005',
+  'd30b0000-0000-0000-0000-000000000005',
   'Francais',
   'conjugaison',
   'conjugaison_temps_composes',
@@ -135,7 +135,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000006',
+  'd30b0000-0000-0000-0000-000000000006',
   'Francais',
   'conjugaison',
   'conjugaison_temps_composes',
@@ -160,7 +160,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000007',
+  'd30b0000-0000-0000-0000-000000000007',
   'Francais',
   'conjugaison',
   'conjugaison_temps_composes',
@@ -185,7 +185,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000008',
+  'd30b0000-0000-0000-0000-000000000008',
   'Francais',
   'conjugaison',
   'conjugaison_temps_composes',
@@ -210,7 +210,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-000000000009',
+  'd30b0000-0000-0000-0000-000000000009',
   'Francais',
   'conjugaison',
   'conjugaison_temps_composes',
@@ -235,7 +235,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'd3020000-0000-0000-0000-00000000000a',
+  'd30b0000-0000-0000-0000-00000000000a',
   'Francais',
   'conjugaison',
   'conjugaison_temps_composes',

@@ -521,7 +521,7 @@ INSERT INTO public.exercises (
 -- ============================================================
 -- SÉRIE 3 : Formation des mots (tri_categories) — Lexique
 -- Topic : lex_formation_mots
--- UUID prefix : c3010000
+-- UUID prefix : fa0b0000
 -- ============================================================
 
 -- Q1 — Facile — Préfixation / suffixation / composition
@@ -530,7 +530,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c3010000-0000-0000-0000-000000000001',
+  'fa0b0000-0000-0000-0000-000000000001',
   'Francais',
   'lexique',
   'lex_formation_mots',
@@ -555,7 +555,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c3010000-0000-0000-0000-000000000002',
+  'fa0b0000-0000-0000-0000-000000000002',
   'Francais',
   'lexique',
   'lex_formation_mots',
@@ -580,7 +580,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c3010000-0000-0000-0000-000000000003',
+  'fa0b0000-0000-0000-0000-000000000003',
   'Francais',
   'lexique',
   'lex_formation_mots',
@@ -605,7 +605,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c3010000-0000-0000-0000-000000000004',
+  'fa0b0000-0000-0000-0000-000000000004',
   'Francais',
   'lexique',
   'lex_formation_mots',
@@ -630,7 +630,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c3010000-0000-0000-0000-000000000005',
+  'fa0b0000-0000-0000-0000-000000000005',
   'Francais',
   'lexique',
   'lex_formation_mots',
@@ -655,7 +655,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c3010000-0000-0000-0000-000000000006',
+  'fa0b0000-0000-0000-0000-000000000006',
   'Francais',
   'lexique',
   'lex_formation_mots',
@@ -680,7 +680,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c3010000-0000-0000-0000-000000000007',
+  'fa0b0000-0000-0000-0000-000000000007',
   'Francais',
   'lexique',
   'lex_formation_mots',
@@ -705,7 +705,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c3010000-0000-0000-0000-000000000008',
+  'fa0b0000-0000-0000-0000-000000000008',
   'Francais',
   'lexique',
   'lex_formation_mots',
@@ -730,7 +730,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c3010000-0000-0000-0000-000000000009',
+  'fa0b0000-0000-0000-0000-000000000009',
   'Francais',
   'lexique',
   'lex_formation_mots',
@@ -755,7 +755,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c3010000-0000-0000-0000-000000000010',
+  'fa0b0000-0000-0000-0000-000000000010',
   'Francais',
   'lexique',
   'lex_formation_mots',

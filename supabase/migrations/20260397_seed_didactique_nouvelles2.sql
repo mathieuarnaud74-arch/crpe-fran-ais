@@ -19,7 +19,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000001',
+  'e50c0000-0000-0000-0000-000000000001',
   'Francais',
   'didactique_francais',
   'didac_oral_langage',
@@ -44,7 +44,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000002',
+  'e50c0000-0000-0000-0000-000000000002',
   'Francais',
   'didactique_francais',
   'didac_oral_langage',
@@ -69,7 +69,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000003',
+  'e50c0000-0000-0000-0000-000000000003',
   'Francais',
   'didactique_francais',
   'didac_oral_langage',
@@ -94,7 +94,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000004',
+  'e50c0000-0000-0000-0000-000000000004',
   'Francais',
   'didactique_francais',
   'didac_oral_langage',
@@ -119,7 +119,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000005',
+  'e50c0000-0000-0000-0000-000000000005',
   'Francais',
   'didactique_francais',
   'didac_oral_langage',
@@ -144,7 +144,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000006',
+  'e50c0000-0000-0000-0000-000000000006',
   'Francais',
   'didactique_francais',
   'didac_oral_langage',
@@ -169,7 +169,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000007',
+  'e50c0000-0000-0000-0000-000000000007',
   'Francais',
   'didactique_francais',
   'didac_oral_langage',
@@ -194,7 +194,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000008',
+  'e50c0000-0000-0000-0000-000000000008',
   'Francais',
   'didactique_francais',
   'didac_oral_langage',
@@ -219,7 +219,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000009',
+  'e50c0000-0000-0000-0000-000000000009',
   'Francais',
   'didactique_francais',
   'didac_oral_langage',
@@ -244,7 +244,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5010000-0000-0000-0000-000000000010',
+  'e50c0000-0000-0000-0000-000000000010',
   'Francais',
   'didactique_francais',
   'didac_oral_langage',
@@ -278,7 +278,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000001',
+  'e50d0000-0000-0000-0000-000000000001',
   'Francais',
   'didactique_francais',
   'didac_litterature_jeunesse',
@@ -303,7 +303,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000002',
+  'e50d0000-0000-0000-0000-000000000002',
   'Francais',
   'didactique_francais',
   'didac_litterature_jeunesse',
@@ -328,7 +328,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000003',
+  'e50d0000-0000-0000-0000-000000000003',
   'Francais',
   'didactique_francais',
   'didac_litterature_jeunesse',
@@ -353,7 +353,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000004',
+  'e50d0000-0000-0000-0000-000000000004',
   'Francais',
   'didactique_francais',
   'didac_litterature_jeunesse',
@@ -378,7 +378,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000005',
+  'e50d0000-0000-0000-0000-000000000005',
   'Francais',
   'didactique_francais',
   'didac_litterature_jeunesse',
@@ -403,7 +403,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000006',
+  'e50d0000-0000-0000-0000-000000000006',
   'Francais',
   'didactique_francais',
   'didac_litterature_jeunesse',
@@ -428,7 +428,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000007',
+  'e50d0000-0000-0000-0000-000000000007',
   'Francais',
   'didactique_francais',
   'didac_litterature_jeunesse',
@@ -453,7 +453,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000008',
+  'e50d0000-0000-0000-0000-000000000008',
   'Francais',
   'didactique_francais',
   'didac_litterature_jeunesse',
@@ -478,7 +478,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000009',
+  'e50d0000-0000-0000-0000-000000000009',
   'Francais',
   'didactique_francais',
   'didac_litterature_jeunesse',
@@ -503,7 +503,7 @@ INSERT INTO public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'e5020000-0000-0000-0000-000000000010',
+  'e50d0000-0000-0000-0000-000000000010',
   'Francais',
   'didactique_francais',
   'didac_litterature_jeunesse',
