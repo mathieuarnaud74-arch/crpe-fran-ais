@@ -3,8 +3,6 @@ import { createClient } from "@supabase/supabase-js";
 import { env, isSupabaseAdminConfigured } from "@/lib/env";
 import { Database } from "@/types/database";
 
-let adminClient: ReturnType<typeof createClient<Database>> | null = null;
-
 export function createSupabaseAdminClient() {
   if (!isSupabaseAdminConfigured()) {
     throw new Error(
@@ -12,14 +10,10 @@ export function createSupabaseAdminClient() {
     );
   }
 
-  if (!adminClient) {
-    adminClient = createClient<Database>(env.supabaseUrl, env.supabaseServiceRoleKey, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
-    });
-  }
-
-  return adminClient;
+  return createClient<Database>(env.supabaseUrl, env.supabaseServiceRoleKey, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  });
 }

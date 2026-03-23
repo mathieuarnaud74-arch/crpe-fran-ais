@@ -1,5 +1,54 @@
 # Changelog
 
+## [2026-03-23] — Nouveau contenu : 4 fiches (reference/opératoire) + 40 exercices interactifs
+
+### Fiches de révision (4 nouvelles)
+- `content/fiches-maths/grandeurs-resolution-problemes-reference.ts` — Fiche reference : résolution de problèmes (démarche de Polya, 8 stratégies, modélisation, erreurs fréquentes)
+- `content/fiches-maths/geometrie-classer-quadrilateres-operatoire.ts` — Fiche opératoire : arbre de décision pour reconnaître et classer les quadrilatères (trapèze → parallélogramme → rectangle/losange/carré)
+- `content/fiches/orthographe-participe-passe-complet-reference.ts` — Fiche reference : tous les cas d'accord du participe passé (être, avoir, pronominaux, impersonnels, fait+infinitif)
+- `content/fiches/analyse-langue-fonctions-phrase-complexe-operatoire.ts` — Fiche opératoire : arbre de décision pour identifier nature et fonction des propositions dans la phrase complexe
+
+### Séries d'exercices (40 questions)
+- `supabase/migrations/20260790_seed_math_tri_figures_geometriques.sql` — 10 exercices tri_categories : classer figures géométriques (quadrilatères, triangles, solides) par propriétés
+- `supabase/migrations/20260791_seed_math_proportionnalite_situations.sql` — 10 exercices QCM : proportionnalité en situations concrètes (recettes, vitesse, échelle, pourcentages, taux d'évolution)
+- `supabase/migrations/20260792_seed_francais_tri_fonctions_grammaticales.sql` — 10 exercices tri_categories : fonctions grammaticales (sujet/COD/COI/CC/attribut/épithète/apposition)
+- `supabase/migrations/20260793_seed_francais_surlignage_propositions_avance.sql` — 10 exercices surlignage_propositions : délimiter et identifier les propositions dans des phrases complexes
+
+### Index mis à jour
+- `content/fiches-maths/index.ts` — ajout des 2 nouvelles fiches maths
+- `content/fiches/index.ts` — ajout des 2 nouvelles fiches français
+
+## [2026-03-23] — Correctifs bugs critiques/majeurs (bugreport session)
+
+### Sécurité & infrastructure
+- `app/api/auth/callback/route.ts` — MIN-011 : validation du paramètre `next` pour bloquer les open redirects vers des domaines externes
+- `middleware.ts` — CRIT-004 : ajout de la protection middleware pour toutes les routes `/(app)/` ; redirection vers `/connexion` si non authentifié
+- `lib/supabase/admin.ts` — CRIT-002 : suppression du singleton admin Supabase ; le client est maintenant créé à chaque appel
+- `lib/stripe/server.ts` — MIN-041 : même fix que CRIT-002 appliqué au client Stripe (suppression singleton)
+- `lib/rate-limit.ts` — MAJ-013 : suppression du `setInterval` global (fuite mémoire) ; nettoyage paresseux dans `rateLimit()`
+
+### Logique métier
+- `features/exercises/server/queries.ts` — MAJ-001 : guard `% 24` sur le calcul de l'heure Paris
+- `features/fiches/server/queries.ts` — MIN-009 : même correctif que MAJ-001
+- `lib/dashboard/build-dashboard-data.ts` — MAJ-005 : remplacement de `setHours(0,0,0,0)` (UTC en prod) par le calcul minuit Paris
+- `app/(app)/revision/page.tsx` — MAJ-021 : filtrage des exercices premium dans la file SRS pour les utilisateurs gratuits
+- `lib/env.ts` — MIN-039 : `Number(x) || fallback` → `isNaN` pour respecter la valeur `0`
+
+### UX / navigation
+- `features/exercises/components/exercise-player.tsx` — MAJ-003 + MAJ-014 : `goToPreviousQuestion` et `goToNextQuestion` naviguent désormais séquentiellement (`±1`)
+- `features/exercises/components/exercise-reducer.ts` — MAJ-015 : `RESET_SESSION` remet `sessionXp`, `lastXpEarned`, `xpTrigger` à zéro
+- `app/(app)/maths/page.tsx` — MAJ-020 : remplacement de `<a href>` par `<Link>` pour la navigation client-side
+- `features/auth/components/auth-form.tsx` — MIN-003 : `localStorage.removeItem` conditionné à `resp.ok` ; MIN-024 : suppression du `router.refresh()` redondant après `router.push()`
+- `features/auth/components/reset-password-form.tsx` — MIN-040 : suppression du `router.refresh()` redondant
+
+## [2026-03-23] — Audit passe 9 : 3 nouveaux bugs mineurs documentés (MIN-040, MIN-041, MIN-042)
+
+- `bugreport.md` — ajout passe 9 : MIN-040 (reset-password-form: router.push + router.refresh, même pattern que MIN-024), MIN-041 (singleton Stripe identique à CRIT-002), MIN-042 (4 nouvelles migrations utilisent le format legacy "mode":"single" au lieu de "single_choice") ; mise à jour du résumé exécutif (5 critiques, 22 majeurs, 41 mineurs)
+
+## [2026-03-23] — Audit passe 7 : 4 nouveaux bugs documentés (MAJ-021, MAJ-022, MIN-034, MIN-035)
+
+- `bugreport.md` — ajout passe 7 : MAJ-021 (SRS révision expose les exercices premium aux utilisateurs gratuits), MAJ-022 (reindexDraftSections non atomique), MIN-034 (WeekRange calcule les dates en UTC au lieu de Paris), MIN-035 (markHomepageAsDraft ignore les erreurs Supabase) ; mise à jour du résumé exécutif (22 majeurs, 34 mineurs)
+
 ## [2026-03-23] — Popup auth central (inscription + connexion)
 
 - `features/auth/components/auth-dialog.tsx` — nouveau composant popup centré pour inscription et connexion, avec bascule entre les deux modes sans fermer le dialog

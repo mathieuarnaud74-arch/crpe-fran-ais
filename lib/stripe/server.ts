@@ -2,8 +2,6 @@ import Stripe from "stripe";
 
 import { env, isStripeConfigured } from "@/lib/env";
 
-let stripeClient: Stripe | null = null;
-
 export function getStripeServerClient() {
   if (!isStripeConfigured()) {
     throw new Error(
@@ -11,12 +9,8 @@ export function getStripeServerClient() {
     );
   }
 
-  if (!stripeClient) {
-    stripeClient = new Stripe(env.stripeSecretKey, {
-      apiVersion: "2025-02-24.acacia",
-    });
-  }
-
-  return stripeClient;
+  return new Stripe(env.stripeSecretKey, {
+    apiVersion: "2025-02-24.acacia",
+  });
 }
 

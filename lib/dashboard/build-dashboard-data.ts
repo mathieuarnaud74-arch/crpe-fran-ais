@@ -432,8 +432,15 @@ export function buildDashboardData(
     ];
   });
 
-  const startOfDay = new Date();
-  startOfDay.setHours(0, 0, 0, 0);
+  const _parisDate = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Paris" });
+  const _noonUtc = new Date(`${_parisDate}T12:00:00Z`);
+  const _parisHour =
+    parseInt(
+      _noonUtc.toLocaleString("en-US", { timeZone: "Europe/Paris", hour: "numeric", hour12: false }),
+      10,
+    ) % 24;
+  const startOfDay = new Date(`${_parisDate}T00:00:00Z`);
+  startOfDay.setUTCHours(-(_parisHour - 12));
 
   const attemptsToday = attempts.filter(
     (attempt) => new Date(attempt.answered_at).getTime() >= startOfDay.getTime(),

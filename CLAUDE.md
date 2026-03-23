@@ -4,7 +4,7 @@
 
 Plateforme de révision pour le CRPE (Certificat de Recrutement des Professeurs des Écoles).
 Matières couvertes : **Français** et **Mathématiques**.
-Modèle : accès gratuit limité (20 questions/jour) + abonnement premium (Stripe, plomberie prête mais non connectée — pas de compte Stripe actif).
+Modèle : accès gratuit limité (30 questions/jour, 5 fiches/jour) + abonnement premium (Stripe, plomberie prête mais non connectée — pas de compte Stripe actif).
 
 ---
 
@@ -230,7 +230,7 @@ lib/
   constants.ts              # domaines, sous-domaines, labels, configs
   xp.ts                     # calcul XP et niveaux
   daily-streak.ts           # streak quotidien + freeze
-  freemium.ts               # quotas gratuits (20 questions/jour)
+  freemium.ts               # quotas gratuits (30 questions/jour, 5 fiches/jour)
   rate-limit.ts             # rate limiter in-memory
   env.ts                    # variables d'environnement + guards isStripeConfigured()
 ```

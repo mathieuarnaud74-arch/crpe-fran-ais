@@ -3,6 +3,29 @@ import { createServerClient } from "@supabase/ssr";
 
 import { env, isSupabaseConfigured } from "@/lib/env";
 
+// Routes under app/(app)/ that require authentication
+const PROTECTED_PREFIXES = [
+  "/tableau-de-bord",
+  "/francais",
+  "/maths",
+  "/exercices",
+  "/exercice-aleatoire",
+  "/revision",
+  "/classement",
+  "/diagnostic",
+  "/fiches",
+  "/fiches-maths",
+  "/historique",
+  "/profil",
+  "/progression",
+  "/ressources",
+  "/abonnement",
+];
+
+function isProtectedRoute(pathname: string): boolean {
+  return PROTECTED_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(prefix + "/"));
+}
+
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next({
     request,
@@ -30,7 +53,13 @@ export async function middleware(request: NextRequest) {
     },
   });
 
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user && isProtectedRoute(request.nextUrl.pathname)) {
+    return NextResponse.redirect(new URL("/connexion", request.url));
+  }
 
   return response;
 }

@@ -7,14 +7,6 @@ type RateLimitEntry = { count: number; resetAt: number };
 
 const store = new Map<string, RateLimitEntry>();
 
-// Clean up expired entries periodically
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, entry] of store) {
-    if (entry.resetAt <= now) store.delete(key);
-  }
-}, 60_000);
-
 type RateLimitConfig = {
   /** Max requests allowed in the window */
   limit: number;
@@ -31,6 +23,17 @@ type RateLimitResult = {
 
 export function rateLimit(key: string, config: RateLimitConfig): RateLimitResult {
   const now = Date.now();
+
+  // Lazy cleanup: evict a random expired entry on each call to avoid unbounded growth
+  if (store.size > 500) {
+    for (const [k, v] of store) {
+      if (v.resetAt <= now) {
+        store.delete(k);
+        break;
+      }
+    }
+  }
+
   const windowMs = config.windowSeconds * 1000;
   const entry = store.get(key);
 
