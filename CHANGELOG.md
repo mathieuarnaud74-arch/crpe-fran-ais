@@ -1,5 +1,43 @@
 # Changelog
 
+## [2026-03-23] — Police du diagnostic : Cormorant Garamond → Manrope
+
+- `features/diagnostic/components/diagnostic-client.tsx` — remplacement de `font-serif` par `font-sans` sur tous les titres, sous-titres et textes de questions du diagnostic pour uniformiser avec le reste de l'app
+
+## [2026-03-23] — Correction de 12 bugs mineurs supplémentaires
+
+- `features/exercises/components/exercise-player.tsx` — BUG-008 : timed mode affichait une réponse attendue vide sur timeout ; ajout `buildExpectedAnswerLabel`
+- `features/exercises/components/exercise-player.tsx` — BUG-017 : suppression directive `eslint-disable` caduque
+- `lib/xp.ts` — BUG-026 : barre de progression fantôme au niveau 20 ; cap à `progress: 1` quand max-level atteint
+- `features/auth/components/auth-form.tsx` — BUG-033 : diagnostic invité perdu à l'inscription ; ajout récupération localStorage après signup
+- `features/gamification/server/queries.ts` — BUG-031 : race condition sur personal best sprint ; remplacé par update atomique avec clause WHERE
+- `types/domain.ts` + `lib/dashboard.ts` + `lib/constants.ts` + `components/` — BUG-029 : sous-domaines non commencés affichés comme "en cours" ; ajout statut `non_commencee`
+- `features/onboarding/components/onboarding-tour-wrapper.tsx` — BUG-034 : suppression `userId` inutile exposé dans le body de la requête
+- `features/exercises/server/queries.ts` — BUG-038 : `if (limit)` bloquait `limit=0` ; corrigé en `limit !== undefined`
+- `components/ui/badge-unlock-toast.tsx` — BUG-013 : suppression prop dépréciée `earnedBadges` (dead code)
+- `features/leaderboard/server/actions.ts` — BUG-030 : ajout rate limiting sur `updateDisplayNameAction` (anti-spam)
+- `lib/constants.ts` — BUG-027 : suppression `FRENCH_DASHBOARD_SUBDOMAINS` (doublon dead code)
+- `features/gamification/context.tsx` — BUG-006 : suppression `gamification.xp` superflue dans les dépendances de `addXp`
+
+## [2026-03-23] — Correction de 11 bugs (3 critiques, 5 majeurs, 3 mineurs)
+
+### Critiques
+- `app/api/stripe/checkout/route.ts` — BUG-021 : les plans daily/weekly créaient des abonnements récurrents indéfiniment ; ajout `cancel_at_period_end: true` pour les accès limités
+- `features/exercises/server/queries.ts` — BUG-036 : les seeds maths utilisaient `mode:"single"` non reconnu → crash QCM ; ajout du mapping `"single"` → `"single_choice"` dans `normalizeExpectedAnswer`
+
+### Majeurs
+- `app/(app)/exercices/[id]/page.tsx` — BUG-001 : `getExercises` ne passait pas le `subject` pour les maths → bouton "Série suivante" toujours absent pour les séries maths ; ajout de `getSubjectFromSubdomain()`
+- `features/exercises/server/queries.ts` — BUG-004 : `getAttemptsCountToday` utilisait le fuseau UTC du serveur au lieu de Europe/Paris → quotas réinitialisés à la mauvaise heure
+- `features/exercises/server/actions.ts` — BUG-022 : le streak était lu depuis le FormData client (manipulable) → capé à [0, 10] côté serveur
+- `features/srs/server/queries.ts` — BUG-023 : race condition INSERT sur `srs_cards` en cas de double-clic → remplacé par `upsert` atomique
+- `features/diagnostic/server/queries.ts` — BUG-032 : mismatch de schéma entre écriture (objet) et lecture (tableau) des résultats diagnostic → transformation correcte avec calcul mastery/recommendation
+- `features/exercises/components/sprint-player.tsx` + `swipe-player.tsx` — BUG-041 : `evaluateExerciseAnswer` sans try-catch → crash client sur questions maths avec mode legacy
+
+### Mineurs
+- `lib/env.ts` — BUG-014 : `Number()` pouvait produire `NaN` si `FREE_DAILY_QUESTION_LIMIT` invalide → fallback `|| 20`
+- `lib/freemium.ts` + `__tests__/freemium.test.ts` — BUG-028 : `getDailyRemainingQuota` retournait `Infinity` (non sérialisable JSON) → sentinel `-1` pour premium
+- `content/french-diagnostic-questions.ts` — BUG-040 : href de `comprehension_texte` pointait vers le mauvais domaine → corrigé avec `?subdomain=comprehension_texte`
+
 ## [2026-03-23] — Fix tunnel diagnostic P0 + optimisations performance
 
 ### Tunnel diagnostic (P0 critique)

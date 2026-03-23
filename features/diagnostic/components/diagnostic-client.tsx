@@ -231,7 +231,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
             />
             <div className="space-y-4">
               <Badge tone="accentSecondary">Résultats</Badge>
-              <h1 className="font-serif text-4xl font-semibold text-ink">Votre profil de départ</h1>
+              <h1 className="font-sans text-4xl font-semibold text-ink">Votre profil de départ</h1>
               <p className="max-w-3xl text-sm leading-7 text-muted">
                 Vous avez réussi{" "}
                 <strong className="text-ink">
@@ -255,7 +255,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
         </Panel>
 
         <Panel>
-          <h2 className="font-serif text-2xl font-semibold text-ink">Profil par sous-domaine</h2>
+          <h2 className="font-sans text-2xl font-semibold text-ink">Profil par sous-domaine</h2>
           <p className="mt-2 text-sm leading-7 text-muted">
             Plus la zone colorée est proche du bord, plus la maîtrise est solide sur ce sous-domaine.
           </p>
@@ -285,7 +285,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
         </Panel>
 
         <Panel>
-          <h2 className="font-serif text-2xl font-semibold text-ink">Bilan par sous-domaine</h2>
+          <h2 className="font-sans text-2xl font-semibold text-ink">Bilan par sous-domaine</h2>
           <p className="mt-2 text-sm leading-7 text-muted">
             Classé du plus fragile au plus solide.{isAuthenticated ? " Cliquez sur un sous-domaine pour commencer à réviser." : ""}
           </p>
@@ -324,7 +324,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
               Prochaine étape
             </p>
-            <h2 className="mt-2 font-serif text-2xl font-semibold text-ink">
+            <h2 className="mt-2 font-sans text-2xl font-semibold text-ink">
               Créez votre compte gratuit pour accéder à votre plan
             </h2>
             <p className="mt-2 text-sm leading-7 text-muted">
@@ -351,7 +351,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
         <Panel>
           <div className="mx-auto max-w-2xl">
             <Badge tone="accentSecondary">Diagnostic gratuit</Badge>
-            <h1 className="mt-5 font-serif text-3xl font-semibold text-ink sm:text-4xl">
+            <h1 className="mt-5 font-sans text-3xl font-semibold text-ink sm:text-4xl">
               Identifiez vos lacunes en 15 minutes
             </h1>
             <p className="mt-4 text-sm leading-7 text-muted">
@@ -410,7 +410,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
     <div className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-paper">
       <div className="sticky top-0 z-10 border-b border-border/50 bg-paper/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-3">
-          <span className="font-serif text-lg font-semibold text-ink">CRPE Français</span>
+          <span className="font-sans text-lg font-semibold text-ink">CRPE Français</span>
           <button
             onClick={() => {
               setPhase('intro');
@@ -444,7 +444,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
           </Badge>
         </div>
 
-        <p className="mt-2 font-serif text-2xl font-semibold leading-snug text-ink">
+        <p className="mt-2 font-sans text-2xl font-semibold leading-snug text-ink">
           {question.instruction}
         </p>
 
