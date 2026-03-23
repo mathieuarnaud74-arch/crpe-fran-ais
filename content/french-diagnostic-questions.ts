@@ -106,7 +106,7 @@ const grammaireQuestions: FrenchDiagnosticQuestion[] = [
     "Dans \"J'entends les enfants chanter dans la cour\", le groupe \"les enfants chanter\" est :",
     ["Un groupe nominal COD", "Une proposition subordonnée complétive", "Une proposition infinitive", "Un groupe verbal apposé"],
     2,
-    "Ce groupe a son propre sujet (\"les enfants\") ET un verbe à l'infinitif (\"chanter\") — c'est une proposition infinitive, COD du verbe de perception \"entendre\". Deux éléments à repérer ensemble !",
+    "Ce groupe a son propre sujet (\"les enfants\") ET un verbe à l'infinitif (\"chanter\") — c'est une proposition infinitive, COD du verbe de perception \"entendre\". Deux éléments à repérer ensemble.",
     "Cherche d'abord si le groupe a son propre sujet exprimé. Si oui → proposition infinitive. Si non → infinitif COD simple.",
   ]),
   buildQuestion("grammaire", [
@@ -147,7 +147,7 @@ const orthographeQuestions: FrenchDiagnosticQuestion[] = [
     "Dans \"Des romans, j'en ai lu beaucoup\", pourquoi \"lu\" reste-t-il invariable ?",
     ["Le pronom 'en' est un COD sans genre ni nombre précis", "Le participe passé avec avoir ne s'accorde jamais", "Le sujet est masculin singulier", "Le verbe lire est toujours invariable"],
     0,
-    "Oui, et c'est logique : quand le COD est le pronom \"en\", le participe passé reste invariable — \"en\" est un pronom partitif, il n'a pas de genre ni de nombre précis.",
+    "Quand le COD est le pronom \"en\", le participe passé reste invariable — \"en\" est un pronom partitif, il n'a pas de genre ni de nombre précis.",
     "Distingue \"en\" (pas d'accord) des autres pronoms COD antéposés comme \"les\", \"la\" ou \"que\" (accord obligatoire).",
   ]),
   buildQuestion("orthographe", [
@@ -172,9 +172,9 @@ const orthographeQuestions: FrenchDiagnosticQuestion[] = [
     "diag-ortho-11",
     "Maîtriser l'accord de \"tout\" adverbe devant un adjectif féminin",
     "Quelle écriture est correcte ?",
-    ["Elles sont tout étonnées.", "Elles sont toutes étonnées.", "Elles sont tout émues.", "Les propositions B et C sont correctes."],
+    ["Elles sont tout contentes.", "Elles sont toutes contentes.", "Elles sont tout émues.", "Les propositions B et C sont correctes."],
     3,
-    "\"Tout\" adverbe (= entièrement) est normalement invariable, SAUF devant un adjectif féminin commençant par une consonne ou un h aspiré : il s'accorde pour éviter le hiatus. Devant une voyelle ou h muet, il reste invariable. Donc : \"toutes étonnées\" (consonne) mais \"tout émues\" (voyelle). Les deux sont corrects.",
+    "\"Tout\" adverbe (= entièrement) est normalement invariable, SAUF devant un adjectif féminin commençant par une consonne ou un h aspiré : il s'accorde pour éviter le hiatus. Devant une voyelle ou h muet, il reste invariable. Donc : \"toutes contentes\" (consonne) mais \"tout émues\" (voyelle). Les deux sont corrects.",
     "\"Tout\" adverbe : invariable sauf devant adjectif féminin débutant par consonne ou h aspiré → accord (toute/toutes). Devant voyelle ou h muet → invariable.",
   ]),
 ];

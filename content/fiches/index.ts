@@ -109,6 +109,10 @@ import { grammairePredicatStructureSprint } from "./grammaire-predicat-structure
 import { grammairePropositionsClassificationSprint } from "./grammaire-propositions-classification-sprint";
 import { rectifications1990Sprint } from "./orthographe-rectifications-1990-sprint";
 import { accentsThremaSprint } from "./orthographe-accents-trema-sprint";
+import { graphophonologieCgpSprint } from "./didactique-graphophonologie-cgp-sprint";
+import { langageOralMaternelleSprint } from "./didactique-langage-oral-maternelle-sprint";
+import { participePasseCompletReference } from "./orthographe-participe-passe-complet-reference";
+import { analyseFonctionsPhraseComplexeOperatoire } from "./analyse-langue-fonctions-phrase-complexe-operatoire";
 
 export const allFiches: Fiche[] = [
   reperageExpliciteSprint,
@@ -220,4 +224,9 @@ export const allFiches: Fiche[] = [
   grammairePropositionsClassificationSprint,
   rectifications1990Sprint,
   accentsThremaSprint,
+  graphophonologieCgpSprint,
+  langageOralMaternelleSprint,
+  // Nouvelles fiches reference & opératoire
+  participePasseCompletReference,
+  analyseFonctionsPhraseComplexeOperatoire,
 ];

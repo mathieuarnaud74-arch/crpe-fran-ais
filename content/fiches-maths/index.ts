@@ -106,6 +106,12 @@ import { didactiqueBrousseauContratSituationsSprint } from "./didactique-brousse
 import { didactiqueEvaluationRemediationSprint } from "./didactique-evaluation-remediation-sprint";
 import { didactiqueMaterielManipulationSprint } from "./didactique-materiel-manipulation-sprint";
 import { didactiqueJeuCalculMentalSprint } from "./didactique-jeu-calcul-mental-sprint";
+import { didactiqueAdditionSprint } from "./didactique-addition-sprint";
+import { didactiqueSoustractionSprint } from "./didactique-soustraction-sprint";
+import { didactiqueMultiplicationSprint } from "./didactique-multiplication-sprint";
+import { didactiqueDivisionSprint } from "./didactique-division-sprint";
+import { grandeursResolutionProblemesReference } from "./grandeurs-resolution-problemes-reference";
+import { geometrieClasserQurilateresOperatoire } from "./geometrie-classer-quadrilateres-operatoire";
 
 export const allFichesMaths: Fiche[] = [
   // Nombres et calcul
@@ -210,4 +216,11 @@ export const allFichesMaths: Fiche[] = [
   didactiqueEvaluationRemediationSprint,
   didactiqueMaterielManipulationSprint,
   didactiqueJeuCalculMentalSprint,
+  didactiqueAdditionSprint,
+  didactiqueSoustractionSprint,
+  didactiqueMultiplicationSprint,
+  didactiqueDivisionSprint,
+  // Nouvelles fiches reference & opératoire
+  grandeursResolutionProblemesReference,
+  geometrieClasserQurilateresOperatoire,
 ];
