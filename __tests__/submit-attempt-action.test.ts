@@ -33,7 +33,7 @@ vi.mock("@/lib/freemium", () => ({
 }));
 
 vi.mock("@/lib/env", () => ({
-  env: { freeDailyQuestionLimit: 20 },
+  env: { freeDailyQuestionLimit: 30 },
 }));
 
 import { submitAttemptAction } from "@/features/exercises/server/actions";

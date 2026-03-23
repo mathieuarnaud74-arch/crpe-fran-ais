@@ -328,7 +328,7 @@ export function DiagnosticClient({ isAuthenticated = true }: { isAuthenticated?:
               Créez votre compte gratuit pour accéder à votre plan
             </h2>
             <p className="mt-2 text-sm leading-7 text-muted">
-              Créez un compte pour retrouver vos résultats et accéder à 20 exercices ciblés par jour —
+              Créez un compte pour retrouver vos résultats et accéder à 30 exercices ciblés par jour —
               sans carte bancaire.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">

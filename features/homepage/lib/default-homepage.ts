@@ -56,7 +56,7 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
         },
         {
           label: "Gratuit pour commencer",
-          detail: "Compte gratuit, diagnostic sauvegardé et 20 questions corrigées par jour",
+          detail: "Compte gratuit, diagnostic sauvegardé et 30 questions corrigées par jour",
         },
       ],
     },
@@ -129,7 +129,7 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
         {
           question: "C'est vraiment gratuit pour commencer ?",
           answer:
-            "Oui. Diagnostic complet gratuit, sans carte bancaire. Ensuite, 20 exercices corrigés par jour en accès libre.",
+            "Oui. Diagnostic complet gratuit, sans carte bancaire. Ensuite, 30 exercices corrigés par jour en accès libre.",
         },
         {
           question: "Que reçoit-on après le diagnostic ?",
@@ -160,7 +160,7 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
       bulletItems: [
         "Compte gratuit, sans carte bancaire.",
         "Diagnostic complet offert dès l'inscription.",
-        "20 exercices corrigés par jour en accès libre.",
+        "30 exercices corrigés par jour en accès libre.",
       ],
       pricingTiers: [
         { label: "Gratuit", price: "0 €", highlight: false },
