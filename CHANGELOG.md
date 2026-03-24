@@ -1,5 +1,30 @@
 # Changelog
 
+## [2026-03-24] - Reconstruction du catalogue maths en production (backfill + nettoyage + re-harmonisation)
+
+Correctif deploye pour aligner la base distante sur les migrations locales de mathematiques. Le probleme reel n'etait pas seulement un regroupement casse : une grande partie des questions Q1-Q7 etait absente en prod, ce qui laissait beaucoup de `topic_key` a 2 ou 3 questions seulement.
+
+- `supabase/migrations/20260814_backfill_missing_math_seed_questions.sql` - reinjection de 1014 questions maths manquantes detectees entre les seeds locales et la base distante ; gestion des anciens IDs invalides et des collisions d'UUID entre certains topics
+- `supabase/migrations/20260815_unpublish_legacy_math_v1_topics.sql` - depublie 7 anciens topics maths `v1` hors catalogue courant qui faussaient les compteurs par domaine
+- `supabase/migrations/20260816_reharmonize_math_catalog_after_backfill.sql` - re-harmonise `level`, `access_tier` et `topic_label` apres backfill pour garantir 1 serie visible par `topic_key`
+- `features/exercises/server/queries.ts` - tri des questions par numero reel avant construction des sessions pour garantir l'ordre Q1 -> Q10 apres backfill
+
+Verification sur la base distante apres deploiement :
+
+- `1620` exercices maths publies
+- `162` `topic_key` maths
+- `162` series visibles
+- `0` topic sous 10 questions
+- `0` serie fracturee par `level/access_tier`
+
+Repartition finale par domaine maths :
+
+- `45` series `nombres_calcul`
+- `32` series `geometrie`
+- `28` series `grandeurs_mesures`
+- `27` series `organisation_donnees`
+- `30` series `didactique_maths`
+
 ## [2026-03-24] — Complétion massive des séries incomplètes (155 séries → 462 questions ajoutées)
 
 Audit et complétion de toutes les séries d'exercices ayant moins de 10 questions. 11 fichiers de migration créés :
