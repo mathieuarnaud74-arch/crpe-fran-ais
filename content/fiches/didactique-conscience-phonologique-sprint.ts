@@ -60,7 +60,7 @@ export const consciencePhonologiqueSprint: Fiche = {
           "La suppression phonémique (« Dis pain sans le /p/ ») est une tâche de conscience phonologique plus complexe que la fusion syllabique.",
         isCorrect: true,
         explanation:
-          "Exact. La suppression phonémique requiert d'isoler mentalement un phonème, de le supprimer et de recombiner les phonèmes restants — une opération d'une grande exigence cognitive. La fusion syllabique (« ca + na + pe = canape ») est plus accessible car elle opère sur des unités plus larges.",
+          "Exact. La suppression phonémique requiert d'isoler mentalement un phonème, de le supprimer et de recombiner les phonèmes restants — une opération d'une grande exigence cognitive. La fusion syllabique (« ca + na + pé = canapé ») est plus accessible car elle opère sur des unités plus larges.",
       },
       {
         sentence:

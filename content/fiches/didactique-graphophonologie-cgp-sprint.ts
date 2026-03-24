@@ -67,7 +67,7 @@ export const graphophonologieCgpSprint: Fiche = {
           "Un élève de CP qui écrit 'feto' pour 'château' manifeste une erreur de décodage.",
         isCorrect: false,
         explanation:
-          "FAUX. C'est une erreur d'ENCODAGE (production écrite), pas de décodage (lecture). L'élève a tenté de transcrire les phonèmes entendus (/ʃ/ → f est une erreur sur le phonème /ʃ/, /a/ → e, /to/ → to correct) en graphèmes. Cette analyse montre que l'élève n'a pas encore mémorisé le graphème 'ch' pour le phonème /ʃ/ ni le graphème 'â' pour /a/. La distinction encodage/décodage est fondamentale pour l'analyse des erreurs d'élèves au CRPE.",
+          "FAUX. C'est une erreur d'ENCODAGE (production écrite), pas de décodage (lecture). L'élève a transcrit les sons entendus avec les graphèmes les plus simples : /ʃ/ → « f » (erreur : le phonème /ʃ/ se transcrit « ch », pas « f »), /a/ → « e » (erreur de vocalisme), /o/ → « o » (graphème régulier mais incorrect pour ce mot : « château » exige le trigramme « eau »). Cette analyse montre que l'élève n'a pas encore mémorisé le graphème 'ch' pour le phonème /ʃ/ ni le graphème 'â' pour /a/. La distinction encodage/décodage est fondamentale pour l'analyse des erreurs d'élèves au CRPE.",
       },
       {
         sentence:
@@ -81,7 +81,7 @@ export const graphophonologieCgpSprint: Fiche = {
           "En français, le nombre de phonèmes est supérieur au nombre de graphèmes simples (26 lettres).",
         isCorrect: true,
         explanation:
-          "Vrai. Le français compte 37 phonèmes environ (selon les variantes dialectales) pour 26 lettres de l'alphabet. L'écart est comblé par les graphèmes complexes (digrammes et trigrammes) : 'ch' /ʃ/, 'ou' /u/, 'eau' /o/, 'gn' /ɲ/, 'oi' /wa/, etc. Cette inadéquation entre nombre de phonèmes et nombre de lettres simples est une source de complexité pour l'apprentissage du code et justifie un enseignement progressif et explicite.",
+          "Vrai. Le français compte 36 phonèmes environ (selon les variantes dialectales) pour 26 lettres de l'alphabet. L'écart est comblé par les graphèmes complexes (digrammes et trigrammes) : 'ch' /ʃ/, 'ou' /u/, 'eau' /o/, 'gn' /ɲ/, 'oi' /wa/, etc. Cette inadéquation entre nombre de phonèmes et nombre de lettres simples est une source de complexité pour l'apprentissage du code et justifie un enseignement progressif et explicite.",
       },
     ],
   },

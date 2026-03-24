@@ -1,6 +1,6 @@
 import type { Fiche } from "@/features/fiches/types";
 
-export const accentsThremaSprint: Fiche = {
+export const accentsTremaSprint: Fiche = {
   id: "orthographe-accents-trema-sprint",
   slug: "accents-trema-regles-exceptions-sprint",
   title: "Accents et tr\u00e9ma \u2014 r\u00e8gles et exceptions",
@@ -75,10 +75,10 @@ export const accentsThremaSprint: Fiche = {
       },
       {
         sentence:
-          "Le tr\u00e9ma dans \u00ab aigu\u00eb \u00bb (graphie rectifi\u00e9e) se place sur le u pour indiquer qu\u2019il se prononce.",
+          "Le tr\u00e9ma dans \u00ab aig\u00fce \u00bb (graphie rectifi\u00e9e) se place sur le u pour indiquer qu\u2019il se prononce.",
         isCorrect: true,
         explanation:
-          "VRAI. Les rectifications de 1990 d\u00e9placent le tr\u00e9ma sur la voyelle qui doit \u00eatre prononc\u00e9e : on \u00e9crit d\u00e9sormais \u00ab aigu\u00eb \u00bb (et non \u00ab aigu\u00eb \u00bb) car c\u2019est le u qui se prononce. Le tr\u00e9ma indique la di\u00e9r\u00e8se \u2014 la prononciation s\u00e9par\u00e9e de deux voyelles contigu\u00ebs.",
+          "VRAI. Les rectifications de 1990 d\u00e9placent le tr\u00e9ma sur la voyelle qui doit \u00eatre prononc\u00e9e : on \u00e9crit d\u00e9sormais \u00ab aig\u00fce \u00bb (et non \u00ab aigu\u00eb \u00bb) car c\u2019est le u qui se prononce. Le tr\u00e9ma indique la di\u00e9r\u00e8se \u2014 la prononciation s\u00e9par\u00e9e de deux voyelles contigu\u00ebs.",
       },
       {
         sentence:

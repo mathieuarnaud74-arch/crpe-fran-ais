@@ -15,7 +15,7 @@ export const didactiqueMultiplicationSprint: Fiche = {
     "structures multiplicatives",
     "Vergnaud",
     "addition itérée",
-    "produit scalaire",
+    "opérateur scalaire",
     "tables de multiplication",
     "cycle 2",
     "CE1",
@@ -34,9 +34,9 @@ export const didactiqueMultiplicationSprint: Fiche = {
   content: {
     model: "sprint",
     disclaimer:
-      "La multiplication est souvent réduite à l'apprentissage des tables, mais sa didactique couvre les deux sens fondamentaux (addition itérée et produit scalaire), la construction du sens de l'opération, et la progression vers les algorithmes. Au CRPE, les questions portent sur l'analyse des erreurs aux tables, les structures de problèmes multiplicatifs et les stratégies de calcul réfléchi.",
+      "La multiplication est souvent réduite à l'apprentissage des tables, mais sa didactique couvre les deux sens fondamentaux (addition itérée et opérateur scalaire), la construction du sens de l'opération, et la progression vers les algorithmes. Au CRPE, les questions portent sur l'analyse des erreurs aux tables, les structures de problèmes multiplicatifs et les stratégies de calcul réfléchi.",
     oneLiner:
-      "La multiplication recouvre deux structures principales (Vergnaud, champ conceptuel des structures multiplicatives) : l'ADDITION ITÉRÉE (3 fois 4 = 4 + 4 + 4) et le PRODUIT SCALAIRE / proportionnalité (3 groupes de 4, ou toute situation de proportionnalité simple). Enseigner la multiplication, c'est d'abord faire comprendre ces deux sens via des situations concrètes AVANT de mémoriser les tables et d'appliquer l'algorithme posé.",
+      "La multiplication recouvre deux structures principales (Vergnaud, champ conceptuel des structures multiplicatives) : l'ADDITION ITÉRÉE (3 fois 4 = 4 + 4 + 4) et l'ISOMORPHISME DE MESURES (proportionnalité simple entre deux grandeurs). Enseigner la multiplication, c'est d'abord faire comprendre ces deux sens via des situations concrètes AVANT de mémoriser les tables et d'appliquer l'algorithme posé.",
     exampleCorrect: {
       sentence:
         "Un enseignant de CE1 introduit la multiplication avec le problème : « 4 enfants reçoivent chacun 3 bonbons. Combien de bonbons en tout ? » et demande aux élèves de calculer d'abord par addition itérée (3+3+3+3), puis d'écrire 4×3.",
@@ -68,10 +68,10 @@ export const didactiqueMultiplicationSprint: Fiche = {
       },
       {
         sentence:
-          "Un élève de CE2 qui écrit 34 × 5 = 150 en calculant 30×5 + 4×5 = 150+20 = 170 et obtient un résultat faux (150 au lieu de 170) manifeste une erreur de distributivité.",
-        isCorrect: true,
+          "Un élève de CE2 qui écrit 34 × 5 = 150 en calculant 30×5 + 4×5 = 150+20 = 150 manifeste une erreur de distributivité.",
+        isCorrect: false,
         explanation:
-          "Exactement. L'élève applique correctement la distributivité (34×5 = 30×5 + 4×5) mais commet une erreur de calcul final en additionnant incorrectement 150 + 20 = 150 au lieu de 170. L'utilisation de la distributivité est pertinente (c'est une stratégie de calcul réfléchi efficace), mais l'élève a fait une erreur dans l'addition des produits partiels. L'enseignant doit valoriser la stratégie correcte et cibler la remédiation sur l'addition des grands nombres.",
+          "FAUX. L'élève applique CORRECTEMENT la distributivité (34×5 = 30×5 + 4×5 = 150+20). L'erreur est dans l'addition des produits partiels : il écrit 150+20 = 150 au lieu de 170. Ce n'est pas une erreur de distributivité mais une erreur de calcul additif. L'enseignant doit valoriser la stratégie de décomposition (pertinente) et cibler la remédiation sur l'addition des grands nombres.",
       },
       {
         sentence:

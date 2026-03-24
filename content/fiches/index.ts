@@ -23,7 +23,7 @@ import { productionEcriteSprint } from "./didactique-production-ecrite-sprint";
 import { evaluationFrancaisSprint } from "./didactique-evaluation-francais-sprint";
 import { grammaireInductiveSprint } from "./didactique-grammaire-inductive-sprint";
 import { programmesFrancaisCyclesReference } from "./didactique-programmes-cycles-reference";
-import { grammairePhraseCOmplexeSprint } from "./grammaire-phrase-complexe-sprint";
+import { grammairePhraseComplexeSprint } from "./grammaire-phrase-complexe-sprint";
 import { grammaireVoixPassiveSprint } from "./grammaire-voix-passive-sprint";
 import { grammaireDiscoursSprint } from "./grammaire-discours-direct-indirect-sprint";
 import { grammaireSubCircSprint } from "./grammaire-subordonnees-circonstancielles-sprint";
@@ -108,7 +108,7 @@ import { grammaireComplementsObjetSprint } from "./grammaire-complements-objet-s
 import { grammairePredicatStructureSprint } from "./grammaire-predicat-structure-sprint";
 import { grammairePropositionsClassificationSprint } from "./grammaire-propositions-classification-sprint";
 import { rectifications1990Sprint } from "./orthographe-rectifications-1990-sprint";
-import { accentsThremaSprint } from "./orthographe-accents-trema-sprint";
+import { accentsTremaSprint } from "./orthographe-accents-trema-sprint";
 import { graphophonologieCgpSprint } from "./didactique-graphophonologie-cgp-sprint";
 import { langageOralMaternelleSprint } from "./didactique-langage-oral-maternelle-sprint";
 import { participePasseCompletReference } from "./orthographe-participe-passe-complet-reference";
@@ -138,7 +138,7 @@ export const allFiches: Fiche[] = [
   evaluationFrancaisSprint,
   grammaireInductiveSprint,
   programmesFrancaisCyclesReference,
-  grammairePhraseCOmplexeSprint,
+  grammairePhraseComplexeSprint,
   grammaireVoixPassiveSprint,
   grammaireDiscoursSprint,
   grammaireSubCircSprint,
@@ -223,7 +223,7 @@ export const allFiches: Fiche[] = [
   grammairePredicatStructureSprint,
   grammairePropositionsClassificationSprint,
   rectifications1990Sprint,
-  accentsThremaSprint,
+  accentsTremaSprint,
   graphophonologieCgpSprint,
   langageOralMaternelleSprint,
   // Nouvelles fiches reference & opératoire

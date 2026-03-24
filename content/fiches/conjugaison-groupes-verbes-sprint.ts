@@ -22,7 +22,7 @@ export const groupesVerbesSprint: Fiche = {
   content: {
     model: "sprint",
     disclaimer:
-      "Fiche de rappel sur la classification des verbes en trois groupes. L'infinitif et le participe sont des formes conjuguées (modes non personnels de la conjugaison).",
+      "Fiche de rappel sur la classification des verbes en trois groupes. L'infinitif et le participe sont des modes non personnels du verbe (ils font partie du système verbal mais ne se conjuguent pas en personne).",
     oneLiner:
       "1er groupe : infinitif en -er (sauf « aller »), un seul radical, conjugaison régulière (chanter, manger, jouer). 2e groupe : infinitif en -ir avec participe présent en -issant (finir → finissant, choisir → choisissant). 3e groupe : tous les autres verbes, conjugaison irrégulière — il regroupe les verbes en -ir sans -issant (partir → partant), en -oir (vouloir), en -re (prendre), plus « aller » et les auxiliaires « être » et « avoir ».",
     exampleCorrect: {

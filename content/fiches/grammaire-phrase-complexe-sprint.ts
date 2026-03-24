@@ -1,6 +1,6 @@
 import type { Fiche } from "@/features/fiches/types";
 
-export const grammairePhraseCOmplexeSprint: Fiche = {
+export const grammairePhraseComplexeSprint: Fiche = {
   id: "grammaire-phrase-complexe-sprint",
   slug: "phrase-complexe-sprint",
   title: "La phrase complexe",
@@ -29,7 +29,7 @@ export const grammairePhraseCOmplexeSprint: Fiche = {
         "Ce n'est pas une analyse, c'est une description. Piège classique : croire qu'une phrase est complexe parce qu'elle est longue — c'est le nombre de verbes conjugués qui compte, pas la longueur.",
     },
     mainTrap:
-      "\"Il chante et danse.\" → phrase SIMPLE ! \"Et\" coordonne ici deux verbes dont un seul est conjugué (\"danse\" partage le sujet de \"chante\") — il n'y a qu'une proposition. Pour avoir une phrase complexe par coordination, il faut deux verbes conjugués : \"Il chante et elle danse.\"",
+      "\"Il chante et danse.\" → phrase SIMPLE ! \"Et\" coordonne ici deux verbes conjugués qui partagent le même sujet, formant une seule proposition avec un prédicat composé — il n'y a qu'une proposition. Pour avoir une phrase complexe par coordination, il faut deux propositions distinctes : \"Il chante et elle danse.\"",
     quiz: [
       {
         sentence:

@@ -27,9 +27,9 @@ export const champsLexicauxSprint: Fiche = {
     },
     exampleWrong: {
       sentence:
-        "Pêcheur, pêche (nom), pêcher (verbe), pêché → famille de mots, donc champ lexical de la pêche.",
+        "Pêcheur, pêche (nom), pêcher (verbe), péché → famille de mots, donc champ lexical de la pêche.",
       explanation:
-        "FAUX sur deux points. D'abord, pêché (/pɛʃe/) n'appartient pas à la famille de pêcher (/pɛʃe/) : homophonie trompeuse, mais radicaux distincts (péch- ≠ pêch-). Ensuite, famille de mots et champ lexical sont deux notions distinctes : une famille de mots peut s'étendre sur plusieurs champs lexicaux.",
+        "FAUX sur deux points. D'abord, péché (/peʃe/, du latin peccatum) n'appartient pas à la famille de pêcher (la pêche à la ligne) : homophonie trompeuse, mais radicaux distincts (péch- ≠ pêch-). Ensuite, famille de mots et champ lexical sont deux notions distinctes : une famille de mots peut s'étendre sur plusieurs champs lexicaux.",
     },
     mainTrap:
       "Inclure dans un champ lexical des mots partageant le même radical mais relevant d'un thème différent : « pêcheur » (pêche à la ligne) et « péché » (religion) sont homophones, non apparentés. Inversement, des synonymes peuvent appartenir à un même champ lexical sans avoir le même radical (mer, océan, flots, onde). Le critère est toujours le thème, jamais la forme.",

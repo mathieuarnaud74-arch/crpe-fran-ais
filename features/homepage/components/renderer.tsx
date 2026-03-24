@@ -110,11 +110,11 @@ function HeroSection({
   return (
     <section className="relative overflow-hidden border-b border-border/70">
       <Image
-        src="/hero-bg.jpg"
+        src="/hero-bg.png"
         alt=""
         fill
         sizes="100vw"
-        quality={75}
+        quality={90}
         className="object-cover object-center"
         priority
       />

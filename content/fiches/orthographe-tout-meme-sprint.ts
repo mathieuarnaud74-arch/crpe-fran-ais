@@ -21,21 +21,21 @@ export const toutMemeSprint: Fiche = {
     exampleCorrect: {
       sentence: "Elles étaient tout étonnées de la nouvelle.",
       explanation:
-        "\"tout\" modifie l'adjectif \"étonnées\" (féminin) → normalement accord, MAIS \"étonnée\" commence par une voyelle → exception : \"tout\" reste INVARIABLE devant un féminin commençant par une voyelle ou un h muet. Correct : \"tout étonnées\".",
+        "\"tout\" (adverbe) est normalement INVARIABLE. La seule exception est devant un adjectif féminin commençant par une consonne ou un h aspiré (\"toute petite\", \"toutes honteuses\"). Ici, \"étonnées\" commence par une voyelle → pas d'exception → \"tout\" reste invariable. Correct : \"tout étonnées\".",
     },
     exampleWrong: {
       sentence: "Elles étaient tout honteuses.",
       explanation:
-        "FAUX. \"tout\" modifie \"honteuses\" (féminin, commence par \"h aspiré\") → \"tout\" s'accorde : \"toutes honteuses\". Le \"h\" de \"honteux\" est aspiré : on dit \"les honteuses\" (pas d'élision), d'où l'accord de \"tout\".",
+        "FAUX. \"tout\" modifie \"honteuses\" (féminin commençant par h aspiré) → exception : \"tout\" s'accorde → \"toutes honteuses\". Test : le h de \"honteuse\" est aspiré — on dit \"la honteuse\" (pas d'élision *l'honteuse) → consonne/h aspiré → accord obligatoire.",
     },
     mainTrap:
       "\"Tout\" devant un adjectif féminin : la règle de l'exception (voyelle ou h muet = invariable) est contre-intuitive. Mémo : quand on peut dire \"l'adjectif\" (élision → h muet ou voyelle) → tout invariable. Quand on dit \"la/les + adjectif\" sans élision (h aspiré ou consonne) → tout s'accorde. Exemple : \"tout aimables\" (l'aimable → h muet/voyelle → invariable) vs \"toutes petites\" (la petite → consonne → accord).",
     quiz: [
       {
         sentence: "\"Elles sont tout heureuses\" est correct.",
-        isCorrect: false,
+        isCorrect: true,
         explanation:
-          "FAUX. \"Heureuse\" est féminin et commence par \"h aspiré\" (on dit \"les heureuses\", pas \"l'heureuses\") → \"tout\" s'accorde : \"toutes heureuses\".",
+          "VRAI. \"Heureuse\" est féminin mais commence par un h muet (on dit \"l'heureuse\", avec élision) → exception : \"tout\" reste INVARIABLE devant un féminin commençant par une voyelle ou un h muet. \"Tout heureuses\" est correct.",
       },
       {
         sentence: "\"Elles sont tout émues\" est correct.",

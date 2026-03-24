@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
+import { ReactScanDevTool } from "@/components/react-scan-dev-tool";
 import { Toaster } from "sonner";
 
 import "./globals.css";
@@ -64,6 +65,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${sans.variable} ${serif.variable}`}>
       <body className="font-sans antialiased">
+        <ReactScanDevTool />
         <NextTopLoader color="#476257" showSpinner={false} height={2} />
         {children}
         <Toaster position="top-center" richColors />

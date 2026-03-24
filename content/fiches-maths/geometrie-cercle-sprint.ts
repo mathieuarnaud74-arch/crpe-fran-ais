@@ -51,7 +51,7 @@ export const geometrieCercleSprint: Fiche = {
           "Si un angle inscrit intercepte un demi-cercle, alors cet angle est un angle droit.",
         isCorrect: true,
         explanation:
-          "VRAI. C'est le théorème de Thalès (version cercle) : tout angle inscrit dans un demi-cercle est un angle droit (90°), car l'angle au centre correspondant est un angle plat (180°), et 180° ÷ 2 = 90°.",
+          "VRAI. C'est la propriété de l'angle inscrit dans un demi-cercle : tout angle inscrit dont les côtés passent par les extrémités d'un diamètre est un angle droit (90°), car l'angle au centre correspondant est un angle plat (180°), et 180° ÷ 2 = 90°.",
       },
       {
         sentence:

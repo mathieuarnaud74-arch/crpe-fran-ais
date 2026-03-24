@@ -7,7 +7,15 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const code = searchParams.get("code");
   const rawNext = searchParams.get("next") ?? "/tableau-de-bord";
-  const next = rawNext.startsWith("/") ? rawNext : "/tableau-de-bord";
+  const ALLOWED_REDIRECTS = new Set([
+    "/",
+    "/tableau-de-bord",
+    "/francais",
+    "/maths",
+    "/diagnostic",
+    "/reinitialiser-mot-de-passe",
+  ]);
+  const next = ALLOWED_REDIRECTS.has(rawNext) ? rawNext : "/tableau-de-bord";
 
   if (code) {
     const response = NextResponse.redirect(new URL(next, request.url));

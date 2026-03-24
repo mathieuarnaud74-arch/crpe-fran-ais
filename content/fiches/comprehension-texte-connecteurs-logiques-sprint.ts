@@ -48,7 +48,7 @@ export const connecteursLogiquesSprint: Fiche = {
           "« Car » et « parce que » expriment tous les deux la cause, mais « car » est une conjonction de coordination et « parce que » une conjonction de subordination.",
         isCorrect: true,
         explanation:
-          "Exact. Les deux expriment la cause, mais leur nature grammaticale diffère. « Car » coordonne deux propositions indépendantes (il introduit une justification). « Parce que » subordonne une proposition causale à la principale. Conséquence syntaxique : on ne peut pas commencer une phrase par « car » dans l'usage soutenu, tandis que « Parce qu'il pleut, je reste » est correct.",
+          "Exact. Les deux expriment la cause, mais leur nature grammaticale diffère. « Car » est une conjonction de coordination : elle lie deux propositions indépendantes dont la seconde justifie la première. « Parce que » est une conjonction de subordination : elle subordonne une proposition causale à la principale. Conséquence syntaxique : on ne peut pas commencer une phrase par « car » dans l'usage soutenu (« *Car il pleut, je reste » est incorrect), tandis que « Parce qu'il pleut, je reste » est correct.",
       },
       {
         sentence:
@@ -69,7 +69,7 @@ export const connecteursLogiquesSprint: Fiche = {
           "Les connecteurs « donc », « par conséquent » et « c'est pourquoi » expriment tous la conséquence.",
         isCorrect: true,
         explanation:
-          "Exact. Ces trois connecteurs introduisent une conséquence logique : le fait B découle du fait A. « Donc » est une conjonction de coordination, « par conséquent » et « c'est pourquoi » sont des locutions adverbiales. Ils sont interchangeables du point de vue du sens, mais varient en registre (« donc » est courant, « par conséquent » est plus soutenu).",
+          "Exact. Ces trois connecteurs introduisent une conséquence logique : le fait B découle du fait A. « Donc » est traditionnellement classé parmi les conjonctions de coordination (dans « mais, ou, et, donc, or, ni, car »), bien que de nombreuses grammaires le traitent comme un adverbe de liaison — les deux classements coexistent et sont acceptables au CRPE. « Par conséquent » et « c'est pourquoi » sont des locutions adverbiales. Ces trois connecteurs sont interchangeables du point de vue du sens, mais varient en registre (« donc » est courant, « par conséquent » est plus soutenu).",
       },
       {
         sentence:

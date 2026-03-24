@@ -8,12 +8,11 @@ agent: audit-loop
 
 ## Résumé exécutif
 
-- **5 bugs critiques** (sécurité / données corrompues) *(inchangé — aucun nouveau bug critique trouvé en passes 8 et 9)*
-- **22 bugs majeurs** (logique métier incorrecte / comportements inattendus) *(inchangé — aucun nouveau bug majeur trouvé en passes 8 et 9)*
-- **41 bugs mineurs** (qualité / UX / edge cases) *(+3 passe 9)*
+- **3 bugs critiques** (sécurité / données corrompues)
+- **16 bugs majeurs** (logique métier incorrecte / comportements inattendus)
+- **35 bugs mineurs** (qualité / UX / edge cases)
 
-### Note sur les correctifs intervenus entre les passes
-Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés dans les passes 1–4 (notamment CRIT-003 partial, MIN-003, MIN-011 partial, MAJ-006 partial, MAJ-007 partial). Les bugs CRIT-001 à CRIT-005 restent présents — voir annotations par bug. Le commit `3fc59a9 refactor` a découpé `exercise-player.tsx` et ajouté des tests mais n'a pas traité les bugs de logique métier.
+*Mis à jour le 2026-03-24 — 14 bugs corrigés supprimés du rapport (CRIT-002, CRIT-004, MAJ-003, MAJ-013, MAJ-014, MAJ-015, MAJ-020, MAJ-021, MIN-003, MIN-011, MIN-024, MIN-039, MIN-040, MIN-041).*
 
 ---
 
@@ -36,24 +35,6 @@ Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés d
 
 ---
 
-### [CRIT-002] Singleton admin Supabase partagé entre toutes les requêtes serverless
-
-- **Fichier** : `lib/supabase/admin.ts:6-25`
-- **Description** : Le client admin (service role) est créé une seule fois dans `let adminClient` au niveau module. Sur Vercel, les fonctions serverless peuvent être réutilisées (warm instances). Le client admin bypasse tous les Row Level Security (RLS) de Supabase. Si le singleton est partagé dans un contexte de concurrence, des opérations d'un utilisateur peuvent potentiellement influencer celles d'un autre.
-- **Impact** : Risque d'accès aux données sans RLS dans un contexte warm instance partagé. Si le client est corrompu en mémoire (ex. clé tournée), toutes les opérations Stripe/webhook échouent silencieusement.
-- **Données pour correcteur** :
-  ```ts
-  // lib/supabase/admin.ts:6
-  let adminClient: ReturnType<typeof createClient<Database>> | null = null;
-  // ...
-  if (!adminClient) {
-    adminClient = createClient<Database>(...); // stocké globalement
-  }
-  return adminClient;
-  ```
-- **Suggestion de fix** : Créer un nouveau client à chaque appel (le client `@supabase/supabase-js` sans session à persister est léger). Supprimer le singleton.
-
----
 
 ### [CRIT-003] Stripe checkout : daily/weekly créés en `mode: "subscription"` mais le webhook attend `mode: "payment"`
 
@@ -117,22 +98,6 @@ Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés d
 
 ---
 
-### [MAJ-003] `goToPreviousQuestion` navigue vers la dernière question répondue, pas la précédente dans l'ordre
-
-- **Fichier** : `features/exercises/components/exercise-player.tsx:225-241`
-- **Description** : La fonction cherche la dernière question **répondue** (`if (results[session.questions[i].id])`) parmi les questions précédant l'index courant, au lieu de simplement aller à `currentIndex - 1`.
-- **Impact** : Si l'utilisateur est à la question 5 et que 3 et 4 sont non répondues, le bouton "Précédente" l'amène à la question 2, sautant 3 et 4. UX confuse et comportement non attendu.
-- **Données pour correcteur** :
-  ```ts
-  // player.tsx:228-232
-  for (let i = currentIndex - 1; i >= 0; i--) {
-    if (results[session.questions[i].id]) { // cherche répondue, pas juste i-1
-      prevIdx = i; break;
-    }
-  }
-  ```
-
----
 
 ### [MAJ-004] `getExerciseSessionById` charge tout le catalogue pour trouver une session par ID
 
@@ -216,24 +181,6 @@ Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés d
 
 ---
 
-### [MIN-003] Diagnostic invité — `localStorage` supprimé avant confirmation de succès de la requête
-
-- **Fichier** : `features/auth/components/auth-form.tsx:74-85` et `:106-117`
-- **Description** : Le résultat du diagnostic invité est envoyé via `fetch`, puis `localStorage.removeItem` est appelé immédiatement après, sans vérifier si la réponse HTTP est un succès. Si le réseau coupe ou si le serveur renvoie une erreur, le diagnostic est perdu définitivement.
-- **Impact** : Perte du diagnostic invité lors d'une connexion avec réseau instable. L'erreur est attrapée par un `catch {}` vide — aucune indication à l'utilisateur.
-- **Données pour correcteur** :
-  ```ts
-  // auth-form.tsx:76-82
-  await fetch("/api/diagnostic/complete", { method: "POST", body: savedDiagnostic });
-  localStorage.removeItem("guest_diagnostic_result"); // supprimé même si fetch échoue
-  ```
-- **Suggestion de fix** :
-  ```ts
-  const resp = await fetch(...);
-  if (resp.ok) localStorage.removeItem("guest_diagnostic_result");
-  ```
-
----
 
 ### [MIN-004] Timer — son `onWarning` potentiellement joué deux fois
 
@@ -371,25 +318,6 @@ Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés d
 
 ---
 
-### [MIN-011] `auth/callback/route.ts` — paramètre `next` non validé, open redirect potentiel
-
-- **Fichier** : `app/api/auth/callback/route.ts:9`
-- **Description** : Le paramètre `next` provenant de l'URL est utilisé directement dans `NextResponse.redirect(new URL(next, request.url))` sans validation. Un attaquant peut forger un lien de réinitialisation de mot de passe avec `?next=https://evil.com`, et après échange du code OAuth, l'utilisateur est redirigé vers un site externe.
-- **Impact** : Open redirect — vecteur de phishing après un flux d'authentification légitime (réinitialisation de mot de passe, connexion sociale). Gravité modérée car nécessite un lien forgé, mais l'URL d'origine est `*.supabase.co` (lien d'email vérifié), ce qui donne de la crédibilité à l'attaque.
-- **Données pour correcteur** :
-  ```ts
-  // callback/route.ts:9
-  const next = searchParams.get("next") ?? "/tableau-de-bord";
-  // ...
-  const response = NextResponse.redirect(new URL(next, request.url)); // pas validé
-  ```
-- **Suggestion de fix** :
-  ```ts
-  const rawNext = searchParams.get("next") ?? "/tableau-de-bord";
-  const next = rawNext.startsWith("/") ? rawNext : "/tableau-de-bord";
-  ```
-
----
 
 ### [MIN-012] `leaderboard-table.tsx` — callout "hors top 50" jamais affiché si l'utilisateur est dans `rest` mais rang ≤ 20
 
@@ -406,31 +334,6 @@ Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés d
 
 ---
 
-## Bugs critiques — passe 3 (2026-03-23)
-
-### [CRIT-004] `middleware.ts` — aucune protection de route côté middleware : toutes les pages protégées dépendent uniquement des Server Components
-
-- **Fichier** : `middleware.ts:6-36`
-- **Description** : Le middleware appelle `supabase.auth.getUser()` pour rafraîchir la session, mais **ne redirige jamais** les utilisateurs non authentifiés vers `/connexion`. La protection de toutes les routes `/(app)/*` repose exclusivement sur `requireUser()` dans chaque layout/page Server Component. Si un Server Component oublie d'appeler `requireUser()` (ou est ajouté par un développeur sans le guard), la route est accessible sans authentification. De plus, le middleware correspond à **toutes les routes** (y compris `/(app)`), ce qui crée une fausse impression de sécurité côté middleware.
-- **Impact** : Toute route protégée ajoutée sans appel explicite à `requireUser()` sera publiquement accessible. Pas de filet de sécurité middleware. Le risque est systémique à mesure que la codebase grandit.
-- **Données pour correcteur** :
-  ```ts
-  // middleware.ts:33-35 — le middleware ne redirige jamais
-  await supabase.auth.getUser(); // rafraîchit la session mais n'agit pas sur le résultat
-  return response; // toujours 200, jamais de redirect
-  ```
-- **Suggestion de fix** : Ajouter un bloc après `getUser()` :
-  ```ts
-  const { data: { user } } = await supabase.auth.getUser();
-  const isProtectedRoute = request.nextUrl.pathname.startsWith("/tableau-de-bord")
-    || request.nextUrl.pathname.startsWith("/francais")
-    // ... autres routes (app)
-  if (isProtectedRoute && !user) {
-    return NextResponse.redirect(new URL("/connexion", request.url));
-  }
-  ```
-
----
 
 ## Bugs majeurs — passe 3 (2026-03-23)
 
@@ -460,19 +363,6 @@ Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés d
 
 ---
 
-### [MAJ-013] `rate-limit.ts` — `setInterval` dans un module Next.js : fuite mémoire + comportement indéfini en Edge Runtime
-
-- **Fichier** : `lib/rate-limit.ts:11-16`
-- **Description** : Un `setInterval` de nettoyage est lancé au niveau module lors de l'import. Dans Next.js (App Router), les modules sont importés à chaque cold start serverless. Sur Vercel, les fonctions lambda ont une durée de vie limitée. Le `setInterval` crée un timer qui empêche le garbage collection de la Map `store`, même si la lambda n'est plus utilisée. En Edge Runtime (si jamais `rate-limit.ts` y est importé), `setInterval` peut ne pas être supporté ou se comporter différemment.
-- **Impact** : Fuite mémoire progressive sur les instances longues. Si Next.js utilise un Edge Runtime pour certaines routes API, le module plante au démarrage (`setInterval is not defined`). L'intervalle empêche aussi la terminaison propre des workers.
-- **Données pour correcteur** :
-  ```ts
-  // rate-limit.ts:11
-  setInterval(() => { ... }, 60_000); // lancé à l'import du module, jamais nettoyé
-  ```
-- **Suggestion de fix** : Supprimer le `setInterval` et nettoyer au moment de l'accès (lazy cleanup) : vérifier `entry.resetAt <= now` directement dans `rateLimit()` sans timer global.
-
----
 
 ## Bugs mineurs — passe 3 (2026-03-23)
 
@@ -602,40 +492,7 @@ Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés d
 
 ## Bugs majeurs — passe 4 (2026-03-23)
 
-### [MAJ-014] `goToNextQuestion` — navigation saute les questions non répondues dans certains cas
 
-- **Fichier** : `features/exercises/components/exercise-player.tsx:202-222`
-- **Description** : Quand `currentIndex < session.questions.length - 1`, la fonction cherche d'abord la première question non répondue **après** l'index courant (`unansweredAfter`). Si elle en trouve une, elle y saute directement. Ce comportement est intentionnel pour aller à la prochaine question non répondue. **Cependant**, si la question courante vient d'être répondue et que la prochaine dans l'ordre (`currentIndex + 1`) est aussi non répondue, la fonction saute correctement à `currentIndex + 1 = unansweredAfter`. Mais si `currentIndex + 1` est **déjà répondue** et qu'une question non répondue existe plus loin, la navigation saute les questions répondues entre les deux — l'utilisateur ne peut plus y accéder facilement via "Suivant". La logique de navigation avant/arrière est asymétrique : "Précédent" cherche la dernière répondue (MAJ-003), "Suivant" cherche la prochaine non répondue. Aucune logique cohérente de navigation séquentielle.
-- **Impact** : Dans une session mixte (certaines questions répondues, d'autres non), l'utilisateur ne peut pas naviguer séquentiellement (+1) pour revoir une question répondue. Il ne peut naviguer "en avant" que vers les questions non répondues. UX confuse.
-- **Données pour correcteur** :
-  ```ts
-  // player.tsx:206-209
-  const unansweredAfter = session.questions.findIndex(
-    (q, i) => i > currentIndex && !results[q.id],
-  );
-  if (unansweredAfter !== -1) nextIdx = unansweredAfter; // saute les répondues
-  ```
-
----
-
-### [MAJ-015] `RESET_SESSION` dans le reducer — `sessionXp`, `lastXpEarned`, `xpTrigger`, `runningXp` non remis à zéro
-
-- **Fichier** : `features/exercises/components/exercise-reducer.ts:85-94`
-- **Description** : L'action `RESET_SESSION` réinitialise `results`, `currentIndex`, `draftAnswer`, `consecutiveCorrect`, `showConfetti`, `streakCelebration` — mais **pas** `sessionXp`, `lastXpEarned`, `xpTrigger`, ni `runningXp`. Si l'utilisateur clique "Recommencer" après une session, la barre XP conserve le XP accumulé visuellement (`runningXp`), le compteur "XP cette série" (`sessionXp`) affiche encore les XP de la session précédente, et `xpTrigger` peut déclencher la popup XP lors du reset.
-- **Impact** : Après "Recommencer", l'affichage de la barre XP ne correspond pas au XP réel du compte (le vrai XP est en DB, `runningXp` est local). Le compteur de session reste non nul. UX incohérente.
-- **Données pour correcteur** :
-  ```ts
-  // exercise-reducer.ts:85-94
-  case "RESET_SESSION":
-    return {
-      ...state,
-      results: {}, currentIndex: 0, draftAnswer: "",
-      consecutiveCorrect: 0, showConfetti: false, streakCelebration: null,
-      // sessionXp, lastXpEarned, xpTrigger, runningXp : non remis à zéro
-    };
-  ```
-
----
 
 ### [MAJ-016] `XpBar` — affichage incohérent au niveau maximum (niveau 20)
 
@@ -856,20 +713,6 @@ Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés d
 
 ## Bugs mineurs — passe 5 (2026-03-23)
 
-### [MIN-024] `auth-form.tsx` — `router.push` + `router.refresh()` appelés séquentiellement après connexion : double requête sur `/tableau-de-bord`
-
-- **Fichier** : `features/auth/components/auth-form.tsx:119-120`
-- **Description** : Après une connexion réussie, le code appelle `router.push("/tableau-de-bord")` immédiatement suivi de `router.refresh()`. En Next.js 15, `router.push` démarre une navigation vers la nouvelle route et `router.refresh()` invalide le cache du Server Component courant. Combinés, ils déclenchent deux chargements distincts : la navigation vers `/tableau-de-bord` + le refresh du composant courant (page de connexion). Le second peut créer une requête de refetch sur le layout partagé `(app)` pendant que la navigation est en cours, causant potentiellement deux appels simultanés à `getDashboardData` ou aux guards `requireUser`.
-- **Impact** : Double requête DB lors de chaque connexion. UX légèrement dégradée (flash de rechargement possible). Impact modéré car la navigation est rapide.
-- **Données pour correcteur** :
-  ```ts
-  // auth-form.tsx:119-120
-  router.push("/tableau-de-bord"); // navigation démarrée
-  router.refresh();                 // refresh de la page courante (redondant après push)
-  ```
-- **Suggestion de fix** : Supprimer `router.refresh()` — `router.push` suffit pour naviguer vers une page Server Component qui recharge ses données depuis la DB.
-
----
 
 ### [MIN-025] `admin-editor.tsx` — suppression de section homepage sans confirmation : perte de données en un clic
 
@@ -1016,21 +859,6 @@ Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés d
 
 ---
 
-### [MAJ-020] `app/(app)/maths/page.tsx` — navigation de domaine via `<a href>` natif au lieu de `<Link>` Next.js
-
-- **Fichier** : `app/(app)/maths/page.tsx:130-189`
-- **Description** : La table de domaines dans la page Mathématiques utilise des balises `<a href={domain.href}>` natives pour chaque ligne de domaine. La page Français équivalente (`app/(app)/francais/page.tsx`) utilise correctement `<Link href={domain.href}>` de Next.js. Avec un `<a>` natif, chaque clic sur un domaine déclenche une navigation complète (full page reload), perdant l'état client React, les transitions d'animation, le scroll position et le cache de données Next.js. La page refetch toutes ses données DB depuis zéro.
-- **Impact** : Performance dégradée : chaque clic sur un domaine maths déclenche un rechargement complet de la page (équivalent à un `window.location.href = ...`). Sur mobile avec une connexion lente, la latence est de 300–800 ms supplémentaires. Incohérence avec le comportement de la page Français (navigation soft). L'état du layout partagé (header, navigation) est recréé inutilement.
-- **Données pour correcteur** :
-  ```tsx
-  // maths/page.tsx:130 — balise native
-  <a key={domain.key} href={domain.href} className={cn(...)}>
-  // francais/page.tsx:131 — correct
-  <Link key={domain.key} href={domain.href} className={cn(...)}>
-  ```
-- **Suggestion de fix** : Remplacer `<a href=...>` par `<Link href=...>` de `next/link` (déjà importé dans le fichier pour le composant `Link` non utilisé dans la table).
-
----
 
 ## Bugs mineurs — passe 6 (2026-03-23)
 
@@ -1053,7 +881,7 @@ Commit `416a1e9 fix(audit)` (2026-03-23) a corrigé plusieurs bugs documentés d
 ### [MIN-030] `mentions-legales/page.tsx` — lien interne `/politique-confidentialite` via `<a>` natif
 
 - **Fichier** : `app/(marketing)/mentions-legales/page.tsx:79`
-- **Description** : Le lien vers `/politique-confidentialite` dans la page Mentions légales est une balise `<a href="/politique-confidentialite">` native. Comme pour MAJ-020, cela déclenche un rechargement complet au lieu d'une navigation client-side Next.js.
+- **Description** : Le lien vers `/politique-confidentialite` dans la page Mentions légales est une balise `<a href="/politique-confidentialite">` native, ce qui déclenche un rechargement complet au lieu d'une navigation client-side Next.js.
 - **Impact** : Mineur — full page reload sur une page statique. Léger impact sur la fluidité UX et les métriques Core Web Vitals (FCP/LCP mesurés comme navigation complète).
 - **Données pour correcteur** :
   ```tsx
@@ -1162,47 +990,6 @@ Le fichier `features/auth/components/signup-sheet.tsx` n'existe pas dans le syst
 
 ## Bugs majeurs — passe 7 (2026-03-23)
 
-### [MAJ-021] `revision/page.tsx` — `isPremiumUser` récupéré mais jamais utilisé : les exercices SRS premium sont rendus aux utilisateurs gratuits
-
-- **Fichier** : `app/(app)/revision/page.tsx:23` + `features/srs/server/queries.ts:57-65`
-- **Description** : La page de révision espacée appelle `isPremiumUser(user.id)` et stocke le résultat dans `premium` — mais ne passe jamais cette variable à `getDueExercises()`, à `getExerciseById()`, ni à la construction de la session. `getDueExercises` ne filtre pas les `srs_cards` par `access_tier` de l'exercice associé. Résultat : un utilisateur gratuit qui a auparavant répondu à un exercice premium (par tout autre moyen, par exemple pendant une période d'abonnement), verra cet exercice reprogrammé dans sa file SRS et la page `/revision` lui rendra l'exercice et son contenu complet.
-- **Note complémentaire** : La `submitAttemptAction` bloque bien la soumission si l'exercice est premium et l'utilisateur non abonné (ligne 81–86 de `actions.ts`). Ainsi, l'utilisateur voit la question mais reçoit une erreur `"Cet exercice est réservé aux abonnés premium."` à la soumission. Ce n'est pas un vecteur d'accès complet aux corrections, mais le contenu de la question (instruction, choix) est affiché sans restriction.
-- **Impact** : Les utilisateurs gratuits peuvent lire l'énoncé des exercices premium via la route SRS, contournant le verrou d'accès affiché sur `/exercices`. Incohérence de la promesse commerciale.
-- **Données pour correcteur** :
-  ```ts
-  // revision/page.tsx:23 — premium récupéré mais jamais utilisé
-  const premium = await isPremiumUser(user.id);
-  // ...
-  const [dueItems, dueCount] = await Promise.all([
-    getDueExercises(user.id, 20), // pas de filtre premium
-    getDueCount(user.id),
-  ]);
-  // ...
-  const exercises: ExerciseRecord[] = [];
-  for (const item of dueItems) {
-    const ex = await getExerciseById(item.exercise_id); // pas de filtre access_tier
-    if (ex) exercises.push(ex); // exercice premium inclus si free user
-  }
-  ```
-  ```ts
-  // srs/server/queries.ts:57-65 — aucun filtre access_tier dans la requête
-  const { data } = await supabase
-    .from("srs_cards")
-    .select("exercise_id, due, state, ...exercises(id, ...)")
-    .eq("user_id", userId)
-    .lte("due", new Date().toISOString())
-    .limit(limit); // pas de .eq("exercises.access_tier", "free")
-  ```
-- **Suggestion de fix** : Filtrer les exercices chargés dans la boucle `for...of` selon `access_tier` et `premium` :
-  ```ts
-  for (const item of dueItems) {
-    const ex = await getExerciseById(item.exercise_id);
-    if (ex && (ex.access_tier === "free" || premium)) exercises.push(ex);
-  }
-  ```
-  Ou filtrer directement dans la jointure Supabase si `premium` est `false`.
-
----
 
 ### [MAJ-022] `reindexDraftSections` — N mises à jour `page_sections` non atomiques : réordonnancement partiellement appliqué en cas d'échec intermédiaire
 
@@ -1289,7 +1076,7 @@ Le fichier `features/auth/components/signup-sheet.tsx` n'existe pas dans le syst
 - `app/(app)/tableau-de-bord/page.tsx` — `Date.now()` / `new Date()` en Server Component : pas de bug d'hydratation
 
 ### SRS / Freemium
-- `app/(app)/revision/page.tsx` (complet — MAJ-021 documenté)
+- `app/(app)/revision/page.tsx` (complet — MAJ-021 corrigé)
 - `features/srs/server/queries.ts` (complet — aucun filtre access_tier)
 - `lib/freemium.ts` (complet)
 
@@ -1377,24 +1164,6 @@ Le fichier `features/auth/components/signup-sheet.tsx` n'existe pas dans le syst
 
 ---
 
-### [MIN-039] `lib/env.ts` — `Number(x) || fallback` ignore silencieusement la valeur `0`
-
-- **Fichier** : `lib/env.ts:27-28`
-- **Description** : Les limites quotidiennes freemium sont lues depuis les variables d'environnement avec le pattern `Number(process.env.FREE_DAILY_QUESTION_LIMIT) || 30`. L'opérateur `||` traite `0` comme falsy, ce qui signifie que si un opérateur définit `FREE_DAILY_QUESTION_LIMIT=0` pour désactiver complètement l'accès gratuit, la valeur retenue sera `30` (le fallback), non `0`. La config est silencieusement ignorée. La même logique s'applique à `FREE_DAILY_FICHE_LIMIT`.
-- **Impact** : Mineur — un opérateur voulant mettre le quota à 0 (accès entièrement payant) ou à une valeur choisie basse (ex. 5) ne verrait pas son config appliqué si la variable est `"0"`. En pratique le scénario est peu probable car le quota actuel est 20–30. Mais le pattern est trompeur et devrait utiliser `?? 30` (nullish coalescing) ou vérifier explicitement `isNaN`.
-- **Données pour correcteur** :
-  ```ts
-  // env.ts:27-28
-  freeDailyQuestionLimit: Number(process.env.FREE_DAILY_QUESTION_LIMIT) || 30,
-  // Number("0") = 0, 0 || 30 = 30 — la valeur "0" est ignorée
-  freeDailyFicheLimit: Number(process.env.FREE_DAILY_FICHE_LIMIT) || 5,
-  ```
-- **Suggestion de fix** :
-  ```ts
-  const rawLimit = Number(process.env.FREE_DAILY_QUESTION_LIMIT);
-  freeDailyQuestionLimit: isNaN(rawLimit) ? 30 : rawLimit,
-  ```
-  Ou plus simplement, si `0` n'est jamais une valeur valide : conserver `|| 30` mais documenter explicitement l'invariant.
 
 ---
 
@@ -1449,7 +1218,7 @@ Le fichier `features/auth/components/signup-sheet.tsx` n'existe pas dans le syst
 - Bug CRIT-003 (mode subscription au lieu de payment pour daily/weekly) confirmé toujours présent
 
 ### TypeScript silencieux
-- `lib/env.ts:27-28` — `Number(x) || fallback` ignore `0` (MIN-039)
+- `lib/env.ts:27-28` — corrigé avec `isNaN` ✓ (ex-MIN-039)
 - Pas de `Promise<void>` dont le résultat serait utilisé de manière problématique
 - Pas de `?.` masquant des undefined critiques non documentés
 
@@ -1463,41 +1232,7 @@ Le fichier `features/auth/components/signup-sheet.tsx` n'existe pas dans le syst
 
 ## Bugs mineurs — passe 9 (2026-03-23)
 
-### [MIN-040] `reset-password-form.tsx` — même `router.push` + `router.refresh()` que MIN-024, après réinitialisation du mot de passe
 
-- **Fichier** : `features/auth/components/reset-password-form.tsx:47-50`
-- **Description** : Identique au pattern documenté en MIN-024 : après une mise à jour réussie du mot de passe, le code appelle `router.push("/tableau-de-bord")` immédiatement suivi de `router.refresh()` dans le même bloc `setTimeout`. Comme expliqué dans MIN-024, en Next.js 15, `router.push` suffit pour naviguer vers une page Server Component. L'ajout de `router.refresh()` déclenche un refetch du Server Component courant (page de réinitialisation) alors que la navigation vers `/tableau-de-bord` est déjà en cours — double requête redondante.
-- **Impact** : Double requête lors de chaque réinitialisation réussie de mot de passe. Cohérent avec MIN-024 mais sur un flux différent. Risque de flash ou comportement inattendu si le layout partagé est refreshé pendant la navigation.
-- **Données pour correcteur** :
-  ```ts
-  // reset-password-form.tsx:47-50
-  setTimeout(() => {
-    router.push("/tableau-de-bord");
-    router.refresh(); // redondant après push, même pattern que MIN-024
-  }, 2000);
-  ```
-- **Suggestion de fix** : Supprimer `router.refresh()` — le `push` suffit.
-
----
-
-### [MIN-041] `lib/stripe/server.ts` — même pattern singleton `let stripeClient: Stripe | null = null` que CRIT-002
-
-- **Fichier** : `lib/stripe/server.ts:5-20`
-- **Description** : Le client Stripe serveur est initialisé via un singleton module-level (`let stripeClient: Stripe | null = null`), identique au pattern du client admin Supabase documenté en CRIT-002. Si la clé Stripe est tournée en production (rotation de secret), toutes les instances warm de la lambda Vercel conservent l'ancien client Stripe en mémoire. Les requêtes Stripe utilisant l'ancien client échoueront silencieusement avec une erreur d'authentification Stripe. Aucun mécanisme de détection de rotation ni d'invalidation du singleton n'est présent. La gravité est moindre que CRIT-002 (Stripe n'a pas de RLS à bypasser), mais l'impact opérationnel lors d'une rotation de clé est identique.
-- **Impact** : En cas de rotation de la clé Stripe (`STRIPE_SECRET_KEY`), les instances warm continuent à utiliser l'ancien client → toutes les opérations Stripe (checkout, webhook, portail) échouent jusqu'au cold start de toutes les instances. Difficile à diagnostiquer sans logs clairs.
-- **Données pour correcteur** :
-  ```ts
-  // lib/stripe/server.ts:5
-  let stripeClient: Stripe | null = null;
-  // ...
-  if (!stripeClient) {
-    stripeClient = new Stripe(env.stripeSecretKey, { apiVersion: "2025-02-24.acacia" });
-  }
-  return stripeClient; // stocké globalement, jamais invalidé
-  ```
-- **Suggestion de fix** : Supprimer le singleton — le client Stripe est léger à instancier et sans état de session : `export function getStripeServerClient() { return new Stripe(env.stripeSecretKey, { ... }); }`.
-
----
 
 ### [MIN-042] Nouvelles migrations seed — 4 fichiers utilisent le format `"mode":"single"` (legacy) au lieu de `"mode":"single_choice"` (standard)
 
@@ -1522,10 +1257,10 @@ Le fichier `features/auth/components/signup-sheet.tsx` n'existe pas dans le syst
 ## Fichiers inspectés lors de cette passe (passe 9)
 
 ### Technique A — Relecture croisée des bugs existants → bugs dérivés
-- `lib/stripe/server.ts` — singleton identique à CRIT-002 (MIN-041 documenté)
+- `lib/stripe/server.ts` — singleton supprimé ✓ (ex-MIN-041, corrigé)
 - `lib/supabase/client.ts` — singleton navigateur : légitime car un seul client browser par session ✓
-- `features/auth/components/reset-password-form.tsx` — `router.push + router.refresh` (MIN-040 documenté)
-- `features/auth/components/auth-form.tsx` — confirmé MIN-024 (déjà documenté)
+- `features/auth/components/reset-password-form.tsx` — `router.refresh` supprimé ✓ (ex-MIN-040, corrigé)
+- `features/auth/components/auth-form.tsx` — `router.refresh` supprimé ✓ (ex-MIN-024, corrigé)
 - `lib/dashboard/build-dashboard-data.ts` — confirmé MAJ-005 `setHours(0,0,0,0)` toujours présent ✓
 - `features/exercises/server/queries.ts` — confirmé MAJ-001 `setUTCHours` ✓
 - `features/fiches/server/queries.ts` — confirmé MIN-009 `setUTCHours` ✓
@@ -1556,7 +1291,7 @@ Le fichier `features/auth/components/signup-sheet.tsx` n'existe pas dans le syst
 - `/diagnostic` : route servie par `(marketing)/diagnostic/page.tsx` — le dossier `(app)/diagnostic/` est vide mais n'entre pas en conflit ✓
 - `(app)/diagnostic/` vide : répertoire orphelin, pas de `page.tsx`, non problématique
 - MIN-030 (`mentions-legales` : `<a>` natif vers `/politique-confidentialite`) : confirmé toujours présent ✓
-- MAJ-020 (`maths/page.tsx` : `<a>` natif vers domaines) : confirmé toujours présent ✓
+- MAJ-020 (`maths/page.tsx` : `<a>` → `<Link>`) : corrigé ✓
 - Tous les autres liens internes vérifiés : routes existantes ✓
 
 ### Technique F — Robustesse des Server Components async

@@ -43,7 +43,7 @@ export const geometrieAnglesSprint: Fiche = {
         "FAUX. Deux angles complémentaires ont une somme de 90° (et non 180°). Ce sont les angles supplémentaires qui ont une somme de 180°.",
     },
     mainTrap:
-      "Confondre complémentaires (somme = 90°) et supplémentaires (somme = 180°). Astuce mnémotechnique : Complémentaires → comme un Coin (angle droit, 90°) ; Supplémentaires → comme une Straightline (angle plat, 180°).",
+      "Confondre complémentaires (somme = 90°) et supplémentaires (somme = 180°). Astuce mnémotechnique : Complémentaires → comme un Coin (angle droit, 90°) ; Supplémentaires → S comme Semi-tour (demi-tour = 180°).",
     quiz: [
       {
         sentence: "Un angle de 95° est un angle obtus.",

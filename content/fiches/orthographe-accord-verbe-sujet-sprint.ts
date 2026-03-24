@@ -25,12 +25,12 @@ export const accordVerbeSujetSprint: Fiche = {
         "Sujet grammatical : « une foule » (sing. fém.) → verbe au singulier. Le complément « de touristes » (plur.) ne modifie pas l'accord.",
     },
     exampleWrong: {
-      sentence: "Une foule de touristes envahissaient la place.",
+      sentence: "Les enfants mange à la cantine.",
       explanation:
-        "Accord avec le complément du nom « touristes » (plur.) → FAUX. Le nom noyau sujet est « une foule », singulier.",
+        "FAUX. Le sujet « les enfants » est au pluriel → le verbe doit s'accorder : « mangent ». L'erreur vient d'un oubli de la marque du pluriel sur le verbe.",
     },
     mainTrap:
-      "Sujet collectif + complément du nom pluriel : « La plupart des élèves réussissent » (accord au pluriel car « la plupart » implique une majorité plurielle) vs « Une foule de spectateurs applaudissait » (accord au singulier car le noyau est « une foule »). La règle n'est pas uniforme : « la plupart », « beaucoup », « nombre de » → pluriel ; « une foule de », « une majorité de », « une série de » → singulier (noyau collectif singulier).",
+      "Sujet collectif + complément du nom pluriel : « La plupart des élèves réussissent » (accord au pluriel car « la plupart » implique une majorité plurielle) vs « Une foule de spectateurs applaudissait » (accord au singulier classique, car le noyau est « une foule »). Avec un article indéfini + nom collectif (une foule de, une série de), le singulier est classique mais le pluriel est toléré si l'on insiste sur les individus. En revanche, « la plupart », « beaucoup », « nombre de » → toujours pluriel.",
     quiz: [
       {
         sentence:

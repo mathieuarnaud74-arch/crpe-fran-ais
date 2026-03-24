@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 import { getUserSubscription, isPremiumUser } from "@/features/billing/server/queries";
 import { getDashboardData } from "@/features/dashboard/server/queries";
+import { DeleteAccountButton } from "@/features/auth/components/delete-account-button";
 import { DisplayNameForm } from "@/features/leaderboard/components/display-name-form";
 import { getUserDisplayName } from "@/features/leaderboard/server/queries";
 import { formatDate } from "@/lib/utils";
@@ -58,6 +59,12 @@ export default async function ProfilePage() {
             </p>
           </div>
           <DisplayNameForm currentName={displayName} />
+          <div className="mt-6 border-t border-border pt-6">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+              Zone de danger
+            </p>
+            <DeleteAccountButton />
+          </div>
         </Panel>
 
         <Panel>
