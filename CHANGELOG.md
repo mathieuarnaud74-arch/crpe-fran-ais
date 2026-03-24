@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-03-24] — Sécurisation pré-déploiement (BeforeDeployment.md P1/P2)
+
+- `features/auth/server/actions.ts` — ajout de server actions `signInAction` / `signUpAction` avec rate-limit (10 tentatives / 15 min par IP) ; `deleteAccountAction` annule désormais l'abonnement Stripe actif avant suppression du compte
+- `features/auth/components/auth-form.tsx` — migration des appels Supabase côté client vers les server actions rate-limitées
+- `features/billing/server/queries.ts` — `isPremiumUser()` gère désormais le statut `past_due` (grace period de 3 jours) au lieu de l'ignorer
+- `app/error.tsx` — nouvel error boundary racine (attrape les erreurs dans le layout global et les pages marketing)
+
 ## [2026-03-24] — Nouveau contenu mathématiques CRPE (fiches + exercices)
 
 - `content/fiches-maths/donnees-arbre-probabilites-operatoire.ts` — nouvelle fiche opératoire : construire et lire un arbre de probabilités (avec/sans remise, épreuves indépendantes ou conditionnelles)

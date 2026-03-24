@@ -6,26 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createSupabaseBrowserClient } from "@/lib/supabase/client";
-
-function translateAuthError(message: string): string {
-  if (message.toLowerCase().includes("invalid login credentials")) {
-    return "Adresse email ou mot de passe incorrect.";
-  }
-  if (message.toLowerCase().includes("email not confirmed")) {
-    return "Votre adresse email n'est pas encore confirmée. Vérifiez vos emails.";
-  }
-  if (message.toLowerCase().includes("user already registered")) {
-    return "Un compte existe déjà avec cette adresse email.";
-  }
-  if (message.toLowerCase().includes("password should be at least")) {
-    return "Le mot de passe doit contenir au moins 8 caractères.";
-  }
-  if (message.toLowerCase().includes("rate limit")) {
-    return "Trop de tentatives. Veuillez réessayer dans quelques minutes.";
-  }
-  return "Une erreur est survenue. Veuillez réessayer.";
-}
+import { signInAction, signUpAction } from "@/features/auth/server/actions";
 
 type AuthFormProps = {
   mode: "signin" | "signup";
@@ -33,7 +14,6 @@ type AuthFormProps = {
 
 export function AuthForm({ mode }: AuthFormProps) {
   const router = useRouter();
-  const supabase = createSupabaseBrowserClient();
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,19 +33,10 @@ export function AuthForm({ mode }: AuthFormProps) {
         return;
       }
 
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            display_name: trimmed,
-          },
-          emailRedirectTo: undefined,
-        },
-      });
+      const result = await signUpAction(email, password, trimmed);
 
-      if (error) {
-        setMessage(translateAuthError(error.message));
+      if (result.status === "error") {
+        setMessage(result.message ?? "Une erreur est survenue.");
         setIsLoading(false);
         return;
       }
@@ -91,13 +62,10 @@ export function AuthForm({ mode }: AuthFormProps) {
       return;
     }
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const result = await signInAction(email, password);
 
-    if (error) {
-      setMessage(translateAuthError(error.message));
+    if (result.status === "error") {
+      setMessage(result.message ?? "Une erreur est survenue.");
       setIsLoading(false);
       return;
     }
@@ -113,7 +81,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         if (resp.ok) localStorage.removeItem("guest_diagnostic_result");
       }
     } catch {
-      // Non critique — le diagnostic invité n'a pas pu être récupéré
+      // Non critique
     }
 
     router.push("/tableau-de-bord");

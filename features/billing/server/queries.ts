@@ -18,9 +18,21 @@ export const getUserSubscription = cache(async function getUserSubscription(user
 export async function isPremiumUser(userId: string) {
   const subscription = await getUserSubscription(userId);
   if (!subscription) return false;
-  const isActiveStatus =
-    subscription.status === "active" || subscription.status === "trialing";
+
   const periodEnd = new Date(subscription.current_period_end);
   if (isNaN(periodEnd.getTime())) return false;
-  return isActiveStatus && periodEnd > new Date();
+  if (periodEnd <= new Date()) return false;
+
+  const { status } = subscription;
+
+  // Active or trialing — full access
+  if (status === "active" || status === "trialing") return true;
+
+  // Past due — grace period of 3 days after the period end was supposed to renew
+  if (status === "past_due") {
+    const gracePeriodMs = 3 * 24 * 60 * 60 * 1000;
+    return new Date() < new Date(periodEnd.getTime() + gracePeriodMs);
+  }
+
+  return false;
 }
