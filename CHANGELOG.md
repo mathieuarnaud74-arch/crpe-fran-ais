@@ -1,5 +1,18 @@
 # Changelog
 
+## [2026-03-24] — Nouveau contenu mathématiques CRPE (fiches + exercices)
+
+- `content/fiches-maths/donnees-arbre-probabilites-operatoire.ts` — nouvelle fiche opératoire : construire et lire un arbre de probabilités (avec/sans remise, épreuves indépendantes ou conditionnelles)
+- `content/fiches-maths/donnees-statistiques-etude-operatoire.ts` — nouvelle fiche opératoire : mener une étude statistique de la collecte à l'interprétation (choix du diagramme, indicateurs, données qualitatives/quantitatives)
+- `content/fiches-maths/didactique-institutionnalisation-sprint.ts` — nouvelle fiche sprint : l'institutionnalisation au sens de Brousseau (moment de naissance officielle du savoir dans la mémoire de classe)
+- `content/fiches-maths/didactique-situations-recherche-sprint.ts` — nouvelle fiche sprint : les situations de recherche (dévolution, situation a-didactique, variables didactiques, problèmes ouverts)
+- `content/fiches-maths/didactique-preparer-seance-maths-operatoire.ts` — nouvelle fiche opératoire : préparer une séance de maths de l'objectif à la trace écrite (découverte vs entraînement, 4 phases, gestion des groupes)
+- `content/fiches-maths/didactique-histoire-maths-sprint.ts` — nouvelle fiche sprint : histoire des mathématiques pour le CRPE (Pythagore, Euclide, Al-Khwarizmi, Descartes, irrationnels, numération)
+- `content/fiches-maths/didactique-differenciation-operatoire.ts` — nouvelle fiche opératoire : différencier en mathématiques (objectifs vs moyens, étayage/désétayage, groupes de besoin, enrichissement)
+- `content/fiches-maths/index.ts` — ajout des 7 nouvelles fiches dans `allFichesMaths`
+- `supabase/migrations/20260795_seed_math_histoire_mathematiques.sql` — 7 exercices sur l'histoire des mathématiques (Al-Khwarizmi, Pythagore/Babyloniens, Euclide, irrationnels, base 60, Descartes, usage Éduscol)
+- `supabase/migrations/20260796_seed_math_logique_demonstration.sql` — 7 exercices sur la logique et la démonstration (contre-exemple, implication/réciproque, absurde, Euclide/nombres premiers)
+
 ## [2026-03-24] — Corrections terminologiques grammaire (audit P6)
 
 - `content/fiches/grammaire-phrase-interrogative-sprint.ts` — disclaimer : "quatre types de phrase (déclarative, interrogative, impérative, exclamative)" → "trois types de phrase (déclarative, interrogative, injonctive)" ; note ajoutée que la phrase exclamative est une forme de phrase, non un type (Éduscol 2021)

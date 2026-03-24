@@ -45,7 +45,7 @@ import { geometrieReperageReference } from "./geometrie-reperage-reference";
 import { geometrieConstruireSymetriqueOperatoire } from "./geometrie-construire-symetrique-operatoire";
 import { geometriePythagoreOperatoire } from "./geometrie-pythagore-operatoire";
 import { geometriePatronSolideOperatoire } from "./geometrie-patron-solide-operatoire";
-import { geometriThalesSprint } from "./geometrie-thales-sprint";
+import { geometrieThalesSprint } from "./geometrie-thales-sprint";
 import { geometrieThalesOperatoire } from "./geometrie-thales-operatoire";
 import { geometrieProgrammesConstructionSprint } from "./geometrie-programmes-construction-sprint";
 import { geometrieTrigonometrieSprint } from "./geometrie-trigonometrie-sprint";
@@ -111,7 +111,14 @@ import { didactiqueSoustractionSprint } from "./didactique-soustraction-sprint";
 import { didactiqueMultiplicationSprint } from "./didactique-multiplication-sprint";
 import { didactiqueDivisionSprint } from "./didactique-division-sprint";
 import { grandeursResolutionProblemesReference } from "./grandeurs-resolution-problemes-reference";
-import { geometrieClasserQurilateresOperatoire } from "./geometrie-classer-quadrilateres-operatoire";
+import { geometrieClasserQuadrilateresOperatoire } from "./geometrie-classer-quadrilateres-operatoire";
+import { donneesArbreProbabilitesOperatoire } from "./donnees-arbre-probabilites-operatoire";
+import { donneesStatistiquesEtudeOperatoire } from "./donnees-statistiques-etude-operatoire";
+import { didactiqueInstitutionnalisationSprint } from "./didactique-institutionnalisation-sprint";
+import { didactiqueSituationsRechercheSprint } from "./didactique-situations-recherche-sprint";
+import { didactiquePreparerSeanceMathsOperatoire } from "./didactique-preparer-seance-maths-operatoire";
+import { didactiqueHistoireMathsSprint } from "./didactique-histoire-maths-sprint";
+import { didactiqueDifferenciationOperatoire } from "./didactique-differenciation-operatoire";
 
 export const allFichesMaths: Fiche[] = [
   // Nombres et calcul
@@ -158,7 +165,7 @@ export const allFichesMaths: Fiche[] = [
   geometrieConstruireSymetriqueOperatoire,
   geometriePythagoreOperatoire,
   geometriePatronSolideOperatoire,
-  geometriThalesSprint,
+  geometrieThalesSprint,
   geometrieThalesOperatoire,
   geometrieProgrammesConstructionSprint,
   geometrieTrigonometrieSprint,
@@ -222,5 +229,14 @@ export const allFichesMaths: Fiche[] = [
   didactiqueDivisionSprint,
   // Nouvelles fiches reference & opératoire
   grandeursResolutionProblemesReference,
-  geometrieClasserQurilateresOperatoire,
+  geometrieClasserQuadrilateresOperatoire,
+  // Organisation de données — nouvelles fiches opératoire
+  donneesArbreProbabilitesOperatoire,
+  donneesStatistiquesEtudeOperatoire,
+  // Didactique des maths — nouvelles fiches sprint & opératoire
+  didactiqueInstitutionnalisationSprint,
+  didactiqueSituationsRechercheSprint,
+  didactiquePreparerSeanceMathsOperatoire,
+  didactiqueHistoireMathsSprint,
+  didactiqueDifferenciationOperatoire,
 ];
