@@ -84,9 +84,9 @@ export const analyseLangueIdentifierSubordonneesOperatoire: Fiche = {
       {
         sentence:
           "Une subordonnée circonstancielle est toujours suppressible et déplaçable, car c'est un complément de phrase.",
-        isCorrect: false,
+        isCorrect: true,
         explanation:
-          "FAUX (nuance importante). La suppressibilité et la déplaçabilité sont le critère général du complément de phrase, mais elles ne s'appliquent pas systématiquement à toutes les circonstancielles. Les subordonnées de conséquence (« si bien que », « au point que ») et certaines subordonnées de cause peuvent avoir une mobilité réduite. Il faut dire : une circonstancielle est GÉNÉRALEMENT suppressible et déplaçable, mais pas TOUJOURS.",
+          "VRAI. C'est LE critère pratique du complément de phrase au CRPE : une subordonnée circonstancielle peut être supprimée (la phrase reste grammaticale) et déplacée (en tête ou en fin de phrase). Test : « Quand il pleut, les élèves restent en classe. » → suppression (« Les élèves restent en classe. » ✓) et déplacement (« Les élèves restent en classe quand il pleut. » ✓).",
       },
       {
         sentence:
