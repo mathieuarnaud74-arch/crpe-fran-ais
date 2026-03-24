@@ -1,5 +1,28 @@
 # Changelog
 
+## [2026-03-24] — Complétion massive des séries incomplètes (155 séries → 462 questions ajoutées)
+
+Audit et complétion de toutes les séries d'exercices ayant moins de 10 questions. 11 fichiers de migration créés :
+
+- `supabase/migrations/20260801_seed_complete_geometrie_batch1.sql` — +30 questions (10 séries géométrie)
+- `supabase/migrations/20260802_seed_complete_nombres_calcul_batch1.sql` — +30 questions (10 séries nombres/calcul)
+- `supabase/migrations/20260803_seed_complete_didactique_batch1.sql` — +30 questions (10 séries didactique)
+- `supabase/migrations/20260804_seed_complete_grandeurs_mesures_batch1.sql` — +30 questions (10 séries grandeurs/mesures)
+- `supabase/migrations/20260805_seed_complete_organisation_donnees_batch1.sql` — +30 questions (10 séries org. données)
+- `supabase/migrations/20260806_seed_complete_geometrie_batch2.sql` — +63 questions (21 séries géométrie)
+- `supabase/migrations/20260807_seed_complete_nombres_calcul_batch2.sql` — +92 questions (28 séries 7→10 + 4 sujets blancs 8→10)
+- `supabase/migrations/20260808_seed_complete_didactique_batch2.sql` — +54 questions (18 séries didactique)
+- `supabase/migrations/20260809_seed_complete_grandeurs_mesures_batch2.sql` — +51 questions (17 séries grandeurs/mesures)
+- `supabase/migrations/20260810_seed_complete_organisation_donnees_batch2.sql` — +48 questions (16 séries org. données)
+- `supabase/migrations/20260811_seed_complete_francais_tri_nature.sql` — +4 questions (1 série français tri_categories)
+
+Résultat : **370 séries, toutes à 10+ questions**. Types variés (qcm, vrai_faux, reponse_courte, tri_categories). Accès free, niveaux Intermediaire/Avancé.
+
+## [2026-03-24] — Deux nouvelles séries probabilités (vrai/faux + QCM)
+
+- `supabase/migrations/20260799_seed_math_probabilites_vrai_ou_faux.sql` — 7 exercices vrai/faux sur les pièges classiques des probabilités (sophisme du joueur, incompatibilité, additivité, arbre)
+- `supabase/migrations/20260800_seed_math_probabilites_situations_concretes.sql` — 7 exercices QCM ancrés dans des situations du quotidien (tombola, bonbons, météo, code secret, match de foot)
+
 ## [2026-03-24] — Sécurisation pré-déploiement (BeforeDeployment.md P1/P2)
 
 - `features/auth/server/actions.ts` — ajout de server actions `signInAction` / `signUpAction` avec rate-limit (10 tentatives / 15 min par IP) ; `deleteAccountAction` annule désormais l'abonnement Stripe actif avant suppression du compte
