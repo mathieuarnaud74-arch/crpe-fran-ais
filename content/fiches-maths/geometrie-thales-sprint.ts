@@ -1,6 +1,6 @@
 import type { Fiche } from "@/features/fiches/types";
 
-export const geometriThalesSprint: Fiche = {
+export const geometrieThalesSprint: Fiche = {
   id: "geometrie-thales-sprint",
   slug: "thales-configurations-applications",
   title: "Théorème de Thalès : configurations et applications",

@@ -1,6 +1,6 @@
 import type { Fiche } from "@/features/fiches/types";
 
-export const geometrieClasserQurilateresOperatoire: Fiche = {
+export const geometrieClasserQuadrilateresOperatoire: Fiche = {
   id: "geometrie-classer-quadrilateres-operatoire",
   slug: "classer-quadrilateres-arbre-decision",
   title: "Reconnaître et classer les quadrilatères",
