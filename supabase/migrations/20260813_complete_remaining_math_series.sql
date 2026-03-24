@@ -10,7 +10,7 @@ insert into public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) values (
-  'm0060000-0000-0000-0000-000000000008',
+  'd0060000-0000-0000-0000-000000000008',
   'Mathematiques',
   'nombres_calcul',
   'math_proportionnalite_etapes',
@@ -34,7 +34,7 @@ insert into public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) values (
-  'm0060000-0000-0000-0000-000000000009',
+  'd0060000-0000-0000-0000-000000000009',
   'Mathematiques',
   'nombres_calcul',
   'math_proportionnalite_etapes',
@@ -58,7 +58,7 @@ insert into public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) values (
-  'm0060000-0000-0000-0000-000000000010',
+  'd0060000-0000-0000-0000-000000000010',
   'Mathematiques',
   'nombres_calcul',
   'math_proportionnalite_etapes',
@@ -86,7 +86,7 @@ insert into public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) values (
-  'm0070000-0000-0000-0000-000000000008',
+  'd0070000-0000-0000-0000-000000000008',
   'Mathematiques',
   'didactique_maths',
   'math_analyse_productions_numeration',
@@ -110,7 +110,7 @@ insert into public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) values (
-  'm0070000-0000-0000-0000-000000000009',
+  'd0070000-0000-0000-0000-000000000009',
   'Mathematiques',
   'didactique_maths',
   'math_analyse_productions_numeration',
@@ -134,7 +134,7 @@ insert into public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) values (
-  'm0070000-0000-0000-0000-000000000010',
+  'd0070000-0000-0000-0000-000000000010',
   'Mathematiques',
   'didactique_maths',
   'math_analyse_productions_numeration',
@@ -162,7 +162,7 @@ insert into public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) values (
-  'm0080000-0000-0000-0000-000000000008',
+  'd0080000-0000-0000-0000-000000000008',
   'Mathematiques',
   'organisation_donnees',
   'math_statistiques_graphiques',
@@ -186,7 +186,7 @@ insert into public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) values (
-  'm0080000-0000-0000-0000-000000000009',
+  'd0080000-0000-0000-0000-000000000009',
   'Mathematiques',
   'organisation_donnees',
   'math_statistiques_graphiques',
@@ -210,7 +210,7 @@ insert into public.exercises (
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) values (
-  'm0080000-0000-0000-0000-000000000010',
+  'd0080000-0000-0000-0000-000000000010',
   'Mathematiques',
   'organisation_donnees',
   'math_statistiques_graphiques',
