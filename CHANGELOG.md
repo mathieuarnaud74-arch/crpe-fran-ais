@@ -1,5 +1,38 @@
 # Changelog
 
+## [2026-03-24] — Corrections terminologiques grammaire (audit P6)
+
+- `content/fiches/grammaire-phrase-interrogative-sprint.ts` — disclaimer : "quatre types de phrase (déclarative, interrogative, impérative, exclamative)" → "trois types de phrase (déclarative, interrogative, injonctive)" ; note ajoutée que la phrase exclamative est une forme de phrase, non un type (Éduscol 2021)
+- `content/fiches/grammaire-phrase-complexe-reference.ts` — tableau des conjonctions de coordination : ajout d'une colonne "Statut MEN 2020" ; "donc" reclassifié comme adverbe de liaison ; "or" signalé comme relevant de certaines grammaires seulement ; note MEN 2020 ajoutée dans la rule et les keyPoints
+- `content/fiches/grammaire-nature-fonction-operatoire.ts` — règle de la conjonction dans l'arbre de décision : liste "mais, ou, et, donc, or, ni, car" → "mais, ou, et, ni, car (+ or selon certaines grammaires)" avec note sur le reclassement de "donc" comme adverbe de liaison (MEN 2020)
+- `content/fiches/grammaire-complements-circonstanciels-reference.ts` — toutes les occurrences de "verbe d'état" remplacées par "verbe attributif" (terminologie imposée par Éduscol 2021)
+- `content/fiches/analyse-langue-identifier-subordonnees-operatoire.ts` — règle circonstancielle : "suppressible et déplaçable" → "généralement suppressible et déplaçable" avec précision sur les subordonnées de conséquence et de cause à mobilité réduite ; quiz item correspondant : isCorrect true → false avec explication nuancée
+
+## [2026-03-24] — Corrections contenu divers (audit P4/P6)
+
+- `content/fiches-maths/donnees-statistiques-reference.ts` — "disqualitatives" → "qualitatives" (terme correct pour les données catégorielles non numériques)
+- `content/fiches-maths/didactique-soustraction-sprint.ts` — "les remédiation" → "les remédiations" (pluriel manquant)
+- `content/fiches/analyse-langue-derivation-sprint.ts` — vérifié : "modable" absent du fichier, les exemples -able à partir de noms (corvéable, charitable) sont déjà corrects, aucune modification nécessaire
+- `content/fiches/orthographe-rectifications-1990-sprint.ts` — "deux-cents" retiré de l'exemple sur le trait d'union des numéraux (la règle de l'accord de "cent" est distincte et antérieure à 1990) ; remplacé par "deux-cent-cinquante" avec note explicative
+
+## [2026-03-24] — Corrections accents et coquilles (audit P1/P6)
+
+- `content/fiches/grammaire-voix-passive-sprint.ts` — vérifié : "fatiguit" absent du fichier, forme "fatigue" déjà correcte, aucune modification nécessaire
+- `content/fiches/analyse-langue-subordonnees-conjonctives-completives-circonstancielles-sprint.ts` — accents manquants corrigés sur l'ensemble des strings (title, tags, disclaimer, oneLiner, exampleCorrect, exampleWrong, mainTrap, quiz) : "Subordonnées", "complétives", "circonstancielles", "conjonction", "différente", "dépendance", "réussira", "désigne", "déjà", "sémantique", "énoncé", "rôle", "révise", etc.
+- `content/fiches/analyse-langue-voix-active-passive-sprint.ts` — vérifié : accents correctement présents dans toutes les strings, aucune modification nécessaire
+
+## [2026-03-24] — Audit Passe 9 : géométrie et grandeurs (fiches TS + migrations SQL)
+
+- `erreursexercices.md` — Ajout de la Passe 9 (renommée depuis une collision avec Passe 7) : audit de 33 fiches TypeScript géométrie/grandeurs et 9 migrations SQL. 2 erreurs critiques (P9-1 : triangle équilatéral décrit avec un « centre de symétrie » au lieu d'un centre de rotation d'ordre 3 ; P9-2 : tip affirmant que le parallélogramme est un trapèze, contredisant la convention Éduscol), 4 erreurs importantes, 4 mineures. Cumul passes 1-9 : 19 critiques, 52 importantes, 31 mineures.
+
+## [2026-03-24] — Audit Passe 8 : 47 fiches maths TypeScript + 20 migrations SQL
+
+- `erreursexercices.md` — Ajout de la Passe 8 : audit de 47 fiches TypeScript (fiches-maths) et 20 migrations SQL maths. 1 erreur importante identifiée (coquille "disqualitatives" dans `donnees-statistiques-reference.ts`), 67 fichiers OK sur 67.
+
+## [2026-03-24] — Audit Passe 8 (suite) : 16 fiches français + 6 migrations SQL
+
+- `erreursexercices.md` — Passe 8 (suite) : audit de 16 fiches TypeScript français (orthographe, lexique, compréhension, didactique) et 6 migrations SQL (sujets blancs, surlignage, conjugaison tri-formes). 2 erreurs critiques (exemple "deux-cents" erroné dans `orthographe-rectifications-1990-sprint.ts` ; référence "programmes 2020" inexistants dans `20260361_seed_didactique_part2.sql`), 2 erreurs importantes, 6 mineures. 17 fichiers sur 22 entièrement corrects.
+
 ## [2026-03-23] — Nouveau contenu : 4 fiches (reference/opératoire) + 40 exercices interactifs
 
 ### Fiches de révision (4 nouvelles)

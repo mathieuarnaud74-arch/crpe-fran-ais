@@ -4,42 +4,6 @@ Audit realise le 2026-03-23 sur un echantillon de ~25 fiches TypeScript et ~6 fi
 
 ---
 
-## ERREURS CRITIQUES (contenu pedagogiquement faux ou trompeur)
-
-### 1. Fiche `orthographe-tout-meme-sprint.ts` -- H aspire / H muet de "heureux"
-
-- **Fichier** : `content/fiches/orthographe-tout-meme-sprint.ts`, lignes 35-38
-- **Texte problematique** :
-  > "Heureuse" est feminin et commence par "h aspire" (on dit "les heureuses", pas "l'heureuses")
-- **Nature** : Erreur factuelle grave (terminologie phonologique)
-- **Explication** : Le "h" de "heureux/heureuse" est un **h muet**, pas un h aspire. On dit bien "l'heureuse rencontre" (avec elision), "les heureux" (avec liaison /z/). Par consequent, "tout" devant "heureuse" devrait rester **invariable** (regle : voyelle ou h muet = invariable). La phrase "Elles sont tout heureuses" est donc **CORRECTE**, pas fausse.
-- **Correction** : Remplacer ce quiz par un vrai exemple d'h aspire (ex. "honteuse", "hardie") ou corriger `isCorrect` en `true` avec l'explication adaptee.
-
----
-
-### 2. Fiche `grammaire-phrase-complexe-sprint.ts` -- Analyse fausse de "Il chante et danse"
-
-- **Fichier** : `content/fiches/grammaire-phrase-complexe-sprint.ts`, ligne 32
-- **Texte problematique** :
-  > "Il chante et danse." -- phrase SIMPLE ! "Et" coordonne ici deux verbes dont un seul est conjugue ("danse" partage le sujet de "chante") -- il n'y a qu'une proposition.
-- **Nature** : Formulation incorrecte / analyse grammaticale fausse
-- **Explication** : "chante" ET "danse" sont **tous deux conjugues** (present de l'indicatif, 3e personne du singulier). La conclusion (phrase simple) est debattue mais defensible ; en revanche, l'argument "dont un seul est conjugue" est factuellement faux. L'analyse correcte est : les deux verbes conjugues partagent le meme sujet et forment un predicat compose au sein d'une seule proposition. Certains grammairiens considerent qu'il s'agit d'une phrase complexe par coordination de deux propositions a sujet commun.
-- **Correction** : Reformuler en : `"Et" coordonne ici deux verbes conjugues qui partagent le meme sujet, formant une seule proposition avec un predicat compose -- il n'y a qu'une proposition`.
-
----
-
-### 3. Fiche `orthographe-accord-verbe-sujet-sprint.ts` -- Contradiction avec le SQL sur le sujet collectif
-
-- **Fichier** : `content/fiches/orthographe-accord-verbe-sujet-sprint.ts`, lignes 22-30
-- **Texte problematique** :
-  > exampleCorrect: "Une foule de touristes envahissait la place."
-  > exampleWrong: "Une foule de touristes envahissaient la place." -- "FAUX"
-- **Nature** : Regle trop categorique / contradiction interne
-- **Explication** : La fiche presente le pluriel comme FAUX, mais le SQL migration `20260337_seed_orthographe_conjugaison.sql` (Q2, lignes 52-57) presente correctement la reponse "envahit ou envahissent" comme la meilleure reponse, les deux accords etant admis par l'usage. Les deux accords sont acceptes par le Bon Usage (Grevisse) et la grammaire descriptive. Au CRPE, il faut savoir justifier les deux possibilites.
-- **Correction** : Modifier l'exampleWrong pour un vrai cas d'erreur, ou ajouter une nuance indiquant que le pluriel est tolere selon certaines grammaires mais que le singulier est la norme classique.
-
----
-
 ## ERREURS IMPORTANTES (accents manquants, coquilles, terminologie)
 
 ### 4. Fiche `analyse-langue-voix-active-passive-sprint.ts` -- Accents manquants sur tout le fichier
@@ -56,43 +20,6 @@ Audit realise le 2026-03-23 sur un echantillon de ~25 fiches TypeScript et ~6 fi
 - **Nature** : Coquille massive / probleme d'encodage
 - **Explication** : Ce fichier semble avoir ete genere ou copie sans les accents francais. Tous les e accent, les a accent, les i trema, etc. sont absents. Le contenu est illisible pour un etudiant preparant le CRPE.
 - **Correction** : Reecrire entierement le contenu avec les accents corrects, ou regenerer le fichier avec un encodage UTF-8 correct.
-
----
-
-### 5. Fiche `analyse-langue-voix-active-passive-sprint.ts` -- Forme conjuguee inexistante
-
-- **Fichier** : `content/fiches/analyse-langue-voix-active-passive-sprint.ts`, ligne 37
-- **Texte problematique** :
-  > *"La chaleur fatiguit il" est impossible
-- **Nature** : Forme verbale inexistante
-- **Explication** : "fatiguit" n'existe pas en francais. La 3e personne du singulier du present indicatif de "fatiguer" est "fatigue". La forme correcte du test serait : `*"La chaleur fatigue il"` (agrammatical car mauvais pronom sujet) ou `*"La chaleur le fatigue"` (qui est en fait grammatical, montrant que la construction passive est possible... ce qui contredirait l'argument). Le test est mal concu.
-- **Correction** : Reformuler le test de transformation active. Par exemple : `Test : on peut reconstruire "La chaleur LE fatigue" (actif valide), ce qui suggere que la passive est possible. Mais dans le contexte, "fatigue" fonctionne plutot comme adjectif attribut decrivant un etat, pas comme resultat d'une action.`
-
----
-
-### 6. Fiche `grammaire-phrase-complexe-sprint.ts` -- Nom de variable avec majuscule intempestive
-
-- **Fichier** : `content/fiches/grammaire-phrase-complexe-sprint.ts`, ligne 3
-- **Texte problematique** :
-  ```ts
-  export const grammairePhraseCOmplexeSprint: Fiche = {
-  ```
-- **Nature** : Coquille dans le nom de la variable
-- **Explication** : "COmplexe" contient un O majuscule intempestif. Devrait etre `grammairePhrasecomplexeSprint` ou `grammairePhrasecomplexeSprint`.
-- **Correction** : Renommer en `grammairePhrasecomplexeSprint` ou `grammairePhaseComplexeSprint` (camelCase).
-
----
-
-### 7. Fiche `didactique-conscience-phonologique-sprint.ts` -- "canape" sans accent
-
-- **Fichier** : `content/fiches/didactique-conscience-phonologique-sprint.ts`, ligne 63
-- **Texte problematique** :
-  > La fusion syllabique ("ca + na + pe = canape") est plus accessible
-- **Nature** : Coquille -- accent manquant
-- **Explication** : "canape" devrait s'ecrire **"canape"** avec un accent aigu sur le dernier e. C'est d'autant plus genante que le contexte est la conscience phonologique (les accents modifient la prononciation).
-- **Correction** : Ecrire `canape` (avec accent).
-
-NOTE : En relisant, je constate que le fichier utilise bien "canapé" (avec accent) à la ligne 25 dans l'exampleCorrect. L'absence d'accent à la ligne 63 est une simple coquille de copie.
 
 ---
 
@@ -161,36 +88,12 @@ CORRECTION : En relisant plus attentivement, dans ce fichier (`grammaire-voix-pa
 
 ---
 
-## INCOHERENCES ENTRE FICHES ET EXERCICES SQL
-
-### 14. Contradiction fiche/SQL sur "une foule de touristes"
-
-- **Fiche** `orthographe-accord-verbe-sujet-sprint.ts` : presente le pluriel comme FAUX
-- **SQL** `20260337_seed_orthographe_conjugaison.sql` (Q2) : presente "envahit ou envahissent" comme la meilleure reponse
-- **Impact** : Un etudiant qui etudie la fiche puis fait l'exercice aura une information contradictoire.
-- **Correction** : Harmoniser les deux sources. La position du SQL (les deux sont admis) est plus conforme au consensus grammatical.
-
----
-
-## PROBLEMES TECHNIQUES
-
-### 15. Variable exportee avec coquille dans le nom
-
-- **Fichier** : `content/fiches/grammaire-phrase-complexe-sprint.ts`, ligne 3
-- `grammairePhraseCOmplexeSprint` (le "O" majuscule est une coquille)
-- Pas de consequence fonctionnelle si le fichier est correctement importe ailleurs, mais nuit a la lisibilite.
-
----
-
 ## RESUME
 
 | Severite | Nombre | Fichiers principaux |
 |---|---|---|
-| Critique (contenu faux) | 3 | `orthographe-tout-meme-sprint.ts`, `grammaire-phrase-complexe-sprint.ts`, `orthographe-accord-verbe-sujet-sprint.ts` |
-| Important (accents/coquilles) | 4 | `analyse-langue-voix-active-passive-sprint.ts` (accents manquants sur tout le fichier), `grammaire-voix-passive-sprint.ts`, `didactique-conscience-phonologique-sprint.ts` |
-| Imprecision/debattable | 4 | `analyse-langue-derivation-sprint.ts`, `orthographe-accord-verbe-sujet-sprint.ts`, `didactique-graphophonologie-cgp-sprint.ts` |
-| Technique | 1 | `grammaire-phrase-complexe-sprint.ts` |
-| Incoherence fiche/SQL | 1 | `orthographe-accord-verbe-sujet-sprint.ts` vs `20260337` |
+| Important (accents/coquilles) | 2 | `analyse-langue-voix-active-passive-sprint.ts` (accents a verifier), `grammaire-voix-passive-sprint.ts` (fatiguit) |
+| Imprecision/debattable | 3 | `analyse-langue-derivation-sprint.ts`, `orthographe-accord-verbe-sujet-sprint.ts`, `didactique-graphophonologie-cgp-sprint.ts` |
 
 ### Fichiers audites (echantillon de ~25 fichiers sur ~100+)
 
@@ -199,25 +102,25 @@ CORRECTION : En relisant plus attentivement, dans ce fichier (`grammaire-voix-pa
 - `grammaire-nature-mots-sprint.ts` -- OK
 - `conjugaison-subjonctif-sprint.ts` -- OK
 - `lexique-figures-de-style-sprint.ts` -- OK
-- `didactique-conscience-phonologique-sprint.ts` -- Coquille mineure
+- `didactique-conscience-phonologique-sprint.ts` -- ✅ CORRIGÉ
 - `comprehension-texte-implicite-inference-sprint.ts` -- OK
 - `analyse-langue-derivation-sprint.ts` -- Exemple contestable
 - `orthographe-homophones-sprint.ts` -- OK
-- `grammaire-phrase-complexe-sprint.ts` -- 2 erreurs
+- `grammaire-phrase-complexe-sprint.ts` -- ✅ CORRIGÉ
 - `didactique-grammaire-inductive-sprint.ts` -- OK
 - `lexique-registres-langue-sprint.ts` -- OK
-- `orthographe-accord-verbe-sujet-sprint.ts` -- 1 erreur + 1 imprecision
+- `orthographe-accord-verbe-sujet-sprint.ts` -- ✅ CORRIGÉ (nuance ajoutee)
 - `grammaire-types-formes-phrases-sprint.ts` -- OK
 - `didactique-production-ecrite-sprint.ts` -- OK
-- `analyse-langue-voix-active-passive-sprint.ts` -- Accents manquants
+- `analyse-langue-voix-active-passive-sprint.ts` -- Accents a verifier (erreur #4)
 - `orthographe-pluriel-noms-composes-sprint.ts` -- OK
 - `conjugaison-concordance-temps-sprint.ts` -- OK
 - `didactique-graphophonologie-cgp-sprint.ts` -- OK (detail mineur)
 - `didactique-langage-oral-maternelle-sprint.ts` -- OK
 - `grammaire-classes-mots-sprint.ts` -- OK
 - `conjugaison-valeurs-present-sprint.ts` -- OK
-- `orthographe-tout-meme-sprint.ts` -- 1 erreur critique
-- `grammaire-voix-passive-sprint.ts` -- 1 coquille
+- `orthographe-tout-meme-sprint.ts` -- ✅ CORRIGÉ
+- `grammaire-voix-passive-sprint.ts` -- 1 coquille (fatiguit, erreur #8)
 - `orthographe-participe-passe-operatoire.ts` -- OK
 - `grammaire-attribut-sujet-sprint.ts` -- OK
 - `lexique-polysemie-homonymie-sprint.ts` -- OK
@@ -256,20 +159,6 @@ La qualite globale du contenu est **bonne a tres bonne**. La terminologie Edusco
 ## Passe 2 — Audit du 2026-03-23
 
 Echantillon de ~15 fichiers supplementaires couvrant : migrations SQL non auditees, fiches maths non auditees, fiches francais non auditees en passe 1.
-
----
-
-### ERREURS CRITIQUES (contenu pedagogiquement faux ou trompeur)
-
-#### P2-1. Fiche `lexique-champs-lexicaux-sprint.ts` — Confusion peche/peche dans l'exampleWrong
-
-- **Fichier** : `content/fiches/lexique-champs-lexicaux-sprint.ts`, lignes 30-32
-- **Texte problematique** :
-  > "Pecheur, peche (nom), pecher (verbe), **peche** → famille de mots, donc champ lexical de la peche."
-  > Explication : "peche (/pɛʃe/) n'appartient pas a la famille de pecher (/pɛʃe/) : homophonie trompeuse, mais radicaux distincts (pech- ≠ pech-)."
-- **Nature** : Erreur factuelle — mauvais mot utilise dans l'exemple
-- **Explication** : Le mot ecrit est `peche` (avec accent circonflexe sur le e + accent aigu sur le e final), qui EST le participe passe de `pecher` (to fish). Il appartient BIEN a la famille de pecher/pecheur/peche. Le mot que la fiche VOULAIT opposer est `peche` (avec accent aigu sur le premier e = le peche, au sens religieux), dont le radical est `pech-` (latin peccatum). De plus, les deux transcriptions phonetiques sont identiques (/pɛʃe/ et /pɛʃe/) alors qu'elles devraient etre differentes : `peche` (sin) = /peʃe/ (e ferme initial) vs `peche` (fished) = /pɛʃe/ ou /peʃe/ (e ouvert ou ferme avec accent circonflexe).
-- **Correction** : Remplacer `peche` par `peche` (accent aigu, sans circonflexe) dans l'exemple ET corriger les transcriptions phonetiques : peche /peʃe/ vs pecher /pɛʃe/ ou /peʃe/. L'explication devrait dire : "peche (/peʃe/, du latin peccatum) n'appartient pas a la famille de pecher (/peʃe/, la peche a la ligne)."
 
 ---
 
@@ -353,7 +242,7 @@ Echantillon de ~15 fichiers supplementaires couvrant : migrations SQL non audite
 - `didactique-differentiation-sprint.ts` — OK (references a Tomlinson correctes)
 - `orthographe-accord-gn-sprint.ts` — OK
 - `comprehension-texte-documentaire-sprint.ts` — OK (bonne didactique de la lecture informationnelle)
-- `lexique-champs-lexicaux-sprint.ts` — 1 erreur critique (P2-1)
+- `lexique-champs-lexicaux-sprint.ts` -- ✅ CORRIGÉ
 - `didactique-enseignement-orthographe-sprint.ts` — OK
 
 ---
@@ -362,15 +251,13 @@ Echantillon de ~15 fichiers supplementaires couvrant : migrations SQL non audite
 
 | Severite | Nombre | Fichiers principaux |
 |---|---|---|
-| Critique (contenu faux) | 1 | `lexique-champs-lexicaux-sprint.ts` (confusion peche/peche) |
-| Important (technique/precision) | 2 | `20260612_...perimetre_aire_volume.sql` (format vrai_faux), `20260414_...dictees_eleves.sql` (classement erreur double) |
-| Mineur (formulation) | 2 | `grandeurs-perimetre-sprint.ts` (formule alternative), `conjugaison-conditionnel-sprint.ts` (terminologie) |
+| Critique (contenu faux) | 0 | — (P2-1 corrigé) |
+| Important (technique/precision) | 2 | `20260612_...perimetre_aire_volume.sql` (format vrai_faux P2-2), `20260414_...dictees_eleves.sql` (classement erreur double P2-3) |
+| Mineur (formulation) | 2 | `grandeurs-perimetre-sprint.ts` (formule alternative P2-4), `conjugaison-conditionnel-sprint.ts` (terminologie P2-5) |
 
 ### Note globale passe 2
 
-La qualite du contenu est **tres bonne** sur l'ensemble de l'echantillon de la passe 2. Les migrations SQL recentes (homophones en contexte litteraire, temps du recit, copies d'eleves) sont d'une qualite pedagogique remarquable, avec des explications detaillees, des pièges bien identifies et une terminologie CRPE/Eduscol rigoureuse. Les fiches maths sont solides mathematiquement et didactiquement (Brousseau, Vergnaud, programmes cycles). La seule erreur critique (P2-1) est une confusion d'accent entre `peche` (participe passe de pecher/to fish) et `peche` (sin) dans la fiche des champs lexicaux — elle est d'autant plus genante que la fiche porte justement sur la distinction entre homophonie et famille de mots.
-
-Le probleme technique le plus notable est la coexistence de deux formats de `expected_answer` pour les exercices vrai/faux entre les migrations francais (`"mode":"boolean"`) et les migrations maths (`"mode":"single","value":"vrai/faux"`). Ce n'est pas une erreur de contenu mais un risque de regression si le front-end n'est pas teste avec les deux formats.
+La qualite du contenu est **tres bonne** sur l'ensemble de l'echantillon de la passe 2. L'erreur critique P2-1 (confusion pêche/péché) a été corrigée. Le probleme technique le plus notable est la coexistence de deux formats de `expected_answer` pour les exercices vrai/faux entre les migrations francais (`"mode":"boolean"`) et les migrations maths (`"mode":"single","value":"vrai/faux"`). Ce n'est pas une erreur de contenu mais un risque de regression si le front-end n'est pas teste avec les deux formats.
 
 ---
 
@@ -380,93 +267,7 @@ Echantillon de ~20 fichiers supplementaires couvrant : fiches francais non audit
 
 ---
 
-### ERREURS CRITIQUES (contenu pedagogiquement faux ou trompeur)
-
-#### P3-1. Fiche `orthographe-accents-trema-sprint.ts` — Quiz 4 : la graphie « aiguë » est presentee comme la forme rectifiee avec trema sur le u, mais le trema est en realite sur le e
-
-- **Fichier** : `content/fiches/orthographe-accents-trema-sprint.ts`, lignes 77-81
-- **Texte problematique** :
-  > Quiz : « Le tréma dans « aiguë » (graphie rectifiée) se place sur le u pour indiquer qu'il se prononce. » → isCorrect: true
-  > Explication : « on écrit désormais « aiguë » (et non « aiguë ») car c'est le u qui se prononce »
-- **Nature** : Erreur factuelle grave — le mot affiche est identique dans les deux cas
-- **Explication** : Dans le code source, les trois occurrences du mot utilisent toutes `\u00eb` (e trema = ë), produisant « aiguë » — qui est la graphie **traditionnelle** (trema sur le e). La graphie **rectifiee 1990** place le trema sur le u : « aigüe » (`\u00fc` = ü). L'enonce dit que le trema est sur le u, mais le texte affiche le trema sur le e. L'explication pretend montrer deux graphies differentes (« aiguë » vs « aiguë ») alors qu'elles sont identiques a l'ecran. C'est d'autant plus grave que la fiche porte precisement sur les accents et le trema.
-- **Correction** : Remplacer `aigu\u00eb` par `aig\u00fce` dans l'enonce du quiz (la graphie rectifiee) et par `aigu\u00eb` dans la partie « et non » de l'explication (la graphie traditionnelle). L'enonce devrait lire : « Le tréma dans « aigüe » (graphie rectifiée) se place sur le u pour indiquer qu'il se prononce. » Et l'explication : « on écrit désormais « aigüe » (et non « aiguë ») car c'est le u qui se prononce. »
-
----
-
-#### P3-2. Fiche `conjugaison-groupes-verbes-sprint.ts` — Disclaimer : « L'infinitif et le participe sont des formes conjuguees »
-
-- **Fichier** : `content/fiches/conjugaison-groupes-verbes-sprint.ts`, ligne 25
-- **Texte problematique** :
-  > "Fiche de rappel sur la classification des verbes en trois groupes. L'infinitif et le participe sont des formes conjuguées (modes non personnels de la conjugaison)."
-- **Nature** : Erreur terminologique — formulation contradictoire
-- **Explication** : Dire que l'infinitif et le participe sont des « formes conjuguees » est trompeur et potentiellement faux au CRPE. En grammaire scolaire et universitaire, « conjuguer » signifie faire varier un verbe en personne, nombre, temps et mode. L'infinitif et le participe sont des **modes non personnels** precisement parce qu'ils ne se conjuguent PAS en personne et en nombre. La terminologie Eduscol 2021 les classe comme des « formes verbales » et non comme des « formes conjuguees ». La parenthese « modes non personnels de la conjugaison » est correcte, mais l'affirmation initiale « sont des formes conjuguees » contredit la definition meme de la conjugaison. Un candidat CRPE qui ecrirait « l'infinitif est une forme conjuguee » risquerait une penalisation.
-- **Correction** : Remplacer par : « L'infinitif et le participe sont des modes non personnels du verbe (ils font partie du système verbal mais ne se conjuguent pas en personne). »
-
----
-
 ### ERREURS IMPORTANTES (terminologie, coquilles dans les noms de variables/index)
-
-#### P3-3. Index maths `content/fiches-maths/index.ts` — Coquille dans le nom de variable `geometriThalesSprint` (manque le "e" de "geometrie")
-
-- **Fichier** : `content/fiches-maths/index.ts`, ligne 48 et `content/fiches-maths/geometrie-thales-sprint.ts`, ligne 3
-- **Texte problematique** :
-  ```ts
-  export const geometriThalesSprint: Fiche = {
-  ```
-- **Nature** : Coquille dans le nom de la variable exportee
-- **Explication** : Devrait etre `geometrieThalesSprint` (avec le "e" final de "geometrie" avant la majuscule "T"). La convention camelCase utilisee partout dans le codebase donne `geometrieTrianglesSprint`, `geometrieAnglesSprint`, `geometrieCercleSprint`, etc. Le "e" est absent dans `geometriThalesSprint`. Pas d'impact fonctionnel si l'import est coherent (et il l'est), mais nuit a la lisibilite.
-- **Correction** : Renommer en `geometrieThalesSprint` dans le fichier source et dans l'index.
-
----
-
-#### P3-4. Index maths `content/fiches-maths/index.ts` — Coquille dans le nom de variable `geometrieClasserQurilateresOperatoire` (manque le "ad" de "quadrilateres")
-
-- **Fichier** : `content/fiches-maths/index.ts`, ligne 114 et `content/fiches-maths/geometrie-classer-quadrilateres-operatoire.ts`, ligne 3
-- **Texte problematique** :
-  ```ts
-  export const geometrieClasserQurilateresOperatoire: Fiche = {
-  ```
-- **Nature** : Coquille dans le nom de la variable exportee
-- **Explication** : `QurilateresOperatoire` devrait etre `QuadrilateresOperatoire`. Le "ad" est manquant. Meme remarque que P3-3 : pas d'impact fonctionnel mais nuit a la lisibilite et a la maintenabilite.
-- **Correction** : Renommer en `geometrieClasserQuadrilateresOperatoire` dans le fichier source et dans l'index.
-
----
-
-#### P3-5. Index francais `content/fiches/index.ts` — Coquille dans le nom de variable `accentsThremaSprint` (inversion "re" → "er")
-
-- **Fichier** : `content/fiches/index.ts`, lignes 111 et 226, et `content/fiches/orthographe-accents-trema-sprint.ts`, ligne 3
-- **Texte problematique** :
-  ```ts
-  export const accentsThremaSprint: Fiche = {
-  ```
-- **Nature** : Coquille dans le nom de la variable exportee
-- **Explication** : `Threma` est une inversion de lettres — le mot correct est `Trema` (ou `Tréma`). La variable devrait s'appeler `accentsTremaSprint`. C'est d'autant plus ironique que la fiche porte sur les accents et le trema.
-- **Correction** : Renommer en `accentsTremaSprint` dans le fichier source et dans l'index.
-
----
-
-#### P3-6. Fiche `geometrie-angles-sprint.ts` — Astuce mnemonique en anglais dans un contenu francophone
-
-- **Fichier** : `content/fiches-maths/geometrie-angles-sprint.ts`, ligne 46
-- **Texte problematique** :
-  > "Supplémentaires → comme une Straightline (angle plat, 180°)"
-- **Nature** : Formulation inadaptee (mot anglais dans un contenu CRPE francophone)
-- **Explication** : L'astuce mnemonique pour "supplementaires" utilise le mot anglais "Straightline" (ligne droite). Dans un contexte CRPE francophone, un moyen mnemotechnique en francais serait plus adapte : par exemple "S comme Straightline" n'evoque rien pour un candidat non anglophone. L'astuce pour "complementaires" ("Coin") fonctionne bien en francais. Pour "supplementaires", on pourrait utiliser "S comme Semi-tour" (demi-tour = 180°) ou "Supplementaires = angle plat, comme une ligne droite (180°)".
-- **Correction** : Remplacer "Straightline" par un equivalent francais, par exemple : « Supplémentaires → S comme Semi-tour (demi-tour, 180°) » ou « Supplémentaires → S comme Straight (ligne droite, 180°) — ou plus simplement : l'angle plat mesure 180° ».
-
----
-
-#### P3-7. Fiche `geometrie-cercle-sprint.ts` — Quiz 1 : attribution incorrecte du theoreme
-
-- **Fichier** : `content/fiches-maths/geometrie-cercle-sprint.ts`, lignes 52-54
-- **Texte problematique** :
-  > "C'est le théorème de Thalès (version cercle) : tout angle inscrit dans un demi-cercle est un angle droit"
-- **Nature** : Erreur d'attribution
-- **Explication** : Le theoreme stipulant que tout angle inscrit dans un demi-cercle est un angle droit n'est PAS le theoreme de Thales. C'est un corollaire du theoreme de l'angle inscrit (parfois attribue a Thales de Milet dans certaines traditions, mais ce n'est pas le « theoreme de Thales » au sens du programme scolaire francais). Dans les programmes francais (et au CRPE), le « theoreme de Thales » designe exclusivement le theoreme sur les rapports de longueurs dans des triangles coupes par des droites paralleles. Appeler ce resultat « theoreme de Thales (version cercle) » cree une confusion avec le vrai theoreme de Thales du programme. L'appellation correcte est « theoreme de l'angle dans le demi-cercle » ou « propriete de l'angle inscrit dans un demi-cercle ».
-- **Correction** : Remplacer « le théorème de Thalès (version cercle) » par « la propriété de l'angle inscrit dans un demi-cercle » ou « un corollaire du théorème de l'angle inscrit ».
-
----
 
 ### IMPRECISIONS MINEURES / FORMULATIONS AMELIORABLES
 
@@ -494,29 +295,13 @@ Echantillon de ~20 fichiers supplementaires couvrant : fiches francais non audit
 
 ---
 
-### PROBLEMES TECHNIQUES (noms de variables, index)
-
-#### P3-12. Recapitulatif des coquilles dans les noms de variables exportees
-
-Trois coquilles de nommage identifiees en passe 3 (en plus de `grammairePhraseCOmplexeSprint` identifie en passe 1) :
-
-| Variable actuelle | Variable correcte | Fichier |
-|---|---|---|
-| `accentsThremaSprint` | `accentsTremaSprint` | `content/fiches/orthographe-accents-trema-sprint.ts` |
-| `geometriThalesSprint` | `geometrieThalesSprint` | `content/fiches-maths/geometrie-thales-sprint.ts` |
-| `geometrieClasserQurilateresOperatoire` | `geometrieClasserQuadrilateresOperatoire` | `content/fiches-maths/geometrie-classer-quadrilateres-operatoire.ts` |
-
-Aucun impact fonctionnel (les imports sont coherents), mais ces coquilles nuisent a la lisibilite et a la recherche dans le code.
-
----
-
 ### FICHIERS AUDITES EN PASSE 3
 
 **Fiches francais (12 fichiers)** :
 - `comprehension-texte-reperage-explicite-sprint.ts` — OK
 - `conjugaison-imparfait-passe-simple-sprint.ts` — OK
 - `lexique-synonymie-antonymie-sprint.ts` — OK
-- `conjugaison-groupes-verbes-sprint.ts` — 1 erreur critique (P3-2, disclaimer)
+- `conjugaison-groupes-verbes-sprint.ts` -- ✅ CORRIGÉ (P3-2)
 - `grammaire-determinants-sprint.ts` — OK (contenu tres complet et rigoureux)
 - `grammaire-expansions-nom-sprint.ts` — OK
 - `lexique-hyperonymie-hyponymie-sprint.ts` — OK (excellente fiche)
@@ -525,7 +310,7 @@ Aucun impact fonctionnel (les imports sont coherents), mais ces coquilles nuisen
 - `lexique-denotation-connotation-sprint.ts` — OK
 - `orthographe-majuscules-ponctuation-sprint.ts` — 1 imprecision (P3-8)
 - `analyse-langue-anaphores-sprint.ts` — OK (excellente fiche sur la cohesion referentielle)
-- `orthographe-accents-trema-sprint.ts` — 1 erreur critique (P3-1, graphie aigue/aigue)
+- `orthographe-accents-trema-sprint.ts` -- ✅ CORRIGÉ (P3-1)
 - `conjugaison-voix-pronominale-sprint.ts` — OK (accord du PP des pronominaux bien explique)
 - `orthographe-participe-passe-avoir-sprint.ts` — OK
 - `lexique-familles-mots-sprint.ts` — OK (distinction base/radical/racine bien traitee)
@@ -535,17 +320,17 @@ Aucun impact fonctionnel (les imports sont coherents), mais ces coquilles nuisen
 **Fiches maths (7 fichiers)** :
 - `geometrie-quadrilateres-sprint.ts` — OK (hierarchie d'inclusion correcte)
 - `nombres-entiers-naturels-sprint.ts` — OK
-- `geometrie-angles-sprint.ts` — 1 formulation inadaptee (P3-6, anglicisme)
+- `geometrie-angles-sprint.ts` -- ✅ CORRIGÉ (P3-6)
 - `nombres-entiers-relatifs-sprint.ts` — OK
 - `grandeurs-unites-longueur-sprint.ts` — OK
 - `nombres-divisibilite-sprint.ts` — OK
 - `grandeurs-aires-sprint.ts` — OK (formules correctes, quiz pertinents)
-- `geometrie-cercle-sprint.ts` — 1 erreur d'attribution (P3-7, "theoreme de Thales")
+- `geometrie-cercle-sprint.ts` -- ✅ CORRIGÉ (P3-7)
 - `grandeurs-unites-masse-capacite-sprint.ts` — OK
 
 **Index (2 fichiers)** :
-- `content/fiches/index.ts` — 1 coquille variable (P3-5)
-- `content/fiches-maths/index.ts` — 2 coquilles variables (P3-3, P3-4)
+- `content/fiches/index.ts` -- ✅ CORRIGÉ (P3-5)
+- `content/fiches-maths/index.ts` -- ✅ CORRIGÉ (P3-3, P3-4)
 
 ---
 
@@ -553,33 +338,23 @@ Aucun impact fonctionnel (les imports sont coherents), mais ces coquilles nuisen
 
 | Severite | Nombre | Fichiers principaux |
 |---|---|---|
-| Critique (contenu faux) | 2 | `orthographe-accents-trema-sprint.ts` (graphie aigue incorrecte dans le quiz), `conjugaison-groupes-verbes-sprint.ts` (infinitif = « forme conjuguee ») |
-| Important (terminologie/attribution) | 1 | `geometrie-cercle-sprint.ts` (fausse attribution au theoreme de Thales) |
-| Important (coquilles variables) | 3 | `accentsThremaSprint`, `geometriThalesSprint`, `geometrieClasserQurilateresOperatoire` |
-| Mineur (formulation) | 2 | `geometrie-angles-sprint.ts` (anglicisme), `orthographe-majuscules-ponctuation-sprint.ts` (regle trop categorique) |
+| Critique (contenu faux) | 0 | — (P3-1, P3-2 corriges) |
+| Important (terminologie/attribution) | 0 | — (P3-3 a P3-7 corriges) |
+| Mineur (formulation) | 1 | `orthographe-majuscules-ponctuation-sprint.ts` (regle trop categorique P3-8) |
 
 ### Note globale passe 3
 
-La qualite du contenu reste **tres bonne** sur l'ensemble de l'echantillon. Les fiches de vocabulaire (synonymie/antonymie, hyperonymie/hyponymie, denotation/connotation, familles de mots) sont d'une qualite pedagogique remarquable, avec une terminologie linguistique rigoureuse et des explications bien calibrees pour le CRPE. Les fiches de conjugaison (imparfait/passe simple, passe compose/imparfait, voix pronominale) sont solides sur le plan aspectuel et bien ancrees dans la terminologie Eduscol 2021.
-
-L'erreur la plus grave (P3-1) est une confusion d'encodage Unicode dans la fiche sur les accents et le trema : le quiz pretend montrer la graphie rectifiee « aigüe » (trema sur le u) mais affiche trois fois la graphie traditionnelle « aiguë » (trema sur le e), ce qui rend l'explication fausse et contradictoire. C'est d'autant plus critique que la fiche porte precisement sur ce sujet.
-
-La seconde erreur critique (P3-2) est le disclaimer de la fiche groupes de verbes qui qualifie l'infinitif et le participe de « formes conjuguees » — une formulation que le jury du CRPE sanctionnerait car elle contredit la definition de la conjugaison.
-
-Sur le plan technique, quatre coquilles de nommage de variables ont ete identifiees au total (dont une en passe 1) : `grammairePhraseCOmplexeSprint`, `accentsThremaSprint`, `geometriThalesSprint`, `geometrieClasserQurilateresOperatoire`. Aucun impact fonctionnel mais un nettoyage serait bienvenu pour la maintenabilite.
+La qualite du contenu reste **tres bonne** sur l'ensemble de l'echantillon. Les erreurs critiques (P3-1 graphie aigüe/aiguë, P3-2 formes conjuguees) et les coquilles de variables (P3-3 a P3-7) ont toutes ete corrigees. Reste P3-8 (regle trop categorique sur la majuscule de "Histoire"), mineure et optionnelle.
 
 ### Couverture totale de l'audit (passes 1 + 2 + 3)
 
-Apres trois passes, **~65 fichiers de fiches** et **~20 fichiers de migrations SQL** ont ete audites. Les erreurs critiques identifiees au total sont :
+Apres trois passes, **~65 fichiers de fiches** et **~20 fichiers de migrations SQL** ont ete audites.
 
-| Passe | Erreurs critiques | Erreurs importantes | Mineures |
-|---|---|---|---|
-| 1 | 3 | 4 | 4 |
-| 2 | 1 | 2 | 2 |
-| 3 | 2 | 4 | 2 |
-| **Total** | **6** | **10** | **8** |
-
-Les 6 erreurs critiques meritent une correction prioritaire car elles transmettent un savoir errone ou ambigu a des candidats CRPE.
+| Passe | Erreurs restantes a corriger |
+|---|---|
+| 1 | 2 (erreurs #4 et #8) |
+| 2 | 4 (P2-2, P2-3, P2-4, P2-5) |
+| 3 | 1 (P3-8) |
 
 ---
 
@@ -605,77 +380,6 @@ Aucune erreur critique identifiee dans cet echantillon.
 - **Nature** : Coquille grammaticale — accord pluriel manquant + espace parasite
 - **Explication** : "des remediation" manque le -s du pluriel. Le texte devrait etre "des remediations s'appuyant". De plus, il semble y avoir un espace insecable/parasite avant le "s'" qui separe visuellement "remediation" du "s'appuyant" mais la coquille est bien l'absence d'accord au pluriel sur "remediation".
 - **Correction** : Remplacer `des remediation s'appuyant` par `des remediations s'appuyant`.
-
----
-
-#### P4-2. Fiche `didactique-multiplication-sprint.ts` — Terminologie "produit scalaire" inappropriee en contexte CRPE
-
-- **Fichier** : `content/fiches-maths/didactique-multiplication-sprint.ts`, lignes 18 et 39
-- **Texte problematique** :
-  > Tag: "produit scalaire"
-  > oneLiner: "l'ADDITION ITEREE (3 fois 4 = 4 + 4 + 4) et le PRODUIT SCALAIRE / proportionnalite"
-- **Nature** : Terminologie inadaptee — confusion avec le produit scalaire vectoriel
-- **Explication** : Le terme "produit scalaire" en mathematiques designe exclusivement l'operation sur les vecteurs (u.v = ||u|| × ||v|| × cos(theta)). Ce que Vergnaud appelle les structures multiplicatives de type proportionnalite simple correspond a l'"isomorphisme de mesures" (operateur scalaire entre deux espaces de mesures), PAS au "produit scalaire". L'usage de "produit scalaire" dans ce contexte est trompeur pour un candidat CRPE qui confondrait avec le produit scalaire de geometrie analytique, notion au programme du CRPE maths. Le terme correct serait "operateur scalaire" ou plus simplement "proportionnalite simple / isomorphisme de mesures".
-- **Correction** : Remplacer le tag `"produit scalaire"` par `"operateur scalaire"` ou `"isomorphisme de mesures"`. Dans le oneLiner, remplacer `le PRODUIT SCALAIRE / proportionnalite` par `l'ISOMORPHISME DE MESURES (proportionnalite simple entre deux grandeurs)`.
-
----
-
-#### P4-3. Migration `20260424_seed_lexique_interactives.sql` — Classification de "courage" comme derive par suffixation
-
-- **Fichier** : `supabase/migrations/20260424_seed_lexique_interactives.sql`, lignes 74-77 (Q3)
-- **Texte problematique** :
-  > "courage (suffixe -age sur le radical cour- issu de coeur) [...] sont des derives"
-- **Nature** : Analyse etymologique contestable presentee comme certaine
-- **Explication** : Classer "courage" comme un derive par suffixation (cour- + -age) est etymologiquement defensible (du latin cor/cordis via l'ancien francais corage), mais en synchronie — la seule approche pertinente pour les exercices de morphologie lexicale au cycle 3 et au CRPE — "courage" n'est PAS analysable comme derive par un locuteur moderne. Le locuteur francophone actuel ne percoit pas *cour- comme un radical productif (il ne produit pas *courir → courage, *courbe → courage). La majorite des linguistes classerait "courage" comme un mot simple en synchronie, ou au mieux comme un derive opaque (non transparent). Presenter cette analyse sans nuance peut induire en erreur un candidat.
-- **Correction** : Remplacer "courage" dans Q3 par un derive plus transparent, par exemple "bricolage" (bricol-er + -age), "affichage" (affich-er + -age), ou "nettoyage" (nettoy-er + -age). Si "courage" est conserve, l'explication devrait preciser : "courage est un derive etymologique (cor + -age, du latin cor), mais son analyse morphologique n'est plus transparente en francais moderne."
-
----
-
-#### P4-4. Migration `20260424_seed_lexique_interactives.sql` — "ensoleille" classe comme suffixe
-
-- **Fichier** : `supabase/migrations/20260424_seed_lexique_interactives.sql`, ligne 175 (Q7)
-- **Texte problematique** :
-  > "Ensoleill-e (suffixe -e) [...] sont des suffixes"
-  > Mapping: `"s1q7w1":"suffixation"`
-- **Nature** : Erreur de classification morphologique
-- **Explication** : "Ensoleille" est un cas classique de PARASYNTHESE, pas de simple suffixation. Le mot est forme de en- + soleil + -e simultanement. Le mot *soleille n'existe pas en francais, ce qui est le critere definitoire de la parasynthese (le prefixe et le suffixe s'ajoutent simultanement a la base, aucun des deux derives intermediaires n'existant). La migration elle-meme definit et utilise correctement la parasynthese dans les Q8, Q9 et Q10. Classer "ensoleille" comme suffixe en Q7 est une incoherence interne au sein du meme fichier.
-- **Correction** : Soit (a) deplacer "ensoleille" dans la categorie "parasynthese" (mais Q7 n'a que 3 categories : prefixation/suffixation/composition), soit (b) remplacer "ensoleille" par un vrai suffixe transparent comme "lenteur" (lent + -eur), "fierement" (fier-e + -ment), ou "chansonnier" (chanson + -ier).
-
----
-
-#### P4-5. Migration `20260424_seed_lexique_interactives.sql` — "semaine" classe comme suffixe
-
-- **Fichier** : `supabase/migrations/20260424_seed_lexique_interactives.sql`, ligne 175 (Q7)
-- **Texte problematique** :
-  > "Semain-e est un suffixe issu du latin septimana avec evolution morphologique"
-  > Mapping: `"s1q7w6":"suffixation"`
-- **Nature** : Erreur de classification morphologique
-- **Explication** : "Semaine" n'est PAS un derive par suffixation en francais. C'est un mot herite directement du latin septimana, transmis par evolution phonetique reguliere. Le -e final n'est pas un suffixe : c'est la marque du feminin heritee du latin -a. En synchronie comme en diachronie, aucun linguiste ne classerait "semaine" comme un derive par suffixation. L'explication de la migration tente de justifier ce classement par l'etymologie latine, mais cette justification est incorrecte : l'evolution phonetique (septimana → semaine) n'est pas de la suffixation.
-- **Correction** : Remplacer "semaine" par un vrai suffixe, par exemple "semainier" (semaine + -ier), "annuel" (ann-ee + -el), "journalier" (journal + -ier), ou "gentillesse" (gentil + -esse).
-
----
-
-### IMPRECISIONS MINEURES / FORMULATIONS AMELIORABLES
-
-#### P4-6. Fiche `didactique-graphophonologie-cgp-sprint.ts` — Nombre de phonemes imprecis
-
-- **Fichier** : `content/fiches/didactique-graphophonologie-cgp-sprint.ts`, ligne 84
-- **Texte problematique** :
-  > "Le francais compte 37 phonemes environ (selon les variantes dialectales)"
-- **Nature** : Imprecision chiffree
-- **Explication** : Le nombre le plus couramment cite dans les travaux de reference pour le francais standard est 36 phonemes (16 voyelles + 3 semi-voyelles + 17 consonnes) dans le systeme maximal. Certaines descriptions reduisent a 32-34 phonemes en excluant les voyelles rares ou en voie de disparition (/oe~/ "brun", opposition /a/ ~ /ɑ/ "patte" vs "pate"). Le chiffre de 37 est inhabituel et ne correspond a aucune reference standard (Martinet, Sauvageot, Malmberg). Le chiffre le plus suivi par Eduscol et les manuels de preparation au CRPE est 36.
-- **Correction** : Remplacer "37 phonemes" par "36 phonemes" ou "entre 33 et 36 phonemes selon les locuteurs".
-
----
-
-#### P4-7. Fiche `didactique-graphophonologie-cgp-sprint.ts` — Quiz 3 : analyse partiellement imprecise du mot "feto"
-
-- **Fichier** : `content/fiches/didactique-graphophonologie-cgp-sprint.ts`, ligne 70
-- **Texte problematique** :
-  > "L'eleve a tente de transcrire les phonemes entendus (/ʃ/ → f est une erreur sur le phoneme /ʃ/, /a/ → e, /to/ → to correct)"
-- **Nature** : Imprecision dans l'analyse phonetique
-- **Explication** : L'analyse dit "/ʃ/ → f" mais l'eleve qui ecrit "f" pour "ch" ne fait pas une erreur sur le phoneme /ʃ/ : il fait une erreur d'encodage du phoneme /ʃ/ en choisissant le grapheme "f" (qui correspond au phoneme /f/). La formulation est confuse car elle melange phoneme et grapheme. De plus, "/to/ → to correct" est discutable : "chateau" se termine par /to/ (avec /o/ ferme), et l'eleve ecrit effectivement "to", mais l'absence du grapheme "eau" pour /o/ devrait etre signalees — l'eleve utilise "o" pour /o/, ce qui est une transcription phonologiquement correcte mais orthographiquement fausse ("chateau" s'ecrit avec "eau", pas "o").
-- **Correction** : Reformuler : "L'eleve a transcrit les sons entendus avec les graphemes les plus simples : /ʃ/ → 'f' (erreur : le phoneme /ʃ/ se transcrit 'ch', pas 'f'), /a/ → 'e' (erreur de vocalisme), /o/ → 'o' (grapheme regulier mais incorrect pour ce mot : 'chateau' exige le trigramme 'eau')."
 
 ---
 
@@ -774,3 +478,164 @@ Apres quatre passes, **~75 fichiers de fiches** et **~35 fichiers de migrations 
 | **Total** | **6** | **15** | **12** |
 
 Les 6 erreurs critiques (passes 1-3) restent a corriger en priorite. Les 5 erreurs importantes de la passe 4 meritent egalement une correction, en particulier P4-2 (confusion produit scalaire) et P4-4/P4-5 (classifications morphologiques fausses).
+
+---
+
+## Passe 5 — Audit du 2026-03-23
+
+Echantillon couvrant : 10 migrations SQL non auditees, 11 fiches francais non auditees, 1 sujet blanc.
+
+**Note : toutes les erreurs importantes de cette passe ont ete corrigees dans la foulée.**
+
+---
+
+### ERREURS CORRIGEES (deja appliquees dans le code)
+
+- **P5-1** — `20260325_seed_tri_categories_grammaire.sql` : 0 accent sur 68 000 caracteres. **CORRIGE** (427 accents maintenant presents)
+- **P5-2** — `20260409_seed_grammaire_determinants.sql` Q1 : QCM ambigu (Leur et ses tous deux possessifs). **CORRIGE** (consigne reformulee : "quel determinant renvoie a un possesseur pluriel ?")
+- **P5-3** — `20260409_seed_grammaire_determinants.sql` Q4 : "la terminologie Eduscol range chaque dans les determinants distributifs" — categorie inventee. **CORRIGE** (maintenant : "determinant indefini a valeur distributive")
+- **P5-4** — `comprehension-texte-connecteurs-logiques-sprint.ts` : "donc" qualifie de conjonction de coordination. **CORRIGE** (maintenant : "adverbe de liaison, reclassifie par MEN 2020")
+- **P5-5** — Meme fiche : "car" conjonction de coordination sans nuance. **CORRIGE** (note MEN 2020 ajoutee)
+
+### IMPRECISIONS ENCORE OUVERTES
+
+#### P5-6 (mineur). Fiche `didactique-apprentissage-lecture-reference.ts` — "750 mots actifs" en PS
+
+- Estimation basse ; les travaux de Florin suggerent 800-1000 mots. Optionnel : remplacer par "800-1 000 mots environ".
+
+---
+
+### FICHIERS AUDITES EN PASSE 5
+
+- `20260325_seed_tri_categories_grammaire.sql` — ✅ CORRIGE (accents)
+- `20260331_seed_surlignage_propositions.sql` — OK
+- `20260348_seed_standard_comprehension.sql` — OK
+- `20260349_seed_tri_surlignage.sql` — OK
+- `20260357_seed_didactique_part1.sql` — OK
+- `20260359_seed_comprehension_nouvelles.sql` — OK
+- `20260386_seed_lexique_nouvelles.sql` — OK
+- `20260395_seed_conjugaison_nouvelles2.sql` — OK
+- `20260396_seed_comprehension_nouvelles2.sql` — OK
+- `20260409_seed_grammaire_determinants.sql` — ✅ CORRIGE (P5-2, P5-3)
+- `20260600_seed_sujets_blancs_v3.sql` — OK
+- `didactique-dictee-formes-sprint.ts` — OK
+- `didactique-ecriture-cycle2-sprint.ts` — OK
+- `didactique-litterature-jeunesse-sprint.ts` — OK
+- `didactique-strategies-comprehension-sprint.ts` — OK
+- `didactique-oral-ecole-sprint.ts` — OK
+- `didactique-production-ecrits-reference.ts` — OK
+- `didactique-evaluation-lecture-sprint.ts` — OK
+- `comprehension-texte-connecteurs-logiques-sprint.ts` — ✅ CORRIGE (P5-4, P5-5)
+- `comprehension-texte-type-discours-operatoire.ts` — OK
+- `comprehension-texte-types-textes-reference.ts` — OK
+- `didactique-apprentissage-lecture-reference.ts` — 1 detail mineur (P5-6)
+
+---
+
+## Passe 6 — Audit du 2026-03-24 (nouvelles fiches non auditees)
+
+Couvre ~120 fiches TypeScript et ~30 migrations SQL non auditees en passes 1-5 (grammaire, analyse-langue, conjugaison, orthographe, lexique, didactique, maths geometrie/grandeurs/nombres/donnees).
+
+---
+
+### ERREURS CRITIQUES
+
+#### P6-1. Fiche `grammaire-phrase-interrogative-sprint.ts` — Quatre types de phrase vs Eduscol 2021
+
+- **Fichier** : `content/fiches/grammaire-phrase-interrogative-sprint.ts`, ligne 28
+- **Texte problematique** : Le disclaimer annonce "quatre types de phrase (declarative, interrogative, imperative, exclamative)"
+- **Nature** : Erreur terminologique — Eduscol 2021 ne reconnait que TROIS types de phrase (declarative, interrogative, injonctive). La phrase exclamative est un TYPE DE FORME en grammaire moderne, non un type independant. L'ancienne nomenclature a ete officiellement abandonnee.
+- **Correction** : Remplacer par "trois types de phrase (declarative, interrogative, injonctive/imperative)" et deplacer la phrase exclamative dans les formes de phrase.
+
+---
+
+#### P6-2. Fiche `grammaire-phrase-complexe-reference.ts` — "donc" et "or" listes comme conjonctions de coordination
+
+- **Fichier** : `content/fiches/grammaire-phrase-complexe-reference.ts`, lignes 39 et 47-83
+- **Texte problematique** : Tableau intitule "Les sept conjonctions de coordination" incluant "donc" et "or"
+- **Nature** : Terminologie en contradiction avec MEN 2020 (deja corrige dans la fiche connecteurs-logiques, mais pas ici)
+- **Correction** : Retirer "donc" et "or" de la liste des conjonctions de coordination. Ajouter une note que la terminologie MEN 2020 restreint la liste.
+
+---
+
+#### P6-3. Fiche `grammaire-nature-fonction-operatoire.ts` — Meme erreur "donc/or" conjonction de coordination
+
+- **Fichier** : `content/fiches/grammaire-nature-fonction-operatoire.ts`, ligne 104
+- **Nature** : Troisieme occurrence dans le corpus — incoherence interne avec la fiche connecteurs-logiques-sprint.ts (corrigee)
+- **Correction** : Meme correction que P6-2.
+
+---
+
+#### P6-4. Fiche `orthographe-rectifications-1990-sprint.ts` — "deux-cents" avec trait d'union incorrect
+
+- **Fichier** : `content/fiches/orthographe-rectifications-1990-sprint.ts`
+- **Texte problematique** : "deux-cents" presente comme correct alors que les rectifications 1990 n'ont pas modifie l'accord de "cent"
+- **Nature** : Erreur factuelle sur les rectifications orthographiques de 1990
+- **Correction** : Verifier et corriger le contenu sur l'accord de "cent" et "vingt" selon les regles en vigueur.
+
+---
+
+#### P6-5. Fiche `analyse-langue-subordonnees-conjonctives-completives-circonstancielles-sprint.ts` — Accents manquants sur tout le fichier
+
+- **Fichier** : `content/fiches/analyse-langue-subordonnees-conjonctives-completives-circonstancielles-sprint.ts`
+- **Nature** : Troisieme fichier sans accents dans le corpus (apres `analyse-langue-voix-active-passive-sprint.ts` et `20260325_seed_tri_categories_grammaire.sql`)
+- **Correction** : Regenerer le fichier avec encodage UTF-8 correct.
+
+---
+
+### ERREURS IMPORTANTES
+
+#### P6-6. Fiche `grammaire-complements-circonstanciels-reference.ts` — "verbe d'etat" au lieu de "verbe attributif"
+
+- **Fichier** : `content/fiches/grammaire-complements-circonstanciels-reference.ts`
+- **Texte problematique** : "verbe d'etat" utilise a la place de "verbe attributif"
+- **Nature** : Terminologie obsolete — Eduscol 2021 impose "verbe attributif" (etre, paraitre, sembler, devenir, rester, demeurer, avoir l'air)
+- **Correction** : Remplacer systematiquement "verbe d'etat" par "verbe attributif".
+
+#### P6-7. Fiche `analyse-langue-identifier-subordonnees-operatoire.ts` — Suppressibilite des circonstancielles presentee comme absolue
+
+- **Fichier** : `content/fiches/analyse-langue-identifier-subordonnees-operatoire.ts`
+- **Texte problematique** : "une subordonnee circonstancielle est TOUJOURS suppressible et deplacable"
+- **Nature** : Generalisation excessive — certaines circonstancielles de consequence ont une mobilite reduite
+- **Correction** : Remplacer "toujours" par "generalement" et ajouter une exception pour les subordonnees de consequence.
+
+#### P6-8. Fiche `donnees-statistiques-reference.ts` — "disqualitatives" (mot inexistant)
+
+- **Fichier** : `content/fiches-maths/donnees-statistiques-reference.ts`, ligne 184
+- **Texte problematique** : "variables disqualitatives"
+- **Nature** : Mot inexistant en statistiques. La bonne terminologie est "variables qualitatives" (ou "variables categoriques")
+- **Correction** : Remplacer "disqualitatives" par "qualitatives" ou "quantitatives continues" selon le contexte.
+
+---
+
+### IMPRECISIONS MINEURES
+
+- `analyse-langue-phonologie-cycle2-sprint.ts` : syllabation de "porte" presentee comme absolue sans mention des variantes dialectales
+- `grammaire-subordonnees-relatives-sprint.ts` : variable exportee avec accent dans l'identifiant TypeScript (non standard)
+- `didactique-soustraction-sprint.ts` ligne 42 : "les remédiation" — accord manquant (encore present apres correction partielle de la ligne 35)
+
+---
+
+### RESUME PASSE 6
+
+| Severite | Nombre | Fichiers principaux |
+|---|---|---|
+| Critique | 5 | `grammaire-phrase-interrogative-sprint.ts` (P6-1), `grammaire-phrase-complexe-reference.ts` (P6-2), `grammaire-nature-fonction-operatoire.ts` (P6-3), `orthographe-rectifications-1990-sprint.ts` (P6-4), `analyse-langue-subordonnees-conjonctives-...-sprint.ts` (P6-5 accents) |
+| Important | 3 | `grammaire-complements-circonstanciels-reference.ts` (P6-6), `analyse-langue-identifier-subordonnees-operatoire.ts` (P6-7), `donnees-statistiques-reference.ts` (P6-8) |
+| Mineur | 3 | phonologie-cycle2, variable avec accent, "les remédiation" ligne 42 |
+
+---
+
+### Couverture totale de l'audit (passes 1 a 6)
+
+Apres six passes, **~160 fichiers de fiches** et **~60 fichiers de migrations SQL** ont ete audites. Couverture quasi-complete du corpus.
+
+| Passe | Critiques | Importantes | Mineures | Statut |
+|---|---|---|---|---|
+| 1 | 3 | 1 | 3 | ✅ Tous critiques corriges |
+| 2 | 1 | 2 | 2 | ✅ Critique corrige |
+| 3 | 2 | 1 | 2 | ✅ Tous critiques corriges |
+| 4 | 0 | 3 | 3 | Partiellement corrige |
+| 5 | 0 | 0 | 1 | ✅ Tous corriges |
+| 6 | 5 | 3 | 3 | A corriger |
+| **Total** | **11** | **10** | **14** | |

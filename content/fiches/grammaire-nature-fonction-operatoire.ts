@@ -101,7 +101,7 @@ export const natureFonctionOperatoire: Fiche = {
             yes: {
               type: "leaf",
               label: "Conjonction",
-              rule: "La conjonction est invariable. La conjonction de coordination relie des éléments de même fonction (mais, ou, et, donc, or, ni, car). La conjonction de subordination introduit une proposition subordonnée (que, quand, si, parce que…).",
+              rule: "La conjonction est invariable. La conjonction de coordination relie des éléments de même fonction (mais, ou, et, ni, car — et or selon certaines grammaires). Note : « donc » est reclassifié comme adverbe de liaison par la terminologie grammaticale officielle MEN 2020. La conjonction de subordination introduit une proposition subordonnée (que, quand, si, parce que…).",
               example:
                 "Il pleut mais je sors. (« mais » = conjonction de coordination)",
             },

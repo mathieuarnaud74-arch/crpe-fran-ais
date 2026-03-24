@@ -36,49 +36,56 @@ export const phraseComplexeReference: Fiche = {
           {
             kind: "rule",
             content:
-              "La juxtaposition relie des propositions indépendantes par un simple signe de ponctuation (virgule, point-virgule, deux-points). La coordination les relie par une conjonction de coordination (mais, ou, et, donc, or, ni, car) ou un adverbe de liaison (puis, cependant, en effet…). Dans les deux cas, les propositions sont syntaxiquement indépendantes : aucune n'est subordonnée à l'autre.",
+              "La juxtaposition relie des propositions indépendantes par un simple signe de ponctuation (virgule, point-virgule, deux-points). La coordination les relie par une conjonction de coordination (mais, ou, et, ni, car — et or selon certaines grammaires) ou un adverbe de liaison (puis, cependant, en effet, donc…). Dans les deux cas, les propositions sont syntaxiquement indépendantes : aucune n'est subordonnée à l'autre. Note : la terminologie grammaticale officielle MEN 2020 reclassifie « donc » comme adverbe de liaison plutôt que conjonction de coordination.",
             linguisticLogic:
               "On parle de parataxe (juxtaposition) ou de coordination : les propositions sont de même niveau hiérarchique. Le lien sémantique est implicite (juxtaposition) ou explicité par le coordonnant.",
           },
           {
             kind: "table",
-            caption: "Les sept conjonctions de coordination",
-            headers: ["Conjonction", "Relation logique", "Exemple"],
+            caption: "Les conjonctions de coordination (terminologie MEN 2020)",
+            headers: ["Mot", "Relation logique", "Exemple", "Statut MEN 2020"],
             rows: [
               [
                 "mais",
                 "Opposition / concession",
                 "Il pleut, mais nous sortons.",
+                "Conjonction de coordination",
               ],
               [
                 "ou",
                 "Alternative / choix",
                 "Tu restes ou tu pars ?",
+                "Conjonction de coordination",
               ],
               [
                 "et",
                 "Addition",
                 "Le chat miaule et le chien aboie.",
-              ],
-              [
-                "donc",
-                "Conséquence",
-                "Il a révisé, donc il réussira.",
-              ],
-              [
-                "or",
-                "Argumentation (transition)",
-                "Il devait venir. Or il est absent.",
+                "Conjonction de coordination",
               ],
               [
                 "ni",
                 "Addition négative",
                 "Il ne lit ni n'écrit.",
+                "Conjonction de coordination",
               ],
               [
                 "car",
                 "Cause / justification",
                 "Rentrons, car il fait nuit.",
+                "Conjonction de coordination",
+              ],
+              [
+                "or",
+                "Argumentation (transition)",
+                "Il devait venir. Or il est absent.",
+                "Conjonction de coordination (selon certaines grammaires)",
+              ],
+              [
+                "donc",
+                "Conséquence",
+                "Il a révisé, donc il réussira.",
+                "Adverbe de liaison (reclassifié MEN 2020)",
               ],
             ],
           },
@@ -175,7 +182,7 @@ export const phraseComplexeReference: Fiche = {
     ],
     keyPoints: [
       "Une phrase complexe contient au moins deux propositions (deux verbes conjugués). Elle s'oppose à la phrase simple (un seul verbe conjugué).",
-      "La juxtaposition relie les propositions par la ponctuation, la coordination par une conjonction de coordination (mais, ou, et, donc, or, ni, car).",
+      "La juxtaposition relie les propositions par la ponctuation, la coordination par une conjonction de coordination (mais, ou, et, ni, car — et or selon certaines grammaires). Note : « donc » est reclassifié comme adverbe de liaison par la terminologie MEN 2020.",
       "La subordination crée une hiérarchie : la subordonnée dépend de la principale et occupe une fonction grammaticale (COD, complément du nom, CC…).",
       "Les trois types de subordonnées sont : la relative (expansion du nom), la complétive (souvent COD), la circonstancielle (CC de temps, cause, but…).",
       "Pour analyser une phrase complexe : compter les verbes conjugués, délimiter les propositions, identifier les mots de liaison, déterminer les relations.",

@@ -181,7 +181,7 @@ export const donneesStatistiquesReference: Fiche = {
               {
                 label: "Histogramme ≠ diagramme en barres",
                 explanation:
-                  "L'histogramme a des barres accolées (données continues en classes) et l'aire de chaque barre est proportionnelle à l'effectif. Le diagramme en barres a des barres séparées (données disqualitatives).",
+                  "L'histogramme a des barres accolées (données continues en classes) et l'aire de chaque barre est proportionnelle à l'effectif. Le diagramme en barres a des barres séparées (données qualitatives).",
               },
               {
                 label: "Diagramme circulaire : proportionnalité",

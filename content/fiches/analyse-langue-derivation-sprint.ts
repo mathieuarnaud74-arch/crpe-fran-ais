@@ -67,7 +67,7 @@ export const derivationSprint: Fiche = {
           "Le suffixe « -able » (portable, aimable) forme toujours des adjectifs à partir de verbes.",
         isCorrect: false,
         explanation:
-          "Pas toujours. -able forme des adjectifs à partir de verbes dans la majorité des cas (porter → portable, aimer → aimable), mais aussi à partir de noms (modes → modable) et, dans certains emplois, le sens peut varier. L'affirmation « toujours » est trop exclusive — au CRPE, méfiance vis-à-vis des absolus.",
+          "Pas toujours. -able forme des adjectifs à partir de verbes dans la majorité des cas (porter → portable, aimer → aimable), mais aussi à partir de noms (corvée → corvéable, charité → charitable) et, dans certains emplois, le sens peut varier. L'affirmation « toujours » est trop exclusive — au CRPE, méfiance vis-à-vis des absolus.",
       },
     ],
   },

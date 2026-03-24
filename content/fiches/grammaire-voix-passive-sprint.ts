@@ -26,7 +26,7 @@ export const grammaireVoixPassiveSprint: Fiche = {
     exampleWrong: {
       sentence: "Il est fatigué par le travail, c'est donc une voix passive.",
       explanation:
-        "FAUX. \"Est fatigué\" peut être lu comme attribut du sujet (adjectif \"fatigué\") → construction attributive avec être, pas voix passive. Test : peut-on transformer en actif ? *\"Le travail fatiguit il\" → non grammatical → ce n'est pas une vraie passive.",
+        "FAUX. \"Est fatigué\" peut être lu comme attribut du sujet (adjectif \"fatigué\") → construction attributive avec être, pas voix passive. Test : peut-on reconstruire une phrase active naturelle ? \"La chaleur le fatigue\" fonctionne, mais l'énoncé d'origine décrit un état plutôt qu'une action subie → ce n'est pas une vraie passive.",
     },
     mainTrap:
       "Les verbes intransitifs (dormir, tomber, partir, naître…) ne peuvent PAS se mettre au passif : on ne dit pas *\"Il a été dormi\" ni *\"La ville a été tombée\". De même, les verbes transitifs indirects (parler à, obéir à, nuire à) n'admettent pas la voix passive en français standard — *\"Il a été obéi\" est incorrect.",

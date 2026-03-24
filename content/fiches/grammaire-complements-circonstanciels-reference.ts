@@ -161,9 +161,9 @@ export const grammaireComplementsCirconstancielsReference: Fiche = {
               {
                 label: "CC de manière vs attribut du sujet",
                 explanation:
-                  "Ne pas confondre un adjectif attribut avec un CC de manière. L'attribut caractérise le sujet via un verbe d'état, le CC de manière modifie le verbe d'action.",
+                  "Ne pas confondre un adjectif attribut avec un CC de manière. L'attribut caractérise le sujet via un verbe attributif, le CC de manière modifie le verbe d'action.",
                 correction:
-                  "« Elle semble calme » : « calme » est attribut du sujet (verbe d'état « sembler »). « Elle parle calmement » : « calmement » est CC de manière (verbe d'action « parler »).",
+                  "« Elle semble calme » : « calme » est attribut du sujet (verbe attributif « sembler »). « Elle parle calmement » : « calmement » est CC de manière (verbe d'action « parler »).",
               },
             ],
           },

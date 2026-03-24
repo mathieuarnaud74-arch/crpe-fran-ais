@@ -83,7 +83,7 @@ export const rectifications1990Sprint: Fiche = {
           "« Vingt-et-un » avec traits d'union partout est la graphie rectifiée des numéraux.",
         isCorrect: true,
         explanation:
-          "VRAI. Les rectifications généralisent le trait d'union à tous les numéraux composés, sans exception. On écrit désormais « vingt-et-un », « deux-cents », « trois-mille-quatre-cent-vingt-et-un ». L'ancienne règle (trait d'union seulement entre les dizaines et unités inférieures à cent, sauf avec « et ») reste également acceptée.",
+          "VRAI. Les rectifications généralisent le trait d'union à tous les numéraux composés, sans exception. On écrit désormais « vingt-et-un », « deux-cent-cinquante », « trois-mille-quatre-cent-vingt-et-un ». Attention : l'accord de « cent » (deux cents / deux cent cinquante) est une règle distincte, antérieure à 1990, et non modifiée par les rectifications. L'ancienne règle du trait d'union (seulement entre les dizaines et unités inférieures à cent, sauf avec « et ») reste également acceptée.",
       },
       {
         sentence:

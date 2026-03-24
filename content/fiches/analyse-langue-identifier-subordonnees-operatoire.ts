@@ -53,7 +53,7 @@ export const analyseLangueIdentifierSubordonneesOperatoire: Fiche = {
         no: {
           type: "leaf",
           label: "Proposition subordonnée circonstancielle",
-          rule: "La subordonnée circonstancielle est introduite par une conjonction de subordination autre que « que » seul (quand, lorsque, parce que, bien que, si, pour que, afin que, tandis que…). Elle est complément de phrase : suppressible et déplaçable. Elle exprime le temps, la cause, la conséquence, le but, la concession, la condition, etc.",
+          rule: "La subordonnée circonstancielle est introduite par une conjonction de subordination autre que « que » seul (quand, lorsque, parce que, bien que, si, pour que, afin que, tandis que…). Elle est généralement complément de phrase : suppressible et déplaçable. Attention : les subordonnées de conséquence (si bien que, au point que) et certaines de cause peuvent avoir une mobilité réduite. Elle exprime le temps, la cause, la conséquence, le but, la concession, la condition, etc.",
           example:
             "« Quand il pleut, les élèves restent en classe. » → « Quand il pleut » est une circonstancielle de temps, suppressible (« Les élèves restent en classe ») et déplaçable (« Les élèves restent en classe quand il pleut »).",
         },
@@ -84,9 +84,9 @@ export const analyseLangueIdentifierSubordonneesOperatoire: Fiche = {
       {
         sentence:
           "Une subordonnée circonstancielle est toujours suppressible et déplaçable, car c'est un complément de phrase.",
-        isCorrect: true,
+        isCorrect: false,
         explanation:
-          "C'est le critère de définition du complément de phrase (ou complément circonstanciel). La suppressibilité et la déplaçabilité distinguent la circonstancielle de la complétive (essentielle, non supprimable).",
+          "FAUX (nuance importante). La suppressibilité et la déplaçabilité sont le critère général du complément de phrase, mais elles ne s'appliquent pas systématiquement à toutes les circonstancielles. Les subordonnées de conséquence (« si bien que », « au point que ») et certaines subordonnées de cause peuvent avoir une mobilité réduite. Il faut dire : une circonstancielle est GÉNÉRALEMENT suppressible et déplaçable, mais pas TOUJOURS.",
       },
       {
         sentence:

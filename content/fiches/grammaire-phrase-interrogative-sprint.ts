@@ -25,7 +25,7 @@ export const phraseInterrogativeSprint: Fiche = {
   content: {
     model: "sprint",
     disclaimer:
-      "Cette fiche utilise la terminologie des programmes 2021 (Eduscol). La phrase interrogative est un des quatre types de phrase (déclarative, interrogative, impérative, exclamative).",
+      "Cette fiche utilise la terminologie des programmes 2021 (Éduscol). La phrase interrogative est un des trois types de phrase (déclarative, interrogative, injonctive). La phrase exclamative est une FORME de phrase (au même titre que la forme négative ou emphatique), non un type.",
     oneLiner:
       "On distingue l'interrogation TOTALE (réponse oui/non : « Viens-tu ? ») de l'interrogation PARTIELLE (mot interrogatif : « Quand viens-tu ? »). Chaque interrogation peut se construire de TROIS façons selon le registre : intonation seule (familier), « est-ce que » (courant), inversion du sujet (soutenu).",
     exampleCorrect: {

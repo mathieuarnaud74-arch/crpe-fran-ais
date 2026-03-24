@@ -32,14 +32,14 @@ export const didactiqueSoustractionSprint: Fiche = {
   content: {
     model: "sprint",
     disclaimer:
-      "La soustraction est souvent présentée comme l'opération inverse de l'addition, mais ses trois sens (retrait, complément, comparaison) créent des difficultés spécifiques chez les élèves. Au CRPE, vous serez évalué sur votre capacité à identifier ces structures, analyser le 'bug du plus petit au plus grand' et proposer des remédiation s'appuyant sur la manipulation.",
+      "La soustraction est souvent présentée comme l'opération inverse de l'addition, mais ses trois sens (retrait, complément, comparaison) créent des difficultés spécifiques chez les élèves. Au CRPE, vous serez évalué sur votre capacité à identifier ces structures, analyser le 'bug du plus petit au plus grand' et proposer des remédiations s'appuyant sur la manipulation.",
     oneLiner:
-      "La soustraction recouvre trois structures de problèmes distinctes (Vergnaud) : le RETRAIT (état initial − transformation = état final), le COMPLÉMENT (état initial + ? = état final) et la COMPARAISON (trouver l'écart entre deux quantités). Ces trois sens ne sont pas équivalents en difficulté : le retrait est le plus intuitif, le complément et la comparaison sont sources d'erreurs fréquentes car les élèves n'identifient pas spontanément qu'il faut soustraire.",
+      "La soustraction recouvre trois structures de problèmes distinctes (Vergnaud) : le RETRAIT (état initial − transformation = état final), le COMPLÉMENT (état initial + ? = état final) et la COMPARAISON (trouver l'écart entre deux quantités). (Vergnaud classe ces situations en trois catégories : composition, transformation et comparaison. Le retrait est un cas de transformation négative, le complément une transformation inconnue.) Ces trois sens ne sont pas équivalents en difficulté : le retrait est le plus intuitif, le complément et la comparaison sont sources d'erreurs fréquentes car les élèves n'identifient pas spontanément qu'il faut soustraire.",
     exampleCorrect: {
       sentence:
         "Pour remédier à l'erreur 'bug du plus petit au plus grand' (542 − 278 = 335), un enseignant revient à la manipulation avec des barres-dizaines et des cubes-unités pour faire construire le sens de l'échange.",
       explanation:
-        "La démarche est pertinente. L'erreur 'petit du grand' révèle que l'élève n'a pas construit le sens de la retenue comme un ÉCHANGE (1 dizaine = 10 unités). En manipulant, il voit concrètement qu'on ne peut pas retirer 8 cubes de 3 cubes sans casser une barre-dizaine. Cette démarche suit la progression enactif → iconique → symbolique (Bruner) et est recommandée par Éduscol pour les remédiation en cycle 2. La répétition mécanique de l'algorithme ne guérirait pas l'erreur — elle la renforcerait.",
+        "La démarche est pertinente. L'erreur 'petit du grand' révèle que l'élève n'a pas construit le sens de la retenue comme un ÉCHANGE (1 dizaine = 10 unités). En manipulant, il voit concrètement qu'on ne peut pas retirer 8 cubes de 3 cubes sans casser une barre-dizaine. Cette démarche suit la progression enactif → iconique → symbolique (Bruner) et est recommandée par Éduscol pour les remédiations en cycle 2. La répétition mécanique de l'algorithme ne guérirait pas l'erreur — elle la renforcerait.",
     },
     exampleWrong: {
       sentence:
