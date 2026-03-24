@@ -43,6 +43,13 @@ function getTopicMetadata(exercise: ExerciseRecord) {
   };
 }
 
+function getQuestionSequence(exercise: ExerciseRecord) {
+  const lastSegment = exercise.id.split("-").pop();
+  if (!lastSegment) return Number.MAX_SAFE_INTEGER;
+  const parsed = Number.parseInt(lastSegment, 16);
+  return Number.isNaN(parsed) ? Number.MAX_SAFE_INTEGER : parsed;
+}
+
 const SUBDOMAIN_INTRO: Record<string, string> = {
   grammaire:
     "Cette série porte sur les mécanismes grammaticaux fondamentaux. Analysez chaque phrase avec méthode avant de répondre.",
@@ -150,14 +157,21 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
 
   return Array.from(groups.entries()).flatMap(([key, rows], groupIndex) => {
     const [topicKey, level, accessTier] = key.split("::");
-    const firstQuestion = rows[0];
+    const orderedRows = [...rows].sort((left, right) => {
+      const sequenceDiff = getQuestionSequence(left) - getQuestionSequence(right);
+      if (sequenceDiff !== 0) {
+        return sequenceDiff;
+      }
+      return left.id.localeCompare(right.id);
+    });
+    const firstQuestion = orderedRows[0];
     const { topicLabel } = getTopicMetadata(firstQuestion);
     const chunks: RevisionSession[] = [];
     const isMath = isMathSubdomain(firstQuestion.subdomain);
     const subjectName = isMath ? "mathématiques" : "français";
 
-    for (let i = 0; i < rows.length; i += 10) {
-      const questions = rows.slice(i, i + 10);
+    for (let i = 0; i < orderedRows.length; i += 10) {
+      const questions = orderedRows.slice(i, i + 10);
       // Editorial rule: only expose complete series.
       if (questions.length < 10) {
         continue;
