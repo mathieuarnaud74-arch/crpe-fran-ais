@@ -158,6 +158,10 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
 
     for (let i = 0; i < rows.length; i += 10) {
       const questions = rows.slice(i, i + 10);
+      // Editorial rule: only expose complete series.
+      if (questions.length < 10) {
+        continue;
+      }
       const chunkNumber = Math.floor(i / 10) + 1;
 
       const isSujetBlanc = topicKey.startsWith("sujet_blanc");
