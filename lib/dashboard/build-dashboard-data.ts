@@ -43,9 +43,7 @@ export function buildDashboardData(
   const domainConfig: Record<string, DomainConfigEntry> = subject === "Mathematiques" ? MATH_DOMAIN_CONFIG : FRENCH_DOMAIN_CONFIG;
   const resolveDomainKey = (subdomain: RevisionSession["subdomain"]): DomainKey =>
     (subject === "Mathematiques" ? getMathDomainKey(subdomain) : getFrenchDomainKey(subdomain)) as DomainKey;
-  const visibleSessions = isPremium
-    ? sessions
-    : sessions.filter((session) => session.access_tier === "free");
+  const visibleSessions = sessions;
 
   const questionMap = new Map<
     string,
@@ -280,10 +278,7 @@ export function buildDashboardData(
         domainLabel: domainConfig[domainKey ].label,
         subdomain: session.subdomain,
         subdomainLabel: SUBDOMAIN_LABELS[session.subdomain],
-        level: session.level,
         questionCount: session.questionCount,
-        estimatedMinutes: session.estimatedMinutes,
-        access_tier: session.access_tier,
         recommendedOrder: session.recommendedOrder,
         attempts: attemptsCount,
         answeredQuestions,

@@ -17,11 +17,8 @@ function buildVirtualSession(questions: ExerciseRecord[]): RevisionSession {
     subdomain: questions[0]?.subdomain ?? "grammaire",
     topicKey: "random",
     topicLabel: "Aléatoire",
-    level: "Mixte",
     exerciseTypeLabel: "Mixte",
     questionCount: questions.length,
-    estimatedMinutes: Math.max(questions.length * 2, 5),
-    access_tier: "free",
     recommendedOrder: 0,
     questions,
     completionSummary: {

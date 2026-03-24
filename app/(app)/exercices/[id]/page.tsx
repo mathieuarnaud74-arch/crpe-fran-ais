@@ -89,19 +89,13 @@ export default async function ExerciseDetailPage({
 
   let disabledReason: string | null = null;
 
-  if (session.access_tier === "premium" && !premium) {
-    disabledReason = "Cette série fait partie du catalogue premium.";
-  } else if (!canSubmitAttempt(attemptsToday, premium)) {
-    disabledReason = `Votre quota gratuit du jour est atteint (${env.freeDailyQuestionLimit} questions).`;
+  if (!canSubmitAttempt(attemptsToday, premium)) {
+    disabledReason = `Votre quota du jour est atteint (${env.freeDailyQuestionLimit} questions). Revenez demain ou passez en premium.`;
   }
 
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center gap-3">
-        <Badge tone={session.access_tier === "premium" ? "accent" : "neutral"}>
-          {session.access_tier === "premium" ? "Premium" : "Gratuit"}
-        </Badge>
-        <Badge>{session.level}</Badge>
         <Badge>{session.questionCount} questions</Badge>
       </div>
       {crpeContext ? (

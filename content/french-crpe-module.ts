@@ -1,7 +1,5 @@
 import { ExerciseSubdomain, ExerciseType, FrenchSubdomain } from "@/types/domain";
 
-type FrenchLevel = "Facile" | "Intermediaire" | "Difficile";
-
 type Choice = {
   id: string;
   label: string;
@@ -52,7 +50,6 @@ export type FrenchSeriesPlanItem = {
   domainLabel: string;
   subdomain: string;
   subdomainLabel: string;
-  level: FrenchLevel;
   title: string;
   exerciseTypes: ExerciseType[];
   pedagogicalObjective: string;
@@ -77,10 +74,8 @@ export type FrenchSeries = {
   domainLabel: string;
   subdomain: string;
   subdomainLabel: string;
-  level: FrenchLevel;
   objective: string;
   introduction: string;
-  estimatedMinutes: number;
   questions: FrenchQuestion[];
   bilan: {
     competenceTravaillee: string;
@@ -194,11 +189,8 @@ function reponseCourte(
   };
 }
 
-function buildSeries(data: Omit<FrenchSeries, "estimatedMinutes">): FrenchSeries {
-  return {
-    ...data,
-    estimatedMinutes: Math.max(12, data.questions.length * 2),
-  };
+function buildSeries(data: FrenchSeries): FrenchSeries {
+  return data;
 }
 
 export const part1CadragePedagogiqueFrancais: FrenchPedagogicalDomain[] = [
@@ -455,7 +447,6 @@ export const part3PlanContenuStructure: FrenchSeriesPlanItem[] = [
     domainLabel: DOMAIN_LABELS.orthographe,
     subdomain: "accord_sujet_verbe",
     subdomainLabel: "Accord sujet-verbe",
-    level: "Facile",
     title: "Accord sujet-verbe: reperer le noyau du sujet",
     exerciseTypes: ["correction_orthographique", "qcm", "vrai_faux", "reponse_courte"],
     pedagogicalObjective: "Stabiliser le geste de reperage du sujet reel avant l'accord.",
@@ -467,7 +458,6 @@ export const part3PlanContenuStructure: FrenchSeriesPlanItem[] = [
     domainLabel: DOMAIN_LABELS.grammaire,
     subdomain: "nature_fonction_phrase_simple",
     subdomainLabel: "Nature et fonction dans la phrase simple",
-    level: "Facile",
     title: "Nature ou fonction: ne plus confondre",
     exerciseTypes: ["identification_grammaticale", "qcm", "vrai_faux", "reponse_courte"],
     pedagogicalObjective: "Rendre la lecture de la consigne et l'analyse grammaticale plus fiables.",
@@ -479,7 +469,6 @@ export const part3PlanContenuStructure: FrenchSeriesPlanItem[] = [
     domainLabel: DOMAIN_LABELS.orthographe,
     subdomain: "homophones_grammaticaux",
     subdomainLabel: "Homophones grammaticaux",
-    level: "Facile",
     title: "Homophones grammaticaux: choisir par test",
     exerciseTypes: ["qcm", "reponse_courte"],
     pedagogicalObjective: "Associer chaque choix orthographique a un test grammatical stable.",
@@ -491,7 +480,6 @@ export const part3PlanContenuStructure: FrenchSeriesPlanItem[] = [
     domainLabel: DOMAIN_LABELS.conjugaison,
     subdomain: "futur_conditionnel_subjonctif",
     subdomainLabel: "Futur, conditionnel, subjonctif",
-    level: "Intermediaire",
     title: "Temps et modes proches: choisir en contexte",
     exerciseTypes: ["qcm", "vrai_faux", "reponse_courte"],
     pedagogicalObjective: "Relier forme verbale et valeur d'emploi.",
@@ -503,7 +491,6 @@ export const part3PlanContenuStructure: FrenchSeriesPlanItem[] = [
     domainLabel: DOMAIN_LABELS.comprehension_texte,
     subdomain: "inferences_et_connecteurs",
     subdomainLabel: "Inferences et connecteurs",
-    level: "Intermediaire",
     title: "Lire entre les lignes sans surinterpreter",
     exerciseTypes: ["qcm", "analyse_texte", "vrai_faux", "reponse_courte"],
     pedagogicalObjective: "Justifier chaque reponse par un indice textuel identifiable.",
@@ -515,7 +502,6 @@ export const part3PlanContenuStructure: FrenchSeriesPlanItem[] = [
     domainLabel: DOMAIN_LABELS.analyse_langue,
     subdomain: "groupe_nominal_et_relative",
     subdomainLabel: "Groupe nominal et relative",
-    level: "Intermediaire",
     title: "Analyser une phrase avec relative sans perdre le fil",
     exerciseTypes: ["identification_grammaticale", "analyse_texte", "reponse_courte"],
     pedagogicalObjective: "Articuler antecedent, relative, fonction et accord.",
@@ -527,7 +513,6 @@ export const part3PlanContenuStructure: FrenchSeriesPlanItem[] = [
     domainLabel: DOMAIN_LABELS.grammaire,
     subdomain: "formes_de_phrase_et_voix_passive",
     subdomainLabel: "Formes de phrase et voix passive",
-    level: "Intermediaire",
     title: "Voix passive: transformer sans perdre le sens",
     exerciseTypes: ["qcm", "vrai_faux", "reponse_courte", "identification_grammaticale"],
     pedagogicalObjective: "Identifier les conditions de la passivation et reussir des transformations stables.",
@@ -539,7 +524,6 @@ export const part3PlanContenuStructure: FrenchSeriesPlanItem[] = [
     domainLabel: DOMAIN_LABELS.analyse_langue,
     subdomain: "transformations_de_phrase_crpe",
     subdomainLabel: "Transformations de phrase type CRPE",
-    level: "Intermediaire",
     title: "Transformations de phrase: manipuler comme au CRPE",
     exerciseTypes: ["qcm", "vrai_faux", "reponse_courte", "analyse_texte"],
     pedagogicalObjective: "Utiliser les manipulations de phrase pour justifier une analyse et produire la bonne transformation.",
@@ -551,7 +535,6 @@ export const part3PlanContenuStructure: FrenchSeriesPlanItem[] = [
     domainLabel: DOMAIN_LABELS.didactique_francais,
     subdomain: "lecture_et_comprehension",
     subdomainLabel: "Lecture, comprehension et etude de la langue",
-    level: "Intermediaire",
     title: "Didactique: choisir le bon geste pour faire progresser",
     exerciseTypes: ["qcm", "vrai_faux", "reponse_courte"],
     pedagogicalObjective: "Lire une situation de classe a partir de l'obstacle d'apprentissage.",
@@ -567,7 +550,6 @@ export const part4PremierLotSeriesCompletes: FrenchSeries[] = [
     domainLabel: DOMAIN_LABELS.orthographe,
     subdomain: "accord_sujet_verbe",
     subdomainLabel: "Accord sujet-verbe",
-    level: "Facile",
     objective: "Identifier le vrai sujet avant de choisir la forme verbale.",
     introduction:
       "Cette serie installe un automatisme central pour le CRPE: avant d'accorder, il faut retrouver le noyau du sujet et resister au piege du mot le plus proche.",
@@ -677,7 +659,6 @@ export const part4PremierLotSeriesCompletes: FrenchSeries[] = [
     domainLabel: DOMAIN_LABELS.grammaire,
     subdomain: "nature_fonction_phrase_simple",
     subdomainLabel: "Nature et fonction dans la phrase simple",
-    level: "Facile",
     objective: "Distinguer ce qu'un mot est et le role qu'il joue dans la phrase.",
     introduction:
       "L'objectif n'est pas de reciter des etiquettes, mais de repondre exactement a la consigne. On travaille ici le geste le plus rentable: lire, reperer, nommer et justifier.",
@@ -797,7 +778,6 @@ export const part4PremierLotSeriesCompletes: FrenchSeries[] = [
     domainLabel: DOMAIN_LABELS.conjugaison,
     subdomain: "futur_conditionnel_subjonctif",
     subdomainLabel: "Futur, conditionnel, subjonctif",
-    level: "Intermediaire",
     objective: "Relier la forme verbale a la valeur exprimee dans la phrase.",
     introduction:
       "Le bon choix verbal ne repose pas seulement sur la terminaison. Cette serie vous oblige a lire le contexte, la valeur d'emploi et le declencheur syntaxique.",
@@ -919,7 +899,6 @@ export const part4PremierLotSeriesCompletes: FrenchSeries[] = [
     domainLabel: DOMAIN_LABELS.comprehension_texte,
     subdomain: "inferences_et_connecteurs",
     subdomainLabel: "Inferences et connecteurs",
-    level: "Intermediaire",
     objective: "Justifier chaque reponse de comprehension par un indice textuel.",
     introduction:
       "Une bonne reponse de comprehension n'est ni une intuition vague ni une reformulation floue. Cette serie vous entraine a appuyer chaque choix sur un indice precis du texte.",
@@ -1059,7 +1038,6 @@ export const part4PremierLotSeriesCompletes: FrenchSeries[] = [
     domainLabel: DOMAIN_LABELS.grammaire,
     subdomain: "formes_de_phrase_et_voix_passive",
     subdomainLabel: "Formes de phrase et voix passive",
-    level: "Intermediaire",
     objective:
       "Identifier la voix passive et transformer une phrase active en respectant les fonctions, les temps et les accords.",
     introduction:
@@ -1167,7 +1145,6 @@ export const part4PremierLotSeriesCompletes: FrenchSeries[] = [
     domainLabel: DOMAIN_LABELS.analyse_langue,
     subdomain: "transformations_de_phrase_crpe",
     subdomainLabel: "Transformations de phrase type CRPE",
-    level: "Intermediaire",
     objective:
       "Produire des transformations de phrase frequentes au CRPE et utiliser les manipulations pour justifier une analyse syntaxique.",
     introduction:
@@ -1284,7 +1261,6 @@ export const part4PremierLotSeriesCompletes: FrenchSeries[] = [
     domainLabel: DOMAIN_LABELS.didactique_francais,
     subdomain: "lecture_et_comprehension",
     subdomainLabel: "Lecture, comprehension et etude de la langue",
-    level: "Intermediaire",
     objective: "Analyser une situation d'apprentissage en partant de l'obstacle reel de l'eleve.",
     introduction:
       "La didactique du francais ne se reduit ni a des slogans ni a des recettes. Cette serie vous entraine a choisir des gestes professionnels justifies par l'objectif d'apprentissage.",

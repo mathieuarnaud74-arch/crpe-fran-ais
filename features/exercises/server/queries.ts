@@ -3,7 +3,6 @@ import { cache } from "react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import {
   EXERCISE_TYPE_LABELS,
-  formatLevelLabel,
   isMathSubdomain,
 } from "@/lib/constants";
 import {
@@ -17,7 +16,6 @@ import { normalizeExpectedAnswer, normalizeChoices } from "@/features/exercises/
 type ExerciseFilters = {
   subdomain?: ExerciseSubdomain;
   type?: ExerciseType;
-  level?: string;
   subject?: string;
 };
 
@@ -41,13 +39,6 @@ function getTopicMetadata(exercise: ExerciseRecord) {
     topicKey: exercise.topic_key ?? `${exercise.subdomain}_${exercise.exercise_type}`,
     topicLabel: exercise.topic_label ?? formatExerciseTypeLabel(exercise.exercise_type),
   };
-}
-
-function getQuestionSequence(exercise: ExerciseRecord) {
-  const lastSegment = exercise.id.split("-").pop();
-  if (!lastSegment) return Number.MAX_SAFE_INTEGER;
-  const parsed = Number.parseInt(lastSegment, 16);
-  return Number.isNaN(parsed) ? Number.MAX_SAFE_INTEGER : parsed;
 }
 
 const SUBDOMAIN_INTRO: Record<string, string> = {
@@ -145,85 +136,62 @@ function buildSessionsFromExercises(exercises: ExerciseRecord[]): RevisionSessio
 
   for (const exercise of exercises) {
     const { topicKey } = getTopicMetadata(exercise);
-    // Sujets blancs : grouper par topicKey seul (pas de split par level)
-    const isSujetBlanc = topicKey.startsWith("sujet_blanc");
-    const key = isSujetBlanc
-      ? `${topicKey}::Difficile::${exercise.access_tier}`
-      : `${topicKey}::${exercise.level}::${exercise.access_tier}`;
-    const current = groups.get(key) ?? [];
+    const current = groups.get(topicKey) ?? [];
     current.push(exercise);
-    groups.set(key, current);
+    groups.set(topicKey, current);
   }
 
-  return Array.from(groups.entries()).flatMap(([key, rows], groupIndex) => {
-    const [topicKey, level, accessTier] = key.split("::");
+  return Array.from(groups.entries()).map(([topicKey, rows], groupIndex) => {
     const orderedRows = [...rows].sort((left, right) => {
-      const sequenceDiff = getQuestionSequence(left) - getQuestionSequence(right);
-      if (sequenceDiff !== 0) {
-        return sequenceDiff;
-      }
+      const orderDiff = (left.series_order ?? 0) - (right.series_order ?? 0);
+      if (orderDiff !== 0) return orderDiff;
       return left.id.localeCompare(right.id);
     });
+
     const firstQuestion = orderedRows[0];
     const { topicLabel } = getTopicMetadata(firstQuestion);
-    const chunks: RevisionSession[] = [];
     const isMath = isMathSubdomain(firstQuestion.subdomain);
     const subjectName = isMath ? "mathématiques" : "français";
+    const isSujetBlanc = topicKey.startsWith("sujet_blanc");
 
-    for (let i = 0; i < orderedRows.length; i += 10) {
-      const questions = orderedRows.slice(i, i + 10);
-      // Editorial rule: only expose complete series.
-      if (questions.length < 10) {
-        continue;
-      }
-      const chunkNumber = Math.floor(i / 10) + 1;
-
-      const isSujetBlanc = topicKey.startsWith("sujet_blanc");
-
-      chunks.push({
-        id: `session-${topicKey}-${level}-${chunkNumber}`,
-        title: isSujetBlanc
-          ? topicLabel
-          : `Série ${groupIndex + 1}.${chunkNumber} - ${topicLabel}`,
-        summary: isSujetBlanc
-          ? `Épreuve sur texte littéraire en 2 parties : étude de la langue et analyse du lexique.`
-          : "Série construite automatiquement à partir des questions disponibles.",
-        objective: isSujetBlanc
-          ? `Analyser un texte littéraire : grammaire, subordonnées, réécriture, lexique — comme au CRPE.`
-          : `Maîtriser ${topicLabel} — compétence attendue au CRPE de ${subjectName}.`,
-        introduction: isSujetBlanc
-          ? `Ce sujet blanc est construit autour d'un texte littéraire, sur le modèle de l'épreuve écrite du CRPE. Lisez attentivement le texte support avant de répondre aux questions.`
-          : (SUBDOMAIN_INTRO[firstQuestion.subdomain] ??
-            `Cette série porte sur la notion « ${topicLabel} ». Répondez avec méthode.`),
-        subdomain: firstQuestion.subdomain as ExerciseSubdomain,
-        topicKey,
-        topicLabel,
-        level: formatLevelLabel(level),
-        exerciseTypeLabel: Array.from(
-          new Set(questions.map((question) => EXERCISE_TYPE_LABELS[question.exercise_type])),
-        ).join(", "),
-        questionCount: questions.length,
-        estimatedMinutes: Math.max(questions.length * 2, 8),
-        access_tier: accessTier as RevisionSession["access_tier"],
-        recommendedOrder: groupIndex * 10 + chunkNumber,
-        questions,
-        completionSummary: {
-          skill: isMath
-            ? `Consolider ${topicLabel} par la reprise méthodique des corrections.`
-            : `Consolider ${topicLabel} par la relecture attentive des corrections.`,
-          keyPoints:
-            SUBDOMAIN_KEYPOINTS[firstQuestion.subdomain] ?? [
-              "Relire la consigne avant de répondre.",
-              "Comparer les erreurs pour détecter les automatismes fragiles.",
-              "Refaire la série pour consolider la logique des corrections.",
-            ],
-          retryAdvice:
-            "Reprenez les questions ratées en explicitant à voix haute la règle ou le raisonnement attendu.",
-        },
-      });
-    }
-
-    return chunks;
+    return {
+      id: `session-${topicKey}`,
+      title: isSujetBlanc
+        ? topicLabel
+        : `${topicLabel}`,
+      summary: isSujetBlanc
+        ? `Épreuve sur texte littéraire en 2 parties : étude de la langue et analyse du lexique.`
+        : "Série construite automatiquement à partir des questions disponibles.",
+      objective: isSujetBlanc
+        ? `Analyser un texte littéraire : grammaire, subordonnées, réécriture, lexique — comme au CRPE.`
+        : `Maîtriser ${topicLabel} — compétence attendue au CRPE de ${subjectName}.`,
+      introduction: isSujetBlanc
+        ? `Ce sujet blanc est construit autour d'un texte littéraire, sur le modèle de l'épreuve écrite du CRPE. Lisez attentivement le texte support avant de répondre aux questions.`
+        : (SUBDOMAIN_INTRO[firstQuestion.subdomain] ??
+          `Cette série porte sur la notion « ${topicLabel} ». Répondez avec méthode.`),
+      subdomain: firstQuestion.subdomain as ExerciseSubdomain,
+      topicKey,
+      topicLabel,
+      exerciseTypeLabel: Array.from(
+        new Set(orderedRows.map((question) => EXERCISE_TYPE_LABELS[question.exercise_type])),
+      ).join(", "),
+      questionCount: orderedRows.length,
+      recommendedOrder: groupIndex,
+      questions: orderedRows,
+      completionSummary: {
+        skill: isMath
+          ? `Consolider ${topicLabel} par la reprise méthodique des corrections.`
+          : `Consolider ${topicLabel} par la relecture attentive des corrections.`,
+        keyPoints:
+          SUBDOMAIN_KEYPOINTS[firstQuestion.subdomain] ?? [
+            "Relire la consigne avant de répondre.",
+            "Comparer les erreurs pour détecter les automatismes fragiles.",
+            "Refaire la série pour consolider la logique des corrections.",
+          ],
+        retryAdvice:
+          "Reprenez les questions ratées en explicitant à voix haute la règle ou le raisonnement attendu.",
+      },
+    };
   });
 }
 
@@ -253,10 +221,6 @@ async function fetchAllExercises(filters: ExerciseFilters): Promise<ExerciseReco
       query = query.eq("exercise_type", filters.type);
     }
 
-    if (filters.level) {
-      query = query.eq("level", filters.level);
-    }
-
     const { data } = await query;
     const rows = (data ?? []) as ExerciseRecord[];
     allRows.push(...rows);
@@ -269,7 +233,7 @@ async function fetchAllExercises(filters: ExerciseFilters): Promise<ExerciseReco
 }
 
 function filtersToKey(filters: ExerciseFilters): string {
-  return `${filters.subdomain ?? ""}|${filters.type ?? ""}|${filters.level ?? ""}|${filters.subject ?? ""}`;
+  return `${filters.subdomain ?? ""}|${filters.type ?? ""}|${filters.subject ?? ""}`;
 }
 
 const fetchExercisesCachedByKey = cache(async (_key: string, filters: ExerciseFilters) => {
@@ -294,12 +258,25 @@ export async function getExerciseById(id: string) {
 }
 
 export async function getExerciseSessionById(id: string) {
-  const frenchSessions = await getExercises({ subject: "Francais" });
-  const found = frenchSessions.find((session) => session.id === id);
+  const allSessions = [
+    ...(await getExercises({ subject: "Francais" })),
+    ...(await getExercises({ subject: "Mathematiques" })),
+  ];
+
+  // Exact match first
+  const found = allSessions.find((session) => session.id === id);
   if (found) return found;
 
-  const mathSessions = await getExercises({ subject: "Mathematiques" });
-  return mathSessions.find((session) => session.id === id) ?? null;
+  // Fallback: old session IDs had format session-{topicKey}-{level}-{chunk}
+  // Try to extract topicKey and match by prefix
+  const match = id.match(/^session-(.+?)(?:-(Facile|Intermediaire|Avance|Difficile|Standard|Mixte)-\d+)?$/);
+  if (match) {
+    const topicKey = match[1];
+    const fallback = allSessions.find((session) => session.topicKey === topicKey);
+    if (fallback) return fallback;
+  }
+
+  return null;
 }
 
 export async function getAttemptsForHistory(userId: string, limit?: number) {
@@ -331,7 +308,6 @@ export async function getRandomExercises(count = 10, subject?: string) {
     .select("*")
     .eq("is_published", true)
     .eq("subject", subject ?? DEFAULT_SUBJECT)
-    .eq("access_tier", "free")
     .limit(POOL_SIZE);
 
   if (!data || data.length === 0) return [];

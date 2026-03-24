@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";
-import { isPremiumUser } from "@/features/billing/server/queries";
+
 import { ExerciseSessionWrapper } from "@/features/exercises/components/exercise-session-wrapper";
 import { getExerciseById } from "@/features/exercises/server/queries";
 import { getUserGamification } from "@/features/gamification/server/queries";
@@ -20,7 +20,6 @@ export const metadata: Metadata = {
 
 export default async function RevisionPage() {
   const user = await requireUser();
-  const premium = await isPremiumUser(user.id);
 
   const [dueItems, dueCount] = await Promise.all([
     getDueExercises(user.id, 20),
@@ -57,11 +56,11 @@ export default async function RevisionPage() {
     );
   }
 
-  // Fetch full exercise records for due items (filter out premium for free users)
+  // Fetch full exercise records for due items
   const exercises: ExerciseRecord[] = [];
   for (const item of dueItems) {
     const ex = await getExerciseById(item.exercise_id);
-    if (ex && (ex.access_tier === "free" || premium)) exercises.push(ex);
+    if (ex) exercises.push(ex);
   }
 
   if (exercises.length === 0) {
@@ -97,11 +96,8 @@ export default async function RevisionPage() {
     subdomain: primarySubdomain as ExerciseSubdomain,
     topicKey: "srs-revision",
     topicLabel: "Révision espacée",
-    level: "Mixte",
     exerciseTypeLabel: "Mixte",
     questionCount: exercises.length,
-    estimatedMinutes: Math.max(exercises.length * 2, 5),
-    access_tier: "free",
     recommendedOrder: 0,
     questions: exercises,
     completionSummary: {

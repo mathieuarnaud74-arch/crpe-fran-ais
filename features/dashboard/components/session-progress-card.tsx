@@ -11,7 +11,7 @@ type SessionProgressCardProps = {
 };
 
 function formatSessionMeta(session: DashboardSessionProgress) {
-  const parts = [`${session.questionCount} questions`, session.level];
+  const parts = [`${session.questionCount} questions`];
 
   if (session.correctRate !== null) {
     parts.push(`${session.correctRate} %`);
@@ -28,9 +28,6 @@ export function SessionProgressCard({ session, compact = false }: SessionProgres
           <div className="flex flex-wrap items-center gap-2">
             <Badge tone="accentSecondary" size="sm">
               {session.domainLabel}
-            </Badge>
-            <Badge tone={session.access_tier === "premium" ? "accent" : "neutral"} size="sm">
-              {session.access_tier === "premium" ? "Premium" : "Gratuit"}
             </Badge>
             <LearningStatusBadge status={session.status} />
           </div>

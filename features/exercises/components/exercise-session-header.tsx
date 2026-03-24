@@ -37,10 +37,6 @@ export function ExerciseSessionHeader({
       <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
         <div className="space-y-3">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge tone={session.access_tier === "premium" ? "accent" : "neutral"}>
-              {session.access_tier === "premium" ? "Premium" : "Gratuit"}
-            </Badge>
-            <Badge>{session.level}</Badge>
             <Badge>{session.questionCount} questions</Badge>
             {consecutiveCorrect >= 3 && !completed && (
               <span className={cn(

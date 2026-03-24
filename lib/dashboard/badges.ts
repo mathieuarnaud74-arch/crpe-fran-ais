@@ -58,12 +58,6 @@ export function computeEarnedBadges(ctx: {
     ([, v]) => v.attempts > 0,
   );
 
-  // Level mastery
-  const levelsWithAttempts = new Set(
-    ctx.sessionProgress.filter((s) => s.attempts > 0).map((s) => s.level),
-  );
-  const levelsMastered = new Set(masteredSessions.map((s) => s.level));
-
   // Comeback detection (gap of 3+ days in activity)
   const sortedDays = [...ctx.dailyActivity].sort((a, b) => a.date.localeCompare(b.date));
   let hasComeback = false;
@@ -238,8 +232,6 @@ export function computeEarnedBadges(ctx: {
   push(ctx.totalSeries > 0 && ctx.masteredSessions >= Math.ceil(ctx.totalSeries / 2), { id: "half-mastery", label: "Mi-chemin", description: "50 % des séries maîtrisées", icon: "\uD83D\uDEE4\uFE0F", category: "mastery" });
   push(ctx.totalSeries > 0 && ctx.masteredSessions >= ctx.totalSeries, { id: "full-mastery", label: "Apothéose", description: "Toutes les séries maîtrisées", icon: "\uD83C\uDF1F", category: "mastery" });
 
-  push(levelsMastered.has("Facile"), { id: "facile-mastery", label: "Base solide", description: "Maîtriser une série Facile", icon: "\uD83E\uDDF1", category: "mastery" });
-  push(levelsMastered.has("Intermédiaire") || levelsMastered.has("Intermediaire"), { id: "intermediaire-mastery", label: "Niveau supérieur", description: "Maîtriser une série Intermédiaire", icon: "\uD83D\uDCF6", category: "mastery" });
 
   // ────────────────────────────────────────
   // STREAK — Régularité et records
@@ -301,15 +293,12 @@ export function computeEarnedBadges(ctx: {
   push(startedSeries >= 10, { id: "10-series-started", label: "Dix entamées", description: "Commencer 10 séries différentes", icon: "\uD83D\uDE80", category: "engagement" });
   push(startedSeries >= 20, { id: "20-series-started", label: "Vingt entamées", description: "Commencer 20 séries différentes", icon: "\uD83D\uDEF8", category: "engagement" });
 
-  push(levelsWithAttempts.size >= 3, { id: "all-levels-tried", label: "Tous niveaux", description: "Essayer Facile, Intermédiaire et Avancé", icon: "\uD83D\uDCCA", category: "engagement" });
-
   push(ctx.totalSeries > 0 && startedSeries >= Math.ceil(ctx.totalSeries / 2), { id: "half-explored", label: "Demi-catalogue", description: "Commencer 50 % des séries", icon: "\uD83C\uDF10", category: "engagement" });
   push(ctx.totalSeries > 0 && startedSeries >= Math.ceil(ctx.totalSeries * 0.75), { id: "75-explored", label: "Trois quarts", description: "Commencer 75 % des séries", icon: "\uD83D\uDDFA\uFE0F", category: "engagement" });
   push(ctx.totalSeries > 0 && startedSeries >= ctx.totalSeries, { id: "full-explored", label: "Catalogue complet", description: "Commencer toutes les séries", icon: "\uD83C\uDFC1", category: "engagement" });
 
   push(reviewedSeries >= 10, { id: "10-reviews", label: "Révisionniste", description: "Refaire 10 séries terminées", icon: "\uD83D\uDD01", category: "engagement" });
 
-  push(levelsMastered.has("Avancé") || levelsMastered.has("Avance"), { id: "avance-mastery", label: "Haute voltige", description: "Maîtriser une série Avancé", icon: "\uD83E\uDD85", category: "engagement" });
 
   push(exerciseTypesUsed.size >= 4, { id: "diverse-types", label: "Caméléon", description: "Répondre à 4 types d'exercices", icon: "\uD83C\uDFAD", category: "engagement" });
 

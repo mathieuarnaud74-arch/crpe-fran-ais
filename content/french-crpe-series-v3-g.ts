@@ -4,10 +4,10 @@ const createdAt = "2026-03-20T08:00:00.000Z";
 
 type QuestionInput = Omit<
   ExerciseRecord,
-  "subject" | "validation_status" | "source" | "is_published" | "created_at" | "updated_at"
+  "subject" | "validation_status" | "source" | "is_published" | "created_at" | "updated_at" | "level" | "access_tier"
 >;
 
-type SessionInput = Omit<RevisionSession, "questionCount">;
+type SessionInput = Omit<RevisionSession, "questionCount" | "level" | "estimatedMinutes" | "access_tier">;
 
 function question(data: QuestionInput): ExerciseRecord {
   return {
@@ -29,18 +29,15 @@ function buildSession(data: SessionInput): RevisionSession {
 function qcm(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   choices: Array<{ id: string; label: string }>,
   value: string,
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
 ) {
   return question({
     id,
     subdomain,
-    level,
     exercise_type: "qcm",
     instruction,
     support_text: null,
@@ -48,7 +45,6 @@ function qcm(
     expected_answer: { mode: "single_choice", value },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null,
     topic_label: null,
   });
@@ -57,17 +53,14 @@ function qcm(
 function vraiFaux(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   value: boolean,
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
 ) {
   return question({
     id,
     subdomain,
-    level,
     exercise_type: "vrai_faux",
     instruction,
     support_text: null,
@@ -75,7 +68,6 @@ function vraiFaux(
     expected_answer: { mode: "boolean", value },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null,
     topic_label: null,
   });
@@ -84,19 +76,16 @@ function vraiFaux(
 function reponseCourte(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   acceptableAnswers: string[],
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
   exercise_type: ExerciseRecord["exercise_type"] = "reponse_courte",
   support_text: string | null = null,
 ) {
   return question({
     id,
     subdomain,
-    level,
     exercise_type,
     instruction,
     support_text,
@@ -104,7 +93,6 @@ function reponseCourte(
     expected_answer: { mode: "text", acceptableAnswers },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null,
     topic_label: null,
   });
@@ -122,10 +110,7 @@ export const seriesV3BatchG: RevisionSession[] = [
     subdomain: "conjugaison",
     topicKey: "groupes_de_verbes",
     topicLabel: "Les trois groupes de verbes",
-    level: "Facile",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 10,
-    access_tier: "free",
     recommendedOrder: 33,
     completionSummary: {
       skill: "Déterminer le groupe d'un verbe à partir de son infinitif et de son participe présent",
@@ -141,7 +126,6 @@ export const seriesV3BatchG: RevisionSession[] = [
       qcm(
         "v3g-gdv-1",
         "conjugaison",
-        "Facile",
         'À quel groupe appartient le verbe "chanter" ?',
         [
           { id: "a", label: "1er groupe" },
@@ -151,12 +135,10 @@ export const seriesV3BatchG: RevisionSession[] = [
         "a",
         '"Chanter" a un infinitif en -er et un seul radical (chant-). Il appartient donc au 1er groupe. Tous les verbes en -er (sauf aller) font partie de ce groupe, qui est le plus régulier et le plus nombreux de la langue française.',
         "Confondre le critère du 1er groupe (infinitif en -er) avec celui du 2e groupe (infinitif en -ir + participe présent en -issant).",
-        "free",
       ),
       qcm(
         "v3g-gdv-2",
         "conjugaison",
-        "Facile",
         'À quel groupe appartient le verbe "finir" ?',
         [
           { id: "a", label: "1er groupe" },
@@ -166,22 +148,18 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         '"Finir" a un infinitif en -ir et son participe présent est "finissant" (en -issant). C\'est le critère décisif du 2e groupe. On le vérifie facilement en conjuguant : « nous finissons » — le suffixe -iss- apparaît.',
         "Se contenter de l'infinitif en -ir sans vérifier le participe présent en -issant.",
-        "free",
       ),
       vraiFaux(
         "v3g-gdv-3",
         "conjugaison",
-        "Facile",
         'Vrai ou faux : le verbe "aller" appartient au 1er groupe car son infinitif se termine en -er.',
         false,
         'Malgré son infinitif en -er, "aller" n\'appartient PAS au 1er groupe. Il possède plusieurs radicaux (all-, v-, ir-) et se conjugue de façon très irrégulière (je vais, nous allons, j\'irai). Il est classé dans le 3e groupe, qui rassemble tous les verbes irréguliers.',
         "Classer automatiquement tous les verbes en -er dans le 1er groupe sans vérifier la régularité du radical.",
-        "free",
       ),
       qcm(
         "v3g-gdv-4",
         "conjugaison",
-        "Facile",
         'À quel groupe appartient le verbe "partir" ?',
         [
           { id: "a", label: "1er groupe" },
@@ -191,22 +169,18 @@ export const seriesV3BatchG: RevisionSession[] = [
         "c",
         '"Partir" a bien un infinitif en -ir, mais son participe présent est "partant" (et non "partissant"). Il n\'entre donc pas dans le 2e groupe. C\'est un verbe du 3e groupe, sous-type en -ir sans suffixe -iss-.',
         "Classer tout verbe en -ir dans le 2e groupe sans former le participe présent.",
-        "free",
       ),
       reponseCourte(
         "v3g-gdv-5",
         "conjugaison",
-        "Facile",
         'Quel est le participe présent du verbe "grossir" ? (Écrivez la forme complète.)',
         ["grossissant"],
         'Le participe présent de "grossir" est "grossissant". La présence du suffixe -issant confirme que "grossir" appartient au 2e groupe. C\'est le test le plus fiable pour distinguer les verbes du 2e groupe de ceux du 3e groupe qui ont aussi un infinitif en -ir.',
         "Écrire « grossant » en oubliant le suffixe -iss- caractéristique du 2e groupe.",
-        "free",
       ),
       qcm(
         "v3g-gdv-6",
         "conjugaison",
-        "Facile",
         'À quel groupe appartient le verbe "écrire" ?',
         [
           { id: "a", label: "1er groupe" },
@@ -216,22 +190,18 @@ export const seriesV3BatchG: RevisionSession[] = [
         "c",
         '"Écrire" a un infinitif en -re : il ne peut appartenir ni au 1er groupe (-er) ni au 2e groupe (-ir + -issant). Il fait partie du 3e groupe, sous-type des verbes en -re. On y retrouve aussi lire, prendre, mettre, etc.',
         "Hésiter avec le 2e groupe alors que l'infinitif ne se termine pas en -ir.",
-        "free",
       ),
       vraiFaux(
         "v3g-gdv-7",
         "conjugaison",
-        "Facile",
         'Vrai ou faux : les verbes "être" et "avoir" appartiennent au 3e groupe.',
         true,
         '"Être" et "avoir" sont deux verbes très irréguliers qui n\'entrent ni dans le 1er groupe (infinitif en -er) ni dans le 2e groupe (infinitif en -ir + -issant). Ils sont classés dans le 3e groupe, qui rassemble l\'ensemble des verbes irréguliers de la langue française.',
         "Penser que être et avoir forment un groupe à part hors de la classification traditionnelle.",
-        "free",
       ),
       qcm(
         "v3g-gdv-8",
         "conjugaison",
-        "Facile",
         'Parmi ces verbes, lequel appartient au 2e groupe ?',
         [
           { id: "a", label: "Courir" },
@@ -242,27 +212,22 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         '"Bondir" a un infinitif en -ir et son participe présent est "bondissant" (en -issant) : il est du 2e groupe. En revanche, "courir" fait "courant", "dormir" fait "dormant" et "venir" fait "venant" : ces trois verbes sont du 3e groupe.',
         "Choisir courir ou dormir par réflexe car ce sont des verbes courants en -ir, sans vérifier le participe présent.",
-        "free",
       ),
       reponseCourte(
         "v3g-gdv-9",
         "conjugaison",
-        "Facile",
         'À quel groupe appartient le verbe "savoir" ? (Répondez par un chiffre : 1, 2 ou 3.)',
         ["3", "3e", "3e groupe", "troisième", "troisième groupe"],
         '"Savoir" a un infinitif en -oir : il ne peut être ni du 1er groupe ni du 2e groupe. Il fait partie du 3e groupe, sous-type des verbes en -oir (savoir, pouvoir, devoir, vouloir, recevoir, etc.).',
         "Hésiter à cause de la terminaison -oir qui n'est pas toujours bien identifiée comme relevant du 3e groupe.",
-        "free",
       ),
       vraiFaux(
         "v3g-gdv-10",
         "conjugaison",
-        "Facile",
         'Vrai ou faux : le verbe "rougir" appartient au 2e groupe.',
         true,
         '"Rougir" a un infinitif en -ir et son participe présent est "rougissant" (en -issant). Il remplit donc les deux critères du 2e groupe. On peut vérifier en conjuguant : nous rougissons — le suffixe -iss- est bien présent à toutes les formes du pluriel.',
         "Douter parce que rougir est un verbe de changement d'état et non un verbe d'action physique.",
-        "free",
       ),
     ],
   }),
@@ -278,10 +243,7 @@ export const seriesV3BatchG: RevisionSession[] = [
     subdomain: "conjugaison",
     topicKey: "transitivite_verbe",
     topicLabel: "Transitivité du verbe",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 12,
-    access_tier: "free",
     recommendedOrder: 34,
     completionSummary: {
       skill: "Déterminer la transitivité d'un verbe en contexte",
@@ -298,7 +260,6 @@ export const seriesV3BatchG: RevisionSession[] = [
       qcm(
         "v3g-tv-1",
         "conjugaison",
-        "Intermediaire",
         'Dans "Elle lit un roman", quelle est la construction du verbe "lit" ?',
         [
           { id: "a", label: "Transitif direct" },
@@ -309,12 +270,10 @@ export const seriesV3BatchG: RevisionSession[] = [
         "a",
         '"Lit" admet le COD "un roman" (Elle lit quoi ? — un roman). Le verbe est donc transitif direct. Le COD se construit sans préposition, directement après le verbe. C\'est la construction la plus courante du verbe "lire".',
         "Confondre transitif direct et transitif indirect en oubliant que le COD se construit sans préposition.",
-        "free",
       ),
       qcm(
         "v3g-tv-2",
         "conjugaison",
-        "Intermediaire",
         'Dans "Elle parle de ses vacances", quelle est la construction du verbe "parle" ?',
         [
           { id: "a", label: "Transitif direct" },
@@ -325,12 +284,10 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         '"Parle" est suivi du COI "de ses vacances", introduit par la préposition "de". Le verbe est donc transitif indirect. On pose la question : « Elle parle de quoi ? — de ses vacances. » La préposition est le signal du complément d\'objet indirect.',
         "Répondre transitif direct en ignorant la préposition « de » qui introduit le complément.",
-        "free",
       ),
       qcm(
         "v3g-tv-3",
         "conjugaison",
-        "Intermediaire",
         'Dans "L\'enfant dort paisiblement", quelle est la construction du verbe "dort" ?',
         [
           { id: "a", label: "Transitif direct" },
@@ -341,12 +298,10 @@ export const seriesV3BatchG: RevisionSession[] = [
         "c",
         '"Dort" n\'admet ni COD ni COI dans cette phrase. "Paisiblement" est un adverbe (complément circonstanciel de manière), pas un complément d\'objet. Le verbe est donc intransitif : il exprime un état ou une action qui ne se transmet pas à un objet.',
         "Confondre un complément circonstanciel avec un complément d'objet et répondre transitif.",
-        "free",
       ),
       qcm(
         "v3g-tv-4",
         "conjugaison",
-        "Intermediaire",
         'Dans "Marie est avocate", quelle est la construction du verbe "est" ?',
         [
           { id: "a", label: "Transitif direct" },
@@ -357,32 +312,26 @@ export const seriesV3BatchG: RevisionSession[] = [
         "d",
         '"Est" est ici un verbe attributif : il relie le sujet "Marie" à l\'attribut du sujet "avocate". Un verbe attributif (terminologie Éduscol 2021, et non « verbe d\'état ») introduit un attribut qui caractérise ou identifie le sujet. Les principaux verbes attributifs sont : être, sembler, devenir, paraître, demeurer, rester.',
         "Utiliser le terme « verbe d'état » au lieu du terme officiel « verbe attributif » (Éduscol 2021).",
-        "free",
       ),
       vraiFaux(
         "v3g-tv-5",
         "conjugaison",
-        "Intermediaire",
         'Vrai ou faux : dans "Il court vite", le verbe "court" est transitif direct.',
         false,
         'Dans "Il court vite", le verbe "court" n\'a pas de COD. "Vite" est un adverbe qui modifie le verbe, pas un complément d\'objet. Le verbe est intransitif dans cette construction. Attention : dans "Il court un danger", "court" serait transitif direct (COD = un danger). Un même verbe peut changer de construction selon le contexte.',
         "Confondre un adverbe avec un COD et répondre transitif direct.",
-        "free",
       ),
       reponseCourte(
         "v3g-tv-6",
         "conjugaison",
-        "Intermediaire",
         'Dans "Il pense à son avenir", quel est le COI du verbe "pense" ?',
         ["à son avenir"],
         '"À son avenir" est le COI du verbe "pense", introduit par la préposition "à". On le vérifie : « Il pense à quoi ? — à son avenir. » Le verbe « penser à » est donc transitif indirect dans cette construction. Le COI (complément d\'objet indirect) est toujours introduit par une préposition.',
         "Répondre « son avenir » en oubliant d'inclure la préposition « à » qui fait partie du COI.",
-        "free",
       ),
       qcm(
         "v3g-tv-7",
         "conjugaison",
-        "Intermediaire",
         'Dans "Ce gâteau semble délicieux", le verbe "semble" est :',
         [
           { id: "a", label: "Transitif direct" },
@@ -393,32 +342,26 @@ export const seriesV3BatchG: RevisionSession[] = [
         "d",
         '"Semble" relie le sujet "ce gâteau" à l\'attribut du sujet "délicieux". C\'est un verbe attributif (terminologie Éduscol 2021). "Délicieux" n\'est pas un COD : il qualifie le sujet, il ne désigne pas l\'objet d\'une action. Autres verbes attributifs courants : paraître, devenir, demeurer, rester, avoir l\'air.',
         "Répondre intransitif en pensant que le verbe n'a pas de complément d'objet, sans voir qu'il introduit un attribut.",
-        "free",
       ),
       vraiFaux(
         "v3g-tv-8",
         "conjugaison",
-        "Intermediaire",
         'Vrai ou faux : un même verbe peut être tantôt transitif, tantôt intransitif selon la phrase.',
         true,
         'C\'est vrai. Beaucoup de verbes français changent de construction selon le contexte. Par exemple, "manger" est transitif direct dans "Elle mange une pomme" (COD = une pomme) et intransitif dans "Elle mange à midi" (pas de COD). De même, "courir" est intransitif dans "Il court" mais transitif direct dans "Il court un risque".',
         "Penser que la transitivité est une propriété figée du verbe, sans considérer qu'elle varie en contexte.",
-        "free",
       ),
       reponseCourte(
         "v3g-tv-9",
         "conjugaison",
-        "Intermediaire",
         'Comment appelle-t-on un verbe qui est suivi d\'un attribut du sujet, comme "être" ou "devenir" ? (Donnez le terme Éduscol 2021.)',
         ["verbe attributif", "attributif"],
         'Depuis les ajustements de terminologie Éduscol 2021, on parle de « verbe attributif » et non plus de « verbe d\'état ». Un verbe attributif introduit un attribut du sujet : « Elle est médecin », « Il devient patient ». Les principaux verbes attributifs sont : être, sembler, paraître, devenir, demeurer, rester, avoir l\'air.',
         "Répondre « verbe d'état », terme encore très répandu mais qui n'est plus la terminologie officielle Éduscol 2021.",
-        "free",
       ),
       qcm(
         "v3g-tv-10",
         "conjugaison",
-        "Intermediaire",
         'Dans "Les enfants obéissent à leurs parents", quelle est la construction du verbe "obéissent" ?',
         [
           { id: "a", label: "Transitif direct" },
@@ -429,7 +372,6 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         '"Obéissent" est suivi du COI "à leurs parents", introduit par la préposition "à". On le vérifie : « Ils obéissent à qui ? — à leurs parents. » Le verbe « obéir à » est transitif indirect. Rappel : le COI (et non « CIV ») est le terme officiel Éduscol 2021.',
         "Répondre transitif direct en confondant COD et COI, ou intransitif en oubliant le complément prépositionnel.",
-        "free",
       ),
     ],
   }),
@@ -445,10 +387,7 @@ export const seriesV3BatchG: RevisionSession[] = [
     subdomain: "conjugaison",
     topicKey: "morphologie_verbale",
     topicLabel: "Morphologie verbale (radical et désinence)",
-    level: "Avancé",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 14,
-    access_tier: "premium",
     recommendedOrder: 35,
     completionSummary: {
       skill: "Décomposer une forme verbale conjuguée en ses composantes morphologiques",
@@ -465,17 +404,14 @@ export const seriesV3BatchG: RevisionSession[] = [
       reponseCourte(
         "v3g-mv-1",
         "conjugaison",
-        "Avancé",
         'Dans la forme "chantaient", quel est le radical ?',
         ["chant", "chant-"],
         'Dans "chantaient", le radical est "chant-". C\'est la partie du verbe qui porte le sens lexical (l\'idée de chant). La désinence est "-aient", qui se décompose en marque de temps "-ai-" (imparfait de l\'indicatif) et marque de personne "-ent" (3e personne du pluriel). "Chanter" est un verbe à radical unique.',
         "Inclure la voyelle thématique dans le radical et répondre « chanta- » au lieu de « chant- ».",
-        "premium",
       ),
       qcm(
         "v3g-mv-2",
         "conjugaison",
-        "Avancé",
         'Dans "chantaient", que représente la partie "-ai-" de la désinence ?',
         [
           { id: "a", label: "La marque de personne" },
@@ -486,22 +422,18 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         'Dans "chantaient", la désinence "-aient" se décompose ainsi : "-ai-" est la marque de temps (imparfait de l\'indicatif) et "-ent" est la marque de personne (3e personne du pluriel). La marque de temps indique à quel temps et à quel mode la forme est conjuguée.',
         "Confondre la marque de temps et la marque de personne dans la désinence.",
-        "premium",
       ),
       vraiFaux(
         "v3g-mv-3",
         "conjugaison",
-        "Avancé",
         'Vrai ou faux : le verbe "chanter" ne possède qu\'un seul radical.',
         true,
         '"Chanter" est un verbe du 1er groupe à radical unique : "chant-". On retrouve ce même radical dans toutes les formes conjuguées : je chante, nous chantions, ils chanteront. C\'est une caractéristique des verbes du 1er groupe, qui sont les plus réguliers de la langue française.',
         "Penser que le radical varie à cause des lettres ajoutées par la désinence (chant-/chante-).",
-        "premium",
       ),
       qcm(
         "v3g-mv-4",
         "conjugaison",
-        "Avancé",
         'Combien de radicaux le verbe "lire" possède-t-il ?',
         [
           { id: "a", label: "Un seul (li-)" },
@@ -512,32 +444,26 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         '"Lire" possède deux radicaux : "li-" (je lis, il lit) et "lis-" (nous lisons, ils lisaient). C\'est un verbe du 3e groupe à deux radicaux. La variation du radical est une des raisons pour lesquelles les verbes du 3e groupe sont considérés comme irréguliers.',
         "Compter « lir- » comme un troisième radical alors que c'est la forme d'infinitif, pas un radical distinct utilisé en conjugaison.",
-        "premium",
       ),
       reponseCourte(
         "v3g-mv-5",
         "conjugaison",
-        "Avancé",
         'Dans "finissons", quelle est la désinence (ou terminaison) ?',
         ["-issons", "issons"],
         'Dans "finissons", le radical est "fin-" et la désinence est "-issons". Le suffixe "-iss-" est la marque du 2e groupe, "-ons" est la marque de la 1re personne du pluriel au présent de l\'indicatif. La désinence (ou terminaison) est la partie variable qui s\'ajoute au radical.',
         "Répondre « -ons » en oubliant que le suffixe -iss- fait partie de la désinence pour les verbes du 2e groupe.",
-        "premium",
       ),
       vraiFaux(
         "v3g-mv-6",
         "conjugaison",
-        "Avancé",
         "Vrai ou faux : l'infinitif et le participe sont des formes conjuguées du verbe.",
         true,
         "Selon la terminologie Éduscol 2021, l'infinitif et le participe SONT des formes conjuguées : ce sont des modes de la conjugaison. On ne les appelle plus « formes non conjuguées ». L'infinitif est un mode impersonnel (il ne varie pas en personne) mais il reste un mode de la conjugaison au même titre que l'indicatif ou le subjonctif.",
         "Répondre faux par habitude, car on les appelait autrefois « formes non conjuguées » dans l'ancienne terminologie.",
-        "premium",
       ),
       qcm(
         "v3g-mv-7",
         "conjugaison",
-        "Avancé",
         'Dans "nous vivions", quel radical du verbe "vivre" est utilisé ?',
         [
           { id: "a", label: "vi-" },
@@ -548,22 +474,18 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         'Dans "nous vivions", le radical est "viv-" et la désinence est "-ions" (marque de l\'imparfait + 1re personne du pluriel). Le verbe "vivre" possède au moins trois radicaux : "vi-" (il vit), "viv-" (nous vivons, nous vivions), "véc-" (il vécut). C\'est un exemple typique de verbe du 3e groupe à radicaux multiples.',
         "Répondre « vi- » en confondant avec la forme du présent de la 3e personne du singulier (il vit).",
-        "premium",
       ),
       reponseCourte(
         "v3g-mv-8",
         "conjugaison",
-        "Avancé",
         'Comment appelle-t-on la partie du verbe conjugué qui porte le sens lexical ? (Un seul mot.)',
         ["radical", "le radical"],
         "Le radical est la partie du verbe conjugué qui porte le sens lexical, c'est-à-dire l'idée exprimée par le verbe. Il s'oppose à la désinence (ou terminaison), qui varie selon le temps, le mode et la personne. Le radical peut être stable (verbes du 1er groupe) ou présenter des variations (verbes du 3e groupe).",
         "Répondre « racine » ou « base » au lieu du terme morphologique exact « radical ».",
-        "premium",
       ),
       qcm(
         "v3g-mv-9",
         "conjugaison",
-        "Avancé",
         'Dans "ils prendront", comment se décompose la désinence ?',
         [
           { id: "a", label: "Marque de temps -r- + marque de personne -ont" },
@@ -574,17 +496,14 @@ export const seriesV3BatchG: RevisionSession[] = [
         "a",
         'Dans "ils prendront", le radical est "prend-" et la désinence est "-r-ont". Plus précisément, au futur simple, la marque de temps est le "-r-" (qui caractérise le futur) et la marque de personne est "-ont" (3e personne du pluriel). La décomposition morphologique du futur repose sur cette marque -r- distinctive.',
         "Ne pas isoler le -r- comme marque du futur et analyser la désinence comme un bloc indivisible.",
-        "premium",
       ),
       vraiFaux(
         "v3g-mv-10",
         "conjugaison",
-        "Avancé",
         'Vrai ou faux : les termes "désinence" et "terminaison" sont tous deux acceptés en terminologie grammaticale officielle.',
         true,
         'Les deux termes sont acceptés. "Désinence" est le terme technique de la morphologie, tandis que "terminaison" est plus courant dans l\'enseignement. Les programmes et la terminologie Éduscol 2021 utilisent les deux sans distinction hiérarchique. Au CRPE, vous pouvez employer l\'un ou l\'autre.',
         "Penser que seul « terminaison » est correct et que « désinence » est un terme obsolète ou trop spécialisé.",
-        "premium",
       ),
     ],
   }),
@@ -600,10 +519,7 @@ export const seriesV3BatchG: RevisionSession[] = [
     subdomain: "comprehension_texte",
     topicKey: "texte_documentaire",
     topicLabel: "Comprendre un texte documentaire/informatif",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 12,
-    access_tier: "free",
     recommendedOrder: 36,
     completionSummary: {
       skill: "Analyser la structure et le contenu d'un texte documentaire",
@@ -620,7 +536,6 @@ export const seriesV3BatchG: RevisionSession[] = [
       qcm(
         "v3g-td-1",
         "comprehension_texte",
-        "Intermediaire",
         "Quelle est la fonction principale d'un texte documentaire ?",
         [
           { id: "a", label: "Raconter une histoire" },
@@ -631,12 +546,10 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         "La fonction principale d'un texte documentaire (ou informatif) est d'informer et d'expliquer un sujet au lecteur. Contrairement au texte narratif (raconter), argumentatif (convaincre) ou poétique (exprimer), le texte documentaire vise la transmission de connaissances de manière structurée et objective.",
         "Confondre le texte documentaire avec le texte argumentatif, car les deux peuvent porter sur un sujet sérieux.",
-        "free",
       ),
       qcm(
         "v3g-td-2",
         "comprehension_texte",
-        "Intermediaire",
         "Parmi ces éléments, lequel est typique de la structure d'un texte documentaire ?",
         [
           { id: "a", label: "Des dialogues entre personnages" },
@@ -647,22 +560,18 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         "Le texte documentaire se structure typiquement par des titres et sous-titres thématiques qui organisent l'information en sections. On y trouve aussi des paragraphes thématiques, des illustrations légendées, des encadrés, des schémas ou des tableaux. Les dialogues sont propres au récit, les strophes à la poésie, le dénouement au schéma narratif.",
         "Répondre « des dialogues » en confondant texte documentaire et texte narratif.",
-        "free",
       ),
       vraiFaux(
         "v3g-td-3",
         "comprehension_texte",
-        "Intermediaire",
         "Vrai ou faux : une information explicite est une information directement écrite dans le texte.",
         true,
         "Une information explicite est effectivement formulée noir sur blanc dans le texte : le lecteur peut la repérer sans déduction. À l'inverse, une information implicite n'est pas écrite telle quelle : le lecteur doit la déduire en croisant des indices du texte avec ses connaissances. La distinction explicite/implicite est fondamentale en compréhension de texte au CRPE.",
         "Confondre information explicite et information importante : une information peut être explicite sans être la plus importante du texte.",
-        "free",
       ),
       qcm(
         "v3g-td-4",
         "comprehension_texte",
-        "Intermediaire",
         'Parmi ces phrases, laquelle exprime un fait (et non une opinion) ?',
         [
           { id: "a", label: "La Tour Eiffel mesure 330 mètres de hauteur." },
@@ -673,22 +582,18 @@ export const seriesV3BatchG: RevisionSession[] = [
         "a",
         "« La Tour Eiffel mesure 330 mètres » est un fait vérifiable et objectif. Les autres phrases contiennent des jugements de valeur (« le plus beau »), des recommandations (« il faudrait ») ou des appréciations subjectives (« sans doute trop visitée »). La distinction fait/opinion est cruciale dans l'analyse d'un texte documentaire au CRPE.",
         "Considérer qu'une phrase contenant un chiffre est toujours un fait, sans vérifier si elle contient aussi un jugement de valeur.",
-        "free",
       ),
       reponseCourte(
         "v3g-td-5",
         "comprehension_texte",
-        "Intermediaire",
         "Comment appelle-t-on une information qui n'est pas écrite dans le texte mais que le lecteur doit déduire à partir d'indices ?",
         ["implicite", "information implicite", "une information implicite", "implicite (ou sous-entendue)"],
         "On parle d'information implicite (ou sous-entendue). Le lecteur doit la déduire en combinant des indices du texte avec ses propres connaissances. Par exemple, si un texte dit « les rues étaient désertes et les volets fermés », l'information implicite est qu'il faisait nuit ou que les habitants avaient peur. Savoir repérer l'implicite est une compétence clé au CRPE.",
         "Répondre « inférence » qui est le processus mental, alors que la question porte sur le type d'information.",
-        "free",
       ),
       qcm(
         "v3g-td-6",
         "comprehension_texte",
-        "Intermediaire",
         "Quel rôle jouent les connecteurs logiques dans un texte documentaire ?",
         [
           { id: "a", label: "Ils rendent le texte plus poétique" },
@@ -699,22 +604,18 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         "Les connecteurs logiques (donc, en effet, cependant, par conséquent, de plus, etc.) organisent les relations logiques entre les idées dans un texte documentaire. Ils signalent la cause, la conséquence, l'opposition, l'addition ou l'illustration. Ils sont essentiels pour guider le lecteur dans la compréhension de la structure argumentative ou explicative du texte.",
         "Réduire les connecteurs à un simple ornement stylistique alors qu'ils sont structurants pour le sens.",
-        "free",
       ),
       vraiFaux(
         "v3g-td-7",
         "comprehension_texte",
-        "Intermediaire",
         "Vrai ou faux : un texte documentaire ne contient jamais de vocabulaire spécialisé.",
         false,
         "C'est faux. Le texte documentaire contient souvent du vocabulaire spécialisé lié au domaine traité (scientifique, technique, historique, etc.). Ce vocabulaire peut être défini dans le texte lui-même, dans un glossaire ou dans des notes. La capacité à comprendre et reformuler le vocabulaire spécialisé est une compétence évaluée au CRPE.",
         "Confondre « objectif » et « simple » : un texte peut être objectif tout en utilisant un vocabulaire technique.",
-        "free",
       ),
       qcm(
         "v3g-td-8",
         "comprehension_texte",
-        "Intermediaire",
         "Quelle stratégie est la plus efficace pour comprendre un mot inconnu dans un texte documentaire ?",
         [
           { id: "a", label: "Ignorer le mot et continuer la lecture" },
@@ -725,22 +626,18 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         "S'appuyer sur le contexte (les phrases environnantes) et la morphologie du mot (préfixe, radical, suffixe) est la stratégie la plus efficace. Par exemple, face au mot « déshydratation », on repère le préfixe « dés- » (privation), le radical « hydrat- » (eau) et le suffixe « -ation » (processus) pour déduire : perte d'eau. C'est une compétence didactique clé au CRPE.",
         "Penser qu'il faut toujours un dictionnaire pour comprendre un mot inconnu, sans exploiter le contexte ni la morphologie.",
-        "free",
       ),
       reponseCourte(
         "v3g-td-9",
         "comprehension_texte",
-        "Intermediaire",
         "Comment appelle-t-on la reformulation d'une information du texte avec ses propres mots ?",
         ["paraphrase", "la paraphrase", "reformulation", "la reformulation"],
         "On parle de paraphrase ou de reformulation. C'est une compétence fondamentale en compréhension de texte : le lecteur montre qu'il a compris le sens en le restituant avec ses propres mots, sans copier le texte. Au CRPE, on distingue la restitution littérale (citation) de la reformulation (paraphrase), qui témoigne d'une compréhension plus profonde.",
         "Confondre paraphrase et résumé : la paraphrase reformule un passage précis, le résumé condense l'ensemble du texte.",
-        "free",
       ),
       qcm(
         "v3g-td-10",
         "comprehension_texte",
-        "Intermediaire",
         "Quel élément permet de vérifier la fiabilité d'un texte documentaire ?",
         [
           { id: "a", label: "La longueur du texte" },
@@ -751,7 +648,6 @@ export const seriesV3BatchG: RevisionSession[] = [
         "b",
         "La source (auteur, éditeur, institution) et la date de publication sont les premiers indices de fiabilité d'un texte documentaire. Un texte publié par une institution reconnue et récemment mis à jour est généralement plus fiable. Cette compétence critique est essentielle dans l'éducation aux médias et à l'information, un axe fort des programmes du cycle 3.",
         "Se fier à la mise en page plutôt qu'aux critères de fiabilité éditoriale (source, date, expertise de l'auteur).",
-        "free",
       ),
     ],
   }),

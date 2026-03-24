@@ -77,9 +77,8 @@ function makeExercise(overrides?: Record<string, unknown>) {
     ],
     expected_answer: { mode: "single_choice", value: "a" },
     detailed_explanation: "Explication détaillée.",
-    access_tier: "free",
     is_published: true,
-    level: "Facile",
+    series_order: 1,
     validation_status: "valide",
     source: null,
     created_at: "2026-01-01",
@@ -160,15 +159,6 @@ describe("submitAttemptAction", () => {
     const result = await submitAttemptAction(idleState, makeFormData({ exerciseId: "ex-404", answer: "a" }));
     expect(result.status).toBe("error");
     expect(result.message).toContain("introuvable");
-  });
-
-  it("returns error when free user tries premium exercise", async () => {
-    mockGetExerciseById.mockResolvedValue(makeExercise({ access_tier: "premium" }) as never);
-    mockIsPremiumUser.mockResolvedValue(false);
-
-    const result = await submitAttemptAction(idleState, makeFormData({ exerciseId: "ex-1", answer: "a" }));
-    expect(result.status).toBe("error");
-    expect(result.message).toContain("premium");
   });
 
   it("returns error when free quota is exhausted", async () => {

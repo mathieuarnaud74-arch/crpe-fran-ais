@@ -4,10 +4,10 @@ const createdAt = "2026-03-21T08:00:00.000Z";
 
 type QuestionInput = Omit<
   ExerciseRecord,
-  "subject" | "validation_status" | "source" | "is_published" | "created_at" | "updated_at"
+  "subject" | "validation_status" | "source" | "is_published" | "created_at" | "updated_at" | "level" | "access_tier"
 >;
 
-type SessionInput = Omit<RevisionSession, "questionCount">;
+type SessionInput = Omit<RevisionSession, "questionCount" | "level" | "estimatedMinutes" | "access_tier">;
 
 function question(data: QuestionInput): ExerciseRecord {
   return {
@@ -29,21 +29,18 @@ function buildSession(data: SessionInput): RevisionSession {
 function qcm(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   choices: Array<{ id: string; label: string }>,
   value: string,
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
 ) {
   return question({
-    id, subdomain, level, exercise_type: "qcm",
+    id, subdomain, exercise_type: "qcm",
     instruction, support_text: null, choices,
     expected_answer: { mode: "single_choice", value },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null, topic_label: null,
   });
 }
@@ -51,21 +48,18 @@ function qcm(
 function vraiFaux(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   value: boolean,
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
 ) {
   return question({
-    id, subdomain, level, exercise_type: "vrai_faux",
+    id, subdomain, exercise_type: "vrai_faux",
     instruction, support_text: null,
     choices: [{ id: "true", label: "Vrai" }, { id: "false", label: "Faux" }],
     expected_answer: { mode: "boolean", value },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null, topic_label: null,
   });
 }
@@ -73,22 +67,19 @@ function vraiFaux(
 function reponseCourte(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   acceptableAnswers: string[],
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
   exercise_type: ExerciseRecord["exercise_type"] = "reponse_courte",
   support_text: string | null = null,
 ) {
   return question({
-    id, subdomain, level, exercise_type,
+    id, subdomain, exercise_type,
     instruction, support_text, choices: null,
     expected_answer: { mode: "text", acceptableAnswers },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null, topic_label: null,
   });
 }
@@ -106,10 +97,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     subdomain: "grammaire",
     topicKey: "attribut_sujet_verbes_attributifs",
     topicLabel: "Attribut du sujet et verbes attributifs",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 12,
-    access_tier: "free",
     recommendedOrder: 49,
     completionSummary: {
       skill: "Analyser la fonction attribut du sujet et identifier les verbes attributifs dans un corpus de phrases",
@@ -122,7 +110,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3k-as-1", "grammaire", "Intermediaire",
+        "v3k-as-1", "grammaire",
         "Dans la phrase « Cette tarte semble délicieuse », quelle est la fonction de « délicieuse » ?",
         [
           { id: "a", label: "Épithète liée du nom « tarte »" },
@@ -133,10 +121,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "c",
         "« Délicieuse » est attribut du sujet « Cette tarte ». Le verbe « sembler » est un verbe attributif : il introduit une caractéristique du sujet par l'intermédiaire du verbe. On peut vérifier en remplaçant par « être » : « Cette tarte est délicieuse » — la phrase reste grammaticale. L'attribut du sujet s'accorde avec le sujet (féminin singulier ici), ce qui le distingue du COD.",
         "Confondre l'attribut du sujet avec l'épithète. L'épithète est directement rattachée au nom dans le GN, tandis que l'attribut est relié au sujet par un verbe attributif.",
-        "free",
       ),
       qcm(
-        "v3k-as-2", "grammaire", "Intermediaire",
+        "v3k-as-2", "grammaire",
         "Parmi les verbes suivants, lequel n'est PAS un verbe attributif ?",
         [
           { id: "a", label: "Devenir" },
@@ -147,10 +134,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "« Construire » est un verbe d'action transitif, pas un verbe attributif. Les verbes attributifs (être, sembler, paraître, devenir, rester, demeurer, avoir l'air, passer pour) introduisent un attribut qui caractérise le sujet. On peut les identifier par le test de substitution avec « être » : « Il devient grand » → « Il est grand » fonctionne, mais « Il construit une maison » → « Il est une maison » ne fonctionne pas.",
         "Croire que tout verbe suivi d'un adjectif est attributif. Dans « Il mange chaud », « chaud » n'est pas attribut du sujet mais complément du verbe — « manger » n'est pas un verbe attributif.",
-        "free",
       ),
       qcm(
-        "v3k-as-3", "grammaire", "Intermediaire",
+        "v3k-as-3", "grammaire",
         "Dans « Les enfants paraissent fatigués après la récréation », quelle est la nature (classe grammaticale) de l'attribut du sujet ?",
         [
           { id: "a", label: "Un groupe nominal" },
@@ -161,10 +147,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "« Fatigués » est un adjectif, fonction attribut du sujet « Les enfants ». L'adjectif est la nature la plus fréquente de l'attribut du sujet, mais ce n'est pas la seule : un GN (« Pierre est médecin »), un infinitif (« Vivre, c'est créer »), un GN prépositionnel (« Ce livre est de bonne qualité ») peuvent aussi être attributs du sujet. Ici, l'accord au masculin pluriel confirme le lien avec le sujet « Les enfants ».",
         "Confondre la nature (classe grammaticale) de l'attribut avec sa fonction. La question porte sur ce qu'EST le mot (adjectif, GN, etc.), pas sur son rôle dans la phrase.",
-        "free",
       ),
       qcm(
-        "v3k-as-4", "grammaire", "Intermediaire",
+        "v3k-as-4", "grammaire",
         "Dans « Les élèves ont trouvé cet exercice difficile », quelle est la fonction de « difficile » ?",
         [
           { id: "a", label: "Attribut du sujet « Les élèves »" },
@@ -175,10 +160,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "c",
         "« Difficile » est attribut du COD « cet exercice ». L'attribut du COD caractérise le COD par l'intermédiaire du verbe, tout comme l'attribut du sujet caractérise le sujet. Certains verbes comme « trouver », « juger », « rendre », « nommer », « élire » peuvent introduire un attribut du COD. On vérifie : « Cet exercice est difficile » — l'adjectif caractérise bien le COD. Il ne s'agit pas d'une épithète car « difficile » n'est pas dans le même GN que « exercice ».",
         "Confondre l'attribut du COD avec l'attribut du sujet. L'attribut du COD caractérise le COD, pas le sujet. Ici, ce ne sont pas les élèves qui sont difficiles, mais l'exercice.",
-        "free",
       ),
       qcm(
-        "v3k-as-5", "grammaire", "Intermediaire",
+        "v3k-as-5", "grammaire",
         "Quelle manipulation syntaxique permet de distinguer un attribut du sujet d'un COD ?",
         [
           { id: "a", label: "L'attribut du sujet peut être pronominalisé par « le, la, les » comme le COD" },
@@ -189,47 +173,41 @@ export const seriesV3BatchK: RevisionSession[] = [
         "c",
         "Le critère essentiel est le lien référentiel : l'attribut du sujet et le sujet désignent la même entité (« Pierre est médecin » : Pierre = médecin), alors que le COD désigne un référent différent du sujet (« Pierre rencontre un médecin » : Pierre ≠ le médecin). De plus, l'attribut du sujet ne peut pas être remplacé par « le, la, les » avec changement de référent. Enfin, l'attribut du sujet est obligatoire (non supprimable), tout comme le COD dans la plupart des cas.",
         "Croire que le test de suppression distingue toujours attribut et COD. En réalité, les deux sont souvent non supprimables. C'est le critère de co-référence (sujet = attribut) qui est le plus fiable.",
-        "free",
       ),
       vraiFaux(
-        "v3k-as-6", "grammaire", "Intermediaire",
+        "v3k-as-6", "grammaire",
         "Le verbe « rester » est toujours un verbe attributif, quelle que soit la phrase dans laquelle il apparaît.",
         false,
         "Le verbe « rester » n'est pas toujours attributif. Dans « Il reste calme », « rester » est bien attributif (= « il est calme »). Mais dans « Il reste à Paris », « rester » est un verbe intransitif suivi d'un complément circonstanciel de lieu — il n'y a pas d'attribut du sujet. De même, « demeurer » peut être attributif (« Elle demeure silencieuse ») ou intransitif (« Elle demeure à Lyon »). C'est le contexte syntaxique qui détermine si le verbe fonctionne comme verbe attributif.",
         "Considérer qu'un verbe est toujours attributif dès qu'il figure dans la liste traditionnelle. Plusieurs verbes (rester, demeurer, paraître) ont des emplois attributifs ET des emplois non attributifs selon le contexte.",
-        "free",
       ),
       vraiFaux(
-        "v3k-as-7", "grammaire", "Intermediaire",
+        "v3k-as-7", "grammaire",
         "L'attribut du sujet s'accorde toujours en genre et en nombre avec le sujet.",
         false,
         "L'attribut du sujet s'accorde avec le sujet quand il est adjectif (« Elles sont contentes ») ou participe passé (« Les portes sont ouvertes »). Cependant, quand l'attribut est un GN, un infinitif ou un GN prépositionnel, la question de l'accord ne se pose pas de la même manière. Par exemple, dans « Pierre est médecin », « médecin » ne prend pas la marque du pluriel si Pierre est seul. Et dans « Vivre, c'est créer », l'attribut est un infinitif invariable. L'accord ne concerne donc que l'attribut adjectival.",
         "Penser que l'accord de l'attribut est automatique dans tous les cas. L'accord en genre et nombre ne s'applique que lorsque l'attribut est un adjectif ou un participe passé.",
-        "free",
       ),
       vraiFaux(
-        "v3k-as-8", "grammaire", "Intermediaire",
+        "v3k-as-8", "grammaire",
         "Dans la phrase « Marie est devenue une excellente pianiste », l'attribut du sujet est le groupe nominal « une excellente pianiste ».",
         true,
         "« Une excellente pianiste » est bien l'attribut du sujet « Marie ». Le verbe « devenir » est un verbe attributif, et le GN « une excellente pianiste » caractérise le sujet : Marie = une excellente pianiste. L'attribut du sujet peut être de natures variées : adjectif (le plus fréquent), groupe nominal (comme ici), groupe nominal prépositionnel, infinitif, ou encore proposition subordonnée. Le GN attribut est fréquent avec les verbes « être », « devenir », « rester ».",
         "Ne pas reconnaître un GN comme attribut du sujet et le confondre avec un COD. Le test : « Marie = une excellente pianiste » montre la co-référence, preuve qu'il s'agit d'un attribut et non d'un COD.",
-        "free",
       ),
       reponseCourte(
-        "v3k-as-9", "grammaire", "Intermediaire",
+        "v3k-as-9", "grammaire",
         "Dans la phrase « L'air de la montagne paraît pur », identifiez le verbe attributif.",
         ["paraît", "Paraît", "paraitre", "paraître", "Paraître", "Paraitre"],
         "Le verbe attributif est « paraît » (infinitif : paraître). Il introduit l'adjectif « pur » comme attribut du sujet « L'air de la montagne ». Le verbe « paraître » fait partie de la liste des verbes attributifs les plus courants (être, sembler, paraître, devenir, rester, demeurer, avoir l'air, passer pour). On vérifie par substitution : « L'air de la montagne est pur » — la phrase reste grammaticale et le sens est préservé, ce qui confirme que « paraît » fonctionne ici comme verbe attributif.",
         "Confondre le sujet avec « L'air » seul et oublier le complément du nom « de la montagne ». Le sujet complet est « L'air de la montagne » — il faut toujours identifier le GS en entier.",
-        "free",
       ),
       reponseCourte(
-        "v3k-as-10", "grammaire", "Intermediaire",
+        "v3k-as-10", "grammaire",
         "Quelle est la fonction de « un homme courageux » dans la phrase « Son père est un homme courageux » ?",
         ["attribut du sujet", "Attribut du sujet", "attribut du sujet « Son père »", "attribut du sujet \"Son père\""],
         "« Un homme courageux » est attribut du sujet « Son père ». Le verbe « être » est le verbe attributif par excellence. Le GN « un homme courageux » caractérise le sujet : Son père = un homme courageux. La co-référence entre le sujet et le groupe qui suit le verbe « être » est la marque de la relation attributive. Ici, l'attribut est un groupe nominal (déterminant + nom + adjectif épithète), ce qui montre que l'attribut du sujet n'est pas toujours un simple adjectif.",
         "Analyser « un homme courageux » comme COD du verbe « être ». Le verbe « être » n'est jamais transitif et n'admet jamais de COD — il est toujours attributif.",
-        "free",
       ),
     ],
   }),
@@ -246,10 +224,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     subdomain: "grammaire",
     topicKey: "phrases_atypiques_types_formes",
     topicLabel: "Phrases atypiques et types/formes de phrases",
-    level: "Difficile",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 14,
-    access_tier: "free",
     recommendedOrder: 50,
     completionSummary: {
       skill: "Classer les phrases selon leurs types et formes conformément à la terminologie Éduscol 2021 et analyser les phrases atypiques",
@@ -262,7 +237,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3k-pa-1", "grammaire", "Difficile",
+        "v3k-pa-1", "grammaire",
         "Selon la terminologie officielle Éduscol 2021, combien existe-t-il de types de phrases ?",
         [
           { id: "a", label: "Deux : déclaratif et interrogatif" },
@@ -273,10 +248,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "La terminologie Éduscol 2021 reconnaît trois types de phrases : déclaratif, interrogatif et impératif. C'est un changement majeur par rapport aux classifications antérieures qui incluaient le type exclamatif. Désormais, l'exclamation est considérée comme une forme de phrase (au même titre que la forme négative, passive, emphatique ou impersonnelle). Une phrase déclarative peut donc être exclamative : « Comme cette fleur est belle ! » est de type déclaratif et de forme exclamative.",
         "Inclure l'exclamation parmi les types de phrases. C'est l'erreur la plus fréquente au CRPE. Depuis 2021, l'exclamation est une forme de phrase, pas un type.",
-        "free",
       ),
       qcm(
-        "v3k-pa-2", "grammaire", "Difficile",
+        "v3k-pa-2", "grammaire",
         "Qu'appelle-t-on la « phrase de base » dans la terminologie officielle ?",
         [
           { id: "a", label: "Une phrase simple comportant uniquement un sujet et un verbe" },
@@ -287,10 +261,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "La phrase de base est un modèle de référence théorique. Elle est de type déclaratif, positive, active et non exclamative. Attention : on ne dit pas « forme positive » ni « forme active » — ce sont simplement les caractéristiques de la phrase de base. Toute phrase concrète s'analyse par rapport à ce modèle : on identifie les écarts (forme négative, passive, exclamative, emphatique, impersonnelle, type interrogatif ou impératif). Par exemple, « Le chat n'est pas attrapé par le chien ! » s'écarte de la phrase de base par sa forme négative, sa forme passive et sa forme exclamative.",
         "Confondre la phrase de base avec la phrase simple. La phrase de base est un modèle théorique de référence (déclarative, positive, active, non exclamative), pas un type de phrase réellement prononcée.",
-        "free",
       ),
       qcm(
-        "v3k-pa-3", "grammaire", "Difficile",
+        "v3k-pa-3", "grammaire",
         "La phrase « Quelle belle journée ! » est :",
         [
           { id: "a", label: "De type exclamatif" },
@@ -301,10 +274,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "« Quelle belle journée ! » est de type déclaratif et de forme exclamative. Le type exclamatif n'existe pas dans la terminologie Éduscol 2021. Cette phrase ne pose pas de question (pas de type interrogatif) et ne donne pas d'ordre (pas de type impératif) : elle fait un constat, une assertion — c'est donc le type déclaratif. La marque exclamative (le point d'exclamation et le déterminant exclamatif « quelle ») en fait une phrase de forme exclamative. Le mot « quelle » est ici un déterminant exclamatif, et non interrogatif.",
         "Classer cette phrase comme « type exclamatif ». L'exclamation est une forme, pas un type. On peut aussi confondre le déterminant exclamatif « quelle » avec le déterminant interrogatif homonyme.",
-        "free",
       ),
       qcm(
-        "v3k-pa-4", "grammaire", "Difficile",
+        "v3k-pa-4", "grammaire",
         "Qu'est-ce qu'une phrase averbale ?",
         [
           { id: "a", label: "Une phrase dont le verbe est à l'infinitif" },
@@ -315,55 +287,48 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "Une phrase averbale est une phrase qui ne contient pas de verbe conjugué. Elle ne suit donc pas le modèle canonique de la phrase P = [GS + GV] (+ GC). Les titres de journaux (« Incendie à Marseille »), les panneaux (« Entrée interdite »), certaines répliques de dialogue (« Magnifique ! ») sont des phrases averbales. Il faut la distinguer de la phrase elliptique, où un élément (dont éventuellement le verbe) est sous-entendu et récupérable dans le contexte (« Moi aussi » sous-entend « j'aime aussi le chocolat »).",
         "Confondre la phrase averbale avec la phrase elliptique. La phrase averbale est autonome sans verbe, tandis que la phrase elliptique comporte des éléments sous-entendus récupérables dans le contexte.",
-        "free",
       ),
       vraiFaux(
-        "v3k-pa-5", "grammaire", "Difficile",
+        "v3k-pa-5", "grammaire",
         "Une phrase peut cumuler plusieurs formes : par exemple, une phrase peut être à la fois de forme négative, passive et exclamative.",
         true,
         "Une phrase n'a qu'un seul type (déclaratif, interrogatif ou impératif) mais peut cumuler plusieurs formes. Par exemple : « N'est-il pas admiré de tous ! » est de type déclaratif, de forme négative (ne...pas), de forme passive (être + participe passé + complément d'agent) et de forme exclamative (point d'exclamation, intonation). La phrase de base (positive, active, non exclamative) sert de point de comparaison : chaque écart correspond à une forme supplémentaire.",
         "Croire qu'une phrase ne peut avoir qu'un seul type ET une seule forme. En réalité, les formes se combinent librement : une phrase peut être simultanément négative, passive, exclamative, emphatique, etc.",
-        "free",
       ),
       vraiFaux(
-        "v3k-pa-6", "grammaire", "Difficile",
+        "v3k-pa-6", "grammaire",
         "L'interrogation indirecte est une phrase de type interrogatif.",
         false,
         "L'interrogation indirecte n'est PAS de type interrogatif. C'est une proposition subordonnée complétive intégrée dans une phrase de type déclaratif. « Je me demande s'il viendra » est une phrase de type déclaratif qui contient une interrogation indirecte (« s'il viendra »). Seule l'interrogation directe (« Viendra-t-il ? ») constitue une phrase de type interrogatif. L'interrogation indirecte ne comporte pas de point d'interrogation et ne présente pas d'inversion sujet-verbe.",
         "Classer automatiquement toute phrase contenant une idée de questionnement comme « type interrogatif ». Seule l'interrogation directe (phrase indépendante avec point d'interrogation) est de type interrogatif.",
-        "free",
       ),
       vraiFaux(
-        "v3k-pa-7", "grammaire", "Difficile",
+        "v3k-pa-7", "grammaire",
         "« Oui », « Non » et « Hélas » sont des mots-phrases : ils constituent à eux seuls des phrases complètes.",
         true,
         "Les mots-phrases sont des mots qui, à eux seuls, peuvent constituer une phrase autonome dotée d'un sens complet. « Oui » et « Non » répondent à une question, « Hélas » exprime un sentiment. Ils ne contiennent ni sujet, ni verbe, ni complément : ce sont des phrases atypiques qui ne suivent pas le modèle canonique P = [GS + GV]. D'autres exemples incluent « Bravo ! », « Attention ! », « Merci ». Les mots-phrases sont parfois appelés « phrases-mots » et constituent un cas particulier de phrases averbales.",
         "Ne pas reconnaître les mots-phrases comme de véritables phrases. Même s'ils ne comportent qu'un seul mot, ils forment des énoncés autonomes et complets dans un contexte donné.",
-        "free",
       ),
       vraiFaux(
-        "v3k-pa-8", "grammaire", "Difficile",
+        "v3k-pa-8", "grammaire",
         "L'interrogation totale est celle qui appelle une réponse en « oui » ou « non », tandis que l'interrogation partielle porte sur un élément précis de la phrase et appelle une réponse développée.",
         true,
         "L'interrogation totale porte sur l'ensemble de la phrase et attend une réponse par « oui » ou « non » : « Est-ce que tu viens ? » → « Oui / Non ». L'interrogation partielle porte sur un constituant de la phrase, introduite par un mot interrogatif (qui, que, quand, où, comment, pourquoi, combien) et attend une information précise : « Quand viens-tu ? » → « Demain ». Cette distinction (totale/partielle) est indépendante de la distinction directe/indirecte. On peut avoir une interrogation totale directe (« Viens-tu ? ») ou indirecte (« Je demande si tu viens »).",
         "Confondre interrogation totale/partielle avec interrogation directe/indirecte. Ce sont deux classements indépendants qui se croisent : une interrogation peut être totale et directe, totale et indirecte, partielle et directe, ou partielle et indirecte.",
-        "free",
       ),
       reponseCourte(
-        "v3k-pa-9", "grammaire", "Difficile",
+        "v3k-pa-9", "grammaire",
         "Selon la terminologie Éduscol 2021, l'exclamation est-elle un type ou une forme de phrase ?",
         ["une forme", "forme", "Une forme", "Forme", "forme de phrase", "une forme de phrase"],
         "L'exclamation est une forme de phrase selon la terminologie officielle Éduscol 2021, et non un type. C'est l'un des changements les plus importants de cette terminologie par rapport aux grammaires antérieures. Les trois seuls types de phrases sont : déclaratif, interrogatif et impératif. Les formes de phrases incluent : négative (vs positive), passive (vs active), exclamative (vs non exclamative), emphatique (vs neutre) et impersonnelle. Cette reclassification se justifie par le fait que l'exclamation peut se combiner avec n'importe quel type de phrase.",
         "Répondre « type » par habitude des anciennes grammaires. Le passage de l'exclamation du statut de type à celui de forme est un point fondamental de la terminologie 2021.",
-        "free",
       ),
       reponseCourte(
-        "v3k-pa-10", "grammaire", "Difficile",
+        "v3k-pa-10", "grammaire",
         "Comment appelle-t-on une phrase de forme emphatique qui met en relief un constituant par détachement en tête de phrase, suivi d'une reprise pronominale ? Exemple : « Ce livre, je l'ai lu. »",
         ["dislocation", "Dislocation", "la dislocation", "La dislocation", "phrase disloquée", "une dislocation"],
         "La dislocation est un procédé de mise en relief propre à la forme emphatique. Elle consiste à détacher un constituant en tête (ou en fin) de phrase, avec une reprise pronominale dans la phrase : « Ce livre, je l'ai lu » (dislocation à gauche) ou « Je l'ai lu, ce livre » (dislocation à droite). L'autre procédé de mise en relief est l'extraction par « c'est... qui/que » (clivage) : « C'est ce livre que j'ai lu ». La dislocation et le clivage sont les deux principales constructions emphatiques en français.",
         "Confondre dislocation et clivage. La dislocation détache un élément avec reprise pronominale (« Ce livre, je l'ai lu »), le clivage utilise « c'est... qui/que » (« C'est ce livre que j'ai lu »). Les deux relèvent de la forme emphatique.",
-        "free",
       ),
     ],
   }),
@@ -380,10 +345,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     subdomain: "lexique",
     topicKey: "polysemie_homonymie_relations",
     topicLabel: "Polysémie, homonymie et relations sémantiques",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 13,
-    access_tier: "free",
     recommendedOrder: 51,
     completionSummary: {
       skill: "Distinguer polysémie et homonymie et analyser les relations sémantiques dans un corpus lexical",
@@ -396,7 +358,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3k-ph-1", "lexique", "Intermediaire",
+        "v3k-ph-1", "lexique",
         "Le mot « feuille » désigne à la fois la feuille d'un arbre et une feuille de papier. S'agit-il de polysémie ou d'homonymie ?",
         [
           { id: "a", label: "Homonymie : ce sont deux mots différents qui ont la même forme" },
@@ -407,10 +369,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "Il s'agit de polysémie. Le mot « feuille » a développé plusieurs sens à partir d'un sens premier (la feuille de l'arbre) par extension métaphorique : la feuille de papier rappelle la forme plate et mince de la feuille végétale. Les sens sont liés — on peut retracer le passage de l'un à l'autre. Dans le dictionnaire, ces différents sens apparaissent sous une seule et même entrée, ce qui confirme la polysémie. L'homonymie, au contraire, implique des mots d'origines différentes qui se sont retrouvés avec la même forme par hasard.",
         "Confondre polysémie et homonymie. L'indice clé : si les sens sont liés (par métaphore, métonymie, extension), c'est de la polysémie. Si les sens n'ont aucun rapport et les mots ont des étymologies différentes, c'est de l'homonymie.",
-        "free",
       ),
       qcm(
-        "v3k-ph-2", "lexique", "Intermediaire",
+        "v3k-ph-2", "lexique",
         "Les mots « livre » (objet à lire) et « livre » (unité de poids) sont :",
         [
           { id: "a", label: "Polysémiques : les sens sont liés par métaphore" },
@@ -421,10 +382,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "c",
         "« Livre » (objet à lire, du latin liber) et « livre » (unité de poids, du latin libra) sont des homonymes. Ils ont la même forme graphique et phonique mais des origines étymologiques différentes et des sens sans rapport. Dans le dictionnaire, ils apparaissent comme deux entrées distinctes (livre 1, livre 2). La polysémie, au contraire, implique des sens liés d'un même mot (même étymologie). Le fait que ces deux mots soient aussi de genre différent (un livre / une livre) confirme qu'il s'agit bien de deux mots distincts.",
         "Classer comme polysémiques deux mots qui sont en réalité homonymes. Il faut vérifier si les sens sont liés (polysémie) ou totalement indépendants avec des origines différentes (homonymie).",
-        "free",
       ),
       qcm(
-        "v3k-ph-3", "lexique", "Intermediaire",
+        "v3k-ph-3", "lexique",
         "Comment appelle-t-on la relation entre « meuble » et « chaise, table, armoire » ?",
         [
           { id: "a", label: "Synonymie" },
@@ -435,10 +395,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "c",
         "« Meuble » est l'hyperonyme (terme générique) de « chaise », « table », « armoire » qui sont ses hyponymes (termes spécifiques). L'hyperonymie est une relation d'inclusion sémantique : tout hyponyme est un cas particulier de l'hyperonyme (une chaise EST un meuble, une table EST un meuble). Cette relation structure le lexique en arborescences hiérarchiques. Elle est fondamentale pour la compréhension des textes : un auteur utilise souvent l'hyperonyme comme reprise anaphorique lexicale pour éviter les répétitions (« le chat → l'animal »).",
         "Confondre hyperonymie et champ lexical. Le champ lexical regroupe des mots liés à un même thème sans relation hiérarchique, alors que l'hyperonymie est une relation d'inclusion (le générique inclut le spécifique).",
-        "free",
       ),
       qcm(
-        "v3k-ph-4", "lexique", "Intermediaire",
+        "v3k-ph-4", "lexique",
         "Quelle est la différence entre homophones et homographes ?",
         [
           { id: "a", label: "Les homophones ont la même prononciation mais peuvent avoir une graphie différente ; les homographes ont la même graphie mais peuvent avoir une prononciation différente" },
@@ -449,55 +408,48 @@ export const seriesV3BatchK: RevisionSession[] = [
         "a",
         "Les homophones (du grec homos « même » + phônê « son ») sont des mots qui se prononcent de la même façon, qu'ils s'écrivent ou non de la même manière : ver, verre, vert, vers sont homophones. Les homographes (du grec homos « même » + graphê « écriture ») sont des mots qui s'écrivent de la même façon, qu'ils se prononcent ou non de la même manière : « les poules du couvent couvent » — les deux « couvent » sont homographes mais de prononciation différente. Quand des mots sont à la fois homophones et homographes, on les appelle homonymes parfaits.",
         "Inverser les définitions d'homophones et d'homographes. Astuce mnémotechnique : « phone » = son (téléphone), « graphe » = écriture (graphie).",
-        "free",
       ),
       vraiFaux(
-        "v3k-ph-5", "lexique", "Intermediaire",
+        "v3k-ph-5", "lexique",
         "La dénotation est le sens objectif d'un mot (sa définition dans le dictionnaire), tandis que la connotation est l'ensemble des valeurs subjectives, culturelles ou affectives associées à ce mot.",
         true,
         "La dénotation est le sens premier, objectif et stable d'un mot, celui que l'on trouve dans le dictionnaire. La connotation recouvre les valeurs ajoutées — affectives, culturelles, sociales — qui s'associent au mot selon les contextes et les locuteurs. Par exemple, « maison » dénote un bâtiment d'habitation, mais connote la chaleur du foyer, la famille, la sécurité. Les connotations varient selon les individus et les cultures, contrairement à la dénotation qui est partagée par tous les locuteurs. En analyse de texte au CRPE, identifier les connotations est essentiel pour comprendre les effets de style.",
         "Croire que la connotation est un sens « faux » ou « erroné ». La connotation est un aspect légitime et important du sens, qui enrichit la communication et que les auteurs exploitent délibérément dans les textes littéraires.",
-        "free",
       ),
       vraiFaux(
-        "v3k-ph-6", "lexique", "Intermediaire",
+        "v3k-ph-6", "lexique",
         "Un champ lexical regroupe des mots de même classe grammaticale (même nature) autour d'un même thème.",
         false,
         "Un champ lexical regroupe des mots de classes grammaticales variées (noms, verbes, adjectifs, adverbes, etc.) autour d'un même thème. Par exemple, le champ lexical de la mer peut contenir : « océan » (nom), « naviguer » (verbe), « maritime » (adjectif), « au large » (locution adverbiale). C'est le lien thématique qui unit les mots, pas leur classe grammaticale. Il ne faut pas confondre le champ lexical avec la famille de mots (mots partageant le même radical : mer, maritime, marin, amerrir), qui relève de la morphologie et non de la sémantique.",
         "Croire que le champ lexical ne contient que des noms ou des mots de même classe grammaticale. Le champ lexical est une notion sémantique (liée au sens) qui regroupe des mots de toutes natures autour d'un thème commun.",
-        "free",
       ),
       vraiFaux(
-        "v3k-ph-7", "lexique", "Intermediaire",
+        "v3k-ph-7", "lexique",
         "Dans le dictionnaire, un mot polysémique apparaît sous une seule entrée avec plusieurs sens numérotés, tandis que des homonymes apparaissent sous des entrées distinctes.",
         true,
         "C'est un critère pratique fiable pour distinguer polysémie et homonymie. Un mot polysémique a une seule entrée dans le dictionnaire, avec des sens numérotés (1, 2, 3...) qui sont historiquement et sémantiquement liés. Par exemple, « pied » (d'une personne, d'une table, d'une montagne) apparaît sous une seule entrée car les sens sont liés par métaphore (la partie basse). Les homonymes, eux, ont des entrées séparées numérotées (livre¹, livre²) car ce sont des mots d'origines différentes que le hasard de l'évolution phonétique a rendus identiques.",
         "Penser que cette règle est absolue. Les lexicographes ne sont pas toujours unanimes sur la frontière entre polysémie et homonymie — certains cas sont discutés. Mais pour le CRPE, ce critère du dictionnaire reste le plus opérationnel.",
-        "free",
       ),
       reponseCourte(
-        "v3k-ph-8", "lexique", "Intermediaire",
+        "v3k-ph-8", "lexique",
         "Comment appelle-t-on un mot dont le sens est plus général et qui inclut d'autres mots de sens plus spécifique ? Exemple : « animal » par rapport à « chat » et « chien ».",
         ["hyperonyme", "Hyperonyme", "un hyperonyme", "Un hyperonyme", "l'hyperonyme", "L'hyperonyme"],
         "Un hyperonyme est un mot de sens général qui inclut des mots de sens plus spécifique (les hyponymes). « Animal » est l'hyperonyme de « chat », « chien », « oiseau ». Cette relation d'inclusion est fondamentale en lexicologie : elle structure le vocabulaire en hiérarchies (vivant → animal → mammifère → félin → chat). En compréhension de texte, l'hyperonyme sert fréquemment de reprise anaphorique lexicale : après avoir mentionné « le labrador », l'auteur peut écrire « l'animal » ou « le chien » pour éviter la répétition.",
         "Confondre hyperonyme et hyponyme. L'hyperonyme est le terme GÉNÉRAL (animal), l'hyponyme est le terme SPÉCIFIQUE (chat). Moyen mnémotechnique : « hyper » = au-dessus (plus général), « hypo » = en dessous (plus spécifique).",
-        "free",
       ),
       reponseCourte(
-        "v3k-ph-9", "lexique", "Intermediaire",
+        "v3k-ph-9", "lexique",
         "Comment appelle-t-on deux mots qui se ressemblent par leur forme (graphie et prononciation proches) mais qui ont des sens différents ? Exemple : « éminent » et « imminent ».",
         ["paronymes", "Paronymes", "des paronymes", "Des paronymes", "paronymie", "Paronymie", "la paronymie"],
         "Ce sont des paronymes. Les paronymes sont des mots de formes proches (mais non identiques) et de sens différents : « éminent » (remarquable) / « imminent » (qui va se produire), « conjecture » (hypothèse) / « conjoncture » (situation), « effusion » (démonstration de sentiments) / « infusion » (boisson). La paronymie est source de nombreuses confusions dans l'usage courant et constitue un objet d'étude lexical important. Il ne faut pas confondre les paronymes avec les homonymes (forme identique) ni les synonymes (sens proche).",
         "Confondre paronymes et homonymes. Les homonymes ont exactement la même forme (graphique et/ou phonique), tandis que les paronymes ont des formes voisines mais pas identiques.",
-        "free",
       ),
       reponseCourte(
-        "v3k-ph-10", "lexique", "Intermediaire",
+        "v3k-ph-10", "lexique",
         "Le mot « canard » peut désigner un oiseau, un journal (familier), un morceau de sucre trempé dans le café, ou une fausse note en musique. Ce phénomène où un même mot possède plusieurs sens liés s'appelle la…",
         ["polysémie", "Polysémie", "la polysémie", "La polysémie"],
         "Il s'agit de la polysémie. Le mot « canard » est un même mot qui a développé plusieurs sens à partir de son sens premier (l'oiseau). Les sens sont liés par des processus sémantiques : le « canard » (journal) vient du cri du vendeur de journaux, assimilé au coin-coin ; le « canard » (fausse note) évoque le son désagréable du canard ; le « canard » (sucre trempé) évoque le geste de tremper comme le canard plonge dans l'eau. Dans le dictionnaire, tous ces sens figurent sous une seule entrée. C'est la différence fondamentale avec l'homonymie, où les mots ont des origines distinctes.",
         "Classer comme homonymie un cas de polysémie. Quand on peut identifier un lien (même ténu, métaphorique ou métonymique) entre les sens, il s'agit de polysémie. L'homonymie implique des mots d'origines différentes, sans lien sémantique.",
-        "free",
       ),
     ],
   }),
@@ -514,10 +466,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     subdomain: "comprehension_texte",
     topicKey: "reprises_anaphoriques_cohesion",
     topicLabel: "Reprises anaphoriques et cohésion textuelle",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 13,
-    access_tier: "free",
     recommendedOrder: 52,
     completionSummary: {
       skill: "Analyser les mécanismes de cohésion textuelle et identifier les reprises anaphoriques dans un texte",
@@ -530,7 +479,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3k-ra-1", "comprehension_texte", "Intermediaire",
+        "v3k-ra-1", "comprehension_texte",
         "Dans le texte « Le loup s'approcha de la bergerie. L'animal affamé observait les moutons. », comment appelle-t-on « L'animal affamé » par rapport à « Le loup » ?",
         [
           { id: "a", label: "Une reprise anaphorique pronominale" },
@@ -541,10 +490,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "« L'animal affamé » est une reprise anaphorique lexicale par hyperonyme. « Animal » est l'hyperonyme de « loup » (le loup est un type d'animal). L'adjectif « affamé » enrichit la reprise en apportant une information nouvelle sur le référent. Ce type de reprise remplit une double fonction : assurer la cohésion du texte (on comprend qu'il s'agit du même référent) et faire progresser l'information (on apprend que le loup a faim). C'est un procédé très courant dans les textes narratifs et descriptifs.",
         "Confondre reprise par hyperonyme et reprise par synonyme. « Animal » n'est pas un synonyme de « loup » (un synonyme aurait un sens très proche, comme « canidé sauvage ») mais un hyperonyme (terme plus général qui l'inclut).",
-        "free",
       ),
       qcm(
-        "v3k-ra-2", "comprehension_texte", "Intermediaire",
+        "v3k-ra-2", "comprehension_texte",
         "Qu'est-ce qu'une progression thématique à thème constant ?",
         [
           { id: "a", label: "Le propos de chaque phrase devient le thème de la phrase suivante" },
@@ -555,10 +503,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "c",
         "La progression à thème constant reprend le même thème de phrase en phrase, en lui ajoutant à chaque fois un propos nouveau. Exemple : « Pierre [thème] joue au football [propos]. Il [thème repris] adore aussi la natation [propos nouveau]. Il [thème repris] pratique le tennis le dimanche [propos nouveau]. » C'est la progression la plus simple et la plus fréquente dans les textes descriptifs et les portraits. Elle s'oppose à la progression linéaire (le propos d'une phrase devient le thème de la suivante) et à la progression éclatée (un hyperthème se décompose en sous-thèmes).",
         "Confondre progression à thème constant et progression linéaire. Dans la progression linéaire, c'est le propos (l'information nouvelle) qui devient le thème de la phrase suivante, créant un enchaînement en cascade.",
-        "free",
       ),
       qcm(
-        "v3k-ra-3", "comprehension_texte", "Intermediaire",
+        "v3k-ra-3", "comprehension_texte",
         "Dans « Marie a acheté un vélo. Elle le prend chaque matin pour aller travailler. », quels types de reprises anaphoriques trouve-t-on ?",
         [
           { id: "a", label: "Deux reprises lexicales par synonyme" },
@@ -569,10 +516,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "Cette phrase contient deux reprises anaphoriques pronominales. « Elle » tient lieu du GN « Marie » et « le » tient lieu du GN « un vélo ». Selon la terminologie officielle, on dit que le pronom « tient lieu d'un GN » (et non qu'il « remplace un nom »). Les reprises pronominales sont les anaphores les plus courantes dans les textes. Ici, elles permettent d'éviter la répétition (« Marie prend le vélo ») tout en maintenant la cohésion textuelle : le lecteur identifie clairement les référents grâce au contexte.",
         "Dire que le pronom « remplace un nom ». La formulation correcte selon la terminologie officielle est que le pronom « tient lieu d'un GN ». Cette nuance est importante car le pronom peut reprendre un GN entier, pas seulement un nom.",
-        "free",
       ),
       qcm(
-        "v3k-ra-4", "comprehension_texte", "Intermediaire",
+        "v3k-ra-4", "comprehension_texte",
         "Dans « Victor Hugo a écrit Les Misérables. Le célèbre romancier du XIXe siècle y dépeint la misère du peuple. », comment appelle-t-on « Le célèbre romancier du XIXe siècle » ?",
         [
           { id: "a", label: "Une reprise anaphorique pronominale" },
@@ -583,55 +529,48 @@ export const seriesV3BatchK: RevisionSession[] = [
         "c",
         "« Le célèbre romancier du XIXe siècle » est une reprise anaphorique lexicale par périphrase. Une périphrase est une expression de plusieurs mots qui désigne un référent sans le nommer directement, en mettant en avant une ou plusieurs de ses caractéristiques. Ici, la périphrase apporte des informations sur la célébrité de Hugo, son métier de romancier et son époque. La reprise par périphrase est un procédé stylistique riche qui permet à la fois d'éviter la répétition et d'enrichir le texte en ajoutant de l'information.",
         "Confondre reprise par périphrase et reprise par synonyme. Un synonyme serait un mot unique de sens proche (ex. : « l'écrivain »). La périphrase est un groupe de mots descriptif qui caractérise le référent (« Le célèbre romancier du XIXe siècle »).",
-        "free",
       ),
       vraiFaux(
-        "v3k-ra-5", "comprehension_texte", "Intermediaire",
+        "v3k-ra-5", "comprehension_texte",
         "Selon la terminologie officielle, on dit que le pronom « remplace un nom » dans la phrase.",
         false,
         "Selon la terminologie officielle Éduscol 2021, on dit que le pronom « tient lieu d'un GN » (groupe nominal) et non qu'il « remplace un nom ». Cette formulation est plus exacte car le pronom peut reprendre un groupe nominal entier, pas seulement un nom seul. Par exemple, dans « Les petits enfants jouent. Ils sont joyeux. », « Ils » tient lieu du GN complet « Les petits enfants » et pas seulement du nom « enfants ». De plus, certains pronoms ne reprennent rien (pronoms déictiques : « je », « tu ») — ils désignent directement un référent dans la situation d'énonciation.",
         "Utiliser la formulation « remplace un nom » qui était courante dans les grammaires antérieures. La terminologie Éduscol 2021 insiste sur « tient lieu d'un GN » pour plus de précision.",
-        "free",
       ),
       vraiFaux(
-        "v3k-ra-6", "comprehension_texte", "Intermediaire",
+        "v3k-ra-6", "comprehension_texte",
         "La progression thématique linéaire est celle où le propos (rhème) d'une phrase devient le thème de la phrase suivante.",
         true,
         "La progression linéaire (ou à thème dérivé du propos) fonctionne en cascade : le propos de la phrase 1 devient le thème de la phrase 2, dont le propos devient le thème de la phrase 3, etc. Exemple : « Un incendie [thème 1] a ravagé la forêt [propos 1]. Cette forêt [thème 2 = propos 1] abritait de nombreuses espèces [propos 2]. Ces espèces [thème 3 = propos 2] sont maintenant menacées [propos 3]. » Cette progression crée un enchaînement logique serré, fréquent dans les textes explicatifs et argumentatifs. Elle fait « avancer » le texte en construisant chaque phrase sur l'information nouvelle de la précédente.",
         "Confondre progression linéaire et progression à thème constant. Dans la progression à thème constant, le MÊME thème est repris de phrase en phrase. Dans la progression linéaire, c'est le PROPOS qui devient le thème suivant.",
-        "free",
       ),
       vraiFaux(
-        "v3k-ra-7", "comprehension_texte", "Intermediaire",
+        "v3k-ra-7", "comprehension_texte",
         "Les connecteurs logiques (mais, donc, car, en effet, cependant…) contribuent à la cohésion textuelle en explicitant les relations logiques entre les phrases ou les propositions.",
         true,
         "Les connecteurs logiques sont des éléments essentiels de la cohésion textuelle. Ils explicitent les relations entre les idées : cause (car, en effet, parce que), conséquence (donc, ainsi, par conséquent), opposition (mais, cependant, en revanche), addition (de plus, en outre, par ailleurs), etc. Sans connecteurs, le lecteur doit inférer les relations logiques, ce qui rend la compréhension plus difficile. Attention cependant à la terminologie : « donc » est un adverbe (et non une conjonction de coordination), et les conjonctions de coordination sont : mais, ou, et, or, ni, car.",
         "Classer « donc » comme conjonction de coordination. Selon la terminologie Éduscol 2021, « donc » est un adverbe. Les six conjonctions de coordination sont : mais, ou, et, or, ni, car.",
-        "free",
       ),
       reponseCourte(
-        "v3k-ra-8", "comprehension_texte", "Intermediaire",
+        "v3k-ra-8", "comprehension_texte",
         "Comment appelle-t-on le type de reprise anaphorique qui utilise un pronom (il, elle, le, lui, celui-ci…) pour tenir lieu d'un GN déjà mentionné ?",
         ["reprise pronominale", "Reprise pronominale", "reprise anaphorique pronominale", "Reprise anaphorique pronominale", "anaphore pronominale", "Anaphore pronominale", "la reprise pronominale"],
         "Il s'agit de la reprise anaphorique pronominale (ou anaphore pronominale). C'est le type de reprise le plus fréquent dans les textes. Le pronom tient lieu d'un GN déjà mentionné (l'antécédent) : pronoms personnels (il, elle, le, la, lui, leur), pronoms démonstratifs (celui-ci, celle-là), pronoms relatifs (qui, que), pronoms possessifs (le sien). L'identification du référent du pronom est une compétence de compréhension de lecture fondamentale, souvent source de difficulté pour les élèves quand le texte comporte plusieurs référents possibles.",
         "Penser que seuls les pronoms personnels de 3e personne sont des reprises anaphoriques. Les pronoms démonstratifs, relatifs, possessifs et indéfinis peuvent aussi fonctionner comme reprises anaphoriques.",
-        "free",
       ),
       reponseCourte(
-        "v3k-ra-9", "comprehension_texte", "Intermediaire",
+        "v3k-ra-9", "comprehension_texte",
         "Comment appelle-t-on la progression thématique dans laquelle un thème général (hyperthème) se décompose en plusieurs sous-thèmes traités successivement ? Exemple : « La maison comprenait trois pièces. Le salon était lumineux. La cuisine donnait sur le jardin. La chambre se trouvait à l'étage. »",
         ["progression éclatée", "Progression éclatée", "progression à thèmes dérivés", "Progression à thèmes dérivés", "la progression éclatée", "éclatée", "à thèmes dérivés"],
         "Il s'agit de la progression éclatée (ou à thèmes dérivés). Un hyperthème (« La maison ») est posé, puis chaque phrase développe un sous-thème qui en dérive (« Le salon », « La cuisine », « La chambre »). Cette progression est typique des textes descriptifs (description d'un lieu, d'un personnage) et des textes explicatifs qui décomposent un sujet en parties. Elle se distingue de la progression à thème constant (même thème repris) et de la progression linéaire (propos → thème suivant).",
         "Confondre progression éclatée et progression à thème constant. Dans la progression à thème constant, c'est le MÊME thème qui est repris. Dans la progression éclatée, les thèmes sont DIFFÉRENTS mais dérivent d'un hyperthème commun.",
-        "free",
       ),
       reponseCourte(
-        "v3k-ra-10", "comprehension_texte", "Intermediaire",
+        "v3k-ra-10", "comprehension_texte",
         "Dans « Napoléon remporta la bataille d'Austerlitz. L'empereur des Français consolida ainsi son pouvoir en Europe. », par quel type de reprise lexicale « L'empereur des Français » reprend-il « Napoléon » ?",
         ["périphrase", "Périphrase", "une périphrase", "Une périphrase", "reprise par périphrase", "la périphrase"],
         "« L'empereur des Français » est une reprise anaphorique lexicale par périphrase. La périphrase utilise plusieurs mots pour désigner un référent en mettant en avant une de ses caractéristiques (ici, le titre impérial de Napoléon). Ce procédé est distinct de la reprise par synonyme (un seul mot de sens proche) et de la reprise par hyperonyme (un terme plus général). La périphrase est fréquente dans les textes historiques et littéraires car elle permet d'enrichir le texte en apportant des informations complémentaires sur le référent tout en assurant la cohésion textuelle.",
         "Classer « L'empereur des Français » comme un synonyme de « Napoléon ». Un synonyme est un mot unique de sens équivalent. Ici, il s'agit d'un groupe nominal périphrastique qui désigne Napoléon par l'une de ses caractéristiques.",
-        "free",
       ),
     ],
   }),
@@ -648,10 +587,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     subdomain: "conjugaison",
     topicKey: "imperatif_modes_non_personnels",
     topicLabel: "L'impératif et les modes non personnels",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 13,
-    access_tier: "free",
     recommendedOrder: 53,
     completionSummary: {
       skill: "Conjuguer correctement l'impératif et analyser les modes personnels et non personnels de la conjugaison française",
@@ -664,7 +600,7 @@ export const seriesV3BatchK: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3k-im-1", "conjugaison", "Intermediaire",
+        "v3k-im-1", "conjugaison",
         "Quelle est la conjugaison correcte du verbe « manger » à l'impératif présent, 2e personne du singulier ?",
         [
           { id: "a", label: "Manges" },
@@ -675,10 +611,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "La forme correcte est « Mange » (sans -s). À l'impératif présent, les verbes du 1er groupe (-er) ne prennent pas de -s à la 2e personne du singulier. C'est une différence importante avec l'indicatif présent (« tu manges » avec -s). Cette règle s'applique aussi au verbe « aller » (« Va ! ») et aux verbes du 1er groupe en -ir (comme « ouvrir » : « Ouvre ! »). Exception : on ajoute un -s devant les pronoms « en » et « y » pour permettre la liaison : « Manges-en ! », « Vas-y ! ».",
         "Ajouter un -s par analogie avec l'indicatif présent (« tu manges »). À l'impératif, le -s disparaît pour les verbes du 1er groupe à la 2e personne du singulier.",
-        "free",
       ),
       qcm(
-        "v3k-im-2", "conjugaison", "Intermediaire",
+        "v3k-im-2", "conjugaison",
         "Pourquoi écrit-on « Manges-en » avec un -s alors que l'impératif du 1er groupe n'en prend normalement pas ?",
         [
           { id: "a", label: "C'est une erreur fréquente : on devrait écrire « Mange-en »" },
@@ -689,10 +624,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "Le -s est rétabli devant les pronoms « en » et « y » pour des raisons de liaison euphonique (agrément sonore). Sans le -s, la rencontre de deux voyelles créerait un hiatus désagréable : « Mange-en » [mɑ̃ʒ.ɑ̃] est plus difficile à prononcer que « Manges-en » [mɑ̃ʒ.zɑ̃]. C'est une règle purement phonétique qui s'applique à tous les verbes du 1er groupe à l'impératif 2e personne du singulier : « Parles-en », « Vas-y » (avec -s), « Penses-y ». En revanche, devant un mot commençant par une consonne, pas de -s : « Mange ta soupe ».",
         "Croire que le -s devant « en » et « y » est une simple tolérance orthographique. C'est une règle orthographique établie, motivée par la liaison euphonique, et il faut bien écrire « Manges-en » avec un -s.",
-        "free",
       ),
       qcm(
-        "v3k-im-3", "conjugaison", "Intermediaire",
+        "v3k-im-3", "conjugaison",
         "L'impératif est un mode personnel. Quels sont les trois modes personnels du français ?",
         [
           { id: "a", label: "Indicatif, subjonctif, conditionnel" },
@@ -703,10 +637,9 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "Les trois modes personnels sont l'indicatif, le subjonctif et l'impératif. Ils sont dits « personnels » car ils se conjuguent en personne (je, tu, il/elle, nous, vous, ils/elles — sauf l'impératif qui ne connaît que trois personnes). Attention : selon la terminologie Éduscol 2021, le conditionnel n'est pas un mode à part entière mais un temps de l'indicatif. Les modes non personnels sont l'infinitif, le participe et le gérondif : ils ne varient pas en personne mais font bien partie de la conjugaison.",
         "Inclure le conditionnel comme mode personnel séparé. Depuis la terminologie Éduscol 2021, le conditionnel est considéré comme un temps de l'indicatif, et non comme un mode à part entière.",
-        "free",
       ),
       qcm(
-        "v3k-im-4", "conjugaison", "Intermediaire",
+        "v3k-im-4", "conjugaison",
         "Quelles sont les formes de l'impératif présent du verbe « être » ?",
         [
           { id: "a", label: "Es, soyons, soyez" },
@@ -717,55 +650,48 @@ export const seriesV3BatchK: RevisionSession[] = [
         "b",
         "L'impératif présent du verbe « être » est : sois (2e pers. sing.), soyons (1re pers. plur.), soyez (2e pers. plur.). C'est un verbe irrégulier à l'impératif, comme « avoir » (aie, ayons, ayez), « savoir » (sache, sachons, sachez) et « vouloir » (veuille, veuillons, veuillez). Ces quatre verbes ont un impératif formé sur le radical du subjonctif présent, et non sur celui de l'indicatif. Ce sont des formes à connaître par cœur pour le CRPE.",
         "Confondre les formes de l'impératif de « être » et « avoir ». « Sois, soyons, soyez » = être ; « Aie, ayons, ayez » = avoir. La réponse d propose les formes de « avoir », pas de « être ».",
-        "free",
       ),
       vraiFaux(
-        "v3k-im-5", "conjugaison", "Intermediaire",
+        "v3k-im-5", "conjugaison",
         "L'infinitif et le participe ne sont pas des modes de la conjugaison car ils ne se conjuguent pas en personne.",
         false,
         "C'est faux. L'infinitif et le participe sont bien des modes de la conjugaison, même s'ils ne varient pas en personne. On les appelle « modes non personnels » (par opposition aux modes personnels : indicatif, subjonctif, impératif). L'infinitif a un présent (chanter) et un passé (avoir chanté). Le participe a un présent (chantant) et un passé (chanté). Le gérondif (en chantant) est le troisième mode non personnel. Ces formes font partie intégrante du système de conjugaison du verbe français — elles figurent dans tous les tableaux de conjugaison.",
         "Exclure les modes non personnels de la conjugaison. Même s'ils ne varient pas en personne, l'infinitif, le participe et le gérondif sont des modes reconnus de la conjugaison française.",
-        "free",
       ),
       vraiFaux(
-        "v3k-im-6", "conjugaison", "Intermediaire",
+        "v3k-im-6", "conjugaison",
         "L'impératif peut exprimer non seulement un ordre, mais aussi un conseil, une prière ou une invitation selon le contexte.",
         true,
         "L'impératif a des valeurs variées qui dépendent du contexte d'énonciation. L'ordre : « Rangez vos affaires ! » (injonction ferme d'un supérieur hiérarchique). Le conseil : « Prends un parapluie, il va pleuvoir » (suggestion bienveillante). La prière : « Pardonnez-moi, mon père » (demande humble). L'invitation : « Entrez, installez-vous » (accueil cordial). L'interdiction (avec la négation) : « Ne touchez pas à ce fil ! ». La valeur de l'impératif n'est pas intrinsèque à la forme grammaticale mais dépend de la situation, de l'intonation et de la relation entre les interlocuteurs.",
         "Réduire l'impératif à la seule valeur d'ordre. L'impératif est un mode aux valeurs multiples : ordre, conseil, prière, invitation, souhait, interdiction, concession (« Dites ce que vous voulez, je maintiens ma position »).",
-        "free",
       ),
       vraiFaux(
-        "v3k-im-7", "conjugaison", "Intermediaire",
+        "v3k-im-7", "conjugaison",
         "Le gérondif se forme avec « en » suivi du participe présent : « en chantant », « en mangeant ». C'est un mode non personnel.",
         true,
         "Le gérondif est effectivement formé de la préposition « en » suivie du participe présent : « en chantant », « en mangeant », « en courant ». C'est un mode non personnel de la conjugaison, au même titre que l'infinitif et le participe. Le gérondif a une fonction de complément circonstanciel dans la phrase — il exprime la simultanéité (« Il chante en travaillant »), la manière (« Elle est partie en courant »), la condition (« En travaillant davantage, tu réussiras ») ou la cause (« En tombant, il s'est blessé »). Le sujet du gérondif est toujours le même que celui du verbe principal.",
         "Confondre le gérondif (« en chantant ») avec le participe présent seul (« chantant »). Le gérondif inclut obligatoirement la préposition « en ». Sans « en », c'est un participe présent, qui peut avoir d'autres fonctions (épithète, apposition).",
-        "free",
       ),
       reponseCourte(
-        "v3k-im-8", "conjugaison", "Intermediaire",
+        "v3k-im-8", "conjugaison",
         "Conjuguez le verbe « finir » (2e groupe) à l'impératif présent, 2e personne du singulier.",
         ["finis", "Finis", "Finis !", "finis !", "Finis!", "finis!"],
         "La forme correcte est « Finis » (avec un -s). Contrairement aux verbes du 1er groupe qui perdent le -s à l'impératif 2e personne du singulier, les verbes du 2e groupe le conservent. C'est logique : la forme de l'impératif du 2e groupe est identique à celle de l'indicatif présent (« tu finis » → « Finis ! »). Seuls les verbes du 1er groupe (-er) et quelques verbes du 3e groupe conjugués comme le 1er groupe (ouvrir → « Ouvre ! », cueillir → « Cueille ! ») perdent le -s à l'impératif 2e personne du singulier.",
         "Retirer le -s par analogie avec la règle des verbes du 1er groupe. La suppression du -s à l'impératif 2e personne du singulier ne concerne que les verbes en -er (1er groupe) et quelques verbes du 3e groupe assimilés.",
-        "free",
       ),
       reponseCourte(
-        "v3k-im-9", "conjugaison", "Intermediaire",
+        "v3k-im-9", "conjugaison",
         "Combien de personnes l'impératif présent possède-t-il ? Répondez par un chiffre.",
         ["3", "trois", "Trois"],
         "L'impératif présent ne possède que trois personnes : la 2e personne du singulier (« Mange »), la 1re personne du pluriel (« Mangeons ») et la 2e personne du pluriel (« Mangez »). C'est le seul mode qui ne se conjugue pas à toutes les personnes. Il n'y a pas de 1re personne du singulier (on ne se donne pas d'ordre à soi-même), pas de 3e personne du singulier ni de 3e personne du pluriel (on utilise le subjonctif pour la 3e personne : « Qu'il mange ! »). L'absence de pronom sujet est une autre caractéristique distinctive de l'impératif.",
         "Répondre « 6 » en pensant que l'impératif se conjugue à toutes les personnes comme les autres modes. L'impératif ne connaît que trois personnes et s'emploie sans pronom sujet.",
-        "free",
       ),
       reponseCourte(
-        "v3k-im-10", "conjugaison", "Intermediaire",
+        "v3k-im-10", "conjugaison",
         "Quels sont les trois modes non personnels de la conjugaison française ?",
         ["infinitif, participe, gérondif", "infinitif participe gérondif", "Infinitif, participe, gérondif", "l'infinitif, le participe et le gérondif", "L'infinitif, le participe et le gérondif", "infinitif, participe et gérondif", "participe, infinitif, gerondif", "participe, infinitif, gérondif", "gerondif, infinitif, participe", "gérondif, infinitif, participe", "infinitif, gerondif, participe", "infinitif, gérondif, participe", "participe, gerondif, infinitif", "participe, gérondif, infinitif", "gerondif, participe, infinitif", "gérondif, participe, infinitif", "le participe, l'infinitif et le gérondif", "le gérondif, l'infinitif et le participe", "l'infinitif, le gérondif et le participe"],
         "Les trois modes non personnels sont l'infinitif, le participe et le gérondif. Ils sont dits « non personnels » car ils ne se conjuguent pas en personne (pas de variation je/tu/il/nous/vous/ils). L'infinitif a deux temps : présent (chanter) et passé (avoir chanté). Le participe a deux temps : présent (chantant) et passé (chanté). Le gérondif n'a qu'un présent (en chantant). Malgré l'absence de variation en personne, ces trois modes font pleinement partie du système de conjugaison du français et doivent être connus pour le CRPE.",
         "Oublier le gérondif et ne citer que l'infinitif et le participe. Le gérondif (en + participe présent) est bien un mode à part entière, distinct du participe présent seul.",
-        "free",
       ),
     ],
   }),

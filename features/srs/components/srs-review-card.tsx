@@ -9,7 +9,6 @@ type DueExercise = {
   exerciseId: string;
   subdomain: string | null;
   topicLabel: string | null;
-  level: string | null;
   state: number;
   lapses: number;
 };

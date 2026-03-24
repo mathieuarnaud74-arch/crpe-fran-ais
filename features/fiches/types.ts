@@ -1,4 +1,6 @@
-import type { ExerciseSubdomain, AccessTier } from "@/types/domain";
+import type { ExerciseSubdomain } from "@/types/domain";
+
+export type AccessTier = "free" | "premium";
 
 export type FicheModel = "reference" | "sprint" | "operatoire";
 export type FicheDomaine = ExerciseSubdomain;

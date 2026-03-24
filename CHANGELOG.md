@@ -1,5 +1,56 @@
 # Changelog
 
+## [2026-03-25] — Simplification radicale des séries d'exercices (1 topic_key = 1 série)
+
+Refonte de l'architecture des séries. Avant : les séries étaient calculées en groupant les exercices par `topic_key::level::access_tier`, puis découpées en blocs de 10. Cela créait une fragmentation massive (un même thème éclaté en 3-6 séries), des séries incomplètes silencieusement invisibles, et un cycle infini de backfills correctifs. Après : 1 `topic_key` = 1 série, point.
+
+### Migration SQL
+- `supabase/migrations/20260820_simplify_series_schema.sql` — ajout colonne `series_order` (ordre explicite des questions), neutralisation de `level` (→ 'Standard') et `access_tier` (→ 'free'), index `idx_exercises_topic_order`
+
+### Core logic
+- `features/exercises/server/queries.ts` — réécriture complète de `buildSessionsFromExercises` : groupement par `topic_key` seul, tri par `series_order`, plus de chunking en blocs de 10, plus de minimum de questions, suppression de `getQuestionSequence()` (extraction hex UUID). Ajout fallback dans `getExerciseSessionById` pour les anciens IDs de session (`session-{topicKey}-{level}-{chunk}` → `session-{topicKey}`). Suppression du filtre `.eq("access_tier", "free")` dans `getRandomExercises`. Suppression du filtre `level` dans `fetchAllExercises` et `ExerciseFilters`
+- `features/exercises/server/actions.ts` — suppression du gate premium (`exercise.access_tier === "premium" && !premium`), seul le quota quotidien (30/jour) limite désormais
+- `lib/dashboard/build-dashboard-data.ts` — suppression du filtre `visibleSessions` par `access_tier`, suppression de `level`/`estimatedMinutes`/`access_tier` de la construction `sessionProgress`
+
+### Types
+- `types/domain.ts` — suppression de `AccessTier`, suppression de `level`/`access_tier` de `ExerciseRecord`, suppression de `level`/`estimatedMinutes`/`access_tier` de `RevisionSession` et `DashboardSessionProgress`, ajout de `series_order` optionnel sur `ExerciseRecord`
+
+### UI — composants
+- `features/exercises/components/exercise-session-header.tsx` — suppression des badges level et premium
+- `features/dashboard/components/session-progress-card.tsx` — suppression du badge premium, suppression de `session.level` dans `formatSessionMeta`
+- `features/exercises/components/random-exercise-wrapper.tsx` — suppression de `level`, `estimatedMinutes`, `access_tier` du virtual session
+- `features/srs/components/srs-review-card.tsx` — suppression de `level` du type `DueExercise`
+
+### UI — pages
+- `app/(app)/exercices/page.tsx` — réécriture : suppression du split free/premium, des lock icons, du filtre level, du CTA "Passer en premium", de `isPremiumUser`. Liste unique "Toutes les séries"
+- `app/(app)/exercices/[id]/page.tsx` — suppression du gate premium, des badges level/premium
+- `app/(app)/francais/[domain]/page.tsx` — suppression du filtre level (dropdown, `selectedLevel`, chips actifs, `matchesSearch`)
+- `app/(app)/maths/[domain]/page.tsx` — idem
+- `app/(app)/tableau-de-bord/page.tsx` — suppression des filtres `access_tier === "free"` sur sessions résumé/challenge, remplacement `estimatedMinutes` par `questionCount` dans `PlanItem`
+- `app/(app)/revision/page.tsx` — suppression du filtre premium sur les exercices SRS, suppression de l'import `isPremiumUser`
+
+### Constants et badges
+- `lib/constants.ts` — suppression de `LEVEL_LABELS`, `LEVEL_OPTIONS`, `formatLevelLabel()`, `ACCESS_TIER_LABELS`
+- `lib/dashboard/badges.ts` — suppression de 4 badges liés aux niveaux (`facile-mastery`, `intermediaire-mastery`, `all-levels-tried`, `avance-mastery`) et des variables `levelsWithAttempts`/`levelsMastered`
+
+### Fiches (adaptation type)
+- `features/fiches/types.ts` — `AccessTier` défini localement (le système fiches garde son propre access tier indépendant)
+
+### Fichiers de contenu (nettoyage des seeds)
+- `content/french-crpe-series-v3-a.ts` à `content/french-crpe-series-v3-k.ts` (11 fichiers) — suppression de `level` et `access_tier` des signatures helper (`qcm`, `vraiFaux`, `reponseCourte`, `correction`), des call sites, et des objets session (`level`, `estimatedMinutes`, `access_tier`). Mise à jour des types `QuestionInput`/`SessionInput` (Omit étendu)
+- `content/french-crpe-series.ts` — idem
+- `content/french-crpe-series-tri-nature-mots.ts` — suppression de `level`, `access_tier`, `estimatedMinutes` des objets exercice et session
+- `content/french-crpe-module.ts` — suppression du type `FrenchLevel`, de `level` dans `FrenchSeriesPlanItem` et `FrenchSeries`, de `estimatedMinutes` dans `FrenchSeries`
+- `scripts/generate-french-module-seed.ts` — hardcode `'Standard'` et `'free'` dans le SQL généré (les colonnes existent encore en DB)
+
+### Tests
+- `__tests__/submit-attempt-action.test.ts` — suppression du test premium gate, remplacement `level`/`access_tier` par `series_order` dans les mocks
+
+### Vérification
+- `npm run typecheck` — 0 erreur
+- `npm run build` — build complet OK
+- `npx vitest run` — 211 tests, 12 fichiers, tous verts
+
 ## [2026-03-24] - Reconstruction du catalogue maths en production (backfill + nettoyage + re-harmonisation)
 
 Correctif deploye pour aligner la base distante sur les migrations locales de mathematiques. Le probleme reel n'etait pas seulement un regroupement casse : une grande partie des questions Q1-Q7 etait absente en prod, ce qui laissait beaucoup de `topic_key` a 2 ou 3 questions seulement.

@@ -4,10 +4,10 @@ const createdAt = "2026-03-20T08:00:00.000Z";
 
 type QuestionInput = Omit<
   ExerciseRecord,
-  "subject" | "validation_status" | "source" | "is_published" | "created_at" | "updated_at"
+  "subject" | "validation_status" | "source" | "is_published" | "created_at" | "updated_at" | "level" | "access_tier"
 >;
 
-type SessionInput = Omit<RevisionSession, "questionCount">;
+type SessionInput = Omit<RevisionSession, "questionCount" | "level" | "estimatedMinutes" | "access_tier">;
 
 function question(data: QuestionInput): ExerciseRecord {
   return {
@@ -29,18 +29,15 @@ function buildSession(data: SessionInput): RevisionSession {
 function qcm(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   choices: Array<{ id: string; label: string }>,
   value: string,
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
 ) {
   return question({
     id,
     subdomain,
-    level,
     exercise_type: "qcm",
     instruction,
     support_text: null,
@@ -48,7 +45,6 @@ function qcm(
     expected_answer: { mode: "single_choice", value },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null,
     topic_label: null,
   });
@@ -57,17 +53,14 @@ function qcm(
 function vraiFaux(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   value: boolean,
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
 ) {
   return question({
     id,
     subdomain,
-    level,
     exercise_type: "vrai_faux",
     instruction,
     support_text: null,
@@ -75,7 +68,6 @@ function vraiFaux(
     expected_answer: { mode: "boolean", value },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null,
     topic_label: null,
   });
@@ -84,19 +76,16 @@ function vraiFaux(
 function reponseCourte(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   acceptableAnswers: string[],
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
   exercise_type: ExerciseRecord["exercise_type"] = "reponse_courte",
   support_text: string | null = null,
 ) {
   return question({
     id,
     subdomain,
-    level,
     exercise_type,
     instruction,
     support_text,
@@ -104,7 +93,6 @@ function reponseCourte(
     expected_answer: { mode: "text", acceptableAnswers },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null,
     topic_label: null,
   });
@@ -124,10 +112,7 @@ export const seriesV3BatchF: RevisionSession[] = [
     subdomain: "grammaire",
     topicKey: "formes_de_phrases",
     topicLabel: "Formes de phrases",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 12,
-    access_tier: "free",
     recommendedOrder: 30,
     completionSummary: {
       skill: "Distinguer types et formes de phrases selon Éduscol 2021",
@@ -144,7 +129,6 @@ export const seriesV3BatchF: RevisionSession[] = [
       qcm(
         "v3f-fdp-1",
         "grammaire",
-        "Intermediaire",
         "Selon la terminologie officielle Éduscol 2021, combien de types de phrases existe-t-il ?",
         [
           { id: "a", label: "Trois : déclaratif, interrogatif, impératif" },
@@ -154,22 +138,18 @@ export const seriesV3BatchF: RevisionSession[] = [
         "a",
         "La terminologie officielle de 2021 retient exactement trois types de phrases : déclaratif, interrogatif et impératif. L'exclamation n'est plus considérée comme un type mais comme une forme de phrase. C'est un point capital au CRPE car l'ancienne classification à quatre types est encore très répandue dans les manuels scolaires antérieurs.",
         "Répondre quatre en incluant l'exclamatif, par habitude de l'ancienne classification.",
-        "free",
       ),
       vraiFaux(
         "v3f-fdp-2",
         "grammaire",
-        "Intermediaire",
         'Vrai ou faux : selon la terminologie Éduscol 2021, la phrase "Quel beau spectacle !" est de type exclamatif.',
         false,
         "L'exclamation est une forme de phrase, pas un type. La phrase \"Quel beau spectacle !\" est de type déclaratif et de forme exclamative. La terminologie officielle ne reconnaît que trois types : déclaratif, interrogatif et impératif. Dire \"type exclamatif\" est donc une erreur terminologique.",
         "Confondre forme exclamative et type exclamatif, par réflexe de l'ancienne grammaire.",
-        "free",
       ),
       qcm(
         "v3f-fdp-3",
         "grammaire",
-        "Intermediaire",
         'À quelle forme de phrase correspond la transformation suivante : "Le chat mange la souris" → "La souris est mangée par le chat" ?',
         [
           { id: "a", label: "Forme négative" },
@@ -180,22 +160,18 @@ export const seriesV3BatchF: RevisionSession[] = [
         "b",
         "Le sujet de la phrase active (\"le chat\") devient complément d'agent introduit par \"par\", et le COD (\"la souris\") devient sujet grammatical. C'est la forme passive. Le verbe passe à la voix passive avec l'auxiliaire être + participe passé. La phrase de base est active : toute transformation vers la voix passive relève de la forme passive.",
         "Confondre forme passive et forme impersonnelle, qui sont deux transformations distinctes.",
-        "free",
       ),
       reponseCourte(
         "v3f-fdp-4",
         "grammaire",
-        "Intermediaire",
         'Quelle est la forme de phrase illustrée par le procédé de clivage dans : "C\'est Paul qui a gagné la course" ?',
         ["forme emphatique", "emphatique"],
         "Le clivage est un procédé de mise en relief qui consiste à encadrer un élément par \"c'est... qui\" ou \"c'est... que\". C'est l'un des deux moyens de réaliser la forme emphatique (l'autre étant le détachement). La phrase de base serait \"Paul a gagné la course\" : le clivage met l'accent sur le sujet \"Paul\".",
         "Répondre forme exclamative en confondant emphase et exclamation.",
-        "free",
       ),
       qcm(
         "v3f-fdp-5",
         "grammaire",
-        "Intermediaire",
         'Comment appelle-t-on la forme de phrase illustrée dans : "Paul, lui, a réussi l\'examen" ?',
         [
           { id: "a", label: "Forme passive" },
@@ -206,22 +182,18 @@ export const seriesV3BatchF: RevisionSession[] = [
         "c",
         "Le détachement (ou dislocation) est un procédé de mise en relief où un élément est séparé du reste de la phrase et repris par un pronom. Ici, \"Paul\" est détaché et repris par \"lui\". C'est le second procédé de la forme emphatique, à côté du clivage (\"C'est Paul qui...\"). La phrase de base serait simplement \"Paul a réussi l'examen\".",
         "Ne pas distinguer détachement et clivage dans les deux formes de l'emphase.",
-        "free",
       ),
       vraiFaux(
         "v3f-fdp-6",
         "grammaire",
-        "Intermediaire",
         'Vrai ou faux : la phrase de base, selon la terminologie officielle, est définie comme positive, active et non exclamative.',
         true,
         "C'est exact. La phrase de base (ou phrase canonique) sert de référence : elle est positive (pas de négation), active (pas de transformation passive) et non exclamative. Attention : on ne dit pas « forme positive » ni « forme active » — ce sont simplement les caractéristiques de la phrase de base. Les formes de phrases (négative, passive, exclamative, emphatique, impersonnelle) s'analysent comme des écarts par rapport à cette base.",
         "Oublier le critère \"non exclamative\" et ne retenir que positif et actif.",
-        "free",
       ),
       qcm(
         "v3f-fdp-7",
         "grammaire",
-        "Intermediaire",
         'À quelle forme de phrase correspond la transformation : "Un accident grave s\'est produit" → "Il s\'est produit un accident grave" ?',
         [
           { id: "a", label: "Forme passive" },
@@ -232,32 +204,26 @@ export const seriesV3BatchF: RevisionSession[] = [
         "c",
         "Le pronom \"il\" est ici un sujet grammatical impersonnel (il ne désigne rien). Le vrai sujet sémantique, \"un accident grave\", est rejeté après le verbe. C'est la forme impersonnelle. Elle se reconnaît à la présence d'un \"il\" vide de sens suivi d'un groupe verbal dont le sujet logique est déplacé. On la distingue de la forme passive car il n'y a pas de complément d'agent.",
         "Confondre forme impersonnelle et forme passive parce que le sujet semble déplacé.",
-        "free",
       ),
       reponseCourte(
         "v3f-fdp-8",
         "grammaire",
-        "Intermediaire",
         'Identifiez la forme de phrase (autre que déclaratif) dans : "Les enfants ne jouent pas dans la cour."',
         ["forme négative", "négative"],
         "La phrase \"Les enfants ne jouent pas dans la cour\" est de type déclaratif et de forme négative. La négation est marquée par l'encadrement du verbe avec \"ne... pas\". La phrase de base correspondante serait \"Les enfants jouent dans la cour\" (positive). Attention : le type reste déclaratif car la phrase fait une déclaration, un constat.",
         "Répondre phrase négative en confondant type et forme de phrase.",
-        "free",
       ),
       vraiFaux(
         "v3f-fdp-9",
         "grammaire",
-        "Intermediaire",
         'Vrai ou faux : la phrase "Ne partez pas !" combine le type impératif, la forme négative et la forme exclamative.',
         true,
         "Cette phrase est bien de type impératif (elle donne un ordre avec un verbe à l'impératif). Elle est de forme négative (\"ne... pas\") et de forme exclamative (point d'exclamation, intonation forte). Une phrase peut tout à fait combiner un type et plusieurs formes simultanément. C'est même très fréquent à l'oral.",
         "Croire qu'une phrase ne peut avoir qu'une seule forme à la fois.",
-        "free",
       ),
       qcm(
         "v3f-fdp-10",
         "grammaire",
-        "Intermediaire",
         'Parmi ces phrases, laquelle est une phrase atypique (averbale) ?',
         [
           { id: "a", label: "Bravo !" },
@@ -268,7 +234,6 @@ export const seriesV3BatchF: RevisionSession[] = [
         "a",
         "\"Bravo !\" est une phrase averbale : elle ne contient aucun verbe conjugué et ne peut pas être ramenée à une phrase de base canonique (sujet + verbe). Les phrases atypiques incluent les phrases averbales (\"Quelle chance !\"), les mots-phrases (\"Oui.\", \"Hélas !\") et les phrases elliptiques. Elles échappent à l'analyse en types et formes car elles ne reposent pas sur un verbe.",
         "Croire que toute phrase avec un point d'exclamation est simplement exclamative sans voir qu'elle est aussi averbale.",
-        "free",
       ),
     ],
   }),
@@ -286,10 +251,7 @@ export const seriesV3BatchF: RevisionSession[] = [
     subdomain: "grammaire",
     topicKey: "expansion_du_nom",
     topicLabel: "Expansions du nom",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 12,
-    access_tier: "free",
     recommendedOrder: 31,
     completionSummary: {
       skill: "Identifier et nommer les expansions du groupe nominal",
@@ -306,7 +268,6 @@ export const seriesV3BatchF: RevisionSession[] = [
       qcm(
         "v3f-edn-1",
         "grammaire",
-        "Intermediaire",
         'Dans "La pharmacienne de mon quartier est aimable", quelle est la fonction de "de mon quartier" ?',
         [
           { id: "a", label: "Épithète" },
@@ -317,22 +278,18 @@ export const seriesV3BatchF: RevisionSession[] = [
         "b",
         "\"De mon quartier\" est un groupe nominal prépositionnel (GNP) qui se rapporte au nom \"pharmacienne\". Il apporte une précision sur ce nom en indiquant de quelle pharmacienne on parle. C'est donc un complément du nom. Le complément du nom est toujours introduit par une préposition (de, à, en, pour, sans...) et fait partie du groupe nominal élargi.",
         "Confondre complément du nom et complément circonstanciel de lieu.",
-        "free",
       ),
       vraiFaux(
         "v3f-edn-2",
         "grammaire",
-        "Intermediaire",
         'Vrai ou faux : dans "un livre passionnant", "passionnant" est une épithète du nom "livre".',
         true,
         "\"Passionnant\" est un adjectif placé directement après le nom \"livre\", sans virgule ni préposition. Il qualifie ce nom et fait partie du groupe nominal : c'est bien une épithète. L'épithète est l'expansion du nom la plus simple : un adjectif (ou un participe employé comme adjectif) accolé au nom, en position antéposée ou postposée.",
         "Répondre attribut parce que l'adjectif qualifie le nom, sans vérifier la présence d'un verbe attributif.",
-        "free",
       ),
       qcm(
         "v3f-edn-3",
         "grammaire",
-        "Intermediaire",
         'Dans "Marie, excellente pianiste, donnera un récital", quelle est la fonction de "excellente pianiste" ?',
         [
           { id: "a", label: "Épithète" },
@@ -343,22 +300,18 @@ export const seriesV3BatchF: RevisionSession[] = [
         "c",
         "\"Excellente pianiste\" est séparé du nom \"Marie\" par des virgules : c'est un élément détaché. Cette position détachée est la marque de l'apposition. L'apposition apporte une information supplémentaire sur le nom mais elle est syntaxiquement mobile et supprimable. Sans les virgules, on aurait une épithète ou un complément du nom, mais le détachement signale l'apposition.",
         "Confondre apposition et épithète en ne remarquant pas la virgule de détachement.",
-        "free",
       ),
       reponseCourte(
         "v3f-edn-4",
         "grammaire",
-        "Intermediaire",
         'Dans "Le gâteau au chocolat est délicieux", quelle est la fonction du groupe "au chocolat" par rapport au nom "gâteau" ?',
         ["complément du nom", "CDN"],
         "\"Au chocolat\" (= à + le chocolat) est un groupe prépositionnel qui précise le nom \"gâteau\". Il indique de quel type de gâteau il s'agit. C'est un complément du nom. Il ne faut pas le confondre avec un complément circonstanciel, car il ne modifie pas le verbe mais bien le nom. Le complément du nom est toujours un GNP rattaché au noyau nominal.",
         "Analyser \"au chocolat\" comme un complément circonstanciel de moyen ou de matière.",
-        "free",
       ),
       qcm(
         "v3f-edn-5",
         "grammaire",
-        "Intermediaire",
         'Dans "L\'élève qui travaille bien réussira", quelle est la nature de "qui travaille bien" et quelle est sa fonction ?',
         [
           { id: "a", label: "Proposition subordonnée relative, épithète (relative déterminative)" },
@@ -369,22 +322,18 @@ export const seriesV3BatchF: RevisionSession[] = [
         "a",
         "\"Qui travaille bien\" est une proposition subordonnée relative introduite par le pronom relatif \"qui\". Elle se rapporte au nom \"élève\" et le détermine sans virgule : c'est une relative déterminative (ou restrictive), qui fonctionne comme une épithète. Elle restreint le sens du nom : on ne parle pas de n'importe quel élève, mais de celui qui travaille bien.",
         "Confondre relative déterminative (sans virgule, fonction d'épithète) et relative apposée (avec virgules, fonction d'apposition).",
-        "free",
       ),
       vraiFaux(
         "v3f-edn-6",
         "grammaire",
-        "Intermediaire",
         'Vrai ou faux : dans "Les enfants, qui étaient fatigués, se sont endormis", la relative "qui étaient fatigués" est une relative déterminative (épithète).',
         false,
         "La relative \"qui étaient fatigués\" est encadrée par des virgules : elle est donc détachée du nom. C'est une relative apposée (ou non restrictive), et non une relative déterminative. Sa fonction est l'apposition, pas l'épithète. Elle apporte une information supplémentaire mais ne restreint pas le sens du nom : tous les enfants étaient fatigués et se sont endormis.",
         "Ne pas prêter attention aux virgules, qui sont pourtant le critère décisif entre relative déterminative et relative apposée.",
-        "free",
       ),
       qcm(
         "v3f-edn-7",
         "grammaire",
-        "Intermediaire",
         'Quelle expansion du nom est présente dans "une robe en soie" ?',
         [
           { id: "a", label: "Épithète" },
@@ -395,32 +344,26 @@ export const seriesV3BatchF: RevisionSession[] = [
         "b",
         "\"En soie\" est un groupe prépositionnel introduit par la préposition \"en\" qui se rapporte au nom \"robe\". Il précise la matière de la robe. C'est un complément du nom. On le distingue de l'épithète car il est introduit par une préposition, et de l'apposition car il n'est pas détaché par des virgules.",
         "Analyser \"en soie\" comme un complément circonstanciel de matière rattaché au verbe.",
-        "free",
       ),
       reponseCourte(
         "v3f-edn-8",
         "grammaire",
-        "Intermediaire",
         'Dans "une petite maison blanche", quelle est la fonction de "petite" et de "blanche" par rapport au nom "maison" ?',
         ["épithète", "épithètes"],
         "\"Petite\" et \"blanche\" sont deux adjectifs qualificatifs directement accolés au nom \"maison\" (l'un antéposé, l'autre postposé), sans préposition ni virgule de détachement. Ce sont deux épithètes. L'épithète peut être placée avant ou après le nom. La position n'affecte pas la fonction, même si elle peut modifier la nuance de sens.",
         "Penser qu'un adjectif antéposé a une fonction différente d'un adjectif postposé.",
-        "free",
       ),
       vraiFaux(
         "v3f-edn-9",
         "grammaire",
-        "Intermediaire",
         'Vrai ou faux : "expansion du nom" est le terme général qui regroupe l\'épithète et le complément du nom.',
         true,
         "Oui, selon la terminologie Éduscol 2021, \"expansion du nom\" est le terme générique qui désigne tout élément venant enrichir le groupe nominal minimal (Dét + N). Il regroupe l'épithète, le complément du nom, l'apposition et la relative. C'est un concept-parapluie très utile pour l'analyse grammaticale en classe.",
         "Croire que \"expansion du nom\" ne désigne que l'épithète.",
-        "free",
       ),
       qcm(
         "v3f-edn-10",
         "grammaire",
-        "Intermediaire",
         'Dans "Victor Hugo, auteur des Misérables, est né en 1802", quelle est la fonction de "auteur des Misérables" ?',
         [
           { id: "a", label: "Épithète" },
@@ -431,7 +374,6 @@ export const seriesV3BatchF: RevisionSession[] = [
         "c",
         "\"Auteur des Misérables\" est un groupe nominal détaché, encadré par des virgules, qui apporte une information supplémentaire sur \"Victor Hugo\". C'est une apposition. Elle est supprimable (la phrase reste grammaticale sans elle) et mobile. L'apposition se distingue de l'attribut du sujet car il n'y a pas de verbe attributif : le lien se fait directement, par juxtaposition détachée.",
         "Confondre apposition et attribut du sujet en pensant qu'il y a une équivalence Victor Hugo = auteur.",
-        "free",
       ),
     ],
   }),
@@ -449,10 +391,7 @@ export const seriesV3BatchF: RevisionSession[] = [
     subdomain: "grammaire",
     topicKey: "complement_agent_attribut_cod",
     topicLabel: "Complément d'agent et attribut du COD",
-    level: "Avancé",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 14,
-    access_tier: "premium",
     recommendedOrder: 32,
     completionSummary: {
       skill: "Reconnaître le complément d'agent et l'attribut du COD",
@@ -469,7 +408,6 @@ export const seriesV3BatchF: RevisionSession[] = [
       qcm(
         "v3f-caac-1",
         "grammaire",
-        "Avancé",
         'Dans "La scène a été racontée par deux témoins", quelle est la fonction de "par deux témoins" ?',
         [
           { id: "a", label: "Complément circonstanciel de moyen" },
@@ -480,22 +418,18 @@ export const seriesV3BatchF: RevisionSession[] = [
         "b",
         "\"Par deux témoins\" est le complément d'agent du verbe passif \"a été racontée\". En retransformant en phrase active, on obtient : \"Deux témoins ont raconté la scène.\" L'agent (\"deux témoins\") devient le sujet de la phrase active. Le complément d'agent est propre à la forme passive et est généralement introduit par \"par\", parfois par \"de\".",
         "Confondre complément d'agent et complément circonstanciel de moyen à cause de la préposition \"par\".",
-        "premium",
       ),
       vraiFaux(
         "v3f-caac-2",
         "grammaire",
-        "Avancé",
         'Vrai ou faux : dans "Ce professeur est estimé de tous ses collègues", "de tous ses collègues" est un complément d\'agent.',
         true,
         "Oui, \"est estimé\" est une forme passive (auxiliaire être + participe passé). \"De tous ses collègues\" est le complément d'agent, introduit ici par la préposition \"de\" et non par \"par\". Certains verbes passifs, notamment ceux exprimant un sentiment (estimer, aimer, connaître, respecter), admettent \"de\" comme introducteur du complément d'agent. La phrase active équivalente est : \"Tous ses collègues estiment ce professeur.\"",
         "Ne pas reconnaître le complément d'agent quand il est introduit par \"de\" au lieu de \"par\".",
-        "premium",
       ),
       qcm(
         "v3f-caac-3",
         "grammaire",
-        "Avancé",
         'Dans "On a élu Alice présidente", quelle est la fonction de "présidente" ?',
         [
           { id: "a", label: "Attribut du sujet" },
@@ -506,22 +440,18 @@ export const seriesV3BatchF: RevisionSession[] = [
         "c",
         "\"Présidente\" qualifie le COD \"Alice\" par l'intermédiaire du verbe \"élire\". La structure est : On (sujet) + a élu (verbe) + Alice (COD) + présidente (attribut du COD). L'attribut du COD attribue une propriété ou un statut au complément d'objet direct. Il ne faut pas le confondre avec l'attribut du sujet (qui passe par un verbe attributif comme être ou paraître) ni avec un second COD.",
         "Analyser \"présidente\" comme un second COD ou comme une apposition.",
-        "premium",
       ),
       reponseCourte(
         "v3f-caac-4",
         "grammaire",
-        "Avancé",
         'Dans "Ses amis le trouvent courageux", quelle est la fonction de "courageux" ?',
         ["attribut du COD", "attribut du cod"],
         "\"Courageux\" est l'attribut du COD \"le\" (pronom représentant une personne). Le verbe \"trouver\", employé au sens de \"juger\", \"considérer\", fait partie des verbes qui introduisent un attribut du COD. La structure est : Ses amis (sujet) + le trouvent (verbe + COD) + courageux (attribut du COD). Si l'on supprime \"courageux\", la phrase change radicalement de sens.",
         "Analyser \"courageux\" comme une épithète ou un attribut du sujet.",
-        "premium",
       ),
       qcm(
         "v3f-caac-5",
         "grammaire",
-        "Avancé",
         'Quel est le test le plus fiable pour identifier un complément d\'agent ?',
         [
           { id: "a", label: "Vérifier qu'il est introduit par \"par\"" },
@@ -532,22 +462,18 @@ export const seriesV3BatchF: RevisionSession[] = [
         "b",
         "Le test le plus fiable est la transformation active/passive. Si le groupe introduit par \"par\" (ou \"de\") devient le sujet de la phrase active équivalente, c'est bien un complément d'agent. Le simple critère de la préposition \"par\" est insuffisant (\"Il passe par Paris\" : \"par Paris\" n'est pas un agent). La suppression n'est pas fiable non plus car certains compléments circonstanciels sont aussi supprimables.",
         "Se contenter du critère \"introduit par par\" sans vérifier par la transformation passive/active.",
-        "premium",
       ),
       vraiFaux(
         "v3f-caac-6",
         "grammaire",
-        "Avancé",
         'Vrai ou faux : dans "Cette nouvelle a rendu Marie furieuse", "furieuse" est un attribut du COD.',
         true,
         "\"Furieuse\" est bien l'attribut du COD \"Marie\". Le verbe \"rendre\" est l'un des verbes typiques qui introduisent un attribut du COD : il exprime une transformation de l'état du COD. La structure est : Cette nouvelle (sujet) + a rendu (verbe) + Marie (COD) + furieuse (attribut du COD). \"Furieuse\" qualifie Marie par l'intermédiaire du verbe, pas directement.",
         "Confondre avec un attribut du sujet en inversant sujet et COD dans l'analyse.",
-        "premium",
       ),
       qcm(
         "v3f-caac-7",
         "grammaire",
-        "Avancé",
         'Dans "Le gâteau a été préparé par le pâtissier", si l\'on retransforme en phrase active, que devient "par le pâtissier" ?',
         [
           { id: "a", label: "COD de la phrase active" },
@@ -558,22 +484,18 @@ export const seriesV3BatchF: RevisionSession[] = [
         "c",
         "En phrase active : \"Le pâtissier a préparé le gâteau.\" Le complément d'agent de la phrase passive (\"par le pâtissier\") devient le sujet de la phrase active. C'est la définition même du complément d'agent : il désigne l'être ou la chose qui accomplit l'action exprimée par le verbe passif. Cette correspondance agent → sujet est le critère le plus sûr pour identifier la fonction.",
         "Penser que le complément d'agent devient un complément dans la phrase active.",
-        "premium",
       ),
       reponseCourte(
         "v3f-caac-8",
         "grammaire",
-        "Avancé",
         'Citez un verbe (autre que "élire" et "trouver") qui peut introduire un attribut du COD.',
         ["nommer", "juger", "estimer", "rendre", "croire", "considérer", "déclarer", "appeler", "proclamer", "sacrer"],
         "Parmi les verbes qui introduisent un attribut du COD, on trouve : nommer (\"On l'a nommé directeur\"), juger (\"Je le juge compétent\"), estimer (\"Ils l'estiment capable\"), rendre (\"Cela le rend heureux\"), croire (\"Je le crois sincère\"), déclarer (\"Le jury l'a déclaré coupable\"). Ces verbes ont en commun d'exprimer un jugement, une dénomination ou une transformation qui porte sur le COD.",
         "Ne penser qu'aux verbes de dénomination et oublier les verbes de jugement ou de transformation.",
-        "premium",
       ),
       qcm(
         "v3f-caac-9",
         "grammaire",
-        "Avancé",
         'Dans "Les délégués ont été reçus par la directrice dans son bureau", quelle est la fonction de "par la directrice" et celle de "dans son bureau" ?',
         [
           { id: "a", label: "Complément d'agent ; complément circonstanciel de lieu" },
@@ -584,17 +506,14 @@ export const seriesV3BatchF: RevisionSession[] = [
         "a",
         "\"Par la directrice\" est le complément d'agent : en transformant en phrase active, on obtient \"La directrice a reçu les délégués dans son bureau\" (l'agent devient sujet). \"Dans son bureau\" est un complément circonstanciel de lieu : il indique l'endroit de l'action et ne change pas de fonction entre la phrase passive et la phrase active. Attention à ne pas confondre deux groupes introduits par des prépositions différentes.",
         "Analyser les deux groupes prépositionnels comme des compléments d'agent sous prétexte qu'ils sont tous deux dans une phrase passive.",
-        "premium",
       ),
       vraiFaux(
         "v3f-caac-10",
         "grammaire",
-        "Avancé",
         'Vrai ou faux : dans "Ils considèrent cette mesure comme indispensable", "indispensable" est un attribut du COD de "cette mesure".',
         true,
         "\"Indispensable\" est bien l'attribut du COD \"cette mesure\". Le verbe \"considérer\" fait partie des verbes de jugement qui introduisent un attribut du COD, souvent avec la préposition \"comme\" (considérer comme, regarder comme). La structure est : Ils (sujet) + considèrent (verbe) + cette mesure (COD) + comme indispensable (attribut du COD). La présence de \"comme\" ne change pas la fonction : \"indispensable\" qualifie le COD via le verbe.",
         "Analyser \"comme indispensable\" comme un complément circonstanciel de comparaison.",
-        "premium",
       ),
     ],
   }),

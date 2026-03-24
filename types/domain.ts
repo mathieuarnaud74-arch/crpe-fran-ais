@@ -36,8 +36,6 @@ export type ExerciseType =
 /** Mode de validation de la réponse attendue */
 export type AnswerMode = "single_choice" | "boolean" | "text" | "categorization" | "highlight_groups";
 
-/** Niveau d'accès d'un exercice ou d'une série */
-export type AccessTier = "free" | "premium";
 
 /** Statut de validation éditoriale */
 export type ValidationStatus = "brouillon" | "valide";
@@ -116,7 +114,6 @@ export type ExerciseRecord = {
   subdomain: ExerciseSubdomain;
   topic_key?: string | null;
   topic_label?: string | null;
-  level: string;
   exercise_type: ExerciseType;
   instruction: string;
   support_text: string | null;
@@ -125,11 +122,11 @@ export type ExerciseRecord = {
   detailed_explanation: string;
   validation_status: ValidationStatus;
   source: string | null;
-  access_tier: AccessTier;
   is_published: boolean;
   created_at: string;
   updated_at: string;
   common_mistake?: string | null;
+  series_order?: number;
 };
 
 export type RevisionSession = {
@@ -141,11 +138,8 @@ export type RevisionSession = {
   subdomain: ExerciseSubdomain;
   topicKey: string;
   topicLabel: string;
-  level: string;
   exerciseTypeLabel: string;
   questionCount: number;
-  estimatedMinutes: number;
-  access_tier: AccessTier;
   recommendedOrder: number;
   questions: ExerciseRecord[];
   completionSummary: {
@@ -219,10 +213,7 @@ export type DashboardSessionProgress = {
   domainLabel: string;
   subdomain: ExerciseSubdomain;
   subdomainLabel: string;
-  level: string;
   questionCount: number;
-  estimatedMinutes: number;
-  access_tier: AccessTier;
   recommendedOrder: number;
   attempts: number;
   answeredQuestions: number;

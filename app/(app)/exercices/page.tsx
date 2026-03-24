@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ChevronDown, Lock, PlayCircle } from "lucide-react";
+import { ChevronDown, PlayCircle } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -12,11 +12,9 @@ import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";
-import { isPremiumUser } from "@/features/billing/server/queries";
 import { getExercises } from "@/features/exercises/server/queries";
 import {
   EXERCISE_TYPE_OPTIONS,
-  LEVEL_OPTIONS,
   MATH_SUBDOMAIN_OPTIONS,
   SUBDOMAIN_LABELS,
   SUBDOMAIN_OPTIONS,
@@ -26,7 +24,6 @@ import { ExerciseSubdomain, ExerciseType, RevisionSession, Subject } from "@/typ
 type SearchParams = Promise<{
   subdomain?: string;
   type?: string;
-  level?: string;
   subject?: string;
 }>;
 
@@ -59,16 +56,10 @@ function SelectField({
   );
 }
 
-function SessionCard({ session, premium }: { session: RevisionSession; premium: boolean }) {
-  const locked = session.access_tier === "premium" && !premium;
-
+function SessionCard({ session }: { session: RevisionSession }) {
   return (
     <div className="group flex flex-col gap-3 rounded-[1.25rem] border border-border bg-card p-4 shadow-subtle transition-colors hover:border-accent/40 sm:p-5">
       <div className="flex flex-wrap items-center gap-2">
-        <Badge tone={session.access_tier === "premium" ? "accent" : "neutral"} size="sm">
-          {session.access_tier === "premium" ? "Premium" : "Gratuit"}
-        </Badge>
-        <Badge size="sm">{session.level}</Badge>
         <Badge size="sm">{session.questionCount} questions</Badge>
         <span className="text-xs text-muted">
           · {SUBDOMAIN_LABELS[session.subdomain]}
@@ -81,55 +72,13 @@ function SessionCard({ session, premium }: { session: RevisionSession; premium: 
       </div>
 
       <div className="flex items-center justify-between gap-3 pt-1">
-        <p className="hidden text-xs text-muted sm:block">{session.exerciseTypeLabel} · ~{session.estimatedMinutes} min</p>
-        {locked ? (
-          <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 text-xs text-muted">
-              <Lock className="h-3.5 w-3.5" />
-              Premium
-            </span>
-            <ButtonLink href="/abonnement" variant="secondary" size="sm">
-              Voir l&apos;offre
-            </ButtonLink>
-          </div>
-        ) : (
-          <ButtonLink href={`/exercices/${session.id}`} size="sm">
-            <PlayCircle className="h-3.5 w-3.5" />
-            Commencer
-          </ButtonLink>
-        )}
+        <p className="hidden text-xs text-muted sm:block">{session.exerciseTypeLabel}</p>
+        <ButtonLink href={`/exercices/${session.id}`} size="sm">
+          <PlayCircle className="h-3.5 w-3.5" />
+          Commencer
+        </ButtonLink>
       </div>
     </div>
-  );
-}
-
-function SessionSection({
-  title,
-  description,
-  sessions,
-  premium,
-}: {
-  title: string;
-  description: string;
-  sessions: RevisionSession[];
-  premium: boolean;
-}) {
-  if (sessions.length === 0) {
-    return null;
-  }
-
-  return (
-    <section className="space-y-4">
-      <div>
-        <h2 className="font-serif text-3xl font-semibold text-ink">{title}</h2>
-        <p className="mt-2 max-w-3xl text-sm leading-7 text-muted">{description}</p>
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {sessions.map((session) => (
-          <SessionCard key={session.id} session={session} premium={premium} />
-        ))}
-      </div>
-    </section>
   );
 }
 
@@ -138,15 +87,13 @@ export default async function ExercisesPage({
 }: {
   searchParams: SearchParams;
 }) {
-  const user = await requireUser();
-  const premium = await isPremiumUser(user.id);
-  const { subdomain, type, level, subject: rawSubject } = await searchParams;
+  await requireUser();
+  const { subdomain, type, subject: rawSubject } = await searchParams;
   const subject: Subject = rawSubject === "Mathematiques" ? "Mathematiques" : "Francais";
   const sessions = (
     await getExercises({
       subdomain: subdomain as ExerciseSubdomain | undefined,
       type: type as ExerciseType | undefined,
-      level,
       subject,
     })
   ).sort((left, right) => left.recommendedOrder - right.recommendedOrder);
@@ -155,27 +102,19 @@ export default async function ExercisesPage({
 
   const sujetsBlancs = sessions.filter((session) => session.topicKey.startsWith("sujet_blanc"));
   const regularSessions = sessions.filter((session) => !session.topicKey.startsWith("sujet_blanc"));
-  const freeSessions = regularSessions.filter((session) => session.access_tier === "free");
-  const premiumSessions = regularSessions.filter((session) => session.access_tier === "premium");
 
-  const noFiltersActive = !subdomain && !type && !level && subject === "Francais";
-  const nextSeries = noFiltersActive ? freeSessions.slice(0, 3) : [];
+  const noFiltersActive = !subdomain && !type && subject === "Francais";
+  const nextSeries = noFiltersActive ? regularSessions.slice(0, 3) : [];
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <Badge tone={premium ? "accent" : "neutral"}>
-            {premium ? "Catalogue complet" : "Parcours gratuit + approfondissements premium"}
-          </Badge>
           <h1 className="mt-3 font-serif text-3xl font-semibold text-ink sm:text-4xl">Séries de révision</h1>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">
-            Le catalogue suit une progression éditoriale simple : fondations gratuites d&apos;abord,
-            approfondissements premium ensuite. Chaque série correspond à une vraie séance de
-            révision centrée sur une notion.
+            Chaque série correspond à une vraie séance de révision centrée sur une notion du CRPE.
           </p>
         </div>
-        {!premium ? <ButtonLink href="/abonnement">Passer en premium</ButtonLink> : null}
       </div>
 
       {nextSeries.length > 0 && (
@@ -216,7 +155,7 @@ export default async function ExercisesPage({
       )}
 
       <Panel>
-        <form aria-label="Filtres des séries de révision" className="grid gap-3 sm:gap-4 sm:grid-cols-2 md:grid-cols-5">
+        <form aria-label="Filtres des séries de révision" className="grid gap-3 sm:gap-4 sm:grid-cols-2 md:grid-cols-4">
           <SelectField label="Matière" name="subject" defaultValue={subject}>
             <option value="Francais">Français</option>
             <option value="Mathematiques">Mathématiques</option>
@@ -232,14 +171,6 @@ export default async function ExercisesPage({
           <SelectField label="Type dominant" name="type" defaultValue={type ?? ""}>
             <option value="">Tous</option>
             {EXERCISE_TYPE_OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </SelectField>
-          <SelectField label="Niveau" name="level" defaultValue={level ?? ""}>
-            <option value="">Tous</option>
-            {LEVEL_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -274,28 +205,24 @@ export default async function ExercisesPage({
             </p>
           </div>
           <div className="mt-5 grid gap-4 sm:grid-cols-3">
-            {sujetsBlancs.map((session) => {
-              const locked = session.access_tier === "premium" && !premium;
-              return (
-                <Link
-                  key={session.id}
-                  href={locked ? "/abonnement" : `/exercices/${session.id}`}
-                  className="group flex flex-col gap-2 rounded-[1.25rem] border border-accent/20 bg-paper px-5 py-5 transition-all hover:border-accent hover:shadow-elevated"
-                >
-                  <div className="flex items-center gap-2">
-                    <Badge tone="accent">Sujet blanc</Badge>
-                    <Badge>{session.questionCount} questions</Badge>
-                    {locked && <Lock className="h-3.5 w-3.5 text-muted" />}
-                  </div>
-                  <span className="font-serif text-lg font-semibold text-ink">
-                    {session.topicLabel}
-                  </span>
-                  <span className="text-xs text-muted">
-                    2 parties · {session.questionCount} questions · ~{session.estimatedMinutes} min
-                  </span>
-                </Link>
-              );
-            })}
+            {sujetsBlancs.map((session) => (
+              <Link
+                key={session.id}
+                href={`/exercices/${session.id}`}
+                className="group flex flex-col gap-2 rounded-[1.25rem] border border-accent/20 bg-paper px-5 py-5 transition-all hover:border-accent hover:shadow-elevated"
+              >
+                <div className="flex items-center gap-2">
+                  <Badge tone="accent">Sujet blanc</Badge>
+                  <Badge>{session.questionCount} questions</Badge>
+                </div>
+                <span className="font-serif text-lg font-semibold text-ink">
+                  {session.topicLabel}
+                </span>
+                <span className="text-xs text-muted">
+                  2 parties · {session.questionCount} questions
+                </span>
+              </Link>
+            ))}
           </div>
         </Panel>
       )}
@@ -311,20 +238,19 @@ export default async function ExercisesPage({
           }
         />
       ) : (
-        <div className="space-y-8">
-          <SessionSection
-            title="Fondations gratuites"
-            description="Ces séries posent les automatismes prioritaires du CRPE : accords, fonctions de base, temps usuels, lexique courant et distinction nature / fonction."
-            sessions={freeSessions}
-            premium={premium}
-          />
-          <SessionSection
-            title="Approfondissements premium"
-            description="Ces séries prolongent le travail avec des notions plus fines, plus analytiques et plus discriminantes pour la préparation au concours."
-            sessions={premiumSessions}
-            premium={premium}
-          />
-        </div>
+        <section className="space-y-4">
+          <div>
+            <h2 className="font-serif text-3xl font-semibold text-ink">Toutes les séries</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-7 text-muted">
+              {regularSessions.length} série{regularSessions.length > 1 ? "s" : ""} disponible{regularSessions.length > 1 ? "s" : ""}.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {regularSessions.map((session) => (
+              <SessionCard key={session.id} session={session} />
+            ))}
+          </div>
+        </section>
       )}
     </div>
   );

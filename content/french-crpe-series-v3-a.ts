@@ -4,10 +4,10 @@ const createdAt = "2026-03-18T08:00:00.000Z";
 
 type QuestionInput = Omit<
   ExerciseRecord,
-  "subject" | "validation_status" | "source" | "is_published" | "created_at" | "updated_at"
+  "subject" | "validation_status" | "source" | "is_published" | "created_at" | "updated_at" | "level" | "access_tier"
 >;
 
-type SessionInput = Omit<RevisionSession, "questionCount">;
+type SessionInput = Omit<RevisionSession, "questionCount" | "level" | "estimatedMinutes" | "access_tier">;
 
 function question(data: QuestionInput): ExerciseRecord {
   return {
@@ -29,21 +29,18 @@ function buildSession(data: SessionInput): RevisionSession {
 function qcm(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   choices: Array<{ id: string; label: string }>,
   value: string,
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
 ) {
   return question({
-    id, subdomain, level, exercise_type: "qcm",
+    id, subdomain, exercise_type: "qcm",
     instruction, support_text: null, choices,
     expected_answer: { mode: "single_choice", value },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null, topic_label: null,
   });
 }
@@ -51,21 +48,18 @@ function qcm(
 function vraiFaux(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   value: boolean,
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
 ) {
   return question({
-    id, subdomain, level, exercise_type: "vrai_faux",
+    id, subdomain, exercise_type: "vrai_faux",
     instruction, support_text: null,
     choices: [{ id: "true", label: "Vrai" }, { id: "false", label: "Faux" }],
     expected_answer: { mode: "boolean", value },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null, topic_label: null,
   });
 }
@@ -73,22 +67,19 @@ function vraiFaux(
 function reponseCourte(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   acceptableAnswers: string[],
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
   exercise_type: ExerciseRecord["exercise_type"] = "reponse_courte",
   support_text: string | null = null,
 ) {
   return question({
-    id, subdomain, level, exercise_type,
+    id, subdomain, exercise_type,
     instruction, support_text, choices: null,
     expected_answer: { mode: "text", acceptableAnswers },
     detailed_explanation: explanation,
     common_mistake: commonMistake,
-    access_tier,
     topic_key: null, topic_label: null,
   });
 }
@@ -96,14 +87,12 @@ function reponseCourte(
 function correction(
   id: string,
   subdomain: ExerciseRecord["subdomain"],
-  level: string,
   instruction: string,
   acceptableAnswers: string[],
   explanation: string,
   commonMistake: string,
-  access_tier: ExerciseRecord["access_tier"],
 ) {
-  return reponseCourte(id, subdomain, level, instruction, acceptableAnswers, explanation, commonMistake, access_tier, "correction_orthographique");
+  return reponseCourte(id, subdomain, instruction, acceptableAnswers, explanation, commonMistake, "correction_orthographique");
 }
 
 export const seriesV3BatchA: RevisionSession[] = [
@@ -116,10 +105,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     subdomain: "grammaire",
     topicKey: "phrase_complexe_coord",
     topicLabel: "Phrase complexe : coordination et juxtaposition",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 12,
-    access_tier: "free",
     recommendedOrder: 20,
     completionSummary: {
       skill: "Analyser la structure d'une phrase complexe par coordination ou juxtaposition",
@@ -132,7 +118,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3a-pcc-1", "grammaire", "Intermediaire",
+        "v3a-pcc-1", "grammaire",
         "Quelle est la nature du lien entre les deux propositions dans la phrase : « Il pleuvait ; nous sommes restés à l'intérieur » ?",
         [
           { id: "a", label: "Coordination par la conjonction 'car'" },
@@ -143,10 +129,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Les deux propositions sont simplement séparées par un point-virgule, sans mot de liaison grammatical. Il s'agit donc d'une juxtaposition. La juxtaposition implique un rapport de sens (ici, une relation de cause à conséquence implicite), mais ce rapport n'est pas marqué par un mot grammatical.",
         "Certains candidats confondent la juxtaposition avec la subordination, ou tentent de restituer une conjonction là où il n'y en a pas. Le point-virgule est le signe caractéristique de la juxtaposition entre deux propositions de même niveau.",
-        "free",
       ),
       qcm(
-        "v3a-pcc-2", "grammaire", "Intermediaire",
+        "v3a-pcc-2", "grammaire",
         "Dans « Elle travaille dur, or elle n'obtient pas les résultats espérés », quelle est la valeur sémantique de la conjonction 'or' ?",
         [
           { id: "a", label: "Addition" },
@@ -157,10 +142,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "c",
         "'Or' est une conjonction de coordination qui introduit une restriction ou une nuance logique par rapport à ce qui précède. Elle ne marque pas une simple opposition mais une donnée nouvelle qui contredit ou nuance la première proposition. Elle est souvent utilisée dans un raisonnement de type syllogistique.",
         "Les candidats confondent parfois 'or' avec 'mais' (opposition directe) ou avec une conjonction de cause. 'Or' a une valeur logique particulière : il introduit un fait qui vient contredire ou compliquer ce qui a été affirmé.",
-        "free",
       ),
       qcm(
-        "v3a-pcc-3", "grammaire", "Intermediaire",
+        "v3a-pcc-3", "grammaire",
         "Combien de propositions contient la phrase : « Le vent soufflait, la pluie tombait et les arbres ployaient » ?",
         [
           { id: "a", label: "Deux" },
@@ -171,18 +155,16 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "La phrase contient trois propositions indépendantes : « Le vent soufflait » (juxtaposée), « la pluie tombait » (juxtaposée), et « les arbres ployaient » (coordonnée par 'et'). Chaque proposition possède son propre sujet et son propre verbe conjugué.",
         "Les candidats oublient parfois de compter la première proposition juxtaposée et n'identifient que les deux dernières reliées par 'et'. Il faut repérer chaque groupe sujet + verbe conjugué pour compter les propositions.",
-        "free",
       ),
       vraiFaux(
-        "v3a-pcc-4", "grammaire", "Intermediaire",
+        "v3a-pcc-4", "grammaire",
         "Dans une phrase complexe par juxtaposition, le lien logique entre les propositions est toujours explicitement marqué par un mot grammatical.",
         false,
         "C'est faux. La juxtaposition se définit précisément par l'absence de mot de liaison grammatical : les propositions sont reliées uniquement par la ponctuation (virgule, point-virgule, deux-points). Le rapport logique (cause, conséquence, opposition…) est implicite et doit être inféré par le lecteur.",
         "Nombreux sont les candidats qui pensent que tout lien logique doit être explicite. Or la juxtaposition repose sur l'implicite : le sens émerge du contexte et de la ponctuation, sans mot de liaison.",
-        "free",
       ),
       qcm(
-        "v3a-pcc-5", "grammaire", "Intermediaire",
+        "v3a-pcc-5", "grammaire",
         "Dans « Je viendrai, mais je ne resterai pas longtemps », quelle est la valeur de 'mais' ?",
         [
           { id: "a", label: "Addition" },
@@ -193,26 +175,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "'Mais' est la conjonction de coordination exprimant l'opposition ou la restriction. Elle relie deux propositions dont la seconde apporte une limitation ou une nuance par rapport à la première. Ici, la venue est confirmée mais assortie d'une réserve (durée limitée).",
         "Certains candidats distinguent mal 'mais' (opposition/restriction) de 'or' (restriction logique plus formelle). 'Mais' exprime une opposition directe entre deux faits ou deux volontés.",
-        "free",
       ),
       vraiFaux(
-        "v3a-pcc-6", "grammaire", "Intermediaire",
+        "v3a-pcc-6", "grammaire",
         "La conjonction 'car' introduit une proposition qui exprime la conséquence de la proposition précédente.",
         false,
         "C'est faux. 'Car' introduit la cause, non la conséquence. Dans « Il est absent, car il est malade », la maladie est la cause de l'absence. La conséquence est exprimée par 'donc' : « Il est malade, donc il est absent ». Cette confusion est très fréquente.",
         "L'erreur classique est d'inverser 'car' (cause) et 'donc' (conséquence). Un moyen de vérification : 'car' peut toujours être remplacé par 'parce que', qui introduit bien la cause.",
-        "free",
       ),
       reponseCourte(
-        "v3a-pcc-7", "grammaire", "Intermediaire",
+        "v3a-pcc-7", "grammaire",
         "Quel terme désigne le procédé consistant à relier des propositions par un mot de liaison grammatical (conjonction) plutôt que par la seule ponctuation ?",
         ["hypotaxe", "coordination", "hypotaxe ou coordination"],
         "On parle de parataxe lorsque les propositions sont juxtaposées (liées par la seule ponctuation), et d'hypotaxe lorsqu'elles sont reliées par un mot de liaison (conjonction de coordination ou de subordination). La coordination est un cas particulier d'hypotaxe, où le lien est assuré par une conjonction de coordination.",
         "Les candidats confondent souvent parataxe et hypotaxe. Moyen mnémotechnique : 'para' = à côté (les propositions sont placées côte à côte sans lien grammatical) ; 'hypo' = sous (une proposition est subordonnée à l'autre, ou liée par un mot grammatical).",
-        "free",
       ),
       qcm(
-        "v3a-pcc-8", "grammaire", "Intermediaire",
+        "v3a-pcc-8", "grammaire",
         "Laquelle de ces phrases est une phrase SIMPLE (une seule proposition) ?",
         [
           { id: "a", label: "Il chante et il danse." },
@@ -223,23 +202,20 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "« Malgré la pluie, il est sorti » est une phrase simple : elle ne contient qu'un seul verbe conjugué ('est sorti'), donc une seule proposition. 'Malgré la pluie' est un groupe nominal prépositionnel circonstanciel, non une proposition. Les autres phrases contiennent deux verbes conjugués chacune, donc deux propositions.",
         "Les candidats identifient parfois un groupe nominal circonstanciel comme une proposition. Une proposition doit contenir un verbe conjugué. Un groupe introduit par une préposition (malgré, avant, après) n'est pas une proposition.",
-        "free",
       ),
       vraiFaux(
-        "v3a-pcc-9", "grammaire", "Intermediaire",
+        "v3a-pcc-9", "grammaire",
         "Les propositions coordonnées par 'ni' ont obligatoirement une valeur négative.",
         true,
         "C'est vrai. 'Ni' est la conjonction de coordination négative, équivalent négatif de 'et'. Elle coordonne des propositions ou des éléments dans un contexte négatif : « Il ne mange ni ne dort » (il ne fait ni l'un ni l'autre). Elle suppose généralement la présence d'une négation dans la phrase.",
         "Certains candidats oublient que 'ni' appartient au champ négatif et tentent de l'utiliser dans des contextes affirmatifs. 'Ni' implique toujours une double négation.",
-        "free",
       ),
       reponseCourte(
-        "v3a-pcc-10", "grammaire", "Intermediaire",
+        "v3a-pcc-10", "grammaire",
         "Citez les six conjonctions de coordination du français selon la terminologie officielle (Éduscol 2021).",
         ["mais ou et or ni car", "mais, ou, et, or, ni, car", "or, mais, ou, et, ni, car", "car, mais, ou, et, or, ni", "ni, or, car, mais, ou, et", "et, ou, ni, mais, or, car", "ou, et, mais, or, ni, car", "car, or, ni, mais, ou, et", "mais or ni car ou et", "et ou ni mais or car"],
         "Les six conjonctions de coordination (Éduscol 2021) sont : mais, ou, et, or, ni, car. Le moyen mnémotechnique classique 'Mais où est donc Ornicar ?' reste utile, mais attention : « donc » est classé comme un ADVERBE de liaison selon la terminologie officielle, pas comme une conjonction de coordination. Chaque conjonction exprime une valeur sémantique distincte : opposition (mais), alternative (ou), addition (et), restriction logique (or), négation (ni), cause (car).",
         "Citer « donc » parmi les conjonctions de coordination par habitude du moyen mnémotechnique, alors que la terminologie officielle le classe comme adverbe.",
-        "free",
       ),
     ],
   }),
@@ -253,10 +229,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     subdomain: "analyse_langue",
     topicKey: "subordonnees_circonstancielles",
     topicLabel: "Subordonnées circonstancielles",
-    level: "Difficile",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 14,
-    access_tier: "free",
     recommendedOrder: 21,
     completionSummary: {
       skill: "Identifier, classer et analyser les subordonnées circonstancielles",
@@ -269,7 +242,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3a-sc-1", "analyse_langue", "Difficile",
+        "v3a-sc-1", "analyse_langue",
         "Quelle est la nature de la proposition soulignée dans : « Il est parti __parce qu'il était fatigué__ » ?",
         [
           { id: "a", label: "Subordonnée circonstancielle de but" },
@@ -280,10 +253,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "'Parce que' est la conjonction de subordination de cause par excellence. Elle introduit une subordonnée circonstancielle de cause qui répond à la question 'Pourquoi est-il parti ?'. Elle est suivie de l'indicatif, car la cause est présentée comme un fait réel et certain.",
         "Les candidats confondent parfois cause et but. La cause répond à 'Pourquoi ?' (raison passée ou présente) ; le but répond à 'Dans quel but ?' ou 'Pour quoi faire ?' (action future souhaitée). 'Pour que' exprime le but et est suivi du subjonctif.",
-        "free",
       ),
       qcm(
-        "v3a-sc-2", "analyse_langue", "Difficile",
+        "v3a-sc-2", "analyse_langue",
         "Quel mode verbal s'impose après la conjonction 'bien que' ?",
         [
           { id: "a", label: "L'indicatif présent" },
@@ -294,18 +266,16 @@ export const seriesV3BatchA: RevisionSession[] = [
         "c",
         "'Bien que' est une conjonction de concession qui impose systématiquement le subjonctif : « Bien qu'il soit fatigué, il continue ». Les conjonctions de concession (bien que, quoique, encore que, malgré que) requièrent toutes le subjonctif car elles expriment une opposition qui présente le fait comme envisagé plutôt qu'affirmé.",
         "L'erreur fréquente est d'écrire 'bien qu'il est' au lieu de 'bien qu'il soit'. Le subjonctif est obligatoire après 'bien que', 'quoique' et 'encore que'. Seul 'malgré' (préposition) ne prend pas de subjonctif car il est suivi d'un nom.",
-        "free",
       ),
       vraiFaux(
-        "v3a-sc-3", "analyse_langue", "Difficile",
+        "v3a-sc-3", "analyse_langue",
         "La conjonction 'après que' doit être suivie du subjonctif, à l'instar de 'avant que'.",
         false,
         "C'est faux. 'Après que' est suivi de l'indicatif, car l'action est présentée comme réalisée et certaine : « Il est parti après qu'elle est arrivée ». En revanche, 'avant que' est suivi du subjonctif, car l'action est envisagée mais non encore accomplie : « Il est parti avant qu'elle arrive ». Cette distinction est une des questions les plus piégées du CRPE.",
         "C'est une des erreurs les plus répandues, y compris chez des locuteurs cultivés. L'usage courant (fautif) tend à généraliser le subjonctif après 'après que' par analogie avec 'avant que'. La règle normative exige l'indicatif après 'après que'.",
-        "free",
       ),
       qcm(
-        "v3a-sc-4", "analyse_langue", "Difficile",
+        "v3a-sc-4", "analyse_langue",
         "Dans « Il a travaillé si bien qu'il a réussi son examen », de quel type est la subordonnée circonstancielle ?",
         [
           { id: "a", label: "Cause" },
@@ -316,10 +286,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "c",
         "'Si bien que' est une locution conjonctive de conséquence. Elle introduit une subordonnée qui exprime le résultat ou l'effet de l'action principale. La conséquence est suivie de l'indicatif car le résultat est présenté comme réel. Autres locutions de conséquence : 'de sorte que', 'de telle manière que', 'au point que'.",
         "Les candidats confondent but et conséquence. La conséquence décrit un résultat effectif (indicatif) ; le but décrit un résultat recherché, non encore atteint (subjonctif). Comparer : « Il parle fort pour que tout le monde entende » (but, subjonctif) vs « Il a parlé fort si bien que tout le monde a entendu » (conséquence, indicatif).",
-        "free",
       ),
       qcm(
-        "v3a-sc-5", "analyse_langue", "Difficile",
+        "v3a-sc-5", "analyse_langue",
         "Quelle conjonction introduit une subordonnée de condition avec le mode indicatif ?",
         [
           { id: "a", label: "Bien que" },
@@ -330,26 +299,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "c",
         "'Si' est la conjonction de condition par excellence. Elle est suivie de l'indicatif (jamais du conditionnel dans la subordonnée) : « Si tu viens, je serai content » (indicatif présent dans la subordonnée, futur dans la principale). La règle fondamentale : on ne met jamais le conditionnel après 'si' conditionnel.",
         "L'erreur la plus fréquente est d'écrire 'si tu viendrais' au lieu de 'si tu venais'. Après 'si' conditionnel, on utilise : présent de l'indicatif (condition dans le présent/futur) ou imparfait de l'indicatif (condition hypothétique), jamais le conditionnel.",
-        "free",
       ),
       vraiFaux(
-        "v3a-sc-6", "analyse_langue", "Difficile",
+        "v3a-sc-6", "analyse_langue",
         "La subordonnée introduite par 'puisque' exprime la cause connue du locuteur et de son interlocuteur.",
         true,
         "C'est vrai. 'Puisque' introduit une cause présentée comme connue ou évidente pour les deux interlocuteurs, voire comme un argument : « Puisque tu le sais déjà, je n'ai pas besoin d'expliquer ». C'est ce qui la distingue de 'parce que' (cause factuelle neutre) et de 'comme' (cause placée en tête de phrase, présentée comme un fait contextuel).",
         "Les candidats traitent souvent 'puisque', 'parce que' et 'comme' comme des synonymes parfaits. Ils ont en réalité des nuances : 'parce que' = cause factuelle, 'puisque' = cause connue/admise, 'comme' = cause contextuelle en début de phrase.",
-        "free",
       ),
       reponseCourte(
-        "v3a-sc-7", "analyse_langue", "Difficile",
+        "v3a-sc-7", "analyse_langue",
         "Identifiez le type de la subordonnée circonstancielle dans la phrase : « Il a pris un parapluie de peur qu'il ne pleuve. »",
         ["but", "subordonnée de but", "but (précaution)"],
         "'De peur que' est une locution conjonctive de but (but préventif ou de précaution). Elle exprime l'intention d'éviter quelque chose et est suivie du subjonctif avec un 'ne' explétif (obligatoire dans l'usage soigné). On peut la remplacer par 'afin que' ou 'pour que' dans une reformulation. Autres locutions de but : 'afin que', 'pour que', 'de crainte que' (+ ne explétif).",
         "Les candidats identifient parfois cette structure comme une subordonnée de cause ou de conséquence. Le 'ne' explétif après 'de peur que' et 'de crainte que' est un indice du but. Ne pas confondre avec la négation réelle : ici 'ne' seul (sans 'pas') est un simple explétif sans valeur négative.",
-        "free",
       ),
       qcm(
-        "v3a-sc-8", "analyse_langue", "Difficile",
+        "v3a-sc-8", "analyse_langue",
         "Dans « Comme il faisait beau, nous sommes sortis », quelle est la fonction de la proposition 'Comme il faisait beau' ?",
         [
           { id: "a", label: "Subordonnée circonstancielle de temps" },
@@ -360,23 +326,20 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "'Comme' en début de phrase, suivi de l'imparfait ou du plus-que-parfait de l'indicatif, introduit une subordonnée circonstancielle de cause. C'est une valeur spécifique de 'comme' : il présente la cause comme un contexte ou une donnée préalable. À ne pas confondre avec 'comme' de comparaison (« Il court comme un lièvre ») ou 'comme' de temps simultané (« Comme il entrait, elle sortait »).",
         "Le mot 'comme' est polysémique : il peut introduire une comparaison, une cause ou une simultanéité temporelle. La valeur causale est identifiable à la position en tête de phrase et au sens général (on peut remplacer par 'étant donné que' ou 'puisque').",
-        "free",
       ),
       vraiFaux(
-        "v3a-sc-9", "analyse_langue", "Difficile",
+        "v3a-sc-9", "analyse_langue",
         "La subordonnée circonstancielle de concession exprime un obstacle qui empêche la réalisation de l'action principale.",
         false,
         "C'est faux. La concession exprime au contraire un obstacle qui NE SUFFIT PAS à empêcher la réalisation de l'action principale. L'action se réalise MALGRÉ l'obstacle : « Bien qu'il soit fatigué, il continue à travailler ». Il continue malgré la fatigue. Si l'obstacle empêchait l'action, ce serait une condition non réalisée.",
         "La confusion porte sur la direction logique : dans la concession, l'obstacle existe mais est surmonté. Le fait principal se réalise en dépit de l'obstacle. C'est ce paradoxe apparent qui définit la concession.",
-        "free",
       ),
       reponseCourte(
-        "v3a-sc-10", "analyse_langue", "Difficile",
+        "v3a-sc-10", "analyse_langue",
         "Donnez deux locutions conjonctives de but (autres que 'pour que') qui imposent le subjonctif.",
         ["afin que", "de peur que", "de crainte que", "afin que / de peur que", "afin que / de crainte que"],
         "Les principales locutions conjonctives de but imposant le subjonctif sont : 'afin que', 'de peur que' (+ ne explétif), 'de crainte que' (+ ne explétif). À noter que 'de peur que' et 'de crainte que' expriment un but préventif (on agit pour éviter quelque chose). D'autres locutions avec subjonctif : 'à moins que' (condition négative), 'bien que' et 'quoique' (concession).",
         "Les candidats mémorisent souvent 'pour que' mais oublient 'afin que', 'de peur que', 'de crainte que'. Ces locutions de but avec nuance préventive sont fréquentes dans les textes littéraires et les sujets de CRPE.",
-        "free",
       ),
     ],
   }),
@@ -390,10 +353,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     subdomain: "analyse_langue",
     topicKey: "subordonnees_completives",
     topicLabel: "Subordonnées complétives",
-    level: "Difficile",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 13,
-    access_tier: "free",
     recommendedOrder: 22,
     completionSummary: {
       skill: "Analyser les subordonnées complétives et choisir le mode approprié",
@@ -406,7 +366,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3a-scomp-1", "analyse_langue", "Difficile",
+        "v3a-scomp-1", "analyse_langue",
         "Dans « Je sais qu'il viendra demain », quelle est la fonction de la proposition 'qu'il viendra demain' ?",
         [
           { id: "a", label: "Sujet du verbe 'sais'" },
@@ -417,10 +377,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "La proposition 'qu'il viendra demain' est une subordonnée complétive COD du verbe 'savoir'. On peut la vérifier en la remplaçant par un pronom COD : « Je le sais ». Elle est introduite par la conjonction de subordination 'que'. Le verbe 'savoir' exprime la certitude et est suivi de l'indicatif.",
         "Les candidats confondent parfois complétive COD et complétive sujet. Test simple : peut-on remplacer la proposition par 'le/la/les' (→ COD) ou par 'cela' en position sujet (→ sujet) ? Ici : 'Je le sais' → COD.",
-        "free",
       ),
       qcm(
-        "v3a-scomp-2", "analyse_langue", "Difficile",
+        "v3a-scomp-2", "analyse_langue",
         "Quel mode s'emploie dans la complétive dépendant du verbe 'vouloir' ?",
         [
           { id: "a", label: "L'indicatif" },
@@ -431,18 +390,16 @@ export const seriesV3BatchA: RevisionSession[] = [
         "c",
         "'Vouloir' est un verbe de volonté qui impose le subjonctif dans la complétive : « Je veux qu'il parte ». Les verbes de volonté (vouloir, souhaiter, désirer, exiger, ordonner, interdire, permettre) imposent tous le subjonctif car ils expriment un souhait ou une intention dont la réalisation est incertaine au moment de l'énonciation.",
         "Attention : quand le sujet de la principale et de la subordonnée est le même, on utilise l'infinitif, non le subjonctif : 'Je veux partir' (même sujet) et non 'Je veux que je parte'.",
-        "free",
       ),
       vraiFaux(
-        "v3a-scomp-3", "analyse_langue", "Difficile",
+        "v3a-scomp-3", "analyse_langue",
         "Dans « Il ignore si elle est arrivée », la proposition 'si elle est arrivée' est une interrogative indirecte totale.",
         true,
         "C'est vrai. L'interrogative indirecte totale porte sur l'ensemble du contenu de la proposition (la réponse possible est 'oui' ou 'non'). Elle est introduite par 'si' et correspond à la transformation d'une question totale directe : « Est-elle arrivée ? » → « Il ignore si elle est arrivée ». Le verbe est à l'indicatif.",
         "Les candidats confondent parfois 'si' conditionnel et 'si' interrogatif indirect. 'Si' interrogatif indirect peut toujours être remplacé par 'si oui ou non' : 'Il ignore si oui ou non elle est arrivée' → interrogative indirecte totale.",
-        "free",
       ),
       qcm(
-        "v3a-scomp-4", "analyse_langue", "Difficile",
+        "v3a-scomp-4", "analyse_langue",
         "Dans « Il demande ce que tu fais », quelle est la nature de 'ce que tu fais' ?",
         [
           { id: "a", label: "Subordonnée relative introduite par 'ce que'" },
@@ -453,10 +410,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "'Ce que tu fais' est une interrogative indirecte partielle. Elle correspond à la transformation de la question directe partielle : « Que fais-tu ? » → « Il demande ce que tu fais ». Dans l'interrogation indirecte, 'que' devient 'ce que' (pronom composé), le verbe passe à un ordre non inversé et la proposition joue le rôle de COD du verbe 'demander'.",
         "La confusion avec la relative est fréquente car les deux peuvent contenir 'ce que'. Distinction : dans la relative, 'ce que' a un antécédent ('ce' = pronom démonstratif) ; dans l'interrogative indirecte, la proposition est COD d'un verbe de questionnement ou d'ignorance.",
-        "free",
       ),
       qcm(
-        "v3a-scomp-5", "analyse_langue", "Difficile",
+        "v3a-scomp-5", "analyse_langue",
         "Quel mode faut-il employer dans : « Je crains qu'il ne ___ (partir) trop tôt » ?",
         [
           { id: "a", label: "L'indicatif présent : part" },
@@ -467,26 +423,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "'Craindre' est un verbe de sentiment négatif (crainte, peur) qui impose le subjonctif dans la complétive. La forme correcte est : « Je crains qu'il ne parte trop tôt ». Le 'ne' explétif est facultatif mais recommandé dans l'usage soigné après les verbes de crainte. Autres verbes de crainte imposant le subjonctif : avoir peur que, redouter que, appréhender que.",
         "L'erreur consiste à mettre l'indicatif ('je crains qu'il part') par analogie avec les verbes de déclaration. Les verbes de sentiment (craindre, regretter, se réjouir, être surpris) imposent le subjonctif, contrairement aux verbes de déclaration (dire, affirmer, penser au positif) qui imposent l'indicatif.",
-        "free",
       ),
       vraiFaux(
-        "v3a-scomp-6", "analyse_langue", "Difficile",
+        "v3a-scomp-6", "analyse_langue",
         "La proposition 'qu'il réussisse' dans « Il est possible qu'il réussisse » est une subordonnée complétive sujet.",
         true,
         "C'est vrai. La proposition 'qu'il réussisse' est une subordonnée complétive sujet réel du verbe impersonnel 'est possible'. Le sujet grammatical apparent est 'il' (pronom impersonnel), mais le sujet réel est la complétive. On peut le vérifier : 'Sa réussite est possible' (nom en position sujet). Le subjonctif s'impose car l'expression 'il est possible que' exprime la possibilité (non-certitude).",
         "Les candidats identifient souvent cette complétive comme COD. Avec les tournures impersonnelles (il est possible que, il faut que, il semble que), la complétive est sujet réel du verbe impersonnel, non COD.",
-        "free",
       ),
       reponseCourte(
-        "v3a-scomp-7", "analyse_langue", "Difficile",
+        "v3a-scomp-7", "analyse_langue",
         "Transformez la question directe suivante en interrogative indirecte dépendant de 'Elle se demande' : « Quand arrivera-t-il ? »",
         ["Elle se demande quand il arrivera.", "Elle se demande quand il arrive.", "elle se demande quand il arrivera"],
         "La transformation implique : 1) suppression du point d'interrogation et de l'inversion sujet-verbe ; 2) conservation du mot interrogatif 'quand' ; 3) ajustement des temps si nécessaire. La phrase correcte est : « Elle se demande quand il arrivera. » Le mot interrogatif 'quand' est conservé tel quel dans l'interrogative indirecte, contrairement à 'que' qui devient 'ce que'.",
         "L'erreur la plus fréquente est de conserver l'inversion du sujet : 'Elle se demande quand arrivera-t-il' est incorrect. Dans l'interrogative indirecte, le sujet précède toujours le verbe (ordre déclaratif).",
-        "free",
       ),
       qcm(
-        "v3a-scomp-8", "analyse_langue", "Difficile",
+        "v3a-scomp-8", "analyse_langue",
         "Dans « Je pense qu'il a tort », le mode de 'a tort' est l'indicatif. Si la principale passe à la forme négative (« Je ne pense pas »), quel mode s'emploie généralement dans la complétive ?",
         [
           { id: "a", label: "L'indicatif reste obligatoire" },
@@ -497,23 +450,20 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Quand un verbe d'opinion est à la forme négative ou interrogative, la certitude diminue et la complétive peut prendre le subjonctif : « Je ne pense pas qu'il ait tort » (subjonctif, incertitude) vs « Je pense qu'il a tort » (indicatif, affirmation). Les deux modes sont néanmoins possibles : l'indicatif maintient une certaine affirmation, le subjonctif marque la mise en doute.",
         "Les candidats appliquent parfois mécaniquement l'indicatif après 'penser' sans tenir compte de la polarité de la phrase. La négation ou l'interrogation des verbes d'opinion (penser, croire, trouver) ouvre la voie au subjonctif.",
-        "free",
       ),
       vraiFaux(
-        "v3a-scomp-9", "analyse_langue", "Difficile",
+        "v3a-scomp-9", "analyse_langue",
         "Dans l'interrogative indirecte, le point d'interrogation est maintenu à la fin de la phrase.",
         false,
         "C'est faux. L'interrogative indirecte est une subordonnée intégrée dans une phrase déclarative. Elle ne conserve pas le point d'interrogation : « Je me demande s'il viendra » (point final, pas d'interrogation). Seule l'interrogation directe (question indépendante) se termine par un point d'interrogation : « Viendra-t-il ? »",
         "Les candidats scripteurs oublient parfois de supprimer le point d'interrogation lors de la transformation. L'interrogative indirecte est une proposition subordonnée qui joue le rôle d'un nom ; elle fait partie d'une phrase déclarative.",
-        "free",
       ),
       reponseCourte(
-        "v3a-scomp-10", "analyse_langue", "Difficile",
+        "v3a-scomp-10", "analyse_langue",
         "Citez deux verbes introducteurs qui imposent le subjonctif dans la subordonnée complétive.",
         ["vouloir", "souhaiter", "craindre", "douter", "regretter", "interdire", "exiger", "falloir", "vouloir et craindre", "souhaiter et douter"],
         "Les verbes imposant le subjonctif dans la complétive appartiennent aux catégories suivantes : volonté (vouloir, souhaiter, désirer, exiger, ordonner, interdire), sentiment (regretter, se réjouir, craindre, être surpris), doute ou possibilité (douter, nier, il est possible que, il faut que). En revanche, les verbes de déclaration ou d'opinion affirmative (dire, affirmer, penser, croire, savoir, voir) imposent l'indicatif.",
         "L'erreur courante est de mettre le subjonctif après tous les verbes introducteurs de complétive. Le subjonctif est réservé aux verbes exprimant une réalité non affirmée (volonté, doute, sentiment). Les verbes de déclaration et de perception imposent l'indicatif.",
-        "free",
       ),
     ],
   }),
@@ -527,10 +477,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     subdomain: "grammaire",
     topicKey: "discours_direct_indirect",
     topicLabel: "Discours direct et indirect",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 12,
-    access_tier: "free",
     recommendedOrder: 23,
     completionSummary: {
       skill: "Identifier et transformer le discours rapporté",
@@ -543,7 +490,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3a-ddi-1", "grammaire", "Intermediaire",
+        "v3a-ddi-1", "grammaire",
         "Quels signes typographiques caractérisent principalement le discours direct ?",
         [
           { id: "a", label: "Parenthèses et italique" },
@@ -554,10 +501,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Le discours direct est signalé typographiquement par les guillemets (« … ») précédés d'un deux-points et d'un verbe introducteur. Dans un dialogue, chaque réplique peut être introduite par un tiret. Le discours direct conserve les marques d'énonciation originales (personnes, temps, déictiques) de l'énonciateur.",
         "Les candidats oublient parfois le rôle du deux-points comme annonceur du discours direct, ou confondent les guillemets du discours direct avec ceux de l'usage distancié d'un mot.",
-        "free",
       ),
       qcm(
-        "v3a-ddi-2", "grammaire", "Intermediaire",
+        "v3a-ddi-2", "grammaire",
         "Transformez au discours indirect : Marie a dit : « Je viendrai demain. » → Marie a dit que...",
         [
           { id: "a", label: "elle viendra demain." },
@@ -568,18 +514,16 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Quand le verbe introducteur est au passé ('a dit'), la concordance des temps s'applique dans la subordonnée : futur → conditionnel ('viendra' → 'viendrait'). De plus, les personnes changent ('je' → 'elle') et les déictiques temporels sont transposés ('demain' → 'le lendemain'). La réponse correcte est donc 'elle viendrait le lendemain'.",
         "Les candidats oublient souvent de changer les déictiques temporels. 'Demain' dans le discours direct devient 'le lendemain' dans le discours indirect (car le point de référence change). De même 'hier' → 'la veille', 'maintenant' → 'alors'.",
-        "free",
       ),
       vraiFaux(
-        "v3a-ddi-3", "grammaire", "Intermediaire",
+        "v3a-ddi-3", "grammaire",
         "Dans le discours indirect libre, il y a toujours un verbe introducteur explicite suivi de la conjonction 'que'.",
         false,
         "C'est faux. Le discours indirect libre se définit précisément par l'absence de verbe introducteur et de conjonction 'que'. Il emprunte au discours direct la liberté d'expression tout en adoptant la 3e personne et les temps du récit : « Elle sortit. Comme c'était beau ! Elle n'avait jamais rien vu de tel. » Les deux dernières phrases sont au style indirect libre : pas de 'elle pensa que'.",
         "La confusion est fréquente car le style indirect libre peut sembler être du discours direct ou du récit ordinaire. Les indices : présence de la 3e personne (style indirect) mais maintien des marques expressives et d'interrogation rhétorique (style direct). Pas de guillemets ni de verbe introducteur.",
-        "free",
       ),
       qcm(
-        "v3a-ddi-4", "grammaire", "Intermediaire",
+        "v3a-ddi-4", "grammaire",
         "Au discours indirect, quelle transformation subit le déictique spatial 'ici' ?",
         [
           { id: "a", label: "Il reste 'ici'" },
@@ -590,10 +534,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "'Ici' est un déictique spatial ancré dans la situation d'énonciation du locuteur original. Au discours indirect, le point de référence change : 'ici' (lieu du locuteur) devient 'là' (lieu perçu de l'extérieur). De même : 'ce' → 'cet/cette' ou disparaît, 'ceci' → 'cela'. Le tableau des transformations déictiques est un classique des sujets CRPE.",
         "Les candidats oublient souvent de transformer les déictiques spatiaux, se concentrant uniquement sur les changements de personne et de temps. Tous les repères d'énonciation doivent être adaptés.",
-        "free",
       ),
       qcm(
-        "v3a-ddi-5", "grammaire", "Intermediaire",
+        "v3a-ddi-5", "grammaire",
         "Quel est le verbe introducteur qui convient pour rapporter une question au discours indirect ?",
         [
           { id: "a", label: "Il affirme que" },
@@ -604,26 +547,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Pour rapporter une question au discours indirect, on utilise des verbes introducteurs interrogatifs : demander, s'interroger, vouloir savoir, se demander. La conjonction introductrice dépend du type de question : 'si' pour une question totale (oui/non), un mot interrogatif pour une question partielle. Ex. : « Vient-il ? » → « Il demande s'il vient. »",
         "Les candidats emploient parfois 'que' pour introduire une question rapportée : 'Il demande qu'il vient' est incorrect. Une question rapportée au discours indirect s'introduit par 'si' (question totale) ou par un mot interrogatif (question partielle).",
-        "free",
       ),
       vraiFaux(
-        "v3a-ddi-6", "grammaire", "Intermediaire",
+        "v3a-ddi-6", "grammaire",
         "Quand le verbe introducteur est au passé, le présent du discours direct se transforme en imparfait au discours indirect.",
         true,
         "C'est vrai. La concordance des temps impose que, lorsque le verbe introducteur est au passé, les temps de la subordonnée reculent d'un degré : présent → imparfait, passé composé → plus-que-parfait, futur → conditionnel présent, futur antérieur → conditionnel passé. Ex. : « Je suis fatigué » (discours direct) → « Il a dit qu'il était fatigué » (imparfait au discours indirect).",
         "L'erreur consiste à ne pas appliquer la concordance des temps. Certains candidats maintiennent le présent après un verbe introducteur au passé : 'Il a dit qu'il est fatigué' est une erreur dans un contexte formel.",
-        "free",
       ),
       reponseCourte(
-        "v3a-ddi-7", "grammaire", "Intermediaire",
+        "v3a-ddi-7", "grammaire",
         "Transposez au discours indirect la phrase suivante (le verbe introducteur est au passé) : Paul cria : « Je suis en retard ! »",
         ["Paul cria qu'il était en retard.", "Paul cria qu'il était en retard"],
         "La transformation exige : 1) le verbe introducteur 'cria' reste au passé simple ; 2) les guillemets et le deux-points disparaissent ; 3) introduction de la conjonction 'que' ; 4) 'je' → 'il' (changement de personne) ; 5) 'suis' (présent) → 'était' (imparfait, concordance des temps) ; 6) suppression du point d'exclamation. Résultat : « Paul cria qu'il était en retard. »",
         "L'oubli de la concordance des temps est l'erreur la plus fréquente : écrire 'Paul cria qu'il est en retard' maintient incorrectement le présent. La ponctuation expressive (point d'exclamation) disparaît aussi au discours indirect.",
-        "free",
       ),
       qcm(
-        "v3a-ddi-8", "grammaire", "Intermediaire",
+        "v3a-ddi-8", "grammaire",
         "Quel terme désigne les mots dont le sens dépend de la situation d'énonciation (je, ici, maintenant, hier, demain) ?",
         [
           { id: "a", label: "Anaphores" },
@@ -634,23 +574,20 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Les déictiques (aussi appelés embrayeurs ou shifters) sont des unités linguistiques dont la référence varie selon la situation d'énonciation. Ils encodent les coordonnées de l'acte d'énonciation : la personne (je/tu), le lieu (ici/là), le temps (maintenant, hier, demain). C'est pourquoi ils doivent être transformés lors du passage du discours direct au discours indirect.",
         "Les candidats confondent parfois déictiques et anaphores. Une anaphore renvoie à un élément déjà présent dans le texte (antécédent), tandis qu'un déictique renvoie à la situation d'énonciation extra-linguistique.",
-        "free",
       ),
       vraiFaux(
-        "v3a-ddi-9", "grammaire", "Intermediaire",
+        "v3a-ddi-9", "grammaire",
         "Le discours indirect libre est typique du roman réaliste du XIXe siècle et permet de rendre les pensées d'un personnage sans verbe introducteur.",
         true,
         "C'est vrai. Le discours indirect libre, théorisé par le linguiste Charles Bally, est une technique narrative caractéristique du roman réaliste et naturaliste (Flaubert, Zola, Maupassant). Il fond la voix du narrateur et celle du personnage : les pensées ou paroles sont rapportées sans 'il pensa que' ou guillemets, mais avec les temps du récit (imparfait, plus-que-parfait) et la 3e personne.",
         "Les candidats pensent parfois que le discours indirect libre est une simple variante formelle sans importance littéraire. C'est au contraire un procédé stylistique majeur qui crée de l'ambiguïté énonciative et de l'empathie narrative.",
-        "free",
       ),
       reponseCourte(
-        "v3a-ddi-10", "grammaire", "Intermediaire",
+        "v3a-ddi-10", "grammaire",
         "Quel déictique temporel remplace 'hier' au discours indirect (quand le verbe introducteur est au passé) ?",
         ["la veille", "la veille."],
         "'Hier' est un déictique temporel centré sur le moment de l'énonciation originale. Au discours indirect, le point de référence temporel change : 'hier' devient 'la veille'. De même : 'demain' → 'le lendemain', 'aujourd'hui' → 'ce jour-là', 'maintenant' → 'alors' ou 'à ce moment-là', 'la semaine prochaine' → 'la semaine suivante'. Ce tableau de correspondances est fréquemment évalué au CRPE.",
         "Les candidats mémorisent 'hier → la veille' mais oublient les autres déictiques. Rappel : 'avant-hier' → 'l'avant-veille', 'après-demain' → 'le surlendemain'.",
-        "free",
       ),
     ],
   }),
@@ -664,10 +601,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     subdomain: "grammaire",
     topicKey: "types_phrases_grammaire",
     topicLabel: "Types et formes de phrases",
-    level: "Facile",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 10,
-    access_tier: "free",
     recommendedOrder: 24,
     completionSummary: {
       skill: "Identifier et transformer les types et formes de phrases",
@@ -680,7 +614,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3a-tp-1", "grammaire", "Facile",
+        "v3a-tp-1", "grammaire",
         "Selon la terminologie officielle (Éduscol 2021), combien existe-t-il de types de phrases en français ?",
         [
           { id: "a", label: "Deux (positive et négative)" },
@@ -691,10 +625,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Depuis la terminologie officielle de 2021 (Éduscol), on distingue trois types de phrases : le déclaratif (affirmation ou négation d'un fait), l'interrogatif (question) et l'impératif (ordre, conseil, interdiction). L'exclamation, autrefois considérée comme un quatrième type, est désormais classée comme une forme de phrase. Les formes incluent l'affirmative, la négative et l'exclamative.",
         "La confusion entre 'type' et 'forme' est fréquente. Attention : les anciens manuels mentionnent quatre types (incluant l'exclamatif). La terminologie officielle 2021 retient trois types. L'exclamation peut se combiner avec n'importe quel type : « Comme il chante bien ! » (déclaratif + exclamatif).",
-        "free",
       ),
       qcm(
-        "v3a-tp-2", "grammaire", "Facile",
+        "v3a-tp-2", "grammaire",
         "Selon la terminologie Éduscol 2021, quel est le type de la phrase : « Quelle belle journée nous avons aujourd'hui ! » ?",
         [
           { id: "a", label: "Interrogatif" },
@@ -705,18 +638,16 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Selon la terminologie officielle 2021, cette phrase est de type déclaratif (elle affirme un fait) et de forme exclamative (elle exprime une émotion intense, marquée par le point d'exclamation et le déterminant « quelle »). L'exclamation n'est plus considérée comme un type de phrase mais comme une forme qui peut se combiner avec les trois types : déclaratif, interrogatif ou impératif.",
         "Les anciens manuels classent cette phrase comme 'exclamative' (un 4e type). Depuis 2021, la terminologie officielle retient trois types seulement. L'exclamation est une forme : « Quelle belle journée ! » = type déclaratif + forme exclamative. Attention aux sujets CRPE qui testent spécifiquement cette mise à jour terminologique.",
-        "free",
       ),
       vraiFaux(
-        "v3a-tp-3", "grammaire", "Facile",
+        "v3a-tp-3", "grammaire",
         "La phrase impérative peut se construire sans sujet exprimé.",
         true,
         "C'est vrai. La phrase impérative se caractérise par l'absence de sujet exprimé : le sujet est sous-entendu (tu, vous, nous). « Viens ! » = (Tu) viens ! — « Partons ! » = (Nous) partons ! Cette absence du sujet est la marque formelle principale du mode impératif. C'est aussi ce qui le distingue de l'indicatif présent à la 2e personne.",
         "Certains candidats pensent que l'impérative doit toujours avoir un sujet. L'absence de sujet est justement la caractéristique syntaxique de la phrase impérative. Seules trois personnes existent à l'impératif : 2e personne du singulier, 1re et 2e du pluriel.",
-        "free",
       ),
       qcm(
-        "v3a-tp-4", "grammaire", "Facile",
+        "v3a-tp-4", "grammaire",
         "Parmi les procédés suivants, lequel N'EST PAS un procédé d'interrogation directe ?",
         [
           { id: "a", label: "La simple intonation montante" },
@@ -727,10 +658,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "d",
         "'Si' introducteur est un outil de l'interrogation INDIRECTE (subordonnée), non directe : « Je me demande si tu viens » (interrogation indirecte). Les trois procédés de l'interrogation directe totale sont : l'intonation montante (« Tu viens ? »), l'emploi de 'est-ce que' (« Est-ce que tu viens ? »), et l'inversion du sujet (« Viens-tu ? »).",
         "Les candidats mémorisent parfois 'si' comme marqueur interrogatif direct par analogie avec l'anglais. En français, 'si' interrogatif n'apparaît qu'en interrogation indirecte. En interrogation directe, on utilise l'intonation, 'est-ce que' ou l'inversion.",
-        "free",
       ),
       qcm(
-        "v3a-tp-5", "grammaire", "Facile",
+        "v3a-tp-5", "grammaire",
         "Quelle est la différence entre une interrogation totale et une interrogation partielle ?",
         [
           { id: "a", label: "L'interrogation totale utilise l'inversion, la partielle utilise est-ce que" },
@@ -741,26 +671,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "L'interrogation totale porte sur la vérité de toute la proposition et appelle une réponse 'oui' ou 'non' : « Tu viens ? » → Oui/Non. L'interrogation partielle porte sur un élément précis de la phrase et est introduite par un mot interrogatif : « Quand viens-tu ? », « Pourquoi pleures-tu ? ». Les mots interrogatifs partiels sont : qui, que, quoi, où, quand, comment, pourquoi, combien, quel.",
         "Les candidats confondent parfois 'totale' avec 'complète' (avec sujet exprimé) et 'partielle' avec 'incomplète'. La distinction est purement sémantique : totale = porte sur l'ensemble ; partielle = porte sur une partie.",
-        "free",
       ),
       vraiFaux(
-        "v3a-tp-6", "grammaire", "Facile",
+        "v3a-tp-6", "grammaire",
         "La phrase « N'est-il pas venu ? » est à la fois de type interrogatif et de forme négative.",
         true,
         "C'est vrai. Cette phrase cumule le type interrogatif (marqué par l'inversion du sujet et le point d'interrogation) et la forme négative (marquée par la négation 'ne…pas'). Type et forme sont deux catégories indépendantes qui peuvent se combiner : une phrase peut être interrogative-négative, impérative-négative, déclarative-exclamative-négative, etc.",
         "L'erreur consiste à opposer type et forme comme s'ils s'excluaient. Une phrase a TOUJOURS un type ET au moins une forme. La forme négative ou exclamative peut s'appliquer à tous les types.",
-        "free",
       ),
       reponseCourte(
-        "v3a-tp-7", "grammaire", "Facile",
+        "v3a-tp-7", "grammaire",
         "Quel mot interrogatif utilise-t-on pour interroger sur une personne en position de sujet ?",
         ["qui", "Qui"],
         "'Qui' est le pronom interrogatif utilisé pour interroger sur une personne en position de sujet : « Qui vient ? » En position de COD, on utilise aussi 'qui' (ou 'que/quoi' pour les choses) : « Qui vois-tu ? » La distinction sujet/objet se fait par la position dans la phrase et la construction verbale. Pour les choses en position sujet, on utilise 'qu'est-ce qui' : « Qu'est-ce qui se passe ? »",
         "Les candidats confondent parfois 'qui' (personne) et 'quoi' (chose). Rappel : 'qui' interroge sur une personne, 'que/quoi/qu'est-ce que' interroge sur une chose.",
-        "free",
       ),
       qcm(
-        "v3a-tp-8", "grammaire", "Facile",
+        "v3a-tp-8", "grammaire",
         "Comment transforme-t-on la phrase déclarative « Vous partez demain » en phrase interrogative avec inversion du sujet ?",
         [
           { id: "a", label: "Est-ce que vous partez demain ?" },
@@ -771,23 +698,20 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "L'inversion du sujet est le procédé d'interrogation le plus formel. Pour un sujet pronom, on place le pronom après le verbe avec un trait d'union : « Partez-vous demain ? ». Pour un sujet nominal, on utilise la reprise pronominale : « Les élèves partent-ils demain ? » (sujet nominal + pronom reprise après le verbe). Les réponses a et c sont d'autres procédés valides (est-ce que, intonation) mais pas l'inversion.",
         "Les candidats oublient parfois le trait d'union entre le verbe et le pronom sujet inversé. 'Partez vous demain' est incorrect ; il faut 'Partez-vous demain ?'",
-        "free",
       ),
       vraiFaux(
-        "v3a-tp-9", "grammaire", "Facile",
+        "v3a-tp-9", "grammaire",
         "La phrase impérative ne peut pas être de forme négative.",
         false,
         "C'est faux. La phrase impérative peut parfaitement être de forme négative : « Ne pars pas ! », « N'oublie pas ton cartable ! », « Ne parlez pas tous à la fois ! ». La négation à l'impératif suit le même schéma qu'à l'indicatif : ne + verbe + pas (ou jamais, plus, rien, personne…).",
         "Cette confusion vient de ce que la phrase impérative donne des ordres, que l'on associe spontanément à l'affirmatif. Mais interdire (impératif négatif) est aussi un acte directif. 'Ne fais pas cela' est bien une phrase impérative de forme négative.",
-        "free",
       ),
       reponseCourte(
-        "v3a-tp-10", "grammaire", "Facile",
+        "v3a-tp-10", "grammaire",
         "Transformez la phrase impérative en phrase déclarative de même sens : « Fermez la porte ! »",
         ["Vous fermez la porte.", "Vous devez fermer la porte.", "Tu fermes la porte.", "Il faut fermer la porte."],
         "La transformation d'une phrase impérative en déclarative implique d'ajouter le sujet sous-entendu. 'Fermez' correspond à la 2e personne du pluriel ('vous'). On obtient : « Vous fermez la porte. » ou « Vous devez fermer la porte. » La phrase déclarative perd la valeur d'injonction directe mais conserve le sens général.",
         "Les candidats confondent parfois les personnes de l'impératif. 'Fermez' peut correspondre à 'vous' (2e pluriel) ou à 'vous' de politesse. 'Fermons' serait la 1re personne du pluriel (nous). La personne de l'impératif se déduit de la terminaison.",
-        "free",
       ),
     ],
   }),
@@ -801,10 +725,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     subdomain: "orthographe",
     topicKey: "participe_passe_avoir",
     topicLabel: "Participe passé avec avoir",
-    level: "Difficile",
     exerciseTypeLabel: "QCM, Vrai/Faux, Correction orthographique",
-    estimatedMinutes: 14,
-    access_tier: "free",
     recommendedOrder: 25,
     completionSummary: {
       skill: "Accorder correctement le participe passé avec avoir dans tous les cas",
@@ -817,15 +738,14 @@ export const seriesV3BatchA: RevisionSession[] = [
     },
     questions: [
       correction(
-        "v3a-ppa-1", "orthographe", "Difficile",
+        "v3a-ppa-1", "orthographe",
         "Corrigez si nécessaire : « Les lettres qu'il a écrit sont arrivées. »",
         ["Les lettres qu'il a écrites sont arrivées.", "Les lettres qu'il a écrites sont arrivées"],
         "'Qu'' est un pronom relatif COD qui reprend 'les lettres' (féminin pluriel). Ce COD est placé AVANT le verbe 'écrire', donc le participe passé 'écrit' doit s'accorder : 'écrites' (féminin pluriel). La règle : le PP avec avoir s'accorde avec le COD antéposé.",
         "L'erreur consiste à laisser 'écrit' invariable, en oubliant que 'qu'' reprend 'les lettres' et joue le rôle de COD antéposé. Il faut toujours chercher l'antécédent du pronom relatif 'que' pour déterminer le genre et le nombre de l'accord.",
-        "free",
       ),
       qcm(
-        "v3a-ppa-2", "orthographe", "Difficile",
+        "v3a-ppa-2", "orthographe",
         "Dans « Les livres que j'ai lus », pourquoi le participe passé 'lus' est-il accordé ?",
         [
           { id: "a", label: "Parce que 'livres' est masculin pluriel et est sujet de 'ai lus'" },
@@ -836,26 +756,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "L'accord est dû à la présence du COD antéposé. 'Que' est un pronom relatif COD qui reprend 'les livres' (masculin pluriel). Ce COD se trouve AVANT le verbe 'lire', donc le PP s'accorde avec lui : 'lus' (masculin pluriel). C'est la condition stricte : COD + antéposé. Sans les deux, pas d'accord.",
         "L'erreur fréquente est de croire que l'auxiliaire avoir impose toujours l'accord, par confusion avec être. Avec avoir, l'accord n'est déclenché que par la présence et l'antéposition du COD.",
-        "free",
       ),
       vraiFaux(
-        "v3a-ppa-3", "orthographe", "Difficile",
+        "v3a-ppa-3", "orthographe",
         "Dans « J'en ai mangé », le participe passé 'mangé' doit s'accorder avec le pronom 'en'.",
         false,
         "C'est faux. Le pronom 'en' est un complément partitif (il représente 'de + quelque chose') et non un COD véritable au sens grammatical. Par convention, le PP reste invariable quand le seul élément antéposé est 'en' : « Des pommes, j'en ai mangé » (invariable). Cette règle est une exception importante à mémoriser.",
         "Les candidats accordent parfois le PP avec 'en' par analogie avec les pronoms COD (le, la, les). Mais 'en' est traité différemment : il ne déclenche pas l'accord du PP avec avoir.",
-        "free",
       ),
       correction(
-        "v3a-ppa-4", "orthographe", "Difficile",
+        "v3a-ppa-4", "orthographe",
         "Corrigez si nécessaire : « Les enfants que j'ai fait jouer dehors étaient ravis. »",
         ["Les enfants que j'ai fait jouer dehors étaient ravis.", "Aucune correction nécessaire."],
         "Aucune correction n'est nécessaire. Lorsque 'faire' est suivi d'un infinitif, le PP 'fait' est toujours invariable, quelle que soit la position du COD antéposé. Cette règle est absolue : « les chansons que j'ai fait chanter », « les élèves que j'ai fait travailler ». C'est une exception à la règle générale.",
         "Les candidats tendent à accorder 'fait' avec l'antécédent du pronom relatif, par analogie avec les autres verbes. Mais 'faire + infinitif' constitue une locution verbale dans laquelle le PP est invariable.",
-        "free",
       ),
       qcm(
-        "v3a-ppa-5", "orthographe", "Difficile",
+        "v3a-ppa-5", "orthographe",
         "Quelle est la forme correcte : « Les fleurs que tu lui as ___ » ?",
         [
           { id: "a", label: "offertes" },
@@ -866,26 +783,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "a",
         "'Que' est le pronom relatif COD reprenant 'les fleurs' (féminin pluriel). Ce COD est antéposé au verbe 'offrir'. Le PP 'offert' s'accorde donc avec 'les fleurs' : 'offertes' (féminin pluriel). Le pronom 'lui' est COI (à lui/à elle), il ne déclenche pas l'accord.",
         "Les candidats confondent parfois le COD et le COI dans ce type de phrase. Seul le COD antéposé déclenche l'accord. 'Lui' = COI (à quelqu'un), ne déclenche pas l'accord du PP.",
-        "free",
       ),
       vraiFaux(
-        "v3a-ppa-6", "orthographe", "Difficile",
+        "v3a-ppa-6", "orthographe",
         "Dans « Elle s'est lavé les mains », le participe passé 'lavé' reste invariable.",
         true,
         "C'est vrai. Dans « elle s'est lavé les mains », le COD est 'les mains', qui est placé APRÈS le verbe. Le pronom réfléchi 'se' est ici COI (elle a lavé les mains à elle-même → COI). Puisque le COD ('les mains') est postposé, le PP reste invariable : 'lavé'. En revanche : « Elle se les est lavées » (les mains, COD antéposé par le pronom 'les' → accord).",
         "Cette construction avec les verbes pronominaux est très piégée. Quand un verbe pronominal a un COD distinct du pronom réfléchi et postposé, le PP reste invariable. Il faut analyser la fonction réelle du pronom réfléchi (COD ou COI).",
-        "free",
       ),
       correction(
-        "v3a-ppa-7", "orthographe", "Difficile",
+        "v3a-ppa-7", "orthographe",
         "Corrigez si nécessaire : « Voici les décisions qu'il a pris. »",
         ["Voici les décisions qu'il a prises.", "Voici les décisions qu'il a prises"],
         "'Qu'' reprend 'les décisions' (féminin pluriel) et joue le rôle de COD antéposé. Le PP 'pris' doit donc s'accorder au féminin pluriel : 'prises'. La règle est identique quelle que soit la complexité de la relative ou la distance entre le pronom et le verbe.",
         "L'erreur consiste à ne pas accorder 'pris', soit par oubli de la règle, soit parce que l'antécédent est éloigné. Il faut toujours remonter à l'antécédent du pronom relatif 'que' pour déterminer le genre et le nombre.",
-        "free",
       ),
       qcm(
-        "v3a-ppa-8", "orthographe", "Difficile",
+        "v3a-ppa-8", "orthographe",
         "Dans « Je les ai vus partir », quelle est la forme correcte du PP 'voir' ?",
         [
           { id: "a", label: "vu (invariable)" },
@@ -896,23 +810,20 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Le pronom 'les' est COD antéposé. Il déclenche l'accord du PP avec 'voir' : 'vus'. Contrairement à 'faire + infinitif' (toujours invariable), les autres verbes de perception (voir, entendre, sentir, regarder, écouter) suivis d'un infinitif peuvent s'accorder avec le COD antéposé si celui-ci est le sujet de l'infinitif. Ici 'les' est bien sujet logique de 'partir'.",
         "Les candidats généralisent parfois l'invariabilité de 'faire + infinitif' à tous les verbes suivis d'infinitif. Seul 'faire + infinitif' est systématiquement invariable. Les verbes de perception (voir, entendre, sentir) s'accordent avec le COD antéposé quand celui-ci est sujet de l'infinitif.",
-        "free",
       ),
       vraiFaux(
-        "v3a-ppa-9", "orthographe", "Difficile",
+        "v3a-ppa-9", "orthographe",
         "Dans « Combien de pages as-tu lues ? », l'accord de 'lues' est correct.",
         true,
         "C'est vrai. 'Combien de pages' est le COD antéposé au verbe 'lire'. Bien que l'accord soit parfois omis dans l'usage courant, la règle exige l'accord avec le COD antéposé : 'pages' est féminin pluriel, donc 'lues'. Les mots interrogatifs 'combien de', 'que', 'quels' peuvent introduire un COD antéposé déclenchant l'accord.",
         "Les candidats oublient fréquemment d'accorder dans ce type de construction interrogative. La position du COD (avant le verbe) est déterminante, quelle que soit la construction syntaxique de la phrase.",
-        "free",
       ),
       correction(
-        "v3a-ppa-10", "orthographe", "Difficile",
+        "v3a-ppa-10", "orthographe",
         "Corrigez si nécessaire : « La directrice a été félicitée par ses collègues. »",
         ["La directrice a été félicitée par ses collègues.", "Aucune correction nécessaire."],
         "La phrase est correcte. Il s'agit d'une construction passive avec l'auxiliaire 'être' : le PP 'félicitée' s'accorde avec le sujet 'la directrice' (féminin singulier). Cela illustre la règle du PP avec être (accord avec le sujet), à ne pas confondre avec la règle du PP avec avoir (accord avec le COD antéposé).",
         "Les candidats confondent parfois les règles d'accord avec être et avec avoir. Rappel : PP avec être → accord avec le sujet ; PP avec avoir → accord avec le COD antéposé (s'il existe).",
-        "free",
       ),
     ],
   }),
@@ -926,10 +837,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     subdomain: "orthographe",
     topicKey: "pluriel_noms_composes",
     topicLabel: "Pluriel des noms composés",
-    level: "Difficile",
     exerciseTypeLabel: "QCM, Vrai/Faux, Correction orthographique",
-    estimatedMinutes: 13,
-    access_tier: "free",
     recommendedOrder: 26,
     completionSummary: {
       skill: "Former correctement le pluriel des noms composés",
@@ -942,7 +850,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3a-pnc-1", "orthographe", "Difficile",
+        "v3a-pnc-1", "orthographe",
         "Quel est le pluriel correct de 'un chef-d'œuvre' ?",
         [
           { id: "a", label: "des chef-d'œuvres" },
@@ -953,26 +861,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "c",
         "'Chef-d'œuvre' est composé de nom + préposition + nom. Seul le premier nom ('chef') prend la marque du pluriel. Le second nom ('œuvre') reste au singulier car la préposition 'de' crée un rapport d'appartenance figé. Le pluriel correct est : 'des chefs-d'œuvre'. Le trait d'union est maintenu.",
         "L'erreur la plus fréquente est d'accorder les deux noms ('des chefs-d'œuvres') ou de ne pas accorder le premier. Dans nom + de + nom, seul le premier nom s'accorde généralement.",
-        "free",
       ),
       correction(
-        "v3a-pnc-2", "orthographe", "Difficile",
+        "v3a-pnc-2", "orthographe",
         "Corrigez si nécessaire : « Elle a acheté plusieurs tire-bouchon. »",
         ["Elle a acheté plusieurs tire-bouchons.", "Elle a acheté plusieurs tire-bouchons"],
         "'Tire-bouchon' est composé de verbe ('tire') + nom ('bouchon'). Le verbe est invariable, mais le nom peut prendre le pluriel si le sens l'autorise. Ici, 'des tire-bouchons' (plusieurs instruments) : le nom 'bouchon' prend le pluriel car on tire plusieurs bouchons. La forme correcte est : 'des tire-bouchons'.",
         "Les candidats laissent parfois 'tire-bouchon' invariable par crainte de faire une faute. La règle verbe + nom exige d'analyser si le nom est logiquement pluriel : un tire-bouchon tire un bouchon (singulier logique, mais pluriel conventionnel accepté).",
-        "free",
       ),
       vraiFaux(
-        "v3a-pnc-3", "orthographe", "Difficile",
+        "v3a-pnc-3", "orthographe",
         "Le pluriel de 'un arc-en-ciel' est 'des arc-en-ciels'.",
         false,
         "C'est faux. 'Arc-en-ciel' est composé de nom + préposition + nom. Seul le premier nom ('arc') prend la marque du pluriel : 'des arcs-en-ciel'. Les mots en seconde position après une préposition restent au singulier. La forme 'des arc-en-ciels' est doublement incorrecte : le premier nom n'est pas accordé et le second est fautivement accordé.",
         "Les candidats accordent parfois le dernier mot ('ciels') par analogie avec la règle des adjectifs ou par attraction du pluriel. Dans nom + préposition + nom, seul le premier nom varie.",
-        "free",
       ),
       qcm(
-        "v3a-pnc-4", "orthographe", "Difficile",
+        "v3a-pnc-4", "orthographe",
         "Quel est le pluriel de 'un sous-vêtement' ?",
         [
           { id: "a", label: "des sous-vêtements" },
@@ -983,10 +888,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "a",
         "'Sous-vêtement' est composé de préposition ('sous') + nom ('vêtement'). La préposition est invariable ; seul le nom prend le pluriel : 'des sous-vêtements'. Le trait d'union est maintenu. Les mots composés avec 'sous', 'sur', 'avant', 'après', 'arrière' suivent cette règle : seul le nom varie.",
         "Les candidats laissent parfois le nom invariable ('sous-vêtement' au pluriel) par crainte de faire une erreur. Rappel : dans préposition + nom, le nom varie normalement.",
-        "free",
       ),
       qcm(
-        "v3a-pnc-5", "orthographe", "Difficile",
+        "v3a-pnc-5", "orthographe",
         "Quel est le pluriel de 'un timbre-poste' ?",
         [
           { id: "a", label: "des timbres-postes" },
@@ -997,26 +901,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "'Timbre-poste' est composé de nom + nom en apposition. En général, les deux noms varient (des choux-fleurs, des portes-fenêtres). Mais 'poste' est ici employé adjectivalement (= timbre postal), il indique la catégorie et reste invariable : 'des timbres-poste'. Cette exception est consacrée par l'usage. De même : 'des timbres-taxe'.",
         "La règle nom + nom prévoit l'accord des deux éléments, mais il existe des exceptions consacrées par l'usage où le second nom, employé comme adjectif de catégorie, reste invariable. Ces cas doivent être mémorisés.",
-        "free",
       ),
       vraiFaux(
-        "v3a-pnc-6", "orthographe", "Difficile",
+        "v3a-pnc-6", "orthographe",
         "La réforme orthographique de 1990 recommande de supprimer le trait d'union dans la plupart des noms composés.",
         false,
         "C'est inexact. La réforme de 1990 recommande de souder certains mots composés qui s'écrivaient avec un trait d'union (porte-monnaie → portemonnaie est recommandé, et d'autres modifications concernent les accents ou certaines lettres (nénufar, ognon)). La réforme ne supprime pas systématiquement les traits d'union dans les noms composés. Elle concerne surtout la soudure des préfixes et quelques mots spécifiques.",
         "Les candidats ont souvent une idée imprécise du contenu de la réforme de 1990. Celle-ci touche principalement : les mots avec préfixes (ex. : contre-exemple → contrexemple est recommandé), les numéraux (quatre-vingt-un → quatre-vingt-un ou quatre vingts), et quelques mots isolés.",
-        "free",
       ),
       correction(
-        "v3a-pnc-7", "orthographe", "Difficile",
+        "v3a-pnc-7", "orthographe",
         "Corrigez si nécessaire : « Les gardes-fous de la passerelle sont rouillés. »",
         ["Les garde-fous de la passerelle sont rouillés.", "Les garde-fous de la passerelle sont rouillés"],
         "'Garde-fou' est composé de verbe ('garde') + nom ('fou'). Le verbe est invariable ; le nom prend le pluriel : 'des garde-fous'. La forme 'gardes-fous' (avec le verbe accordé) est incorrecte. Rappel : dans verbe + nom, seul le nom varie (si le sens l'exige).",
         "Les candidats accordent parfois le premier élément ('gardes') par analogie avec les noms composés de type nom + nom. Il faut identifier la nature grammaticale de chaque composant : ici 'garde' est la forme verbale de 'garder', pas un nom.",
-        "free",
       ),
       qcm(
-        "v3a-pnc-8", "orthographe", "Difficile",
+        "v3a-pnc-8", "orthographe",
         "Comment forme-t-on le pluriel de 'un couvre-lit' ?",
         [
           { id: "a", label: "des couvre-lits" },
@@ -1027,23 +928,20 @@ export const seriesV3BatchA: RevisionSession[] = [
         "a",
         "'Couvre-lit' = verbe ('couvre') + nom ('lit'). Le verbe est invariable ; le nom prend le pluriel : 'des couvre-lits'. On met au pluriel le nom car un couvre-lit en couvre un, donc au pluriel il en couvre plusieurs. La règle logique : si un seul objet est impliqué au singulier, le nom reste au singulier ; si plusieurs objets sont impliqués, le nom prend le pluriel.",
         "Les candidats hésitent entre 'couvre-lit' et 'couvre-lits'. La logique sémantique guide : un couvre-lit couvre un lit, donc au pluriel on a des couvre-lits (plusieurs lits couverts).",
-        "free",
       ),
       vraiFaux(
-        "v3a-pnc-9", "orthographe", "Difficile",
+        "v3a-pnc-9", "orthographe",
         "Le pluriel de 'un chou-fleur' est 'des choux-fleurs' (les deux noms s'accordent).",
         true,
         "C'est vrai. 'Chou-fleur' est composé de nom + nom en apposition. Les deux noms ont la même valeur et s'accordent tous les deux : 'des choux-fleurs'. Cette règle s'applique généralement quand les deux éléments sont des noms de même nature (un chou qui est aussi une fleur). De même : 'des portes-fenêtres', 'des oiseaux-lyres'.",
         "Les candidats oublient parfois d'accorder le second nom ou n'accordent que le premier. Dans nom + nom (apposition), les deux prennent le pluriel, sauf exceptions consacrées par l'usage (timbres-poste, etc.).",
-        "free",
       ),
       reponseCourte(
-        "v3a-pnc-10", "orthographe", "Difficile",
+        "v3a-pnc-10", "orthographe",
         "Donnez le pluriel du nom composé : 'un porte-avion'.",
         ["des porte-avions", "des porte-avions."],
         "'Porte-avion' est composé de verbe ('porte') + nom ('avion'). Le verbe est invariable ; le nom prend le pluriel car un porte-avions en porte plusieurs : 'des porte-avions'. Note : l'orthographe 'porte-avions' (avec s) est la forme standard et peut être considérée comme déjà plurielle au singulier dans certaines descriptions.",
         "Les candidats écrivent parfois 'des portes-avions' (en accordant le verbe). Rappel : dans verbe + nom, le verbe ne prend jamais la marque du pluriel.",
-        "free",
       ),
     ],
   }),
@@ -1057,10 +955,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     subdomain: "orthographe",
     topicKey: "accord_adjectif_couleur",
     topicLabel: "Accord de l'adjectif de couleur",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Correction orthographique",
-    estimatedMinutes: 11,
-    access_tier: "free",
     recommendedOrder: 27,
     completionSummary: {
       skill: "Accorder correctement les adjectifs de couleur",
@@ -1073,7 +968,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3a-aac-1", "orthographe", "Intermediaire",
+        "v3a-aac-1", "orthographe",
         "Laquelle de ces formes est correcte pour un groupe nominal féminin pluriel ?",
         [
           { id: "a", label: "des robes marrons" },
@@ -1084,26 +979,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "c",
         "'Mauve' fait partie des exceptions : bien qu'il désigne une couleur issue du nom de la fleur de mauve, il est entré dans la langue comme véritable adjectif et s'accorde : 'des robes mauves'. En revanche, 'marron' (châtaigne), 'bordeaux' (vin), 'orange' (fruit) sont des noms employés comme adjectifs et restent invariables : 'des robes marron', 'des robes bordeaux', 'des robes orange'.",
         "Les candidats accordent parfois 'marron', 'orange' ou 'bordeaux' par analogie avec les adjectifs ordinaires. La règle : adjectif de couleur issu d'un nom commun = invariable. Exceptions qui s'accordent : rose, mauve, fauve, pourpre, écarlate.",
-        "free",
       ),
       correction(
-        "v3a-aac-2", "orthographe", "Intermediaire",
+        "v3a-aac-2", "orthographe",
         "Corrigez si nécessaire : « Elle portait des chaussures kaki et une veste kakis. »",
         ["Elle portait des chaussures kaki et une veste kaki.", "Elle portait des chaussures kaki et une veste kaki"],
         "'Kaki' est un adjectif de couleur issu d'un nom (la couleur de la terre argileuse, mot d'origine hindoustanie). Il est invariable : 'des chaussures kaki', 'une veste kaki'. La forme 'kakis' est incorrecte. Tous les adjectifs de couleur issus d'un nom commun sont invariables, quel que soit le genre ou le nombre du nom qualifié.",
         "L'erreur 'kakis' vient d'une application trop zélée de la règle d'accord. Il faut distinguer les adjectifs de couleur simples (rouge, vert, bleu → accordent) des adjectifs dérivés de noms (kaki, marron, orange → invariables).",
-        "free",
       ),
       vraiFaux(
-        "v3a-aac-3", "orthographe", "Intermediaire",
+        "v3a-aac-3", "orthographe",
         "L'adjectif 'rose' est invariable car il est issu du nom de la fleur.",
         false,
         "C'est faux. 'Rose' fait partie des exceptions : bien qu'issu du nom de la fleur, il est entré dans la langue comme un véritable adjectif et s'accorde : 'des rubans roses', 'une robe rose'. Les exceptions qui s'accordent sont : rose, mauve, fauve, pourpre, écarlate, incarnat. Ces adjectifs ont perdu leur lien avec le nom d'origine et fonctionnent comme de vrais adjectifs qualificatifs.",
         "Les candidats laissent parfois 'rose' invariable par application trop stricte de la règle. Il faut mémoriser la liste des exceptions qui s'accordent : rose, mauve, fauve, pourpre, écarlate.",
-        "free",
       ),
       qcm(
-        "v3a-aac-4", "orthographe", "Intermediaire",
+        "v3a-aac-4", "orthographe",
         "Quelle est la forme correcte pour qualifier des pulls masculins pluriels d'une couleur nuancée ?",
         [
           { id: "a", label: "des pulls bleus clairs" },
@@ -1114,26 +1006,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "c",
         "Quand un adjectif de couleur est accompagné d'un qualificatif de nuance (clair, foncé, vif, pâle, sombre), l'ensemble forme un groupe adjectival composé qui est toujours invariable : 'des pulls bleu clair', 'des chemises vert foncé'. Ni l'adjectif de couleur ni le qualificatif de nuance ne prennent de marque de pluriel ou de féminin.",
         "L'erreur 'des pulls bleus clairs' vient de l'application de la règle des adjectifs simples. Dès qu'un qualificatif de nuance est ajouté, l'ensemble devient invariable. Il n'y a pas non plus de trait d'union.",
-        "free",
       ),
       correction(
-        "v3a-aac-5", "orthographe", "Intermediaire",
+        "v3a-aac-5", "orthographe",
         "Corrigez si nécessaire : « Des rideaux crèmes ornaient la fenêtre. »",
         ["Des rideaux crème ornaient la fenêtre.", "Des rideaux crème ornaient la fenêtre"],
         "'Crème' est un adjectif de couleur issu du nom de la crème fraîche. Il est invariable : 'des rideaux crème' (pas 'crèmes'). Cette règle s'applique à tous les adjectifs de couleur dérivés de noms communs désignant des objets ou substances colorés : crème, sable, noisette, turquoise, marine, bordeaux, marron, etc.",
         "L'erreur 'crèmes' vient d'une assimilation à un adjectif ordinaire. La couleur 'crème' est clairement reconnaissable comme nom utilisé adjectivement, donc invariable.",
-        "free",
       ),
       vraiFaux(
-        "v3a-aac-6", "orthographe", "Intermediaire",
+        "v3a-aac-6", "orthographe",
         "L'adjectif 'châtain' présente un cas particulier : il peut s'accorder au féminin sous la forme 'châtaine'.",
         true,
         "C'est vrai. 'Châtain' est un cas particulier : au féminin, on peut écrire 'châtaine' (forme accordée) ou 'châtain' (invariable, considéré comme un nom de couleur). Les deux formes sont admises par les grammairiens, bien que l'Académie française recommande l'accord. 'Des cheveux châtains' est courant au pluriel masculin. 'Des cheveux châtaines' est plus rare.",
         "Les candidats croient parfois que 'châtain' est toujours invariable comme les autres noms de couleur. En réalité, son statut est ambigu : il est issu du nom 'châtaigne' mais l'usage a développé une forme féminine 'châtaine'. Les deux sont tolérées.",
-        "free",
       ),
       qcm(
-        "v3a-aac-7", "orthographe", "Intermediaire",
+        "v3a-aac-7", "orthographe",
         "Laquelle de ces phrases est correctement orthographiée ?",
         [
           { id: "a", label: "Des écharpes marines et bordeaux" },
@@ -1144,31 +1033,27 @@ export const seriesV3BatchA: RevisionSession[] = [
         "d",
         "Les deux adjectifs sont invariables : 'marine' (nom → couleur bleu foncé de la mer) et 'bordeaux' (nom → couleur du vin de Bordeaux). Ils s'écrivent sans accord : 'des écharpes marine et bordeaux'. Attention : 'marine' en tant qu'adjectif de couleur est invariable, mais 'marine' en tant qu'adjectif commun (la flotte marine) s'accorde normalement.",
         "Les candidats accordent parfois 'marine' en 'marines' car sa terminaison rappelle les adjectifs ordinaires. Mais comme adjectif de couleur issu d'un nom, 'marine' est invariable.",
-        "free",
       ),
       correction(
-        "v3a-aac-8", "orthographe", "Intermediaire",
+        "v3a-aac-8", "orthographe",
         "Corrigez si nécessaire : « Les joues pourpres de la fillette trahissaient son émotion. »",
         ["Les joues pourpres de la fillette trahissaient son émotion.", "Aucune correction nécessaire."],
         "La phrase est correcte. 'Pourpre' fait partie des exceptions qui s'accordent : bien qu'issu du nom 'pourpre', il est devenu un véritable adjectif qualificatif qui s'accorde en genre et en nombre. 'Les joues pourpres' (féminin pluriel) est donc correct. Les exceptions qui s'accordent : rose, mauve, fauve, pourpre, écarlate, incarnat.",
         "Les candidats laissent parfois 'pourpre' invariable par application de la règle générale des noms de couleur. Il faut mémoriser la liste des exceptions : pourpre, écarlate, fauve, mauve, rose s'accordent comme de vrais adjectifs.",
-        "free",
       ),
       vraiFaux(
-        "v3a-aac-9", "orthographe", "Intermediaire",
+        "v3a-aac-9", "orthographe",
         "Dans 'des yeux noisette', l'adjectif de couleur est invariable.",
         true,
         "C'est vrai. 'Noisette' est le nom du fruit utilisé comme adjectif de couleur pour désigner une teinte brun doré. Comme tous les adjectifs de couleur issus de noms communs, il est invariable : 'des yeux noisette', 'une veste noisette'. On écrit donc 'noisette' sans accord, quel que soit le genre ou le nombre du nom qualifié.",
         "L'erreur 'noisettes' vient d'une assimilation à un adjectif ordinaire. La règle est claire : nom commun utilisé comme adjectif de couleur = invariable, sauf pour les exceptions consacrées (rose, mauve, pourpre, fauve, écarlate).",
-        "free",
       ),
       reponseCourte(
-        "v3a-aac-10", "orthographe", "Intermediaire",
+        "v3a-aac-10", "orthographe",
         "Citez trois adjectifs de couleur issus de noms communs qui sont invariables.",
         ["marron", "orange", "kaki", "crème", "bordeaux", "marine", "noisette", "turquoise", "sable", "marron orange kaki", "orange bordeaux marine"],
         "De nombreux adjectifs de couleur sont issus de noms communs et restent invariables : marron (châtaigne), orange (fruit), kaki (terre), crème (produit laitier), bordeaux (vin), marine (mer), noisette (fruit), turquoise (pierre), sable (matière), nacre, caramel, chocolat, lilas, abricot, citron, lavande... Tous ces noms désignent une substance ou un objet dont la couleur a été empruntée par métonymie.",
         "Les candidats mémorisent parfois seulement 'marron' et 'orange' et oublient les nombreux autres adjectifs de couleur invariables. La liste est longue ; la règle générale (nom → invariable) est plus efficace que la mémorisation cas par cas.",
-        "free",
       ),
     ],
   }),
@@ -1182,10 +1067,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     subdomain: "orthographe",
     topicKey: "tout_meme_accord",
     topicLabel: "Accord de tout, même et quelque",
-    level: "Difficile",
     exerciseTypeLabel: "QCM, Vrai/Faux, Correction orthographique",
-    estimatedMinutes: 14,
-    access_tier: "free",
     recommendedOrder: 28,
     completionSummary: {
       skill: "Accorder correctement tout, même, quelque et quel que",
@@ -1198,15 +1080,14 @@ export const seriesV3BatchA: RevisionSession[] = [
     },
     questions: [
       correction(
-        "v3a-tma-1", "orthographe", "Difficile",
+        "v3a-tma-1", "orthographe",
         "Corrigez si nécessaire : « Elle était tout contente de sa victoire. »",
         ["Elle était toute contente de sa victoire.", "Elle était toute contente de sa victoire", "toute contente"],
         "'Tout' est ici adverbe (= entièrement, tout à fait). Devant un adjectif féminin commençant par une consonne, 'tout' adverbe s'accorde : 'toute contente'. Devant un adjectif féminin commençant par une voyelle ou un h muet, 'tout' reste invariable : 'elle était tout émue', 'elle était tout heureuse' (h muet).",
         "La règle de 'tout' adverbe est particulièrement délicate : il est invariable devant adjectif masculin (tout surpris) et devant adjectif féminin commençant par une voyelle ou un h muet (tout émue, tout heureuse), mais variable devant adjectif féminin commençant par consonne ou h aspiré (toute contente, toute honteuse).",
-        "free",
       ),
       qcm(
-        "v3a-tma-2", "orthographe", "Difficile",
+        "v3a-tma-2", "orthographe",
         "Dans « Les élèves eux-mêmes ont corrigé leurs copies », quelle est la nature de 'mêmes' ?",
         [
           { id: "a", label: "Adverbe invariable" },
@@ -1217,26 +1098,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Ici, 'mêmes' renforce le pronom 'eux' (pronom de reprise de 'les élèves'). Il joue le rôle d'un adjectif apposé qui insiste sur l'identité du sujet et s'accorde avec 'élèves' (masculin pluriel). C'est le 'même' d'identité ou d'insistance, qui s'accorde. À distinguer du 'même' adverbe (= aussi, jusqu'à) qui est invariable : « même les enfants savaient ».",
         "La confusion porte sur la distinction 'même' adjectif (accord) vs 'même' adverbe (invariable). Test : peut-on remplacer 'même' par 'aussi' ou 'y compris' sans changer le sens → adverbe invariable. Sinon → adjectif, accord.",
-        "free",
       ),
       vraiFaux(
-        "v3a-tma-3", "orthographe", "Difficile",
+        "v3a-tma-3", "orthographe",
         "Dans « Quelques élèves sont absents », 'quelques' est un adverbe invariable.",
         false,
         "C'est faux. Dans 'quelques élèves', 'quelques' est un adjectif indéfini (déterminant) qui s'accorde avec le nom 'élèves' (masculin pluriel) : 'quelques'. L'adverbe 'quelque' (invariable) apparaît dans le sens de 'si' ou 'aussi' devant un adjectif ou un adverbe : « Quelque savant qu'il soit » (= si savant qu'il soit). Dans ce contexte adverbial, 'quelque' est invariable.",
         "La distinction adjectif/adverbe pour 'quelque' est délicate. Moyen de reconnaissance : si 'quelque' peut être remplacé par 'si' ou 'aussi' devant un adjectif → adverbe invariable. S'il introduit un nom → adjectif, accord avec le nom.",
-        "free",
       ),
       correction(
-        "v3a-tma-4", "orthographe", "Difficile",
+        "v3a-tma-4", "orthographe",
         "Corrigez si nécessaire : « Quel que soit votre décision, je la respecterai. »",
         ["Quelle que soit votre décision, je la respecterai.", "Quelle que soit votre décision, je la respecterai"],
         "'Quel que' (deux mots) est suivi du verbe 'être' (ou d'un verbe attributif). Il s'accorde avec le sujet de ce verbe. Ici, le sujet de 'soit' est 'votre décision' (féminin singulier), donc il faut 'quelle que soit votre décision'. L'accord se fait toujours avec le sujet du verbe 'être' qui suit.",
         "L'erreur classique est d'écrire 'quelque soit' (un seul mot, sans accord), qui est doublement incorrect : il faut deux mots ('quel que') et l'accord avec le sujet du verbe être.",
-        "free",
       ),
       qcm(
-        "v3a-tma-5", "orthographe", "Difficile",
+        "v3a-tma-5", "orthographe",
         "Dans « Toutes les filles sont venues », quelle est la nature de 'toutes' ?",
         [
           { id: "a", label: "Adverbe" },
@@ -1247,26 +1125,23 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Dans 'toutes les filles', 'toutes' est un adjectif indéfini (déterminant) qui accompagne le nom 'filles' et s'accorde avec lui (féminin pluriel). C'est le 'tout' déterminant, qui indique la totalité et qui s'accorde toujours. À distinguer du 'tout' adverbe (invariable devant un adjectif masculin ou féminin vocalique) et du 'tout' pronom ('Tous sont venus').",
         "Les candidats confondent parfois les différentes natures grammaticales de 'tout'. Méthode : identifier si 'tout' est devant un nom (déterminant, accord), devant un adjectif (adverbe, règle complexe) ou seul (pronom, accord).",
-        "free",
       ),
       vraiFaux(
-        "v3a-tma-6", "orthographe", "Difficile",
+        "v3a-tma-6", "orthographe",
         "Dans « Même les professeurs étaient surpris », 'même' est un adverbe invariable.",
         true,
         "C'est vrai. Ici, 'même' signifie 'y compris', 'jusqu'à' et ne qualifie aucun nom ni pronom : c'est un adverbe invariable. On peut le remplacer par 'y compris' ou 'jusqu'aux' : « Y compris les professeurs étaient surpris ». Ce 'même' d'insistance ou d'extension est toujours invariable.",
         "La confusion vient de la ressemblance avec 'même' adjectif. Test de remplacement : 'même = y compris / jusqu'à' → adverbe invariable. 'même = identique / en personne' → adjectif, accord.",
-        "free",
       ),
       correction(
-        "v3a-tma-7", "orthographe", "Difficile",
+        "v3a-tma-7", "orthographe",
         "Corrigez si nécessaire : « Les résultats même de l'expérience étaient décevants. »",
         ["Les résultats mêmes de l'expérience étaient décevants.", "Les résultats mêmes de l'expérience étaient décevants"],
         "Ici, 'même' est placé après le nom 'résultats' pour le renforcer (= les résultats eux-mêmes, en personne). C'est le 'même' d'insistance adjectival, qui s'accorde avec le nom : 'les résultats mêmes'. Ce 'même' postposé au nom est toujours adjectif et s'accorde.",
         "Les candidats laissent parfois 'même' invariable dans cette position. Règle : 'même' placé immédiatement après un nom ou un pronom et servant à le renforcer est adjectif et s'accorde.",
-        "free",
       ),
       qcm(
-        "v3a-tma-8", "orthographe", "Difficile",
+        "v3a-tma-8", "orthographe",
         "Quelle est la forme correcte : « Elle était ___ surprise de voir son ami. »",
         [
           { id: "a", label: "toute" },
@@ -1277,23 +1152,20 @@ export const seriesV3BatchA: RevisionSession[] = [
         "a",
         "'Surprise' est un adjectif féminin commençant par la consonne 's'. Devant un adjectif féminin commençant par une consonne (ou h aspiré), 'tout' adverbe s'accorde et devient 'toute' pour des raisons euphoniques. On écrit donc : 'elle était toute surprise'. Si l'adjectif féminin commençait par une voyelle, 'tout' resterait invariable : 'elle était tout étonnée'.",
         "L'erreur est d'écrire 'tout surprise' en appliquant mécaniquement la règle de l'invariabilité de l'adverbe. La règle comporte une exception euphonique : toute + adjectif féminin commençant par consonne ou h aspiré.",
-        "free",
       ),
       vraiFaux(
-        "v3a-tma-9", "orthographe", "Difficile",
+        "v3a-tma-9", "orthographe",
         "Dans « Quels que soient les obstacles, il persévérera », 'quels que' est correctement accordé.",
         true,
         "C'est vrai. 'Quels que' s'accorde avec le sujet du verbe 'être' qui suit. Le sujet de 'soient' est 'les obstacles' (masculin pluriel) → 'quels que'. La règle : 'quel que' (deux mots) + verbe être ou verbe attributif + sujet → accord de 'quel' avec le sujet. On obtient : quel que (m. sing.), quelle que (f. sing.), quels que (m. plur.), quelles que (f. plur.).",
         "L'erreur typique est d'écrire 'quelque' (un mot) invariable. Rappel : 'quel que' (deux mots, accord) s'utilise devant le verbe être ou être + attribut ; 'quelque' (un mot) est soit déterminant (accord), soit adverbe de manière (invariable).",
-        "free",
       ),
       correction(
-        "v3a-tma-10", "orthographe", "Difficile",
+        "v3a-tma-10", "orthographe",
         "Corrigez si nécessaire : « Ils ont tous les même problèmes. »",
         ["Ils ont tous les mêmes problèmes.", "Ils ont tous les mêmes problèmes"],
         "Deux corrections : 1) 'même' doit s'accorder avec 'problèmes' (masculin pluriel) → 'mêmes' ; 2) 'tous' est ici déterminant (ou pronom) s'accordant avec 'ils' → 'tous' est déjà correct. La forme correcte est : 'Ils ont tous les mêmes problèmes.' 'Même' adjectif (= identique, pareil) s'accorde toujours avec le nom qu'il qualifie.",
         "Les deux erreurs possibles dans cette phrase concernent 'même' (non accordé) et la présence de l'apostrophe entre 'tout' et 'les'. 'Tout les' ou 'tous les' : 'tous les' est correct ici car 'tous' est déterminant devant le groupe nominal pluriel.",
-        "free",
       ),
     ],
   }),
@@ -1307,10 +1179,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     subdomain: "orthographe",
     topicKey: "ponctuation_usages",
     topicLabel: "La ponctuation",
-    level: "Intermediaire",
     exerciseTypeLabel: "QCM, Vrai/Faux, Réponse courte",
-    estimatedMinutes: 11,
-    access_tier: "free",
     recommendedOrder: 29,
     completionSummary: {
       skill: "Employer correctement les signes de ponctuation",
@@ -1323,7 +1192,7 @@ export const seriesV3BatchA: RevisionSession[] = [
     },
     questions: [
       qcm(
-        "v3a-ponct-1", "orthographe", "Intermediaire",
+        "v3a-ponct-1", "orthographe",
         "Laquelle de ces phrases contient une erreur de ponctuation ?",
         [
           { id: "a", label: "Les enfants, fatigués par la journée, s'endormirent rapidement." },
@@ -1334,10 +1203,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "La phrase b contient une erreur grave : la virgule sépare le sujet ('les enfants') du verbe ('s'endormirent'), ce qui est interdit. La règle fondamentale est que la virgule ne doit jamais s'intercaler entre le sujet et son verbe (ni entre le verbe et son COD). Les phrases a, c et d sont correctes : dans a, les virgules encadrent un apposé ; dans c, une proposition participiale précède ; dans d, un apposé est placé après le groupe verbal.",
         "C'est l'erreur de ponctuation la plus fréquente dans les productions écrites. La virgule entre sujet et verbe est formellement interdite, même quand le sujet est long.",
-        "free",
       ),
       qcm(
-        "v3a-ponct-2", "orthographe", "Intermediaire",
+        "v3a-ponct-2", "orthographe",
         "Quel est le rôle du deux-points dans : « Il n'aimait qu'une chose : lire. » ?",
         [
           { id: "a", label: "Séparer deux propositions de même nature" },
@@ -1348,18 +1216,16 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Le deux-points annonce ici une reformulation ou une précision de ce qui précède : 'une chose' est précisé par 'lire'. Le deux-points a plusieurs emplois : annoncer une explication (« Il est absent : il est malade »), une liste (« Il faut : du pain, du beurre, du lait »), une citation (« Il dit : \'Venez demain\' »), ou une reformulation précisant le terme antécédent.",
         "Les candidats confondent parfois le deux-points et le point-virgule. Le deux-points annonce ou explique ce qui suit ; le point-virgule relie deux propositions de sens lié mais équivalentes.",
-        "free",
       ),
       vraiFaux(
-        "v3a-ponct-3", "orthographe", "Intermediaire",
+        "v3a-ponct-3", "orthographe",
         "Le point-virgule peut s'utiliser à la place d'une conjonction de coordination pour relier deux propositions de sens lié.",
         true,
         "C'est vrai. Le point-virgule exprime un lien logique entre deux propositions sans le nommer explicitement. Il peut remplacer une conjonction de coordination dans un texte soutenu : « Il pleuvait ; nous sommes restés » (= ...car nous sommes restés / ...donc nous sommes restés). C'est le signe de la juxtaposition entre deux propositions de même importance et de sens lié.",
         "Les candidats sous-utilisent le point-virgule, le remplaçant par une virgule (trop faible) ou un point (qui coupe le lien). Le point-virgule est le signe de la liaison sémantique forte entre deux propositions indépendantes.",
-        "free",
       ),
       qcm(
-        "v3a-ponct-4", "orthographe", "Intermediaire",
+        "v3a-ponct-4", "orthographe",
         "Dans quel cas les guillemets sont-ils correctement utilisés ?",
         [
           { id: "a", label: "Pour mettre en valeur un titre de chapitre dans un livre" },
@@ -1370,10 +1236,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "Les guillemets (« ») ont trois emplois principaux : 1) le discours direct (paroles rapportées fidèlement) ; 2) les citations (extraits de textes) ; 3) l'emploi distancié ou ironique d'un mot (pour mettre en évidence qu'on l'utilise avec réserve). Les titres d'œuvres s'écrivent en italique, pas entre guillemets. Les listes sont introduites par le deux-points.",
         "Les candidats utilisent parfois les guillemets pour des titres d'œuvres ou pour mettre en relief un mot important. En français, les titres d'œuvres (romans, films) s'écrivent en italique ou soulignés à la main, non entre guillemets.",
-        "free",
       ),
       correction(
-        "v3a-ponct-5", "orthographe", "Intermediaire",
+        "v3a-ponct-5", "orthographe",
         "Corrigez la ponctuation si nécessaire : « Pour réussir cet examen il faut : travailler régulièrement, réviser ses cours et dormir suffisamment. »",
         [
           "Pour réussir cet examen, il faut : travailler régulièrement, réviser ses cours et dormir suffisamment.",
@@ -1381,18 +1246,16 @@ export const seriesV3BatchA: RevisionSession[] = [
         ],
         "La phrase comporte une erreur : l'absence de virgule après 'examen' (le complément circonstanciel de but 'pour réussir cet examen' devrait être suivi d'une virgule). Le deux-points avant la liste est optionnel mais correct. La forme canonique : « Pour réussir cet examen, il faut : travailler régulièrement, réviser ses cours et dormir suffisamment. » La virgule après le complément initial est recommandée.",
         "Les candidats oublient parfois la virgule après un long complément circonstanciel initial. Règle : un complément circonstanciel placé en tête de phrase doit généralement être suivi d'une virgule pour séparer le thème du propos.",
-        "free",
       ),
       vraiFaux(
-        "v3a-ponct-6", "orthographe", "Intermediaire",
+        "v3a-ponct-6", "orthographe",
         "Dans un dialogue littéraire, le tiret est utilisé pour introduire chaque nouvelle réplique d'un personnage.",
         true,
         "C'est vrai. Dans la présentation typographique d'un dialogue, chaque changement de locuteur est signalé par un tiret en début de réplique : « — Viens-tu ? — Non, je reste. » Le premier tiret peut être absent si les guillemets ouvrants introduisent le dialogue. Cette convention typographique est distincte du tiret d'encadrement (parenthèse renforcée).",
         "Les candidats confondent parfois le tiret du dialogue (changement de réplique) et le tiret d'encadrement (parenthèse). Ce sont deux emplois distincts du même signe typographique.",
-        "free",
       ),
       qcm(
-        "v3a-ponct-7", "orthographe", "Intermediaire",
+        "v3a-ponct-7", "orthographe",
         "Laquelle de ces phrases utilise correctement le deux-points ?",
         [
           { id: "a", label: "Il a réussi son examen : parce qu'il a beaucoup travaillé." },
@@ -1403,10 +1266,9 @@ export const seriesV3BatchA: RevisionSession[] = [
         "b",
         "La phrase b illustre l'emploi correct du deux-points pour annoncer une explication causale : la seconde proposition explique la première. Le deux-points remplace ici 'parce qu'il avait beaucoup travaillé'. La phrase a est incorrecte : le deux-points ne peut pas être suivi d'une conjonction de subordination ('parce que'). La phrase c est absurde (sujet séparé du verbe). La phrase d a le sens inversé.",
         "L'erreur consiste à placer un deux-points suivi d'une conjonction de subordination ('parce que', 'car', 'puisque'). Le deux-points prend déjà en charge la valeur causale ou explicative ; il ne peut pas être doublé d'un mot de liaison.",
-        "free",
       ),
       qcm(
-        "v3a-ponct-8", "orthographe", "Intermediaire",
+        "v3a-ponct-8", "orthographe",
         "Quel signe de ponctuation faut-il employer pour encadrer une incise (information secondaire insérée dans la phrase) ?",
         [
           { id: "a", label: "Des points-virgules" },
@@ -1417,18 +1279,16 @@ export const seriesV3BatchA: RevisionSession[] = [
         "c",
         "Une incise (proposition ou groupe nominal apposé, explication secondaire) peut être encadrée par des virgules (niveau neutre), des tirets (niveau expressif ou renforcé), ou des parenthèses (niveau informatif secondaire). Ex. virgules : « Le directeur, fatigué, prit sa décision. » Ex. tirets : « Le directeur — fatigué depuis plusieurs semaines — prit sa décision. » Ex. parenthèses : « Le directeur (qui était fatigué) prit sa décision. »",
         "Les candidats choisissent parfois le deux-points pour introduire une incise. Le deux-points ne peut pas encadrer une incise : il n'a qu'un emploi unidirectionnel (ce qui vient après le deux-points explique ou précise ce qui précède).",
-        "free",
       ),
       vraiFaux(
-        "v3a-ponct-9", "orthographe", "Intermediaire",
+        "v3a-ponct-9", "orthographe",
         "La virgule est obligatoire pour séparer des éléments coordonnés par 'et', 'ou' ou 'ni' dans une énumération.",
         false,
         "C'est faux. Dans une énumération, la virgule s'utilise entre les éléments SAUF avant la dernière conjonction (et, ou, ni) qui la remplace généralement : « Il achète du pain, du lait et du beurre » (pas de virgule avant 'et'). Cependant, dans une longue liste complexe, une virgule avant 'et' est parfois admise pour plus de clarté. La virgule et la conjonction sont complémentaires, non cumulatives.",
         "Les candidats mettent parfois une virgule ET 'et' dans une énumération : 'du pain, du lait, et du beurre' — la virgule avant 'et' final est considérée comme une erreur dans l'usage standard français (contrairement à l'anglais où la 'Oxford comma' est admise).",
-        "free",
       ),
       reponseCourte(
-        "v3a-ponct-10", "orthographe", "Intermediaire",
+        "v3a-ponct-10", "orthographe",
         "Citez deux emplois du deux-points distincts de l'annonce d'une liste.",
         [
           "annoncer une explication",
@@ -1442,7 +1302,6 @@ export const seriesV3BatchA: RevisionSession[] = [
         ],
         "Le deux-points a plusieurs emplois : 1) annoncer une explication ou une cause (« Il est absent : il est malade ») ; 2) introduire une citation ou un discours direct (« Il dit : \'Venez demain.\' ») ; 3) annoncer une reformulation ou une précision (« Il n'aimait qu'une chose : lire ») ; 4) annoncer une conséquence ou une conclusion (« Il a travaillé toute la nuit : il était épuisé »). Le deux-points est toujours annoncé par une proposition complète.",
         "Les candidats associent parfois exclusivement le deux-points aux listes. Ses emplois sont plus variés : explication, citation, reformulation, annonce de discours direct. Dans tous les cas, ce qui précède le deux-points est une proposition grammaticalement complète.",
-        "free",
       ),
     ],
   }),

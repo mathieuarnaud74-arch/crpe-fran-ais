@@ -54,7 +54,7 @@ for (const series of part4PremierLotSeriesCompletes) {
       `  ${toSqlString(series.domain)},`,
       `  ${toSqlString(series.subdomain)},`,
       `  ${toSqlString(series.subdomainLabel)},`,
-      `  ${toSqlString(series.level)},`,
+      `  'Standard',`,
       `  ${toSqlString(question.type)},`,
       `  ${toSqlString(question.instruction)},`,
       `  ${toSqlNullableString(question.supportText)},`,
@@ -63,7 +63,7 @@ for (const series of part4PremierLotSeriesCompletes) {
       `  ${toSqlString(question.explanation)},`,
       "  'valide',",
       `  ${toSqlString(integration.sourceLabel)},`,
-      `  ${toSqlString(integration.accessTier)},`,
+      `  'free',`,
       "  true",
       ")",
     ].join("\n");

@@ -77,21 +77,13 @@ async function submitAttemptActionInner(
   }
 
   const premium = await isPremiumUser(user.id);
-
-  if (exercise.access_tier === "premium" && !premium) {
-    return {
-      status: "error",
-      message: "Cet exercice est réservé aux abonnés premium.",
-    };
-  }
-
   const attemptsToday = await getAttemptsCountToday(user.id);
 
   if (!canSubmitAttempt(attemptsToday, premium)) {
     return {
       status: "error",
       message:
-        "Votre quota gratuit du jour est atteint. Passez en premium pour continuer sans limite.",
+        "Votre quota du jour est atteint. Revenez demain ou passez en premium pour continuer sans limite.",
     };
   }
 

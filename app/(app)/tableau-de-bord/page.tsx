@@ -125,7 +125,7 @@ type PlanItem = {
   tag: string;
   tone: "warm" | "warning" | "neutral";
   step: number;
-  estimatedMinutes: number;
+  questionCount: number;
 };
 
 function buildPlanDuJour(data: DashboardData): PlanItem[] {
@@ -140,7 +140,7 @@ function buildPlanDuJour(data: DashboardData): PlanItem[] {
       tag: "À reprendre",
       tone: "warm",
       step: plan.length + 1,
-      estimatedMinutes: session.estimatedMinutes,
+      questionCount: session.questionCount,
     });
   }
 
@@ -158,7 +158,7 @@ function buildPlanDuJour(data: DashboardData): PlanItem[] {
         tag: "Prioritaire",
         tone: "warning",
         step: plan.length + 1,
-        estimatedMinutes: targetSession.estimatedMinutes,
+        questionCount: targetSession.questionCount,
       });
     }
   }
@@ -178,7 +178,7 @@ function buildPlanDuJour(data: DashboardData): PlanItem[] {
         tag: "À consolider",
         tone: "neutral",
         step: plan.length + 1,
-        estimatedMinutes: targetSession.estimatedMinutes,
+        questionCount: targetSession.questionCount,
       });
     }
   }
@@ -221,7 +221,6 @@ export default async function DashboardPage() {
 
   const firstFreeSeries =
     data.sessionProgress
-      .filter((s) => s.access_tier === "free")
       .sort((a, b) => a.recommendedOrder - b.recommendedOrder)[0] ?? null;
 
   const plan = buildPlanDuJour(data);
@@ -243,7 +242,7 @@ export default async function DashboardPage() {
     en_cours: [],
   };
   for (const s of data.sessionProgress) {
-    if (s.access_tier === "free" && s.status !== "maitrisee" && s.status in buckets) {
+    if (s.status !== "maitrisee" && s.status in buckets) {
       buckets[s.status as keyof typeof buckets].push(s);
     }
   }
@@ -539,7 +538,6 @@ export default async function DashboardPage() {
           exerciseId: e.exercise_id,
           subdomain: e.exercise?.subdomain ?? null,
           topicLabel: e.exercise?.topic_label ?? null,
-          level: e.exercise?.level ?? null,
           state: e.state,
           lapses: e.lapses,
         }))}
@@ -1006,9 +1004,6 @@ export default async function DashboardPage() {
                 </Badge>
                 <Badge className="border-paper/20 bg-paper/10 text-paper/70">
                   {quickChallengeSession.questionCount} questions
-                </Badge>
-                <Badge className="border-paper/20 bg-paper/10 text-paper/70">
-                  ~{quickChallengeSession.estimatedMinutes} min
                 </Badge>
               </div>
 

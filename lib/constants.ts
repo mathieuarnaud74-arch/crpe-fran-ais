@@ -94,18 +94,6 @@ export const EXERCISE_TYPE_OPTIONS: Array<{
   { value: "surlignage_propositions", label: EXERCISE_TYPE_LABELS.surlignage_propositions },
 ];
 
-export const LEVEL_LABELS: Record<string, string> = {
-  Facile: "Facile",
-  Intermediaire: "Intermédiaire",
-  Avance: "Avancé",
-  Difficile: "Difficile",
-};
-
-export const LEVEL_OPTIONS = Object.entries(LEVEL_LABELS).map(([value, label]) => ({
-  value,
-  label,
-}));
-
 export const LEARNING_STATUS_LABELS: Record<LearningStatus, string> = {
   non_commencee: "Non commencée",
   en_cours: "En cours",
@@ -166,10 +154,6 @@ export const FRENCH_DOMAIN_CONFIG: Record<
     subdomains: ["didactique_francais"],
   },
 };
-
-export function formatLevelLabel(value: string) {
-  return LEVEL_LABELS[value] ?? value;
-}
 
 export function getFrenchDomainKey(subdomain: ExerciseSubdomain): FrenchDomainKey {
   for (const key of FRENCH_DOMAIN_ORDER) {
@@ -303,13 +287,6 @@ export const PROGRESS_STATUS_LABELS: Record<ProgressStatus, string> = {
   fragile: "Fragile",
   en_cours: "En cours",
   acquis: "Acquis",
-};
-
-// ─── Access Tier Labels ──────────────────────────────────
-
-export const ACCESS_TIER_LABELS: Record<string, string> = {
-  free: "Gratuit",
-  premium: "Premium",
 };
 
 // ─── Exercise Mode Compatibility ──────────────────────────

@@ -13,7 +13,6 @@ import {
   MATH_DOMAIN_CONFIG,
   MATH_DOMAIN_ORDER,
   LEARNING_STATUS_LABELS,
-  LEVEL_OPTIONS,
   SUBDOMAIN_LABELS,
 } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -39,7 +38,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 type SearchParams = Promise<{
   status?: string;
-  level?: string;
   subdomain?: string;
   q?: string;
 }>;
@@ -77,7 +75,6 @@ function matchesSearch(session: DashboardSessionProgress, query: string) {
     session.summary,
     session.topicLabel,
     session.subdomainLabel,
-    session.level,
   ]
     .join(" ")
     .toLowerCase();
@@ -108,7 +105,6 @@ export default async function MathDomainPage({
     filters.status && STATUS_ORDER.includes(filters.status as LearningStatus)
       ? (filters.status as LearningStatus)
       : "";
-  const selectedLevel = filters.level ?? "";
   const selectedSubdomain =
     filters.subdomain &&
     config.subdomains.includes(filters.subdomain as DashboardSessionProgress["subdomain"])
@@ -118,9 +114,6 @@ export default async function MathDomainPage({
 
   const filteredSessions = domainSessions.filter((session) => {
     if (selectedStatus && session.status !== selectedStatus) {
-      return false;
-    }
-    if (selectedLevel && session.level !== selectedLevel) {
       return false;
     }
     if (selectedSubdomain && session.subdomain !== selectedSubdomain) {
@@ -155,7 +148,7 @@ export default async function MathDomainPage({
   });
 
   const masteryPercent = totalSeries > 0 ? Math.round((mastered / totalSeries) * 100) : 0;
-  const hasActiveFilters = !!(selectedStatus || selectedSubdomain || selectedLevel || query);
+  const hasActiveFilters = !!(selectedStatus || selectedSubdomain || query);
 
   return (
     <div className="space-y-6">
@@ -275,7 +268,7 @@ export default async function MathDomainPage({
           </ButtonLink>
         </div>
 
-        <form aria-label="Filtres des séries" className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+        <form aria-label="Filtres des séries" className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           <label htmlFor="filter-status" className="space-y-1.5 text-sm text-muted">
             <span>Statut</span>
             <select
@@ -312,23 +305,6 @@ export default async function MathDomainPage({
             </label>
           )}
 
-          <label htmlFor="filter-level" className="space-y-1.5 text-sm text-muted">
-            <span>Niveau</span>
-            <select
-              id="filter-level"
-              name="level"
-              defaultValue={selectedLevel}
-              className="w-full rounded-xl border border-border bg-paper px-4 py-2.5 text-sm text-ink outline-none focus:border-accent"
-            >
-              <option value="">Tous</option>
-              {LEVEL_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </label>
-
           <label htmlFor="filter-search" className="space-y-1.5 text-sm text-muted xl:col-span-2">
             <span>Recherche</span>
             <div className="flex gap-2">
@@ -355,7 +331,6 @@ export default async function MathDomainPage({
             {selectedStatus ? (
               <ButtonLink
                 href={buildHref(pathname, {
-                  level: selectedLevel,
                   subdomain: selectedSubdomain,
                   q: query || undefined,
                 })}
@@ -369,7 +344,6 @@ export default async function MathDomainPage({
               <ButtonLink
                 href={buildHref(pathname, {
                   status: selectedStatus || undefined,
-                  level: selectedLevel,
                   q: query || undefined,
                 })}
                 variant="secondary"
@@ -379,24 +353,10 @@ export default async function MathDomainPage({
                 {SUBDOMAIN_LABELS[selectedSubdomain as DashboardSessionProgress["subdomain"]]}
               </ButtonLink>
             ) : null}
-            {selectedLevel ? (
-              <ButtonLink
-                href={buildHref(pathname, {
-                  status: selectedStatus || undefined,
-                  subdomain: selectedSubdomain || undefined,
-                  q: query || undefined,
-                })}
-                variant="secondary"
-                className="px-3 py-1.5 text-xs"
-              >
-                &times; {selectedLevel}
-              </ButtonLink>
-            ) : null}
             {query ? (
               <ButtonLink
                 href={buildHref(pathname, {
                   status: selectedStatus || undefined,
-                  level: selectedLevel || undefined,
                   subdomain: selectedSubdomain || undefined,
                 })}
                 variant="secondary"
