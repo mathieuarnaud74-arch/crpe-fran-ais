@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-03-25] — Fix dette technique migrations (53 UUID collisions + 1 réponse fausse)
+
+- `supabase/migrations/20260822_fix_uuid_collisions.sql` — 53 questions silencieusement ignorées par ON CONFLICT DO NOTHING (préfixes UUID fa0X/fa1X/fc0X en collision avec d'anciennes séries françaises). Réinsérées avec nouveaux préfixes (fa2X/fa5X/fc2X). + correction réponse fractions (7/12−3/8+1/6 = 3/8, pas 9/24). + 2 vrai_faux avec choices→NULL.
+- `supabase/migrations/20260807_seed_complete_nombres_calcul_batch2.sql` — correction expected_answer "b"→"a" (forme irréductible)
+- `supabase/migrations/20260809_seed_complete_grandeurs_mesures_batch2.sql` — 2 vrai_faux: choices explicites → NULL
+
 ## [2026-03-25] — Optimisation performance tableau de bord + fix modes expected_answer
 
 - `features/exercises/server/queries.ts` — nouvelle fonction `getDashboardSessions()` avec SELECT ciblé (skip choices, expected_answer, detailed_explanation, support_text). Réduit le payload Supabase de ~70% sur le tableau de bord.

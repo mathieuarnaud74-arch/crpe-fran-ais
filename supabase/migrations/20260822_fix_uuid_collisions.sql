@@ -1,83 +1,567 @@
--- ============================================================================
--- Batch 2 : Complétion des séries grandeurs_mesures (Q8, Q9, Q10)
--- 17 séries × 3 questions = 51 exercices
--- Niveau : Intermediaire ou Avance | Access : free
--- ============================================================================
+-- Migration: fix 53 UUID collisions + 1 wrong answer + 2 vrai_faux format issues
+--
+-- Part 1: 53 questions silently dropped by ON CONFLICT DO NOTHING because
+--   their UUID prefixes collided with older French exercise series.
+--   Re-insert with new UUID prefixes (fa0X -> fa2X, fa1X -> fa5X, fc0X -> fc2X).
+--
+-- Part 2: Fix wrong answer key for fractions question (b -> a)
+-- Part 3: Fix 2 vrai_faux with explicit choices -> NULL
 
+-- === Part 2: Fix wrong answer key ===
+UPDATE public.exercises
+SET expected_answer = '{"mode":"single","value":"a"}'::jsonb,
+    detailed_explanation = 'On cherche le PPCM de 12, 8 et 6. Les décompositions sont : 12 = 2² × 3, 8 = 2³, 6 = 2 × 3. Le PPCM est 2³ × 3 = 24. On convertit : 7/12 = 14/24, 3/8 = 9/24, 1/6 = 4/24. On calcule : 14/24 − 9/24 + 4/24 = 9/24. On simplifie : PGCD(9, 24) = 3, donc 9/24 = 3/8. La forme irréductible est 3/8.'
+WHERE id = 'f8010000-0000-0000-0000-000000000008';
 
--- ============================================================================
--- 1. math_grandeurs_composees_etapes (prefix=b00a0000)
--- ============================================================================
+-- === Part 3: Fix vrai_faux choices -> NULL ===
+UPDATE public.exercises SET choices = NULL
+WHERE id = 'b00a0000-0000-0000-0000-000000000009'
+  AND exercise_type = 'vrai_faux';
 
--- Q8 (QCM) — Consommation et coût au litre
+UPDATE public.exercises SET choices = NULL
+WHERE id = 'b0190000-0000-0000-0000-000000000010'
+  AND exercise_type = 'vrai_faux';
+
+-- === Part 1: Re-insert 53 collided questions with new UUIDs ===
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'b00a0000-0000-0000-0000-000000000008',
-  'Mathematiques', 'grandeurs_mesures', 'math_grandeurs_composees_etapes',
-  'Problèmes à étapes — Grandeurs composées', 'Avance', 'qcm',
-  'Un camion-citerne livre 8 000 litres de fioul à un prix de 1,15 € le litre. Le trajet de livraison fait 120 km et le camion consomme 35 L aux 100 km. Quel est le coût total (fioul livré + carburant de livraison) ?',
+  'fc230000-0000-0000-0000-000000000008',
+  'Mathematiques',
+  'didactique_maths',
+  'math_didactique_calcul_mental',
+  'Didactique du calcul mental — Stratégies et mise en œuvre',
+  'Intermediaire',
+  'reponse_courte',
+  'Un élève de CE2 calcule 7 × 6 en expliquant : « 7 × 5, c''est 35, puis j''ajoute 7, ça fait 42 ». Quelle propriété mathématique fondamentale sous-tend cette stratégie de calcul mental ?',
   NULL,
-  '[{"id":"a","label":"9 200 €"},{"id":"b","label":"9 248,30 €"},{"id":"c","label":"9 284,30 €"},{"id":"d","label":"9 248 €"}]'::jsonb,
-  '{"mode":"single","value":"b"}'::jsonb,
-  'Ce problème mobilise deux grandeurs composées : le prix unitaire (€/L) et la consommation (L/100 km). Étape 1 — Coût du fioul livré : 8 000 × 1,15 = 9 200 €. Étape 2 — Consommation du camion : (120 / 100) × 35 = 1,2 × 35 = 42 L. Étape 3 — Coût du carburant de livraison (même prix au litre, le camion roule au fioul) : 42 × 1,15 = 48,30 €. Étape 4 — Coût total : 9 200 + 48,30 = 9 248,30 €. Le distracteur a (9 200 €) oublie le coût du carburant de livraison.',
-  'Oublier d''ajouter le coût du carburant de livraison, ou appliquer un prix différent pour le carburant du camion.',
+  NULL,
+  '{"mode":"text","acceptableAnswers":["distributivité","la distributivité","Distributivité","La distributivité","distributivité de la multiplication sur l''addition","distributivite"]}'::jsonb,
+  'L''élève utilise implicitement la distributivité de la multiplication sur l''addition : 7 × 6 = 7 × (5 + 1) = 7 × 5 + 7 × 1 = 35 + 7 = 42. Cette stratégie montre que l''élève ne se contente pas de réciter les tables : il décompose un facteur pour s''appuyer sur un résultat connu (7 × 5 = 35) et ajuste ensuite. C''est une stratégie de calcul mental réfléchi qui témoigne d''une compréhension du sens de la multiplication. Éduscol recommande de valoriser et d''expliciter ces stratégies lors des rituels de calcul mental pour que l''ensemble de la classe s''en empare. Vergnaud souligne que l''utilisation implicite de la distributivité est un théorème-en-acte que l''enseignant doit progressivement amener à l''explicitation.',
+  'Croire que cette stratégie est inefficace parce qu''elle est plus longue que la restitution directe du résultat mémorisé. Elle est au contraire un signe de compréhension profonde et de flexibilité numérique.',
   'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
 ) ON CONFLICT (id) DO NOTHING;
 
--- Q9 (vrai_faux) — Débit et capacité
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'b00a0000-0000-0000-0000-000000000009',
-  'Mathematiques', 'grandeurs_mesures', 'math_grandeurs_composees_etapes',
-  'Problèmes à étapes — Grandeurs composées', 'Avance', 'vrai_faux',
-  'Deux pompes remplissent un bassin de 3 600 litres. La pompe A a un débit de 15 L/min, la pompe B a un débit de 10 L/min. En fonctionnant ensemble, elles remplissent le bassin en 2 h 24 min.',
+  'fc230000-0000-0000-0000-000000000009',
+  'Mathematiques',
+  'didactique_maths',
+  'math_didactique_calcul_mental',
+  'Didactique du calcul mental — Stratégies et mise en œuvre',
+  'Avance',
+  'qcm',
+  'Un enseignant de CM2 met en place un rituel de calcul mental quotidien. Il dicte des calculs, laisse 10 secondes par item, puis donne immédiatement les réponses. Quelle critique didactique majeure peut-on formuler à l''égard de ce dispositif ?',
+  NULL,
+  '[{"id":"a","label":"Le temps accordé est trop court pour que les élèves puissent réfléchir"},{"id":"b","label":"Le dispositif ne comporte pas de phase de mise en commun des procédures : les élèves ne confrontent jamais leurs stratégies et n''enrichissent pas leur répertoire de calcul"},{"id":"c","label":"Le calcul mental ne devrait pas être ritualisé mais travaillé uniquement lors de séquences dédiées"},{"id":"d","label":"Il faudrait accorder 30 secondes par item au lieu de 10"}]'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
+  'La critique majeure porte sur l''absence de phase de mise en commun des procédures. Un rituel de calcul mental efficace ne se limite pas à la production de résultats : le moment de confrontation des stratégies est le temps didactique le plus riche. Pendant cette phase, l''enseignant demande aux élèves d''expliciter comment ils ont calculé, note les différentes procédures au tableau et les discute collectivement. Par exemple, pour 25 × 12, certains feront 25 × 10 + 25 × 2, d''autres 25 × 4 × 3, d''autres encore 12 × 100 ÷ 4. La confrontation permet à chaque élève de découvrir des stratégies auxquelles il n''avait pas pensé et de développer sa flexibilité numérique. Sans cette phase, le rituel se réduit à un entraînement de mémorisation qui ne développe que le calcul automatisé. Éduscol recommande explicitement d''alterner des phases de production rapide et des phases de discussion des procédures.',
+  'Penser que le rituel de calcul mental se réduit à « dicter — répondre — corriger ». Sans mise en commun des stratégies, le potentiel didactique est considérablement appauvri.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fc230000-0000-0000-0000-000000000010',
+  'Mathematiques',
+  'didactique_maths',
+  'math_didactique_calcul_mental',
+  'Didactique du calcul mental — Stratégies et mise en œuvre',
+  'Intermediaire',
+  'vrai_faux',
+  'La stratégie de décomposition et la stratégie de compensation sont deux procédures de calcul mental réfléchi qui s''appuient sur les mêmes propriétés mathématiques.',
+  NULL,
+  NULL,
+  '{"mode":"single","value":"faux"}'::jsonb,
+  'La décomposition et la compensation s''appuient sur des propriétés différentes. La décomposition repose sur la numération positionnelle et la distributivité : par exemple, 47 + 38 = (40 + 30) + (7 + 8) = 70 + 15 = 85. L''élève décompose chaque nombre selon ses ordres de grandeur (dizaines + unités) puis recompose. La compensation, elle, repose sur la conservation des sommes ou des écarts : par exemple, 47 + 38 = 47 + 40 - 2 = 87 - 2 = 85 (on arrondit 38 à 40 en ajoutant 2, puis on compense en retranchant 2). Ces deux stratégies sont complémentaires et doivent être travaillées explicitement. La décomposition est souvent la première stratégie enseignée car elle s''appuie sur la compréhension de la numération. La compensation est plus économique dans certains cas (quand un nombre est proche d''une dizaine ou d''une centaine) mais nécessite une bonne maîtrise de la notion d''écart. Éduscol recommande de travailler les deux pour enrichir le répertoire stratégique des élèves.',
+  'Considérer que toutes les stratégies de calcul mental « reviennent au même ». Si elles donnent le même résultat, elles mobilisent des propriétés mathématiques et des compétences différentes.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- ============================================================================
+-- 2. math_didactique_differenciation (UUID prefix: b02b0000)
+--    Thème: Différenciation pédagogique en mathématiques
+-- ============================================================================
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa240000-0000-0000-0000-000000000008',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_aire_figures_usuelles',
+  'Aire des figures usuelles — Formules et calculs',
+  'Intermediaire',
+  'vrai_faux',
+  'Un losange dont les diagonales mesurent 10 cm et 14 cm a une aire de 140 cm².',
+  NULL,
+  NULL,
+  '{"mode":"single","value":"faux"}'::jsonb,
+  'L''aire d''un losange se calcule avec la formule A = (d₁ × d₂) / 2. Ici : A = (10 × 14) / 2 = 140 / 2 = 70 cm². L''affirmation est donc fausse : l''aire est de 70 cm² et non 140 cm². L''erreur proposée consiste à oublier la division par 2 dans la formule.',
+  'Oublier de diviser par 2 dans la formule de l''aire du losange et répondre 140 cm² au lieu de 70 cm².',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- Q9 — qcm — Aire d'un carré connaissant le périmètre
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa240000-0000-0000-0000-000000000009',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_aire_figures_usuelles',
+  'Aire des figures usuelles — Formules et calculs',
+  'Avance',
+  'qcm',
+  'Un carré a un périmètre de 36 cm. Quelle est son aire ?',
+  NULL,
+  '[{"id":"a","label":"81 cm²"},{"id":"b","label":"36 cm²"},{"id":"c","label":"144 cm²"},{"id":"d","label":"324 cm²"}]'::jsonb,
+  '{"mode":"single","value":"a"}'::jsonb,
+  'Le périmètre d''un carré est P = 4 × côté, donc côté = P / 4 = 36 / 4 = 9 cm. L''aire du carré est A = côté² = 9² = 81 cm². L''option b (36 cm²) correspond à la confusion périmètre = aire. L''option c (144 cm²) résulte d''un calcul erroné (36/2)² = 18² = 324... non, c''est 12² = 144 (si l''élève divise par 3 au lieu de 4). L''option d (324 cm²) correspond à 36² / 4 au lieu de (36/4)².',
+  'Confondre le périmètre avec le côté et calculer 36² = 1 296, ou diviser le périmètre par 3 au lieu de 4.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- Q10 — reponse_courte — Aire d'un demi-disque
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa240000-0000-0000-0000-000000000010',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_aire_figures_usuelles',
+  'Aire des figures usuelles — Formules et calculs',
+  'Avance',
+  'reponse_courte',
+  'Calculez l''aire d''un demi-disque de rayon 8 cm. On prendra π ≈ 3,14. Arrondissez au dixième de cm².',
+  NULL,
+  NULL,
+  '{"mode":"text","acceptableAnswers":["100,5","100,5 cm²","100.5","100.5 cm²","100,48","100,48 cm²"]}'::jsonb,
+  'L''aire d''un demi-disque est la moitié de l''aire d''un disque : A = (π × r²) / 2. Ici : A = (3,14 × 8²) / 2 = (3,14 × 64) / 2 = 200,96 / 2 = 100,48 cm² ≈ 100,5 cm². Il faut d''abord calculer l''aire du disque entier, puis diviser par 2.',
+  'Calculer l''aire du disque entier sans diviser par 2 (200,96 cm²), ou diviser le rayon par 2 au lieu de diviser l''aire par 2.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- ============================================================================
+-- SÉRIE 2 : math_aires_perimetres_composees (b0170000)
+-- Aires et périmètres — Figures composées
+-- Niveau : Intermediaire | Accès : free
+-- ============================================================================
+
+-- Q8 — vrai_faux — Périmètre d'une figure composée
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa2d0000-0000-0000-0000-000000000008',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_aires_unites_agraires',
+  'Aires et unités agraires — Hectares et ares',
+  'Avance',
+  'qcm',
+  'Un terrain a une superficie de 2 ha 35 a 50 ca. Quelle est sa superficie en mètres carrés ?',
+  NULL,
+  '[{"id":"a","label":"23 550 m²"},{"id":"b","label":"2 355 m²"},{"id":"c","label":"235 500 m²"},{"id":"d","label":"2 350,50 m²"}]'::jsonb,
+  '{"mode":"single","value":"a"}'::jsonb,
+  'On convertit chaque unité en m² puis on additionne. 2 ha = 2 × 10 000 = 20 000 m². 35 a = 35 × 100 = 3 500 m². 50 ca = 50 × 1 = 50 m² (car 1 ca = 1 m²). Total : 20 000 + 3 500 + 50 = 23 550 m². La notation « ha a ca » fonctionne comme un tableau de numération pour les unités agraires : chaque unité contient 100 fois la suivante.',
+  'Confondre les facteurs de conversion et oublier que 1 ca = 1 m², ou additionner directement 2 + 35 + 50 sans conversion.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- Q9 — vrai_faux — Comparaison de surfaces agraires
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa2d0000-0000-0000-0000-000000000009',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_aires_unites_agraires',
+  'Aires et unités agraires — Hectares et ares',
+  'Intermediaire',
+  'vrai_faux',
+  'Un terrain de 0,75 hectare est plus petit qu''un terrain de 800 ares.',
   NULL,
   NULL,
   '{"mode":"single","value":"vrai"}'::jsonb,
-  'Les deux pompes fonctionnent ensemble, donc leur débit combiné est : 15 + 10 = 25 L/min. Temps de remplissage : 3 600 ÷ 25 = 144 min. Conversion en heures et minutes : 144 min = 2 h 24 min (car 144 = 2 × 60 + 24). L''affirmation est donc vraie. Ce problème illustre l''additivité des débits (grandeurs composées de même nature) et nécessite une conversion minutes → heures/minutes.',
-  'Calculer séparément le temps de chaque pompe (240 min et 360 min) puis faire la moyenne (300 min = 5 h), au lieu d''additionner les débits.',
+  'Convertissons dans la même unité. 0,75 ha = 0,75 × 100 = 75 ares. Or 800 ares = 8 ha. Puisque 75 ares < 800 ares, le terrain de 0,75 ha est bien plus petit que celui de 800 ares. L''affirmation est vraie. L''écart est considérable : 800 a = 80 000 m² contre 7 500 m² pour 0,75 ha.',
+  'Comparer directement les nombres 0,75 et 800 sans convertir, alors que les unités sont différentes (hectares vs ares).',
   'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
 ) ON CONFLICT (id) DO NOTHING;
 
--- Q10 (reponse_courte) — Rendement et masse volumique
+-- Q10 — reponse_courte — Problème concret avec unités agraires
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'b00a0000-0000-0000-0000-000000000010',
-  'Mathematiques', 'grandeurs_mesures', 'math_grandeurs_composees_etapes',
-  'Problèmes à étapes — Grandeurs composées', 'Avance', 'reponse_courte',
-  'Un pressoir extrait 0,6 L de jus par kilogramme de pommes. La masse volumique du jus est d''environ 1,05 kg/L. Quelle masse de jus obtient-on à partir d''une caisse de 25 kg de pommes ? Donnez la réponse en kg, arrondie au dixième.',
+  'fa280000-0000-0000-0000-000000000008',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_contenances_conversions',
+  'Contenances — Litres, centilitres et millilitres',
+  'Intermediaire',
+  'qcm',
+  'Un réservoir contient 3,2 hectolitres d''eau. Combien de litres cela représente-t-il ?',
   NULL,
-  NULL,
-  '{"mode":"text","acceptableAnswers":["15,75","15.75","15,75 kg","15.75 kg","15,8","15.8","15,8 kg","15.8 kg"]}'::jsonb,
-  'Ce problème mobilise deux grandeurs composées : le rendement (L/kg) et la masse volumique (kg/L). Étape 1 — Volume de jus obtenu : 25 kg × 0,6 L/kg = 15 L. Étape 2 — Masse de jus : 15 L × 1,05 kg/L = 15,75 kg. La masse volumique permet de passer du volume à la masse. Remarque : le jus est légèrement plus dense que l''eau (1,05 > 1) à cause des sucres dissous.',
-  'Confondre volume et masse en répondant directement 15 L, ou oublier d''utiliser la masse volumique pour convertir les litres en kilogrammes.',
+  '[{"id":"a","label":"32 L"},{"id":"b","label":"320 L"},{"id":"c","label":"3 200 L"},{"id":"d","label":"0,32 L"}]'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
+  'Le préfixe « hecto » signifie « cent ». Ainsi 1 hL = 100 L. Donc 3,2 hL = 3,2 × 100 = 320 L. Dans le tableau de conversion des contenances : kL → hL → daL → L → dL → cL → mL. Entre hL et L, il y a 2 rangs, donc le facteur est 10² = 100.',
+  'Erreur fréquente : multiplier par 1 000 au lieu de 100, ce qui donnerait 3 200 L (confusion avec la conversion kL → L).',
   'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
 ) ON CONFLICT (id) DO NOTHING;
 
+-- Q9 — vrai_faux — Correspondance volume et contenance
 
--- ============================================================================
--- 2. math_grandeurs_proportionnelles_graphique (prefix=fa090000)
--- ============================================================================
-
--- Q8 (reponse_courte) — Coefficient de proportionnalité à partir du graphique
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa090000-0000-0000-0000-000000000008',
+  'fa280000-0000-0000-0000-000000000009',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_contenances_conversions',
+  'Contenances — Litres, centilitres et millilitres',
+  'Intermediaire',
+  'vrai_faux',
+  'Un cube de 10 cm de côté a une contenance de 1 litre.',
+  NULL,
+  NULL,
+  '{"mode":"single","value":"vrai"}'::jsonb,
+  'Un cube de 10 cm de côté a un volume de 10 × 10 × 10 = 1 000 cm³. Or 1 000 cm³ = 1 dm³ = 1 L. C''est la correspondance fondamentale entre unités de volume et de contenance. Un cube de 10 cm de côté (1 dm de côté) contient exactement 1 litre. L''affirmation est donc vraie.',
+  'Confondre cm³ et L : penser que 1 000 cm³ = 10 L ou 100 L, en n''utilisant pas correctement la correspondance 1 dm³ = 1 L.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- Q10 — reponse_courte — Problème concret avec conversions
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa280000-0000-0000-0000-000000000010',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_contenances_conversions',
+  'Contenances — Litres, centilitres et millilitres',
+  'Intermediaire',
+  'reponse_courte',
+  'Pour préparer un punch, on mélange 2 L de jus de fruit, 75 cL de limonade et 500 mL de sirop. Quelle est la contenance totale du mélange en litres ? Donner la réponse sous forme décimale.',
+  NULL,
+  NULL,
+  '{"mode":"text","acceptableAnswers":["3,25","3.25","3,25 L","3.25 L"]}'::jsonb,
+  'Convertissons tout en litres. Jus de fruit : 2 L. Limonade : 75 cL = 75 / 100 = 0,75 L. Sirop : 500 mL = 500 / 1 000 = 0,5 L. Total : 2 + 0,75 + 0,5 = 3,25 L. Il est essentiel de convertir toutes les contenances dans la même unité avant de les additionner.',
+  'Additionner les valeurs brutes sans conversion (2 + 75 + 500 = 577), ou oublier de convertir l''une des quantités.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- ============================================================================
+-- SÉRIE 6 : math_conversions_systematiques (b00c0000)
+-- Grandeurs — Conversions systématiques
+-- Niveau : Intermediaire/Avance | Accès : free
+-- ============================================================================
+
+-- Q8 — vrai_faux — Conversion de volumes
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa2e0000-0000-0000-0000-000000000008',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_debit_volume_temps',
+  'Débit — Volume et temps',
+  'Avance',
+  'qcm',
+  'Un robinet A remplit un seau de 12 litres en 3 minutes. Un robinet B remplit un seau de 20 litres en 4 minutes. Quel robinet a le débit le plus élevé ?',
+  NULL,
+  '[{"id":"a","label":"Le robinet A (4 L/min)"},{"id":"b","label":"Le robinet B (5 L/min)"},{"id":"c","label":"Ils ont le même débit"},{"id":"d","label":"On ne peut pas comparer"}]'::jsonb,
+  '{"mode":"single","value":"b"}'::jsonb,
+  'Débit du robinet A : D_A = V / t = 12 / 3 = 4 L/min. Débit du robinet B : D_B = V / t = 20 / 4 = 5 L/min. Puisque 5 > 4, le robinet B a un débit plus élevé. Pour comparer des débits, il faut les exprimer dans la même unité. Ici, les deux sont en L/min, la comparaison est directe.',
+  'Comparer les volumes (20 > 12) ou les temps (4 > 3) séparément sans calculer le débit. Le débit est un rapport, il faut diviser le volume par le temps.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- Q9 — vrai_faux — Débit et conversion d'unités
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa2e0000-0000-0000-0000-000000000009',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_debit_volume_temps',
+  'Débit — Volume et temps',
+  'Avance',
+  'vrai_faux',
+  'Un débit de 3 L/min est équivalent à 180 L/h.',
+  NULL,
+  NULL,
+  '{"mode":"single","value":"vrai"}'::jsonb,
+  'Pour convertir un débit de L/min en L/h, on multiplie par 60 (car 1 h = 60 min). Donc : 3 L/min × 60 = 180 L/h. L''affirmation est vraie. Quand on passe à une unité de temps plus grande (de min à h), le débit en volume par unité de temps est multiplié car plus de volume s''écoule sur une durée plus longue.',
+  'Diviser par 60 au lieu de multiplier, et obtenir 0,05 L/h. L''élève confond le sens de la conversion : pour passer de min à h, le nombre d''unités de temps diminue, donc le volume par unité de temps augmente.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- Q10 — reponse_courte — Problème complexe avec deux débits
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa2e0000-0000-0000-0000-000000000010',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_debit_volume_temps',
+  'Débit — Volume et temps',
+  'Avance',
+  'reponse_courte',
+  'Une baignoire de 200 litres se remplit avec un robinet au débit de 10 L/min. En même temps, la bonde (mal fermée) laisse fuir 2 L/min. Combien de minutes faut-il pour remplir la baignoire ?',
+  NULL,
+  NULL,
+  '{"mode":"text","acceptableAnswers":["25","25 min","25 minutes"]}'::jsonb,
+  'Le débit net de remplissage est le débit d''entrée moins le débit de fuite : D_net = 10 − 2 = 8 L/min. Le temps de remplissage est t = V / D_net = 200 / 8 = 25 minutes. Ce problème illustre la notion de débit net quand un système a à la fois une entrée et une sortie de fluide. Sans la fuite, il faudrait 200 / 10 = 20 minutes.',
+  'Ignorer la fuite et calculer 200 / 10 = 20 min, ou additionner les deux débits au lieu de les soustraire.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- ============================================================================
+-- SÉRIE 8 : math_densite_masse_volume (fa030000)
+-- Densité, masse et volume — Applications
+-- Niveau : Avance | Accès : free
+-- ============================================================================
+
+-- Q8 — reponse_courte — Calcul de volume à partir de masse et densité
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa230000-0000-0000-0000-000000000008',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_densite_masse_volume',
+  'Densité, masse et volume — Applications',
+  'Avance',
+  'reponse_courte',
+  'Une barre de fer a une masse de 15,6 kg. La masse volumique du fer est de 7 800 kg/m³. Quel est le volume de cette barre en cm³ ?',
+  NULL,
+  NULL,
+  '{"mode":"text","acceptableAnswers":["2000","2 000","2000 cm³","2 000 cm³"]}'::jsonb,
+  'V = m / ρ = 15,6 / 7 800 = 0,002 m³. Conversion en cm³ : 0,002 m³ = 0,002 × 1 000 000 = 2 000 cm³. On peut aussi convertir d''abord : 15,6 kg = 15 600 g et 7 800 kg/m³ = 7,8 g/cm³. Alors V = 15 600 / 7,8 = 2 000 cm³. Ce problème combine la formule de la masse volumique avec une conversion d''unités de volume.',
+  'Oublier de convertir le résultat en cm³ et laisser la réponse en m³ (0,002 m³), ou multiplier au lieu de diviser.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- Q9 — qcm — Identifier un matériau par sa masse volumique
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa230000-0000-0000-0000-000000000009',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_densite_masse_volume',
+  'Densité, masse et volume — Applications',
+  'Avance',
+  'qcm',
+  'Un objet cubique de 5 cm de côté a une masse de 337,5 g. Sa masse volumique est celle de quel matériau ? (Aluminium : 2,7 g/cm³ — Fer : 7,8 g/cm³ — Cuivre : 8,9 g/cm³ — Plomb : 11,3 g/cm³)',
+  NULL,
+  '[{"id":"a","label":"Aluminium"},{"id":"b","label":"Fer"},{"id":"c","label":"Cuivre"},{"id":"d","label":"Plomb"}]'::jsonb,
+  '{"mode":"single","value":"a"}'::jsonb,
+  'Volume du cube = côté³ = 5³ = 125 cm³. Masse volumique = m / V = 337,5 / 125 = 2,7 g/cm³. Cette masse volumique correspond à l''aluminium. Ce type de problème est classique en sciences : on identifie un matériau inconnu en calculant sa masse volumique et en la comparant à un tableau de valeurs de référence.',
+  'Calculer le volume en utilisant la formule du carré (5² = 25) au lieu du cube (5³ = 125), ce qui donnerait une masse volumique de 13,5 g/cm³.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- Q10 — vrai_faux — Masse volumique et flottaison dans l'huile
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa230000-0000-0000-0000-000000000010',
+  'Mathematiques',
+  'grandeurs_mesures',
+  'math_densite_masse_volume',
+  'Densité, masse et volume — Applications',
+  'Avance',
+  'vrai_faux',
+  'Un glaçon (masse volumique de la glace : 0,92 g/cm³) flotte dans l''huile d''olive (masse volumique : 0,92 g/cm³).',
+  NULL,
+  NULL,
+  '{"mode":"single","value":"faux"}'::jsonb,
+  'Un objet flotte dans un liquide si sa masse volumique est STRICTEMENT inférieure à celle du liquide. Ici, la glace et l''huile d''olive ont la même masse volumique (0,92 g/cm³). Le glaçon ne flotte donc pas : il est en équilibre indifférent (il reste à la position où on le place). En réalité, les légères variations de densité font que le glaçon se maintient entre deux eaux. L''affirmation est donc fausse : le glaçon ne flotte pas à la surface.',
+  'Penser qu''une masse volumique égale suffit pour flotter. Pour flotter (émerger partiellement), il faut que l''objet soit MOINS dense que le liquide.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- ============================================================================
+-- SÉRIE 9 : math_durees_horaires (b01b0000)
+-- Grandeurs — Durées et horaires
+-- Niveau : Intermediaire | Accès : free
+-- ============================================================================
+
+-- Q8 — qcm — Soustraction de durées
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fc220000-0000-0000-0000-000000000008',
+  'Mathematiques', 'didactique_maths', 'math_didactique_situations_brousseau',
+  'Situations didactiques de Brousseau — Concepts clés', 'Avance',
+  'qcm',
+  'Brousseau décrit un « effet Jourdain » dans le contrat didactique. De quoi s''agit-il ?',
+  NULL,
+  '[{"id":"a","label":"L''enseignant attribue une valeur savante à une production banale de l''élève : il « reconnaît » dans la réponse triviale de l''élève un savoir mathématique élaboré que l''élève n''a pas réellement mobilisé"},{"id":"b","label":"L''enseignant simplifie progressivement la tâche jusqu''à donner la réponse"},{"id":"c","label":"L''élève refuse de s''engager dans le problème et attend que l''enseignant donne la solution"},{"id":"d","label":"L''enseignant punit un élève qui se trompe pour le motiver à mieux apprendre"}]'::jsonb,
+  '{"mode":"single","value":"a"}'::jsonb,
+  'L''effet Jourdain (du nom du Bourgeois gentilhomme de Molière, à qui le maître de philosophie fait croire qu''il fait de la prose sans le savoir) se produit quand l''enseignant surinterprete la production de l''élève en lui attribuant une portée savante qu''elle n''a pas. Par exemple, un élève qui trouve la bonne réponse par hasard ou par une procédure primitive (essais-erreurs) se voit dire par l''enseignant : « Tu as fait un raisonnement par exhaustion ! » L''effet Jourdain est le symétrique de l''effet Topaze : au lieu de simplifier la tâche (Topaze), l''enseignant surestime la production (Jourdain). Dans les deux cas, l''apprentissage réel est escamoté. Brousseau montre que cet effet est particulièrement pernicieux car il donne l''illusion de la réussite : l''enseignant est satisfait, l''élève est validé, mais le savoir n''a pas été construit. Éduscol recommande une analyse rigoureuse des productions d''élèves pour distinguer compréhension véritable et réponse correcte accidentelle.',
+  'Confondre effet Jourdain et effet Topaze. L''effet Topaze simplifie la tâche ; l''effet Jourdain surestime la production. Les deux empêchent l''apprentissage réel.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fc220000-0000-0000-0000-000000000009',
+  'Mathematiques', 'didactique_maths', 'math_didactique_situations_brousseau',
+  'Situations didactiques de Brousseau — Concepts clés', 'Avance',
+  'reponse_courte',
+  'Dans la théorie de Brousseau, lors de la phase de validation, les élèves doivent convaincre leurs pairs que leur solution est correcte. Quel type d''activité cognitive cette phase développe-t-elle principalement chez les élèves ?',
+  NULL,
+  NULL,
+  '{"mode":"text","acceptableAnswers":["argumentation","l''argumentation","Argumentation","L''argumentation","raisonnement","preuve","la preuve","argumentation mathématique"]}'::jsonb,
+  'La phase de validation développe principalement l''argumentation mathématique (ou la preuve). L''élève ne peut plus se contenter de dire « j''ai trouvé 42 » : il doit expliquer pourquoi 42 est la bonne réponse, convaincre ses pairs par un raisonnement et réfuter les propositions incorrectes. C''est un saut qualitatif par rapport à la phase de formulation (où l''élève communique sa stratégie) : dans la validation, il ne suffit pas de dire ce qu''on a fait, il faut prouver que c''est correct. Brousseau distingue trois niveaux de validation : (1) la vérification empirique (essayer et constater), (2) l''argumentation (expliquer pourquoi ça marche), (3) la démonstration formelle (prouver rigoureusement). À l''école primaire, on travaille principalement les deux premiers niveaux. Vergnaud montre que la capacité d''argumentation est un schème de contrôle qui se construit progressivement. Éduscol inscrit cette compétence dans « Raisonner » : justifier, prouver, argumenter.',
+  'Réduire la validation à la simple vérification numérique (recalculer). La validation au sens de Brousseau implique l''argumentation rationnelle, pas le simple recalcul.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fc220000-0000-0000-0000-000000000010',
+  'Mathematiques', 'didactique_maths', 'math_didactique_situations_brousseau',
+  'Situations didactiques de Brousseau — Concepts clés', 'Avance',
+  'vrai_faux',
+  'Selon Brousseau, la phase d''institutionnalisation doit toujours être conduite par l''enseignant et ne peut pas être déléguée aux élèves, car c''est le moment où le savoir personnel devient un savoir partagé et officiel de la classe.',
+  NULL,
+  NULL,
+  '{"mode":"single","value":"vrai"}'::jsonb,
+  'C''est vrai. L''institutionnalisation est la phase où l''enseignant reprend explicitement la main pour officialiser le savoir construit pendant les phases adidactiques. C''est lui qui : (1) identifie et nomme le savoir mathématique qui a émergé (« Ce que vous avez découvert s''appelle la distributivité »), (2) relie ce savoir au programme et au savoir de référence, (3) fixe la formulation officielle qui sera retenue par la classe, (4) situe ce savoir dans la progression (ce qu''on savait avant, ce qu''on sait maintenant, ce qu''on apprendra ensuite). Brousseau insiste sur le fait que l''institutionnalisation est un acte spécifiquement enseignant qui ne peut pas être délégué : c''est le rôle de l''enseignant de faire le lien entre les productions des élèves (savoir contextualisé) et le savoir savant (savoir décontextualisé). Sans institutionnalisation, les élèves risquent de ne pas identifier ce qu''ils ont appris. Vergnaud complète en montrant que l''institutionnalisation permet la décontextualisation des schèmes, condition nécessaire au transfert.',
+  'Omettre la phase d''institutionnalisation en pensant que la mise en commun suffit. Sans formalisation explicite par l''enseignant, le savoir reste implicite et non transférable.',
+  'valide',
+  'Génération Claude — Terminologie Éduscol',
+  'free',
+  true
+) ON CONFLICT (id) DO NOTHING;
+
+-- ============================================================
+-- SÉRIE 16 : math_didactique_soustraction (prefix fc010000)
+-- ============================================================
+
+INSERT INTO public.exercises (
+  id, subject, subdomain, topic_key, topic_label, level,
+  exercise_type, instruction, support_text, choices, expected_answer,
+  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
+) VALUES (
+  'fa290000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_grandeurs_proportionnelles_graphique',
   'Grandeurs proportionnelles — Représentation graphique', 'Intermediaire', 'reponse_courte',
   'Un graphique représente le prix (en €) en fonction de la masse (en kg) de fruits. La droite passe par l''origine et par le point (3 ; 7,50). Quel est le prix au kilogramme, en euros ?',
@@ -91,12 +575,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (qcm) — Identifier la non-proportionnalité sur un graphique
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa090000-0000-0000-0000-000000000009',
+  'fa290000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_grandeurs_proportionnelles_graphique',
   'Grandeurs proportionnelles — Représentation graphique', 'Intermediaire', 'qcm',
   'Un opérateur téléphonique propose un forfait à 10 € par mois + 0,05 € par minute d''appel. Le graphique du coût mensuel en fonction du nombre de minutes est :',
@@ -110,12 +595,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (vrai_faux) — Lecture graphique et proportionnalité
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa090000-0000-0000-0000-000000000010',
+  'fa290000-0000-0000-0000-000000000010',
   'Mathematiques', 'grandeurs_mesures', 'math_grandeurs_proportionnelles_graphique',
   'Grandeurs proportionnelles — Représentation graphique', 'Intermediaire', 'vrai_faux',
   'Sur un graphique de proportionnalité, la droite passe par l''origine et par le point (5 ; 20). Le point (8 ; 30) appartient aussi à cette droite.',
@@ -134,12 +620,13 @@ INSERT INTO public.exercises (
 -- ============================================================================
 
 -- Q8 (qcm) — Choix de l''instrument adapté
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0c0000-0000-0000-0000-000000000008',
+  'fa2c0000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_instruments_mesure_precision',
   'Instruments de mesure et précision', 'Intermediaire', 'qcm',
   'Pour mesurer l''épaisseur d''une feuille de papier (environ 0,1 mm), quel instrument est le plus adapté ?',
@@ -153,12 +640,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (vrai_faux) — Erreur de parallaxe
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0c0000-0000-0000-0000-000000000009',
+  'fa2c0000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_instruments_mesure_precision',
   'Instruments de mesure et précision', 'Intermediaire', 'vrai_faux',
   'Lorsqu''on mesure une longueur avec une règle, le fait de ne pas placer ses yeux en face de la graduation peut entraîner une erreur de parallaxe.',
@@ -172,12 +660,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (reponse_courte) — Encadrement d''une mesure
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0c0000-0000-0000-0000-000000000010',
+  'fa2c0000-0000-0000-0000-000000000010',
   'Mathematiques', 'grandeurs_mesures', 'math_instruments_mesure_precision',
   'Instruments de mesure et précision', 'Intermediaire', 'reponse_courte',
   'Un élève mesure la masse d''un objet avec une balance précise au gramme près. L''affichage indique 347 g. Entre quelles valeurs la masse réelle est-elle comprise ? (format : X,X g et Y,Y g)',
@@ -196,12 +685,13 @@ INSERT INTO public.exercises (
 -- ============================================================================
 
 -- Q8 (reponse_courte) — Conversion multiple
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa010000-0000-0000-0000-000000000008',
+  'fa210000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_longueurs_conversions',
   'Longueurs — Conversions et calculs', 'Intermediaire', 'reponse_courte',
   'Exprimer 2 km 3 hm 5 dam 7 m en mètres.',
@@ -215,12 +705,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (qcm) — Problème avec conversion
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa010000-0000-0000-0000-000000000009',
+  'fa210000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_longueurs_conversions',
   'Longueurs — Conversions et calculs', 'Intermediaire', 'qcm',
   'Une corde mesure 12,5 m. On la coupe en morceaux de 75 cm chacun. Combien de morceaux obtient-on ?',
@@ -234,98 +725,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (vrai_faux) — Conversion avec décimaux
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa010000-0000-0000-0000-000000000010',
-  'Mathematiques', 'grandeurs_mesures', 'math_longueurs_conversions',
-  'Longueurs — Conversions et calculs', 'Intermediaire', 'vrai_faux',
-  '0,025 km = 250 cm.',
-  NULL,
-  NULL,
-  '{"mode":"single","value":"faux"}'::jsonb,
-  'Convertissons 0,025 km en cm. D''abord en mètres : 0,025 km = 0,025 × 1 000 = 25 m. Puis en cm : 25 m = 25 × 100 = 2 500 cm. Or l''affirmation dit 250 cm, ce qui est faux. 250 cm = 2,5 m = 0,0025 km. L''erreur vient d''un facteur 10 : l''élève a probablement multiplié par 100 au lieu de 1 000 lors de la première conversion (km → m).',
-  'Erreur fréquente : multiplier 0,025 par 100 au lieu de 1 000 pour convertir les km en m, puis oublier une étape de conversion.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
-
--- ============================================================================
--- 5. math_masses_contenances_ordres (prefix=b0200000)
--- ============================================================================
-
--- Q8 (vrai_faux) — Relation masse/volume pour différents liquides
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'b0200000-0000-0000-0000-000000000008',
-  'Mathematiques', 'grandeurs_mesures', 'math_masses_contenances_ordres',
-  'Masses, contenances et ordres de grandeur', 'Intermediaire', 'vrai_faux',
-  'Un litre d''huile a une masse d''environ 1 kg, comme l''eau.',
-  NULL,
-  NULL,
-  '{"mode":"single","value":"faux"}'::jsonb,
-  'C''est faux. L''huile est moins dense que l''eau : sa masse volumique est d''environ 0,9 kg/L (variant entre 0,88 et 0,92 selon le type d''huile). Ainsi, 1 litre d''huile pèse environ 900 g et non 1 kg. C''est d''ailleurs pour cela que l''huile flotte sur l''eau. La relation « 1 L ≈ 1 kg » n''est valable que pour l''eau (et les liquides de masse volumique proche de 1 kg/L, comme le lait). Au CRPE, il est important de savoir que cette correspondance ne se généralise pas à tous les liquides.',
-  'Généraliser la relation 1 L = 1 kg à tous les liquides : l''élève applique la propriété de l''eau à l''huile sans vérifier.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
--- Q9 (qcm) — Problème de conversion masse/contenance
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'b0200000-0000-0000-0000-000000000009',
-  'Mathematiques', 'grandeurs_mesures', 'math_masses_contenances_ordres',
-  'Masses, contenances et ordres de grandeur', 'Intermediaire', 'qcm',
-  'Un aquarium contient 54 litres d''eau. On ajoute 2,5 kg de gravier au fond. Sachant que la masse du gravier ne change pas le volume d''eau, quelle est la masse totale de l''eau et du gravier ? (1 L d''eau ≈ 1 kg)',
-  NULL,
-  '[{"id":"a","label":"54 kg"},{"id":"b","label":"56,5 kg"},{"id":"c","label":"2,554 kg"},{"id":"d","label":"135 kg"}]'::jsonb,
-  '{"mode":"single","value":"b"}'::jsonb,
-  'La masse de l''eau est : 54 L × 1 kg/L = 54 kg (en utilisant la correspondance 1 L d''eau ≈ 1 kg). On ajoute la masse du gravier : 54 + 2,5 = 56,5 kg. L''option a oublie le gravier. L''option d multiplie par un mauvais facteur. Ce problème combine la conversion volume → masse pour l''eau et une addition de masses.',
-  'Oublier de convertir les litres d''eau en kilogrammes ou inversement oublier d''ajouter la masse du gravier.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
--- Q10 (reponse_courte) — Contenance et partage
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'b0200000-0000-0000-0000-000000000010',
-  'Mathematiques', 'grandeurs_mesures', 'math_masses_contenances_ordres',
-  'Masses, contenances et ordres de grandeur', 'Intermediaire', 'reponse_courte',
-  'Un bidon contient 5 L de jus de fruit. On remplit des verres de 25 cL et des gobelets de 15 cL. Si on remplit 10 verres, combien de gobelets peut-on encore remplir avec le jus restant ?',
-  NULL,
-  NULL,
-  '{"mode":"text","acceptableAnswers":["16","16 gobelets"]}'::jsonb,
-  'Étape 1 — Volume servi dans les verres : 10 × 25 cL = 250 cL. Étape 2 — Volume restant : 5 L = 500 cL, donc 500 − 250 = 250 cL. Étape 3 — Nombre de gobelets : 250 ÷ 15 = 16,66... On ne peut remplir que 16 gobelets entiers (il restera 250 − 16 × 15 = 250 − 240 = 10 cL). Ce problème combine conversions de contenances (L → cL) et division euclidienne.',
-  'Erreur fréquente : oublier de convertir les 5 L en cL, ou arrondir par excès à 17 gobelets au lieu de 16.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
-
--- ============================================================================
--- 6. math_masses_conversions (prefix=fa070000)
--- ============================================================================
-
--- Q8 (qcm) — Problème à étapes avec masses
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'fa070000-0000-0000-0000-000000000008',
+  'fa270000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_masses_conversions',
   'Masses — Conversions et problèmes', 'Intermediaire', 'qcm',
   'Un boulanger utilise 2,4 kg de farine pour faire 8 baguettes. Combien de grammes de farine utilise-t-il pour une seule baguette ?',
@@ -339,12 +745,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (vrai_faux) — Comparaison de masses avec unités mixtes
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa070000-0000-0000-0000-000000000009',
+  'fa270000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_masses_conversions',
   'Masses — Conversions et problèmes', 'Intermediaire', 'vrai_faux',
   '3 kg 250 g est supérieur à 3 200 g.',
@@ -358,12 +765,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (reponse_courte) — Conversion tonne/quintal
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa070000-0000-0000-0000-000000000010',
+  'fa270000-0000-0000-0000-000000000010',
   'Mathematiques', 'grandeurs_mesures', 'math_masses_conversions',
   'Masses — Conversions et problèmes', 'Intermediaire', 'reponse_courte',
   'Un éleveur vend 2,8 tonnes de blé. Combien cela fait-il en quintaux ? (1 quintal = 100 kg)',
@@ -382,12 +790,13 @@ INSERT INTO public.exercises (
 -- ============================================================================
 
 -- Q8 (qcm) — Angles dans un quadrilatère
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa060000-0000-0000-0000-000000000008',
+  'fa260000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_mesure_angles',
   'Mesure d''angles — Types et calculs', 'Intermediaire', 'qcm',
   'Dans un parallélogramme, un angle mesure 70°. Quelles sont les mesures des trois autres angles ?',
@@ -401,12 +810,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (reponse_courte) — Angle sur une horloge (cas plus complexe)
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa060000-0000-0000-0000-000000000009',
+  'fa260000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_mesure_angles',
   'Mesure d''angles — Types et calculs', 'Intermediaire', 'reponse_courte',
   'À 15 h 00, quelle est la mesure, en degrés, de l''angle formé entre la grande aiguille et la petite aiguille d''une horloge ?',
@@ -420,36 +830,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (vrai_faux) — Somme des angles d''un quadrilatère
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa060000-0000-0000-0000-000000000010',
-  'Mathematiques', 'grandeurs_mesures', 'math_mesure_angles',
-  'Mesure d''angles — Types et calculs', 'Intermediaire', 'vrai_faux',
-  'La somme des angles d''un quadrilatère quelconque est de 360°.',
-  NULL,
-  NULL,
-  '{"mode":"single","value":"vrai"}'::jsonb,
-  'C''est vrai. La somme des angles d''un quadrilatère est toujours égale à 360°, quelle que soit sa forme. On peut le démontrer en traçant une diagonale qui partage le quadrilatère en deux triangles : chaque triangle a une somme d''angles de 180°, donc le total est 2 × 180° = 360°. Cette propriété généralise celle du triangle (180°) et s''étend à tout polygone à n côtés : somme des angles = (n − 2) × 180°.',
-  'Erreur fréquente : penser que la somme est 180° (comme pour un triangle) ou 540° en ajoutant un triangle supplémentaire par erreur.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
-
--- ============================================================================
--- 8. math_monnaie_budget (prefix=fa100000)
--- ============================================================================
-
--- Q8 (qcm) — Pourcentage de réduction et prix final
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'fa100000-0000-0000-0000-000000000008',
+  'fa500000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_monnaie_budget',
   'Monnaie et budget', 'Intermediaire', 'qcm',
   'Un commerçant applique une remise de 20 % sur un article à 45 €, puis une remise supplémentaire de 10 % sur le prix déjà réduit. Quel est le prix final ?',
@@ -463,12 +850,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (reponse_courte) — Budget et répartition
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa100000-0000-0000-0000-000000000009',
+  'fa500000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_monnaie_budget',
   'Monnaie et budget', 'Intermediaire', 'reponse_courte',
   'Trois amis partagent l''addition d''un restaurant. Le repas coûte 87 €. Ils laissent un pourboire de 10 % sur le total. Combien chacun paie-t-il si le partage est équitable ? (Arrondir au centime)',
@@ -482,12 +870,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (vrai_faux) — TVA et prix TTC
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa100000-0000-0000-0000-000000000010',
+  'fa500000-0000-0000-0000-000000000010',
   'Mathematiques', 'grandeurs_mesures', 'math_monnaie_budget',
   'Monnaie et budget', 'Intermediaire', 'vrai_faux',
   'Un article coûte 60 € HT. Avec une TVA de 20 %, son prix TTC est de 72 €.',
@@ -506,12 +895,13 @@ INSERT INTO public.exercises (
 -- ============================================================================
 
 -- Q8 (qcm) — Ordre de grandeur d''une aire
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa110000-0000-0000-0000-000000000008',
+  'fa510000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_ordre_grandeur_mesures',
   'Ordres de grandeur des mesures', 'Intermediaire', 'qcm',
   'Quel est l''ordre de grandeur de l''aire d''un terrain de football ?',
@@ -525,12 +915,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (reponse_courte) — Estimation d''un volume
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa110000-0000-0000-0000-000000000009',
+  'fa510000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_ordre_grandeur_mesures',
   'Ordres de grandeur des mesures', 'Intermediaire', 'reponse_courte',
   'Une salle de classe mesure environ 9 m de long, 7 m de large et 3 m de hauteur. Quel est l''ordre de grandeur de son volume, en m³ ? (Donner une valeur approchée arrondie à la dizaine)',
@@ -544,12 +935,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (vrai_faux) — Plausibilité d''une mesure
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa110000-0000-0000-0000-000000000010',
+  'fa510000-0000-0000-0000-000000000010',
   'Mathematiques', 'grandeurs_mesures', 'math_ordre_grandeur_mesures',
   'Ordres de grandeur des mesures', 'Intermediaire', 'vrai_faux',
   'Un réfrigérateur standard a une contenance d''environ 250 litres.',
@@ -568,74 +960,13 @@ INSERT INTO public.exercises (
 -- ============================================================================
 
 -- Q8 (qcm) — Agrandissement et volume
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'b0270000-0000-0000-0000-000000000008',
-  'Mathematiques', 'grandeurs_mesures', 'math_perimetre_aire_volume_confusions',
-  'Périmètre, aire, volume — Confusions et pièges', 'Avance', 'qcm',
-  'On triple les dimensions d''un cube. Par combien son volume est-il multiplié ?',
-  NULL,
-  '[{"id":"a","label":"3"},{"id":"b","label":"9"},{"id":"c","label":"27"},{"id":"d","label":"6"}]'::jsonb,
-  '{"mode":"single","value":"c"}'::jsonb,
-  'Quand on multiplie toutes les dimensions d''un solide par un facteur k, le volume est multiplié par k³. Ici k = 3, donc le volume est multiplié par 3³ = 27. Vérification : un cube de côté 2 cm a un volume de 8 cm³. En triplant, le côté devient 6 cm et le volume 216 cm³. Rapport : 216 / 8 = 27. Ce résultat prolonge la règle des aires (× k²) à la troisième dimension : périmètre × k, aire × k², volume × k³.',
-  'Répondre 3 (facteur linéaire) ou 9 (facteur d''aire) en ne prenant pas en compte que le volume dépend du cube du facteur d''agrandissement.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
--- Q9 (vrai_faux) — Confusion unités périmètre/aire
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'b0270000-0000-0000-0000-000000000009',
-  'Mathematiques', 'grandeurs_mesures', 'math_perimetre_aire_volume_confusions',
-  'Périmètre, aire, volume — Confusions et pièges', 'Avance', 'vrai_faux',
-  'Un élève écrit : « L''aire de ce rectangle est de 24 cm. » Cette écriture est correcte.',
-  NULL,
-  NULL,
-  '{"mode":"single","value":"faux"}'::jsonb,
-  'C''est faux. L''aire s''exprime en unités de surface : cm², m², km², etc. Écrire « 24 cm » (unité de longueur) pour une aire est une erreur d''unité. L''écriture correcte est « 24 cm² ». Cette confusion entre cm et cm² est très fréquente chez les élèves et révèle une incompréhension de la nature des grandeurs mesurées. Le périmètre (longueur du contour) s''exprime en cm, l''aire (surface couverte) en cm², et le volume (espace occupé) en cm³.',
-  'Ne pas distinguer les unités : l''élève pense que « cm » suffit pour toutes les mesures géométriques.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
--- Q10 (reponse_courte) — Comparaison périmètre vs aire
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'b0270000-0000-0000-0000-000000000010',
-  'Mathematiques', 'grandeurs_mesures', 'math_perimetre_aire_volume_confusions',
-  'Périmètre, aire, volume — Confusions et pièges', 'Avance', 'reponse_courte',
-  'Un rectangle a une aire de 36 cm². Sa longueur est le double de sa largeur. Quel est son périmètre, en cm ?',
-  NULL,
-  NULL,
-  '{"mode":"text","acceptableAnswers":["25,46","25.46","25,5","25.5","6racine(2)×(2+1)×2"]}'::jsonb,
-  'Soit l la largeur, alors la longueur vaut 2l. Aire = l × 2l = 2l² = 36, donc l² = 18, soit l = √18 = 3√2 ≈ 4,243 cm. La longueur vaut 2l = 6√2 ≈ 8,485 cm. Le périmètre est P = 2 × (l + 2l) = 2 × 3l = 6l = 6 × 3√2 = 18√2 ≈ 25,46 cm. Ce problème montre que connaître l''aire ne suffit pas à déterminer le périmètre sans information supplémentaire sur la forme.',
-  'Erreur fréquente : supposer que les dimensions sont des entiers (6 × 6 = 36, mais alors longueur ≠ double de largeur) ou confondre aire et périmètre dans la résolution.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
-
--- ============================================================================
--- 11. math_perimetre_figures_usuelles (prefix=fa0a0000)
--- ============================================================================
-
--- Q8 (qcm) — Périmètre d''un cercle
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'fa0a0000-0000-0000-0000-000000000008',
+  'fa2a0000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_perimetre_figures_usuelles',
   'Périmètre des figures usuelles', 'Intermediaire', 'qcm',
   'Un cercle a un diamètre de 14 cm. Quel est son périmètre (arrondi au dixième) ? (π ≈ 3,14)',
@@ -649,12 +980,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (reponse_courte) — Périmètre d''un demi-cercle
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0a0000-0000-0000-0000-000000000009',
+  'fa2a0000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_perimetre_figures_usuelles',
   'Périmètre des figures usuelles', 'Intermediaire', 'reponse_courte',
   'Un demi-cercle a un diamètre de 10 cm. Quel est son périmètre total (partie courbe + diamètre), arrondi au dixième ? (π ≈ 3,14)',
@@ -668,12 +1000,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (vrai_faux) — Périmètre d''un hexagone régulier
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0a0000-0000-0000-0000-000000000010',
+  'fa2a0000-0000-0000-0000-000000000010',
   'Mathematiques', 'grandeurs_mesures', 'math_perimetre_figures_usuelles',
   'Périmètre des figures usuelles', 'Intermediaire', 'vrai_faux',
   'Un hexagone régulier dont le côté mesure 5 cm a le même périmètre qu''un triangle équilatéral dont le côté mesure 10 cm.',
@@ -692,12 +1025,13 @@ INSERT INTO public.exercises (
 -- ============================================================================
 
 -- Q8 (reponse_courte) — Aire d''un disque appliquée
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0f0000-0000-0000-0000-000000000008',
+  'fa2f0000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_problemes_grandeurs_avance',
   'Problèmes de grandeurs — Niveau avancé CRPE', 'Avance', 'reponse_courte',
   'Une pizza ronde a un diamètre de 30 cm. On la coupe en 8 parts égales. Quelle est l''aire d''une part, arrondie à l''unité ? (π ≈ 3,14)',
@@ -711,12 +1045,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (qcm) — Aire d''une figure composée
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0f0000-0000-0000-0000-000000000009',
+  'fa2f0000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_problemes_grandeurs_avance',
   'Problèmes de grandeurs — Niveau avancé CRPE', 'Avance', 'qcm',
   'Un terrain est composé d''un rectangle de 40 m × 25 m surmonté d''un triangle isocèle dont la base est le côté de 40 m et la hauteur mesure 12 m. Quelle est l''aire totale du terrain ?',
@@ -730,12 +1065,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (vrai_faux) — Volume et agrandissement
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0f0000-0000-0000-0000-000000000010',
+  'fa2f0000-0000-0000-0000-000000000010',
   'Mathematiques', 'grandeurs_mesures', 'math_problemes_grandeurs_avance',
   'Problèmes de grandeurs — Niveau avancé CRPE', 'Avance', 'vrai_faux',
   'Si on double le rayon d''une sphère, son volume est multiplié par 4.',
@@ -754,12 +1090,13 @@ INSERT INTO public.exercises (
 -- ============================================================================
 
 -- Q8 (qcm) — Durée en jours, heures, minutes
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0b0000-0000-0000-0000-000000000008',
+  'fa2b0000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_temps_calculs_horaires',
   'Temps et calculs horaires — Durées et conversions', 'Intermediaire', 'qcm',
   'Combien de secondes y a-t-il dans une journée complète (24 heures) ?',
@@ -773,12 +1110,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (reponse_courte) — Problème horaire avec fuseaux
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0b0000-0000-0000-0000-000000000009',
+  'fa2b0000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_temps_calculs_horaires',
   'Temps et calculs horaires — Durées et conversions', 'Intermediaire', 'reponse_courte',
   'Un avion décolle de Paris à 10 h 30 (heure de Paris) et atterrit à New York après 8 h 15 min de vol. Le décalage horaire est de −6 h (New York est en retard sur Paris). Quelle heure est-il à New York à l''atterrissage ? (format HH h MM)',
@@ -792,12 +1130,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (vrai_faux) — Conversion durée décimale
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa0b0000-0000-0000-0000-000000000010',
+  'fa2b0000-0000-0000-0000-000000000010',
   'Mathematiques', 'grandeurs_mesures', 'math_temps_calculs_horaires',
   'Temps et calculs horaires — Durées et conversions', 'Intermediaire', 'vrai_faux',
   '2,75 heures correspondent à 2 h 45 min.',
@@ -816,74 +1155,13 @@ INSERT INTO public.exercises (
 -- ============================================================================
 
 -- Q8 (qcm) — Conversion avancée volume/contenance
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'c00c0000-0000-0000-0000-000000000008',
-  'Mathematiques', 'grandeurs_mesures', 'math_unites_aire_volume',
-  'Unités d''aire et de volume — Conversions avancées', 'Avance', 'qcm',
-  'Combien de litres représentent 0,45 m³ ?',
-  NULL,
-  '[{"id":"a","label":"4,5 L"},{"id":"b","label":"45 L"},{"id":"c","label":"450 L"},{"id":"d","label":"4 500 L"}]'::jsonb,
-  '{"mode":"single","value":"c"}'::jsonb,
-  '1 m³ = 1 000 L (car 1 m³ = 1 000 dm³ et 1 dm³ = 1 L). Donc 0,45 m³ = 0,45 × 1 000 = 450 L. Ce type de conversion est fondamental pour relier les unités de volume (système métrique) aux unités de capacité (système des litres). L''erreur courante consiste à appliquer un mauvais facteur de conversion.',
-  'Erreur fréquente : multiplier par 100 (confusion avec les aires) au lieu de 1 000, ce qui donnerait 45 L.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
--- Q9 (reponse_courte) — Conversion m² en ares et hectares
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'c00c0000-0000-0000-0000-000000000009',
-  'Mathematiques', 'grandeurs_mesures', 'math_unites_aire_volume',
-  'Unités d''aire et de volume — Conversions avancées', 'Avance', 'reponse_courte',
-  'Un terrain a une superficie de 35 000 m². Exprimer cette superficie en hectares et en ares (format : X ha Y a).',
-  NULL,
-  NULL,
-  '{"mode":"text","acceptableAnswers":["3 ha 50 a","3ha 50a","3 ha 50a","3ha50a","3,5 ha","3.5 ha"]}'::jsonb,
-  '1 ha = 10 000 m² et 1 a = 100 m². On divise : 35 000 ÷ 10 000 = 3,5 ha = 3 ha 50 a (car 0,5 ha = 50 a). Vérification : 3 × 10 000 + 50 × 100 = 30 000 + 5 000 = 35 000 m². Les unités agraires (are et hectare) sont spécifiques aux mesures de surfaces de terrain. Elles sont intermédiaires entre le m² et le km².',
-  'Erreur fréquente : confondre hectares et ares, ou diviser par 1 000 au lieu de 10 000 pour obtenir les hectares.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
--- Q10 (vrai_faux) — Relation cm³ et mL
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'c00c0000-0000-0000-0000-000000000010',
-  'Mathematiques', 'grandeurs_mesures', 'math_unites_aire_volume',
-  'Unités d''aire et de volume — Conversions avancées', 'Avance', 'vrai_faux',
-  '1 cm³ = 1 mL.',
-  NULL,
-  NULL,
-  '{"mode":"single","value":"vrai"}'::jsonb,
-  'C''est vrai. Cette équivalence fondamentale relie les unités de volume du système métrique (cm³) aux unités de capacité (mL). Démonstration : 1 L = 1 dm³ = 1 000 cm³. Or 1 L = 1 000 mL. Donc 1 000 cm³ = 1 000 mL, ce qui donne 1 cm³ = 1 mL. Cette correspondance est essentielle pour les conversions entre volume et capacité : on peut passer de l''un à l''autre sans calcul. Par extension : 1 dm³ = 1 L, 1 m³ = 1 000 L = 1 kL.',
-  'Erreur fréquente : penser que 1 cm³ = 1 cL (en confondant les préfixes « centi- » des centimètres et des centilitres). En réalité, 1 cL = 10 cm³.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
-
--- ============================================================================
--- 15. math_vitesse_distance_temps (prefix=fa020000)
--- ============================================================================
-
--- Q8 (reponse_courte) — Problème de rattrapage
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'fa020000-0000-0000-0000-000000000008',
+  'fa220000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_vitesse_distance_temps',
   'Vitesse, distance et temps — Résolution de problèmes', 'Intermediaire', 'reponse_courte',
   'Un piéton part à 8 h 00 et marche à 5 km/h. Un cycliste part du même point à 8 h 30 et roule à 15 km/h dans la même direction. À quelle heure le cycliste rattrape-t-il le piéton ? (format HH h MM)',
@@ -897,12 +1175,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (qcm) — Temps de trajet avec pause
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa020000-0000-0000-0000-000000000009',
+  'fa220000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_vitesse_distance_temps',
   'Vitesse, distance et temps — Résolution de problèmes', 'Intermediaire', 'qcm',
   'Une famille part en voiture pour un trajet de 360 km. Elle roule à une vitesse moyenne de 90 km/h et fait une pause de 20 minutes au milieu du trajet. À quelle heure arrive-t-elle si elle part à 9 h 00 ?',
@@ -916,98 +1195,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (vrai_faux) — Conversion m/s en km/h
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa020000-0000-0000-0000-000000000010',
-  'Mathematiques', 'grandeurs_mesures', 'math_vitesse_distance_temps',
-  'Vitesse, distance et temps — Résolution de problèmes', 'Intermediaire', 'vrai_faux',
-  'Un sprinter qui court à 10 m/s se déplace à 36 km/h.',
-  NULL,
-  NULL,
-  '{"mode":"single","value":"vrai"}'::jsonb,
-  'Pour convertir des m/s en km/h, on multiplie par 3,6. En effet : 1 m/s = 0,001 km ÷ (1/3600 h) = 3,6 km/h. Donc 10 m/s = 10 × 3,6 = 36 km/h. Vérification : 10 m/s signifie 10 mètres chaque seconde, soit 10 × 3 600 = 36 000 m en une heure = 36 km/h. L''affirmation est vraie. Usain Bolt a atteint environ 12,4 m/s (soit 44,7 km/h) lors de son record du monde.',
-  'Erreur fréquente : diviser par 3,6 au lieu de multiplier (ce qui donnerait environ 2,78 km/h, une vitesse de marche lente).',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
-
--- ============================================================================
--- 16. math_vitesses_moyennes_pieges (prefix=b0190000)
--- ============================================================================
-
--- Q8 (qcm) — Piège : même durée vs même distance
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'b0190000-0000-0000-0000-000000000008',
-  'Mathematiques', 'grandeurs_mesures', 'math_vitesses_moyennes_pieges',
-  'Vitesses moyennes et pièges', 'Avance', 'qcm',
-  'Un automobiliste roule pendant 2 heures à 60 km/h, puis pendant 3 heures à 100 km/h. Quelle est sa vitesse moyenne ?',
-  NULL,
-  '[{"id":"a","label":"80 km/h"},{"id":"b","label":"84 km/h"},{"id":"c","label":"76 km/h"},{"id":"d","label":"90 km/h"}]'::jsonb,
-  '{"mode":"single","value":"b"}'::jsonb,
-  'Distance totale : (60 × 2) + (100 × 3) = 120 + 300 = 420 km. Durée totale : 2 + 3 = 5 h. Vitesse moyenne : 420 / 5 = 84 km/h. Attention : ici les DURÉES (et non les distances) sont données. La vitesse moyenne est alors la moyenne pondérée par les durées : (2 × 60 + 3 × 100) / (2 + 3) = 84 km/h. Quand les durées sont identiques, la vitesse moyenne EST la moyenne arithmétique. Quand les distances sont identiques, c''est la moyenne harmonique. Ici les durées sont différentes, il faut pondérer.',
-  'Erreur fréquente : calculer la moyenne arithmétique simple (60 + 100) / 2 = 80 km/h, sans pondérer par les durées différentes.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
--- Q9 (reponse_courte) — Vitesse moyenne aller-retour sur des distances différentes
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'b0190000-0000-0000-0000-000000000009',
-  'Mathematiques', 'grandeurs_mesures', 'math_vitesses_moyennes_pieges',
-  'Vitesses moyennes et pièges', 'Avance', 'reponse_courte',
-  'Un livreur parcourt 30 km en ville à 30 km/h, puis 90 km sur autoroute à 90 km/h. Calculez sa vitesse moyenne sur l''ensemble du trajet (en km/h).',
-  NULL,
-  NULL,
-  '{"mode":"text","acceptableAnswers":["60","60 km/h","60km/h"]}'::jsonb,
-  'Durée en ville : 30 / 30 = 1 h. Durée sur autoroute : 90 / 90 = 1 h. Distance totale : 30 + 90 = 120 km. Durée totale : 1 + 1 = 2 h. Vitesse moyenne : 120 / 2 = 60 km/h. Remarque : ici les durées sont identiques (1 h chacune), donc la vitesse moyenne EST la moyenne arithmétique pondérée par les durées : (30 + 90) / 2 = 60 km/h. C''est un cas particulier où les durées égales simplifient le calcul.',
-  'Erreur fréquente : appliquer la moyenne harmonique (comme si les distances étaient égales) au lieu de la formule générale distance totale / durée totale.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
--- Q10 (vrai_faux) — Piège de la vitesse moyenne nulle
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'b0190000-0000-0000-0000-000000000010',
-  'Mathematiques', 'grandeurs_mesures', 'math_vitesses_moyennes_pieges',
-  'Vitesses moyennes et pièges', 'Avance', 'vrai_faux',
-  'Un automobiliste fait un aller-retour. Sa vitesse à l''aller est de 40 km/h et au retour de 60 km/h. Sa vitesse moyenne sur l''aller-retour est de 50 km/h.',
-  NULL,
-  NULL,
-  '{"mode":"single","value":"faux"}'::jsonb,
-  'C''est faux. Soit d la distance d''un trajet simple. Temps aller = d/40, temps retour = d/60. Temps total = d/40 + d/60 = 3d/120 + 2d/120 = 5d/120 = d/24. Distance totale = 2d. Vitesse moyenne = 2d / (d/24) = 48 km/h. La moyenne harmonique donne : 2 × 40 × 60 / (40 + 60) = 4 800 / 100 = 48 km/h. Ce résultat est inférieur à la moyenne arithmétique de 50 km/h. Ce piège est un grand classique du CRPE !',
-  'Erreur fréquente : calculer (40 + 60) / 2 = 50 km/h. La vitesse moyenne sur un aller-retour (même distance) est toujours la moyenne harmonique, jamais la moyenne arithmétique.',
-  'valide',
-  'Génération Claude — Terminologie Éduscol', 'free', true
-) ON CONFLICT (id) DO NOTHING;
-
-
--- ============================================================================
--- 17. math_volume_solides_usuels (prefix=fa050000)
--- ============================================================================
-
--- Q8 (reponse_courte) — Volume d''un prisme
-INSERT INTO public.exercises (
-  id, subject, subdomain, topic_key, topic_label, level,
-  exercise_type, instruction, support_text, choices, expected_answer,
-  detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
-) VALUES (
-  'fa050000-0000-0000-0000-000000000008',
+  'fa250000-0000-0000-0000-000000000008',
   'Mathematiques', 'grandeurs_mesures', 'math_volume_solides_usuels',
   'Volume des solides usuels — Formules et applications', 'Intermediaire', 'reponse_courte',
   'Un prisme droit a pour base un triangle rectangle dont les côtés de l''angle droit mesurent 6 cm et 8 cm. La hauteur du prisme est de 10 cm. Quel est son volume en cm³ ?',
@@ -1021,12 +1215,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q9 (qcm) — Volume d''une pyramide
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa050000-0000-0000-0000-000000000009',
+  'fa250000-0000-0000-0000-000000000009',
   'Mathematiques', 'grandeurs_mesures', 'math_volume_solides_usuels',
   'Volume des solides usuels — Formules et applications', 'Intermediaire', 'qcm',
   'Une pyramide à base carrée a une base de 9 cm de côté et une hauteur de 14 cm. Quel est son volume ?',
@@ -1040,12 +1235,13 @@ INSERT INTO public.exercises (
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Q10 (vrai_faux) — Relation volume cylindre / cône
+
 INSERT INTO public.exercises (
   id, subject, subdomain, topic_key, topic_label, level,
   exercise_type, instruction, support_text, choices, expected_answer,
   detailed_explanation, common_mistake, validation_status, source, access_tier, is_published
 ) VALUES (
-  'fa050000-0000-0000-0000-000000000010',
+  'fa250000-0000-0000-0000-000000000010',
   'Mathematiques', 'grandeurs_mesures', 'math_volume_solides_usuels',
   'Volume des solides usuels — Formules et applications', 'Intermediaire', 'vrai_faux',
   'Il faut exactement 3 cônes pour remplir un cylindre de même base et de même hauteur.',
@@ -1057,3 +1253,4 @@ INSERT INTO public.exercises (
   'valide',
   'Génération Claude — Terminologie Éduscol', 'free', true
 ) ON CONFLICT (id) DO NOTHING;
+
