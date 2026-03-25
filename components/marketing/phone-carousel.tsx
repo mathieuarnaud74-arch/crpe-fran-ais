@@ -20,11 +20,10 @@ export function PhoneCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   const scrollTo = useCallback((index: number) => {
-    trackRef.current?.children[index]?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
+    const track = trackRef.current;
+    if (!track) return;
+    const itemWidth = track.scrollWidth / PHONES.length;
+    track.scrollTo({ left: itemWidth * index, behavior: "smooth" });
   }, []);
 
   const goTo = useCallback((index: number) => {
@@ -38,11 +37,11 @@ export function PhoneCarousel() {
     timerRef.current = setInterval(() => {
       setActive((prev) => {
         const next = (prev + 1) % PHONES.length;
-        trackRef.current?.children[next]?.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
-        });
+        const track = trackRef.current;
+        if (track) {
+          const itemWidth = track.scrollWidth / PHONES.length;
+          track.scrollTo({ left: itemWidth * next, behavior: "smooth" });
+        }
         return next;
       });
     }, AUTO_PLAY_MS);
