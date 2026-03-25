@@ -10,6 +10,7 @@ import {
   getFrenchDomainKey,
   getMathDomainKey,
 } from "@/lib/constants";
+import { getStartOfDayParis } from "@/lib/daily-streak";
 import { getDailyRemainingQuota } from "@/lib/freemium";
 import type {
   DashboardActivity,
@@ -233,6 +234,18 @@ export function buildDashboardData(
       } satisfies DomainStats);
 
     const currentSubdomains = subdomainProgress.filter((item) => item.domain === domain);
+
+    let startedCount = 0;
+    let acquiredCount = 0;
+    let fragileCount = 0;
+    let priorityCount = 0;
+    for (const item of currentSubdomains) {
+      if (item.attempts > 0) startedCount++;
+      if (item.status === "acquis") acquiredCount++;
+      else if (item.status === "fragile") fragileCount++;
+      else if (item.status === "prioritaire") priorityCount++;
+    }
+
     const status = getStatus(
       currentDomain.attempts,
       currentDomain.correct,
@@ -251,10 +264,10 @@ export function buildDashboardData(
       correctRate: getCorrectRate(currentDomain.attempts, currentDomain.correct),
       status,
       lastAnsweredAt: currentDomain.lastAnsweredAt,
-      startedSubdomains: currentSubdomains.filter((item) => item.attempts > 0).length,
-      acquiredSubdomains: currentSubdomains.filter((item) => item.status === "acquis").length,
-      fragileSubdomains: currentSubdomains.filter((item) => item.status === "fragile").length,
-      prioritySubdomains: currentSubdomains.filter((item) => item.status === "prioritaire").length,
+      startedSubdomains: startedCount,
+      acquiredSubdomains: acquiredCount,
+      fragileSubdomains: fragileCount,
+      prioritySubdomains: priorityCount,
       subdomains: currentSubdomains,
     };
   });
@@ -293,13 +306,23 @@ export function buildDashboardData(
   const domainDirectory: DashboardDomainDirectoryItem[] = domainOrder.map((domainKey) => {
     const cfg = domainConfig[domainKey ];
     const domainSessions = sessionProgress.filter((session) => session.domainKey === domainKey);
-    const attemptsCount = domainSessions.reduce((total, session) => total + session.attempts, 0);
-    const correctCount = domainSessions.reduce((total, session) => total + session.correctAnswers, 0);
-    const lastAnsweredAt = domainSessions.reduce<string | null>(
-      (latest, session) =>
-        session.lastAnsweredAt ? getLatestTimestamp(latest, session.lastAnsweredAt) : latest,
-      null,
-    );
+
+    let attemptsCount = 0;
+    let correctCount = 0;
+    let lastAnsweredAt: string | null = null;
+    let notStarted = 0;
+    let inProg = 0;
+    let toReview = 0;
+    let mastered = 0;
+    for (const session of domainSessions) {
+      attemptsCount += session.attempts;
+      correctCount += session.correctAnswers;
+      if (session.lastAnsweredAt) lastAnsweredAt = getLatestTimestamp(lastAnsweredAt, session.lastAnsweredAt);
+      if (session.status === "non_commencee") notStarted++;
+      else if (session.status === "en_cours") inProg++;
+      else if (session.status === "a_revoir") toReview++;
+      else if (session.status === "maitrisee") mastered++;
+    }
 
     return {
       key: domainKey,
@@ -310,10 +333,10 @@ export function buildDashboardData(
         (subdomain) => SUBDOMAIN_LABELS[subdomain],
       ),
       totalSeries: domainSessions.length,
-      notStartedSeries: domainSessions.filter((session) => session.status === "non_commencee").length,
-      inProgressSeries: domainSessions.filter((session) => session.status === "en_cours").length,
-      toReviewSeries: domainSessions.filter((session) => session.status === "a_revoir").length,
-      masteredSeries: domainSessions.filter((session) => session.status === "maitrisee").length,
+      notStartedSeries: notStarted,
+      inProgressSeries: inProg,
+      toReviewSeries: toReview,
+      masteredSeries: mastered,
       correctRate: getCorrectRate(attemptsCount, correctCount),
       lastAnsweredAt,
     };
@@ -346,18 +369,16 @@ export function buildDashboardData(
     })
     .slice(0, 4);
 
+  const domainAttemptCounts = new Map<string, number>();
+  for (const session of sessionProgress) {
+    domainAttemptCounts.set(session.domainKey, (domainAttemptCounts.get(session.domainKey) ?? 0) + session.attempts);
+  }
   const mostWorkedDomains = domainDirectory
-    .map((domain) => {
-      const attemptsCount = sessionProgress
-        .filter((session) => session.domainKey === domain.key)
-        .reduce((total, session) => total + session.attempts, 0);
-
-      return {
-        label: domain.label,
-        attempts: attemptsCount,
-        correctRate: domain.correctRate,
-      };
-    })
+    .map((domain) => ({
+      label: domain.label,
+      attempts: domainAttemptCounts.get(domain.key) ?? 0,
+      correctRate: domain.correctRate,
+    }))
     .filter((domain) => domain.attempts > 0)
     .sort((left, right) => right.attempts - left.attempts)
     .slice(0, 3);
@@ -427,22 +448,18 @@ export function buildDashboardData(
     ];
   });
 
-  const _parisDate = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Paris" });
-  const _noonUtc = new Date(`${_parisDate}T12:00:00Z`);
-  const _parisHour =
-    parseInt(
-      _noonUtc.toLocaleString("en-US", { timeZone: "Europe/Paris", hour: "numeric", hour12: false }),
-      10,
-    ) % 24;
-  const startOfDay = new Date(`${_parisDate}T00:00:00Z`);
-  startOfDay.setUTCHours(-(_parisHour - 12));
+  const startOfDayMs = getStartOfDayParis().getTime();
 
-  const attemptsToday = attempts.filter(
-    (attempt) => new Date(attempt.answered_at).getTime() >= startOfDay.getTime(),
-  ).length;
+  let attemptsToday = 0;
+  for (const attempt of attempts) {
+    if (new Date(attempt.answered_at).getTime() >= startOfDayMs) attemptsToday++;
+  }
 
   const totalAttempts = scopedAttempts.length;
-  const totalCorrect = scopedAttempts.filter((attempt) => attempt.is_correct).length;
+  let totalCorrect = 0;
+  for (const attempt of scopedAttempts) {
+    if (attempt.is_correct) totalCorrect++;
+  }
 
   const dailyActivity = buildDailyActivity(scopedAttempts);
   const scoreEvolution = buildScoreEvolution(scopedAttempts);

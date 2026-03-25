@@ -58,75 +58,55 @@ export function computeEarnedBadges(ctx: {
     ([, v]) => v.attempts > 0,
   );
 
-  // Comeback detection (gap of 3+ days in activity)
+  // Pre-sort activity by date and compute timestamps once
   const sortedDays = [...ctx.dailyActivity].sort((a, b) => a.date.localeCompare(b.date));
+  const dayTimestamps = sortedDays.map((d) => new Date(d.date).getTime());
+  const ONE_DAY_MS = 86_400_000;
+  const SEVEN_DAYS_MS = 7 * ONE_DAY_MS;
+
+  // Single pass: comeback detection + consecutive streak + weekend activity
   let hasComeback = false;
-  for (let i = 1; i < sortedDays.length; i++) {
-    const diff =
-      (new Date(sortedDays[i].date).getTime() - new Date(sortedDays[i - 1].date).getTime()) /
-      (1000 * 60 * 60 * 24);
-    if (diff >= 3) {
-      hasComeback = true;
-      break;
-    }
-  }
-
-  // Weekend activity
-  const hasWeekendActivity = ctx.dailyActivity.some((d) => {
-    const day = new Date(d.date + "T00:00:00").getDay();
-    return day === 0 || day === 6;
-  });
-
-  // Consecutive active days (longest streak)
-  let maxConsecutiveDays = 0;
+  let hasWeekendActivity = false;
+  let maxConsecutiveDays = sortedDays.length >= 1 ? 1 : 0;
   let currentConsecutive = 1;
-  for (let i = 1; i < sortedDays.length; i++) {
-    const diff =
-      (new Date(sortedDays[i].date).getTime() - new Date(sortedDays[i - 1].date).getTime()) /
-      (1000 * 60 * 60 * 24);
-    if (diff === 1) {
-      currentConsecutive += 1;
-      maxConsecutiveDays = Math.max(maxConsecutiveDays, currentConsecutive);
-    } else {
-      currentConsecutive = 1;
+
+  for (let i = 0; i < sortedDays.length; i++) {
+    if (!hasWeekendActivity) {
+      const day = new Date(sortedDays[i].date + "T00:00:00").getDay();
+      if (day === 0 || day === 6) hasWeekendActivity = true;
+    }
+    if (i > 0) {
+      const diff = (dayTimestamps[i] - dayTimestamps[i - 1]) / ONE_DAY_MS;
+      if (!hasComeback && diff >= 3) hasComeback = true;
+      if (diff === 1) {
+        currentConsecutive += 1;
+        if (currentConsecutive > maxConsecutiveDays) maxConsecutiveDays = currentConsecutive;
+      } else {
+        currentConsecutive = 1;
+      }
     }
   }
-  if (sortedDays.length === 1) maxConsecutiveDays = 1;
 
-  // High volume week: any 7-day window with 40+ answers
+  // Sliding window O(n): high volume week (40+ answers) + perfect week (≥90% on 20+ answers)
   let hasHighVolumeWeek = false;
-  for (let i = 0; i < sortedDays.length; i++) {
-    let weekTotal = 0;
-    for (let j = i; j < sortedDays.length; j++) {
-      const diff =
-        (new Date(sortedDays[j].date).getTime() - new Date(sortedDays[i].date).getTime()) /
-        (1000 * 60 * 60 * 24);
-      if (diff > 7) break;
-      weekTotal += sortedDays[j].count;
-    }
-    if (weekTotal >= 40) {
-      hasHighVolumeWeek = true;
-      break;
-    }
-  }
-
-  // Perfect week: any 7-day window with ≥90% and 20+ answers
   let hasPerfectWeek = false;
-  for (let i = 0; i < sortedDays.length; i++) {
-    let weekTotal = 0;
-    let weekCorrect = 0;
-    for (let j = i; j < sortedDays.length; j++) {
-      const diff =
-        (new Date(sortedDays[j].date).getTime() - new Date(sortedDays[i].date).getTime()) /
-        (1000 * 60 * 60 * 24);
-      if (diff > 7) break;
-      weekTotal += sortedDays[j].count;
-      weekCorrect += sortedDays[j].correctCount;
+  let windowTotal = 0;
+  let windowCorrect = 0;
+  let windowStart = 0;
+
+  for (let windowEnd = 0; windowEnd < sortedDays.length; windowEnd++) {
+    windowTotal += sortedDays[windowEnd].count;
+    windowCorrect += sortedDays[windowEnd].correctCount;
+
+    while (dayTimestamps[windowEnd] - dayTimestamps[windowStart] > SEVEN_DAYS_MS) {
+      windowTotal -= sortedDays[windowStart].count;
+      windowCorrect -= sortedDays[windowStart].correctCount;
+      windowStart++;
     }
-    if (weekTotal >= 20 && weekCorrect / weekTotal >= 0.9) {
-      hasPerfectWeek = true;
-      break;
-    }
+
+    if (!hasHighVolumeWeek && windowTotal >= 40) hasHighVolumeWeek = true;
+    if (!hasPerfectWeek && windowTotal >= 20 && windowCorrect / windowTotal >= 0.9) hasPerfectWeek = true;
+    if (hasHighVolumeWeek && hasPerfectWeek) break;
   }
 
   // Improvement: any reviewed session where latest rate > first-pass estimate

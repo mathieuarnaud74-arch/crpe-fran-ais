@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-03-25] — Perf : sliding window badges, merge filtres dashboard, DRY timezone, lazy eval
+
+- `lib/dashboard/badges.ts` — O(n²) → O(n) : sliding window unique pour hasHighVolumeWeek + hasPerfectWeek, fusion boucles comeback/consecutive/weekend en une passe, precompute timestamps
+- `lib/dashboard/build-dashboard-data.ts` — merge 4×filter domainProgress + 4×filter domainDirectory en boucles uniques, Map pré-calculé pour mostWorkedDomains, boucles simples pour attemptsToday/totalCorrect, DRY timezone via getStartOfDayParis()
+- `features/exercises/shared/evaluation.ts` — normalisation lazy : submittedLoose calculé seulement si strict échoue, dérivé via stripDiacritics() au lieu de re-normaliser
+
 ## [2026-03-25] — Audit complet : perf, sécurité, dette technique, hygiène
 
 ### Tier 1 — Fixes critiques

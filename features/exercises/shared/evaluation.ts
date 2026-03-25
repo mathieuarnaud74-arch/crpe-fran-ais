@@ -162,7 +162,6 @@ export function evaluateExerciseAnswer(
 
   const policy = getTextValidationPolicy(question.exercise_type);
   const submittedStrict = normalizeComparedText(trimmedValue, false);
-  const submittedLoose = normalizeComparedText(trimmedValue, true);
 
   const strictMatch = question.expected_answer.acceptableAnswers.some(
     (candidate) => normalizeComparedText(candidate, false) === submittedStrict,
@@ -177,8 +176,10 @@ export function evaluateExerciseAnswer(
     };
   }
 
+  // Only compute loose (accent-insensitive) versions if strict match failed
+  const submittedLoose = stripDiacritics(submittedStrict);
   const looseMatch = question.expected_answer.acceptableAnswers.some(
-    (candidate) => normalizeComparedText(candidate, true) === submittedLoose,
+    (candidate) => stripDiacritics(normalizeComparedText(candidate, false)) === submittedLoose,
   );
 
   const reason = policy.accentsRequired && looseMatch ? "accent_only" : "incorrect";
