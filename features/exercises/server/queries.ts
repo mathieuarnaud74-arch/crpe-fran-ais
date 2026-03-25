@@ -414,12 +414,17 @@ export async function getRandomExercises(count = 10, subject?: string) {
   const supabase = await createSupabaseServerClient();
   const POOL_SIZE = 100;
 
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("exercises")
     .select("*")
     .eq("is_published", true)
     .eq("subject", subject ?? DEFAULT_SUBJECT)
     .limit(POOL_SIZE);
+
+  if (error) {
+    console.error("[exercises] getRandomExercises query failed:", error.message);
+    return [];
+  }
 
   if (!data || data.length === 0) return [];
 

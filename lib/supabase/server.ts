@@ -18,9 +18,14 @@ export async function createSupabaseServerClient() {
           options?: Record<string, unknown>;
         }>,
       ) {
-        cookiesToSet.forEach(({ name, value, options }) => {
-          cookieStore.set(name, value, options);
-        });
+        try {
+          cookiesToSet.forEach(({ name, value, options }) => {
+            cookieStore.set(name, value, options);
+          });
+        } catch {
+          // `cookies().set()` throws in Server Components (read-only context).
+          // Session refresh is handled by the middleware instead.
+        }
       },
     },
   });

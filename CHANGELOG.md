@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-03-25] — Fix : crash exercices (cookieStore.set en Server Component)
+
+- `lib/supabase/server.ts` — ajout try-catch autour de `cookieStore.set()` dans `setAll` : Next.js 15 throw en Server Component (lecture seule), crash silencieux quand Supabase rafraîchit le token
+- `features/exercises/server/queries.ts` — ajout check `error` dans `getRandomExercises` (seule query sans error handling)
+- `supabase/migrations/20260826_update_premium_price_499.sql` — corrigé nom de table (`homepage_sections` → `page_sections`) et colonne (`props` → `props_json`)
+
 ## [2026-03-25] — Mise à jour du logo du site
 
 - `public/logo.png` — remplacé par le nouveau logo "LOGO ACCES CRPE" (PNG transparent 1024×305)
