@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { requireUser } from "@/features/auth/server/guards";
-import { getExercises } from "@/features/exercises/server/queries";
+import { getSessionList } from "@/features/exercises/server/queries";
 import {
   EXERCISE_TYPE_OPTIONS,
   MATH_SUBDOMAIN_OPTIONS,
@@ -91,7 +91,7 @@ export default async function ExercisesPage({
   const { subdomain, type, subject: rawSubject } = await searchParams;
   const subject: Subject = rawSubject === "Mathematiques" ? "Mathematiques" : "Francais";
   const sessions = (
-    await getExercises({
+    await getSessionList({
       subdomain: subdomain as ExerciseSubdomain | undefined,
       type: type as ExerciseType | undefined,
       subject,

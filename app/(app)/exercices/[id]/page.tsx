@@ -9,7 +9,7 @@ import { isPremiumUser } from "@/features/billing/server/queries";
 import { ExerciseSessionWrapper } from "@/features/exercises/components/exercise-session-wrapper";
 import {
   getAttemptsCountToday,
-  getExercises,
+  getSessionList,
   getExerciseSessionById,
 } from "@/features/exercises/server/queries";
 import { getUserGamification } from "@/features/gamification/server/queries";
@@ -66,7 +66,7 @@ export default async function ExerciseDetailPage({
 
   const [attemptsToday, allSessions] = await Promise.all([
     getAttemptsCountToday(user.id),
-    getExercises({ subdomain: session.subdomain, subject: getSubjectFromSubdomain(session.subdomain as ExerciseSubdomain) }),
+    getSessionList({ subdomain: session.subdomain, subject: getSubjectFromSubdomain(session.subdomain as ExerciseSubdomain) }),
   ]);
   const crpeContext = CRPE_CONTEXT[session.subdomain as ExerciseSubdomain] ?? null;
 

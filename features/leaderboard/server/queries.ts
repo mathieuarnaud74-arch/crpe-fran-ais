@@ -43,11 +43,16 @@ export const getUserDisplayName = cache(async function getUserDisplayName(
 ): Promise<string | null> {
   const supabase = await createSupabaseServerClient();
 
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("profiles")
     .select("display_name")
     .eq("id", userId)
     .single();
+
+  if (error) {
+    console.error("[leaderboard] getUserDisplayName failed:", error.message);
+    return null;
+  }
 
   return data?.display_name ?? null;
 });

@@ -23,12 +23,13 @@ export async function markFicheReadAction(ficheSlug: string) {
   if (completedSlugs.has(ficheSlug)) {
     // Already read — just update timestamp silently
     const supabase = await createSupabaseServerClient();
-    await supabase
+    const { error } = await supabase
       .from("fiche_completions")
       .upsert(
         { user_id: user.id, fiche_slug: ficheSlug },
         { onConflict: "user_id,fiche_slug" },
       );
+    if (error) console.error("[fiches] upsert re-read failed:", error.message);
     return;
   }
 
@@ -37,10 +38,11 @@ export async function markFicheReadAction(ficheSlug: string) {
   if (!canReadFiche(ficheReadsToday, premium)) return;
 
   const supabase = await createSupabaseServerClient();
-  await supabase
+  const { error } = await supabase
     .from("fiche_completions")
     .upsert(
       { user_id: user.id, fiche_slug: ficheSlug },
       { onConflict: "user_id,fiche_slug" },
     );
+  if (error) console.error("[fiches] upsert new-read failed:", error.message);
 }

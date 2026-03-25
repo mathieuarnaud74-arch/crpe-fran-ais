@@ -248,8 +248,7 @@ describe("submitAttemptAction", () => {
       makeFormData({ exerciseId: "ex-1", answer: "a", sessionId: "session-grammaire-1" }),
     );
     expect(mockRevalidatePath).toHaveBeenCalledWith("/tableau-de-bord");
-    expect(mockRevalidatePath).toHaveBeenCalledWith("/historique");
-    expect(mockRevalidatePath).toHaveBeenCalledWith("/exercices/session-grammaire-1");
+    expect(mockRevalidatePath).toHaveBeenCalledTimes(1);
   });
 
   it("fails gracefully when gamification module throws", async () => {

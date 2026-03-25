@@ -25,11 +25,16 @@ export async function requireAdmin() {
   const user = await requireUser();
   const supabase = await createSupabaseServerClient();
 
-  const { data: profile } = await supabase
+  const { data: profile, error } = await supabase
     .from("profiles")
     .select("role")
     .eq("id", user.id)
     .single();
+
+  if (error) {
+    console.error("[requireAdmin] profile query failed:", error.message);
+    redirect("/tableau-de-bord");
+  }
 
   if (profile?.role !== "admin") {
     redirect("/tableau-de-bord");

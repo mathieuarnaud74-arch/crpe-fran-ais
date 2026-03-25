@@ -4,7 +4,9 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -35,22 +37,24 @@ export function GamificationProvider({
   const [gamification, setGamification] = useState<UserGamification>(initial);
   const { playSound } = useGameSounds({ enabled: gamification.sound_enabled });
 
-  const addXp = useCallback(
-    (amount: number) => {
-      let leveledUp = false;
-      let newLevel = gamification.level;
+  const levelRef = useRef(gamification.level);
+  useEffect(() => {
+    levelRef.current = gamification.level;
+  }, [gamification.level]);
 
-      setGamification((prev) => {
-        const newXp = prev.xp + amount;
-        newLevel = getLevelForXp(newXp);
-        leveledUp = newLevel > prev.level;
-        return { ...prev, xp: newXp, level: newLevel };
-      });
+  const addXp = useCallback((amount: number) => {
+    let leveledUp = false;
+    let newLevel = levelRef.current;
 
-      return { leveledUp, newLevel };
-    },
-    [gamification.level],
-  );
+    setGamification((prev) => {
+      const newXp = prev.xp + amount;
+      newLevel = getLevelForXp(newXp);
+      leveledUp = newLevel > prev.level;
+      return { ...prev, xp: newXp, level: newLevel };
+    });
+
+    return { leveledUp, newLevel };
+  }, []);
 
   const setStreak = useCallback((streak: number) => {
     setGamification((prev) => ({
