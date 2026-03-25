@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "sonner";
 
@@ -67,6 +68,7 @@ export default function RootLayout({
         <NextTopLoader color="#476257" showSpinner={false} height={2} />
         {children}
         <Toaster position="top-center" richColors />
+        <Analytics />
       </body>
     </html>
   );
