@@ -4,6 +4,7 @@ import { Mocca } from "@/components/mascot/mocca";
 import { Button, ButtonLink } from "@/components/ui/button";
 
 export default function ExerciceError({
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
@@ -20,6 +21,11 @@ export default function ExerciceError({
       <p className="mt-3 max-w-md text-muted">
         Impossible de charger cet exercice pour le moment. Réessaie ou choisis
         un autre exercice.
+      </p>
+
+      <p className="mt-4 max-w-lg break-all rounded-xl bg-secondary px-4 py-3 text-left font-mono text-xs text-muted">
+        {error.message || "Erreur inconnue"}
+        {error.digest ? ` (digest: ${error.digest})` : ""}
       </p>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
