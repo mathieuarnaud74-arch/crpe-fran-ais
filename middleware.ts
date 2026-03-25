@@ -53,11 +53,9 @@ export async function middleware(request: NextRequest) {
     },
   });
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
 
-  if (!user && isProtectedRoute(request.nextUrl.pathname)) {
+  if ((!user || authError) && isProtectedRoute(request.nextUrl.pathname)) {
     return NextResponse.redirect(new URL("/connexion", request.url));
   }
 

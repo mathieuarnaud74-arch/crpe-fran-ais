@@ -29,13 +29,17 @@ export const getDashboardData = cache(async function getDashboardData(
     .select("id, exercise_id, is_correct, answered_at")
     .eq("user_id", userId)
     .order("answered_at", { ascending: false })
-    .limit(500);
+    .limit(1000);
 
   if (attemptsError) {
     console.error("[dashboard] attempts query failed:", attemptsError.message);
   }
 
   const attempts = (data ?? []) as AttemptRow[];
+
+  if (attempts.length === 1000) {
+    console.warn("[dashboard] attempts limit reached (1000) — stats may be incomplete for user", userId);
+  }
 
   const dashboardData = buildDashboardData(
     sessions,

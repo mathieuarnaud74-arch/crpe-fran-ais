@@ -1,5 +1,41 @@
 # Changelog
 
+## [2026-03-25] — Audit complet : perf, sécurité, dette technique, hygiène
+
+### Tier 1 — Fixes critiques
+- `features/dashboard/server/queries.ts` — limit(500) → limit(1000), pas de filtre temporel (buildScoreEvolution cumulatif a besoin de tout l'historique)
+- `features/exercises/server/actions.ts` — check erreur getUser() avant d'accéder aux données auth
+- `middleware.ts` — gestion de l'erreur Supabase dans le guard auth (empêche bypass si Supabase down)
+
+### Tier 2 — Perf DB & cache
+- `features/exercises/server/queries.ts` — fix React.cache() : passage de primitives au lieu d'objets (empêchait la déduplication)
+- `supabase/migrations/20260825_add_performance_indexes.sql` — index composites : attempts(user_id, answered_at), srs_cards(user_id, due), exercises(subject, subdomain) WHERE is_published, user_badges(user_id)
+
+### Tier 3 — Refactor players (extraction logique partagée)
+- `features/exercises/hooks/use-attempt-submit.ts` — hook partagé avec callbacks via ref (stable), option `silent` pour sprint/swipe, guard double-submit
+- `features/exercises/components/exercise-player.tsx` — utilise useAttemptSubmit avec onLevelUp/onError
+- `features/exercises/components/sprint-player.tsx` — utilise useAttemptSubmit({ silent: true }), restaure comportement sans toasts
+- `features/exercises/components/swipe-player.tsx` — utilise useAttemptSubmit({ silent: true }), restaure comportement sans toasts
+
+### Tier 4 — Hygiène & UX
+- `features/fiches/server/actions.ts` — retours d'erreur explicites au lieu de `return` silencieux (fiche introuvable, premium requis, quota atteint)
+- `app/(app)/ressources/loading.tsx` — ajout loading skeleton
+- `app/(app)/ressources/glossaire/loading.tsx` — ajout loading skeleton
+- `app/(app)/tableau-de-bord/page.tsx` — ISR réduit de 300s à 60s pour données plus fraîches
+
+### Post-audit — Corrections sur retour vérificateurs
+- `features/dashboard/server/queries.ts` — retiré filtre 90j qui faussait buildScoreEvolution (cumulatif), limit portée à 1000
+- `app/api/stripe/webhook/route.ts` — retiré guards type superflus (signature HMAC via constructEvent suffisante)
+- `features/exercises/hooks/use-attempt-submit.ts` — callbacks stockés dans useRef au lieu des deps useCallback (submit stable entre renders), ajout option `silent`
+- `features/exercises/components/sprint-player.tsx` — `silent: true` pour éviter toasts non voulus (restaure le comportement pré-refactor)
+- `features/exercises/components/swipe-player.tsx` — idem
+- `supabase/migrations/20260825_add_performance_indexes.sql` — retiré colonne `is_published` redondante dans l'index partiel
+
+### Passe 2 — Quick fixes post-vérificateurs
+- `features/dashboard/server/queries.ts` — ajout warning log si attempts tronquées à 1000 (détection de dépassement silencieux)
+- `features/exercises/hooks/use-attempt-submit.ts` — ajout callback `onSettled` appelé dans le finally (permet de synchroniser les UI locks)
+- `features/exercises/components/swipe-player.tsx` — fix race condition : `isProcessingRef` libéré quand animation ET réseau sont terminés (double-flag `animationDoneRef` + `networkDoneRef`)
+
 ## [2026-03-25] — Assainissement : error handling, cache, atomicité, tests
 
 ### Phase 1 — Error handling Supabase silencieux

@@ -1,9 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
-import { toast } from "sonner";
 
 import { useGameSounds } from "@/components/hooks/use-game-sounds";
 import { Badge } from "@/components/ui/badge";
@@ -12,7 +11,7 @@ import { Confetti } from "@/components/ui/confetti";
 import { Mocca } from "@/components/mascot/mocca";
 import { Panel } from "@/components/ui/panel";
 import { XpBar } from "@/components/ui/xp-bar";
-import { submitAttemptAction } from "@/features/exercises/server/actions";
+import { useAttemptSubmit } from "@/features/exercises/hooks/use-attempt-submit";
 import { evaluateExerciseAnswer } from "@/features/exercises/shared/evaluation";
 import { MASTERY_THRESHOLD } from "@/lib/dashboard";
 import { cn } from "@/lib/utils";
@@ -43,7 +42,6 @@ export function SprintPlayer({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [draftAnswer, setDraftAnswer] = useState("");
   const [results, setResults] = useState<SprintResult[]>([]);
-  const [, startTransition] = useTransition();
   const [totalElapsedMs, setTotalElapsedMs] = useState(0);
   const [sessionXp, setSessionXp] = useState(0);
   const [runningXp, setRunningXp] = useState(initialXp);
@@ -55,6 +53,7 @@ export function SprintPlayer({
   const questionStartRef = useRef(0);
   const timerRef = useRef<ReturnType<typeof setInterval>>(undefined);
   const { playSound } = useGameSounds();
+  const { submit: submitAttempt } = useAttemptSubmit({ silent: true });
 
   const currentQuestion = session.questions[currentIndex];
   const score = results.filter((r) => r.isCorrect).length;
@@ -119,28 +118,13 @@ export function SprintPlayer({
       setFlash(evaluation.isCorrect ? "correct" : "incorrect");
 
       // Persist
-      startTransition(async () => {
-        const formData = new FormData();
-        formData.append("exerciseId", currentQuestion.id);
-        formData.append("answer", answer);
-        formData.append("sessionId", session.id);
-        formData.append("timeSpentMs", String(timeMs));
-        formData.append("exerciseMode", "sprint");
-        formData.append("streak", String(streak));
-        try {
-          const result = await submitAttemptAction({ status: "idle" }, formData);
-          if (result.dailyStreakIncremented && result.newDailyStreak) {
-            const { isStreakMilestone } = await import("@/lib/daily-streak");
-            if (isStreakMilestone(result.newDailyStreak)) {
-              toast(`🔥 ${result.newDailyStreak} jours d'affilée !`, {
-                description: "Votre régularité paie, continuez comme ça !",
-                duration: 4000,
-              });
-            }
-          }
-        } catch (err) {
-          console.error("[sprint] submitAttemptAction failed:", err);
-        }
+      submitAttempt({
+        exerciseId: currentQuestion.id,
+        answer,
+        sessionId: session.id,
+        timeSpentMs: timeMs,
+        exerciseMode: "sprint",
+        streak,
       });
 
       // Move to next question
@@ -167,7 +151,7 @@ export function SprintPlayer({
         }
       }, 400);
     },
-    [currentQuestion, phase, consecutiveCorrect, currentIndex, session, playSound, personalBest, startTransition],
+    [currentQuestion, phase, consecutiveCorrect, currentIndex, session, playSound, personalBest, submitAttempt],
   );
 
   useEffect(() => {

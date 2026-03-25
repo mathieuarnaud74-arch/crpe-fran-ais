@@ -1,18 +1,16 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { LazyMotion, domAnimation, m, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
-import { toast } from "sonner";
 
 import { useGameSounds } from "@/components/hooks/use-game-sounds";
-import { Badge } from "@/components/ui/badge";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Confetti } from "@/components/ui/confetti";
 import { Mocca } from "@/components/mascot/mocca";
 import { Panel } from "@/components/ui/panel";
 import { XpBar } from "@/components/ui/xp-bar";
 import { XpPopup } from "@/components/ui/xp-popup";
-import { submitAttemptAction } from "@/features/exercises/server/actions";
+import { useAttemptSubmit } from "@/features/exercises/hooks/use-attempt-submit";
 import { evaluateExerciseAnswer } from "@/features/exercises/shared/evaluation";
 import { MASTERY_THRESHOLD } from "@/lib/dashboard";
 import { cn } from "@/lib/utils";
@@ -35,7 +33,6 @@ type SwipeResult = {
 export function SwipePlayer({ session, initialXp = 0, nextSession = null }: SwipePlayerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [results, setResults] = useState<SwipeResult[]>([]);
-  const [, startTransition] = useTransition();
   const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
   const [sessionXp, setSessionXp] = useState(0);
@@ -46,7 +43,16 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
   const [lastSwipeDirection, setLastSwipeDirection] = useState<"left" | "right">("right");
   const questionStartRef = useRef(Date.now());
   const isProcessingRef = useRef(false);
+  const animationDoneRef = useRef(false);
+  const networkDoneRef = useRef(false);
   const { playSound } = useGameSounds();
+  const { submit: submitAttempt } = useAttemptSubmit({
+    silent: true,
+    onSettled: () => {
+      networkDoneRef.current = true;
+      if (animationDoneRef.current) isProcessingRef.current = false;
+    },
+  });
 
   const completed = currentIndex >= session.questions.length;
   const currentQuestion = session.questions[currentIndex];
@@ -70,6 +76,8 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
     (answer: "true" | "false") => {
       if (!currentQuestion || completed || isProcessingRef.current) return;
       isProcessingRef.current = true;
+      animationDoneRef.current = false;
+      networkDoneRef.current = false;
 
       setLastSwipeDirection(answer === "true" ? "right" : "left");
 
@@ -115,35 +123,21 @@ export function SwipePlayer({ session, initialXp = 0, nextSession = null }: Swip
         setFeedback(null);
         setCurrentIndex((i) => i + 1);
         questionStartRef.current = Date.now();
-        isProcessingRef.current = false;
+        animationDoneRef.current = true;
+        if (networkDoneRef.current) isProcessingRef.current = false;
       }, 600);
 
       // Persist to server
-      startTransition(async () => {
-        const formData = new FormData();
-        formData.append("exerciseId", currentQuestion.id);
-        formData.append("answer", answer);
-        formData.append("sessionId", session.id);
-        formData.append("timeSpentMs", String(timeSpentMs));
-        formData.append("exerciseMode", "swipe");
-        formData.append("streak", String(streak));
-        try {
-          const result = await submitAttemptAction({ status: "idle" }, formData);
-          if (result.dailyStreakIncremented && result.newDailyStreak) {
-            const { isStreakMilestone } = await import("@/lib/daily-streak");
-            if (isStreakMilestone(result.newDailyStreak)) {
-              toast(`🔥 ${result.newDailyStreak} jours d'affilée !`, {
-                description: "Votre régularité paie, continuez comme ça !",
-                duration: 4000,
-              });
-            }
-          }
-        } catch {
-          toast.error("Votre réponse n'a pas pu être enregistrée.");
-        }
+      submitAttempt({
+        exerciseId: currentQuestion.id,
+        answer,
+        sessionId: session.id,
+        timeSpentMs,
+        exerciseMode: "swipe",
+        streak,
       });
     },
-    [currentQuestion, completed, consecutiveCorrect, playSound, session.id, startTransition],
+    [currentQuestion, completed, consecutiveCorrect, playSound, session.id, submitAttempt],
   );
 
   useEffect(() => {

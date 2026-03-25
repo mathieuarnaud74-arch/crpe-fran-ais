@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   description: "Votre espace de révision personnalisé pour le CRPE Français.",
 };
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 // ── Small presentational helpers ──────────────────────────
 

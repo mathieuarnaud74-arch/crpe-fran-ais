@@ -78,15 +78,17 @@ async function submitAttemptActionInner(
   const { exerciseId, answer: submittedValue, sessionId, timeSpentMs, exerciseMode, streak } = parsed.data;
 
   const supabase = await createSupabaseServerClient();
-  const user = (await supabase.auth.getUser()).data.user;
+  const { data: authData, error: authError } = await supabase.auth.getUser();
 
-  if (!user) {
+  if (authError || !authData.user) {
+    console.error("[submitAttempt] auth failed:", authError?.message ?? "no user");
     return {
       status: "error",
       message: "Vous devez être connecté pour répondre.",
     };
   }
 
+  const user = authData.user;
   const exercise = await getExerciseById(exerciseId);
 
   if (!exercise) {

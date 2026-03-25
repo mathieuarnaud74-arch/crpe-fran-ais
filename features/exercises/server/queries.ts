@@ -281,17 +281,26 @@ async function fetchLightweightExercises(filters: ExerciseFilters): Promise<Part
   return allRows;
 }
 
-function filtersToKey(filters: ExerciseFilters): string {
-  return `${filters.subdomain ?? ""}|${filters.type ?? ""}|${filters.subject ?? ""}`;
-}
-
-const fetchExercisesCachedByKey = cache(async (_key: string, filters: ExerciseFilters) => {
+const fetchExercisesCached = cache(async (
+  subdomain: string,
+  type: string,
+  subject: string,
+) => {
+  const filters: ExerciseFilters = {
+    ...(subdomain && { subdomain: subdomain as ExerciseSubdomain }),
+    ...(type && { type: type as ExerciseType }),
+    ...(subject && { subject }),
+  };
   const rows = await fetchAllExercises(filters);
   return buildSessionsFromExercises(rows.map(normalizeExerciseRecord));
 });
 
 export async function getExercises(filters: ExerciseFilters = {}) {
-  return fetchExercisesCachedByKey(filtersToKey(filters), filters);
+  return fetchExercisesCached(
+    filters.subdomain ?? "",
+    filters.type ?? "",
+    filters.subject ?? "",
+  );
 }
 
 /**
@@ -325,13 +334,26 @@ export async function getDashboardSessions(filters: ExerciseFilters = {}) {
  * Use this instead of getExercises() when you only need session metadata
  * (title, subdomain, questionCount, recommendedOrder) and not question content.
  */
-const fetchSessionListCached = cache(async (_key: string, filters: ExerciseFilters) => {
+const fetchSessionListCached = cache(async (
+  subdomain: string,
+  type: string,
+  subject: string,
+) => {
+  const filters: ExerciseFilters = {
+    ...(subdomain && { subdomain: subdomain as ExerciseSubdomain }),
+    ...(type && { type: type as ExerciseType }),
+    ...(subject && { subject }),
+  };
   const rows = await fetchLightweightExercises(filters);
   return buildSessionsFromExercises(patchLightweightRows(rows));
 });
 
 export async function getSessionList(filters: ExerciseFilters = {}) {
-  return fetchSessionListCached(filtersToKey(filters), filters);
+  return fetchSessionListCached(
+    filters.subdomain ?? "",
+    filters.type ?? "",
+    filters.subject ?? "",
+  );
 }
 
 export const getExerciseById = cache(async function getExerciseById(id: string) {

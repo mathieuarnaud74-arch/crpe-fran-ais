@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useMemo, useReducer, useRef, useTransition } from "react";
+import { useEffect, useMemo, useReducer, useRef } from "react";
 import { toast } from "sonner";
 
 import { useGameSounds } from "@/components/hooks/use-game-sounds";
 import { Confetti } from "@/components/ui/confetti";
-import { submitAttemptAction } from "@/features/exercises/server/actions";
 import {
   buildExpectedAnswerLabel,
   evaluateExerciseAnswer,
 } from "@/features/exercises/shared/evaluation";
+import { useAttemptSubmit } from "@/features/exercises/hooks/use-attempt-submit";
 import { SUBDOMAIN_LABELS } from "@/lib/constants";
 import { MASTERY_THRESHOLD } from "@/lib/dashboard";
 import { calculateXpEarned } from "@/lib/xp";
@@ -41,14 +41,23 @@ export function ExercisePlayer({
   onNewSession,
 }: ExercisePlayerProps) {
   const [state, dispatch] = useReducer(exerciseReducer, initialXp, createInitialState);
-  const [, startTransition] = useTransition();
   const consecutiveCorrectRef = useRef(0);
   const prevResultsCount = useRef(0);
   const lastSubmitTime = useRef(0);
   const timerFiredRef = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const feedbackRef = useRef<HTMLDivElement>(null);
+  const pendingXpRef = useRef(0);
   const { playSound } = useGameSounds();
+  const { submit: submitAttempt } = useAttemptSubmit({
+    onLevelUp: (newLevel) => {
+      playSound("levelUp");
+      toast.success(`🎉 Niveau ${newLevel} atteint !`, { duration: 3000 });
+    },
+    onError: () => {
+      dispatch({ type: "ROLLBACK_XP", xp: pendingXpRef.current });
+    },
+  });
 
   const {
     currentIndex, draftAnswer, results, showFullExplanation, showSessionDetails,
@@ -154,12 +163,8 @@ export function ExercisePlayer({
 
     const evaluation = evaluateExerciseAnswer(currentQuestion, draftAnswer);
     const timeSpentMs = Date.now() - questionStartTime;
-    const xp = calculateXpEarned(
-      evaluation.isCorrect,
-      evaluation.isCorrect ? consecutiveCorrectRef.current : 0,
-      timeSpentMs,
-      mode,
-    );
+    const streak = evaluation.isCorrect ? consecutiveCorrectRef.current : 0;
+    const xp = calculateXpEarned(evaluation.isCorrect, streak, timeSpentMs, mode);
 
     dispatch({
       type: "SUBMIT_ANSWER",
@@ -175,40 +180,14 @@ export function ExercisePlayer({
     });
 
     scrollToFeedback();
-
-    startTransition(async () => {
-      const formData = new FormData();
-      formData.append("exerciseId", currentQuestion.id);
-      formData.append("answer", draftAnswer);
-      formData.append("sessionId", session.id);
-      formData.append("timeSpentMs", String(timeSpentMs));
-      formData.append("exerciseMode", mode);
-      formData.append("streak", String(evaluation.isCorrect ? consecutiveCorrectRef.current : 0));
-      try {
-        const result = await submitAttemptAction({ status: "idle" }, formData);
-        if (result.status === "error") {
-          dispatch({ type: "ROLLBACK_XP", xp });
-          toast.error(result.message ?? "Votre réponse n'a pas pu être enregistrée.");
-          return;
-        }
-        if (result.previousLevel && result.newLevel && result.newLevel > result.previousLevel) {
-          playSound("levelUp");
-          toast.success(`🎉 Niveau ${result.newLevel} atteint !`, { duration: 3000 });
-        }
-        if (result.dailyStreakIncremented && result.newDailyStreak) {
-          const { isStreakMilestone } = await import("@/lib/daily-streak");
-          if (isStreakMilestone(result.newDailyStreak)) {
-            toast(`🔥 ${result.newDailyStreak} jours d'affilée !`, {
-              description: "Votre régularité paie, continuez comme ça !",
-              duration: 4000,
-            });
-          }
-        }
-      } catch (err) {
-        console.error("[ExercisePlayer] submitAttemptAction failed:", err);
-        dispatch({ type: "ROLLBACK_XP", xp });
-        toast.error("Votre réponse n'a pas pu être enregistrée.");
-      }
+    pendingXpRef.current = xp;
+    submitAttempt({
+      exerciseId: currentQuestion.id,
+      answer: draftAnswer,
+      sessionId: session.id,
+      timeSpentMs,
+      exerciseMode: mode,
+      streak,
     });
   }
 
