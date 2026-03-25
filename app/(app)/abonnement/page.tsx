@@ -50,8 +50,10 @@ const paidPlans = [
 
 export default async function SubscriptionPage() {
   const user = await requireUser();
-  const premium = await isPremiumUser(user.id);
-  const subscription = await getUserSubscription(user.id);
+  const [premium, subscription] = await Promise.all([
+    isPremiumUser(user.id),
+    getUserSubscription(user.id),
+  ]);
   const stripeReady = isStripeConfigured();
 
   const planLabel = getPlanLabel(subscription?.stripe_price_id);

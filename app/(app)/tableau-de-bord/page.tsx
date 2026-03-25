@@ -29,7 +29,7 @@ import { getUserGamification } from "@/features/gamification/server/queries";
 import { OnboardingTourWrapper } from "@/features/onboarding/components/onboarding-tour-wrapper";
 import { SrsReviewCard } from "@/features/srs/components/srs-review-card";
 import { getDueExercises, getDueCount } from "@/features/srs/server/queries";
-import { MASTERY_THRESHOLD as MASTERY_THRESHOLD_IMPORT } from "@/lib/dashboard";
+import { MASTERY_THRESHOLD } from "@/lib/dashboard";
 import { env } from "@/lib/env";
 import { cn, formatDate } from "@/lib/utils";
 import { DashboardData, DashboardSessionProgress } from "@/types/domain";
@@ -883,7 +883,7 @@ export default async function DashboardPage() {
               <div className="mt-4 flex items-center gap-3 rounded-xl border border-accent/15 bg-accent/5 px-4 py-3 pl-4">
                 <span className="text-lg" aria-hidden="true">&#x1F3AF;</span>
                 <p className="text-sm text-muted">
-                  Visez {MASTERY_THRESHOLD_IMPORT}&nbsp;% de bonnes r&eacute;ponses sur une s&eacute;rie pour
+                  Visez {MASTERY_THRESHOLD}&nbsp;% de bonnes r&eacute;ponses sur une s&eacute;rie pour
                   d&eacute;bloquer vos premiers acquis. Vous en &ecirc;tes capable !
                 </p>
               </div>

@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { cn } from "@/lib/utils";
+
 export type MoccaVariant = "happy" | "neutral" | "grumpy";
 type MoccaSize = "sm" | "md" | "lg" | "xl" | "portrait";
 
@@ -28,7 +30,7 @@ export function Mocca({
 }) {
   const { className: sizeClass, sizes } = SIZE[size];
   return (
-    <div aria-hidden="true" className={`relative shrink-0 overflow-hidden ${sizeClass} ${className}`}>
+    <div aria-hidden="true" className={cn("relative shrink-0 overflow-hidden", sizeClass, className)}>
       <Image
         src={SRC[variant]}
         alt=""

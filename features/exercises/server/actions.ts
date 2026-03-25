@@ -97,8 +97,8 @@ async function submitAttemptActionInner(
     const userGamification = await gamification.getUserGamification(user.id);
     currentDailyStreak = userGamification.daily_streak;
     previousLevel = userGamification.level;
-  } catch {
-    // Gamification table may not exist yet
+  } catch (e) {
+    console.warn("[submitAttempt] gamification fetch failed:", e);
   }
 
   // Calculate XP with daily streak multiplier
@@ -143,16 +143,16 @@ async function submitAttemptActionInner(
     dailyStreakIncremented = result.dailyStreakInfo.justIncremented;
     newDailyStreak = result.dailyStreakInfo.newDailyStreak;
     streakFreezeUsed = result.dailyStreakInfo.freezeUsed;
-  } catch {
-    // Gamification table may not exist yet, fail gracefully
+  } catch (e) {
+    console.warn("[submitAttempt] XP update failed:", e);
   }
 
   // Update SRS card for spaced repetition scheduling
   try {
     const { recordSrsReview } = await import("@/features/srs/server/queries");
     await recordSrsReview(user.id, exerciseId, evaluation.isCorrect, timeSpentMs);
-  } catch {
-    // SRS table may not exist yet, fail gracefully
+  } catch (e) {
+    console.warn("[submitAttempt] SRS update failed:", e);
   }
 
   // Only revalidate for real sessions — skip for random/virtual sessions

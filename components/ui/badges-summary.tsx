@@ -3,11 +3,11 @@
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
-import { AchievementBadges } from "@/components/ui/achievement-badges";
+import { AchievementBadges, ALL_BADGES } from "@/components/ui/achievement-badges";
 import { cn } from "@/lib/utils";
 import { EarnedBadge } from "@/types/domain";
 
-const TOTAL_BADGES = 116;
+const TOTAL_BADGES = ALL_BADGES.length;
 
 type BadgesSummaryProps = {
   earnedBadges: EarnedBadge[];

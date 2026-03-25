@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import { buildDashboardData } from "@/lib/dashboard";
 import { syncBadges } from "@/features/badges/server/queries";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -15,7 +17,7 @@ export type DashboardDataWithNewBadges = ReturnType<typeof buildDashboardData> &
   newlyUnlockedBadges: EarnedBadge[];
 };
 
-export async function getDashboardData(
+export const getDashboardData = cache(async function getDashboardData(
   userId: string,
   isPremium: boolean,
   subject: Subject = "Francais",
@@ -33,12 +35,7 @@ export async function getDashboardData(
 
   const dashboardData = buildDashboardData(
     sessions,
-    attempts.map((attempt) => ({
-      id: attempt.id,
-      exercise_id: attempt.exercise_id,
-      is_correct: attempt.is_correct,
-      answered_at: attempt.answered_at,
-    })),
+    attempts,
     isPremium,
     subject,
   );
@@ -47,12 +44,12 @@ export async function getDashboardData(
   let newlyUnlockedBadges: EarnedBadge[] = [];
   try {
     newlyUnlockedBadges = await syncBadges(userId, dashboardData.earnedBadges);
-  } catch {
-    // user_badges table may not exist yet, fail gracefully
+  } catch (e) {
+    console.warn("[getDashboardData] badge sync failed:", e);
   }
 
   return {
     ...dashboardData,
     newlyUnlockedBadges,
   };
-}
+});

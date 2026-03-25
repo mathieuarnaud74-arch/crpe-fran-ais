@@ -96,11 +96,13 @@ export function ActivityHeatmap({ dailyActivity, weeks = 13 }: ActivityHeatmapPr
     const totalWeeks = Math.ceil(actualTotalDays / 7);
     const gridData: Array<Array<(typeof cells)[0] | null>> = [];
 
+    const cellMap = new Map<string, (typeof cells)[0]>();
+    for (const c of cells) cellMap.set(`${c.weekIndex}-${c.dayOfWeek}`, c);
+
     for (let w = 0; w < totalWeeks; w++) {
       const week: Array<(typeof cells)[0] | null> = [];
       for (let d = 0; d < 7; d++) {
-        const cell = cells.find((c) => c.weekIndex === w && c.dayOfWeek === d);
-        week.push(cell ?? null);
+        week.push(cellMap.get(`${w}-${d}`) ?? null);
       }
       gridData.push(week);
     }

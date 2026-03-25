@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { DiagnosticResult, DiagnosticSubdomainResult, DiagnosticSubject } from "@/features/diagnostic/types";
 
@@ -77,7 +79,7 @@ function rowToResult(row: {
   };
 }
 
-export async function getDiagnosticResult(
+export const getDiagnosticResult = cache(async function getDiagnosticResult(
   userId: string,
   subject: DiagnosticSubject = "francais",
 ): Promise<DiagnosticResult | null> {
@@ -93,7 +95,7 @@ export async function getDiagnosticResult(
   if (!data) return null;
 
   return rowToResult(data);
-}
+});
 
 export async function getAllDiagnosticResults(
   userId: string,

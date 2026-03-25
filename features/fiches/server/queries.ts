@@ -1,3 +1,4 @@
+import { getStartOfDayParis } from "@/lib/daily-streak";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function getCompletedFicheSlugs(userId: string): Promise<Set<string>> {
@@ -13,16 +14,7 @@ export async function getCompletedFicheSlugs(userId: string): Promise<Set<string
 
 export async function getFicheReadsCountToday(userId: string): Promise<number> {
   const supabase = await createSupabaseServerClient();
-
-  const parisDate = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Paris" });
-  const noonUtc = new Date(`${parisDate}T12:00:00Z`);
-  const parisHour =
-    parseInt(
-      noonUtc.toLocaleString("en-US", { timeZone: "Europe/Paris", hour: "numeric", hour12: false }),
-      10,
-    ) % 24;
-  const startOfDay = new Date(`${parisDate}T00:00:00Z`);
-  startOfDay.setUTCHours(-(parisHour - 12));
+  const startOfDay = getStartOfDayParis();
 
   const { count } = await supabase
     .from("fiche_completions")

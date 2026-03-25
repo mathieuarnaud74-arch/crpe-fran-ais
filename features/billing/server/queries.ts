@@ -15,7 +15,7 @@ export const getUserSubscription = cache(async function getUserSubscription(user
   return data;
 });
 
-export async function isPremiumUser(userId: string) {
+export const isPremiumUser = cache(async function isPremiumUser(userId: string) {
   const subscription = await getUserSubscription(userId);
   if (!subscription) return false;
 
@@ -35,4 +35,4 @@ export async function isPremiumUser(userId: string) {
   }
 
   return false;
-}
+});

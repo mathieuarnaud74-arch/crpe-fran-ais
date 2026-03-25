@@ -9,7 +9,7 @@ type BadgeDefinition = {
   category: EarnedBadge["category"];
 };
 
-const ALL_BADGES: BadgeDefinition[] = [
+export const ALL_BADGES: BadgeDefinition[] = [
   // ────────────────────────────────────────
   // MILESTONE — Jalons quantitatifs (30)
   // ────────────────────────────────────────
@@ -80,8 +80,6 @@ const ALL_BADGES: BadgeDefinition[] = [
   { id: "didactique-expert", label: "Pédagogue", description: "Domaine Didactique maîtrisé", icon: "\uD83E\uDDD1\u200D\uD83C\uDFEB", category: "mastery" },
   { id: "half-mastery", label: "Mi-chemin", description: "50 % des séries maîtrisées", icon: "\uD83D\uDEE4\uFE0F", category: "mastery" },
   { id: "full-mastery", label: "Apothéose", description: "Toutes les séries maîtrisées", icon: "\uD83C\uDF1F", category: "mastery" },
-  { id: "facile-mastery", label: "Base solide", description: "Maîtriser une série Facile", icon: "\uD83E\uDDF1", category: "mastery" },
-  { id: "intermediaire-mastery", label: "Niveau supérieur", description: "Maîtriser une série Intermédiaire", icon: "\uD83D\uDCF6", category: "mastery" },
 
   // ────────────────────────────────────────
   // STREAK — Régularité et records (27)
@@ -133,12 +131,10 @@ const ALL_BADGES: BadgeDefinition[] = [
   { id: "5-long-sessions", label: "Lecteur assidu", description: "5 jours avec 15+ réponses", icon: "\uD83D\uDCD5", category: "engagement" },
   { id: "10-series-started", label: "Dix entamées", description: "Commencer 10 séries différentes", icon: "\uD83D\uDE80", category: "engagement" },
   { id: "20-series-started", label: "Vingt entamées", description: "Commencer 20 séries différentes", icon: "\uD83D\uDEF8", category: "engagement" },
-  { id: "all-levels-tried", label: "Tous niveaux", description: "Essayer Facile, Intermédiaire et Avancé", icon: "\uD83D\uDCCA", category: "engagement" },
   { id: "half-explored", label: "Demi-catalogue", description: "Commencer 50 % des séries", icon: "\uD83C\uDF10", category: "engagement" },
   { id: "75-explored", label: "Trois quarts", description: "Commencer 75 % des séries", icon: "\uD83D\uDDFA\uFE0F", category: "engagement" },
   { id: "full-explored", label: "Catalogue complet", description: "Commencer toutes les séries", icon: "\uD83C\uDFC1", category: "engagement" },
   { id: "10-reviews", label: "Révisionniste", description: "Refaire 10 séries terminées", icon: "\uD83D\uDD01", category: "engagement" },
-  { id: "avance-mastery", label: "Haute voltige", description: "Maîtriser une série Avancé", icon: "\uD83E\uDD85", category: "engagement" },
   { id: "diverse-types", label: "Caméléon", description: "Répondre à 4 types d'exercices", icon: "\uD83C\uDFAD", category: "engagement" },
   { id: "improvement", label: "Progression visible", description: "Améliorer son score sur une série refaite", icon: "\uD83D\uDCC8", category: "engagement" },
 

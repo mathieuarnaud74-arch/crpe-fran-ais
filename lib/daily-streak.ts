@@ -4,6 +4,20 @@ export function getParisToday(): string {
   return new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Paris" });
 }
 
+/** Returns the UTC Date corresponding to midnight in Europe/Paris today. */
+export function getStartOfDayParis(): Date {
+  const parisDate = getParisToday();
+  const noonUtc = new Date(`${parisDate}T12:00:00Z`);
+  const parisHour =
+    parseInt(
+      noonUtc.toLocaleString("en-US", { timeZone: "Europe/Paris", hour: "numeric", hour12: false }),
+      10,
+    ) % 24;
+  const startOfDay = new Date(`${parisDate}T00:00:00Z`);
+  startOfDay.setUTCHours(-(parisHour - 12));
+  return startOfDay;
+}
+
 function addDays(dateStr: string, days: number): string {
   const d = new Date(dateStr + "T12:00:00Z");
   d.setUTCDate(d.getUTCDate() + days);

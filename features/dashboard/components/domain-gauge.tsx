@@ -4,10 +4,11 @@ import dynamic from "next/dynamic";
 
 import { cn } from "@/lib/utils";
 
+import "react-circular-progressbar/dist/styles.css";
+
 const DomainGaugeInner = dynamic(
   () =>
     import("react-circular-progressbar").then((mod) => {
-      require("react-circular-progressbar/dist/styles.css");
       const Comp = (props: {
         value: number;
         text: string;
