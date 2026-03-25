@@ -1,7 +1,8 @@
 # Changelog
 
-## [2026-03-25] — Fix : crash exercices (cookieStore.set en Server Component)
+## [2026-03-25] — Fix : crash exercices sur Vercel (env vars + cookieStore)
 
+- `lib/env.ts` — fix crash Vercel : `process.env[key]` dynamique ne fonctionne pas pour `NEXT_PUBLIC_*` (inlinées au build) ; check via l'objet `env` résolu
 - `lib/supabase/server.ts` — ajout try-catch autour de `cookieStore.set()` dans `setAll` : Next.js 15 throw en Server Component (lecture seule), crash silencieux quand Supabase rafraîchit le token
 - `features/exercises/server/queries.ts` — ajout check `error` dans `getRandomExercises` (seule query sans error handling)
 - `supabase/migrations/20260826_update_premium_price_499.sql` — corrigé nom de table (`homepage_sections` → `page_sections`) et colonne (`props` → `props_json`)

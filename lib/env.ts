@@ -28,17 +28,18 @@ export const env = {
   freeDailyFicheLimit: (() => { const n = Number(process.env.FREE_DAILY_FICHE_LIMIT); return isNaN(n) ? 5 : n; })(),
 };
 
-// Fail fast in production if critical env vars are missing
+// Fail fast in production if critical env vars are missing.
+// Use the resolved `env` object (not process.env[key]) because Vercel
+// inlines NEXT_PUBLIC_* at build time — they don't exist in runtime process.env.
 if (process.env.NODE_ENV === "production") {
-  const required = [
-    "NEXT_PUBLIC_SUPABASE_URL",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-    "SUPABASE_SERVICE_ROLE_KEY",
-  ] as const;
-  for (const key of required) {
-    if (!process.env[key]) {
-      throw new Error(`Missing required environment variable: ${key}`);
-    }
+  if (env.supabaseUrl === fallbackSupabaseUrl) {
+    throw new Error("Missing required environment variable: NEXT_PUBLIC_SUPABASE_URL");
+  }
+  if (env.supabaseAnonKey === fallbackSupabaseAnonKey) {
+    throw new Error("Missing required environment variable: NEXT_PUBLIC_SUPABASE_ANON_KEY");
+  }
+  if (env.supabaseServiceRoleKey === fallbackServiceRoleKey) {
+    throw new Error("Missing required environment variable: SUPABASE_SERVICE_ROLE_KEY");
   }
 }
 
