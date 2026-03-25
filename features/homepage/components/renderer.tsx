@@ -116,7 +116,7 @@ function HeroSection({
         alt=""
         fill
         className="pointer-events-none select-none object-cover"
-        style={{ objectPosition: "20% center" }}
+        style={{ objectPosition: "-10% center" }}
         priority
       />
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-8 sm:px-6 sm:pb-16 lg:grid-cols-[1fr_auto] lg:pb-20 lg:pt-16">
