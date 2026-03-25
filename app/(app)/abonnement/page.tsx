@@ -42,7 +42,7 @@ const paidPlans = [
   {
     key: "monthly" as const,
     label: "Mensuel",
-    price: "6,99 €/mois",
+    price: "4,99 €/mois",
     detail: "Récurrent · résiliable",
     getPriceId: () => env.stripePricePremiumMonthlyId,
   },

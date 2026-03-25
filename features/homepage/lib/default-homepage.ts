@@ -174,7 +174,7 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
       ],
       pricingTiers: [
         { label: "Gratuit", price: "0 €", highlight: false },
-        { label: "Premium", price: "6,99 €/mois", highlight: true },
+        { label: "Premium", price: "4,99 €/mois", highlight: true },
       ],
       primaryCtaLabel: "Créer mon compte gratuit",
       primaryCtaHref: "/inscription",

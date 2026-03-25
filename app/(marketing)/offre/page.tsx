@@ -50,7 +50,7 @@ const plans = [
     key: "monthly" as const,
     label: "Mensuel",
     duration: "Par mois",
-    price: "6,99 €",
+    price: "4,99 €",
     priceDetail: "par mois · résiliable à tout moment",
     description: "Pour une préparation régulière et structurée sur la durée.",
     features: [
@@ -126,7 +126,7 @@ export default async function OfferPage() {
                 Recommandé
               </span>
             </div>
-            <p className="mt-3 font-serif text-4xl font-semibold text-paper">6,99 €</p>
+            <p className="mt-3 font-serif text-4xl font-semibold text-paper">4,99 €</p>
             <p className="mt-1 text-xs text-paper/60">par mois · résiliable à tout moment</p>
             <p className="mt-4 text-sm leading-7 text-paper/76">
               Pour une préparation régulière et structurée sur la durée.
