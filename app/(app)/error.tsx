@@ -1,14 +1,21 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { Mocca } from "@/components/mascot/mocca";
 import { Button, ButtonLink } from "@/components/ui/button";
 
 export default function AppError({
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  useEffect(() => {
+    console.error("[AppError]", error);
+  }, [error]);
+
   return (
     <main className="flex min-h-[60vh] flex-col items-center justify-center px-6 py-20 text-center">
       <Mocca variant="grumpy" size="lg" className="mb-6" />
@@ -20,6 +27,11 @@ export default function AppError({
       <p className="mt-3 max-w-md text-muted">
         Une erreur inattendue est survenue. Vous pouvez réessayer ou retourner au
         tableau de bord.
+      </p>
+
+      <p className="mt-4 max-w-lg break-all rounded-xl bg-secondary px-4 py-3 text-left font-mono text-xs text-muted">
+        {error.message || "Erreur inconnue"}
+        {error.digest ? ` (digest: ${error.digest})` : ""}
       </p>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
