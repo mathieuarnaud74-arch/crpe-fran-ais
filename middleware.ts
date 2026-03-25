@@ -12,7 +12,6 @@ const PROTECTED_PREFIXES = [
   "/exercice-aleatoire",
   "/revision",
   "/classement",
-  "/diagnostic",
   "/fiches",
   "/fiches-maths",
   "/historique",

@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-25] — Fix : diagnostic public inaccessible sans connexion
+
+- `middleware.ts` — retiré `/diagnostic` de la liste PROTECTED_PREFIXES ; la route publique `(marketing)/diagnostic` gère déjà les deux cas (guest via localStorage, connecté via API)
+
 ## [2026-03-25] — Fix : crash exercices sur Vercel (env vars + cookieStore)
 
 - `lib/env.ts` — fix crash Vercel : `process.env[key]` dynamique ne fonctionne pas pour `NEXT_PUBLIC_*` (inlinées au build) ; check via l'objet `env` résolu
