@@ -159,7 +159,7 @@ function HeroSection({
           </FadeIn>
         </div>
 
-        <FadeIn delay={0.2} className="relative z-10">
+        <FadeIn delay={0.35} x={60} y={0} duration={0.7} className="relative z-10">
           <PhoneCarousel />
         </FadeIn>
       </div>

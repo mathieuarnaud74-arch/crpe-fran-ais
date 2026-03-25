@@ -9,6 +9,7 @@ type FadeInProps = {
   className?: string;
   delay?: number;
   duration?: number;
+  x?: number;
   y?: number;
   once?: boolean;
 };
@@ -18,6 +19,7 @@ export function FadeIn({
   className,
   delay = 0,
   duration = 0.55,
+  x = 0,
   y = 18,
   once = true,
 }: FadeInProps) {
@@ -56,7 +58,7 @@ export function FadeIn({
       className={cn(className)}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : `translateY(${y}px)`,
+        transform: visible ? "translate(0,0)" : `translate(${x}px,${y}px)`,
         transition: `opacity ${duration}s cubic-bezier(0.22,1,0.36,1) ${delay}s, transform ${duration}s cubic-bezier(0.22,1,0.36,1) ${delay}s`,
       }}
     >
