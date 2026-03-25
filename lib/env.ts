@@ -28,9 +28,11 @@ export const env = {
   freeDailyFicheLimit: (() => { const n = Number(process.env.FREE_DAILY_FICHE_LIMIT); return isNaN(n) ? 5 : n; })(),
 };
 
-// Fail fast in production if critical env vars are missing.
+// Warn in production if critical env vars are missing.
 // Use the resolved `env` object (not process.env[key]) because Vercel
 // inlines NEXT_PUBLIC_* at build time — they don't exist in runtime process.env.
+// Only the Supabase client vars are fatal (needed for every page);
+// the service role key is only needed for admin operations.
 if (process.env.NODE_ENV === "production") {
   if (env.supabaseUrl === fallbackSupabaseUrl) {
     throw new Error("Missing required environment variable: NEXT_PUBLIC_SUPABASE_URL");
@@ -39,7 +41,7 @@ if (process.env.NODE_ENV === "production") {
     throw new Error("Missing required environment variable: NEXT_PUBLIC_SUPABASE_ANON_KEY");
   }
   if (env.supabaseServiceRoleKey === fallbackServiceRoleKey) {
-    throw new Error("Missing required environment variable: SUPABASE_SERVICE_ROLE_KEY");
+    console.warn("[env] SUPABASE_SERVICE_ROLE_KEY is not set — admin operations will fail.");
   }
 }
 
