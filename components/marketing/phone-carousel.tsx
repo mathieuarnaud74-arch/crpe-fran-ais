@@ -6,9 +6,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const PHONES = [
-  { src: "/phone-1.png", alt: "Tableau de bord — suivi de progression", width: 381, height: 720 },
-  { src: "/phone-2.png", alt: "Exercice interactif — grammaire", width: 461, height: 1024 },
-  { src: "/phone-3.png", alt: "Liste des séries — Nombres et Calcul", width: 461, height: 1024 },
+  { src: "/phone-1.png", alt: "Liste des séries — Nombres et Calcul", width: 952, height: 1769 },
+  { src: "/phone-2.png", alt: "Exercice interactif — grammaire", width: 952, height: 1749 },
+  { src: "/phone-3.png", alt: "Exercice interactif — grammaire", width: 952, height: 1765 },
 ];
 
 const AUTO_PLAY_MS = 4000;
