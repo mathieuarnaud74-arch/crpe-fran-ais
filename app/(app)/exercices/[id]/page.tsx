@@ -19,7 +19,6 @@ import { canSubmitAttempt } from "@/lib/freemium";
 import { getSubjectFromSubdomain } from "@/lib/constants";
 import { ExerciseSubdomain } from "@/types/domain";
 
-const VALID_MODES = new Set(["standard", "timed", "sprint", "swipe"]);
 
 const CRPE_CONTEXT: Partial<Record<ExerciseSubdomain, string>> = {
   didactique_francais:
@@ -48,22 +47,17 @@ export async function generateMetadata({
 
 export default async function ExerciseDetailPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { id } = await params;
-  const resolvedSearchParams = await searchParams;
-  const modeParam = typeof resolvedSearchParams.mode === "string" ? resolvedSearchParams.mode : null;
-  const initialMode = modeParam && VALID_MODES.has(modeParam) ? modeParam as "standard" | "timed" | "sprint" | "swipe" : undefined;
   const user = await requireUser();
 
   // Parallelize: all 4 only need user.id or id, no interdependence
   const [premium, session, gamification] = await Promise.all([
     isPremiumUser(user.id),
     getExerciseSessionById(id),
-    getUserGamification(user.id).catch(() => ({ xp: 0, personal_best_sprint_time: null as number | null })),
+    getUserGamification(user.id).catch(() => ({ xp: 0 })),
   ]);
 
   if (!session) {
@@ -138,8 +132,6 @@ export default async function ExerciseDetailPage({
         disabledReason={disabledReason}
         nextSession={nextSession ? { id: nextSession.id, title: nextSession.title } : null}
         initialXp={gamification.xp}
-        personalBest={gamification.personal_best_sprint_time}
-        initialMode={initialMode}
       />
     </div>
   );

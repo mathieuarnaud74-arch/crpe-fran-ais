@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-03-25] — Suppression du choix de mode sur les séries d'exercices
+
+- `features/exercises/components/exercise-session-wrapper.tsx` — suppression du `ModeSelector` (sprint, chrono, swipe). Les séries passent directement en mode standard. Suppression des imports dynamiques `SprintPlayer`/`SwipePlayer` et de la logique `filterSessionForMode`.
+- `app/(app)/exercices/[id]/page.tsx` — suppression des props `initialMode`, `personalBest`, `searchParams` (mode URL). Nettoyage du code mort (`VALID_MODES`).
+- `app/(app)/revision/page.tsx` — suppression de la prop `personalBest`.
+- Le mode aléatoire (`exercice-aleatoire`) conserve son sélecteur (`RandomModePicker`).
+
 ## [2026-03-25] — Compléments perf : exercices/[id] + cache()
 
 - `app/(app)/exercices/[id]/page.tsx` — parallélisation de `isPremiumUser` + `getExerciseSessionById` + `getUserGamification` via `Promise.all` (3 requêtes séquentielles → parallèles)

@@ -151,7 +151,6 @@ export default async function RevisionPage() {
       <ExerciseSessionWrapper
         session={session}
         initialXp={gamification.xp}
-        personalBest={gamification.personal_best_sprint_time}
       />
     </div>
   );
