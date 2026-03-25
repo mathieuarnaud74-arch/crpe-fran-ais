@@ -58,7 +58,7 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
             width={1024}
             height={305}
             sizes="180px"
-            className="h-10 w-auto object-contain brightness-0 sm:h-12"
+            className="h-10 w-auto object-contain sm:h-12"
             priority
           />
         </Link>
