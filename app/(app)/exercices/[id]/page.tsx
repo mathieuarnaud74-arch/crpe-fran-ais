@@ -58,17 +58,17 @@ export default async function ExerciseDetailPage({
   const modeParam = typeof resolvedSearchParams.mode === "string" ? resolvedSearchParams.mode : null;
   const initialMode = modeParam && VALID_MODES.has(modeParam) ? modeParam as "standard" | "timed" | "sprint" | "swipe" : undefined;
   const user = await requireUser();
-  const premium = await isPremiumUser(user.id);
-  const session = await getExerciseSessionById(id);
+
+  // Parallelize: all 4 only need user.id or id, no interdependence
+  const [premium, session, gamification] = await Promise.all([
+    isPremiumUser(user.id),
+    getExerciseSessionById(id),
+    getUserGamification(user.id).catch(() => ({ xp: 0, personal_best_sprint_time: null as number | null })),
+  ]);
 
   if (!session) {
     notFound();
   }
-
-  let gamification = { xp: 0, personal_best_sprint_time: null as number | null };
-  try {
-    gamification = await getUserGamification(user.id);
-  } catch {}
 
   const [attemptsToday, allSessions] = await Promise.all([
     getAttemptsCountToday(user.id),

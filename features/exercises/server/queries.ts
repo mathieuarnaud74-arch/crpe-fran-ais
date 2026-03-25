@@ -11,6 +11,7 @@ import {
   ExerciseType,
   RevisionSession,
 } from "@/types/domain";
+import { getStartOfDayParis } from "@/lib/daily-streak";
 import { normalizeExpectedAnswer, normalizeChoices } from "@/features/exercises/shared/normalize";
 
 type ExerciseFilters = {
@@ -298,7 +299,7 @@ export async function getDashboardSessions(filters: ExerciseFilters = {}) {
   return fetchDashboardSessionsCached(filters.subject ?? DEFAULT_SUBJECT);
 }
 
-export async function getExerciseById(id: string) {
+export const getExerciseById = cache(async function getExerciseById(id: string) {
   const supabase = await createSupabaseServerClient();
   const { data } = await supabase
     .from("exercises")
@@ -308,9 +309,9 @@ export async function getExerciseById(id: string) {
     .maybeSingle();
 
   return data ? normalizeExerciseRecord(data as ExerciseRecord) : null;
-}
+});
 
-export async function getExerciseSessionById(id: string) {
+export const getExerciseSessionById = cache(async function getExerciseSessionById(id: string) {
   // Extract topicKey from session ID (format: "session-{topicKey}")
   const match = id.match(/^session-(.+)$/);
   const topicKey = match ? match[1] : id;
@@ -330,7 +331,7 @@ export async function getExerciseSessionById(id: string) {
   const exercises = (data as ExerciseRecord[]).map(normalizeExerciseRecord);
   const sessions = buildSessionsFromExercises(exercises);
   return sessions[0] ?? null;
-}
+});
 
 export async function getAttemptsForHistory(userId: string, limit?: number) {
   const supabase = await createSupabaseServerClient();
@@ -378,15 +379,7 @@ export async function getRandomExercises(count = 10, subject?: string) {
 
 export async function getAttemptsCountToday(userId: string) {
   const supabase = await createSupabaseServerClient();
-  const parisDate = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Paris" });
-  const noonUtc = new Date(`${parisDate}T12:00:00Z`);
-  const parisHour =
-    parseInt(
-      noonUtc.toLocaleString("en-US", { timeZone: "Europe/Paris", hour: "numeric", hour12: false }),
-      10,
-    ) % 24;
-  const startOfDay = new Date(`${parisDate}T00:00:00Z`);
-  startOfDay.setUTCHours(-(parisHour - 12));
+  const startOfDay = getStartOfDayParis();
 
   const { count } = await supabase
     .from("attempts")

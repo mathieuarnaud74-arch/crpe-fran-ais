@@ -1,5 +1,40 @@
 # Changelog
 
+## [2026-03-25] — Compléments perf : exercices/[id] + cache()
+
+- `app/(app)/exercices/[id]/page.tsx` — parallélisation de `isPremiumUser` + `getExerciseSessionById` + `getUserGamification` via `Promise.all` (3 requêtes séquentielles → parallèles)
+- `features/exercises/server/queries.ts` — wrapping de `getExerciseSessionById` avec `cache()` (déduplique entre `generateMetadata` et le composant page dans le même render)
+
+## [2026-03-25] — Nettoyage dette technique
+
+- `lib/daily-streak.ts` — extraction `getStartOfDayParis()` pour éliminer la duplication timezone dans 3 fichiers
+- `features/exercises/server/queries.ts` — remplacement calcul timezone dupliqué par `getStartOfDayParis()`
+- `features/fiches/server/queries.ts` — idem
+- `components/mascot/mocca.tsx` — remplacement template string par `cn()` (convention projet)
+- `components/ui/achievement-badges.tsx` — export `ALL_BADGES` pour usage externe
+- `components/ui/badges-summary.tsx` — `TOTAL_BADGES` calculé depuis `ALL_BADGES.length` au lieu de hardcodé à 116
+- `components/ui/activity-heatmap.tsx` — remplacement lookup O(n²) `.find()` en boucle par `Map` O(1)
+- `features/dashboard/server/queries.ts` — suppression `.map()` inutile (données déjà au bon format) + ajout `console.warn` sur catch silencieux
+- `features/exercises/server/actions.ts` — ajout `console.warn` sur 3 catches silencieux pour faciliter le debug
+- `app/(app)/tableau-de-bord/page.tsx` — suppression alias d'import inutile `MASTERY_THRESHOLD_IMPORT` → `MASTERY_THRESHOLD`
+
+## [2026-03-25] — Audit perf global : cache, Promise.all, loading states, bundle
+
+- `app/(app)/abonnement/page.tsx` — `isPremiumUser` + `getUserSubscription` lancés en `Promise.all` au lieu de séquentiellement
+- `features/dashboard/server/queries.ts` — `getDashboardData` wrappée avec `React.cache()` pour dédupliquer les appels dans un même render
+- `features/diagnostic/server/queries.ts` — `getDiagnosticResult` wrappée avec `React.cache()`
+- `features/exercises/server/queries.ts` — `getExerciseById` wrappée avec `React.cache()`
+- `features/billing/server/queries.ts` — `isPremiumUser` wrappée avec `React.cache()`
+- `features/dashboard/components/domain-gauge.tsx` — `require()` bloquant remplacé par un import CSS top-level
+- `next.config.ts` — ajout `poweredByHeader: false` + `optimizePackageImports` (lucide-react, Radix UI)
+- `app/(app)/classement/loading.tsx` — nouveau fichier loading skeleton
+- `app/(app)/fiches/loading.tsx` — nouveau fichier loading skeleton
+- `app/(app)/fiches-maths/loading.tsx` — nouveau fichier loading skeleton
+- `app/(app)/maths/loading.tsx` — nouveau fichier loading skeleton
+- `app/(app)/maths/[domain]/loading.tsx` — nouveau fichier loading skeleton
+- `app/(app)/exercice-aleatoire/loading.tsx` — nouveau fichier loading skeleton
+- `app/(app)/revision/loading.tsx` — nouveau fichier loading skeleton
+
 ## [2026-03-25] — Fix bugs performances et bugs critiques (audit approfondi)
 
 - `features/exercises/server/queries.ts` — **getExerciseSessionById** : remplacé le `SELECT *` de TOUS les exercices (2 matières) par une requête ciblée `WHERE topic_key = ?`. Gain massif sur chaque page exercice.
