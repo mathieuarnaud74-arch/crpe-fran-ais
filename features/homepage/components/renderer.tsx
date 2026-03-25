@@ -109,10 +109,8 @@ function HeroSection({
   const primaryHref = authenticated ? props.primaryCtaHrefAuth : props.primaryCtaHrefGuest;
 
   return (
-    <section className="relative overflow-hidden border-b border-border/70">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(164,104,73,0.08),transparent_30%)]" />
-
-      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-8 sm:px-6 sm:pb-16 lg:grid-cols-[1.1fr_0.9fr] lg:pb-20 lg:pt-16">
+    <section className="hero relative overflow-hidden border-b border-border/70">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-8 sm:px-6 sm:pb-16 lg:grid-cols-[1fr_auto] lg:pb-20 lg:pt-16">
         <div>
           <FadeIn className="relative z-10">
             <Badge tone="accentSecondary" className="border-white/60 bg-card/90">
@@ -127,17 +125,14 @@ function HeroSection({
               {props.description}
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="mt-6 sm:mt-8">
               <ButtonLink
                 href={primaryHref}
                 size="lg"
-                className="w-full shadow-[0_18px_42px_rgba(71,98,87,0.22)] ring-1 ring-accentSecondary/20 sm:w-auto"
+                className="w-full px-10 py-4 text-base shadow-[0_18px_42px_rgba(71,98,87,0.22)] ring-1 ring-accentSecondary/20 sm:w-auto"
               >
                 {props.primaryCtaLabel}
                 <ArrowRight className="h-4 w-4" />
-              </ButtonLink>
-              <ButtonLink href={props.secondaryCtaHref} variant="secondary" size="lg" className="w-full sm:w-auto">
-                {props.secondaryCtaLabel}
               </ButtonLink>
             </div>
 
@@ -149,7 +144,13 @@ function HeroSection({
           </FadeIn>
         </div>
 
-        <FadeIn delay={0.35} x={60} y={0} duration={0.7} className="relative z-10">
+        <FadeIn
+          delay={0.35}
+          x={60}
+          y={0}
+          duration={0.7}
+          className="relative z-10 justify-self-end"
+        >
           <PhoneCarousel />
         </FadeIn>
       </div>

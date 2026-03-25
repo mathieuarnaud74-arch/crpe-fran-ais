@@ -48,7 +48,7 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
       Aller au contenu principal
     </a>
     <header className="sticky top-0 z-40 border-b border-border/50 bg-paper/80 backdrop-blur-xl supports-[backdrop-filter]:bg-paper/75">
-      <div className="mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center px-4 py-3 sm:px-6">
+      <div className="mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center px-4 py-4 sm:px-6">
 
         {/* Logo */}
         <Link href="/" className="flex min-w-0 items-center">
@@ -65,26 +65,20 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
         </Link>
 
         {/* Nav desktop */}
-        <nav aria-label="Navigation principale" className="hidden items-center justify-center gap-2 lg:flex">
+        <nav aria-label="Navigation principale" className="hidden items-center justify-center gap-4 lg:flex">
           {editorialLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-5 py-2 text-[0.9375rem] font-medium text-muted transition-colors hover:bg-secondary hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              className="rounded-full px-5 py-2 text-[1.08rem] font-medium text-muted transition-colors hover:bg-secondary hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/diagnostic"
-            className="ml-1 rounded-full border border-accentSecondary/30 bg-accentSecondarySoft px-5 py-2 text-[0.9375rem] font-semibold text-accentSecondaryDark transition-colors hover:border-accentSecondary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-          >
-            Diagnostic gratuit
-          </Link>
         </nav>
 
         {/* Auth desktop */}
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex">
           {authenticated ? (
             <ButtonLink href="/tableau-de-bord" variant="secondary">
               <LayoutDashboard className="h-4 w-4" />
@@ -94,13 +88,13 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
             <>
               <button
                 type="button"
-                className="rounded-full px-5 py-2 text-[0.9375rem] font-medium text-muted transition-colors hover:bg-secondary hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                className="rounded-full px-5 py-2 text-[1.08rem] font-medium text-muted transition-colors hover:bg-secondary hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                 onClick={() => { setAuthMode("signin"); setAuthOpen(true); }}
               >
                 Connexion
               </button>
-              <Button className="shadow-subtle" onClick={() => { setAuthMode("signup"); setAuthOpen(true); }}>
-                Créer mon compte gratuit
+              <Button className="shadow-subtle text-[1.08rem] px-6 py-2.5" onClick={() => { setAuthMode("signup"); setAuthOpen(true); }}>
+                Créer mon compte
               </Button>
             </>
           )}
@@ -182,7 +176,7 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
                         setTimeout(() => setAuthOpen(true), 200);
                       }}
                     >
-                      Créer mon compte gratuit
+                      Créer mon compte
                     </Button>
                     <Button
                       variant="secondary"

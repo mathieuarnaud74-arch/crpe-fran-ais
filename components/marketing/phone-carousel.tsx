@@ -1,6 +1,5 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -52,15 +51,11 @@ export function PhoneCarousel() {
     return () => clearInterval(timerRef.current);
   }, [startTimer]);
 
-  const handleNav = useCallback((dir: -1 | 1) => {
-    goTo(active + dir);
-    startTimer();
-  }, [active, goTo, startTimer]);
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-4 w-[360px] lg:w-[400px] lg:mr-[-3.5rem] xl:mr-[-5rem]">
       {/* Track + arrows */}
-      <div className="relative w-full">
+      <div className="relative w-full overflow-visible">
         <div
           ref={trackRef}
           className="flex w-full snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 scrollbar-none"
@@ -100,23 +95,6 @@ export function PhoneCarousel() {
           ))}
         </div>
 
-        {/* Desktop arrows */}
-        <button
-          type="button"
-          aria-label="Image précédente"
-          onClick={() => handleNav(-1)}
-          className="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-border/60 bg-card/90 p-2 shadow-subtle backdrop-blur transition-all hover:bg-card hover:shadow-panel lg:block"
-        >
-          <ChevronLeft className="h-5 w-5 text-muted" />
-        </button>
-        <button
-          type="button"
-          aria-label="Image suivante"
-          onClick={() => handleNav(1)}
-          className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-border/60 bg-card/90 p-2 shadow-subtle backdrop-blur transition-all hover:bg-card hover:shadow-panel lg:block"
-        >
-          <ChevronRight className="h-5 w-5 text-muted" />
-        </button>
       </div>
 
       {/* Dots */}

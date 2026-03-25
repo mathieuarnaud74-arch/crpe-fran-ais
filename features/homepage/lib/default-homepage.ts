@@ -25,7 +25,7 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
     visible: true,
     props: {
       badgeText: "CRPE 2026 · Français & Maths",
-      title: "Préparez le CRPE avec méthode.",
+      title: "Préparez les épreuves de français et mathématiques du CRPE avec méthode.",
       description:
         "Français et mathématiques réunis. Diagnostic gratuit, séries d'exercices par priorité et corrections détaillées avec la règle applicable.",
       primaryCtaLabel: "Tester mon niveau gratuitement",
