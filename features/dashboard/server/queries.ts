@@ -1,7 +1,7 @@
 import { buildDashboardData } from "@/lib/dashboard";
 import { syncBadges } from "@/features/badges/server/queries";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { getExercises } from "@/features/exercises/server/queries";
+import { getDashboardSessions } from "@/features/exercises/server/queries";
 import type { EarnedBadge, Subject } from "@/types/domain";
 
 type AttemptRow = {
@@ -21,7 +21,7 @@ export async function getDashboardData(
   subject: Subject = "Francais",
 ): Promise<DashboardDataWithNewBadges> {
   const supabase = await createSupabaseServerClient();
-  const sessions = await getExercises({ subject });
+  const sessions = await getDashboardSessions({ subject });
   const { data } = await supabase
     .from("attempts")
     .select("id, exercise_id, is_correct, answered_at")

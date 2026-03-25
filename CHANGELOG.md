@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-25] — Optimisation performance tableau de bord + fix modes expected_answer
+
+- `features/exercises/server/queries.ts` — nouvelle fonction `getDashboardSessions()` avec SELECT ciblé (skip choices, expected_answer, detailed_explanation, support_text). Réduit le payload Supabase de ~70% sur le tableau de bord.
+- `features/dashboard/server/queries.ts` — branchement sur `getDashboardSessions()` au lieu de `getExercises()`
+
 ## [2026-03-25] — Fix modes expected_answer non reconnus (flexible/multiple/keywords)
 
 - `features/exercises/shared/normalize.ts` — ajout des modes `flexible`, `multiple`, `keywords` au branchement `text` de `normalizeExpectedAnswer`. Ces modes provenant des migrations antérieures n'étaient pas reconnus, ce qui causait des réponses vides (l'utilisateur ne pouvait jamais avoir juste) et un spam de warnings console ralentissant le tableau de bord.

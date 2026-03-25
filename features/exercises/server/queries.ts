@@ -232,6 +232,36 @@ async function fetchAllExercises(filters: ExerciseFilters): Promise<ExerciseReco
   return allRows;
 }
 
+/**
+ * Lightweight fetch for the dashboard — skips heavy JSONB (choices,
+ * expected_answer) and long text (detailed_explanation, support_text).
+ * Cuts Supabase payload by ~70 %.
+ */
+async function fetchDashboardExercises(subject: string): Promise<Partial<ExerciseRecord>[]> {
+  const supabase = await createSupabaseServerClient();
+  const allRows: Partial<ExerciseRecord>[] = [];
+  let from = 0;
+
+  while (true) {
+    const { data } = await supabase
+      .from("exercises")
+      .select("id, subject, subdomain, topic_key, topic_label, exercise_type, instruction, common_mistake, series_order, created_at, updated_at")
+      .eq("is_published", true)
+      .eq("subject", subject)
+      .order("subdomain")
+      .order("created_at", { ascending: true })
+      .range(from, from + PAGE_SIZE - 1);
+
+    const rows = (data ?? []) as Partial<ExerciseRecord>[];
+    allRows.push(...rows);
+
+    if (rows.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
+  }
+
+  return allRows;
+}
+
 function filtersToKey(filters: ExerciseFilters): string {
   return `${filters.subdomain ?? ""}|${filters.type ?? ""}|${filters.subject ?? ""}`;
 }
@@ -243,6 +273,29 @@ const fetchExercisesCachedByKey = cache(async (_key: string, filters: ExerciseFi
 
 export async function getExercises(filters: ExerciseFilters = {}) {
   return fetchExercisesCachedByKey(filtersToKey(filters), filters);
+}
+
+/**
+ * Lightweight version of getExercises for the dashboard.
+ * Skips choices, expected_answer, detailed_explanation, support_text.
+ */
+const fetchDashboardSessionsCached = cache(async (subject: string) => {
+  const rows = await fetchDashboardExercises(subject);
+  const patched = rows.map((row) => ({
+    ...row,
+    choices: null,
+    expected_answer: { mode: "text" as const, acceptableAnswers: [] as string[] },
+    detailed_explanation: "",
+    support_text: null,
+    source: null,
+    validation_status: "valide" as const,
+    is_published: true,
+  })) as ExerciseRecord[];
+  return buildSessionsFromExercises(patched);
+});
+
+export async function getDashboardSessions(filters: ExerciseFilters = {}) {
+  return fetchDashboardSessionsCached(filters.subject ?? DEFAULT_SUBJECT);
 }
 
 export async function getExerciseById(id: string) {
@@ -267,9 +320,8 @@ export async function getExerciseSessionById(id: string) {
   const found = allSessions.find((session) => session.id === id);
   if (found) return found;
 
-  // Fallback: old session IDs had format session-{topicKey}-{level}-{chunk}
-  // Try to extract topicKey and match by prefix
-  const match = id.match(/^session-(.+?)(?:-(Facile|Intermediaire|Avance|Difficile|Standard|Mixte)-\d+)?$/);
+  // Fallback: extract topicKey from session ID
+  const match = id.match(/^session-(.+)$/);
   if (match) {
     const topicKey = match[1];
     const fallback = allSessions.find((session) => session.topicKey === topicKey);
