@@ -34,7 +34,7 @@ export function SiteFooter() {
               alt="Accès CRPE"
               width={1882}
               height={560}
-              className="h-12 w-auto object-contain"
+              className="h-14 w-auto object-contain"
               unoptimized
             />
             <p className="mt-3 max-w-xs text-sm leading-7 text-muted">

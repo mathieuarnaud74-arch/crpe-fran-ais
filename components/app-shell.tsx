@@ -24,7 +24,7 @@ export function AppShell({ children, userEmail, dailyStreak }: AppShellProps) {
               width={1882}
               height={560}
               sizes="200px"
-              className="h-12 w-auto object-contain brightness-0 invert sm:h-14"
+              className="h-14 w-auto object-contain brightness-0 invert sm:h-[4.2rem]"
               unoptimized
               priority
             />
