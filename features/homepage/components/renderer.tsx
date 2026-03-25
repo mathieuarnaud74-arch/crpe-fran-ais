@@ -115,7 +115,7 @@ function HeroSection({
         src="/hero-illustration.png"
         alt=""
         fill
-        className="pointer-events-none select-none object-cover"
+        className="pointer-events-none select-none object-cover opacity-50"
         style={{ objectPosition: "-10% center" }}
         priority
       />
