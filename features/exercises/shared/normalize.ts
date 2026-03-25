@@ -40,7 +40,7 @@ export function normalizeExpectedAnswer(
   }
 
   if (
-    (rawMode === "text" || rawMode === "acceptableAnswers" || rawMode === "exact") &&
+    (rawMode === "text" || rawMode === "acceptableAnswers" || rawMode === "exact" || rawMode === "flexible" || rawMode === "multiple" || rawMode === "keywords") &&
     Array.isArray(rawExpected.acceptableAnswers) &&
     rawExpected.acceptableAnswers.every((answer) => typeof answer === "string")
   ) {

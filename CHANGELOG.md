@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-25] — Fix modes expected_answer non reconnus (flexible/multiple/keywords)
+
+- `features/exercises/shared/normalize.ts` — ajout des modes `flexible`, `multiple`, `keywords` au branchement `text` de `normalizeExpectedAnswer`. Ces modes provenant des migrations antérieures n'étaient pas reconnus, ce qui causait des réponses vides (l'utilisateur ne pouvait jamais avoir juste) et un spam de warnings console ralentissant le tableau de bord.
+- `supabase/migrations/20260821_fix_expected_answer_modes.sql` — UPDATE en base pour normaliser tous les `flexible`/`multiple`/`keywords` → `text`.
+
 ## [2026-03-25] — Simplification radicale des séries d'exercices (1 topic_key = 1 série)
 
 Refonte de l'architecture des séries. Avant : les séries étaient calculées en groupant les exercices par `topic_key::level::access_tier`, puis découpées en blocs de 10. Cela créait une fragmentation massive (un même thème éclaté en 3-6 séries), des séries incomplètes silencieusement invisibles, et un cycle infini de backfills correctifs. Après : 1 `topic_key` = 1 série, point.
