@@ -23,11 +23,6 @@ export default function ExerciceError({
         un autre exercice.
       </p>
 
-      <p className="mt-4 max-w-lg break-all rounded-xl bg-secondary px-4 py-3 text-left font-mono text-xs text-muted">
-        {error.message || "Erreur inconnue"}
-        {error.digest ? ` (digest: ${error.digest})` : ""}
-      </p>
-
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Button variant="primary" onClick={() => reset()}>
           Réessayer
