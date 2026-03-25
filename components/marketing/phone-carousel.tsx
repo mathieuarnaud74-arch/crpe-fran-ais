@@ -95,7 +95,7 @@ export function PhoneCarousel() {
                 width={phone.width}
                 height={phone.height}
                 sizes="(max-width: 768px) 240px, 300px"
-                className="h-[420px] w-auto object-contain drop-shadow-2xl sm:h-[480px] lg:h-[520px]"
+                className="h-[460px] w-auto object-contain drop-shadow-2xl sm:h-[520px] lg:h-[580px]"
                 unoptimized
                 priority={i === 0}
               />
