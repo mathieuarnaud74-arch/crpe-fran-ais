@@ -304,13 +304,10 @@ export function ExercisePlayer({
         answeredCount={answeredCount}
         score={score}
         incorrectCount={incorrectCount}
-        remainingCount={remainingCount}
         correctPercent={correctPercent}
         incorrectPercent={incorrectPercent}
         consecutiveCorrect={consecutiveCorrect}
         completed={completed}
-        showSessionDetails={showSessionDetails}
-        onToggleSessionDetails={() => dispatch({ type: "TOGGLE_SESSION_DETAILS" })}
       />
 
       {completed ? (

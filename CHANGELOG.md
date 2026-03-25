@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-25] — Header exercice compact (titre + barre en 2 lignes)
+
+- `features/exercises/components/exercise-session-header.tsx` — refonte complète : suppression du Panel encadré, du summary, de l'objectif, de l'introduction, du bouton « Voir les détails », du badge "N questions", du bloc "Progression de la série". Remplacé par 2 lignes : titre tronqué + compteur à droite, barre fine (h-1.5) + score. Suppression des props `remainingCount`, `showSessionDetails`, `onToggleSessionDetails`.
+- `features/exercises/components/exercise-player.tsx` — adaptation des props passées au header.
+
 ## [2026-03-25] — Suppression du choix de mode sur les séries d'exercices
 
 - `features/exercises/components/exercise-session-wrapper.tsx` — suppression du `ModeSelector` (sprint, chrono, swipe). Les séries passent directement en mode standard. Suppression des imports dynamiques `SprintPlayer`/`SwipePlayer` et de la logique `filterSessionForMode`.
