@@ -30,6 +30,7 @@ import type {
   TrustBarSectionProps,
 } from "@/features/homepage/lib/blocks";
 
+import { PhoneCarousel } from "@/components/marketing/phone-carousel";
 import { ShowcaseAnalyse, ShowcaseQCM } from "@/app/(marketing)/_showcase";
 
 type HomepageRendererProps = {
@@ -121,8 +122,8 @@ function HeroSection({
       <div className="absolute inset-0 bg-[linear-gradient(180deg,#fbf7ef_10%,rgba(251,247,239,0.85)_50%,rgba(251,247,239,0.5)_100%)] sm:bg-[linear-gradient(90deg,#fbf7ef_18%,rgba(251,247,239,0.75)_38%,rgba(251,247,239,0.15)_58%,transparent_78%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(164,104,73,0.08),transparent_30%)]" />
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-8 sm:px-6 sm:pb-16 lg:pb-24 lg:pt-16">
-        <div className="max-w-3xl">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-8 sm:px-6 sm:pb-16 lg:grid-cols-[1.1fr_0.9fr] lg:pb-20 lg:pt-16">
+        <div>
           <FadeIn className="relative z-10">
             <Badge tone="accentSecondary" className="border-white/60 bg-card/90">
               {props.badgeText}
@@ -157,6 +158,10 @@ function HeroSection({
             </div>
           </FadeIn>
         </div>
+
+        <FadeIn delay={0.2} className="relative z-10">
+          <PhoneCarousel />
+        </FadeIn>
       </div>
     </section>
   );
