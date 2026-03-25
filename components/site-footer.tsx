@@ -34,7 +34,7 @@ export function SiteFooter() {
               alt="CRPE Français — Banque d'exercices"
               width={1024}
               height={305}
-              className="h-10 w-auto object-contain"
+              className="h-12 w-auto object-contain mix-blend-multiply"
             />
             <p className="mt-3 max-w-xs text-sm leading-7 text-muted">
               Un espace de révision structuré pour préparer le CRPE avec des séries courtes,
