@@ -17,12 +17,17 @@ export async function getOrCreateSrsCard(
 ): Promise<{ card: Card; isNew: boolean }> {
   const supabase = await createSupabaseServerClient();
 
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("srs_cards")
     .select("*")
     .eq("user_id", userId)
     .eq("exercise_id", exerciseId)
     .maybeSingle();
+
+  if (error) {
+    console.error("[srs] getOrCreateSrsCard query failed:", error.message);
+    return { card: createNewCard(), isNew: true };
+  }
 
   if (data) {
     return { card: dbRowToCard(data), isNew: false };
@@ -54,7 +59,7 @@ export async function getDueExercises(
 > {
   const supabase = await createSupabaseServerClient();
 
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("srs_cards")
     .select(
       "exercise_id, due, state, reps, lapses, exercises(id, instruction, subdomain, exercise_type, level, topic_label)",
@@ -63,6 +68,11 @@ export async function getDueExercises(
     .lte("due", new Date().toISOString())
     .order("due", { ascending: true })
     .limit(limit);
+
+  if (error) {
+    console.error("[srs] getDueExercises query failed:", error.message);
+    return [];
+  }
 
   return (data ?? []).map((row) => ({
     ...row,
@@ -74,11 +84,16 @@ export async function getDueExercises(
 export async function getDueCount(userId: string): Promise<number> {
   const supabase = await createSupabaseServerClient();
 
-  const { count } = await supabase
+  const { count, error } = await supabase
     .from("srs_cards")
     .select("*", { count: "exact", head: true })
     .eq("user_id", userId)
     .lte("due", new Date().toISOString());
+
+  if (error) {
+    console.error("[srs] getDueCount query failed:", error.message);
+    return 0;
+  }
 
   return count ?? 0;
 }
@@ -99,7 +114,7 @@ export async function recordSrsReview(
 
   const supabase = await createSupabaseServerClient();
 
-  await supabase
+  const { error } = await supabase
     .from("srs_cards")
     .upsert(
       {
@@ -110,4 +125,8 @@ export async function recordSrsReview(
       },
       { onConflict: "user_id,exercise_id" },
     );
+
+  if (error) {
+    console.error("[srs] recordSrsReview upsert failed:", error.message);
+  }
 }

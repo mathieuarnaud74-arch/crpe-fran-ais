@@ -65,11 +65,11 @@ export async function updateUserXp(
   userId: string,
   xpDelta: number,
   currentStreak: number,
+  gamification: UserGamification,
 ): Promise<{ newXp: number; newLevel: number; dailyStreakInfo: DailyStreakInfo }> {
   const { getLevelForXp } = await import("@/lib/xp");
   const supabase = await createSupabaseServerClient();
 
-  const gamification = await getUserGamification(userId);
   const newXp = gamification.xp + xpDelta;
   const newLevel = getLevelForXp(newXp);
   const today = getParisToday();
@@ -102,7 +102,7 @@ export async function updateUserXp(
     .eq("user_id", userId);
 
   if (updateError) {
-    console.error("[gamification]", updateError.message);
+    throw new Error(`[gamification] XP update failed: ${updateError.message}`);
   }
 
   return {

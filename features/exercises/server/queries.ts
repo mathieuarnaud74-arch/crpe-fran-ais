@@ -222,7 +222,11 @@ async function fetchAllExercises(filters: ExerciseFilters): Promise<ExerciseReco
       query = query.eq("exercise_type", filters.type);
     }
 
-    const { data } = await query;
+    const { data, error } = await query;
+    if (error) {
+      console.error("[exercises] fetchAllExercises query failed:", error.message);
+      break;
+    }
     const rows = (data ?? []) as ExerciseRecord[];
     allRows.push(...rows);
 
@@ -238,13 +242,14 @@ async function fetchAllExercises(filters: ExerciseFilters): Promise<ExerciseReco
  * expected_answer) and long text (detailed_explanation, support_text).
  * Cuts Supabase payload by ~70 %.
  */
-async function fetchDashboardExercises(subject: string): Promise<Partial<ExerciseRecord>[]> {
+async function fetchLightweightExercises(filters: ExerciseFilters): Promise<Partial<ExerciseRecord>[]> {
   const supabase = await createSupabaseServerClient();
+  const subject = filters.subject ?? DEFAULT_SUBJECT;
   const allRows: Partial<ExerciseRecord>[] = [];
   let from = 0;
 
   while (true) {
-    const { data } = await supabase
+    let query = supabase
       .from("exercises")
       .select("id, subject, subdomain, topic_key, topic_label, exercise_type, instruction, common_mistake, series_order, created_at, updated_at")
       .eq("is_published", true)
@@ -253,6 +258,19 @@ async function fetchDashboardExercises(subject: string): Promise<Partial<Exercis
       .order("created_at", { ascending: true })
       .range(from, from + PAGE_SIZE - 1);
 
+    if (filters.subdomain) {
+      query = query.eq("subdomain", filters.subdomain);
+    }
+
+    if (filters.type) {
+      query = query.eq("exercise_type", filters.type);
+    }
+
+    const { data, error } = await query;
+    if (error) {
+      console.error("[exercises] fetchLightweightExercises query failed:", error.message);
+      break;
+    }
     const rows = (data ?? []) as Partial<ExerciseRecord>[];
     allRows.push(...rows);
 
@@ -280,9 +298,8 @@ export async function getExercises(filters: ExerciseFilters = {}) {
  * Lightweight version of getExercises for the dashboard.
  * Skips choices, expected_answer, detailed_explanation, support_text.
  */
-const fetchDashboardSessionsCached = cache(async (subject: string) => {
-  const rows = await fetchDashboardExercises(subject);
-  const patched = rows.map((row) => ({
+function patchLightweightRows(rows: Partial<ExerciseRecord>[]): ExerciseRecord[] {
+  return rows.map((row) => ({
     ...row,
     choices: null,
     expected_answer: { mode: "text" as const, acceptableAnswers: [] as string[] },
@@ -292,11 +309,29 @@ const fetchDashboardSessionsCached = cache(async (subject: string) => {
     validation_status: "valide" as const,
     is_published: true,
   })) as ExerciseRecord[];
-  return buildSessionsFromExercises(patched);
+}
+
+const fetchDashboardSessionsCached = cache(async (subject: string) => {
+  const rows = await fetchLightweightExercises({ subject });
+  return buildSessionsFromExercises(patchLightweightRows(rows));
 });
 
 export async function getDashboardSessions(filters: ExerciseFilters = {}) {
   return fetchDashboardSessionsCached(filters.subject ?? DEFAULT_SUBJECT);
+}
+
+/**
+ * Lightweight session listing — skips heavy JSONB columns.
+ * Use this instead of getExercises() when you only need session metadata
+ * (title, subdomain, questionCount, recommendedOrder) and not question content.
+ */
+const fetchSessionListCached = cache(async (_key: string, filters: ExerciseFilters) => {
+  const rows = await fetchLightweightExercises(filters);
+  return buildSessionsFromExercises(patchLightweightRows(rows));
+});
+
+export async function getSessionList(filters: ExerciseFilters = {}) {
+  return fetchSessionListCached(filtersToKey(filters), filters);
 }
 
 export const getExerciseById = cache(async function getExerciseById(id: string) {
@@ -377,7 +412,7 @@ export async function getRandomExercises(count = 10, subject?: string) {
   return normalized.slice(0, count);
 }
 
-export async function getAttemptsCountToday(userId: string) {
+export const getAttemptsCountToday = cache(async function getAttemptsCountToday(userId: string) {
   const supabase = await createSupabaseServerClient();
   const startOfDay = getStartOfDayParis();
 
@@ -388,4 +423,4 @@ export async function getAttemptsCountToday(userId: string) {
     .gte("answered_at", startOfDay.toISOString());
 
   return count ?? 0;
-}
+});

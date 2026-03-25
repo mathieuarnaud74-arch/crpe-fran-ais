@@ -28,6 +28,20 @@ export const env = {
   freeDailyFicheLimit: (() => { const n = Number(process.env.FREE_DAILY_FICHE_LIMIT); return isNaN(n) ? 5 : n; })(),
 };
 
+// Fail fast in production if critical env vars are missing
+if (process.env.NODE_ENV === "production") {
+  const required = [
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "SUPABASE_SERVICE_ROLE_KEY",
+  ] as const;
+  for (const key of required) {
+    if (!process.env[key]) {
+      throw new Error(`Missing required environment variable: ${key}`);
+    }
+  }
+}
+
 export function isSupabaseConfigured() {
   return (
     env.supabaseUrl !== fallbackSupabaseUrl &&

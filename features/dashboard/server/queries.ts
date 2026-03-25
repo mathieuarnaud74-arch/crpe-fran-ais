@@ -24,12 +24,16 @@ export const getDashboardData = cache(async function getDashboardData(
 ): Promise<DashboardDataWithNewBadges> {
   const supabase = await createSupabaseServerClient();
   const sessions = await getDashboardSessions({ subject });
-  const { data } = await supabase
+  const { data, error: attemptsError } = await supabase
     .from("attempts")
     .select("id, exercise_id, is_correct, answered_at")
     .eq("user_id", userId)
     .order("answered_at", { ascending: false })
     .limit(500);
+
+  if (attemptsError) {
+    console.error("[dashboard] attempts query failed:", attemptsError.message);
+  }
 
   const attempts = (data ?? []) as AttemptRow[];
 

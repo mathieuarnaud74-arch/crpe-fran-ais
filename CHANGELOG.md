@@ -1,5 +1,61 @@
 # Changelog
 
+## [2026-03-25] — Assainissement : error handling, cache, atomicité, tests
+
+### Phase 1 — Error handling Supabase silencieux
+- `features/exercises/server/queries.ts` — ajout check `error` dans `fetchAllExercises` et `fetchLightweightExercises` (boucles de pagination)
+- `features/fiches/server/queries.ts` — ajout check `error` dans `getCompletedFicheSlugs` et `getFicheReadsCountToday`
+- `features/dashboard/server/queries.ts` — ajout check `error` sur la requête attempts dans `getDashboardData`
+- `features/srs/server/queries.ts` — ajout check `error` dans `getOrCreateSrsCard`, `getDueExercises`, `getDueCount`
+
+### Phase 2 — Cache manquant
+- `features/exercises/server/queries.ts` — `getAttemptsCountToday` wrappé avec `cache()`
+- `features/fiches/server/queries.ts` — `getCompletedFicheSlugs` et `getFicheReadsCountToday` wrappés avec `cache()`
+
+### Phase 3 — Atomicité submitAttemptAction
+- `features/gamification/server/queries.ts` — `updateUserXp` throw au lieu de log silencieux si l'update DB échoue
+- `features/exercises/server/actions.ts` — ajout flag `srsUpdateFailed` dans la réponse (comme `xpUpdateFailed`)
+
+### Phase 5 — Stale cache gamification
+- `features/gamification/server/queries.ts` — `updateUserXp` reçoit `gamification` en paramètre (élimine le 2e appel caché via `cache()`)
+- `features/exercises/server/actions.ts` — passe `userGamification` à `updateUserXp`
+
+### Phase 4 — Validation env vars
+- `lib/env.ts` — fail-fast en production si `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` ou `SUPABASE_SERVICE_ROLE_KEY` manquent
+
+### Phase 7 — Petites améliorations
+- `features/exercises/server/actions.ts` — virtual session detection renforcée (`!sessionId.startsWith("session-")` au lieu de `startsWith("random")`)
+
+### Phase 6 — Tests
+- `__tests__/mark-fiche-read-action.test.ts` — nouveau fichier : 7 tests pour `markFicheReadAction` (quota, premium gate, re-read, erreur upsert)
+- `__tests__/update-user-xp.test.ts` — nouveau fichier : 5 tests pour `updateUserXp` (calcul XP, streak, throw sur erreur DB)
+
+## [2026-03-25] — Audit perf/bugs/dette : plan d'assainissement en 5 phases
+
+### Phase 1 — Fiabilité Supabase
+- `features/auth/server/guards.ts` — ajout error check sur `.single()` dans `requireAdmin`
+- `features/leaderboard/server/queries.ts` — ajout error check sur `.single()` dans `getUserDisplayName`
+- `features/fiches/server/actions.ts` — ajout error checks sur les 2 `.upsert()` (re-read + new-read)
+- `features/srs/server/queries.ts` — ajout error check sur `.upsert()` dans `recordSrsReview`
+
+### Phase 2 — Requêtes légères pour listings
+- `features/exercises/server/queries.ts` — `fetchDashboardExercises` renommé `fetchLightweightExercises` avec support filtres ; ajout `getSessionList()` exporté (skip JSONB lourds ~70% payload en moins) ; extraction `patchLightweightRows` helper
+- `app/(app)/exercices/page.tsx` — `getExercises` → `getSessionList`
+- `app/(app)/exercices/[id]/page.tsx` — `getExercises` → `getSessionList` pour le next-session lookup
+
+### Phase 3 — Stabilisation re-renders + revalidation
+- `features/gamification/context.tsx` — `addXp` stabilisé via `useRef` + `useCallback([])` pour éviter les re-renders en cascade du GamificationProvider
+- `features/exercises/server/actions.ts` — revalidation réduite de 3 chemins à 1 (`/tableau-de-bord` uniquement)
+
+### Phase 4 — Dashboard décomposition + Suspense
+- `app/(app)/tableau-de-bord/page.tsx` — ajout `revalidate = 300` (ISR 5 min) ; section SRS extraite en composant async avec `<Suspense>` ; domaines Français/Maths factorisés via `DomainDirectoryTable` ; import `Mocca` inutilisé supprimé
+- `features/dashboard/components/domain-directory-table.tsx` — nouveau composant réutilisable pour les tables de domaines
+- `features/dashboard/components/dashboard-srs-section.tsx` — nouveau composant async pour le streaming SRS indépendant
+
+### Phase 5 — Validation Zod + résilience
+- `features/exercises/server/actions.ts` — ajout schéma Zod `attemptFormSchema` pour valider FormData ; imports dynamiques remplacés par imports statiques (`getUserGamification`, `recordSrsReview`) ; ajout flag `xpUpdateFailed` dans la réponse
+- `__tests__/submit-attempt-action.test.ts` — test `revalidatePath` mis à jour (1 appel au lieu de 3)
+
 ## [2026-03-25] — Header exercice compact (titre + barre en 2 lignes)
 
 - `features/exercises/components/exercise-session-header.tsx` — refonte complète : suppression du Panel encadré, du summary, de l'objectif, de l'introduction, du bouton « Voir les détails », du badge "N questions", du bloc "Progression de la série". Remplacé par 2 lignes : titre tronqué + compteur à droite, barre fine (h-1.5) + score. Suppression des props `remainingCount`, `showSessionDetails`, `onToggleSessionDetails`.

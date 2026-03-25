@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { z } from "zod";
 
 import { isPremiumUser } from "@/features/billing/server/queries";
 import {
@@ -11,11 +12,21 @@ import {
   getAttemptsCountToday,
   getExerciseById,
 } from "@/features/exercises/server/queries";
-import { updateUserXp } from "@/features/gamification/server/queries";
+import { getUserGamification, updateUserXp } from "@/features/gamification/server/queries";
+import { recordSrsReview } from "@/features/srs/server/queries";
 import { canSubmitAttempt } from "@/lib/freemium";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { calculateXpEarned } from "@/lib/xp";
 import type { ExerciseMode } from "@/types/domain";
+
+const attemptFormSchema = z.object({
+  exerciseId: z.string().min(1),
+  answer: z.string(),
+  sessionId: z.string(),
+  timeSpentMs: z.coerce.number().nullable().catch(null),
+  exerciseMode: z.enum(["standard", "timed", "sprint", "swipe"]).catch("standard"),
+  streak: z.coerce.number().int().min(0).max(10).catch(0),
+});
 
 type AttemptActionState = {
   status: "idle" | "success" | "error";
@@ -29,6 +40,8 @@ type AttemptActionState = {
   dailyStreakIncremented?: boolean;
   newDailyStreak?: number;
   streakFreezeUsed?: boolean;
+  xpUpdateFailed?: boolean;
+  srsUpdateFailed?: boolean;
 };
 
 export async function submitAttemptAction(
@@ -49,13 +62,20 @@ export async function submitAttemptAction(
 async function submitAttemptActionInner(
   formData: FormData,
 ): Promise<AttemptActionState> {
-  const exerciseId = String(formData.get("exerciseId") ?? "");
-  const submittedValue = String(formData.get("answer") ?? "");
-  const sessionId = String(formData.get("sessionId") ?? "");
-  const timeSpentMs = formData.get("timeSpentMs") ? Number(formData.get("timeSpentMs")) : null;
-  const exerciseMode = (formData.get("exerciseMode") as ExerciseMode) ?? "standard";
-  const rawStreak = formData.get("streak") ? Number(formData.get("streak")) : 0;
-  const streak = Math.min(Math.max(Math.floor(rawStreak) || 0, 0), 10);
+  const parsed = attemptFormSchema.safeParse({
+    exerciseId: formData.get("exerciseId") ?? "",
+    answer: formData.get("answer") ?? "",
+    sessionId: formData.get("sessionId") ?? "",
+    timeSpentMs: formData.get("timeSpentMs") ?? null,
+    exerciseMode: formData.get("exerciseMode") ?? "standard",
+    streak: formData.get("streak") ?? 0,
+  });
+
+  if (!parsed.success) {
+    return { status: "error", message: "Données du formulaire invalides." };
+  }
+
+  const { exerciseId, answer: submittedValue, sessionId, timeSpentMs, exerciseMode, streak } = parsed.data;
 
   const supabase = await createSupabaseServerClient();
   const user = (await supabase.auth.getUser()).data.user;
@@ -89,12 +109,12 @@ async function submitAttemptActionInner(
 
   const evaluation = evaluateExerciseAnswer(exercise, submittedValue);
 
-  // Fetch gamification for daily streak multiplier
+  // Fetch gamification for daily streak multiplier + XP update
+  let userGamification: Awaited<ReturnType<typeof getUserGamification>> | null = null;
   let currentDailyStreak = 0;
   let previousLevel: number | undefined;
   try {
-    const gamification = await import("@/features/gamification/server/queries");
-    const userGamification = await gamification.getUserGamification(user.id);
+    userGamification = await getUserGamification(user.id);
     currentDailyStreak = userGamification.daily_streak;
     previousLevel = userGamification.level;
   } catch (e) {
@@ -136,34 +156,36 @@ async function submitAttemptActionInner(
   let dailyStreakIncremented: boolean | undefined;
   let newDailyStreak: number | undefined;
   let streakFreezeUsed: boolean | undefined;
+  let xpUpdateFailed = false;
+  let srsUpdateFailed = false;
 
   try {
-    const result = await updateUserXp(user.id, xpEarned, currentStreak);
+    if (!userGamification) throw new Error("Gamification data unavailable");
+    const result = await updateUserXp(user.id, xpEarned, currentStreak, userGamification);
     newLevel = result.newLevel;
     dailyStreakIncremented = result.dailyStreakInfo.justIncremented;
     newDailyStreak = result.dailyStreakInfo.newDailyStreak;
     streakFreezeUsed = result.dailyStreakInfo.freezeUsed;
   } catch (e) {
     console.warn("[submitAttempt] XP update failed:", e);
+    xpUpdateFailed = true;
   }
 
   // Update SRS card for spaced repetition scheduling
   try {
-    const { recordSrsReview } = await import("@/features/srs/server/queries");
     await recordSrsReview(user.id, exerciseId, evaluation.isCorrect, timeSpentMs);
   } catch (e) {
     console.warn("[submitAttempt] SRS update failed:", e);
+    srsUpdateFailed = true;
   }
 
-  // Only revalidate for real sessions — skip for random/virtual sessions
-  // to avoid refetching the force-dynamic page with new random questions
-  const isVirtualSession = sessionId.startsWith("random");
+  // Only revalidate the dashboard for real sessions — skip for random/virtual sessions
+  // to avoid refetching the force-dynamic page with new random questions.
+  // /historique and /exercices/[id] don't need revalidation: historique can use ISR,
+  // and exercise content is static between attempts.
+  const isVirtualSession = !sessionId.startsWith("session-");
   if (!isVirtualSession) {
     revalidatePath("/tableau-de-bord");
-    revalidatePath("/historique");
-    if (sessionId) {
-      revalidatePath(`/exercices/${sessionId}`);
-    }
   }
 
   return {
@@ -182,5 +204,7 @@ async function submitAttemptActionInner(
     dailyStreakIncremented,
     newDailyStreak,
     streakFreezeUsed,
+    xpUpdateFailed: xpUpdateFailed || undefined,
+    srsUpdateFailed: srsUpdateFailed || undefined,
   };
 }
