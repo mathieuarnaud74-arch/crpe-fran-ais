@@ -87,14 +87,7 @@ body {
 }
 
 .hero {
-  background:
-    radial-gradient(
-      ellipse at 72% 42%,
-      rgba(225, 212, 194, 0.42) 0%,
-      rgba(225, 212, 194, 0.18) 22%,
-      rgba(246, 241, 234, 0) 52%
-    ),
-    linear-gradient(180deg, #f3ece3 0%, #f6f1ea 55%, #f7f3ed 100%);
+  background: #F9F6F1;
 }
 
 a {

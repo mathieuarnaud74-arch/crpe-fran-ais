@@ -30,6 +30,7 @@ import type {
   TrustBarSectionProps,
 } from "@/features/homepage/lib/blocks";
 
+
 import { PhoneCarousel } from "@/components/marketing/phone-carousel";
 import { ShowcaseAnalyse, ShowcaseQCM } from "@/app/(marketing)/_showcase";
 
@@ -110,9 +111,17 @@ function HeroSection({
 
   return (
     <section className="hero relative overflow-hidden border-b border-border/70">
-      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-8 sm:px-6 sm:pb-16 lg:grid-cols-[1fr_auto] lg:pb-20 lg:pt-16">
+      <Image
+        src="/hero-illustration.png"
+        alt=""
+        fill
+        className="pointer-events-none select-none object-cover"
+        style={{ objectPosition: "20% center" }}
+        priority
+      />
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-8 sm:px-6 sm:pb-16 lg:grid-cols-[1fr_auto] lg:pb-20 lg:pt-16">
         <div>
-          <FadeIn className="relative z-10">
+          <FadeIn className="relative">
             <Badge tone="accentSecondary" className="border-white/60 bg-card/90">
               {props.badgeText}
             </Badge>
@@ -149,7 +158,7 @@ function HeroSection({
           x={60}
           y={0}
           duration={0.7}
-          className="relative z-10 justify-self-end"
+          className="relative justify-self-end"
         >
           <PhoneCarousel />
         </FadeIn>
