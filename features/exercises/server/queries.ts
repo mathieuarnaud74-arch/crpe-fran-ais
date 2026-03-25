@@ -311,24 +311,25 @@ export async function getExerciseById(id: string) {
 }
 
 export async function getExerciseSessionById(id: string) {
-  const allSessions = [
-    ...(await getExercises({ subject: "Francais" })),
-    ...(await getExercises({ subject: "Mathematiques" })),
-  ];
-
-  // Exact match first
-  const found = allSessions.find((session) => session.id === id);
-  if (found) return found;
-
-  // Fallback: extract topicKey from session ID
+  // Extract topicKey from session ID (format: "session-{topicKey}")
   const match = id.match(/^session-(.+)$/);
-  if (match) {
-    const topicKey = match[1];
-    const fallback = allSessions.find((session) => session.topicKey === topicKey);
-    if (fallback) return fallback;
-  }
+  const topicKey = match ? match[1] : id;
 
-  return null;
+  // Targeted query: fetch only exercises for this topic_key
+  const supabase = await createSupabaseServerClient();
+  const { data } = await supabase
+    .from("exercises")
+    .select("*")
+    .eq("is_published", true)
+    .eq("topic_key", topicKey)
+    .order("series_order", { ascending: true })
+    .order("created_at", { ascending: true });
+
+  if (!data || data.length === 0) return null;
+
+  const exercises = (data as ExerciseRecord[]).map(normalizeExerciseRecord);
+  const sessions = buildSessionsFromExercises(exercises);
+  return sessions[0] ?? null;
 }
 
 export async function getAttemptsForHistory(userId: string, limit?: number) {

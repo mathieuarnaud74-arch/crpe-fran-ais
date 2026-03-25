@@ -1,5 +1,13 @@
 # Changelog
 
+## [2026-03-25] — Fix bugs performances et bugs critiques (audit approfondi)
+
+- `features/exercises/server/queries.ts` — **getExerciseSessionById** : remplacé le `SELECT *` de TOUS les exercices (2 matières) par une requête ciblée `WHERE topic_key = ?`. Gain massif sur chaque page exercice.
+- `app/(app)/tableau-de-bord/page.tsx` — **Dashboard waterfall** : `isPremiumUser` + `getUserGamification` lancés en parallèle au lieu de séquentiellement (~100-200ms gagnés).
+- `features/exercises/components/exercise-player.tsx` — **useEffect instable** : dépendance `session.questions` (array recréé à chaque render) → `session.id` + `session.questionCount` (stables). Élimine les re-exécutions inutiles.
+- `features/exercises/components/exercise-player.tsx` — **Memory leak** : `setTimeout` dans useEffect sans cleanup → ajout du `clearTimeout` dans le return.
+- `features/exercises/components/exercise-player.tsx` — **Rollback XP sur quota dépassé** : le `result.status === "error"` (non-throw) ne déclenchait pas le rollback XP → ajout de la vérification avant les notifications.
+
 ## [2026-03-25] — Fix dette technique migrations (53 UUID collisions + 1 réponse fausse)
 
 - `supabase/migrations/20260822_fix_uuid_collisions.sql` — 53 questions silencieusement ignorées par ON CONFLICT DO NOTHING (préfixes UUID fa0X/fa1X/fc0X en collision avec d'anciennes séries françaises). Réinsérées avec nouveaux préfixes (fa2X/fa5X/fc2X). + correction réponse fractions (7/12−3/8+1/6 = 3/8, pas 9/24). + 2 vrai_faux avec choices→NULL.

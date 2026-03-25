@@ -188,18 +188,18 @@ function buildPlanDuJour(data: DashboardData): PlanItem[] {
 
 export default async function DashboardPage() {
   const user = await requireUser();
-  const premium = await isPremiumUser(user.id);
-  let gamification;
-  try {
-    gamification = await getUserGamification(user.id);
-  } catch {
-    gamification = {
+
+  // Parallelize: premium check + gamification fetch (both only need user.id)
+  const [premium, gamification] = await Promise.all([
+    isPremiumUser(user.id),
+    getUserGamification(user.id).catch(() => ({
       user_id: user.id, xp: 0, level: 1, current_streak: 0, longest_streak: 0,
       last_activity_date: null, sound_enabled: true, reduced_animations: false,
       daily_goal: 20, personal_best_sprint_time: null, onboarding_completed: false,
       daily_streak: 0, longest_daily_streak: 0, streak_freeze_remaining: 1, streak_frozen_on: null,
-    };
-  }
+    })),
+  ]);
+
   const [data, mathData, diagnostic, srsDueExercises, srsDueCount] = await Promise.all([
     getDashboardData(user.id, premium, "Francais"),
     getDashboardData(user.id, premium, "Mathematiques"),

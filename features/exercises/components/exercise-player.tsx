@@ -99,6 +99,8 @@ export function ExercisePlayer({
       .map((q) => results[q.id]);
     const lastResult = orderedResults[orderedResults.length - 1];
 
+    let celebrationTimer: ReturnType<typeof setTimeout> | null = null;
+
     if (lastResult?.isCorrect) {
       consecutiveCorrectRef.current++;
       const newStreak = consecutiveCorrectRef.current;
@@ -106,7 +108,7 @@ export function ExercisePlayer({
       if (newStreak === 5 || newStreak === 10) {
         dispatch({ type: "SET_STREAK_CELEBRATION", streak: newStreak });
         playSound("streak");
-        setTimeout(() => dispatch({ type: "SET_STREAK_CELEBRATION", streak: null }), 2500);
+        celebrationTimer = setTimeout(() => dispatch({ type: "SET_STREAK_CELEBRATION", streak: null }), 2500);
       }
       playSound("correct");
     } else {
@@ -115,16 +117,22 @@ export function ExercisePlayer({
       if (lastResult) playSound("incorrect");
     }
 
-    if (currentCount === session.questions.length) {
+    if (currentCount === session.questionCount) {
       const finalScore = Object.values(results).filter((r) => r.isCorrect).length;
-      const finalPercent = (finalScore / session.questions.length) * 100;
+      const finalPercent = (finalScore / session.questionCount) * 100;
       if (finalPercent >= MASTERY_THRESHOLD) {
         dispatch({ type: "SET_CONFETTI", show: true });
         playSound("streak");
       }
       if (finalPercent === 100) playSound("levelUp");
     }
-  }, [results, session.questions, playSound]);
+
+    return () => {
+      if (celebrationTimer) clearTimeout(celebrationTimer);
+    };
+    // session.id is stable; session.questions is an array recreated each render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [results, session.id, session.questionCount, playSound]);
 
   if (!currentQuestion) return null;
 
@@ -178,6 +186,11 @@ export function ExercisePlayer({
       formData.append("streak", String(evaluation.isCorrect ? consecutiveCorrectRef.current : 0));
       try {
         const result = await submitAttemptAction({ status: "idle" }, formData);
+        if (result.status === "error") {
+          dispatch({ type: "ROLLBACK_XP", xp });
+          toast.error(result.message ?? "Votre réponse n'a pas pu être enregistrée.");
+          return;
+        }
         if (result.previousLevel && result.newLevel && result.newLevel > result.previousLevel) {
           playSound("levelUp");
           toast.success(`🎉 Niveau ${result.newLevel} atteint !`, { duration: 3000 });
