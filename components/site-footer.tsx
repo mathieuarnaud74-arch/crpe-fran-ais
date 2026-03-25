@@ -31,10 +31,11 @@ export function SiteFooter() {
           <div>
             <Image
               src="/logo.png"
-              alt="CRPE Français — Banque d'exercices"
-              width={1024}
-              height={305}
-              className="h-12 w-auto object-contain mix-blend-multiply"
+              alt="Accès CRPE"
+              width={1882}
+              height={560}
+              className="h-12 w-auto object-contain"
+              unoptimized
             />
             <p className="mt-3 max-w-xs text-sm leading-7 text-muted">
               Un espace de révision structuré pour préparer le CRPE avec des séries courtes,

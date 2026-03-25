@@ -54,11 +54,12 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
         <Link href="/" className="flex min-w-0 items-center">
           <Image
             src="/logo.png"
-            alt="CRPE Français — Banque d'exercices"
-            width={1024}
-            height={305}
-            sizes="180px"
-            className="h-12 w-auto object-contain mix-blend-multiply sm:h-14"
+            alt="Accès CRPE"
+            width={1882}
+            height={560}
+            sizes="200px"
+            className="h-12 w-auto object-contain sm:h-14"
+            unoptimized
             priority
           />
         </Link>
