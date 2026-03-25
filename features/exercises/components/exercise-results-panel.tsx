@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { Mocca } from "@/components/mascot/mocca";
 import { Badge } from "@/components/ui/badge";
 import { Button, ButtonLink } from "@/components/ui/button";
@@ -21,7 +23,7 @@ type ExerciseResultsPanelProps = {
   onNewSession?: () => void;
 };
 
-export function ExerciseResultsPanel({
+export const ExerciseResultsPanel = memo(function ExerciseResultsPanel({
   session,
   results,
   score,
@@ -188,4 +190,4 @@ export function ExerciseResultsPanel({
       </div>
     </Panel>
   );
-}
+});

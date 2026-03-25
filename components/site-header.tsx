@@ -52,16 +52,15 @@ export function SiteHeader({ authenticated = false }: SiteHeaderProps) {
 
         {/* Logo */}
         <Link href="/" className="flex min-w-0 items-center">
-          <div className="h-14 overflow-hidden">
-            <Image
-              src="/logo.png"
-              alt="CRPE Français — Banque d'exercices"
-              width={1408}
-              height={768}
-              className="-mt-3 h-20 w-auto object-contain"
-              priority
-            />
-          </div>
+          <Image
+            src="/logo.png"
+            alt="CRPE Français — Banque d'exercices"
+            width={1024}
+            height={305}
+            sizes="180px"
+            className="h-10 w-auto object-contain brightness-0 sm:h-12"
+            priority
+          />
         </Link>
 
         {/* Nav desktop */}

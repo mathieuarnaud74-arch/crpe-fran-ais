@@ -1,5 +1,6 @@
 import { stripDiacritics, normalizeTypographicText } from "@/lib/utils";
 import { ExerciseChoice, ExerciseRecord, ExerciseType, ExpectedAnswer } from "@/types/domain";
+import { DEFAULT_BOOLEAN_CHOICES } from "./normalize";
 
 type TextValidationPolicy = {
   accentsRequired: boolean;
@@ -13,10 +14,7 @@ export type SubmissionEvaluation = {
   validationRule: string | null;
 };
 
-const TRUE_FALSE_CHOICES: ExerciseChoice[] = [
-  { id: "true", label: "Vrai" },
-  { id: "false", label: "Faux" },
-];
+const TRUE_FALSE_CHOICES = DEFAULT_BOOLEAN_CHOICES;
 
 function getTextValidationPolicy(exerciseType: ExerciseType): TextValidationPolicy {
   if (exerciseType === "correction_orthographique") {

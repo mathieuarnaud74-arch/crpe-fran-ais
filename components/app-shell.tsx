@@ -18,16 +18,15 @@ export function AppShell({ children, userEmail, dailyStreak }: AppShellProps) {
       <header className="border-b border-ink/20 bg-[linear-gradient(135deg,#2C2420,#394E45)]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-3 px-4 py-3 sm:px-6 sm:py-4 md:flex-row md:items-center md:justify-between">
           <Link href="/tableau-de-bord" className="flex min-w-0 items-center">
-            <div className="h-14 overflow-hidden">
-              <Image
-                src="/logo.png"
-                alt="CRPE Français — Banque d'exercices"
-                width={1408}
-                height={768}
-                className="-mt-3 h-20 w-auto object-contain brightness-0 invert"
-                priority
-              />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="CRPE Français — Banque d'exercices"
+              width={1024}
+              height={305}
+              sizes="180px"
+              className="h-10 w-auto object-contain sm:h-12"
+              priority
+            />
           </Link>
 
           <div className="flex items-center gap-2 md:gap-4">

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-03-25] — Mise à jour du logo du site
+
+- `public/logo.png` — remplacé par le nouveau logo "LOGO ACCES CRPE" (PNG transparent 1024×305)
+- `components/site-header.tsx` — adapté dimensions et ajouté `brightness-0` pour fond clair
+- `components/app-shell.tsx` — adapté dimensions, retiré `brightness-0 invert` (logo déjà blanc sur fond sombre)
+- `components/site-footer.tsx` — adapté dimensions et ajouté `brightness-0` pour fond clair
+
 ## [2026-03-25] — Perf : sliding window badges, merge filtres dashboard, DRY timezone, lazy eval
 
 - `lib/dashboard/badges.ts` — O(n²) → O(n) : sliding window unique pour hasHighVolumeWeek + hasPerfectWeek, fusion boucles comeback/consecutive/weekend en une passe, precompute timestamps

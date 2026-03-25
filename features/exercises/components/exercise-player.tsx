@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useReducer, useRef } from "react";
+import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import { toast } from "sonner";
 
 import { useGameSounds } from "@/components/hooks/use-game-sounds";
@@ -226,12 +226,16 @@ export function ExercisePlayer({
     dispatch({ type: "RETRY_QUESTION", questionId: currentQuestion.id });
   }
 
-  function resetSession() {
+  const handleToggleReviewCard = useCallback((id: string) => {
+    dispatch({ type: "TOGGLE_REVIEW_CARD", questionId: id });
+  }, []);
+
+  const resetSession = useCallback(() => {
     dispatch({ type: "RESET_SESSION" });
     consecutiveCorrectRef.current = 0;
     prevResultsCount.current = 0;
     scrollToContainer();
-  }
+  }, []);
 
   function handleTimerComplete() {
     if (timerFiredRef.current) return;
@@ -297,7 +301,7 @@ export function ExercisePlayer({
           correctPercent={correctPercent}
           weakAreas={weakAreas}
           expandedReviewCard={expandedReviewCard}
-          onToggleReviewCard={(id) => dispatch({ type: "TOGGLE_REVIEW_CARD", questionId: id })}
+          onToggleReviewCard={handleToggleReviewCard}
           onResetSession={resetSession}
           nextSession={nextSession}
           onNewSession={onNewSession}

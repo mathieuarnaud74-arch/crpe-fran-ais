@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { cn } from "@/lib/utils";
 import type { RevisionSession } from "@/types/domain";
 
@@ -13,7 +15,7 @@ type ExerciseSessionHeaderProps = {
   completed: boolean;
 };
 
-export function ExerciseSessionHeader({
+export const ExerciseSessionHeader = memo(function ExerciseSessionHeader({
   session,
   currentIndex,
   score,
@@ -81,4 +83,4 @@ export function ExerciseSessionHeader({
       </div>
     </div>
   );
-}
+});

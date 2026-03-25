@@ -6,11 +6,13 @@ import type {
   HighlightGroup,
 } from "@/types/domain";
 
+export const DEFAULT_BOOLEAN_CHOICES: ExerciseChoice[] = [
+  { id: "true", label: "Vrai" },
+  { id: "false", label: "Faux" },
+];
+
 function getDefaultBooleanChoices(): ExerciseChoice[] {
-  return [
-    { id: "true", label: "Vrai" },
-    { id: "false", label: "Faux" },
-  ];
+  return DEFAULT_BOOLEAN_CHOICES;
 }
 
 export function normalizeExpectedAnswer(
