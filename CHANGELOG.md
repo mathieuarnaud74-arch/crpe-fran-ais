@@ -1,5 +1,15 @@
 # Changelog
 
+## [2026-03-26] — 5 nouvelles séries de 10 questions (50 exercices)
+
+Audit des séries existantes, identification des lacunes de contenu, vérification de conformité terminologique Éduscol 2021, puis génération de 5 séries comblant les thèmes manquants.
+
+- `supabase/migrations/20260829_seed_conj_valeurs_temps.sql` — 10 questions sur les valeurs des temps verbaux (imparfait descriptif/habitude/narration, passé simple perfectif, présent de narration, plus-que-parfait antériorité, futur d'ordre, conditionnel irréel). Types : qcm, vrai_faux, reponse_courte.
+- `supabase/migrations/20260830_seed_orth_participe_passe_cod.sql` — 10 questions sur l'accord du participe passé avec le COD antéposé (pronom relatif « que », pronoms personnels, pronom « en », verbes pronominaux, verbes intransitifs de mesure). Types : qcm, vrai_faux, correction_orthographique.
+- `supabase/migrations/20260831_seed_anal_discours_direct_indirect.sql` — 10 questions sur le discours rapporté (direct, indirect, indirect libre, narrativisé, concordance des temps, transposition). Types : qcm, vrai_faux, reponse_courte, tri_categories.
+- `supabase/migrations/20260832_seed_lex_polysemie_contexte.sql` — 10 questions sur la polysémie (sens propre/figuré, polysémie vs homonymie, métonymie, monosémie, enjeu didactique). Types : qcm, vrai_faux, reponse_courte.
+- `supabase/migrations/20260833_seed_comp_connecteurs_argumentation.sql` — 10 questions sur les connecteurs logiques et l'argumentation (cause, conséquence, concession, opposition, addition, connecteurs temporels vs logiques, « certes…mais »). Types : qcm, vrai_faux, tri_categories.
+
 ## [2026-03-25] — Fix : diagnostic public inaccessible sans connexion
 
 - `middleware.ts` — retiré `/diagnostic` de la liste PROTECTED_PREFIXES ; la route publique `(marketing)/diagnostic` gère déjà les deux cas (guest via localStorage, connecté via API)
