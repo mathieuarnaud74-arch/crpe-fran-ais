@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-26] — Nouvelle série maths : opérations sur les nombres relatifs
+
+- `supabase/migrations/20260843_seed_math_nombres_relatifs_operations.sql` — 10 exercices sur les opérations avec les nombres relatifs (addition, soustraction, multiplication, division, règle des signes, priorités, distributivité, problème en contexte)
+
 ## [2026-03-26] — Nouvelle série orthographe : terminaisons verbales homophones
 
 - `supabase/migrations/20260840_seed_french_terminaisons_verbales_homophones.sql` — 10 exercices sur les terminaisons -é/-er/-ez/-ais/-ait/-aient (5 QCM, 2 vrai/faux, 2 réponses courtes)
