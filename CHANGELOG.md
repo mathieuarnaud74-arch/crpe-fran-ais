@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : accords du participe passé + comparaison des fractions
+
+- `supabase/migrations/20260847_seed_french_accords_participe_passe.sql` — 10 exercices orthographe sur les accords du PP (être, avoir + COD antéposé, pronominaux réfléchis, PP + infinitif, verbes essentiellement pronominaux, impersonnels, PP avec « en »)
+- `supabase/migrations/20260848_seed_math_fractions_comparaison_ordre.sql` — 10 exercices sur la comparaison de fractions (même dénominateur, même numérateur, réduction au PPCM, encadrement par entiers, comparaison à 1, ordre croissant, passage par les décimaux, fractions négatives, simplification et encadrement par fractions)
+
 ## [2026-03-26] — Nouvelle série maths : quadrilatères particuliers (propriétés et classification)
 
 - `supabase/migrations/20260846_seed_math_quadrilateres_particuliers.sql` — 10 exercices sur parallélogramme, rectangle, losange, carré, trapèze (hiérarchie, diagonales, aire du losange, Pythagore, conditions suffisantes)
