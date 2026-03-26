@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-26] — Nouvelle série maths : aires latérales et totales des solides
+
+- `supabase/migrations/20260844_seed_math_aire_laterale_solides.sql` — 10 exercices sur le calcul d'aires latérales et totales (prisme, cylindre, pyramide, cône, sphère, cube, problème en contexte)
+
 ## [2026-03-26] — Nouvelle fiche français : le texte poétique
 
 - `content/fiches/comprehension-texte-poetique-sprint.ts` — fiche sprint compréhension de texte sur la poésie (versification, rimes, strophes, formes fixes, vers libres)
