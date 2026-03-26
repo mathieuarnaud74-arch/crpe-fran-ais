@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : types et formes de phrases (grammaire) + numération base dix (nombres_calcul)
+
+- `supabase/migrations/20260881_seed_french_gram_types_formes_phrases.sql` — 10 exercices grammaire sur les types et formes de phrases (4 types : déclarative/interrogative/exclamative/impérative ; forme affirmative vs négative ; interrogative totale par est-ce que/inversion ; phrase emphatique c''est...qui/que ; phrase impersonnelle ; sujet absent à l''impératif)
+- `supabase/migrations/20260882_seed_math_numeration_base_dix.sql` — 10 exercices nombres_calcul sur la numération de position en base dix (valeur positionnelle des chiffres, décomposition canonique avec rangs à 0, rangs décimaux dixièmes/centièmes/millièmes, lecture/écriture de grands nombres, comparaison de décimaux)
+
 ## [2026-03-26] — Nouvelles séries : accord de l'adjectif qualificatif (orthographe) + ingénierie didactique (didactique_maths)
 
 - `supabase/migrations/20260879_seed_french_orth_accord_adjectif.sql` — 10 exercices orthographe sur l'accord des adjectifs qualificatifs (accord en genre et nombre, féminins irréguliers beau/belle doux/douce, adjectifs de couleur invariables marron/orange, adjectifs composés bleu clair invariable, sourds-muets accordé, adj. en -eur → -euse)
