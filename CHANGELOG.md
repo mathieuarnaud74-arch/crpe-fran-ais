@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : méthodes d'apprentissage de la lecture (didactique_francais) + constructions géométriques aux instruments (géométrie)
+
+- `supabase/migrations/20260885_seed_french_did_methodes_lecture.sql` — 10 exercices didactique_francais sur les méthodes d'apprentissage de la lecture (méthode syllabique vs globale vs mixte ; rapport Goigoux 2016 ; conscience phonologique/phonémique ; modèle à deux voies Coltheart ; simple view of reading Hoover & Gough 1990 ; identification des mots écrits ; dyslexie développementale ; objectifs cycle 2)
+- `supabase/migrations/20260886_seed_math_constructions_geometrie_instruments.sql` — 10 exercices géométrie sur les constructions géométriques aux instruments (perpendiculaire à l'équerre, médiatrice au compas, parallèle règle+équerre, triangle équilatéral au compas, report de longueur, rayon/diamètre/cercle, bissectrice au compas, posture didactique cycle 3)
+
 ## [2026-03-26] — Nouvelles séries : questions de compréhension/Giasson (comp_texte) + statistiques cycle 3 (didactique_maths)
 
 - `supabase/migrations/20260883_seed_french_comp_questions_comprehension.sql` — 10 exercices comprehension_texte sur les types de questions selon Giasson (3 familles : dans le texte / dans le texte et ma tête / dans ma tête ; modèle lecteur-texte-contexte ; questions littérales vs inférentielles ; implication pédagogique ; ouvrage de référence 1990)
