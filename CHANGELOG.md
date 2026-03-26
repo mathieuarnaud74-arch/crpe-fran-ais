@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : voix passive (grammaire) + résolution de problèmes (didactique maths)
+
+- `supabase/migrations/20260869_seed_french_gram_voix_passive.sql` — 10 exercices grammaire sur la voix active et la voix passive (transformation active→passive, auxiliaire être, accord du PP avec le sujet passif, complément d'agent, phrases sans agent, verbes intransitifs non passivables)
+- `supabase/migrations/20260870_seed_math_did_resolution_problemes.sql` — 10 exercices didactique_maths sur la résolution de problèmes à l'école (Vergnaud : structures additives/multiplicatives, champ conceptuel ; Brousseau : dévolution, situation-problème vs problème exercice ; problème ouvert, proportionnalité, contrat didactique)
+
 ## [2026-03-26] — Nouvelles séries : production écrite (didactique) + conversions d'unités
 
 - `supabase/migrations/20260867_seed_french_did_production_ecrite.sql` — 10 exercices didactique_francais sur la production écrite cycles 2-3 (modèle Hayes & Flower, processus rédactionnel, DAE, textualisation, surcharge cognitive, révision locale/globale, situation d'écriture, organisateur graphique, grille de critères de réussite)
