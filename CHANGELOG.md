@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelle fiche français : participe présent, gérondif et adjectif verbal
+
+- `content/fiches/conjugaison-participe-gerondif-sprint.ts` — fiche sprint conjugaison (distinction participe présent / gérondif / adjectif verbal, invariabilité, paires orthographiques fatiguant/fatigant etc.)
+- `content/fiches/index.ts` — ajout de la fiche dans le registre
+
 ## [2026-03-26] — Nouvelle série français : compléments d'objet (COD, COI, COS)
 
 - `supabase/migrations/20260845_seed_french_complements_objet_cod_coi.sql` — 10 exercices sur l'identification et la distinction COD/COI/COS (pronominalisation, passivation, pièges COI vs CC, attribut vs COD)

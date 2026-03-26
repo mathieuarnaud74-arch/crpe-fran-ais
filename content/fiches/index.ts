@@ -114,6 +114,7 @@ import { langageOralMaternelleSprint } from "./didactique-langage-oral-maternell
 import { participePasseCompletReference } from "./orthographe-participe-passe-complet-reference";
 import { analyseFonctionsPhraseComplexeOperatoire } from "./analyse-langue-fonctions-phrase-complexe-operatoire";
 import { textePoetiqueSprint } from "./comprehension-texte-poetique-sprint";
+import { participeGerondifSprint } from "./conjugaison-participe-gerondif-sprint";
 
 export const allFiches: Fiche[] = [
   reperageExpliciteSprint,
@@ -231,4 +232,5 @@ export const allFiches: Fiche[] = [
   participePasseCompletReference,
   analyseFonctionsPhraseComplexeOperatoire,
   textePoetiqueSprint,
+  participeGerondifSprint,
 ];
