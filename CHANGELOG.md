@@ -1,5 +1,18 @@
 # Changelog
 
+## [2026-03-26] — Accessibilité : augmentation de la taille de police dans les fiches et exercices
+
+- `features/fiches/components/blocks/block-rule.tsx` — contenu règle `text-sm` → `text-base`, explication linguistique `text-xs` → `text-sm`, watchout `text-xs` → `text-sm`
+- `features/fiches/components/blocks/block-example.tsx` — phrase exemple `text-sm` → `text-base`, annotation `text-xs` → `text-sm`
+- `features/fiches/components/blocks/block-didactic.tsx` — contenu cycle, erreurs élèves, activités, à-éviter : `text-xs` → `text-sm`
+- `features/fiches/components/blocks/block-tip.tsx` — texte astuce `text-xs` → `text-sm`
+- `features/fiches/components/blocks/block-watchout.tsx` — explication `text-xs` → `text-sm`
+- `features/fiches/components/blocks/block-table.tsx` — table entière `text-sm` → `text-base`, cellules idem
+- `features/exercises/components/exercise-choice-list.tsx` — libellé des choix `text-sm` → `text-base`
+- `features/exercises/components/exercise-feedback.tsx` — container feedback `text-sm` → `text-base`, règle et erreur fréquente idem
+- `features/exercises/components/exercise-question-panel.tsx` — texte support `text-sm` → `text-base`, message désactivation idem
+- `features/exercises/components/exercise-review-card.tsx` — instruction, réponse, correction, erreur fréquente : `text-sm` → `text-base`
+
 ## [2026-03-26] — Nouvelles séries : méthodes d'apprentissage de la lecture (didactique_francais) + constructions géométriques aux instruments (géométrie)
 
 - `supabase/migrations/20260885_seed_french_did_methodes_lecture.sql` — 10 exercices didactique_francais sur les méthodes d'apprentissage de la lecture (méthode syllabique vs globale vs mixte ; rapport Goigoux 2016 ; conscience phonologique/phonémique ; modèle à deux voies Coltheart ; simple view of reading Hoover & Gough 1990 ; identification des mots écrits ; dyslexie développementale ; objectifs cycle 2)

@@ -140,7 +140,7 @@ export function ExerciseQuestionPanel({
             {question.instruction}
           </h2>
           {question.support_text ? (
-            <div className="mt-5 rounded-[1.5rem] border border-border bg-paper px-5 py-5 text-sm leading-7 text-muted">
+            <div className="mt-5 rounded-[1.5rem] border border-border bg-paper px-5 py-5 text-base leading-7 text-muted">
               {question.support_text}
             </div>
           ) : null}
@@ -202,7 +202,7 @@ export function ExerciseQuestionPanel({
         )}
 
         {disabledReason ? (
-          <div className="rounded-[1.25rem] border border-border bg-secondary px-4 py-4 text-sm leading-7 text-ink">
+          <div className="rounded-[1.25rem] border border-border bg-secondary px-4 py-4 text-base leading-7 text-ink">
             {disabledReason}
           </div>
         ) : null}

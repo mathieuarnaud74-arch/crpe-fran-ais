@@ -26,28 +26,28 @@ export function ExerciseReviewCard({ question, result, index, isExpanded, onTogg
         </div>
         <span className="text-xs text-muted">{isExpanded ? "\u25B4" : "\u25BE"}</span>
       </div>
-      <p className="mt-3 text-sm font-medium leading-7 text-ink line-clamp-2">
+      <p className="mt-3 text-base font-medium leading-7 text-ink line-clamp-2">
         {question.instruction}
       </p>
       {isExpanded && (
         <div className="mt-4 space-y-2 border-t border-border pt-4">
           {question.support_text ? (
-            <div className="rounded-xl border border-border bg-card px-4 py-4 text-sm leading-7 text-muted">
+            <div className="rounded-xl border border-border bg-card px-4 py-4 text-base leading-7 text-muted">
               {question.support_text}
             </div>
           ) : null}
-          <p className="text-sm leading-7 text-muted">
+          <p className="text-base leading-7 text-muted">
             <span className="font-semibold text-ink">Votre r&eacute;ponse :</span>{" "}
             {question.exercise_type === "tri_categories" || question.exercise_type === "surlignage_propositions"
               ? "Classement soumis"
               : result.answer}
           </p>
-          <p className="text-sm leading-7 text-muted">
+          <p className="text-base leading-7 text-muted">
             <span className="font-semibold text-ink">Correction :</span>{" "}
             {question.detailed_explanation}
           </p>
           {question.common_mistake ? (
-            <p className="text-sm leading-7 text-muted">
+            <p className="text-base leading-7 text-muted">
               <span className="font-semibold text-ink">Erreur fr&eacute;quente :</span>{" "}
               {question.common_mistake}
             </p>

@@ -13,7 +13,7 @@ export function BlockWatchout({ block }: { block: BlockWatchout }) {
             <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-warning" aria-hidden="true" />
             <div className="space-y-1">
               <p className="text-sm font-semibold text-warning">{item.label}</p>
-              <p className="text-xs leading-5 text-ink/80">{item.explanation}</p>
+              <p className="text-sm leading-5 text-ink/80">{item.explanation}</p>
               {item.correction && (
                 <p className="mt-2 rounded-[0.75rem] border border-border bg-paper px-3 py-1.5 font-mono text-xs text-ink">
                   {item.correction}

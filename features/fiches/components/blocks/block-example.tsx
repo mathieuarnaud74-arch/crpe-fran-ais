@@ -23,9 +23,9 @@ export function BlockExample({ block }: { block: BlockExample }) {
           {block.isCorrect ? "✓ Correct" : "✗ Incorrect"}
         </span>
       )}
-      <p className="font-serif text-sm font-medium text-ink">{block.sentence}</p>
+      <p className="font-serif text-base font-medium text-ink">{block.sentence}</p>
       {block.annotation && (
-        <p className="mt-1.5 text-xs leading-5 text-muted">{block.annotation}</p>
+        <p className="mt-1.5 text-sm leading-5 text-muted">{block.annotation}</p>
       )}
     </div>
   );

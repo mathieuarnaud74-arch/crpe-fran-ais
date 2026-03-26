@@ -9,7 +9,7 @@ export function BlockTable({ block }: { block: BlockTable }) {
         </p>
       )}
       <div className="overflow-x-auto rounded-[1.25rem] border border-border">
-        <table className="w-full min-w-[300px] text-sm">
+        <table className="w-full min-w-[300px] text-base">
           <thead>
             <tr className="border-b border-border bg-secondary">
               {block.headers.map((h) => (
@@ -31,7 +31,7 @@ export function BlockTable({ block }: { block: BlockTable }) {
                 {row.map((cell, j) => (
                   <td
                     key={j}
-                    className="px-4 py-3 text-sm leading-6 text-ink first:font-medium"
+                    className="px-4 py-3 text-base leading-6 text-ink first:font-medium"
                   >
                     {cell}
                   </td>

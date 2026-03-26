@@ -46,7 +46,7 @@ export function ExerciseFeedback({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[1.5rem] border-2 px-6 py-6 text-sm leading-7 transition-colors duration-200",
+        "relative overflow-hidden rounded-[1.5rem] border-2 px-6 py-6 text-base leading-7 transition-colors duration-200",
         tone === "success" && "animate-feedback-success border-successBorder bg-successBg text-ink shadow-panel",
         tone === "warning" && "animate-feedback-soft border-warningBorder bg-warningBg text-ink shadow-panel",
         tone === "error" && "animate-feedback-soft border-errorBorder bg-errorBg text-ink shadow-panel",
@@ -116,13 +116,13 @@ export function ExerciseFeedback({
                 {question.detailed_explanation}
               </p>
               {result.validationRule ? (
-                <p className={cn("mt-3 text-sm", !showFullExplanation && "hidden sm:block")}>
+                <p className={cn("mt-3 text-base", !showFullExplanation && "hidden sm:block")}>
                   <span className="font-semibold">R&egrave;gle :</span>{" "}
                   {result.validationRule}
                 </p>
               ) : null}
               {question.common_mistake ? (
-                <p className={cn("mt-2 text-sm", !showFullExplanation && "hidden sm:block")}>
+                <p className={cn("mt-2 text-base", !showFullExplanation && "hidden sm:block")}>
                   <span className="font-semibold">Erreur fr&eacute;quente :</span>{" "}
                   {question.common_mistake}
                 </p>

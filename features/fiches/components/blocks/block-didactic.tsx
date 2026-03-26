@@ -15,7 +15,7 @@ export function BlockDidactic({ block }: { block: BlockDidactic }) {
           {block.cycleEntries.map((entry) => (
             <div key={entry.cycle} className="grid gap-2 sm:grid-cols-[140px_1fr]">
               <p className="text-xs font-semibold text-accentSecondaryDark">{entry.cycle}</p>
-              <p className="text-xs leading-5 text-accentSecondaryDark/80">{entry.content}</p>
+              <p className="text-sm leading-5 text-accentSecondaryDark/80">{entry.content}</p>
             </div>
           ))}
         </div>
@@ -30,7 +30,7 @@ export function BlockDidactic({ block }: { block: BlockDidactic }) {
         </div>
         <ul className="space-y-1.5">
           {block.studentErrors.map((err, i) => (
-            <li key={i} className="flex items-start gap-2 text-xs leading-5 text-ink/80">
+            <li key={i} className="flex items-start gap-2 text-sm leading-5 text-ink/80">
               <span className="mt-0.5 shrink-0 text-warning">—</span>
               {err}
             </li>
@@ -47,7 +47,7 @@ export function BlockDidactic({ block }: { block: BlockDidactic }) {
         </div>
         <ul className="space-y-1.5">
           {block.activities.map((act, i) => (
-            <li key={i} className="flex items-start gap-2 text-xs leading-5 text-pine/80">
+            <li key={i} className="flex items-start gap-2 text-sm leading-5 text-pine/80">
               <span className="mt-0.5 shrink-0 text-pine">—</span>
               {act}
             </li>
@@ -65,7 +65,7 @@ export function BlockDidactic({ block }: { block: BlockDidactic }) {
           </div>
           <ul className="space-y-1.5">
             {block.toAvoid.map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-xs leading-5 text-error/80">
+              <li key={i} className="flex items-start gap-2 text-sm leading-5 text-error/80">
                 <span className="mt-0.5 shrink-0 text-error">—</span>
                 {item}
               </li>

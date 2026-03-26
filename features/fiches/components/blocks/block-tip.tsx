@@ -9,7 +9,7 @@ export function BlockTip({ block }: { block: BlockTip }) {
           className="mt-0.5 h-4 w-4 shrink-0 text-accentSecondary"
           aria-hidden="true"
         />
-        <p className="text-xs leading-6 text-accentSecondaryDark">{block.text}</p>
+        <p className="text-sm leading-6 text-accentSecondaryDark">{block.text}</p>
       </div>
     </div>
   );

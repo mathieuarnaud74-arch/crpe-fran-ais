@@ -73,7 +73,7 @@ export function ExerciseChoiceList({
             )}
             <span
               className={cn(
-                "min-w-0 flex-1 text-sm leading-7 text-ink",
+                "min-w-0 flex-1 text-base leading-7 text-ink",
                 exerciseType === "vrai_faux" && "font-semibold",
               )}
             >
