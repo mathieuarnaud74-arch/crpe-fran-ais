@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : subordonnées circonstancielles (grammaire) + priorité des opérations (nombres_calcul)
+
+- `supabase/migrations/20260875_seed_french_gram_subord_circonstancielles.sql` — 10 exercices grammaire sur les propositions subordonnées circonstancielles (cause/parce que, temps/avant que, but/afin que, condition/si, concession/bien que, conséquence/tant que — conjonctions, modes requis, déplaçabilité, approche didactique)
+- `supabase/migrations/20260876_seed_math_priorite_operations.sql` — 10 exercices nombres_calcul sur la priorité des opérations (× et ÷ avant + et −, parenthèses priorité absolue, gauche→droite à niveau égal, puissances, analyse d'erreur élève type)
+
 ## [2026-03-26] — Nouvelles séries : fonctions syntaxiques (analyse_langue) + sens des fractions (nombres_calcul)
 
 - `supabase/migrations/20260873_seed_french_anal_fonctions_syntaxiques.sql` — 10 exercices analyse_langue sur les fonctions syntaxiques des groupes (sujet, COD, COI, attribut du sujet, épithète vs attribut, complément du nom, CC lieu/manière — identification et distinction)
