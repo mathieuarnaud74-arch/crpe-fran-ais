@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : imparfait/passé simple (conjugaison) + symétrie axiale/centrale (géométrie)
+
+- `supabase/migrations/20260871_seed_french_conj_imparfait_passe_simple.sql` — 10 exercices conjugaison sur l'opposition imparfait/passé simple dans le récit (premier plan/arrière-plan, aspect perfectif vs imperfectif, imparfait descriptif/itératif/duratif, plus-que-parfait, activité didactique cycle 3)
+- `supabase/migrations/20260872_seed_math_symetrie_axiale_centrale.sql` — 10 exercices géométrie sur la symétrie axiale et centrale (définition axe de symétrie, axes des figures usuelles, construction du symétrique, symétrie centrale = rotation 180°, centre de symétrie des quadrilatères)
+
 ## [2026-03-26] — Nouvelles séries : voix passive (grammaire) + résolution de problèmes (didactique maths)
 
 - `supabase/migrations/20260869_seed_french_gram_voix_passive.sql` — 10 exercices grammaire sur la voix active et la voix passive (transformation active→passive, auxiliaire être, accord du PP avec le sujet passif, complément d'agent, phrases sans agent, verbes intransitifs non passivables)
