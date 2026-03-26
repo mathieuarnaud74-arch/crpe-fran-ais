@@ -17,8 +17,9 @@ export const metadata: Metadata = {
 export default async function RandomExercisePage() {
   const user = await requireUser();
 
-  const [questions, attemptsToday, premium] = await Promise.all([
-    getRandomExercises(10),
+  const [frenchQuestions, mathQuestions, attemptsToday, premium] = await Promise.all([
+    getRandomExercises(10, "Francais"),
+    getRandomExercises(10, "Mathematiques"),
     getAttemptsCountToday(user.id),
     isPremiumUser(user.id),
   ]);
@@ -34,25 +35,11 @@ export default async function RandomExercisePage() {
     : null;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
-      <div>
-        <h1 className="font-serif text-3xl font-semibold text-ink">
-          Exercice aléatoire
-        </h1>
-        <p className="mt-2 text-sm leading-7 text-muted">
-          10 questions piochées au hasard dans tous les domaines du français.
-          Choisissez votre mode et testez vos connaissances !
-        </p>
-      </div>
-      {questions.length > 0 ? (
-        <RandomExerciseWrapper
-          questions={questions}
-          initialXp={initialXp}
-          disabledReason={disabledReason}
-        />
-      ) : (
-        <p className="text-sm text-muted">Aucune question disponible pour le moment.</p>
-      )}
-    </div>
+    <RandomExerciseWrapper
+      frenchQuestions={frenchQuestions}
+      mathQuestions={mathQuestions}
+      initialXp={initialXp}
+      disabledReason={disabledReason}
+    />
   );
 }

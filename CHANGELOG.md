@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-03-26] — Exercice aléatoire : choix de matière (Français / Mathématiques)
+
+- `app/(app)/exercice-aleatoire/page.tsx` — charge les questions des deux matières en parallèle au lieu du français seul
+- `features/exercises/components/random-subject-picker.tsx` — nouveau composant de sélection de matière (Français / Mathématiques) avec badge "Bientôt" si aucune question disponible
+- `features/exercises/components/random-exercise-wrapper.tsx` — ajout d'une étape matière avant le mode picker, bouton retour, useMemo sur le tableau de questions
+
 ## [2026-03-26] — 5 nouvelles séries maths de 10 questions (50 exercices)
 
 Audit du contenu mathématiques, identification des lacunes, puis génération de 5 séries comblant les thèmes manquants.
