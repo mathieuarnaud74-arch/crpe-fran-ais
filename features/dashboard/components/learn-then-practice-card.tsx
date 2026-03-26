@@ -89,7 +89,7 @@ export function LearnThenPracticeCard({
         </div>
 
         {/* Fiche section */}
-        <div className="rounded-lg border border-border/50 bg-card/50 px-3.5 py-3">
+        <div>
           <div className="flex items-center gap-2">
             <span className="text-base" aria-hidden>&#x1F4D6;</span>
             <span className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-muted">
@@ -100,11 +100,9 @@ export function LearnThenPracticeCard({
             )}
           </div>
           <p className="mt-1.5 text-sm font-semibold text-ink">{ficheTitle}</p>
-          <div className="mt-1 flex items-center gap-2">
-            <span className="text-xs text-muted">
-              {MODEL_LABELS[ficheModel] ?? ficheModel} &middot; {ficheMinutes} min
-            </span>
-          </div>
+          <p className="mt-1 text-xs text-muted">
+            {MODEL_LABELS[ficheModel] ?? ficheModel} &middot; {ficheMinutes} min
+          </p>
           <Link
             href={`/fiches/${ficheSlug}`}
             className={cn("mt-2 inline-block text-xs font-bold hover:underline", t.cta)}
@@ -114,14 +112,14 @@ export function LearnThenPracticeCard({
         </div>
 
         {/* Connector */}
-        <div className="my-2 flex items-center gap-2 px-3">
-          <span className="h-px flex-1 bg-border" />
-          <span className="text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-muted">puis</span>
-          <span className="h-px flex-1 bg-border" />
+        <div className="my-2.5 flex items-center gap-2">
+          <span className="h-px flex-1 bg-border/60" />
+          <span className="text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-muted/60">puis</span>
+          <span className="h-px flex-1 bg-border/60" />
         </div>
 
         {/* Exercise section */}
-        <div className="rounded-lg border border-border/50 bg-card/50 px-3.5 py-3">
+        <div>
           <div className="flex items-center gap-2">
             <span className="text-base" aria-hidden>&#x270F;&#xFE0F;</span>
             <span className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-muted">
