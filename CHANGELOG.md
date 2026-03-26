@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelle fiche maths : étendue, dispersion et boîte à moustaches
+
+- `content/fiches-maths/donnees-etendue-dispersion-boite-sprint.ts` — fiche sprint organisation de données (étendue, quartiles, écart interquartile, boîte à moustaches, asymétrie)
+- `content/fiches-maths/index.ts` — ajout de la fiche dans le registre
+
 ## [2026-03-26] — Nouvelle série maths : aires latérales et totales des solides
 
 - `supabase/migrations/20260844_seed_math_aire_laterale_solides.sql` — 10 exercices sur le calcul d'aires latérales et totales (prisme, cylindre, pyramide, cône, sphère, cube, problème en contexte)

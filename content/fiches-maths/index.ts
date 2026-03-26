@@ -86,6 +86,7 @@ import { donneesMoyennePondereeOperatoire } from "./donnees-moyenne-ponderee-ope
 import { donneesDenombrementCombinatoireSprint } from "./donnees-denombrement-combinatoire-sprint";
 import { donneesProportionnaliteGraphiqueSprint } from "./donnees-proportionnalite-graphique-sprint";
 import { donneesFrequencesCumuleesQuartilesSprint } from "./donnees-frequences-cumulees-quartiles-sprint";
+import { donneesEtendueDispersionBoiteSprint } from "./donnees-etendue-dispersion-boite-sprint";
 
 // ─── Didactique des maths ────────────────────────────────────────────────────
 import { didactiqueNumerationCyclesSprint } from "./didactique-numeration-cycles-sprint";
@@ -204,6 +205,7 @@ export const allFichesMaths: Fiche[] = [
   donneesDenombrementCombinatoireSprint,
   donneesProportionnaliteGraphiqueSprint,
   donneesFrequencesCumuleesQuartilesSprint,
+  donneesEtendueDispersionBoiteSprint,
   // Didactique des maths
   didactiqueNumerationCyclesSprint,
   didactiqueCalculPoseSprint,
