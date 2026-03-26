@@ -52,7 +52,7 @@ export function FicheRow({ fiche, completed, locked, lockReason }: FicheRowProps
         <span className="flex h-5 w-5 shrink-0 items-center justify-center">
           <Lock className="h-3.5 w-3.5 text-muted" aria-label="Verrouillée" />
         </span>
-        <span className="font-serif text-lg font-medium leading-snug text-muted">
+        <span className="font-serif text-xl font-medium leading-snug text-muted">
           {fiche.title}
         </span>
         {lockReason === "premium" && (
@@ -82,7 +82,7 @@ export function FicheRow({ fiche, completed, locked, lockReason }: FicheRowProps
         </span>
       )}
       <span className={cn(
-        "font-serif text-lg font-medium leading-snug transition-colors group-hover:text-accent",
+        "font-serif text-xl font-medium leading-snug transition-colors group-hover:text-accent",
         completed ? "text-pine/80" : "text-ink",
       )}>
         {fiche.title}
