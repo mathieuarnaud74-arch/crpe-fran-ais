@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : questions de compréhension/Giasson (comp_texte) + statistiques cycle 3 (didactique_maths)
+
+- `supabase/migrations/20260883_seed_french_comp_questions_comprehension.sql` — 10 exercices comprehension_texte sur les types de questions selon Giasson (3 familles : dans le texte / dans le texte et ma tête / dans ma tête ; modèle lecteur-texte-contexte ; questions littérales vs inférentielles ; implication pédagogique ; ouvrage de référence 1990)
+- `supabase/migrations/20260884_seed_math_did_statistiques_donnees.sql` — 10 exercices didactique_maths sur l'enseignement de l'organisation de données en cycle 3 (domaine Données et incertitudes ; moyenne par partage équitable ; diagramme en bâtons vs histogramme ; fréquence relative ; tableaux à double entrée ; lien avec la proportionnalité ; premières probabilités)
+
 ## [2026-03-26] — Nouvelles séries : types et formes de phrases (grammaire) + numération base dix (nombres_calcul)
 
 - `supabase/migrations/20260881_seed_french_gram_types_formes_phrases.sql` — 10 exercices grammaire sur les types et formes de phrases (4 types : déclarative/interrogative/exclamative/impérative ; forme affirmative vs négative ; interrogative totale par est-ce que/inversion ; phrase emphatique c''est...qui/que ; phrase impersonnelle ; sujet absent à l''impératif)
