@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : sens propre/figuré + valeur positionnelle décimale
+
+- `supabase/migrations/20260863_seed_french_lex_sens_propre_figure.sql` — 10 exercices lexique sur le sens propre/figuré, les expressions idiomatiques et la métaphore lexicalisée
+- `supabase/migrations/20260864_seed_math_valeur_positionnelle_decimale.sql` — 10 exercices nombres_calcul sur la valeur positionnelle et la décomposition des nombres décimaux (rang des chiffres, décomposition canonique, fractions décimales, tableau de numération)
+
 ## [2026-03-26] — Nouvelles séries : pronoms relatifs + indicateurs statistiques
 
 - `supabase/migrations/20260861_seed_french_gram_pronoms_relatifs.sql` — 10 exercices grammaire sur les pronoms relatifs et subordonnées relatives (qui/que/dont/où/lequel — formes, fonctions, emploi après préposition, fusion de phrases)
