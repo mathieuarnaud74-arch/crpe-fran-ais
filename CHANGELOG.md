@@ -1,5 +1,14 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : accords GN + inégalité triangulaire
+
+- `supabase/migrations/20260855_seed_french_accords_groupe_nominal.sql` — 10 exercices orthographe sur les accords dans le GN (adjectif épithète, couleurs composées invariables, noms composés, demi/tout, adjectifs possibles après superlatif)
+- `supabase/migrations/20260856_seed_math_inegalite_triangulaire.sql` — 10 exercices géométrie sur l'inégalité triangulaire (triangles constructibles ou non, encadrement du 3e côté, triangle dégénéré, triplet pythagoricien 5-12-13, isocèle)
+
+## [2026-03-26] — Nouvelle série français : accords dans le groupe nominal
+
+- `supabase/migrations/20260855_seed_french_accords_groupe_nominal.sql` — 10 exercices orthographe sur les accords dans le groupe nominal (accord de l'adjectif épithète, adjectifs de couleur simples/composés/dérivés de noms, noms composés adjectif+adjectif, « demi » invariable antéposé, féminin irrégulier « beau → belle », accord de « tout », « possible » après superlatif, adjectif « neuf » qualificatif)
+
 ## [2026-03-26] — Nouvelles séries : anaphores/substituts + pourcentages en contexte
 
 - `supabase/migrations/20260853_seed_french_anaphores_substituts.sql` — 10 exercices analyse_langue sur les anaphores et substituts nominaux (anaphore pronominale, nominale, associative, cataphore, chaînes de référence, ambiguïté référentielle)
