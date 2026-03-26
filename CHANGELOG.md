@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : production écrite (didactique) + conversions d'unités
+
+- `supabase/migrations/20260867_seed_french_did_production_ecrite.sql` — 10 exercices didactique_francais sur la production écrite cycles 2-3 (modèle Hayes & Flower, processus rédactionnel, DAE, textualisation, surcharge cognitive, révision locale/globale, situation d'écriture, organisateur graphique, grille de critères de réussite)
+- `supabase/migrations/20260868_seed_math_grandeurs_conversions_unites.sql` — 10 exercices grandeurs_mesures sur les conversions d'unités (longueurs m/cm/km, masses kg/g/t, capacités L/mL, aires m²/cm²/ha, durées h/min, équivalence dm³ = L)
+
 ## [2026-03-26] — Nouvelles séries : types de textes + trigonométrie triangle rectangle
 
 - `supabase/migrations/20260865_seed_french_cpt_types_textes.sql` — 10 exercices comprehension_texte sur les types de textes (narratif, descriptif, explicatif, argumentatif, injonctif — identification, dominante textuelle, hybridité, marques linguistiques)
