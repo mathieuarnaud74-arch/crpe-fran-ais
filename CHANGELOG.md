@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-26] — Nouvelle série français : compléments d'objet (COD, COI, COS)
+
+- `supabase/migrations/20260845_seed_french_complements_objet_cod_coi.sql` — 10 exercices sur l'identification et la distinction COD/COI/COS (pronominalisation, passivation, pièges COI vs CC, attribut vs COD)
+
 ## [2026-03-26] — Nouvelle fiche maths : étendue, dispersion et boîte à moustaches
 
 - `content/fiches-maths/donnees-etendue-dispersion-boite-sprint.ts` — fiche sprint organisation de données (étendue, quartiles, écart interquartile, boîte à moustaches, asymétrie)
