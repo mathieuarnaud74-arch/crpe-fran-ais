@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : fonctions syntaxiques (analyse_langue) + sens des fractions (nombres_calcul)
+
+- `supabase/migrations/20260873_seed_french_anal_fonctions_syntaxiques.sql` — 10 exercices analyse_langue sur les fonctions syntaxiques des groupes (sujet, COD, COI, attribut du sujet, épithète vs attribut, complément du nom, CC lieu/manière — identification et distinction)
+- `supabase/migrations/20260874_seed_math_fractions_concepts_sens.sql` — 10 exercices nombres_calcul sur les sens et représentations des fractions (4 aspects : partage, mesure, quotient, opérateur ; fractions équivalentes, simplification PGCD, droite graduée, fractions impropres)
+
 ## [2026-03-26] — Nouvelles séries : imparfait/passé simple (conjugaison) + symétrie axiale/centrale (géométrie)
 
 - `supabase/migrations/20260871_seed_french_conj_imparfait_passe_simple.sql` — 10 exercices conjugaison sur l'opposition imparfait/passé simple dans le récit (premier plan/arrière-plan, aspect perfectif vs imperfectif, imparfait descriptif/itératif/duratif, plus-que-parfait, activité didactique cycle 3)
