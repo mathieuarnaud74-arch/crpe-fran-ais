@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : types de textes + trigonométrie triangle rectangle
+
+- `supabase/migrations/20260865_seed_french_cpt_types_textes.sql` — 10 exercices comprehension_texte sur les types de textes (narratif, descriptif, explicatif, argumentatif, injonctif — identification, dominante textuelle, hybridité, marques linguistiques)
+- `supabase/migrations/20260866_seed_math_sin_cos_tan_triangle_rect.sql` — 10 exercices géométrie sur la trigonométrie dans le triangle rectangle (sinus, cosinus, tangente — SOH-CAH-TOA, valeurs remarquables 30°/45°/60°, calcul de côtés et d'angles, identité fondamentale)
+
 ## [2026-03-26] — Nouvelles séries : sens propre/figuré + valeur positionnelle décimale
 
 - `supabase/migrations/20260863_seed_french_lex_sens_propre_figure.sql` — 10 exercices lexique sur le sens propre/figuré, les expressions idiomatiques et la métaphore lexicalisée
