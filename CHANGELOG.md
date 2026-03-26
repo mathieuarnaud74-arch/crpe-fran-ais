@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : emplois des modes verbaux + didactique contrat/transposition
+
+- `supabase/migrations/20260859_seed_french_conj_modes_emplois.sql` — 10 exercices conjugaison sur les emplois des modes verbaux (subjonctif après conjonctions, conditionnel hypothétique/journalistique/politesse, impératif, infinitif impersonnel, concordance des temps)
+- `supabase/migrations/20260860_seed_math_didactique_contrat_transposition.sql` — 10 exercices didactique_maths sur contrat didactique et transposition didactique (Brousseau : dévolution, institutionnalisation, effets Topaze et Jourdain, situation adidactique ; Chevallard : triangle didactique)
+
 ## [2026-03-26] — Nouvelles séries : didactique lecture cycle 2 + volumes pratiques
 
 - `supabase/migrations/20260857_seed_french_did_lecture_cycle2.sql` — 10 exercices didactique_francais sur l'enseignement de la lecture au CP/CE1 (conscience phonologique, CGP, décodage, fluence, modèle SVR Gough & Tunmer, méthode globale vs syllabique, graphème)
