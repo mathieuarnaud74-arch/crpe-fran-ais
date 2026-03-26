@@ -123,30 +123,30 @@ export function ActivityHeatmap({ dailyActivity, weeks = 13 }: ActivityHeatmapPr
     return { grid: gridData, monthHeaders: headers, totalCount: total };
   }, [dailyActivity, weeks]);
 
-  const cellSize = 13;
-  const cellGap = 3;
-  const labelWidth = 20;
-  const headerHeight = 18;
+  const cellSize = 10;
+  const cellGap = 2;
+  const labelWidth = 16;
+  const headerHeight = 14;
   const totalWidth = labelWidth + grid.length * (cellSize + cellGap);
   const totalHeight = headerHeight + 7 * (cellSize + cellGap);
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-end justify-between gap-4">
-        <p className="text-sm text-muted">
+    <div className="space-y-2">
+      <div className="flex items-end justify-between gap-3">
+        <p className="text-xs text-muted">
           <span className="font-semibold text-ink">{totalCount}</span>{" "}
-          réponse{totalCount !== 1 ? "s" : ""} sur les {weeks} dernières semaines
+          réponse{totalCount !== 1 ? "s" : ""} sur {weeks} sem.
         </p>
-        <div className="flex items-center gap-1.5 text-[0.6rem] text-muted">
+        <div className="flex items-center gap-1 text-[0.55rem] text-muted">
           <span>Moins</span>
           {([0, 1, 2, 3, 4] as const).map((level) => (
             <span
               key={level}
               className={cn(
-                "inline-block rounded-[3px]",
+                "inline-block rounded-[2px]",
                 INTENSITY_BG_CLASSES[level],
               )}
-              style={{ width: cellSize - 2, height: cellSize - 2 }}
+              style={{ width: cellSize - 1, height: cellSize - 1 }}
             />
           ))}
           <span>Plus</span>

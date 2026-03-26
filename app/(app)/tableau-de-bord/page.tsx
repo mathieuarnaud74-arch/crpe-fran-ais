@@ -196,21 +196,14 @@ export default async function DashboardPage() {
       {data.totalAttempts > 0 && (
         <div className="grid gap-4 2xl:grid-cols-2">
           {/* Heatmap */}
-          <Panel data-tour="heatmap">
-            <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
-              <div>
-                <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-[#476257]">
-                  R&eacute;gularit&eacute;
-                </p>
-                <h2 className="mt-1 font-serif text-xl font-semibold text-ink">
-                  Activit&eacute; r&eacute;cente
-                </h2>
-              </div>
-              <ButtonLink href="/progression" variant="secondary">D&eacute;tail</ButtonLink>
+          <Panel data-tour="heatmap" className="p-3 sm:p-4">
+            <div className="flex items-center justify-between gap-3 border-b border-border pb-2 mb-2">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#476257]">
+                Activit&eacute;
+              </p>
+              <ButtonLink href="/progression" variant="secondary" size="sm">D&eacute;tail</ButtonLink>
             </div>
-            <div className="mt-4">
-              <ActivityHeatmap dailyActivity={data.dailyActivity} />
-            </div>
+            <ActivityHeatmap dailyActivity={data.dailyActivity} />
           </Panel>
 
           {/* Dernières réponses */}
