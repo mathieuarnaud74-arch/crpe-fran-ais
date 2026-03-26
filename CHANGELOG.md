@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-26] — Nouvelle série maths : quadrilatères particuliers (propriétés et classification)
+
+- `supabase/migrations/20260846_seed_math_quadrilateres_particuliers.sql` — 10 exercices sur parallélogramme, rectangle, losange, carré, trapèze (hiérarchie, diagonales, aire du losange, Pythagore, conditions suffisantes)
+
 ## [2026-03-26] — Nouvelle fiche français : participe présent, gérondif et adjectif verbal
 
 - `content/fiches/conjugaison-participe-gerondif-sprint.ts` — fiche sprint conjugaison (distinction participe présent / gérondif / adjectif verbal, invariabilité, paires orthographiques fatiguant/fatigant etc.)
