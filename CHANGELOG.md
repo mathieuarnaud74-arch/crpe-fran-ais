@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-03-26] — Nouvelle série orthographe : terminaisons verbales homophones
+
+- `supabase/migrations/20260840_seed_french_terminaisons_verbales_homophones.sql` — 10 exercices sur les terminaisons -é/-er/-ez/-ais/-ait/-aient (5 QCM, 2 vrai/faux, 2 réponses courtes)
+- `supabase/migrations/20260841_replace_tangente_q3q5q6_and_vecteurs_full.sql` — renommé depuis 20260839 (fix doublon de version)
+- `supabase/migrations/20260842_replace_vector_suite_questions.sql` — renommé depuis 20260839 (fix doublon de version)
+
 ## [2026-03-26] — Remplacement de 27 questions hors programme CRPE (7 séries)
 
 3 migrations correctives remplaçant les questions utilisant du formalisme hors programme (Bayes, C(n,k), vecteurs, u(n), puissance d'un point) par du contenu CRPE.
