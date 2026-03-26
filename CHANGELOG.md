@@ -1,5 +1,16 @@
 # Changelog
 
+## [2026-03-26] — Réagencement dashboard : 6 zones, intégration fiches, action-first
+
+- `app/(app)/tableau-de-bord/page.tsx` — refonte complète (772 → 260 lignes) : 12+ sections → 6 zones (statut compact, prochaine étape, parcours domaines, insights, activité)
+- `lib/dashboard/build-smart-plan.ts` — nouvel algorithme `buildSmartPlan` qui mixe fiches et exercices selon les domaines faibles + `getFicheProgressByDomain`
+- `features/dashboard/components/compact-status-bar.tsx` — Zone 1 : barre de statut compacte (niveau, XP, streak, score, acquis, objectif quotidien) en 1 ligne
+- `features/dashboard/components/smart-plan-section.tsx` — Zone 2 : section "Prochaine étape" avec SRS banner + cartes action adaptatives
+- `features/dashboard/components/learn-then-practice-card.tsx` — carte composite "Lire la fiche → S'exercer" pour la boucle apprentissage
+- `features/dashboard/components/domain-progress-card.tsx` — carte domaine avec progression fiches (X/Y lues) + séries (X/Y maîtrisées)
+- `features/dashboard/components/subject-tabs.tsx` — Zone 3 : onglets Français / Mathématiques
+- `features/dashboard/components/insights-tabs.tsx` — Zone 4 : 4 onglets (Priorités, Fragilités, Erreurs, Acquis) avec suggestions de fiches
+
 ## [2026-03-26] — Accessibilité : titres fiches agrandis + quiz lisible + catégories collapsibles
 
 - `features/fiches/components/fiche-card.tsx` — titres FicheRow `text-[1.08rem]` → `text-lg` (locked et unlocked)
