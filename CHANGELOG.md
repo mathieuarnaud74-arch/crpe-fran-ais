@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : conditionnel présent (conjugaison) + encadrements et arrondis (nombres_calcul)
+
+- `supabase/migrations/20260877_seed_french_conj_conditionnel_present.sql` — 10 exercices conjugaison sur le conditionnel présent (formation radical futur + terminaisons imparfait ; valeurs : hypothèse/si, politesse/atténuation, souhait/désir, information non vérifiée ; verbes irréguliers ; concordance des temps)
+- `supabase/migrations/20260878_seed_math_encadrements_arrondis.sql` — 10 exercices nombres_calcul sur les encadrements et arrondis de nombres décimaux (encadrement à l'unité/dixième/dizaine, arrondi au dixième/centième, valeur approchée par défaut vs arrondi au plus proche, convention chiffre = 5)
+
 ## [2026-03-26] — Nouvelles séries : subordonnées circonstancielles (grammaire) + priorité des opérations (nombres_calcul)
 
 - `supabase/migrations/20260875_seed_french_gram_subord_circonstancielles.sql` — 10 exercices grammaire sur les propositions subordonnées circonstancielles (cause/parce que, temps/avant que, but/afin que, condition/si, concession/bien que, conséquence/tant que — conjonctions, modes requis, déplaçabilité, approche didactique)
