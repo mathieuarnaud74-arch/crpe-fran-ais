@@ -72,7 +72,7 @@ INSERT INTO public.exercises (
 ) VALUES (
   'b0090000-0000-0000-0000-000000000004', 'Mathematiques', 'didactique_maths', 'math_didactique_numeration',
   'Analyse de productions d''élèves — Numération', 'Intermediaire', 'reponse_courte',
-  'Un élève de CE2 effectue la soustraction 742 − 168 et obtient 426. On observe qu''à chaque colonne où le chiffre du bas est plus grand, il soustrait le plus petit du plus grand (8−2=6, 6−4=2, 7−1=6) au lieu d''effectuer une retenue. Quel terme didactique désigne précisément ce type d''erreur systématique liée à une conception erronée de la soustraction ?',
+  'Un élève de CE2 effectue la soustraction 742 − 168 et obtient 626. On observe qu''à chaque colonne où le chiffre du bas est plus grand, il soustrait le plus petit du plus grand (8−2=6, 6−4=2, 7−1=6) au lieu d''effectuer une retenue. Quel terme didactique désigne précisément ce type d''erreur systématique liée à une conception erronée de la soustraction ?',
   NULL,
   NULL,
   '{"mode":"text","acceptableAnswers":["bug","bug algorithmique","bug dans l''algorithme","erreur systématique","erreur algorithmique"]}'::jsonb,

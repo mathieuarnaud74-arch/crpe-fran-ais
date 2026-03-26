@@ -33,7 +33,7 @@ INSERT INTO public.exercises (
   'qcm',
   'Lors d''une enquête sur les moyens de transport utilisés par les élèves d''une école, on obtient les réponses suivantes : voiture, bus, vélo, voiture, marche, bus, voiture, vélo, bus, marche, voiture, bus, marche, vélo, voiture. Dans quelle catégorie y a-t-il le plus d''élèves ?',
   NULL,
-  '[{"id":"a","label":"Bus (4 élèves)"},{"id":"b","label":"Voiture (5 élèves)"},{"id":"c","label":"Vélo (3 élèves)"},{"id":"d","label":"Marche (4 élèves)"}]'::jsonb,
+  '[{"id":"a","label":"Bus (4 élèves)"},{"id":"b","label":"Voiture (5 élèves)"},{"id":"c","label":"Vélo (3 élèves)"},{"id":"d","label":"Marche (3 élèves)"}]'::jsonb,
   '{"mode":"single","value":"b"}'::jsonb,
   'Pour organiser ces données qualitatives, on classe les réponses par catégories et on compte l''effectif de chacune. Voiture : 5 occurrences. Bus : 4 occurrences. Marche : 3 occurrences. Vélo : 3 occurrences. La catégorie « voiture » est la plus fréquente avec 5 élèves. Ce regroupement par catégories est la base de l''organisation des données qualitatives : on passe d''une liste brute de réponses à un tableau de fréquences exploitable.',
   'Se tromper dans le décompte en oubliant une occurrence ou en comptant deux fois la même réponse. Une méthode fiable consiste à barrer chaque donnée au fur et à mesure qu''on la comptabilise.',

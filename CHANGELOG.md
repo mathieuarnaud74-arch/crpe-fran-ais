@@ -1,5 +1,35 @@
 # Changelog
 
+## [2026-03-26] — Remplacement de 27 questions hors programme CRPE (7 séries)
+
+3 migrations correctives remplaçant les questions utilisant du formalisme hors programme (Bayes, C(n,k), vecteurs, u(n), puissance d'un point) par du contenu CRPE.
+
+- `supabase/migrations/20260839_replace_combinatoire_hors_programme.sql` :
+  - **math_probabilites_composees** Q6 : Bayes → probabilité avec tableau à double entrée
+  - **math_probabilites_arbres** Q7 : Bayes → arbre simple à 2 niveaux (urne + dé)
+  - **math_combinatoire_denombrement** Q3-Q7 : C(n,k)/factorielles → principe multiplicatif, arbres de choix, listes organisées, dénombrement par exclusion
+- `supabase/migrations/20260839_replace_tangente_q3q5q6_and_vecteurs_full.sql` :
+  - **math_tangente_cercle** Q3/Q5/Q6 : angle tangente-sécante, angle tangente-corde, puissance d'un point → angle inscrit demi-cercle, corde ⊥ diamètre, longueur tangente par Pythagore
+  - **math_vecteurs_introduction** Q1-Q7 : vecteurs formels → « Translations — Propriétés et constructions »
+- `supabase/migrations/20260839_replace_vector_suite_questions.sql` :
+  - **math_transformations_composees** Q1-Q3 : notation vectorielle → composée de symétries axiales (axes // et sécants), isométries
+  - **math_suites_motifs** Q1-Q7 : formalisme u(n)/S(n) → « Régularités et motifs numériques » (sans terminologie de suites)
+
+## [2026-03-26] — Audit et correction de contenu : 173 séries maths (~1 200+ questions)
+
+Audit exhaustif des 173 fichiers SQL de séries mathématiques via 8 sous-agents en parallèle. 12 erreurs identifiées et corrigées.
+
+- `supabase/migrations/20260512_seed_math_didactique_numeration.sql` — Q4 : résultat élève corrigé de 426 à 626 (cohérence avec la procédure décrite)
+- `supabase/migrations/20260523_seed_math_problemes_transversaux.sql` — Q7 : choix QCM corrigé de 48,30 € à 48,61 € (calcul piscine cylindrique) + explication simplifiée
+- `supabase/migrations/20260527_seed_math_nombres_relatifs_puissances.sql` — Q7 : 2⁸ remplacé par 2⁷ pour éviter l'égalité 2⁸=4⁴, choix et explication réécrits
+- `supabase/migrations/20260603_seed_math_sujet_blanc_3.sql` — Q8 : distance AB corrigée de 450 à 465 km pour que la réponse 11h00 soit exacte, explication recalculée
+- `supabase/migrations/20260606_seed_math_sujet_blanc_3b.sql` — Q6 : résultat élève corrigé de 252 à 115 (cohérent avec 92+23 sans décalage), explication clarifiée
+- `supabase/migrations/20260619_seed_math_moyennes_medianes.sql` — Q7 : somme corrigée de 504 à 512, moyenne de 12,6 à 12,8
+- `supabase/migrations/20260730_seed_math_nombres_entiers_naturels.sql` — Q3 : distracteur corrigé de « 6×1000+20+7 » à « 6×1000+200+7 »
+- `supabase/migrations/20260503_seed_math_nombres_chasse_erreurs.sql` — Q5 : reformulation « A-t-il raison ? » → « Le résultat est-il exact ? » pour lever l'ambiguïté
+- `supabase/migrations/20260728_seed_math_didactique_geometrie_plane.sql` — Q4 : « Un même figure » → « Une même figure » (accord) ; Q6 : « de même rayon » → « de rayon AB » (précision mathématique)
+- `supabase/migrations/20260755_seed_math_tri_classement_donnees.sql` — Q2 : distracteur « Marche (4 élèves) » → « Marche (3 élèves) » (comptage corrigé)
+
 ## [2026-03-26] — Exercice aléatoire : choix de matière (Français / Mathématiques)
 
 - `app/(app)/exercice-aleatoire/page.tsx` — charge les questions des deux matières en parallèle au lieu du français seul

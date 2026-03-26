@@ -128,7 +128,7 @@ INSERT INTO public.exercises (
   'Chasse aux erreurs — Calcul et fractions',
   'Intermediaire',
   'vrai_faux',
-  'Liam affirme que 26/65 = 2/5 car on peut « barrer les 6 » au numérateur et au dénominateur. A-t-il raison ?',
+  'Liam affirme que 26/65 = 2/5 car on peut « barrer les 6 » au numérateur et au dénominateur. Le résultat 26/65 = 2/5 est-il exact ?',
   NULL,
   NULL,
   '{"mode":"single","value":"vrai"}'::jsonb,

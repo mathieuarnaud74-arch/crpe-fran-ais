@@ -54,7 +54,7 @@ INSERT INTO public.exercises (
   'qcm',
   'Quelle est la décomposition en puissances de 10 du nombre 6 207 ?',
   NULL,
-  '[{"id":"a","label":"6 × 10³ + 2 × 10² + 0 × 10¹ + 7 × 10⁰"},{"id":"b","label":"6 × 10⁴ + 2 × 10³ + 0 × 10² + 7 × 10¹"},{"id":"c","label":"6 × 10³ + 2 × 10² + 7 × 10⁰"},{"id":"d","label":"6 × 1000 + 20 + 7"}]'::jsonb,
+  '[{"id":"a","label":"6 × 10³ + 2 × 10² + 0 × 10¹ + 7 × 10⁰"},{"id":"b","label":"6 × 10⁴ + 2 × 10³ + 0 × 10² + 7 × 10¹"},{"id":"c","label":"6 × 10³ + 2 × 10² + 7 × 10⁰"},{"id":"d","label":"6 × 1000 + 200 + 7"}]'::jsonb,
   '{"mode":"single","value":"a"}'::jsonb,
   'La décomposition en puissances de 10 consiste à exprimer chaque chiffre multiplié par la puissance de 10 correspondant à sa position. Pour 6 207 : 6 est en position des milliers (10³ = 1 000), 2 en position des centaines (10² = 100), 0 en position des dizaines (10¹ = 10) et 7 en position des unités (10⁰ = 1). On obtient donc : 6 × 10³ + 2 × 10² + 0 × 10¹ + 7 × 10⁰. La réponse (c) est une écriture simplifiée correcte mais elle omet le terme 0 × 10¹, ce qui n''est pas une décomposition complète. La réponse (d) est un développement numérique, pas une décomposition en puissances de 10.',
   'Confondre les exposants des puissances de 10, notamment écrire 10⁴ au lieu de 10³ pour les milliers, ou oublier que 10⁰ = 1.',

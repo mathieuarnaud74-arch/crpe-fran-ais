@@ -135,8 +135,8 @@ INSERT INTO public.exercises (
   'Lors d''une évaluation, les résultats de 40 élèves sont regroupés dans le tableau suivant :\n• Note 6 : 4 élèves\n• Note 10 : 12 élèves\n• Note 14 : 16 élèves\n• Note 18 : 8 élèves\nCalculer la moyenne de la classe et déterminer la médiane. Donner la réponse sous la forme « moyenne ; médiane » (par exemple : 11,5 ; 12).',
   NULL,
   NULL,
-  '{"mode":"text","acceptableAnswers":["12,6 ; 14","12.6 ; 14","12,6;14","12.6;14","12,60 ; 14","12,6 ; 14,0"]}'::jsonb,
-  'Calcul de la moyenne pondérée :\n(6 × 4 + 10 × 12 + 14 × 16 + 18 × 8) ÷ 40\n= (24 + 120 + 224 + 144) ÷ 40\n= 504 ÷ 40 = 12,6.\n\nDétermination de la médiane :\nL''effectif total est 40 (pair). La médiane est la demi-somme des 20ᵉ et 21ᵉ valeurs.\nEffectifs cumulés : note 6 → 4 élèves ; note 10 → 4 + 12 = 16 élèves ; note 14 → 16 + 16 = 32 élèves.\nLes 20ᵉ et 21ᵉ élèves ont tous les deux la note 14 (ils sont dans le groupe 17 à 32).\nMédiane = (14 + 14) ÷ 2 = 14.',
+  '{"mode":"text","acceptableAnswers":["12,8 ; 14","12.8 ; 14","12,8;14","12.8;14","12,80 ; 14","12,8 ; 14,0"]}'::jsonb,
+  'Calcul de la moyenne pondérée :\n(6 × 4 + 10 × 12 + 14 × 16 + 18 × 8) ÷ 40\n= (24 + 120 + 224 + 144) ÷ 40\n= 512 ÷ 40 = 12,8.\n\nDétermination de la médiane :\nL''effectif total est 40 (pair). La médiane est la demi-somme des 20ᵉ et 21ᵉ valeurs.\nEffectifs cumulés : note 6 → 4 élèves ; note 10 → 4 + 12 = 16 élèves ; note 14 → 16 + 16 = 32 élèves.\nLes 20ᵉ et 21ᵉ élèves ont tous les deux la note 14 (ils sont dans le groupe 17 à 32).\nMédiane = (14 + 14) ÷ 2 = 14.',
   'Pour la médiane, confondre la position (20ᵉ et 21ᵉ) avec la valeur elle-même. Autre erreur : ne pas utiliser les effectifs cumulés et prendre la médiane des notes (6, 10, 14, 18) au lieu de la médiane de la série complète de 40 valeurs.',
   'valide',
   'Génération Claude — Terminologie Éduscol', 'premium', true
