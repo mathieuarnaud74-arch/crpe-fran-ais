@@ -1,5 +1,15 @@
 # Changelog
 
+## [2026-03-26] — 5 nouvelles séries maths de 10 questions (50 exercices)
+
+Audit du contenu mathématiques, identification des lacunes, puis génération de 5 séries comblant les thèmes manquants.
+
+- `supabase/migrations/20260834_seed_math_nombres_premiers_decomposition.sql` — 10 questions sur les nombres premiers (crible d'Ératosthène, test de primalité, décomposition en facteurs premiers, nombre de diviseurs, application PGCD).
+- `supabase/migrations/20260835_seed_math_fractions_droite_graduee.sql` — 10 questions sur les fractions et la droite graduée (placer, comparer, encadrer, densité, réduction au même dénominateur).
+- `supabase/migrations/20260836_seed_math_homothetie_proprietes.sql` — 10 questions sur l'homothétie (centre, rapport, images, effet sur longueurs/aires/volumes, conservation des angles, lien avec la similitude).
+- `supabase/migrations/20260837_seed_math_fonctions_lineaires_affines.sql` — 10 questions sur les fonctions linéaires et affines (coefficient directeur, ordonnée à l'origine, lecture graphique, parallélisme, lien avec la proportionnalité).
+- `supabase/migrations/20260838_seed_math_arrondis_troncatures.sql` — 10 questions sur les arrondis et troncatures (valeur approchée par excès/défaut, chiffres significatifs, encadrement, propagation d'erreurs).
+
 ## [2026-03-26] — 5 nouvelles séries de 10 questions (50 exercices)
 
 Audit des séries existantes, identification des lacunes de contenu, vérification de conformité terminologique Éduscol 2021, puis génération de 5 séries comblant les thèmes manquants.
