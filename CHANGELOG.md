@@ -1,5 +1,14 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : implicite/focalisation + calcul mental stratégies
+
+- `supabase/migrations/20260851_seed_french_cpt_implicite_point_de_vue.sql` — 10 exercices compréhension_texte sur l'implicite conversationnel, le présupposé/sous-entendu, la focalisation (zéro, interne, externe) selon Genette, et les narrateurs homo/hétéro/autodiégétiques
+- `supabase/migrations/20260852_seed_math_calcul_mental_strategies_avancees.sql` — 10 exercices calcul mental (décomposition, compensation, associativité, distributivité, propriété ×11, ×125×8, division par 4)
+
+## [2026-03-26] — Nouvelle série maths : stratégies de calcul mental avancées
+
+- `supabase/migrations/20260852_seed_math_calcul_mental_strategies_avancees.sql` — 10 exercices sur les stratégies de calcul mental (décomposition additive et multiplicative, compensation par excès/défaut, associativité pour les couples remarquables 4×25=100 et 125×8=1000, multiplication par 11, estimation par arrondi, décomposition de la division par 4)
+
 ## [2026-03-26] — Nouvelles séries : champ lexical/sémantique + probabilités (arbres)
 
 - `supabase/migrations/20260849_seed_french_champ_lexical_semantique.sql` — 10 exercices lexique sur le champ lexical et champ sémantique (identification, distinction famille de mots vs champ lexical, polysémie, appartenance multiple, champ sémantique d'un mot)
