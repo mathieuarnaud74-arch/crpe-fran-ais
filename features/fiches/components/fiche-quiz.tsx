@@ -43,7 +43,7 @@ function QuizQuestion({
         </span>
         <div className="flex-1 space-y-3">
           <div className="flex items-start justify-between gap-3">
-            <p className="font-serif text-base font-medium leading-7 text-ink">
+            <p className="font-serif text-lg font-medium leading-8 text-ink">
               {item.sentence}
             </p>
             {timedMode && state === "idle" && (
@@ -78,7 +78,7 @@ function QuizQuestion({
                 onClick={() =>
                   handleAnswer(item.isCorrect)
                 }
-                className="rounded-full border border-successBorder bg-successBg px-4 py-2 text-xs font-semibold text-pine transition hover:opacity-80"
+                className="rounded-full border border-successBorder bg-successBg px-4 py-2 text-sm font-semibold text-pine transition hover:opacity-80"
               >
                 Correct ✓
               </button>
@@ -87,7 +87,7 @@ function QuizQuestion({
                 onClick={() =>
                   handleAnswer(!item.isCorrect)
                 }
-                className="rounded-full border border-errorBorder bg-errorBg px-4 py-2 text-xs font-semibold text-error transition hover:opacity-80"
+                className="rounded-full border border-errorBorder bg-errorBg px-4 py-2 text-sm font-semibold text-error transition hover:opacity-80"
               >
                 Incorrect ✗
               </button>
