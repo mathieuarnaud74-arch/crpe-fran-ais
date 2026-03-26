@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : pronoms relatifs + indicateurs statistiques
+
+- `supabase/migrations/20260861_seed_french_gram_pronoms_relatifs.sql` — 10 exercices grammaire sur les pronoms relatifs et subordonnées relatives (qui/que/dont/où/lequel — formes, fonctions, emploi après préposition, fusion de phrases)
+- `supabase/migrations/20260862_seed_math_statistiques_indicateurs_choix.sql` — 10 exercices organisation_données sur le choix et l'interprétation des indicateurs statistiques (moyenne, médiane, mode, étendue, Q1/Q3, écart interquartile — contextes réels)
+
 ## [2026-03-26] — Nouvelles séries : emplois des modes verbaux + didactique contrat/transposition
 
 - `supabase/migrations/20260859_seed_french_conj_modes_emplois.sql` — 10 exercices conjugaison sur les emplois des modes verbaux (subjonctif après conjonctions, conditionnel hypothétique/journalistique/politesse, impératif, infinitif impersonnel, concordance des temps)
