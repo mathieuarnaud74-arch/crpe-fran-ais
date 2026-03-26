@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : didactique lecture cycle 2 + volumes pratiques
+
+- `supabase/migrations/20260857_seed_french_did_lecture_cycle2.sql` — 10 exercices didactique_francais sur l'enseignement de la lecture au CP/CE1 (conscience phonologique, CGP, décodage, fluence, modèle SVR Gough & Tunmer, méthode globale vs syllabique, graphème)
+- `supabase/migrations/20260858_seed_math_volumes_problemes_pratiques.sql` — 10 exercices grandeurs_mesures sur le calcul de volumes en contexte pratique (pavé droit, cylindre, pyramide, cône, sphère — aquarium, piscine, boîte de conserve, balles sphériques)
+
 ## [2026-03-26] — Nouvelles séries : accords GN + inégalité triangulaire
 
 - `supabase/migrations/20260855_seed_french_accords_groupe_nominal.sql` — 10 exercices orthographe sur les accords dans le GN (adjectif épithète, couleurs composées invariables, noms composés, demi/tout, adjectifs possibles après superlatif)
