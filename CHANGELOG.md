@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : accord de l'adjectif qualificatif (orthographe) + ingénierie didactique (didactique_maths)
+
+- `supabase/migrations/20260879_seed_french_orth_accord_adjectif.sql` — 10 exercices orthographe sur l'accord des adjectifs qualificatifs (accord en genre et nombre, féminins irréguliers beau/belle doux/douce, adjectifs de couleur invariables marron/orange, adjectifs composés bleu clair invariable, sourds-muets accordé, adj. en -eur → -euse)
+- `supabase/migrations/20260880_seed_math_did_ingenierie_didactique.sql` — 10 exercices didactique_maths sur l'ingénierie didactique en mathématiques (Michèle Artigue, 4 phases : analyses préalables/conception a priori/expérimentation/analyse a posteriori, variables didactiques, ancrage dans la TSD de Brousseau, utilité pour le PE)
+
 ## [2026-03-26] — Nouvelles séries : conditionnel présent (conjugaison) + encadrements et arrondis (nombres_calcul)
 
 - `supabase/migrations/20260877_seed_french_conj_conditionnel_present.sql` — 10 exercices conjugaison sur le conditionnel présent (formation radical futur + terminaisons imparfait ; valeurs : hypothèse/si, politesse/atténuation, souhait/désir, information non vérifiée ; verbes irréguliers ; concordance des temps)
