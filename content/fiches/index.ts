@@ -113,6 +113,7 @@ import { graphophonologieCgpSprint } from "./didactique-graphophonologie-cgp-spr
 import { langageOralMaternelleSprint } from "./didactique-langage-oral-maternelle-sprint";
 import { participePasseCompletReference } from "./orthographe-participe-passe-complet-reference";
 import { analyseFonctionsPhraseComplexeOperatoire } from "./analyse-langue-fonctions-phrase-complexe-operatoire";
+import { textePoetiqueSprint } from "./comprehension-texte-poetique-sprint";
 
 export const allFiches: Fiche[] = [
   reperageExpliciteSprint,
@@ -229,4 +230,5 @@ export const allFiches: Fiche[] = [
   // Nouvelles fiches reference & opératoire
   participePasseCompletReference,
   analyseFonctionsPhraseComplexeOperatoire,
+  textePoetiqueSprint,
 ];

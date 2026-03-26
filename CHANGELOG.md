@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelle fiche français : le texte poétique
+
+- `content/fiches/comprehension-texte-poetique-sprint.ts` — fiche sprint compréhension de texte sur la poésie (versification, rimes, strophes, formes fixes, vers libres)
+- `content/fiches/index.ts` — ajout de la fiche dans le registre
+
 ## [2026-03-26] — Nouvelle série maths : opérations sur les nombres relatifs
 
 - `supabase/migrations/20260843_seed_math_nombres_relatifs_operations.sql` — 10 exercices sur les opérations avec les nombres relatifs (addition, soustraction, multiplication, division, règle des signes, priorités, distributivité, problème en contexte)
