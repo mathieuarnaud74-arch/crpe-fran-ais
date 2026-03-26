@@ -18,6 +18,7 @@ import { ScoreEvolutionChart } from "@/components/ui/score-evolution-chart";
 import { requireUser } from "@/features/auth/server/guards";
 import { isPremiumUser } from "@/features/billing/server/queries";
 import { CollapsiblePanel } from "@/features/dashboard/components/collapsible-panel";
+import { DomainGauge } from "@/features/dashboard/components/domain-gauge";
 import { getDashboardData } from "@/features/dashboard/server/queries";
 import { MASTERY_THRESHOLD } from "@/lib/dashboard";
 import { cn, formatDate } from "@/lib/utils";
@@ -110,6 +111,24 @@ export default async function ProgressPage() {
               radar={<ProgressionRadarChart domains={data.domainProgress} compact />}
               evolution={<ScoreEvolutionChart data={data.scoreEvolution} compact />}
             />
+          </div>
+        </Panel>
+      )}
+
+      {/* ── Jauges par domaine ── */}
+      {data.totalAttempts > 0 && (
+        <Panel>
+          <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accentSecondary">Par domaine</p>
+          <h2 className="mt-1 mb-4 font-serif text-xl font-semibold text-ink">Maîtrise</h2>
+          <div className="flex flex-wrap justify-center gap-6">
+            {data.domainProgress.map((domain) => (
+              <DomainGauge
+                key={domain.domain}
+                label={domain.label}
+                percentage={domain.correctRate ?? 0}
+                status={domain.status}
+              />
+            ))}
           </div>
         </Panel>
       )}

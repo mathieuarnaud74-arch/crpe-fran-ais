@@ -12,9 +12,7 @@ import { isPremiumUser } from "@/features/billing/server/queries";
 import { AnimatedCounter } from "@/features/dashboard/components/animated-counter";
 import { CollapsiblePanel } from "@/features/dashboard/components/collapsible-panel";
 import { DomainDirectoryTable } from "@/features/dashboard/components/domain-directory-table";
-import { DomainGauge } from "@/features/dashboard/components/domain-gauge";
 import { DashboardSrsSection } from "@/features/dashboard/components/dashboard-srs-section";
-import { NivoRadarChart } from "@/features/dashboard/components/nivo-radar";
 import { OnboardingBanner } from "@/features/dashboard/components/onboarding-banner";
 import { SessionProgressCard } from "@/features/dashboard/components/session-progress-card";
 import { XpLevelCard } from "@/features/dashboard/components/xp-level-card";
@@ -484,31 +482,6 @@ export default async function DashboardPage() {
           subjectTone="accent"
           viewHref="/maths"
         />
-      )}
-
-      {/* ── Radar compétences + Jauges ── */}
-      {data.totalAttempts > 0 && (
-        <div data-tour="radar" className="grid gap-4 2xl:grid-cols-2">
-          <Panel>
-            <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent">Vue d&apos;ensemble</p>
-            <h2 className="mt-1 font-serif text-xl font-semibold text-ink">Radar de comp&eacute;tences</h2>
-            <NivoRadarChart domains={data.domainProgress} />
-          </Panel>
-          <Panel>
-            <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accentSecondary">Par domaine</p>
-            <h2 className="mt-1 mb-4 font-serif text-xl font-semibold text-ink">Ma&icirc;trise</h2>
-            <div className="flex flex-wrap justify-center gap-6">
-              {data.domainProgress.map((domain) => (
-                <DomainGauge
-                  key={domain.domain}
-                  label={domain.label}
-                  percentage={domain.correctRate ?? 0}
-                  status={domain.status}
-                />
-              ))}
-            </div>
-          </Panel>
-        </div>
       )}
 
       {/* ── Priorités & Fragilités ── */}
