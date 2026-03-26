@@ -69,8 +69,7 @@ export function LearnThenPracticeCard({
   return (
     <div
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-xl border bg-paper transition",
-        t.border,
+        "group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle",
       )}
     >
       {/* Left accent bar */}

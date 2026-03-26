@@ -16,7 +16,7 @@ function ResumeCard({ session, step }: { session: DashboardSessionProgress; step
   return (
     <Link
       href={`/exercices/${session.id}`}
-      className="group relative flex flex-col overflow-hidden rounded-xl border border-[#394E45]/25 bg-paper transition hover:border-[#394E45]/50 hover:shadow-panel"
+      className="group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle"
     >
       <span aria-hidden className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-[#394E45]" />
       <div className="flex flex-1 flex-col pl-5 pr-4 py-4">
@@ -78,8 +78,7 @@ function ExerciseOnlyCard({
     <Link
       href={`/exercices/${item.exercise.id}`}
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-xl border bg-paper transition hover:shadow-panel",
-        t.border,
+        "group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle",
       )}
     >
       <span aria-hidden className={cn("absolute left-0 top-0 h-full w-1 rounded-l-xl", t.bar)} />
@@ -119,7 +118,7 @@ function FicheOnlyCard({
   return (
     <Link
       href={`/fiches/${item.fiche.slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-xl border border-[#6B8F80]/25 bg-paper transition hover:border-[#6B8F80]/50 hover:shadow-panel"
+      className="group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle"
     >
       <span aria-hidden className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-[#6B8F80]" />
       <div className="flex flex-1 flex-col pl-5 pr-4 py-4">
