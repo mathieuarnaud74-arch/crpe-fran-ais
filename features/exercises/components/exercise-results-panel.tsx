@@ -49,12 +49,12 @@ export const ExerciseResultsPanel = memo(function ExerciseResultsPanel({
               {score === session.questionCount ? "\uD83C\uDFC6" : "\uD83C\uDF1F"}
             </span>
             <div>
-              <p className="text-sm font-bold text-pine">
+              <p className="text-base font-bold text-pine">
                 {score === session.questionCount
                   ? "Score parfait ! Vous ma\u00eetrisez ce sujet."
                   : "S\u00e9rie ma\u00eetris\u00e9e ! Beau travail."}
               </p>
-              <p className="text-xs text-pine/70">
+              <p className="text-sm text-pine/70">
                 {score === session.questionCount
                   ? "Toutes les r\u00e9ponses sont correctes. Impressionnant !"
                   : `${score}/${session.questionCount} bonnes r\u00e9ponses \u2014 vous avez d\u00e9pass\u00e9 le seuil de ${MASTERY_THRESHOLD}\u00a0%.`}
@@ -92,7 +92,7 @@ export const ExerciseResultsPanel = memo(function ExerciseResultsPanel({
               <h2 className="animate-score-reveal mt-3 font-serif text-2xl font-semibold text-ink sm:text-3xl">
                 Score final : {score} / {session.questionCount}
               </h2>
-              <p className="mt-2 text-sm font-medium text-muted">
+              <p className="mt-2 text-base font-medium text-muted">
                 {correctPercent >= 90
                   ? "Excellent ! Vous ma\u00eetrisez ce domaine. Continuez \u00e0 consolider vos acquis."
                   : correctPercent >= 80
@@ -103,7 +103,7 @@ export const ExerciseResultsPanel = memo(function ExerciseResultsPanel({
                         ? "C\u2019est un d\u00e9but. Relisez les corrections et r\u00e9essayez \u2014 chaque erreur est une le\u00e7on."
                         : "Courage ! Ce sujet demande du travail, mais la persévérance paie. Mocca croit en vous."}
               </p>
-              <p className="mt-2 max-w-2xl text-sm leading-7 text-muted">
+              <p className="mt-2 max-w-2xl text-base leading-7 text-muted">
                 Retrouvez ci-dessous les corrections compl&egrave;tes, les erreurs
                 fr&eacute;quentes et les points essentiels &agrave; retenir.
               </p>
@@ -130,18 +130,18 @@ export const ExerciseResultsPanel = memo(function ExerciseResultsPanel({
           <div className="space-y-4">
             <div className="rounded-[1.5rem] border border-border bg-paper p-5">
               <h3 className="font-serif text-2xl font-semibold text-ink">Bilan de la s&eacute;rie</h3>
-              <p className="mt-3 text-sm leading-7 text-muted">
+              <p className="mt-3 text-base leading-7 text-muted">
                 <span className="font-semibold text-ink">Comp&eacute;tence travaill&eacute;e :</span>{" "}
                 {session.completionSummary.skill}
               </p>
-              <ul className="mt-4 space-y-3 text-sm leading-7 text-muted">
+              <ul className="mt-4 space-y-3 text-base leading-7 text-muted">
                 {session.completionSummary.keyPoints.map((item) => (
                   <li key={item} className="rounded-xl border border-border bg-card px-4 py-3">
                     {item}
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-sm leading-7 text-muted">
+              <p className="mt-4 text-base leading-7 text-muted">
                 <span className="font-semibold text-ink">Conseil de reprise :</span>{" "}
                 {session.completionSummary.retryAdvice}
               </p>
@@ -151,13 +151,13 @@ export const ExerciseResultsPanel = memo(function ExerciseResultsPanel({
               {weakAreas.length === 0 ? (
                 <div className="mt-3 flex items-center gap-3 rounded-xl border border-successBorder bg-successBg px-4 py-3">
                   <span className="text-lg" aria-hidden="true">&#x2728;</span>
-                  <p className="text-sm leading-7 text-pine">
+                  <p className="text-base leading-7 text-pine">
                     Z&eacute;ro erreur ! Vous pouvez passer &agrave; une
                     s&eacute;rie plus exigeante ou consolider avec une r&eacute;vision.
                   </p>
                 </div>
               ) : (
-                <ul className="mt-4 space-y-3 text-sm leading-7 text-muted">
+                <ul className="mt-4 space-y-3 text-base leading-7 text-muted">
                   {weakAreas.map(({ label, count }) => (
                     <li key={label} className="rounded-xl border border-border bg-card px-4 py-3">
                       <span className="font-semibold text-ink">{label}</span>

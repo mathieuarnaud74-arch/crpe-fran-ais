@@ -10,7 +10,7 @@ export function FicheSprint({ content }: { content: FicheContentSprint }) {
       <div className="rounded-[1.25rem] border border-warningBorder bg-warningBg px-5 py-4">
         <div className="flex items-start gap-2">
           <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-warning" aria-hidden="true" />
-          <p className="text-xs leading-5 text-ink/80">
+          <p className="text-sm leading-5 text-ink/80">
             <span className="font-semibold">Révision rapide uniquement. </span>
             {content.disclaimer}
             {content.linkToReference && (
@@ -43,10 +43,10 @@ export function FicheSprint({ content }: { content: FicheContentSprint }) {
           <p className="mb-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-pine">
             ✓ Correct
           </p>
-          <p className="font-serif text-sm font-medium leading-6 text-ink">
+          <p className="font-serif text-base font-medium leading-6 text-ink">
             {content.exampleCorrect.sentence}
           </p>
-          <p className="mt-2 text-xs leading-5 text-pine/80">
+          <p className="mt-2 text-sm leading-5 text-pine/80">
             {content.exampleCorrect.explanation}
           </p>
         </div>
@@ -55,10 +55,10 @@ export function FicheSprint({ content }: { content: FicheContentSprint }) {
           <p className="mb-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-error">
             ✗ Incorrect
           </p>
-          <p className="font-serif text-sm font-medium leading-6 text-ink">
+          <p className="font-serif text-base font-medium leading-6 text-ink">
             {content.exampleWrong.sentence}
           </p>
-          <p className="mt-2 text-xs leading-5 text-error/80">
+          <p className="mt-2 text-sm leading-5 text-error/80">
             {content.exampleWrong.explanation}
           </p>
         </div>
@@ -67,7 +67,7 @@ export function FicheSprint({ content }: { content: FicheContentSprint }) {
       <div className="rounded-[1.25rem] border border-warningBorder bg-warningBg px-5 py-4">
         <div className="flex items-start gap-3">
           <Badge tone="warning" size="sm">Piège CRPE</Badge>
-          <p className="text-sm leading-6 text-ink">{content.mainTrap}</p>
+          <p className="text-base leading-6 text-ink">{content.mainTrap}</p>
         </div>
       </div>
 
@@ -76,7 +76,7 @@ export function FicheSprint({ content }: { content: FicheContentSprint }) {
           <h2 className="font-serif text-xl font-semibold text-ink">
             Test d&apos;activation
           </h2>
-          <p className="text-xs leading-5 text-muted">
+          <p className="text-sm leading-5 text-muted">
             Ces questions valident que la notion est activée en mémoire. Réponds
             sans relire la règle ci-dessus.
           </p>

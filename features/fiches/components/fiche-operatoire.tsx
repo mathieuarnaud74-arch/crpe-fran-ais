@@ -19,7 +19,7 @@ export function FicheOperatoire({ content }: { content: FicheContentOperatoire }
         <h2 className="font-serif text-2xl font-semibold text-ink">
           Arbre de décision
         </h2>
-        <p className="text-sm leading-7 text-muted">
+        <p className="text-base leading-7 text-muted">
           Parcours l&apos;arbre à voix haute ou mentalement pour chaque participe que
           tu rencontres, jusqu&apos;à ce que le chemin devienne automatique.
         </p>
@@ -42,7 +42,7 @@ export function FicheOperatoire({ content }: { content: FicheContentOperatoire }
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-[0.6rem] font-bold text-paper">
                   {i + 1}
                 </span>
-                <p className="text-sm leading-6 text-ink">{step}</p>
+                <p className="text-base leading-6 text-ink">{step}</p>
               </div>
             ))}
           </div>
@@ -55,7 +55,7 @@ export function FicheOperatoire({ content }: { content: FicheContentOperatoire }
             Enseigner ce raisonnement
           </h2>
           <div className="rounded-[1.25rem] border border-accentSecondary/25 bg-accentSecondarySoft px-5 py-4">
-            <p className="text-sm leading-7 text-accentSecondaryDark">
+            <p className="text-base leading-7 text-accentSecondaryDark">
               {content.didacticNote}
             </p>
           </div>
@@ -67,7 +67,7 @@ export function FicheOperatoire({ content }: { content: FicheContentOperatoire }
           <h2 className="font-serif text-2xl font-semibold text-ink">
             Entraînement procédural
           </h2>
-          <p className="text-sm leading-7 text-muted">
+          <p className="text-base leading-7 text-muted">
             Pour chaque phrase, trace mentalement le chemin dans l&apos;arbre AVANT de
             répondre. Le feedback t&apos;indique si tu as suivi le bon raisonnement.
           </p>

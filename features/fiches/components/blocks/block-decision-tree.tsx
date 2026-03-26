@@ -23,9 +23,9 @@ function TreeNodeInteractive({ node, depth = 0 }: { node: DecisionNode; depth?: 
         <p className="text-xs font-semibold uppercase tracking-[0.10em] text-accent">
           {node.label}
         </p>
-        <p className="mt-1 text-sm leading-5 text-ink">{node.rule}</p>
+        <p className="mt-1 text-base leading-5 text-ink">{node.rule}</p>
         {node.example && (
-          <p className="mt-1.5 font-serif text-xs italic text-muted">{node.example}</p>
+          <p className="mt-1.5 font-serif text-sm italic text-muted">{node.example}</p>
         )}
       </motion.div>
     );
@@ -39,7 +39,7 @@ function TreeNodeInteractive({ node, depth = 0 }: { node: DecisionNode; depth?: 
       className={cn("space-y-3", depth > 0 && "ml-6")}
     >
       <div className="rounded-[1rem] border border-border bg-secondary px-4 py-3">
-        <p className="text-sm font-semibold text-ink">{node.text}</p>
+        <p className="text-base font-semibold text-ink">{node.text}</p>
       </div>
 
       {/* Interactive buttons */}
