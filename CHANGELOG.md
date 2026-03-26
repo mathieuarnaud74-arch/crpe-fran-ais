@@ -1,5 +1,14 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : champ lexical/sémantique + probabilités (arbres)
+
+- `supabase/migrations/20260849_seed_french_champ_lexical_semantique.sql` — 10 exercices lexique sur le champ lexical et champ sémantique (identification, distinction famille de mots vs champ lexical, polysémie, appartenance multiple, champ sémantique d'un mot)
+- `supabase/migrations/20260850_seed_math_probabilites_arbres_calculs.sql` — 10 exercices probabilités (événement élémentaire, probabilité contraire, arbre à 2 niveaux avec remise, événements incompatibles vs indépendants, formule des probabilités totales, tableau de contingence)
+
+## [2026-03-26] — Nouvelle série français : champ lexical et champ sémantique
+
+- `supabase/migrations/20260849_seed_french_champ_lexical_semantique.sql` — 10 exercices lexique sur le champ lexical et le champ sémantique (identifier le champ dominant dans un extrait, distinguer champ lexical/famille de mots/champ sémantique, intrus, polysémie, synonymes et appartenance)
+
 ## [2026-03-26] — Nouvelles séries : accords du participe passé + comparaison des fractions
 
 - `supabase/migrations/20260847_seed_french_accords_participe_passe.sql` — 10 exercices orthographe sur les accords du PP (être, avoir + COD antéposé, pronominaux réfléchis, PP + infinitif, verbes essentiellement pronominaux, impersonnels, PP avec « en »)
