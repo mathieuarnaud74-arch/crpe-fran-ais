@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-26] — Nouvelles séries : anaphores/substituts + pourcentages en contexte
+
+- `supabase/migrations/20260853_seed_french_anaphores_substituts.sql` — 10 exercices analyse_langue sur les anaphores et substituts nominaux (anaphore pronominale, nominale, associative, cataphore, chaînes de référence, ambiguïté référentielle)
+- `supabase/migrations/20260854_seed_math_pourcentages_contexte_reel.sql` — 10 exercices pourcentages en contexte réel (calcul d'un %, retrouver la valeur totale, remises successives, augmentations composées, conversion décimal/pourcentage, budgets)
+
 ## [2026-03-26] — Nouvelles séries : implicite/focalisation + calcul mental stratégies
 
 - `supabase/migrations/20260851_seed_french_cpt_implicite_point_de_vue.sql` — 10 exercices compréhension_texte sur l'implicite conversationnel, le présupposé/sous-entendu, la focalisation (zéro, interne, externe) selon Genette, et les narrateurs homo/hétéro/autodiégétiques
