@@ -43,7 +43,7 @@ function QuizQuestion({
         </span>
         <div className="flex-1 space-y-3">
           <div className="flex items-start justify-between gap-3">
-            <p className="font-serif text-sm font-medium leading-6 text-ink">
+            <p className="font-serif text-base font-medium leading-7 text-ink">
               {item.sentence}
             </p>
             {timedMode && state === "idle" && (
@@ -118,13 +118,13 @@ function QuizQuestion({
                 <div className="space-y-1">
                   <p
                     className={cn(
-                      "text-xs font-semibold",
+                      "text-sm font-semibold",
                       state === "correct" ? "text-pine" : "text-error",
                     )}
                   >
                     {state === "correct" ? "Bonne réponse !" : "Pas tout à fait."}
                   </p>
-                  <p className="text-xs leading-5 text-ink/80">{item.explanation}</p>
+                  <p className="text-sm leading-6 text-ink/80">{item.explanation}</p>
                 </div>
               </div>
               <button

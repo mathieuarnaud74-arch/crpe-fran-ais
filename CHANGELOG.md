@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-03-26] — Accessibilité : titres fiches agrandis + quiz lisible + catégories collapsibles
+
+- `features/fiches/components/fiche-card.tsx` — titres FicheRow `text-[1.08rem]` → `text-lg` (locked et unlocked)
+- `features/fiches/components/fiche-quiz.tsx` — question `text-sm` → `text-base`, explication et feedback `text-xs` → `text-sm`
+- `app/(app)/fiches/page.tsx` — catégories remplacées par `<details open>` + `<summary>` avec chevron animé (collapsibles natifs, toutes ouvertes par défaut)
+
 ## [2026-03-26] — Accessibilité : augmentation de la taille de police dans les fiches et exercices
 
 - `features/fiches/components/blocks/block-rule.tsx` — contenu règle `text-sm` → `text-base`, explication linguistique `text-xs` → `text-sm`, watchout `text-xs` → `text-sm`

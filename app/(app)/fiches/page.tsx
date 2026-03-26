@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
@@ -188,21 +189,22 @@ export default async function FichesPage({
           </ButtonLink>
         </Panel>
       ) : (
-        <div className="space-y-6">
-          {groupedDomains.map((d, i) => {
+        <div className="divide-y divide-border">
+          {groupedDomains.map((d) => {
             const fiches = filtered.filter((f) => f.domaine === d);
             if (fiches.length === 0) return null;
             return (
-              <section key={d} className={i > 0 ? "border-t border-border pt-6" : ""}>
-                <div className="mb-2 flex items-center gap-2.5">
-                  <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+              <details key={d} open className="group">
+                <summary className="flex cursor-pointer list-none items-center gap-2.5 py-4 [&::-webkit-details-marker]:hidden">
+                  <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted transition-transform duration-200 group-open:rotate-90" aria-hidden="true" />
+                  <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted">
                     {DOMAINE_LABELS[d] ?? d}
                   </h2>
                   <span className="text-xs text-muted/60">
                     {fiches.length}
                   </span>
-                </div>
-                <div className="grid gap-x-8 gap-y-0 sm:grid-cols-2">
+                </summary>
+                <div className="grid gap-x-8 gap-y-0 pb-4 sm:grid-cols-2">
                   {fiches.map((fiche) => {
                     const { locked, lockReason } = getFicheLockState(fiche);
                     return (
@@ -216,7 +218,7 @@ export default async function FichesPage({
                     );
                   })}
                 </div>
-              </section>
+              </details>
             );
           })}
         </div>
