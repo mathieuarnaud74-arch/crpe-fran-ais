@@ -66,7 +66,7 @@ export function FicheRow({ fiche, completed, locked, lockReason }: FicheRowProps
     <Link
       href={`/fiches/${fiche.slug}`}
       className={cn(
-        "group flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 transition-colors",
+        "group/row flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 transition-colors",
         completed
           ? "bg-successBg/60"
           : "hover:bg-paper",
@@ -78,11 +78,11 @@ export function FicheRow({ fiche, completed, locked, lockReason }: FicheRowProps
         </span>
       ) : (
         <span className="flex h-5 w-5 shrink-0 items-center justify-center">
-          <ChevronRight className="h-3.5 w-3.5 -translate-x-0.5 text-transparent transition-all group-hover:translate-x-0 group-hover:text-accent" aria-hidden="true" />
+          <ChevronRight className="h-3.5 w-3.5 -translate-x-0.5 text-transparent transition-all group-hover/row:translate-x-0 group-hover/row:text-accent" aria-hidden="true" />
         </span>
       )}
       <span className={cn(
-        "font-serif text-xl font-medium leading-snug transition-colors group-hover:text-accent",
+        "font-serif text-xl font-medium leading-snug transition-colors group-hover/row:text-accent",
         completed ? "text-pine/80" : "text-ink",
       )}>
         {fiche.title}

@@ -194,9 +194,9 @@ export default async function FichesPage({
             const fiches = filtered.filter((f) => f.domaine === d);
             if (fiches.length === 0) return null;
             return (
-              <details key={d} className="group">
+              <details key={d} className="group/category">
                 <summary className="flex cursor-pointer select-none list-none items-center gap-2.5 py-4 [&::-webkit-details-marker]:hidden">
-                  <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted transition-transform duration-200 group-open:rotate-90" aria-hidden="true" />
+                  <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted transition-transform duration-200 group-open/category:rotate-90" aria-hidden="true" />
                   <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted">
                     {DOMAINE_LABELS[d] ?? d}
                   </h2>
