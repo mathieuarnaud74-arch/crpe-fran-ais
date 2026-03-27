@@ -95,32 +95,6 @@ function QueueRow({ item }: { item: Extract<SmartPlanItem, { type: "action" }> }
   );
 }
 
-// ── SRS banner ───────────────────────────────────────────────
-
-function SrsBanner({ dueCount }: { dueCount: number }) {
-  return (
-    <Link
-      href="/revision"
-      className="group flex items-center justify-between gap-4 rounded-xl border border-accent/20 bg-[linear-gradient(135deg,rgba(74,110,143,0.08),rgba(253,249,243,1)_60%)] px-4 py-3 transition hover:border-accent/40 hover:shadow-subtle"
-    >
-      <div className="flex items-center gap-3">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/10">
-          <span className="text-sm" aria-hidden>&#x1F9E0;</span>
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-ink">
-            {dueCount} exercice{dueCount > 1 ? "s" : ""} &agrave; r&eacute;viser
-          </p>
-          <p className="text-xs text-muted">R&eacute;vision intelligente (FSRS)</p>
-        </div>
-      </div>
-      <span className="text-xs font-bold text-accent group-hover:underline">
-        Lancer &rarr;
-      </span>
-    </Link>
-  );
-}
-
 // ── Main section ─────────────────────────────────────────────
 
 type SmartPlanSectionProps = {
@@ -156,32 +130,36 @@ export function SmartPlanSection({
             </p>
             <h2 className="mt-1 font-serif text-2xl font-semibold text-ink">Prochaine &eacute;tape</h2>
           </div>
-          {(ficheProgress || exerciseProgress) && (
-            <div className="flex flex-wrap items-center gap-3 text-xs text-muted">
-              {ficheProgress && (
-                <span className="rounded-full border border-border bg-paper px-2.5 py-1">
-                  {ficheProgress.completed}/{ficheProgress.total} fiches lues
-                </span>
-              )}
-              {exerciseProgress && exerciseProgress.inProgress > 0 && (
-                <span className="rounded-full border border-border bg-paper px-2.5 py-1">
-                  {exerciseProgress.inProgress} s&eacute;rie{exerciseProgress.inProgress > 1 ? "s" : ""} en cours
-                </span>
-              )}
-              {exerciseProgress && exerciseProgress.toReview > 0 && (
-                <span className="rounded-full border border-border bg-paper px-2.5 py-1">
-                  {exerciseProgress.toReview} &agrave; revoir
-                </span>
-              )}
-            </div>
-          )}
+          <div className="flex flex-wrap items-center gap-3 text-xs text-muted">
+            {srsItem && (
+              <Link
+                href="/revision"
+                className="group inline-flex items-center gap-1.5 rounded-full border border-accent/25 bg-accent/5 px-2.5 py-1 transition hover:border-accent/40 hover:bg-accent/10"
+              >
+                <span className="text-[0.65rem]" aria-hidden>&#x1F9E0;</span>
+                <span className="font-semibold text-accent">{srsItem.dueCount} &agrave; r&eacute;viser</span>
+              </Link>
+            )}
+            {ficheProgress && (
+              <span className="rounded-full border border-border bg-paper px-2.5 py-1">
+                {ficheProgress.completed}/{ficheProgress.total} fiches lues
+              </span>
+            )}
+            {exerciseProgress && exerciseProgress.inProgress > 0 && (
+              <span className="rounded-full border border-border bg-paper px-2.5 py-1">
+                {exerciseProgress.inProgress} en cours
+              </span>
+            )}
+            {exerciseProgress && exerciseProgress.toReview > 0 && (
+              <span className="rounded-full border border-border bg-paper px-2.5 py-1">
+                {exerciseProgress.toReview} &agrave; revoir
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
       <div className="bg-card px-4 py-4 sm:px-6 sm:py-5 space-y-3">
-        {/* SRS banner */}
-        {srsItem && <SrsBanner dueCount={srsItem.dueCount} />}
-
         {/* Hero card */}
         {heroItem ? (
           <>
