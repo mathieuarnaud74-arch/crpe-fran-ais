@@ -71,25 +71,25 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
         "Français et mathématiques réunis. Des contenus alignés sur le programme officiel, conçus pour maximiser vos points le jour J.",
       cards: [
         {
-          stat: "216+",
+          stat: "226",
           eyebrow: "Fiches de révision",
           title: "Français & maths.",
           description:
-            "114 fiches en français, 102 en maths. Sprint, référence, opératoire — chaque fiche cible un point précis du programme.",
+            "115 fiches en français, 111 en maths. Sprint, référence, opératoire — chaque fiche cible un point précis du programme.",
         },
         {
-          stat: "12",
+          stat: `${subdomainCount}`,
           eyebrow: "Sous-domaines couverts",
           title: "100 % du programme.",
           description:
             "Grammaire, orthographe, conjugaison, lexique, géométrie, calcul, grandeurs… Rien n'est laissé de côté.",
         },
         {
-          stat: "3 300+",
-          eyebrow: "Exercices · 360+ séries",
+          stat: "490+",
+          eyebrow: "Exercices · 49 séries",
           title: "De quoi s'entraîner vraiment.",
           description:
-            "QCM, vrai/faux, tri, surlignage, analyse… 8 types d'exercices répartis en séries courtes et ciblées sur chaque point du programme.",
+            "QCM, vrai/faux, tri, surlignage, correction, réponse courte… 6 types d'exercices répartis en séries courtes et ciblées sur chaque point du programme.",
         },
         {
           stat: "117",
