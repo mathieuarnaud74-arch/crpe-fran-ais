@@ -86,7 +86,7 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
         },
         {
           stat: "4 900+",
-          eyebrow: "Exercices · 135 séries",
+          eyebrow: "Exercices · 400+ séries",
           title: "De quoi s'entraîner vraiment.",
           description:
             "QCM, vrai/faux, tri, surlignage, correction, réponse courte… 6 types d'exercices répartis en séries courtes et ciblées sur chaque point du programme.",
