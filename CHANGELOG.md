@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-03-27] — Réduire la surcharge cognitive : pattern hero + queue compacte
+
+- `lib/dashboard/build-smart-plan.ts` — type `SmartPlanItem` simplifié (action unique au lieu de fiche+exercice), flatten learn-then-practice, MAX_ITEMS adaptatif au niveau utilisateur (<100 tentatives → 1 hero, 100-500 → 3, >500 → 4)
+- `features/dashboard/components/smart-plan-section.tsx` — réécriture complète : 1 carte héro pleine largeur + queue compacte "Ensuite" en lignes simples, suppression de la grille 3 colonnes
+- `features/dashboard/components/learn-then-practice-card.tsx` — supprimé (remplacé par le hero inline)
+- `app/(app)/tableau-de-bord/page.tsx` — passage de `totalAttempts` à `buildSmartPlan`
+
 ## [2026-03-27] — Enrichir la section Votre Parcours — liaison fiches↔exercices
 
 - `content/fiches/*.ts` (90 fichiers) — peuplé `exercicesAssocies` avec les `topic_key` correspondants pour lier fiches et exercices

@@ -64,7 +64,7 @@ export default async function DashboardPage() {
 
   // ── Smart plan (fiches + exercises mix) ──
   const combinedFiches = [...allFiches, ...(hasMathData ? allFichesMaths : [])];
-  const smartPlan = buildSmartPlan(data, combinedFiches, completedFicheSlugs, srsDueCount);
+  const smartPlan = buildSmartPlan(data, combinedFiches, completedFicheSlugs, srsDueCount, data.totalAttempts);
 
   // ── Fiche progress by domain ──
   const ficheProgressFr = getFicheProgressByDomain(allFiches, completedFicheSlugs);

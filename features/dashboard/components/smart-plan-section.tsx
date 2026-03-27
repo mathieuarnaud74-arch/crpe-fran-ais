@@ -1,145 +1,96 @@
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { SmartPlanItem } from "@/lib/dashboard/build-smart-plan";
-import type { DashboardSessionProgress } from "@/types/domain";
 
-import { LearnThenPracticeCard } from "./learn-then-practice-card";
-
-// ── Resume card (reused inline) ──────────────────────────────
-
-function ResumeCard({ session, step, reason }: { session: DashboardSessionProgress; step: number; reason: string }) {
-  return (
-    <Link
-      href={`/exercices/${session.id}`}
-      className="group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle"
-    >
-      <div className="flex flex-1 flex-col px-4 py-4">
-        <div className="mb-3 flex items-center gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#394E45] font-serif text-lg font-bold text-paper">
-            {step}
-          </div>
-          <span className="rounded-full border border-[#394E45]/30 bg-[rgba(57,78,69,0.08)] px-2.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-[0.10em] text-[#394E45]">
-            &Agrave; reprendre
-          </span>
-          <Badge tone="accentSecondary" size="sm">{session.subdomainLabel}</Badge>
-        </div>
-        {reason && <p className="mb-2 text-xs italic text-muted">{reason}</p>}
-        <p className="flex-1 text-sm font-semibold leading-6 text-ink">{session.title}</p>
-        <p className="mt-1.5 text-xs text-muted">
-          {session.answeredQuestions}/{session.questionCount} questions &middot;{" "}
-          {session.correctRate !== null ? `${session.correctRate}%` : "\u2014"}
-        </p>
-        <p className="mt-3 text-xs font-bold text-[#394E45] group-hover:underline">
-          Reprendre &rarr;
-        </p>
-      </div>
-    </Link>
-  );
-}
-
-// ── Exercise-only card ───────────────────────────────────────
+// ── Tone styles ─────────────────────────────────────────────
 
 const TONE_STYLES = {
   warning: {
-    border: "border-[#476257]/20 hover:border-[#476257]/50",
-    bar: "bg-[#476257]",
-    circle: "bg-[#476257]",
     tagBorder: "border-[#476257]/30 bg-[rgba(71,98,87,0.08)] text-[#476257]",
-    cta: "text-[#476257]",
+    cta: "bg-[#476257] text-paper hover:bg-[#3a5248]",
+    ctaSecondary: "text-[#476257]",
   },
   warm: {
-    border: "border-[#394E45]/25 hover:border-[#394E45]/50",
-    bar: "bg-[#394E45]",
-    circle: "bg-[#394E45]",
     tagBorder: "border-[#394E45]/30 bg-[rgba(57,78,69,0.08)] text-[#394E45]",
-    cta: "text-[#394E45]",
+    cta: "bg-[#394E45] text-paper hover:bg-[#2d3f38]",
+    ctaSecondary: "text-[#394E45]",
   },
   neutral: {
-    border: "border-[#6B8F80]/25 hover:border-[#6B8F80]/50",
-    bar: "bg-[#6B8F80]",
-    circle: "bg-[#6B8F80]",
     tagBorder: "border-[#6B8F80]/30 bg-[rgba(107,143,128,0.08)] text-[#6B8F80]",
-    cta: "text-[#6B8F80]",
+    cta: "bg-[#6B8F80] text-paper hover:bg-[#5a7a6c]",
+    ctaSecondary: "text-[#6B8F80]",
   },
 };
 
-function ExerciseOnlyCard({
-  item,
-}: {
-  item: Extract<SmartPlanItem, { type: "exercise-only" }>;
-}) {
+const ACTION_LABELS = {
+  fiche: "Lire la fiche",
+  exercise: "Lancer",
+  resume: "Reprendre",
+};
+
+// ── Hero card (first action, full width) ─────────────────────
+
+function HeroCard({ item }: { item: Extract<SmartPlanItem, { type: "action" }> }) {
   const t = TONE_STYLES[item.tone];
+
   return (
     <Link
-      href={`/exercices/${item.exercise.id}`}
-      className={cn(
-        "group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle",
-      )}
+      href={item.action.href}
+      className="group block rounded-xl bg-card transition hover:shadow-subtle"
     >
-      <div className="flex flex-1 flex-col px-4 py-4">
-        <div className="mb-3 flex items-center gap-3">
-          <div className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-serif text-lg font-bold text-paper", t.circle)}>
-            {item.step}
+      <div className="flex flex-col gap-3 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        <div className="min-w-0 flex-1 space-y-2">
+          {/* Tag + domain combined */}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className={cn("rounded-full border px-2.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-[0.10em]", t.tagBorder)}>
+              {item.tag} &middot; {item.domain}
+            </span>
           </div>
-          <span className={cn("rounded-full border px-2.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-[0.10em]", t.tagBorder)}>
-            {item.tag}
-          </span>
-          <Badge tone="accentSecondary" size="sm">{item.domain}</Badge>
+
+          {/* Reason */}
+          <p className="text-xs italic text-muted">{item.reason}</p>
+
+          {/* Title */}
+          <p className="text-base font-semibold text-ink">{item.action.title}</p>
+
+          {/* Subtitle (duration or question count) */}
+          <p className="text-xs text-muted">{item.action.subtitle}</p>
         </div>
-        {item.reason && <p className="mb-2 text-xs italic text-muted">{item.reason}</p>}
-        <p className="flex-1 text-sm font-semibold leading-6 text-ink">{item.exercise.title}</p>
-        <p className="mt-1.5 text-xs text-muted">{item.exercise.questionCount} questions</p>
-        <p className={cn("mt-3 text-xs font-bold group-hover:underline", t.cta)}>
-          Lancer &rarr;
-        </p>
+
+        {/* CTA */}
+        <span className={cn(
+          "inline-flex shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-sm font-bold transition group-hover:shadow-subtle",
+          t.cta,
+        )}>
+          {ACTION_LABELS[item.action.action]} &rarr;
+        </span>
       </div>
     </Link>
   );
 }
 
-// ── Fiche-only card ──────────────────────────────────────────
+// ── Queue row (compact, one line per item) ───────────────────
 
-const MODEL_LABELS: Record<string, string> = {
-  sprint: "Sprint",
-  reference: "Fiche complète",
-  operatoire: "Fiche opératoire",
-};
+function QueueRow({ item }: { item: Extract<SmartPlanItem, { type: "action" }> }) {
+  const t = TONE_STYLES[item.tone];
 
-function FicheOnlyCard({
-  item,
-}: {
-  item: Extract<SmartPlanItem, { type: "fiche-only" }>;
-}) {
   return (
     <Link
-      href={`/fiches/${item.fiche.slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle"
+      href={item.action.href}
+      className="group flex items-center justify-between gap-3 rounded-lg px-4 py-2.5 transition hover:bg-paper"
+      title={item.reason}
     >
-      <div className="flex flex-1 flex-col px-4 py-4">
-        <div className="mb-3 flex items-center gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#6B8F80] font-serif text-lg font-bold text-paper">
-            {item.step}
-          </div>
-          <span className="rounded-full border border-[#6B8F80]/30 bg-[rgba(107,143,128,0.08)] px-2.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-[0.10em] text-[#6B8F80]">
-            {item.tag}
-          </span>
-          <Badge tone="accentSecondary" size="sm">{item.domain}</Badge>
-        </div>
-        {item.reason && <p className="mb-2 text-xs italic text-muted">{item.reason}</p>}
-        <div className="flex items-center gap-2 mb-1.5">
-          <span className="text-base" aria-hidden>&#x1F4D6;</span>
-          <span className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-muted">Lire la fiche</span>
-        </div>
-        <p className="flex-1 text-sm font-semibold leading-6 text-ink">{item.fiche.title}</p>
-        <p className="mt-1 text-xs text-muted">
-          {MODEL_LABELS[item.fiche.model] ?? item.fiche.model} &middot; {item.fiche.estimatedMinutes} min
-        </p>
-        <p className="mt-3 text-xs font-bold text-[#6B8F80] group-hover:underline">
-          Lire &rarr;
-        </p>
+      <div className="flex min-w-0 items-center gap-3">
+        <span className={cn("shrink-0 rounded-full border px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-[0.08em]", t.tagBorder)}>
+          {item.tag}
+        </span>
+        <span className="truncate text-sm text-ink">{item.action.title}</span>
+        <span className="hidden shrink-0 text-xs text-muted sm:inline">{item.action.subtitle}</span>
       </div>
+      <span className={cn("shrink-0 text-xs font-bold group-hover:underline", t.ctaSecondary)}>
+        {ACTION_LABELS[item.action.action]} &rarr;
+      </span>
     </Link>
   );
 }
@@ -190,9 +141,10 @@ export function SmartPlanSection({
   const srsItem = planItems.find((i) => i.type === "srs") as
     | Extract<SmartPlanItem, { type: "srs" }>
     | undefined;
-  const actionItems = planItems.filter((i) => i.type !== "srs");
+  const actionItems = planItems.filter((i): i is Extract<SmartPlanItem, { type: "action" }> => i.type === "action");
 
-  const hasActionItems = actionItems.length > 0;
+  const heroItem = actionItems[0] ?? null;
+  const queueItems = actionItems.slice(1);
 
   return (
     <div className="overflow-hidden rounded-2xl border border-accentSecondary/25 shadow-subtle">
@@ -226,47 +178,27 @@ export function SmartPlanSection({
         </div>
       </div>
 
-      <div className="bg-card px-4 py-4 sm:px-6 sm:py-5 space-y-4">
-        {/* SRS banner at top if due */}
+      <div className="bg-card px-4 py-4 sm:px-6 sm:py-5 space-y-3">
+        {/* SRS banner */}
         {srsItem && <SrsBanner dueCount={srsItem.dueCount} />}
 
-        {/* Action items */}
-        {hasActionItems ? (
+        {/* Hero card */}
+        {heroItem ? (
           <>
-            <div className="grid gap-3 xl:grid-cols-3">
-              {actionItems.map((item) => {
-                switch (item.type) {
-                  case "learn-then-practice":
-                    return (
-                      <LearnThenPracticeCard
-                        key={`ltp-${item.step}`}
-                        step={item.step}
-                        ficheTitle={item.fiche.title}
-                        ficheSlug={item.fiche.slug}
-                        ficheModel={item.fiche.model}
-                        ficheMinutes={item.fiche.estimatedMinutes}
-                        ficheRead={item.ficheRead}
-                        ficheAccessTier={item.fiche.accessTier}
-                        exerciseTitle={item.exercise.title}
-                        exerciseId={item.exercise.id}
-                        exerciseQuestionCount={item.exercise.questionCount}
-                        domain={item.domain}
-                        tone={item.tone}
-                        tag={item.tag}
-                        reason={item.reason}
-                      />
-                    );
-                  case "exercise-only":
-                    return <ExerciseOnlyCard key={`ex-${item.step}`} item={item} />;
-                  case "resume":
-                    return <ResumeCard key={`res-${item.step}`} session={item.session} step={item.step} reason={item.reason} />;
-                  case "fiche-only":
-                    return <FicheOnlyCard key={`fiche-${item.step}`} item={item} />;
-                  default:
-                    return null;
-                }
-              })}
-            </div>
+            <HeroCard item={heroItem} />
+
+            {/* Queue */}
+            {queueItems.length > 0 && (
+              <div className="space-y-0.5 rounded-xl border border-border/50 bg-paper/50 py-1">
+                <p className="px-4 pt-1 pb-1 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-muted">
+                  Ensuite
+                </p>
+                {queueItems.map((item, i) => (
+                  <QueueRow key={i} item={item} />
+                ))}
+              </div>
+            )}
+
             <div className="flex justify-center gap-4 pt-1">
               <Link href="/fiches" className="text-xs font-semibold text-muted hover:text-ink hover:underline">
                 Toutes les fiches &rarr;
