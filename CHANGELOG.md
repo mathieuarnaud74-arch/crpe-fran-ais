@@ -1,5 +1,13 @@
 # Changelog
 
+## [2026-03-27] — Enrichir la section Votre Parcours — liaison fiches↔exercices
+
+- `content/fiches/*.ts` (90 fichiers) — peuplé `exercicesAssocies` avec les `topic_key` correspondants pour lier fiches et exercices
+- `lib/dashboard/build-smart-plan.ts` — algorithme enrichi : 5 items max (au lieu de 3), champ `reason` contextuel, déduplication assouplie (max 2/domaine), slot découverte garanti
+- `features/dashboard/components/learn-then-practice-card.tsx` — ajout ligne `reason` + mini-progression 2 étapes (Lire/S'exercer) avec checkmark
+- `features/dashboard/components/smart-plan-section.tsx` — reason sur toutes les cartes, header avec pills de progression (fiches lues, séries en cours, à revoir), liens Voir tout en bas
+- `app/(app)/tableau-de-bord/page.tsx` — passage des props `ficheProgress` et `exerciseProgress` à SmartPlanSection
+
 ## [2026-03-26] — Réagencement dashboard : 6 zones, intégration fiches, action-first
 
 - `app/(app)/tableau-de-bord/page.tsx` — refonte complète (772 → 260 lignes) : 12+ sections → 6 zones (statut compact, prochaine étape, parcours domaines, insights, activité)
