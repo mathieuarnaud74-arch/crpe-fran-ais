@@ -72,10 +72,7 @@ export function LearnThenPracticeCard({
         "group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle",
       )}
     >
-      {/* Left accent bar */}
-      <span aria-hidden className={cn("absolute left-0 top-0 h-full w-1 rounded-l-xl", t.bar)} />
-
-      <div className="flex flex-1 flex-col pl-5 pr-4 py-4">
+      <div className="flex flex-1 flex-col px-4 py-4">
         {/* Header: step + tag + domain */}
         <div className="mb-3 flex items-center gap-3">
           <div className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-serif text-lg font-bold text-paper", t.circle)}>

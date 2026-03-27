@@ -18,8 +18,7 @@ function ResumeCard({ session, step }: { session: DashboardSessionProgress; step
       href={`/exercices/${session.id}`}
       className="group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle"
     >
-      <span aria-hidden className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-[#394E45]" />
-      <div className="flex flex-1 flex-col pl-5 pr-4 py-4">
+      <div className="flex flex-1 flex-col px-4 py-4">
         <div className="mb-3 flex items-center gap-3">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#394E45] font-serif text-lg font-bold text-paper">
             {step}
@@ -81,8 +80,7 @@ function ExerciseOnlyCard({
         "group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle",
       )}
     >
-      <span aria-hidden className={cn("absolute left-0 top-0 h-full w-1 rounded-l-xl", t.bar)} />
-      <div className="flex flex-1 flex-col pl-5 pr-4 py-4">
+      <div className="flex flex-1 flex-col px-4 py-4">
         <div className="mb-3 flex items-center gap-3">
           <div className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-serif text-lg font-bold text-paper", t.circle)}>
             {item.step}
@@ -120,8 +118,7 @@ function FicheOnlyCard({
       href={`/fiches/${item.fiche.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-xl bg-card transition hover:shadow-subtle"
     >
-      <span aria-hidden className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-[#6B8F80]" />
-      <div className="flex flex-1 flex-col pl-5 pr-4 py-4">
+      <div className="flex flex-1 flex-col px-4 py-4">
         <div className="mb-3 flex items-center gap-3">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#6B8F80] font-serif text-lg font-bold text-paper">
             {item.step}
