@@ -85,8 +85,8 @@ const defaultSectionSeeds: Array<SectionSeed<HomepageSectionType>> = [
             "Grammaire, orthographe, conjugaison, lexique, géométrie, calcul, grandeurs… Rien n'est laissé de côté.",
         },
         {
-          stat: "490+",
-          eyebrow: "Exercices · 49 séries",
+          stat: "4 900+",
+          eyebrow: "Exercices · 135 séries",
           title: "De quoi s'entraîner vraiment.",
           description:
             "QCM, vrai/faux, tri, surlignage, correction, réponse courte… 6 types d'exercices répartis en séries courtes et ciblées sur chaque point du programme.",
