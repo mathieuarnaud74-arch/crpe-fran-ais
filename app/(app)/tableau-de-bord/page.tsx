@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { MoccaWithMessage } from "@/components/mascot/mocca-with-message";
-import { ActivityHeatmap } from "@/components/ui/activity-heatmap";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
@@ -203,18 +202,7 @@ export default async function DashboardPage() {
           Zone 5 — Activité & engagement
           ═══════════════════════════════════════════════════════ */}
       {data.totalAttempts > 0 && (
-        <div className="grid gap-4 2xl:grid-cols-2">
-          {/* Heatmap */}
-          <Panel data-tour="heatmap" className="p-3 sm:p-4">
-            <div className="flex items-center justify-between gap-3 border-b border-border pb-2 mb-2">
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#476257]">
-                Activit&eacute;
-              </p>
-              <ButtonLink href="/progression" variant="secondary" size="sm">D&eacute;tail</ButtonLink>
-            </div>
-            <ActivityHeatmap dailyActivity={data.dailyActivity} />
-          </Panel>
-
+        <div className="grid gap-4 2xl:grid-cols-1">
           {/* Dernières réponses */}
           <Panel>
             <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
