@@ -86,7 +86,7 @@ function QueueRow({ item }: { item: Extract<SmartPlanItem, { type: "action" }> }
           {item.tag}
         </span>
         <span className="truncate text-sm text-ink">{item.action.title}</span>
-        <span className="hidden shrink-0 text-xs text-muted sm:inline">{item.action.subtitle}</span>
+        <span className="hidden shrink-0 text-xs text-muted sm:inline">&middot; {item.action.subtitle}</span>
       </div>
       <span className={cn("shrink-0 text-xs font-bold group-hover:underline", t.ctaSecondary)}>
         {ACTION_LABELS[item.action.action]} &rarr;

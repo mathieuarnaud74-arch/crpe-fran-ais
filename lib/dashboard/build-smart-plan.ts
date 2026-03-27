@@ -227,33 +227,13 @@ export function buildSmartPlan(
 
   const actionItems: SmartPlanItem[] = [];
 
-  // 2. One resume session (highest priority — user already invested)
-  if (data.resumeSessions.length > 0) {
-    const session = data.resumeSessions[0];
-    actionItems.push({
-      type: "action",
-      action: {
-        action: "resume",
-        title: session.title,
-        href: `/exercices/${session.id}`,
-        subtitle: `${session.answeredQuestions}/${session.questionCount} questions · ${session.correctRate !== null ? `${session.correctRate}%` : "\u2014"}`,
-      },
-      domain: session.subdomainLabel,
-      domainKey: session.subdomain,
-      tone: "warm",
-      tag: "À reprendre",
-      reason: `${session.answeredQuestions}/${session.questionCount} questions faites — terminez cette série`,
-    });
-    bumpDomain(session.subdomain);
-  }
-
-  // 3. Priority items (accuracy < 50%)
+  // 2. Priority items FIRST (accuracy < 50%) — most impactful next step
   for (const item of data.priorityItems) {
     if (actionItems.length >= maxItems) break;
     if (!canUseDomain(item.domain)) continue;
 
     const rate = item.correctRate ?? 0;
-    const reason = `${rate}% en ${item.domainLabel} — cette notion nécessite un renfort`;
+    const reason = `${rate}% de réussite en ${item.domainLabel} — à renforcer en priorité`;
     const planItem = buildItemFromSubdomain(
       item, data, allFiches, completedFicheSlugs, "warning", "Prioritaire", reason,
     );
@@ -263,13 +243,34 @@ export function buildSmartPlan(
     }
   }
 
+  // 3. Resume session (user already invested — but after priority items)
+  if (actionItems.length < maxItems && data.resumeSessions.length > 0) {
+    const session = data.resumeSessions[0];
+    const remaining = session.questionCount - session.answeredQuestions;
+    actionItems.push({
+      type: "action",
+      action: {
+        action: "resume",
+        title: session.title,
+        href: `/exercices/${session.id}`,
+        subtitle: `${remaining} question${remaining > 1 ? "s" : ""} restante${remaining > 1 ? "s" : ""}`,
+      },
+      domain: session.subdomainLabel,
+      domainKey: session.subdomain,
+      tone: "warm",
+      tag: "À reprendre",
+      reason: `Série en cours — ${session.answeredQuestions} sur ${session.questionCount} faites`,
+    });
+    bumpDomain(session.subdomain);
+  }
+
   // 4. Fragile items (accuracy 50-70%)
   for (const item of data.fragileItems) {
     if (actionItems.length >= maxItems) break;
     if (!canUseDomain(item.domain)) continue;
 
     const rate = item.correctRate ?? 0;
-    const reason = `Résultats fragiles (${rate}%) en ${item.domainLabel} — une révision ciblée va aider`;
+    const reason = `${rate}% de réussite en ${item.domainLabel} — à consolider`;
     const planItem = buildItemFromSubdomain(
       item, data, allFiches, completedFicheSlugs, "neutral", "À consolider", reason,
     );
