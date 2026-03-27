@@ -126,6 +126,7 @@ export default async function DashboardPage() {
           isPremium={premium}
           masteredSessions={data.masteredSessions}
           totalSeries={data.totalSeries}
+          srsDueCount={srsDueCount}
         />
       </div>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { Badge } from "@/components/ui/badge";
@@ -42,6 +43,7 @@ type CompactStatusBarProps = {
   isPremium: boolean;
   masteredSessions: number;
   totalSeries: number;
+  srsDueCount?: number;
 };
 
 export function CompactStatusBar({
@@ -52,6 +54,7 @@ export function CompactStatusBar({
   isPremium,
   masteredSessions,
   totalSeries,
+  srsDueCount,
 }: CompactStatusBarProps) {
   const xpInfo = getXpForNextLevel(gamification.xp);
   const label = XP_LEVEL_LABELS[gamification.level] ?? `Niveau ${gamification.level}`;
@@ -130,6 +133,21 @@ export function CompactStatusBar({
             </span>
           </div>
         </div>
+
+        {/* SRS due */}
+        {srsDueCount != null && srsDueCount > 0 && (
+          <>
+            <span aria-hidden className="h-6 w-px bg-border shrink-0" />
+            <Link
+              href="/revision"
+              className="flex items-center gap-1.5 shrink-0 rounded-full border border-accent/25 bg-accent/5 px-2.5 py-1 transition hover:bg-accent/10"
+            >
+              <span className="text-xs" aria-hidden>&#x1F9E0;</span>
+              <span className="text-xs font-bold tabular-nums text-accent">{srsDueCount}</span>
+              <span className="text-xs text-accent/70">&agrave; r&eacute;viser</span>
+            </Link>
+          </>
+        )}
 
         {/* Premium badge */}
         {isPremium && (

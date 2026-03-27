@@ -112,9 +112,6 @@ export function SmartPlanSection({
 }: SmartPlanSectionProps) {
   if (totalAttempts === 0 && planItems.length === 0) return null;
 
-  const srsItem = planItems.find((i) => i.type === "srs") as
-    | Extract<SmartPlanItem, { type: "srs" }>
-    | undefined;
   const actionItems = planItems.filter((i): i is Extract<SmartPlanItem, { type: "action" }> => i.type === "action");
 
   const heroItem = actionItems[0] ?? null;
@@ -131,15 +128,6 @@ export function SmartPlanSection({
             <h2 className="mt-1 font-serif text-2xl font-semibold text-ink">Prochaine &eacute;tape</h2>
           </div>
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted">
-            {srsItem && (
-              <Link
-                href="/revision"
-                className="group inline-flex items-center gap-1.5 rounded-full border border-accent/25 bg-accent/5 px-2.5 py-1 transition hover:border-accent/40 hover:bg-accent/10"
-              >
-                <span className="text-[0.65rem]" aria-hidden>&#x1F9E0;</span>
-                <span className="font-semibold text-accent">{srsItem.dueCount} &agrave; r&eacute;viser</span>
-              </Link>
-            )}
             {ficheProgress && (
               <span className="rounded-full border border-border bg-paper px-2.5 py-1">
                 {ficheProgress.completed}/{ficheProgress.total} fiches lues
