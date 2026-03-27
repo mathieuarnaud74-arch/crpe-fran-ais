@@ -12,7 +12,7 @@ export const toutMemeSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["tout", "même", "accord", "adverbe vs adjectif"],
   notionsLiees: ["accord-groupe-nominal"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["tri_mot_tout"],
   content: {
     model: "sprint",
     disclaimer: "Cette fiche suppose que tu distingues déjà adjectif, adverbe et pronom. C'est l'un des points d'orthographe les plus piégeurs du CRPE.",

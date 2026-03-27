@@ -12,7 +12,7 @@ export const schemaNarratifSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["schéma narratif", "situation initiale", "élément perturbateur", "récit", "conte"],
   notionsLiees: ["reperage-explicite-sprint", "texte-argumentatif-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["cpt_schema_narratif"],
   content: {
     model: "sprint",
     disclaimer:

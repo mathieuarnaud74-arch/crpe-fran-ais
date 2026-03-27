@@ -12,7 +12,7 @@ export const subordonnéesRelativesSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["subordonnée relative", "pronom relatif", "antécédent", "qui", "que", "dont"],
   notionsLiees: ["nature-des-mots-sprint", "fonctions-grammaticales-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["gram_subordonnees_relatives", "gram_pronoms_relatifs"],
   content: {
     model: "sprint",
     disclaimer:

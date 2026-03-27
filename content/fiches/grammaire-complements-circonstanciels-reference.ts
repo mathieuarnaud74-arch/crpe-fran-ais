@@ -25,7 +25,7 @@ export const grammaireComplementsCirconstancielsReference: Fiche = {
     "grammaire-phrase-simple-sprint",
     "analyse-langue-manipulations-syntaxiques-reference",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["tri_complements_circonstanciels", "anal_complements_circ"],
   content: {
     model: "reference",
     intro:

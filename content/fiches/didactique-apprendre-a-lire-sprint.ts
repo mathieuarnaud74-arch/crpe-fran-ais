@@ -12,7 +12,7 @@ export const apprendreALireSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["lecture", "décodage", "conscience phonologique", "programmes 2016", "méthodes"],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_apprentissage_lecture_cycle2"],
   content: {
     model: "sprint",
     disclaimer:

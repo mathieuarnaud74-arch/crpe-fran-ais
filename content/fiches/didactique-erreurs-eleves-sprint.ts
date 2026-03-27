@@ -12,7 +12,7 @@ export const erreursElevesSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["erreurs d'élèves", "remédiation", "didactique", "représentations", "obstacles"],
   notionsLiees: ["evaluation-francais-sprint", "differentiation-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_differenciation_evaluation"],
   content: {
     model: "sprint",
     disclaimer:

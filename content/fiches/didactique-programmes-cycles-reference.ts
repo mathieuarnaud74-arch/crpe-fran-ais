@@ -13,7 +13,7 @@ export const programmesFrancaisCyclesReference: Fiche = {
   estimatedMinutes: 15,
   tags: ["programmes 2016", "cycle 1", "cycle 2", "cycle 3", "maternelle", "élémentaire"],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_enseignement_grammaire", "did_enseignement_vocabulaire"],
   content: {
     model: "reference",
     intro:

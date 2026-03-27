@@ -27,7 +27,7 @@ export const typesTextesReference: Fiche = {
     "comprehension-texte-documentaire-sprint",
     "comprehension-texte-coherence-textuelle-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["cpt_types_textes_caracteristiques", "tri_types_textes"],
   content: {
     model: "reference",
     intro:

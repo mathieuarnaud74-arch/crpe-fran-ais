@@ -12,7 +12,7 @@ export const formationMotsSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["dérivation", "composition", "préfixe", "suffixe", "radical", "familles de mots"],
   notionsLiees: ["lexique-sens-des-mots", "lexique-etymologie"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_formation_mots", "tri_formation_mots"],
   content: {
     model: "sprint",
     disclaimer:

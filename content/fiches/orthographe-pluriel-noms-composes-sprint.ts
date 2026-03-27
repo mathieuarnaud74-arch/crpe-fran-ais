@@ -12,7 +12,7 @@ export const plurielNomsComposesSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["noms composés", "pluriel", "trait d'union", "orthographe lexicale"],
   notionsLiees: ["accord-groupe-nominal"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["orth_pluriel_composes"],
   content: {
     model: "sprint",
     disclaimer: "Cette fiche traite des noms composés avec trait d'union (orthographe traditionnelle). La réforme de 1990 a simplifié certains cas : vérifier les deux graphies est une bonne pratique.",

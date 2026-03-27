@@ -12,7 +12,7 @@ export const natureMotsSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["nature", "classes grammaticales", "nom", "adverbe", "déterminant"],
   notionsLiees: ["fonctions-grammaticales-sprint", "phrase-simple-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["gram_nature_fonction", "tri_nature_mots", "tri_nom_verbe_adjectif"],
   content: {
     model: "sprint",
     disclaimer:

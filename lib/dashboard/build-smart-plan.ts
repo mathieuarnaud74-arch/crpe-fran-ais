@@ -30,6 +30,7 @@ export type SmartPlanItem =
       domainKey: string;
       tone: "warning" | "warm" | "neutral";
       tag: string;
+      reason: string;
       step: number;
     }
   | {
@@ -44,6 +45,7 @@ export type SmartPlanItem =
       domainKey: string;
       tone: "warning" | "warm" | "neutral";
       tag: string;
+      reason: string;
       step: number;
     }
   | {
@@ -51,6 +53,7 @@ export type SmartPlanItem =
       session: DashboardSessionProgress;
       tone: "warm";
       tag: string;
+      reason: string;
       step: number;
     }
   | {
@@ -65,6 +68,7 @@ export type SmartPlanItem =
       domainKey: string;
       tone: "neutral";
       tag: string;
+      reason: string;
       step: number;
     };
 
@@ -150,6 +154,7 @@ function buildItemFromSubdomain(
   completedSlugs: Set<string>,
   tone: "warning" | "neutral",
   tag: string,
+  reason: string,
   step: number,
 ): SmartPlanItem | null {
   const ficheResult = pickBestFiche(allFiches, completedSlugs, item.domain);
@@ -172,6 +177,7 @@ function buildItemFromSubdomain(
       domainKey: item.domain,
       tone,
       tag,
+      reason,
       step,
     };
   }
@@ -184,6 +190,7 @@ function buildItemFromSubdomain(
       domainKey: item.domain,
       tone,
       tag,
+      reason,
       step,
     };
   }
@@ -196,6 +203,7 @@ function buildItemFromSubdomain(
       domainKey: item.domain,
       tone: "neutral",
       tag,
+      reason,
       step,
     };
   }
@@ -205,41 +213,115 @@ function buildItemFromSubdomain(
 
 // ── Main algorithm ───────────────────────────────────────────
 
+function buildDiscoveryReason(domainLabel: string): string {
+  return `Vous n'avez pas encore exploré ${domainLabel}`;
+}
+
+function addDiscoveryItems(
+  plan: SmartPlanItem[],
+  maxItems: number,
+  allFiches: Fiche[],
+  completedFicheSlugs: Set<string>,
+  domainCounts: Map<string, number>,
+  data: DashboardData,
+  stepCounter: { value: number },
+): void {
+  const unreadFiches = allFiches
+    .filter((f) => !completedFicheSlugs.has(f.slug) && (domainCounts.get(f.domaine) ?? 0) < 2)
+    .sort((a, b) => {
+      if (a.utilite !== b.utilite) return a.utilite === "haute" ? -1 : 1;
+      if (a.model !== b.model) return a.model === "sprint" ? -1 : 1;
+      return a.estimatedMinutes - b.estimatedMinutes;
+    });
+
+  const seenDomains = new Set<string>();
+  for (const f of unreadFiches) {
+    if (plan.length >= maxItems) break;
+    if (seenDomains.has(f.domaine)) continue;
+    seenDomains.add(f.domaine);
+
+    const exercise = findExerciseForDomain(data, f.domaine, f.exercicesAssocies);
+    const fSummary: FicheSummary = {
+      slug: f.slug,
+      title: f.title,
+      model: f.model,
+      estimatedMinutes: f.estimatedMinutes,
+      accessTier: f.accessTier,
+    };
+    const reason = buildDiscoveryReason(f.domaine);
+
+    if (exercise) {
+      plan.push({
+        type: "learn-then-practice",
+        fiche: fSummary,
+        ficheRead: false,
+        exercise,
+        domain: f.domaine,
+        domainKey: f.domaine,
+        tone: "neutral",
+        tag: "À découvrir",
+        reason,
+        step: stepCounter.value++,
+      });
+    } else {
+      plan.push({
+        type: "fiche-only",
+        fiche: fSummary,
+        domain: f.domaine,
+        domainKey: f.domaine,
+        tone: "neutral",
+        tag: "À découvrir",
+        reason,
+        step: stepCounter.value++,
+      });
+    }
+  }
+}
+
 export function buildSmartPlan(
   data: DashboardData,
   allFiches: Fiche[],
   completedFicheSlugs: Set<string>,
   srsDueCount: number,
 ): SmartPlanItem[] {
-  const MAX_ITEMS = 3;
+  const MAX_ITEMS = 5;
   const plan: SmartPlanItem[] = [];
-  const usedDomains = new Set<string>();
+  const domainCounts = new Map<string, number>();
 
-  let stepCounter = 1;
+  const bumpDomain = (domain: string) => {
+    domainCounts.set(domain, (domainCounts.get(domain) ?? 0) + 1);
+  };
+  const canUseDomain = (domain: string) => (domainCounts.get(domain) ?? 0) < 2;
+
+  const stepCounter = { value: 1 };
 
   // 1. SRS banner if exercises are due
   if (srsDueCount > 0) {
-    plan.push({ type: "srs", dueCount: srsDueCount, step: stepCounter++ });
+    plan.push({ type: "srs", dueCount: srsDueCount, step: stepCounter.value++ });
   }
 
   // 2. One resume session (highest priority — user already invested)
   if (data.resumeSessions.length > 0 && plan.length < MAX_ITEMS) {
     const session = data.resumeSessions[0];
+    const reason = `${session.answeredQuestions}/${session.questionCount} questions faites — terminez cette série`;
     plan.push({
       type: "resume",
       session,
       tone: "warm",
       tag: "À reprendre",
-      step: stepCounter++,
+      reason,
+      step: stepCounter.value++,
     });
-    usedDomains.add(session.subdomain);
+    bumpDomain(session.subdomain);
   }
 
   // 3. Priority items (accuracy < 50%)
   for (const item of data.priorityItems) {
-    if (plan.length >= MAX_ITEMS) break;
-    if (usedDomains.has(item.domain)) continue;
+    if (plan.length >= MAX_ITEMS - 1) break; // reserve 1 slot for discovery
+    if (!canUseDomain(item.domain)) continue;
 
+    const rate = item.correctRate ?? 0;
+    const reason = `${rate}% en ${item.domainLabel} — cette notion nécessite un renfort`;
     const planItem = buildItemFromSubdomain(
       item,
       data,
@@ -247,20 +329,23 @@ export function buildSmartPlan(
       completedFicheSlugs,
       "warning",
       "Prioritaire",
-      stepCounter,
+      reason,
+      stepCounter.value,
     );
     if (planItem) {
       plan.push(planItem);
-      usedDomains.add(item.domain);
-      stepCounter++;
+      bumpDomain(item.domain);
+      stepCounter.value++;
     }
   }
 
   // 4. Fragile items (accuracy 50-70%)
   for (const item of data.fragileItems) {
-    if (plan.length >= MAX_ITEMS) break;
-    if (usedDomains.has(item.domain)) continue;
+    if (plan.length >= MAX_ITEMS - 1) break; // reserve 1 slot for discovery
+    if (!canUseDomain(item.domain)) continue;
 
+    const rate = item.correctRate ?? 0;
+    const reason = `Résultats fragiles (${rate}%) en ${item.domainLabel} — une révision ciblée va aider`;
     const planItem = buildItemFromSubdomain(
       item,
       data,
@@ -268,64 +353,27 @@ export function buildSmartPlan(
       completedFicheSlugs,
       "neutral",
       "À consolider",
-      stepCounter,
+      reason,
+      stepCounter.value,
     );
     if (planItem) {
       plan.push(planItem);
-      usedDomains.add(item.domain);
-      stepCounter++;
+      bumpDomain(item.domain);
+      stepCounter.value++;
     }
   }
 
-  // 5. If no priorities/fragilities — suggest unread fiches in least-explored domains
-  if (plan.length < MAX_ITEMS && data.priorityItems.length === 0 && data.fragileItems.length === 0) {
-    const unreadFiches = allFiches
-      .filter((f) => !completedFicheSlugs.has(f.slug) && !usedDomains.has(f.domaine))
-      .sort((a, b) => {
-        if (a.utilite !== b.utilite) return a.utilite === "haute" ? -1 : 1;
-        if (a.model !== b.model) return a.model === "sprint" ? -1 : 1;
-        return a.estimatedMinutes - b.estimatedMinutes;
-      });
-
-    const seenDomains = new Set<string>();
-    for (const f of unreadFiches) {
-      if (plan.length >= MAX_ITEMS) break;
-      if (seenDomains.has(f.domaine)) continue;
-      seenDomains.add(f.domaine);
-
-      const exercise = findExerciseForDomain(data, f.domaine, f.exercicesAssocies);
-      const fSummary: FicheSummary = {
-        slug: f.slug,
-        title: f.title,
-        model: f.model,
-        estimatedMinutes: f.estimatedMinutes,
-        accessTier: f.accessTier,
-      };
-
-      if (exercise) {
-        plan.push({
-          type: "learn-then-practice",
-          fiche: fSummary,
-          ficheRead: false,
-          exercise,
-          domain: f.domaine,
-          domainKey: f.domaine,
-          tone: "neutral",
-          tag: "À découvrir",
-          step: stepCounter++,
-        });
-      } else {
-        plan.push({
-          type: "fiche-only",
-          fiche: fSummary,
-          domain: f.domaine,
-          domainKey: f.domaine,
-          tone: "neutral",
-          tag: "À découvrir",
-          step: stepCounter++,
-        });
-      }
-    }
+  // 5. Always fill remaining slots with discovery items
+  if (plan.length < MAX_ITEMS) {
+    addDiscoveryItems(
+      plan,
+      MAX_ITEMS,
+      allFiches,
+      completedFicheSlugs,
+      domainCounts,
+      data,
+      stepCounter,
+    );
   }
 
   return plan;

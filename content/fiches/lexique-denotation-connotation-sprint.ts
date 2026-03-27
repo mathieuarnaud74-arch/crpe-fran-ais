@@ -21,7 +21,7 @@ export const denotationConnotationSprint: Fiche = {
     "lexique-registres-langue-sprint",
     "lexique-champs-lexicaux-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_sens_propre_figure", "lex_sens_propre_figure_expressions"],
   content: {
     model: "sprint",
     disclaimer:

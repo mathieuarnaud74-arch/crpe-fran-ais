@@ -30,7 +30,7 @@ export const classesMotsSprint: Fiche = {
     "grammaire-pronoms-sprint",
     "grammaire-nature-fonction-operatoire",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["grm_classes_de_mots", "tri_classes_mots", "tri_classes_grammaticales"],
   content: {
     model: "sprint",
     disclaimer:

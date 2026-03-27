@@ -12,7 +12,7 @@ export const grammairePhraseComplexeSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["phrase complexe", "coordination", "subordination", "syntaxe"],
   notionsLiees: ["phrase-simple-sprint", "subordonnees-circonstancielles-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["grm_phrase_complexe_prop", "delimitation_propositions"],
   content: {
     model: "sprint",
     disclaimer: "Cette fiche suppose que tu maîtrises la notion de proposition et sais repérer un verbe conjugué.",

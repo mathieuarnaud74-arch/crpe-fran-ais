@@ -12,7 +12,7 @@ export const texteArgumentatifSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["argumentation", "thèse", "argument", "concession", "texte argumentatif"],
   notionsLiees: ["connecteurs-sprint", "enonciation-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["cpt_texte_argumentatif", "comprehension_structure_argumentative"],
   content: {
     model: "sprint",
     disclaimer:

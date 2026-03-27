@@ -18,7 +18,7 @@ export const impliciteInferenceSprint: Fiche = {
     "CRPE",
   ],
   notionsLiees: ["reperage-informations-explicites", "comprendre-texte-documentaire"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["comp_inferences_implicite", "comprehension_implicite_inferences"],
   content: {
     model: "sprint",
     disclaimer:

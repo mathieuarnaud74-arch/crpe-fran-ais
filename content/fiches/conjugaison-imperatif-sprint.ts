@@ -18,7 +18,7 @@ export const imperatifSprint: Fiche = {
     "orthographe impératif",
   ],
   notionsLiees: ["valeurs-du-present-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_modes_emplois"],
   content: {
     model: "sprint",
     disclaimer:

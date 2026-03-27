@@ -17,7 +17,7 @@ export const natureFonctionOperatoire: Fiche = {
     "analyse",
   ],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["gram_nature_fonction", "grm_nature_fonction", "tri_nature_fonction"],
   content: {
     model: "operatoire",
     startingQuestion:

@@ -25,7 +25,7 @@ export const figuresStyleReference: Fiche = {
     "lexique-figures-de-style-sprint",
     "lexique-denotation-connotation-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_figures_de_style", "lex_figures_style", "lexique_figures_style_textes"],
   content: {
     model: "reference",
     intro:

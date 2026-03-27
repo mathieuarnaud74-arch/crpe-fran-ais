@@ -20,7 +20,7 @@ export const analyseLangueComplementsCirconstancielsSprint: Fiche = {
     "lieu",
   ],
   notionsLiees: ["fonctions-grammaticales-sprint", "phrase-simple-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["anal_complements_circ", "tri_complements_circonstanciels"],
   content: {
     model: "sprint",
     disclaimer:

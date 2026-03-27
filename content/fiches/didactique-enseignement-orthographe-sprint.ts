@@ -12,7 +12,7 @@ export const enseignementOrthographeSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["didactique", "orthographe", "dictée négociée", "phrase du jour", "programmes 2016"],
   notionsLiees: ["accord-participe-passe", "accord-groupe-nominal"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_enseignement_grammaire"],
   content: {
     model: "sprint",
     disclaimer:

@@ -18,7 +18,7 @@ export const coherenceTextuelleSprint: Fiche = {
     "reprises",
   ],
   notionsLiees: ["anaphores-substitution-sprint", "connecteurs-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["cpt_coherence_textuelle"],
   content: {
     model: "sprint",
     disclaimer:

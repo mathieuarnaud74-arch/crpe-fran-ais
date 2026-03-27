@@ -18,7 +18,7 @@ export const attributVerbesAttributifsSprint: Fiche = {
     "attribut du COD",
   ],
   notionsLiees: ["fonctions-grammaticales-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["grm_fonctions_phrase"],
   content: {
     model: "sprint",
     disclaimer:

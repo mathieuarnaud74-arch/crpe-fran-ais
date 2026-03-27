@@ -25,7 +25,7 @@ export const schemaNarratifOperatoire: Fiche = {
     "comprehension-texte-reperage-explicite-sprint",
     "comprehension-texte-implicite-inference-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["cpt_schema_narratif"],
   content: {
     model: "operatoire",
     startingQuestion:

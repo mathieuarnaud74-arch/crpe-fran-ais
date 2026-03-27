@@ -19,7 +19,7 @@ export const majusculesPonctuationSprint: Fiche = {
     "tiret",
   ],
   notionsLiees: ["phrase-simple-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["correction_accords"],
   content: {
     model: "sprint",
     disclaimer:

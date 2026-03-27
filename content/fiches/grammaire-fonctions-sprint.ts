@@ -12,7 +12,7 @@ export const fonctionsGrammaticalesSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["fonction", "sujet", "COD", "COI", "attribut", "épithète"],
   notionsLiees: ["nature-des-mots-sprint", "phrase-simple-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["grm_fonctions_phrase", "tri_fonctions_grammaticales"],
   content: {
     model: "sprint",
     disclaimer:

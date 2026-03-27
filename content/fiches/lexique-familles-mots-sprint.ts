@@ -19,7 +19,7 @@ export const famillesMotsSprint: Fiche = {
     "étymologie",
   ],
   notionsLiees: ["formation-des-mots-sprint", "champs-lexicaux-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_etymologie_familles", "lex_formation_mots", "tri_formation_mots"],
   content: {
     model: "sprint",
     disclaimer:

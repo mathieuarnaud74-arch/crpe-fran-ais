@@ -12,7 +12,7 @@ export const consciencePhonologiqueSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["conscience phonologique", "phonème", "syllabe", "cycle 2", "apprentissage lecture"],
   notionsLiees: ["apprendre-a-lire-sprint", "enseignement-orthographe-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_conscience_phono"],
   content: {
     model: "sprint",
     disclaimer:

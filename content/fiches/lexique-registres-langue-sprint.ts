@@ -12,7 +12,7 @@ export const registresLangueSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["registre de langue", "niveau de langue", "soutenu", "familier", "communication"],
   notionsLiees: ["champs-lexicaux-sprint", "figures-de-style-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_registres_langue", "registres_langue_pratique"],
   content: {
     model: "sprint",
     disclaimer:

@@ -19,7 +19,7 @@ export const polysemieHomonymieSprint: Fiche = {
     "sens propre",
   ],
   notionsLiees: ["formation-des-mots-sprint", "champs-lexicaux-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_polysemie_contexte", "lexique_sens_contexte"],
   content: {
     model: "sprint",
     disclaimer:

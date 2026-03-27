@@ -22,7 +22,7 @@ export const hyperonymieHyponymieSprint: Fiche = {
     "champs-lexicaux-sprint",
     "formation-des-mots-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_relations_sens", "lex_synonymie_antonymie"],
   content: {
     model: "sprint",
     disclaimer:

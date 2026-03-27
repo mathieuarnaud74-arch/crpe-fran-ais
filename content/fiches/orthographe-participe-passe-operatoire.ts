@@ -22,7 +22,7 @@ export const ppAccordOperatoire: Fiche = {
     "orthographe-participe-passe-sprint",
     "orthographe-participe-passe-avoir-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["orth_participe_passe", "orth_accords_participe_passe"],
   content: {
     model: "operatoire",
     startingQuestion:

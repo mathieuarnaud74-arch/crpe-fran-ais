@@ -18,7 +18,7 @@ export const reperageExpliciteSprint: Fiche = {
     "texte",
   ],
   notionsLiees: ["explicite-implicite-inferences", "comprendre-texte-documentaire"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["comp_questions_comprehension"],
   content: {
     model: "sprint",
     disclaimer:

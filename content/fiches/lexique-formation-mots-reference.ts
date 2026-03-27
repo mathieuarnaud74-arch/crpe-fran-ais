@@ -27,7 +27,7 @@ export const formationMotsReference: Fiche = {
     "lexique-familles-mots-sprint",
     "analyse-langue-derivation-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_formation_mots", "lexique_formation_mots", "tri_formation_mots"],
   content: {
     model: "reference",
     intro:

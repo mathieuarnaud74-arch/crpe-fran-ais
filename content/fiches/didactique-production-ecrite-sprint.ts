@@ -12,7 +12,7 @@ export const productionEcriteSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["production écrite", "écriture", "Hayes & Flower", "brouillon", "révision", "dictée à l'adulte"],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_production_ecrite_cycle23"],
   content: {
     model: "sprint",
     disclaimer:

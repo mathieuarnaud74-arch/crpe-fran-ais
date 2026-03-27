@@ -20,7 +20,7 @@ export const plurielIrregulierSprint: Fiche = {
     "-eu/-eux",
   ],
   notionsLiees: ["accord-groupe-nominal", "pluriel-noms-composes"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["orthographe_pluriels_irreguliers"],
   content: {
     model: "sprint",
     disclaimer:

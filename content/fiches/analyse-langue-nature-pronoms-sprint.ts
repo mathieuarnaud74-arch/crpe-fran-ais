@@ -21,7 +21,7 @@ export const naturePronomsSprint: Fiche = {
     "interrogatif",
   ],
   notionsLiees: ["nature-mots-sprint", "grammaire-fonctions-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["analyse_identifier_nature", "tri_nature_fonction"],
   content: {
     model: "sprint",
     disclaimer:

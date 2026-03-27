@@ -23,7 +23,7 @@ export const analyseLanguePhonologieCycle2Sprint: Fiche = {
     "didactique-conscience-phonologique-sprint",
     "didactique-apprendre-a-lire-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["phonologie_graphemes"],
   content: {
     model: "sprint",
     disclaimer:

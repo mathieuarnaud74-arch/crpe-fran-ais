@@ -12,7 +12,7 @@ export const subjonctifSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["subjonctif", "mode", "verbes introducteurs", "conjonctions"],
   notionsLiees: ["subordonnees-circonstancielles-sprint", "concordance-temps-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_subjonctif_present", "conjugaison_subjonctif"],
   content: {
     model: "sprint",
     disclaimer: "Cette fiche liste les déclencheurs du subjonctif. Pour la formation des formes, consulter une conjugaison de référence. Pour les circonstancielles et leur mode, voir la fiche dédiée.",

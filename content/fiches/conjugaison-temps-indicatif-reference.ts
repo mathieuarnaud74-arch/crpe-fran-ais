@@ -28,7 +28,7 @@ export const tempsIndicatifReference: Fiche = {
     "conjugaison-passe-compose-imparfait-sprint",
     "conjugaison-concordance-temps-reference",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_temps_simples_composes", "conj_valeurs_temps"],
   content: {
     model: "reference",
     intro:

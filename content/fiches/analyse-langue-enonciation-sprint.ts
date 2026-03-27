@@ -12,7 +12,7 @@ export const enonciationSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["énonciation", "déictiques", "indices d'énonciation", "point de vue", "modalités"],
   notionsLiees: ["texte-argumentatif-sprint", "schema-narratif-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["comp_enonciation_point_vue", "anal_discours_direct_indirect"],
   content: {
     model: "sprint",
     disclaimer:

@@ -12,7 +12,7 @@ export const conditionnelSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["conditionnel", "hypothèse", "si", "futur dans le passé"],
   notionsLiees: ["concordance-temps-sprint", "subordonnees-circonstancielles-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_conditionnel_present"],
   content: {
     model: "sprint",
     disclaimer: "Cette fiche couvre les principales valeurs du conditionnel. Pour la concordance des temps dans les complétives, voir la fiche dédiée.",

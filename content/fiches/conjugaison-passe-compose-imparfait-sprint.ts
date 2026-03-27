@@ -22,7 +22,7 @@ export const passeComposeImparfaitSprint: Fiche = {
     "conditionnel-sprint",
     "groupes-verbes-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_temps_simples_composes"],
   content: {
     model: "sprint",
     disclaimer:

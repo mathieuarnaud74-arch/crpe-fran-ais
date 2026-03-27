@@ -19,7 +19,7 @@ export const typeDiscoursOperatoire: Fiche = {
     "injonctif",
   ],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["comprehension_type_discours"],
   content: {
     model: "operatoire",
     startingQuestion:

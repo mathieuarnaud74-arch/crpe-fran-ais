@@ -24,7 +24,7 @@ export const productionEcritsReference: Fiche = {
     "didactique-ecriture-cycle2-sprint",
     "didactique-programmes-cycles-reference",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_production_ecrite_cycle23"],
   content: {
     model: "reference",
     intro:

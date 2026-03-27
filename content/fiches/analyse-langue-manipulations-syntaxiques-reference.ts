@@ -23,7 +23,7 @@ export const manipulationsSyntaxiquesReference: Fiche = {
     "grammaire-nature-mots-sprint",
     "grammaire-phrase-simple-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["analyse_manipulations_syntaxiques"],
   content: {
     model: "reference",
     intro:

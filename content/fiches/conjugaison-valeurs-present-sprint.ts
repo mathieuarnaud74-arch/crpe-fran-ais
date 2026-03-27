@@ -12,7 +12,7 @@ export const valeursPresentSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["présent", "valeurs", "présent d'énonciation", "présent de vérité générale", "présent historique"],
   notionsLiees: ["imparfait-passe-simple-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_valeurs_temps"],
   content: {
     model: "sprint",
     disclaimer:

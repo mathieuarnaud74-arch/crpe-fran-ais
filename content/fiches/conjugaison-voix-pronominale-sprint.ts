@@ -18,7 +18,7 @@ export const voixPronominaleSprint: Fiche = {
     "essentiellement pronominal",
   ],
   notionsLiees: ["grammaire-voix-passive-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_voix_modes_temps"],
   content: {
     model: "sprint",
     disclaimer:

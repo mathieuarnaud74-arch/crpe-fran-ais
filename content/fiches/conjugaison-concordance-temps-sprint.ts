@@ -12,7 +12,7 @@ export const concordanceTempsSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["concordance des temps", "discours indirect", "subordonnée complétive", "temps verbaux"],
   notionsLiees: ["discours-direct-indirect-sprint", "conditionnel-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_concordance_temps"],
   content: {
     model: "sprint",
     disclaimer: "Cette fiche traite de la concordance dans les subordonnées complétives et le discours indirect. Pour les circonstancielles, voir la fiche correspondante.",

@@ -12,7 +12,7 @@ export const evaluationFrancaisSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["évaluation", "formative", "diagnostique", "sommative", "niveaux de maîtrise", "compétences"],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_differenciation_evaluation"],
   content: {
     model: "sprint",
     disclaimer:

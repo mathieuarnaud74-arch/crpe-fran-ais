@@ -25,7 +25,7 @@ export const analyseLangueIdentifierSubordonneesOperatoire: Fiche = {
     "grammaire-subordonnees-relatives-sprint",
     "analyse-langue-subordonnees-conjonctives-completives-circonstancielles-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["analyse_propositions_sub", "anal_subordonnees_relatives"],
   content: {
     model: "operatoire",
     startingQuestion:

@@ -12,7 +12,7 @@ export const phraseSimpleSprint: Fiche = {
   estimatedMinutes: 4,
   tags: ["phrase", "type", "forme", "négation", "passif"],
   notionsLiees: ["nature-des-mots-sprint", "fonctions-grammaticales-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["grm_constituants_phrase", "surlignage_gn_gv"],
   content: {
     model: "sprint",
     disclaimer:

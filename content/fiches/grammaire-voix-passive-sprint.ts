@@ -12,7 +12,7 @@ export const grammaireVoixPassiveSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["voix passive", "transformation", "complément d'agent", "auxiliaire être"],
   notionsLiees: ["phrase-complexe-sprint", "fonctions-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["gram_voix_passive_active"],
   content: {
     model: "sprint",
     disclaimer: "Connaissance des fonctions grammaticales (sujet, COD) et des temps verbaux requise.",

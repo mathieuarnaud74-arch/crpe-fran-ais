@@ -20,7 +20,7 @@ export const sensMotContexteOperatoire: Fiche = {
     "radical",
   ],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_polysemie_contexte", "lexique_sens_contexte"],
   content: {
     model: "operatoire",
     startingQuestion:

@@ -21,7 +21,7 @@ export const phraseInterrogativeSprint: Fiche = {
     "partielle",
   ],
   notionsLiees: ["types-formes-phrases", "phrase-simple"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["gram_types_et_formes_phrases", "grm_types_formes_phrases"],
   content: {
     model: "sprint",
     disclaimer:

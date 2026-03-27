@@ -12,7 +12,7 @@ export const derivationSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["dérivation", "préfixe", "suffixe", "radical", "morphologie"],
   notionsLiees: ["formation-des-mots-sprint", "champs-lexicaux-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_formation_mots", "tri_formation_mots"],
   content: {
     model: "sprint",
     disclaimer:

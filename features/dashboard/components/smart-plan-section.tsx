@@ -1,9 +1,6 @@
 import Link from "next/link";
-import { Suspense } from "react";
 
 import { Badge } from "@/components/ui/badge";
-import { ButtonLink } from "@/components/ui/button";
-import { Panel } from "@/components/ui/panel";
 import { cn } from "@/lib/utils";
 import type { SmartPlanItem } from "@/lib/dashboard/build-smart-plan";
 import type { DashboardSessionProgress } from "@/types/domain";
@@ -12,7 +9,7 @@ import { LearnThenPracticeCard } from "./learn-then-practice-card";
 
 // ── Resume card (reused inline) ──────────────────────────────
 
-function ResumeCard({ session, step }: { session: DashboardSessionProgress; step: number }) {
+function ResumeCard({ session, step, reason }: { session: DashboardSessionProgress; step: number; reason: string }) {
   return (
     <Link
       href={`/exercices/${session.id}`}
@@ -28,6 +25,7 @@ function ResumeCard({ session, step }: { session: DashboardSessionProgress; step
           </span>
           <Badge tone="accentSecondary" size="sm">{session.subdomainLabel}</Badge>
         </div>
+        {reason && <p className="mb-2 text-xs italic text-muted">{reason}</p>}
         <p className="flex-1 text-sm font-semibold leading-6 text-ink">{session.title}</p>
         <p className="mt-1.5 text-xs text-muted">
           {session.answeredQuestions}/{session.questionCount} questions &middot;{" "}
@@ -90,6 +88,7 @@ function ExerciseOnlyCard({
           </span>
           <Badge tone="accentSecondary" size="sm">{item.domain}</Badge>
         </div>
+        {item.reason && <p className="mb-2 text-xs italic text-muted">{item.reason}</p>}
         <p className="flex-1 text-sm font-semibold leading-6 text-ink">{item.exercise.title}</p>
         <p className="mt-1.5 text-xs text-muted">{item.exercise.questionCount} questions</p>
         <p className={cn("mt-3 text-xs font-bold group-hover:underline", t.cta)}>
@@ -128,6 +127,7 @@ function FicheOnlyCard({
           </span>
           <Badge tone="accentSecondary" size="sm">{item.domain}</Badge>
         </div>
+        {item.reason && <p className="mb-2 text-xs italic text-muted">{item.reason}</p>}
         <div className="flex items-center gap-2 mb-1.5">
           <span className="text-base" aria-hidden>&#x1F4D6;</span>
           <span className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-muted">Lire la fiche</span>
@@ -175,11 +175,15 @@ function SrsBanner({ dueCount }: { dueCount: number }) {
 type SmartPlanSectionProps = {
   planItems: SmartPlanItem[];
   totalAttempts: number;
+  ficheProgress?: { completed: number; total: number };
+  exerciseProgress?: { inProgress: number; toReview: number; total: number };
 };
 
 export function SmartPlanSection({
   planItems,
   totalAttempts,
+  ficheProgress,
+  exerciseProgress,
 }: SmartPlanSectionProps) {
   if (totalAttempts === 0 && planItems.length === 0) return null;
 
@@ -200,10 +204,25 @@ export function SmartPlanSection({
             </p>
             <h2 className="mt-1 font-serif text-2xl font-semibold text-ink">Prochaine &eacute;tape</h2>
           </div>
-          <div className="flex gap-2">
-            <ButtonLink href="/fiches" variant="secondary" size="sm">Fiches</ButtonLink>
-            <ButtonLink href="/exercices" variant="secondary" size="sm">Exercices</ButtonLink>
-          </div>
+          {(ficheProgress || exerciseProgress) && (
+            <div className="flex flex-wrap items-center gap-3 text-xs text-muted">
+              {ficheProgress && (
+                <span className="rounded-full border border-border bg-paper px-2.5 py-1">
+                  {ficheProgress.completed}/{ficheProgress.total} fiches lues
+                </span>
+              )}
+              {exerciseProgress && exerciseProgress.inProgress > 0 && (
+                <span className="rounded-full border border-border bg-paper px-2.5 py-1">
+                  {exerciseProgress.inProgress} s&eacute;rie{exerciseProgress.inProgress > 1 ? "s" : ""} en cours
+                </span>
+              )}
+              {exerciseProgress && exerciseProgress.toReview > 0 && (
+                <span className="rounded-full border border-border bg-paper px-2.5 py-1">
+                  {exerciseProgress.toReview} &agrave; revoir
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -213,39 +232,50 @@ export function SmartPlanSection({
 
         {/* Action items */}
         {hasActionItems ? (
-          <div className="grid gap-3 xl:grid-cols-3">
-            {actionItems.map((item) => {
-              switch (item.type) {
-                case "learn-then-practice":
-                  return (
-                    <LearnThenPracticeCard
-                      key={`ltp-${item.step}`}
-                      step={item.step}
-                      ficheTitle={item.fiche.title}
-                      ficheSlug={item.fiche.slug}
-                      ficheModel={item.fiche.model}
-                      ficheMinutes={item.fiche.estimatedMinutes}
-                      ficheRead={item.ficheRead}
-                      ficheAccessTier={item.fiche.accessTier}
-                      exerciseTitle={item.exercise.title}
-                      exerciseId={item.exercise.id}
-                      exerciseQuestionCount={item.exercise.questionCount}
-                      domain={item.domain}
-                      tone={item.tone}
-                      tag={item.tag}
-                    />
-                  );
-                case "exercise-only":
-                  return <ExerciseOnlyCard key={`ex-${item.step}`} item={item} />;
-                case "resume":
-                  return <ResumeCard key={`res-${item.step}`} session={item.session} step={item.step} />;
-                case "fiche-only":
-                  return <FicheOnlyCard key={`fiche-${item.step}`} item={item} />;
-                default:
-                  return null;
-              }
-            })}
-          </div>
+          <>
+            <div className="grid gap-3 xl:grid-cols-3">
+              {actionItems.map((item) => {
+                switch (item.type) {
+                  case "learn-then-practice":
+                    return (
+                      <LearnThenPracticeCard
+                        key={`ltp-${item.step}`}
+                        step={item.step}
+                        ficheTitle={item.fiche.title}
+                        ficheSlug={item.fiche.slug}
+                        ficheModel={item.fiche.model}
+                        ficheMinutes={item.fiche.estimatedMinutes}
+                        ficheRead={item.ficheRead}
+                        ficheAccessTier={item.fiche.accessTier}
+                        exerciseTitle={item.exercise.title}
+                        exerciseId={item.exercise.id}
+                        exerciseQuestionCount={item.exercise.questionCount}
+                        domain={item.domain}
+                        tone={item.tone}
+                        tag={item.tag}
+                        reason={item.reason}
+                      />
+                    );
+                  case "exercise-only":
+                    return <ExerciseOnlyCard key={`ex-${item.step}`} item={item} />;
+                  case "resume":
+                    return <ResumeCard key={`res-${item.step}`} session={item.session} step={item.step} reason={item.reason} />;
+                  case "fiche-only":
+                    return <FicheOnlyCard key={`fiche-${item.step}`} item={item} />;
+                  default:
+                    return null;
+                }
+              })}
+            </div>
+            <div className="flex justify-center gap-4 pt-1">
+              <Link href="/fiches" className="text-xs font-semibold text-muted hover:text-ink hover:underline">
+                Toutes les fiches &rarr;
+              </Link>
+              <Link href="/exercices" className="text-xs font-semibold text-muted hover:text-ink hover:underline">
+                Tous les exercices &rarr;
+              </Link>
+            </div>
+          </>
         ) : (
           <div className="rounded-xl border border-border bg-paper px-4 py-3">
             <p className="text-sm text-muted">

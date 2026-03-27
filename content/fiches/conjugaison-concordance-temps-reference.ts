@@ -23,7 +23,7 @@ export const concordanceTempsReference: Fiche = {
     "conjugaison-subjonctif-sprint",
     "conjugaison-conditionnel-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_concordance_temps"],
   content: {
     model: "reference",
     intro:

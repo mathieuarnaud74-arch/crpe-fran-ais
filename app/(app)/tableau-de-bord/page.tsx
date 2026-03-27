@@ -136,6 +136,15 @@ export default async function DashboardPage() {
       <SmartPlanSection
         planItems={smartPlan}
         totalAttempts={data.totalAttempts}
+        ficheProgress={{
+          completed: completedFicheSlugs.size,
+          total: combinedFiches.length,
+        }}
+        exerciseProgress={{
+          inProgress: data.sessionProgress.filter((s) => s.status === "en_cours").length,
+          toReview: data.sessionProgress.filter((s) => s.status === "a_revoir").length,
+          total: data.totalSeries,
+        }}
       />
 
       {/* ═══════════════════════════════════════════════════════

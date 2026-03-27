@@ -30,7 +30,7 @@ export const apprentissageLectureReference: Fiche = {
     "didactique-fluence-lecture-sprint",
     "didactique-programmes-cycles-reference",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_apprentissage_lecture_cycle2", "did_fluence_lecture"],
   content: {
     model: "reference",
     intro:

@@ -19,7 +19,7 @@ export const accordAdjectifOperatoire: Fiche = {
     "orthographe grammaticale",
   ],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["orth_accord_adjectif_qualificatif", "orth_accords_groupe_nominal"],
   content: {
     model: "operatoire",
     startingQuestion:

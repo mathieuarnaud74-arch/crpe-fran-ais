@@ -23,7 +23,7 @@ export const fluenceLectureSprint: Fiche = {
     "conscience-phonologique-sprint",
     "strategies-comprehension-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_fluence_lecture"],
   content: {
     model: "sprint",
     disclaimer:

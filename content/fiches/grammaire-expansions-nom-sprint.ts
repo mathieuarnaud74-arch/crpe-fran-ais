@@ -22,7 +22,7 @@ export const expansionsNomSprint: Fiche = {
     "fonctions-grammaticales-sprint",
     "types-formes-phrases-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["gram_expansions_nom", "gram_complements_du_nom", "surlignage_expansions_nom"],
   content: {
     model: "sprint",
     disclaimer:

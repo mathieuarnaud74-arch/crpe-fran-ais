@@ -21,7 +21,7 @@ export const connecteursLogiquesSprint: Fiche = {
     "addition",
   ],
   notionsLiees: ["connecteurs-sprint", "texte-argumentatif-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["comp_connecteurs_argumentation"],
   content: {
     model: "sprint",
     disclaimer:

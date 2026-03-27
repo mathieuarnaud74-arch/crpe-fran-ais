@@ -20,7 +20,7 @@ export const analyseLangueRelativesSprint: Fiche = {
     "fonction",
   ],
   notionsLiees: ["grammaire-fonctions-grammaticales", "grammaire-phrase-complexe"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["anal_subordonnees_relatives", "gram_subordonnees_relatives"],
   content: {
     model: "sprint",
     disclaimer:

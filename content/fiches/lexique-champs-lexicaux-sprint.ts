@@ -12,7 +12,7 @@ export const champsLexicauxSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["champ lexical", "thème", "isotopie", "analyse de texte"],
   notionsLiees: ["formation-des-mots-sprint", "registres-langue-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_champ_lexical_semantique", "lex_champs_lexicaux", "surlignage_champs_lexicaux"],
   content: {
     model: "sprint",
     disclaimer:

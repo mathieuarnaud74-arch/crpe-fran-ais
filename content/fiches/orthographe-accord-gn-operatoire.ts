@@ -25,7 +25,7 @@ export const accordGnOperatoire: Fiche = {
     "orthographe-accord-adjectif-operatoire",
     "orthographe-tout-meme-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["orth_accords_groupe_nominal", "accord_groupe_nominal"],
   content: {
     model: "operatoire",
     startingQuestion:

@@ -25,7 +25,7 @@ export const oralEcoleSprint: Fiche = {
     "didactique-conscience-phonologique-sprint",
     "didactique-programmes-cycles-reference",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_production_ecrite_cycle23"],
   content: {
     model: "sprint",
     disclaimer:

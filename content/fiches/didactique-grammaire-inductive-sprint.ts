@@ -12,7 +12,7 @@ export const grammaireInductiveSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["grammaire", "démarche inductive", "observation de corpus", "programmes 2016", "métalangage"],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_enseignement_grammaire"],
   content: {
     model: "sprint",
     disclaimer:

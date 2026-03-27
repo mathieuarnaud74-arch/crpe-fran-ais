@@ -19,7 +19,7 @@ export const pronomsSprint: Fiche = {
     "y",
   ],
   notionsLiees: ["nature-des-mots-sprint", "determinants-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["gram_pronoms_relatifs", "tri_familles_pronoms"],
   content: {
     model: "sprint",
     disclaimer:

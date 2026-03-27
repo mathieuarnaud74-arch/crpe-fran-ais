@@ -12,7 +12,7 @@ export const figuresDeStyleSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["figures de style", "métaphore", "comparaison", "métonymie", "hyperbole", "anaphore"],
   notionsLiees: ["formation-des-mots-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_figures_de_style", "lex_figures_style"],
   content: {
     model: "sprint",
     disclaimer:

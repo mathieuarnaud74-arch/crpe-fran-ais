@@ -18,7 +18,7 @@ export const anaphoresSprint: Fiche = {
     "cohésion textuelle",
   ],
   notionsLiees: ["fonctions-grammaticales-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["anal_anaphores_substituts_nominaux", "analyse_anaphores_substituts"],
   content: {
     model: "sprint",
     disclaimer:

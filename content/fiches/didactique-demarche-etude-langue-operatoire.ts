@@ -19,7 +19,7 @@ export const demarcheEtudeLangueOperatoire: Fiche = {
     "observation",
   ],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_enseignement_grammaire"],
   content: {
     model: "operatoire",
     startingQuestion:

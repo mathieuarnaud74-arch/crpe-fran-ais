@@ -12,7 +12,7 @@ export const connecteursSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["connecteurs", "organisateurs textuels", "cohésion", "argumentation"],
   notionsLiees: ["texte-argumentatif-sprint", "phrase-complexe-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["comp_connecteurs_argumentation"],
   content: {
     model: "sprint",
     disclaimer:

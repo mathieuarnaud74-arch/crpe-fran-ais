@@ -18,7 +18,7 @@ export const appositionSprint: Fiche = {
     "relative épithète",
   ],
   notionsLiees: ["fonctions-grammaticales-sprint", "nature-des-mots-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["grm_fonctions_phrase", "tri_fonctions_grammaticales"],
   content: {
     model: "sprint",
     disclaimer:

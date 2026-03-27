@@ -24,7 +24,7 @@ export const registresLangueReference: Fiche = {
     "lexique-champs-lexicaux-sprint",
     "lexique-denotation-connotation-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_registres_langue", "registres_langue_pratique"],
   content: {
     model: "reference",
     intro:

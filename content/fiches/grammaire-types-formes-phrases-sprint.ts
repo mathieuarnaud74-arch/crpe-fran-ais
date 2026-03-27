@@ -19,7 +19,7 @@ export const typesFormesPhraseSprint: Fiche = {
     "exclamation",
   ],
   notionsLiees: ["phrase-simple-sprint", "nature-des-mots-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["gram_types_et_formes_phrases", "grm_types_formes_phrases"],
   content: {
     model: "sprint",
     disclaimer:

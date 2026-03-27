@@ -19,7 +19,7 @@ export const choixTempsPasseOperatoire: Fiche = {
     "conjugaison",
   ],
   notionsLiees: [],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_imparfait_passe_simple", "conj_valeurs_temps"],
   content: {
     model: "operatoire",
     startingQuestion:

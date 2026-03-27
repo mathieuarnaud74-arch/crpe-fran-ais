@@ -12,7 +12,7 @@ export const grammaireSubCircSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["subordonnée circonstancielle", "conjonction", "mode subjonctif", "cause", "but", "concession"],
   notionsLiees: ["phrase-complexe-sprint", "subjonctif-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["gram_subord_circonstancielles"],
   content: {
     model: "sprint",
     disclaimer: "Connaissance des modes verbaux (indicatif et subjonctif) indispensable. Cette fiche complète la fiche phrase complexe.",

@@ -21,7 +21,7 @@ export const evaluationLectureSprint: Fiche = {
     "cycle 3",
   ],
   notionsLiees: ["fluence-lecture-sprint", "strategies-comprehension-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_enseignement_comprehension"],
   content: {
     model: "sprint",
     disclaimer:

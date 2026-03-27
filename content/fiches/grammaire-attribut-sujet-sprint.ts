@@ -19,7 +19,7 @@ export const attributSujetSprint: Fiche = {
     "attribut du COD",
   ],
   notionsLiees: ["fonctions-grammaticales-sprint", "phrase-simple-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["grm_fonctions_phrase", "tri_fonctions_grammaticales"],
   content: {
     model: "sprint",
     disclaimer:

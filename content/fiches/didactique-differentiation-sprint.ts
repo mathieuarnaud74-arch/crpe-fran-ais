@@ -12,7 +12,7 @@ export const differentiationSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["différenciation", "besoins éducatifs", "pédagogie", "hétérogénéité", "inclusion"],
   notionsLiees: ["erreurs-eleves-sprint", "evaluation-francais-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["did_differenciation_evaluation"],
   content: {
     model: "sprint",
     disclaimer:

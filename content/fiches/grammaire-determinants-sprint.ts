@@ -19,7 +19,7 @@ export const determinantsSprint: Fiche = {
     "démonstratif",
   ],
   notionsLiees: ["nature-des-mots-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["grammaire_determinants", "tri_familles_determinants"],
   content: {
     model: "sprint",
     disclaimer:

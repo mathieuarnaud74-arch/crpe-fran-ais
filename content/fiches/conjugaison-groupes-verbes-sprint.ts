@@ -18,7 +18,7 @@ export const groupesVerbesSprint: Fiche = {
     "infinitif",
   ],
   notionsLiees: ["conditionnel-sprint", "imparfait-ou-passe-simple"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_verbes_irreguliers"],
   content: {
     model: "sprint",
     disclaimer:

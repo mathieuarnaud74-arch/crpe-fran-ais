@@ -23,7 +23,7 @@ export const homophonesGrammaticauxReference: Fiche = {
     "orthographe-homophones-sprint",
     "grammaire-nature-mots-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["orth_homophones_gram", "orth_homophones_grammaticaux", "correction_homophones"],
   content: {
     model: "reference",
     intro:

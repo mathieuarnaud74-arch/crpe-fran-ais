@@ -22,7 +22,7 @@ export const phraseComplexeReference: Fiche = {
     "grammaire-subordonnees-relatives-sprint",
     "grammaire-subordonnees-circonstancielles-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["grm_phrase_complexe_prop", "delimitation_propositions", "grm_propositions_classification"],
   content: {
     model: "reference",
     intro:

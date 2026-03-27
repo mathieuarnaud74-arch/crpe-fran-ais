@@ -12,7 +12,7 @@ export const grammaireDiscoursSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["discours direct", "discours indirect", "transformation", "concordance des temps"],
   notionsLiees: ["concordance-temps-sprint", "phrase-complexe-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["anal_discours_direct_indirect"],
   content: {
     model: "sprint",
     disclaimer: "La concordance des temps et les notions de déictiques (ici, maintenant, hier…) sont nécessaires pour maîtriser cette fiche.",

@@ -18,7 +18,7 @@ export const texteDocumentaireSprint: Fiche = {
     "organisateurs textuels",
   ],
   notionsLiees: ["reperage-informations-explicites", "explicite-implicite-inferences"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["comp_texte_explicatif"],
   content: {
     model: "sprint",
     disclaimer:

@@ -12,7 +12,7 @@ export const synonymieAntonymieSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["synonymie", "antonymie", "sens", "vocabulaire", "relations lexicales"],
   notionsLiees: ["champs-lexicaux-sprint", "registres-langue-sprint"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["lex_synonymie_antonymie", "lex_relations_sens"],
   content: {
     model: "sprint",
     disclaimer:

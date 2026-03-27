@@ -27,7 +27,7 @@ export const participePasseCompletReference: Fiche = {
     "grammaire-complements-objet-sprint",
     "grammaire-voix-passive-sprint",
   ],
-  exercicesAssocies: [],
+  exercicesAssocies: ["orth_participe_passe", "orth_accords_participe_passe", "orth_participe_passe_cod"],
   content: {
     model: "reference",
     intro:

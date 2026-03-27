@@ -12,7 +12,7 @@ export const imparfaitPasseSimpleSprint: Fiche = {
   estimatedMinutes: 5,
   tags: ["imparfait", "passé simple", "valeurs aspectuelles", "récit", "arrière-plan", "premier plan"],
   notionsLiees: ["valeurs-du-present"],
-  exercicesAssocies: [],
+  exercicesAssocies: ["conj_imparfait_passe_simple", "conj_imparfait_passe_simple_recit"],
   content: {
     model: "sprint",
     disclaimer:
