@@ -87,14 +87,7 @@ const navigationItems: NavigationItem[] = [
   {
     kind: "standalone",
     href: "/fiches",
-    label: "Fiches français",
-    exact: false,
-    icon: BookOpen,
-  },
-  {
-    kind: "standalone",
-    href: "/fiches-maths",
-    label: "Fiches maths",
+    label: "Fiches",
     exact: false,
     icon: BookOpen,
   },

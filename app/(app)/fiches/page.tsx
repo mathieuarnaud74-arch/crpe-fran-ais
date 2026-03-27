@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 import { requireUser } from "@/features/auth/server/guards";
 import { isPremiumUser } from "@/features/billing/server/queries";
-import { getAllFiches } from "@/features/fiches/lib/get-fiche";
+import { getAllFiches, getAllFichesMaths } from "@/features/fiches/lib/get-fiche";
 import { getCompletedFicheSlugs, getFicheReadsCountToday } from "@/features/fiches/server/queries";
 import { canReadFiche, getDailyRemainingFicheQuota } from "@/lib/freemium";
 import { env } from "@/lib/env";
@@ -22,6 +22,7 @@ import type { FicheModel } from "@/features/fiches/types";
 type SearchParams = Promise<{
   domaine?: string;
   model?: string;
+  matiere?: string;
 }>;
 
 export default async function FichesPage({
@@ -29,10 +30,11 @@ export default async function FichesPage({
 }: {
   searchParams: SearchParams;
 }) {
-  const [{ domaine, model }, user] = await Promise.all([searchParams, requireUser()]);
+  const [{ domaine, model, matiere }, user] = await Promise.all([searchParams, requireUser()]);
+  const isMaths = matiere === "maths";
   const [premium, allFiches] = await Promise.all([
     isPremiumUser(user.id),
-    Promise.resolve(getAllFiches()),
+    Promise.resolve(isMaths ? getAllFichesMaths() : getAllFiches()),
   ]);
   const [completedSlugs, ficheReadsToday] = await Promise.all([
     getCompletedFicheSlugs(user.id),
@@ -51,8 +53,9 @@ export default async function FichesPage({
   const domains = [...new Set(allFiches.map((f) => f.domaine))];
   const models: FicheModel[] = ["reference", "sprint", "operatoire"];
 
-  function buildHref(params: { domaine?: string; model?: string }) {
+  function buildHref(params: { domaine?: string; model?: string; matiere?: string }) {
     const p = new URLSearchParams();
+    if (params.matiere) p.set("matiere", params.matiere);
     if (params.domaine) p.set("domaine", params.domaine);
     if (params.model) p.set("model", params.model);
     const q = p.toString();
@@ -79,15 +82,13 @@ export default async function FichesPage({
       <Panel>
         <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
           <div className="space-y-3">
-            <Badge tone="accentSecondary">Révision</Badge>
+            <Badge tone={isMaths ? "accent" : "accentSecondary"}>Révision</Badge>
             <div>
               <h1 className="font-serif text-3xl font-semibold text-ink sm:text-4xl">
                 Fiches CRPE
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
-                Synthèses rigoureuses pour réviser le français du CRPE : règles
-                disciplinaires, dimension didactique, pièges de concours et tests
-                d&apos;auto-évaluation. Trois modèles selon votre besoin du moment.
+                Synthèses rigoureuses pour réviser le CRPE. Trois modèles selon votre besoin du moment.
               </p>
             </div>
           </div>
@@ -96,6 +97,24 @@ export default async function FichesPage({
           </p>
         </div>
       </Panel>
+
+      {/* Subject selector */}
+      <div className="flex gap-2">
+        <ButtonLink
+          href="/fiches"
+          variant={!isMaths ? "primary" : "secondary"}
+          size="sm"
+        >
+          Fran&ccedil;ais
+        </ButtonLink>
+        <ButtonLink
+          href="/fiches?matiere=maths"
+          variant={isMaths ? "primary" : "secondary"}
+          size="sm"
+        >
+          Math&eacute;matiques
+        </ButtonLink>
+      </div>
 
       {!premium && (
         <Panel className="border-border bg-secondary">
@@ -131,7 +150,7 @@ export default async function FichesPage({
           </p>
           <div className="flex flex-wrap gap-2">
             <ButtonLink
-              href="/fiches"
+              href={buildHref({ matiere: isMaths ? "maths" : undefined })}
               variant={!domaine ? "primary" : "secondary"}
               size="sm"
             >
@@ -140,7 +159,7 @@ export default async function FichesPage({
             {domains.map((d) => (
               <ButtonLink
                 key={d}
-                href={buildHref({ domaine: d, model })}
+                href={buildHref({ domaine: d, model, matiere: isMaths ? "maths" : undefined })}
                 variant={domaine === d ? "primary" : "secondary"}
                 size="sm"
               >
@@ -156,7 +175,7 @@ export default async function FichesPage({
           </p>
           <div className="flex flex-wrap gap-2">
             <ButtonLink
-              href={buildHref({ domaine })}
+              href={buildHref({ domaine, matiere: isMaths ? "maths" : undefined })}
               variant={!model ? "primary" : "secondary"}
               size="sm"
             >
@@ -165,7 +184,7 @@ export default async function FichesPage({
             {models.map((m) => (
               <ButtonLink
                 key={m}
-                href={buildHref({ domaine, model: m })}
+                href={buildHref({ domaine, model: m, matiere: isMaths ? "maths" : undefined })}
                 variant={model === m ? "primary" : "secondary"}
                 size="sm"
               >
@@ -184,7 +203,7 @@ export default async function FichesPage({
           <p className="mt-2 text-sm text-muted">
             Essayez de modifier les filtres.
           </p>
-          <ButtonLink href="/fiches" variant="secondary" size="sm" className="mt-4">
+          <ButtonLink href={buildHref({ matiere: isMaths ? "maths" : undefined })} variant="secondary" size="sm" className="mt-4">
             Réinitialiser
           </ButtonLink>
         </Panel>
