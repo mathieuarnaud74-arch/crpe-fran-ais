@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-28] — Fallback offline automatique dans soumission d'exercices + tests
+
+- `features/exercises/hooks/use-attempt-submit.ts` — fallback automatique IndexedDB quand offline (toast informatif au lieu d'erreur)
+- `__tests__/offline-db.test.ts` — 5 tests unitaires CRUD IndexedDB (fake-indexeddb)
+
 ## [2026-03-28] — Exercices offline avec IndexedDB + indicateur de connectivité
 
 - `lib/offline-db.ts` — module IndexedDB (pending-attempts store) pour stocker les réponses faites hors ligne
