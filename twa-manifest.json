@@ -1,0 +1,55 @@
+{
+  "packageId": "fr.crpe.francais",
+  "host": "crpe-francais.fr",
+  "name": "CRPE Français — Révisions",
+  "launcherName": "CRPE Français",
+  "display": "standalone",
+  "themeColor": "#476257",
+  "navigationColor": "#F5F1E8",
+  "navigationColorDark": "#2C2420",
+  "navigationDividerColor": "#D8D2C6",
+  "navigationDividerColorDark": "#2C2420",
+  "backgroundColor": "#F5F1E8",
+  "enableNotifications": false,
+  "startUrl": "/tableau-de-bord",
+  "iconUrl": "https://crpe-francais.fr/icons/icon-512x512.png",
+  "maskableIconUrl": "https://crpe-francais.fr/icons/maskable-icon-512x512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./crpe-release.keystore",
+    "alias": "crpe"
+  },
+  "appVersionCode": 1,
+  "appVersionName": "1.0.0",
+  "shortcuts": [
+    {
+      "name": "Tableau de bord",
+      "short_name": "Accueil",
+      "url": "/tableau-de-bord",
+      "icons": [
+        {
+          "src": "https://crpe-francais.fr/icons/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Exercices",
+      "short_name": "Exercices",
+      "url": "/exercices",
+      "icons": [
+        {
+          "src": "https://crpe-francais.fr/icons/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://crpe-francais.fr/manifest.json",
+  "fallbackType": "customtabs",
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "orientation": "portrait",
+  "fingerprints": []
+}
