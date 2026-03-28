@@ -1,5 +1,14 @@
 # Changelog
 
+## [2026-03-28] — Offline fiches, push opt-in UI, SW update toast
+
+- `public/sw.js` — pré-cache des 231 fiches en arrière-plan (par batches de 5, déclenché par message PRECACHE_FICHES)
+- `components/sw-register.tsx` — déclenche le pré-cache 15s après le chargement + détecte les mises à jour SW et affiche un toast "Recharger"
+- `components/push-notification-toggle.tsx` — composant opt-in push notifications dans la page profil
+- `app/(app)/profil/page.tsx` — section Préférences avec toggle push notifications
+- `scripts/generate-fiche-slugs.mjs` — génère public/fiche-slugs.json (231 slugs) à chaque build
+- `package.json` — ajout script prebuild
+
 ## [2026-03-28] — Banner d'installation PWA + push notifications + fix lint
 
 - `components/pwa-install-prompt.tsx` — banner A2HS (Add to Home Screen) avec dismiss 7j, intégré dans le layout app
