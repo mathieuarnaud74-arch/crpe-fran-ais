@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-03-28] — Banner d'installation PWA + push notifications + fix lint
+
+- `components/pwa-install-prompt.tsx` — banner A2HS (Add to Home Screen) avec dismiss 7j, intégré dans le layout app
+- `app/(app)/layout.tsx` — ajout du composant PwaInstallPrompt
+- `public/sw.js` — handlers push + notificationclick pour notifications futures
+- `features/exercises/components/exercise-player.tsx` — fix 2 erreurs react-hooks/rules-of-hooks (useCallback avant early return)
+
 ## [2026-03-28] — Optimisation PWA pour production
 
 - `public/sw.js` — caches versionnés (static/runtime), stale-while-revalidate pour JS/CSS, support RSC, limite 80 entrées, gestion quota
