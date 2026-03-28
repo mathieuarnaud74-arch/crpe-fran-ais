@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "fr.crpe.francais",
+      "sha256_cert_fingerprints": [
+        "__REPLACE_WITH_UPLOAD_KEY_SHA256__",
+        "__REPLACE_WITH_PLAY_SIGNING_KEY_SHA256__"
+      ]
+    }
+  }
+]

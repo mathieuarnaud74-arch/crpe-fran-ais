@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "sonner";
 
+import { ServiceWorkerRegister } from "@/components/sw-register";
 import "./globals.css";
 
 const sans = Manrope({
@@ -50,6 +51,12 @@ export const metadata: Metadata = {
     description:
       "Exercices corrigés, fiches de révision et diagnostic personnalisé pour le CRPE.",
   },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "CRPE Français",
+  },
 };
 
 export const viewport: Viewport = {
@@ -69,6 +76,7 @@ export default function RootLayout({
         <NextTopLoader color="#476257" showSpinner={false} height={2} />
         {children}
         <Toaster position="top-center" richColors />
+        <ServiceWorkerRegister />
         <Analytics />
         <SpeedInsights />
       </body>
