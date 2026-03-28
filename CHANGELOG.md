@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-03-28] — Configuration TWA Android + assets Play Store
+
+- `twa-manifest.json` — configuration complète TWA (package fr.crpe.francais, couleurs, shortcuts)
+- `docs/ANDROID-BUILD.md` — guide de build Android avec 3 méthodes (Bubblewrap CLI, PWABuilder, Android Studio)
+- `public/play-store/feature-graphic.png` — feature graphic 1024x500 pour la fiche Play Store
+- `scripts/generate-feature-graphic.mjs` — script de génération du feature graphic avec sharp
+
 ## [2026-03-28] — PWA foundation + Digital Asset Links pour Google Play Store (TWA)
 
 - `public/manifest.json` — manifest PWA (nom, icônes, couleurs, orientation portrait, standalone)
