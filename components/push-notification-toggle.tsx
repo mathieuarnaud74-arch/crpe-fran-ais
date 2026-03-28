@@ -1,18 +1,32 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Bell, BellOff } from "lucide-react";
+import { Bell, BellOff, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 
 type PermissionState = "default" | "granted" | "denied" | "unsupported";
 
+const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? "";
+
+function urlBase64ToUint8Array(base64String: string): ArrayBuffer {
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
+  const rawData = atob(base64);
+  const arr = new Uint8Array(rawData.length);
+  for (let i = 0; i < rawData.length; i++) {
+    arr[i] = rawData.charCodeAt(i);
+  }
+  return arr.buffer as ArrayBuffer;
+}
+
 export function PushNotificationToggle() {
   const [permission, setPermission] = useState<PermissionState>("default");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!("Notification" in window) || !("serviceWorker" in navigator)) {
+    if (!("Notification" in window) || !("serviceWorker" in navigator) || !VAPID_PUBLIC_KEY) {
       setPermission("unsupported");
       return;
     }
@@ -20,15 +34,45 @@ export function PushNotificationToggle() {
   }, []);
 
   const handleEnable = useCallback(async () => {
-    if (!("Notification" in window)) return;
+    if (!("Notification" in window) || !("serviceWorker" in navigator)) return;
 
-    const result = await Notification.requestPermission();
-    setPermission(result as PermissionState);
+    setLoading(true);
+    try {
+      const result = await Notification.requestPermission();
+      setPermission(result as PermissionState);
 
-    if (result === "granted") {
-      toast.success("Notifications activées !");
-    } else if (result === "denied") {
-      toast.error("Notifications bloquées. Tu peux les réactiver dans les paramètres de ton navigateur.");
+      if (result !== "granted") {
+        if (result === "denied") {
+          toast.error("Notifications bloquées. Tu peux les réactiver dans les paramètres de ton navigateur.");
+        }
+        return;
+      }
+
+      // Subscribe to push via service worker
+      const registration = await navigator.serviceWorker.ready;
+      const subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+      });
+
+      // Send subscription to server
+      const response = await fetch("/api/push/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subscription: subscription.toJSON(),
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Notifications activées !");
+      } else {
+        toast.error("Erreur lors de l'activation des notifications.");
+      }
+    } catch {
+      toast.error("Impossible d'activer les notifications.");
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -54,8 +98,8 @@ export function PushNotificationToggle() {
         </div>
       </div>
       {permission === "default" && (
-        <Button variant="secondary" size="sm" onClick={handleEnable}>
-          Activer
+        <Button variant="secondary" size="sm" onClick={handleEnable} disabled={loading}>
+          {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Activer"}
         </Button>
       )}
       {permission === "granted" && (

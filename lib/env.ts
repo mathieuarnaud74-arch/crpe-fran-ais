@@ -26,6 +26,9 @@ export const env = {
     process.env.STRIPE_PRICE_PREMIUM_MONTHLY_ID ?? fallbackPriceId,
   freeDailyQuestionLimit: (() => { const n = Number(process.env.FREE_DAILY_QUESTION_LIMIT); return isNaN(n) ? 30 : n; })(),
   freeDailyFicheLimit: (() => { const n = Number(process.env.FREE_DAILY_FICHE_LIMIT); return isNaN(n) ? 5 : n; })(),
+  vapidPublicKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? "",
+  vapidPrivateKey: process.env.VAPID_PRIVATE_KEY ?? "",
+  vapidSubject: process.env.VAPID_SUBJECT ?? "mailto:contact@crpe-francais.fr",
 };
 
 // Warn in production if critical env vars are missing.
@@ -57,6 +60,10 @@ export function isSupabaseAdminConfigured() {
     isSupabaseConfigured() &&
     env.supabaseServiceRoleKey !== fallbackServiceRoleKey
   );
+}
+
+export function isWebPushConfigured() {
+  return env.vapidPublicKey !== "" && env.vapidPrivateKey !== "";
 }
 
 export function isStripeConfigured() {
