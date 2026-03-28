@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ReactNode } from "react";
 
 import { AppShell } from "@/components/app-shell";
+import { ConnectivityIndicator } from "@/components/connectivity-indicator";
 import { PwaInstallPrompt } from "@/components/pwa-install-prompt";
 import { requireUser } from "@/features/auth/server/guards";
 import { GamificationProvider } from "@/features/gamification/context";
@@ -46,6 +47,7 @@ export default async function PrivateLayout({ children }: { children: ReactNode 
       <GamificationProvider initial={gamification}>
         {children}
         <PwaInstallPrompt />
+        <ConnectivityIndicator />
       </GamificationProvider>
     </AppShell>
   );
