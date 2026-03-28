@@ -1,5 +1,17 @@
 # Changelog
 
+## [2026-03-28] — PWA foundation + Digital Asset Links pour Google Play Store (TWA)
+
+- `public/manifest.json` — manifest PWA (nom, icônes, couleurs, orientation portrait, standalone)
+- `public/sw.js` — service worker avec cache-first (assets statiques) et network-first (navigation/API) + fallback offline
+- `public/offline.html` — page fallback hors connexion reprenant le design system
+- `public/icons/*` — 9 icônes générées (48-512px standard + 192/512 maskable)
+- `public/apple-touch-icon.png` — icône iOS 180x180
+- `public/.well-known/assetlinks.json` — Digital Asset Links pour vérification TWA (placeholders SHA-256)
+- `components/sw-register.tsx` — composant client pour enregistrement du service worker
+- `app/layout.tsx` — ajout manifest, appleWebApp metadata, et composant ServiceWorkerRegister
+- `scripts/generate-icons.mjs` — script de génération d'icônes avec sharp
+
 ## [2026-03-27] — Réduire la surcharge cognitive : pattern hero + queue compacte
 
 - `lib/dashboard/build-smart-plan.ts` — type `SmartPlanItem` simplifié (action unique au lieu de fiche+exercice), flatten learn-then-practice, MAX_ITEMS adaptatif au niveau utilisateur (<100 tentatives → 1 hero, 100-500 → 3, >500 → 4)
