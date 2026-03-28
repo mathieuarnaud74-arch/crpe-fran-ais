@@ -22,5 +22,11 @@ Nouveau Document texte.txt
 *storybook.log
 storybook-static
 
+# Android TWA build artifacts
+*.keystore
+*.jks
+*.aab
+*.apk
+
 # Claude Code
 .claude/

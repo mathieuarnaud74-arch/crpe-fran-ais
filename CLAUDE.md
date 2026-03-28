@@ -37,7 +37,7 @@ npm run typecheck                    # tsc --noEmit
 npm run lint                         # eslint
 npm run storybook                    # Storybook sur :6006
 npm run generate:french-module-seed  # génère le seed SQL du module français
-npx vitest run -c __tests__/vitest.unit.config.ts  # tests unitaires (201 tests)
+npx vitest run -c __tests__/vitest.unit.config.ts  # tests unitaires (228 tests)
 ```
 
 ---
@@ -55,6 +55,9 @@ app/
   api/
     diagnostic/
       complete/      # POST — finalise et persiste un diagnostic
+    push/
+      subscribe/     # POST/DELETE — enregistre/supprime une subscription push (VAPID)
+      send/          # POST — envoie une notification push (admin-only, broadcast ou ciblé)
     stripe/
       checkout/      # POST — crée une session Stripe
       portal/        # POST — portail client Stripe
@@ -105,12 +108,16 @@ components/
   ui/                # button, badge, card, input, label, select, separator, textarea, panel, confetti, xp-bar, xp-popup
   mascot/
     mocca.tsx        # mascotte Mocca — affichée dans les corrections (états : happy, neutral, grumpy)
-  hooks/             # use-game-sounds
+  hooks/             # use-game-sounds, use-offline-sync
   marketing/         # composants marketing
   site-header.tsx
   site-footer.tsx
   app-shell.tsx
   app-navigation.tsx
+  sw-register.tsx          # enregistrement service worker + détection mises à jour
+  pwa-install-prompt.tsx   # banner A2HS (Add to Home Screen)
+  push-notification-toggle.tsx  # opt-in push notifications (VAPID)
+  connectivity-indicator.tsx    # indicateur hors connexion + sync
 ```
 
 ---
@@ -232,7 +239,9 @@ lib/
   daily-streak.ts           # streak quotidien + freeze
   freemium.ts               # quotas gratuits (30 questions/jour, 5 fiches/jour)
   rate-limit.ts             # rate limiter in-memory
-  env.ts                    # variables d'environnement + guards isStripeConfigured()
+  env.ts                    # variables d'environnement + guards isStripeConfigured(), isWebPushConfigured()
+  offline-db.ts             # IndexedDB wrapper pour tentatives d'exercices offline
+  push-db.ts                # wrapper typé pour table push_subscriptions (Supabase)
 ```
 
 ---
@@ -254,6 +263,7 @@ __tests__/
   api-stripe-webhook.test.ts       # POST /api/stripe/webhook
   api-stripe-checkout.test.ts      # POST /api/stripe/checkout
   submit-attempt-action.test.ts    # server action submitAttemptAction
+  offline-db.test.ts               # IndexedDB CRUD (fake-indexeddb)
 ```
 
 Convention : `import { describe, it, expect, vi } from "vitest"` (pas de globals). Mocks Supabase/Stripe/Next.js dans chaque fichier.
