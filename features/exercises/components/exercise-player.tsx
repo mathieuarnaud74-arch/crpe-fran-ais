@@ -143,6 +143,17 @@ export function ExercisePlayer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [results, session.id, session.questionCount, playSound]);
 
+  const handleToggleReviewCard = useCallback((id: string) => {
+    dispatch({ type: "TOGGLE_REVIEW_CARD", questionId: id });
+  }, []);
+
+  const resetSession = useCallback(() => {
+    dispatch({ type: "RESET_SESSION" });
+    consecutiveCorrectRef.current = 0;
+    prevResultsCount.current = 0;
+    scrollToContainer();
+  }, []);
+
   if (!currentQuestion) return null;
 
   function scrollToContainer() {
@@ -225,17 +236,6 @@ export function ExercisePlayer({
   function retryCurrentQuestion() {
     dispatch({ type: "RETRY_QUESTION", questionId: currentQuestion.id });
   }
-
-  const handleToggleReviewCard = useCallback((id: string) => {
-    dispatch({ type: "TOGGLE_REVIEW_CARD", questionId: id });
-  }, []);
-
-  const resetSession = useCallback(() => {
-    dispatch({ type: "RESET_SESSION" });
-    consecutiveCorrectRef.current = 0;
-    prevResultsCount.current = 0;
-    scrollToContainer();
-  }, []);
 
   function handleTimerComplete() {
     if (timerFiredRef.current) return;
