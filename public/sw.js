@@ -148,6 +148,46 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
+// ----- Fiche pre-caching (triggered via message from client) -----
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "PRECACHE_FICHES") {
+    event.waitUntil(precacheFiches());
+  }
+});
+
+async function precacheFiches() {
+  try {
+    const response = await fetch("/fiche-slugs.json");
+    if (!response.ok) return;
+    const { slugs } = await response.json();
+    const cache = await caches.open(RUNTIME_CACHE);
+    const existing = await cache.keys();
+    const cachedUrls = new Set(existing.map((r) => new URL(r.url).pathname));
+
+    // Pre-cache in small batches to avoid overwhelming the network
+    const BATCH_SIZE = 5;
+    const uncached = slugs
+      .map((slug) => `/fiches/${slug}`)
+      .filter((url) => !cachedUrls.has(url));
+
+    for (let i = 0; i < uncached.length; i += BATCH_SIZE) {
+      const batch = uncached.slice(i, i + BATCH_SIZE);
+      await Promise.allSettled(
+        batch.map(async (url) => {
+          try {
+            const res = await fetch(url);
+            if (res.ok) await cache.put(url, res);
+          } catch {
+            // Skip failed fetches silently
+          }
+        })
+      );
+    }
+  } catch {
+    // fiche-slugs.json may not exist yet
+  }
+}
+
 // ----- Push notifications -----
 self.addEventListener("push", (event) => {
   if (!event.data) return;
