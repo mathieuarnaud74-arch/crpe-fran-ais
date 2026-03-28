@@ -1,5 +1,14 @@
 # Changelog
 
+## [2026-03-28] — Infrastructure Web Push notifications complète
+
+- `app/api/push/subscribe/route.ts` — POST/DELETE pour enregistrer/supprimer les subscriptions push (VAPID, Zod, rate limit)
+- `app/api/push/send/route.ts` — POST admin-only pour envoyer des notifications (broadcast ou ciblé, nettoyage auto des subscriptions expirées)
+- `lib/push-db.ts` — wrapper typé pour la table push_subscriptions (contourne les types Supabase non générés)
+- `lib/env.ts` — variables VAPID (NEXT_PUBLIC_VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_SUBJECT) + isWebPushConfigured()
+- `components/push-notification-toggle.tsx` — intégration pushManager.subscribe() + enregistrement API serveur
+- `supabase/migrations/20260328_create_push_subscriptions.sql` — table push_subscriptions avec RLS
+
 ## [2026-03-28] — Fallback offline automatique dans soumission d'exercices + tests
 
 - `features/exercises/hooks/use-attempt-submit.ts` — fallback automatique IndexedDB quand offline (toast informatif au lieu d'erreur)
