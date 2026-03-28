@@ -2,6 +2,7 @@
   "name": "CRPE Français — Révisions",
   "short_name": "CRPE",
   "description": "Prépare le CRPE avec des exercices corrigés et des fiches de révision ciblées.",
+  "id": "/tableau-de-bord",
   "start_url": "/tableau-de-bord",
   "display": "standalone",
   "theme_color": "#476257",
@@ -9,7 +10,9 @@
   "orientation": "portrait",
   "scope": "/",
   "lang": "fr",
+  "dir": "ltr",
   "categories": ["education"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/icons/icon-48x48.png",

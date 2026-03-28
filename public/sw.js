@@ -1,10 +1,11 @@
 /// Service Worker — CRPE Français PWA
-/// Strategy: network-first for navigation/API, cache-first for static assets
+/// Strategies: network-first for navigation/API/RSC, cache-first for static assets
 
-const CACHE_NAME = "crpe-v1";
+const CACHE_VERSION = 1;
+const STATIC_CACHE = `crpe-static-v${CACHE_VERSION}`;
+const RUNTIME_CACHE = `crpe-runtime-v${CACHE_VERSION}`;
 const OFFLINE_URL = "/offline.html";
 
-// Static assets to pre-cache on install
 const PRECACHE_URLS = [
   OFFLINE_URL,
   "/sounds/correct.mp3",
@@ -15,21 +16,25 @@ const PRECACHE_URLS = [
   "/sounds/badge-unlock.mp3",
 ];
 
+// Max entries per cache to prevent storage overflow
+const MAX_RUNTIME_ENTRIES = 80;
+
 // ----- Install: pre-cache essentials -----
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
+    caches.open(STATIC_CACHE).then((cache) => cache.addAll(PRECACHE_URLS))
   );
   self.skipWaiting();
 });
 
-// ----- Activate: clean old caches -----
+// ----- Activate: clean old versioned caches -----
 self.addEventListener("activate", (event) => {
+  const currentCaches = [STATIC_CACHE, RUNTIME_CACHE];
   event.waitUntil(
     caches.keys().then((keys) =>
       Promise.all(
         keys
-          .filter((key) => key !== CACHE_NAME)
+          .filter((key) => !currentCaches.includes(key))
           .map((key) => caches.delete(key))
       )
     )
@@ -37,58 +42,64 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
+// ----- Helpers -----
+async function cachePut(cacheName, request, response) {
+  try {
+    const cache = await caches.open(cacheName);
+    await cache.put(request, response);
+  } catch {
+    // Storage full or quota exceeded — silently fail
+  }
+}
+
+async function trimCache(cacheName, maxEntries) {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  if (keys.length > maxEntries) {
+    await cache.delete(keys[0]);
+    return trimCache(cacheName, maxEntries);
+  }
+}
+
+function isStaticAsset(url) {
+  return (
+    url.pathname.startsWith("/_next/static/") ||
+    url.pathname.startsWith("/icons/") ||
+    url.pathname.startsWith("/sounds/") ||
+    url.pathname.startsWith("/play-store/") ||
+    /\.(png|jpg|jpeg|svg|webp|ico|woff2?|ttf|otf|mp3)$/.test(url.pathname)
+  );
+}
+
+function isNavigationOrRSC(request, url) {
+  // Next.js RSC payloads use /_next/data/ or have RSC header
+  return (
+    request.mode === "navigate" ||
+    url.pathname.startsWith("/_next/data/") ||
+    request.headers.get("RSC") === "1"
+  );
+}
+
 // ----- Fetch strategies -----
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip non-GET requests (server actions, form submissions)
+  // Skip non-GET, cross-origin, API routes, and chrome-extension
   if (request.method !== "GET") return;
-
-  // Skip cross-origin requests
   if (url.origin !== self.location.origin) return;
-
-  // Skip API routes — always go to network
   if (url.pathname.startsWith("/api/")) return;
+  if (url.protocol === "chrome-extension:") return;
 
-  // Navigation requests: network-first with offline fallback
-  if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          // Cache successful navigation responses for offline use
-          if (response.ok) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          }
-          return response;
-        })
-        .catch(() =>
-          caches
-            .match(request)
-            .then((cached) => cached || caches.match(OFFLINE_URL))
-        )
-    );
-    return;
-  }
-
-  // Static assets (/_next/static/, icons, images, sounds, fonts): cache-first
-  if (
-    url.pathname.startsWith("/_next/static/") ||
-    url.pathname.startsWith("/icons/") ||
-    url.pathname.startsWith("/sounds/") ||
-    url.pathname.match(/\.(png|jpg|jpeg|svg|webp|ico|woff2?|ttf|otf)$/)
-  ) {
+  // Static assets: cache-first
+  if (isStaticAsset(url)) {
     event.respondWith(
       caches.match(request).then(
         (cached) =>
           cached ||
           fetch(request).then((response) => {
             if (response.ok) {
-              const clone = response.clone();
-              caches
-                .open(CACHE_NAME)
-                .then((cache) => cache.put(request, clone));
+              cachePut(STATIC_CACHE, request, response.clone());
             }
             return response;
           })
@@ -97,16 +108,42 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Everything else: network-first
+  // Navigation + RSC: network-first with offline fallback
+  if (isNavigationOrRSC(request, url)) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response.ok && request.mode === "navigate") {
+            cachePut(RUNTIME_CACHE, request, response.clone());
+            trimCache(RUNTIME_CACHE, MAX_RUNTIME_ENTRIES);
+          }
+          return response;
+        })
+        .catch(() =>
+          caches
+            .match(request)
+            .then((cached) =>
+              cached ||
+              (request.mode === "navigate" ? caches.match(OFFLINE_URL) : undefined)
+            )
+        )
+    );
+    return;
+  }
+
+  // Everything else (JS chunks, CSS): stale-while-revalidate
   event.respondWith(
-    fetch(request)
-      .then((response) => {
-        if (response.ok) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-        }
-        return response;
-      })
-      .catch(() => caches.match(request))
+    caches.match(request).then((cached) => {
+      const networkFetch = fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            cachePut(RUNTIME_CACHE, request, response.clone());
+          }
+          return response;
+        })
+        .catch(() => cached);
+
+      return cached || networkFetch;
+    })
   );
 });

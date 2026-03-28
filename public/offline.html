@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Hors connexion — CRPE Français</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Cormorant+Garamond:wght@600&display=swap');
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
+      font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
       background-color: #F5F1E8;
       color: #2C2420;
       min-height: 100dvh;
@@ -33,16 +31,32 @@
     }
 
     .icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.25rem;
+      border-radius: 50%;
+      background: #EAE4D8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon svg {
+      width: 32px;
+      height: 32px;
+      stroke: #6B534A;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     h1 {
-      font-family: 'Cormorant Garamond', 'Palatino Linotype', serif;
-      font-size: 1.75rem;
-      font-weight: 600;
+      font-size: 1.5rem;
+      font-weight: 700;
       margin-bottom: 0.75rem;
       color: #2C2420;
+      letter-spacing: -0.01em;
     }
 
     p {
@@ -53,7 +67,7 @@
     }
 
     button {
-      font-family: 'Manrope', sans-serif;
+      font-family: inherit;
       font-weight: 600;
       font-size: 0.9rem;
       background-color: #4A6E8F;
@@ -65,19 +79,18 @@
       transition: background-color 0.2s;
     }
 
-    button:hover {
-      background-color: #3A5A7A;
-    }
-
-    button:focus-visible {
-      outline: 2px solid #4A6E8F;
-      outline-offset: 2px;
-    }
+    button:hover { background-color: #3A5A7A; }
+    button:focus-visible { outline: 2px solid #4A6E8F; outline-offset: 2px; }
+    button:active { transform: scale(0.98); }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="icon" aria-hidden="true">📡</div>
+    <div class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/>
+      </svg>
+    </div>
     <h1>Connexion requise</h1>
     <p>
       Tu sembles être hors connexion. Vérifie ta connexion internet
