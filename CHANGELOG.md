@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-03-28] — Exercices offline avec IndexedDB + indicateur de connectivité
+
+- `lib/offline-db.ts` — module IndexedDB (pending-attempts store) pour stocker les réponses faites hors ligne
+- `components/hooks/use-offline-sync.ts` — hook de synchronisation automatique au retour en ligne (écoute événement online, sync via submitAttemptAction, toast de confirmation)
+- `components/connectivity-indicator.tsx` — pill "Hors connexion" + bouton "Synchroniser N réponses" au retour en ligne
+- `app/(app)/layout.tsx` — intégration du ConnectivityIndicator
+
 ## [2026-03-28] — Offline fiches, push opt-in UI, SW update toast
 
 - `public/sw.js` — pré-cache des 231 fiches en arrière-plan (par batches de 5, déclenché par message PRECACHE_FICHES)
