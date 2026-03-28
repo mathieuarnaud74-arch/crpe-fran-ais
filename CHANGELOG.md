@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-03-28] — Optimisation PWA pour production
+
+- `public/sw.js` — caches versionnés (static/runtime), stale-while-revalidate pour JS/CSS, support RSC, limite 80 entrées, gestion quota
+- `public/offline.html` — suppression dépendance Google Fonts externe, system font stack, icône SVG inline
+- `public/manifest.json` — ajout champs id, dir, prefer_related_applications
+- `middleware.ts` — exclusion des assets PWA du matcher (sw.js, manifest.json, icons/, sounds/, .well-known/) pour éviter les checks auth inutiles
+
 ## [2026-03-28] — Configuration TWA Android + assets Play Store
 
 - `twa-manifest.json` — configuration complète TWA (package fr.crpe.francais, couleurs, shortcuts)
