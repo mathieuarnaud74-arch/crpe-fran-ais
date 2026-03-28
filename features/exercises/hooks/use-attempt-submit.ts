@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useTransition } from "react";
 import { toast } from "sonner";
 
+import { offlineDb } from "@/lib/offline-db";
 import { submitAttemptAction } from "@/features/exercises/server/actions";
 import type { ExerciseMode } from "@/types/domain";
 
@@ -74,6 +75,30 @@ export function useAttemptSubmit(options?: UseAttemptSubmitOptions) {
             }
           }
         } catch (err) {
+          // If offline, save to IndexedDB for later sync
+          if (!navigator.onLine) {
+            try {
+              await offlineDb.addPendingAttempt({
+                exerciseId: params.exerciseId,
+                answer: params.answer,
+                sessionId: params.sessionId,
+                timeSpentMs: params.timeSpentMs,
+                exerciseMode: params.exerciseMode,
+                streak: params.streak,
+                createdAt: new Date().toISOString(),
+              });
+              if (!optionsRef.current?.silent) {
+                toast("Réponse sauvegardée hors ligne", {
+                  description: "Elle sera synchronisée au retour de la connexion.",
+                  duration: 3000,
+                });
+              }
+              return;
+            } catch {
+              // IndexedDB also failed — fall through to error handling
+            }
+          }
+
           console.error("[useAttemptSubmit] submitAttemptAction failed:", err);
           optionsRef.current?.onError?.();
           if (!optionsRef.current?.silent) {
